@@ -1,0 +1,1682 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eaf1f7">
+<title>SIGN WELL CMS · 欣緯生醫</title>
+<style>
+:root{--bg1:#f9fcfe;--bg2:#eaf1f8;--bg3:#e3ecf4;--ink:#26313f;--ink2:#445465;--muted:#7f8b9a;--line:rgba(73,95,116,.12);--rim:rgba(255,255,255,.88);--glass:rgba(255,255,255,.52);--glass2:rgba(255,255,255,.72);--blue:#6f92ad;--sage:#6f9a8e;--red:#a65c65;--shadow:0 24px 70px rgba(50,72,96,.11),0 8px 22px rgba(50,72,96,.05);--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(155deg,var(--bg1),var(--bg2) 48%,var(--bg3));overflow:hidden;-webkit-tap-highlight-color:transparent}button,input,textarea,select{font:inherit}.hidden{display:none!important}.field{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px) saturate(145%);opacity:.72}.orb{position:absolute;border-radius:50%;animation:drift 28s ease-in-out infinite alternate}.orb.a{width:48vmax;height:48vmax;left:0;top:0;background:radial-gradient(circle,rgba(151,205,255,.68),transparent 68%)}.orb.b{width:44vmax;height:44vmax;right:-5%;top:16%;background:radial-gradient(circle,rgba(255,186,220,.42),transparent 68%);animation-delay:-9s}.orb.c{width:50vmax;height:50vmax;left:24%;bottom:-18%;background:radial-gradient(circle,rgba(150,238,219,.42),transparent 68%);animation-delay:-16s}@keyframes drift{to{transform:translate(6%,4%) scale(1.08)}}.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.20;background-image:radial-gradient(rgba(70,92,116,.13) .55px,transparent .75px);background-size:21px 21px}
+.lock{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:22px}.lock-card{width:min(420px,100%);padding:34px;border-radius:32px;border:1px solid rgba(255,255,255,.94);background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(244,250,255,.20));backdrop-filter:blur(20px) saturate(165%) brightness(1.04);-webkit-backdrop-filter:blur(20px) saturate(165%) brightness(1.04);box-shadow:0 28px 78px rgba(50,72,96,.12),0 6px 20px rgba(50,72,96,.05),inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(91,121,146,.07);position:relative;z-index:2;text-align:center;overflow:hidden}.lock-mark{width:58px;height:58px;margin:auto;border-radius:19px;display:grid;place-items:center;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);box-shadow:inset 0 1px 0 #fff,0 12px 24px rgba(50,72,96,.10);font-weight:800;font-size:20px}.lock h1{font:500 36px/1 Georgia,"Noto Serif TC",serif;margin:20px 0 8px;letter-spacing:-.04em}.lock p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.pin{margin-top:22px;width:100%;height:52px;border:1px solid rgba(88,108,126,.16);border-radius:17px;background:rgba(255,255,255,.68);outline:none;text-align:center;font-size:22px;letter-spacing:.28em;color:var(--ink)}.lock button{width:100%;height:50px;margin-top:10px;border:0;border-radius:17px;background:#243140;color:#fff;font-weight:700;cursor:pointer}.lock small{display:block;color:#98a4ae;font-size:9.5px;line-height:1.6;margin-top:13px}.auth-progress{display:flex;align-items:center;justify-content:center;gap:9px;margin:19px 0 4px}.auth-progress span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(91,112,132,.14);background:rgba(255,255,255,.38);color:#95a1ac;font-size:10px;font-weight:750;transition:.25s ease}.auth-progress span.active{background:#263340;color:#fff;border-color:#263340;box-shadow:0 6px 16px rgba(38,51,64,.16)}.auth-progress span.done{background:rgba(111,143,134,.16);color:#58796f;border-color:rgba(111,143,134,.22)}.auth-progress i{width:30px;height:1px;background:rgba(91,112,132,.16)}.auth-step{margin-top:14px}.auth-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8e9aa5;margin-bottom:7px}.security-question{margin:3px 0 12px;padding:14px 15px;border-radius:16px;background:rgba(255,255,255,.40);border:1px solid rgba(255,255,255,.74);color:#455564;font-size:13px;font-weight:650;line-height:1.55}.answer-input{font-size:16px;letter-spacing:.04em}.auth-back{margin-top:7px!important;background:rgba(255,255,255,.42)!important;color:#70808f!important;border:1px solid rgba(255,255,255,.75)!important}
+.cms{position:relative;z-index:2;height:100dvh;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:238px minmax(0,1fr);gap:12px}.glass{border:1px solid var(--rim);background:rgba(250,253,255,.48);backdrop-filter:blur(24px) saturate(170%);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),var(--shadow)}.sidebar{border-radius:28px;padding:16px 12px;display:flex;flex-direction:column;min-height:0}.brand{display:flex;align-items:center;gap:11px;padding:5px 8px 17px;border-bottom:1px solid var(--line)}.mark{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);font-weight:800}.brand strong{display:block;font-size:12px;letter-spacing:.1em}.brand span{display:block;color:var(--muted);font-size:9px;letter-spacing:.12em;margin-top:3px}.nav{display:grid;gap:5px;margin-top:14px}.nav button{height:43px;border:0;border-radius:14px;background:transparent;color:#667585;text-align:left;padding:0 12px;font-size:12px;font-weight:680;cursor:pointer}.nav button:hover,.nav button.active{background:rgba(255,255,255,.57);color:var(--ink)}.sidebar-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:12px;display:grid;gap:6px}.smallbtn{height:40px;border:1px solid rgba(255,255,255,.82);border-radius:13px;background:rgba(255,255,255,.42);color:#667585;font-size:11px;font-weight:650;cursor:pointer}.smallbtn.danger{color:var(--red)}
+.workspace{border-radius:28px;min-width:0;min-height:0;overflow:hidden;display:flex;flex-direction:column}.topbar{height:68px;flex:0 0 auto;padding:0 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}.topbar h2{font-size:14px;margin:0}.save-state{margin-left:auto;font-size:10.5px;color:#83919d}.top-action{height:40px;padding:0 13px;border:1px solid rgba(255,255,255,.84);border-radius:14px;background:rgba(255,255,255,.48);color:#5c6b7a;font-size:11px;font-weight:700;cursor:pointer}.top-action.primary{background:#263340;color:#fff;border-color:transparent}.view{flex:1;min-height:0;overflow:auto;padding:22px}.page-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}.page-head h1{font:500 38px/1.05 Georgia,"Noto Serif TC",serif;margin:0;letter-spacing:-.04em}.page-head p{color:var(--muted);font-size:11px;margin:6px 0 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{padding:18px;border:1px solid rgba(255,255,255,.80);border-radius:20px;background:rgba(255,255,255,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}.stat span{display:block;color:#8c99a4;font-size:9px;letter-spacing:.1em;text-transform:uppercase}.stat strong{display:block;font:500 30px/1 Georgia,"Noto Serif TC",serif;margin-top:8px}.panel{margin-top:12px;border:1px solid rgba(255,255,255,.82);border-radius:22px;background:rgba(255,255,255,.35);overflow:hidden}.panel-head{height:54px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-size:12px;font-weight:700}.article-row{display:grid;grid-template-columns:minmax(0,1.5fr) 150px 90px 110px;gap:12px;align-items:center;padding:13px 16px;border-bottom:1px solid rgba(72,94,114,.08);cursor:pointer}.article-row:hover{background:rgba(255,255,255,.30)}.article-row:last-child{border-bottom:0}.article-row strong{font-family:Georgia,"Noto Serif TC",serif;font-size:15px;font-weight:500}.article-row small{display:block;color:#8b97a2;font-size:9.5px;margin-top:3px}.badge{display:inline-flex;width:max-content;padding:6px 9px;border-radius:999px;background:rgba(108,149,139,.10);color:#5b7f76;font-size:9.5px;font-weight:700}.badge.draft{background:rgba(139,146,154,.12);color:#707983}.row-actions{display:flex;gap:5px}.row-actions button{width:32px;height:32px;border:0;border-radius:10px;background:rgba(255,255,255,.52);cursor:pointer;color:#71808e}.row-actions button:hover{background:#fff}.empty{text-align:center;padding:50px;color:var(--muted);font-size:12px}.searchbar{height:42px;min-width:240px;border:1px solid rgba(86,106,124,.13);border-radius:14px;background:rgba(255,255,255,.47);padding:0 13px;outline:0;color:var(--ink)}
+/* editor */.editor-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;min-height:100%}.editor-main,.editor-side{border:1px solid rgba(255,255,255,.82);border-radius:22px;background:rgba(255,255,255,.35);overflow:hidden}.editor-main{padding:22px}.title-input{width:100%;border:0;outline:0;background:transparent;font:500 clamp(32px,5vw,56px)/1.04 Georgia,"Noto Serif TC",serif;color:var(--ink);letter-spacing:-.04em}.subtitle-input{width:100%;border:0;outline:0;background:transparent;color:#74818d;font-size:14px;line-height:1.65;margin-top:10px;resize:none;min-height:54px}.toolbar{display:flex;flex-wrap:wrap;gap:5px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:12px}.toolbar button{height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.84);border-radius:10px;background:rgba(255,255,255,.46);color:#61707f;font-size:10px;font-weight:700;cursor:pointer}.content-area{width:100%;min-height:430px;border:0;outline:0;background:transparent;resize:vertical;padding:18px 2px;font:13px/1.8 "SFMono-Regular",Consolas,monospace;color:#3f4c59}.doc-editor{min-height:520px;padding:30px 8px 80px;outline:0;font-size:16px;line-height:1.95;color:#3f4c59;caret-color:#26313f}.doc-editor:empty:before{content:"開始撰寫文章…";color:#a1adb7}.doc-editor h2{font:500 32px/1.2 Georgia,"Noto Serif TC",serif;margin:42px 0 14px;letter-spacing:-.03em}.doc-editor h3{font-size:21px;margin:30px 0 10px}.doc-editor h4{font-size:16px;font-weight:760;margin:24px 0 8px;letter-spacing:-.01em}.doc-editor p{margin:0 0 18px}.doc-editor blockquote{margin:24px 0;padding:14px 18px;border-left:3px solid #87a8a0;background:rgba(255,255,255,.42);border-radius:0 16px 16px 0}.doc-editor img{display:block;max-width:100%;height:auto;margin:28px auto;border-radius:18px;box-shadow:0 12px 30px rgba(45,63,80,.10)}.doc-editor a{color:#547a98}.toolbar.sticky-tools{position:sticky;top:-22px;z-index:8;background:rgba(242,248,251,.88);backdrop-filter:blur(16px);margin-left:-22px;margin-right:-22px;padding:10px 22px}.toolbar .tool-sep{width:1px;height:22px;background:var(--line);margin:6px 2px}.cover-box{margin:14px 0 4px;border:1px dashed rgba(91,112,132,.22);border-radius:22px;min-height:150px;overflow:hidden;background:rgba(255,255,255,.30);display:grid;place-items:center;position:relative}.cover-box.has-image{min-height:260px;border-style:solid}.cover-box img{width:100%;height:260px;object-fit:cover;display:block}.cover-empty{text-align:center;color:#8b98a3;font-size:11px;line-height:1.7;padding:24px}.cover-actions{position:absolute;right:10px;bottom:10px;display:flex;gap:7px}.cover-actions button{height:36px;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);color:#596978;font-size:10px;font-weight:700;padding:0 11px;cursor:pointer}.editor-side{padding:14px;align-self:start;position:sticky;top:0}.field-group{padding:10px 0;border-bottom:1px solid var(--line)}.field-group:last-child{border-bottom:0}.field-group label{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8b98a3;margin-bottom:7px}.field-group input,.field-group select,.field-group textarea{width:100%;border:1px solid rgba(87,107,126,.13);border-radius:12px;background:rgba(255,255,255,.55);padding:10px 11px;outline:0;color:var(--ink);font-size:11px}.field-group textarea{min-height:78px;resize:vertical}.check{display:flex;align-items:center;gap:8px;font-size:11px;color:#61707f}.preview-overlay{position:fixed;inset:0;z-index:60;background:rgba(225,236,243,.52);backdrop-filter:blur(14px);display:none;padding:18px}.preview-overlay.show{display:block}.preview-shell{width:min(980px,100%);height:100%;margin:auto;border:1px solid var(--rim);border-radius:28px;background:#fff;box-shadow:0 30px 90px rgba(40,58,78,.22);overflow:auto;position:relative;padding:70px max(22px,8vw)}.preview-close{position:fixed;right:30px;top:30px;width:44px;height:44px;border:1px solid rgba(255,255,255,.9);border-radius:999px;background:rgba(255,255,255,.74);box-shadow:0 10px 26px rgba(40,58,78,.12);cursor:pointer}.preview-content{max-width:760px;margin:auto}.preview-content h1{font:500 50px/1.05 Georgia,"Noto Serif TC",serif;letter-spacing:-.04em}.preview-content .lead{color:#72808d;line-height:1.7}.preview-content h2{font:500 30px/1.2 Georgia,"Noto Serif TC",serif;margin-top:42px}.preview-content h3{font-size:19px;margin-top:28px}.preview-content h4{font-size:15px;font-weight:760;margin-top:22px}.preview-content p,.preview-content li{font-size:15px;line-height:1.9;color:#465463}.callout{margin:24px 0;padding:17px 19px;border-radius:18px;background:#eef5f3;border:1px solid #dceae6}.callout b{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#63867c;margin-bottom:6px}.toast{position:fixed;z-index:90;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translate(-50%,18px);opacity:0;background:rgba(34,46,58,.92);color:#fff;padding:10px 14px;border-radius:999px;font-size:11px;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal{position:fixed;inset:0;z-index:80;background:rgba(225,236,243,.52);backdrop-filter:blur(14px);display:none;place-items:center;padding:18px}.modal.show{display:grid}.modal-card{width:min(430px,100%);padding:24px;border:1px solid var(--rim);border-radius:26px;background:rgba(250,253,255,.86);box-shadow:0 30px 90px rgba(40,58,78,.22)}.modal-card h3{font:500 28px/1.1 Georgia,"Noto Serif TC",serif;margin:0}.modal-card p{color:#74818d;font-size:12px;line-height:1.7}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}.modal-actions button{height:40px;padding:0 13px;border:1px solid rgba(83,105,124,.12);border-radius:13px;background:#fff;color:#5d6d7c;font-weight:700;font-size:11px;cursor:pointer}.modal-actions .danger{background:#9a515b;color:#fff;border-color:transparent}.file-input{display:none}
+body.lite .field{display:none}body.lite .glass,body.lite .lock-card{backdrop-filter:none!important}body.lite *{animation-duration:.001ms!important;animation-iteration-count:1!important}
+@media(max-width:900px){body{overflow:auto}.cms{height:auto;min-height:100dvh;grid-template-columns:1fr;padding:10px}.sidebar{position:sticky;top:10px;z-index:12;display:block;padding:10px}.brand{border:0;padding:0}.nav{display:flex;overflow-x:auto;margin-top:10px;padding-bottom:2px}.nav button{flex:none;padding:0 11px}.sidebar-foot{display:none}.workspace{min-height:calc(100dvh - 120px)}.stats{grid-template-columns:repeat(2,1fr)}.editor-grid{grid-template-columns:1fr}.editor-side{position:static}.article-row{grid-template-columns:minmax(0,1fr) 100px 80px}.article-row>div:nth-child(3){display:none}.searchbar{min-width:0;width:100%}.page-head{align-items:stretch;flex-direction:column}.view{padding:16px}}
+@media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.article-row{grid-template-columns:minmax(0,1fr) 74px}.article-row>div:nth-child(2){display:none}.title-input{font-size:38px}.topbar{padding:0 12px}.topbar h2{display:none}.view{padding:12px}.editor-main{padding:16px}.preview-shell{padding:70px 20px}.preview-content h1{font-size:38px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+
+/* =========================================================
+   SIGN WELL CMS · Alpine Sky Liquid Glass v5
+   ========================================================= */
+:root{--tenho:#86caff;--tenho-deep:#58a9ed;--tenho-pale:rgba(134,202,255,.20);--spring:cubic-bezier(.18,1.35,.36,1);--glass-depth:0 30px 80px rgba(55,93,126,.13),0 9px 26px rgba(55,93,126,.065),inset 0 1px 0 rgba(255,255,255,.97)}
+html{scrollbar-color:rgba(86,169,237,.72) rgba(232,242,250,.50);scrollbar-width:thin}
+body::before{content:"";position:fixed;inset:-14%;z-index:0;pointer-events:none;background:radial-gradient(circle at 14% 12%,rgba(134,202,255,.20),transparent 26%),radial-gradient(circle at 84% 30%,rgba(210,239,255,.25),transparent 25%),radial-gradient(circle at 54% 88%,rgba(134,202,255,.11),transparent 27%);filter:blur(18px);animation:cmsSky 15s ease-in-out infinite alternate}
+@keyframes cmsSky{to{transform:translate3d(1%,.8%,0) scale(1.04)}}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:rgba(235,244,250,.44)}::-webkit-scrollbar-thumb{border:3px solid transparent;background:linear-gradient(180deg,#b8e5ff,#62b3ef);background-clip:padding-box;border-radius:999px}
+.glass,.lock-card,.panel,.editor-main,.editor-side,.stat,.modal-card,.preview-shell{box-shadow:var(--glass-depth)}
+.lock-card,.stat,.panel{--rx:0deg;--ry:0deg;--lift:0px;--px:50%;--py:25%;transform:perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift));transform-style:preserve-3d;will-change:transform;transition:transform .45s var(--spring),box-shadow .35s ease,border-color .28s ease}
+.lock-card::before,.stat::before,.panel::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(280px circle at var(--px) var(--py),rgba(255,255,255,.52),rgba(134,202,255,.09) 42%,transparent 68%);mix-blend-mode:screen;opacity:.65}
+.stat{position:relative;overflow:hidden}.stat:hover,.panel:hover{--lift:-3px;border-color:rgba(255,255,255,.96)}
+.sidebar{position:relative;overflow:hidden}.sidebar::after{content:"";position:absolute;top:-70%;left:-55%;width:34%;height:240%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.58),transparent);transform:rotate(16deg);filter:blur(4px);animation:cmsSheen 9.2s var(--ease) infinite;pointer-events:none}@keyframes cmsSheen{0%,65%{translate:-120% 0;opacity:0}72%{opacity:.85}100%{translate:650% 0;opacity:0}}
+.mark{box-shadow:inset 0 1px 0 #fff,0 9px 24px rgba(88,169,237,.16)}
+.top-action,.smallbtn,.toolbar button,.nav button,.row-actions button,.lock button{transition:transform .25s var(--spring),box-shadow .23s ease,background .23s ease,color .23s ease}
+.top-action:hover,.smallbtn:hover,.toolbar button:hover,.nav button:hover{transform:translateY(-2px)}
+.top-action.primary{background:linear-gradient(180deg,#31485d,#22313f);box-shadow:0 12px 28px rgba(42,72,96,.18),inset 0 1px 0 rgba(255,255,255,.14)}
+.top-action.online{background:linear-gradient(180deg,#80c8fb,#58a9ed);color:#fff;border-color:rgba(255,255,255,.50);box-shadow:0 12px 28px rgba(88,169,237,.26),inset 0 1px 0 rgba(255,255,255,.38)}
+.jelly{animation:jellyPress .56s var(--spring)!important}@keyframes jellyPress{0%{scale:1}28%{scale:.92 1.07}56%{scale:1.045 .965}78%{scale:.988 1.012}100%{scale:1}}
+.publish-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:12px;margin-top:12px}.publish-card{position:relative;padding:22px;border:1px solid rgba(255,255,255,.84);border-radius:24px;background:rgba(255,255,255,.36);box-shadow:var(--glass-depth);overflow:hidden}.publish-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 0%,rgba(134,202,255,.16),transparent 36%)}.publish-card>*{position:relative;z-index:1}.publish-card h3{margin:0 0 8px;font:500 24px/1.1 Georgia,"Noto Serif TC",serif}.publish-card p{margin:0;color:#74818d;font-size:11px;line-height:1.8}.publish-form{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.publish-form .full{grid-column:1/-1}.publish-form label{display:grid;gap:6px;color:#7f8d99;font-size:9.5px;font-weight:700;letter-spacing:.06em}.publish-form input{height:42px;border:1px solid rgba(86,106,124,.13);border-radius:13px;background:rgba(255,255,255,.58);padding:0 12px;color:var(--ink);outline:0}.publish-form input:focus{border-color:rgba(88,169,237,.46);box-shadow:0 0 0 4px rgba(88,169,237,.08)}.publish-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.publish-status{margin-top:12px;min-height:20px;color:#6d7d8a;font-size:10.5px;line-height:1.6}.security-note{margin-top:12px;padding:11px 12px;border-radius:14px;background:rgba(134,202,255,.09);border:1px solid rgba(88,169,237,.12);color:#617383;font-size:10px;line-height:1.65}.file-map{display:grid;gap:8px;margin-top:15px}.file-map div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:13px;background:rgba(255,255,255,.43);border:1px solid rgba(255,255,255,.72);font-size:10.5px}.file-map code{font-size:10px;color:#4f6f87}.file-ok{color:#558477;font-weight:750}
+.reveal-fx{opacity:0;translate:0 16px;filter:blur(7px)}.reveal-fx.in-view{opacity:1;translate:0;filter:none;transition:opacity .65s var(--ease),translate .65s var(--ease),filter .65s var(--ease)}
+@media(max-width:900px){.publish-grid{grid-template-columns:1fr}.publish-form{grid-template-columns:1fr}.publish-form .full{grid-column:auto}.sidebar::after{display:none}.lock-card,.stat,.panel{transform:none!important}}
+@media(pointer:coarse){.lock-card,.stat,.panel{transform:none!important}.lock-card::before,.stat::before,.panel::before{display:none}}
+body.lite::before{display:none}body.lite .lock-card,body.lite .stat,body.lite .panel{transform:none!important;box-shadow:0 14px 34px rgba(50,72,96,.08)}
+@media(prefers-reduced-motion:reduce){body::before,.sidebar::after{animation:none!important}.reveal-fx{opacity:1!important;translate:0!important;filter:none!important}}
+
+
+/* ===== v6 · Authentication feedback + remembered GitHub connection ===== */
+.auth-error-box{display:none;align-items:flex-start;gap:10px;margin:12px 0 2px;padding:11px 12px;border-radius:15px;text-align:left;background:rgba(203,76,91,.09);border:1px solid rgba(188,68,83,.18);color:#8f4650;font-size:11px;line-height:1.55;box-shadow:inset 0 1px 0 rgba(255,255,255,.72)}
+.auth-error-box.show{display:flex;animation:authErrorIn .28s var(--spring)}.auth-error-icon{width:21px;height:21px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(166,92,101,.13);font-size:12px;font-weight:800}.auth-error-box b{display:block;font-size:11px;margin-bottom:1px}.auth-error-box span{display:block;color:#9a6068;font-size:10px}
+.pin.invalid{border-color:rgba(190,62,78,.48)!important;background:rgba(255,244,246,.72)!important;box-shadow:0 0 0 4px rgba(190,62,78,.075),inset 0 1px 0 #fff!important;animation:authInputShake .42s ease}.lock-card.auth-fail{animation:authCardShake .44s ease}
+@keyframes authErrorIn{from{opacity:0;translate:0 -6px;filter:blur(4px)}to{opacity:1;translate:0;filter:none}}
+@keyframes authInputShake{0%,100%{translate:0}20%{translate:-7px 0}40%{translate:6px 0}60%{translate:-4px 0}80%{translate:3px 0}}
+@keyframes authCardShake{0%,100%{translate:0}25%{translate:-4px 0}50%{translate:4px 0}75%{translate:-2px 0}}
+.auth-ok{color:#568174!important}.connection-summary{display:grid;gap:9px;margin:16px 0 0}.connection-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 13px;border:1px solid rgba(255,255,255,.76);border-radius:15px;background:rgba(255,255,255,.42)}.connection-row span{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8795a1}.connection-row strong,.connection-row code{font-size:11px;color:#405568;text-align:right;word-break:break-all}.token-state{display:inline-flex;align-items:center;gap:7px}.token-state::before{content:"";width:7px;height:7px;border-radius:50%;background:#a5afb7;box-shadow:0 0 0 4px rgba(165,175,183,.10)}.token-state.ready::before{background:#55a878;box-shadow:0 0 0 4px rgba(85,168,120,.11)}
+.token-setup{margin-top:15px;padding-top:15px;border-top:1px solid rgba(75,98,118,.09)}.token-setup label.token-label{display:grid;gap:7px;color:#7f8d99;font-size:9.5px;font-weight:700;letter-spacing:.06em}.token-setup input[type=password]{height:44px;width:100%;border:1px solid rgba(86,106,124,.13);border-radius:14px;background:rgba(255,255,255,.58);padding:0 12px;color:var(--ink);outline:0}.remember-row{display:flex;align-items:flex-start;gap:9px;margin-top:10px;color:#647686;font-size:10px;line-height:1.55}.remember-row input{margin-top:2px;accent-color:#58a9ed}.advanced-box{margin-top:13px;border:1px solid rgba(255,255,255,.74);border-radius:15px;background:rgba(255,255,255,.30);overflow:hidden}.advanced-box summary{cursor:pointer;padding:11px 13px;color:#718290;font-size:10px;font-weight:700;list-style:none}.advanced-box summary::-webkit-details-marker{display:none}.advanced-box .advanced-body{padding:0 13px 13px;display:grid;gap:7px}.advanced-box .advanced-body div{display:flex;justify-content:space-between;gap:10px;font-size:9.5px;color:#82909b}.advanced-box code{color:#4d6577}.integrity-note{margin-top:12px;padding:12px;border-radius:15px;background:rgba(91,169,128,.075);border:1px solid rgba(91,169,128,.13);color:#5b746b;font-size:10px;line-height:1.65}.integrity-note.warn{background:rgba(196,145,73,.08);border-color:rgba(196,145,73,.14);color:#80683f}
+@media(max-width:560px){.connection-row{align-items:flex-start;flex-direction:column;gap:5px}.connection-row strong,.connection-row code{text-align:left}.auth-error-box{font-size:10.5px}}
+
+
+/* website text editor */
+.site-text-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:12px;align-items:start}.site-text-card{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.92);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(246,250,255,.62));padding:20px;box-shadow:0 22px 58px rgba(48,70,90,.09),inset 0 1px 0 rgba(255,255,255,.98)}.site-text-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 22%)}.site-text-card h3{position:relative;margin:0 0 5px;font:500 26px/1.1 Georgia,"Noto Serif TC",serif;letter-spacing:-.03em}.site-text-card>p{position:relative;margin:0 0 18px;padding:0 0 16px;border-bottom:1px solid rgba(103,128,153,.14);color:#6f7f8d;font-size:11px;line-height:1.75}.site-section{padding:16px 0;border-top:1px solid rgba(103,128,153,.11)}.site-section:first-of-type{border-top:0;padding-top:8px}.site-section-title{font-size:11px;font-weight:800;color:#596b7a;margin-bottom:11px}.site-field{margin-top:10px}.site-field label{display:block;font-size:9px;letter-spacing:.08em;color:#8b98a3;margin-bottom:6px}.site-field input,.site-field textarea{width:100%;border:1px solid rgba(87,107,126,.13);border-radius:13px;background:rgba(255,255,255,.58);padding:11px 12px;outline:0;color:var(--ink);font-size:12px;line-height:1.6}.site-field textarea{min-height:88px;resize:vertical}.site-field input:focus,.site-field textarea:focus{border-color:rgba(91,145,187,.30);box-shadow:0 0 0 4px rgba(91,145,187,.07)}.site-text-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.site-preview-box{position:sticky;top:0;border:1px solid rgba(255,255,255,.82);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.58),rgba(229,241,249,.35));padding:22px;box-shadow:var(--glass-depth);overflow:hidden}.site-preview-box:before{content:"";position:absolute;inset:-35%;background:radial-gradient(circle at 30% 25%,rgba(116,186,232,.20),transparent 28%),radial-gradient(circle at 80% 70%,rgba(142,225,211,.17),transparent 28%);filter:blur(18px);pointer-events:none}.site-preview-box>*{position:relative}.site-preview-box .mini-eyebrow{font-size:9px;letter-spacing:.14em;color:#7890a2}.site-preview-box h4{font:500 32px/1.03 Georgia,"Noto Serif TC",serif;margin:14px 0 10px;letter-spacing:-.04em}.site-preview-box p{font-size:11px;line-height:1.75;color:#71818f}.site-preview-box .mini-nav{display:flex;gap:8px;margin-bottom:22px}.site-preview-box .mini-nav span{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.55);font-size:9px;color:#667787}.site-publish-hint{margin-top:14px;padding:12px 13px;border-radius:15px;background:rgba(107,157,191,.08);border:1px solid rgba(107,157,191,.10);font-size:10px;line-height:1.7;color:#687a89}@media(max-width:900px){.site-text-wrap{grid-template-columns:1fr}.site-preview-box{position:static}}
+
+/* v11 主題管理 */
+.topic-admin{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:14px}.topic-list,.topic-form{border:1px solid rgba(255,255,255,.76);border-radius:24px;background:rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 14px 40px rgba(55,88,112,.06);padding:16px}.topic-row-admin{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:13px 10px;border-bottom:1px solid rgba(90,120,145,.09)}.topic-row-admin:last-child{border-bottom:0}.topic-row-admin strong{display:block;font-size:14px}.topic-row-admin span{display:block;margin-top:3px;color:#81909d;font-size:11px}.topic-row-actions{display:flex;gap:6px}.topic-row-actions button{height:34px;border:1px solid rgba(255,255,255,.8);border-radius:11px;background:rgba(255,255,255,.55);padding:0 10px;cursor:pointer}.topic-form h3{margin:0 0 12px}.topic-form .field-group{margin-bottom:11px}.topic-form textarea{min-height:92px;resize:vertical}.topic-help{margin:10px 0 0;color:#83909b;font-size:11px;line-height:1.65}.topic-active{display:flex;align-items:center;gap:8px;font-size:12px;color:#667786;margin-top:10px}.category-select{width:100%;height:42px;border:1px solid rgba(91,117,137,.14);border-radius:13px;background:rgba(255,255,255,.7);padding:0 11px;color:#263644}.topic-badge{display:inline-flex;align-items:center;gap:5px;height:23px;padding:0 8px;border-radius:999px;background:rgba(112,182,239,.11);color:#5b86a8;font-size:10px;margin-left:7px}@media(max-width:900px){.topic-admin{grid-template-columns:1fr}}
+
+/* ============================================================
+   SIGN WELL CMS v12.4 · Liquid editor dock
+   Desktop: fixed bottom-center glass toolbar
+   Mobile: bottom-right glass tool button + expandable palette
+   ============================================================ */
+
+:root{
+  --editor-kb:0px;
+  --editor-vv-center:50vh;
+  --dock-rim:135deg;
+}
+
+/* ---------- refractive liquid toolbar ---------- */
+.editor-tool-dock{
+  position:fixed;
+  z-index:58;
+  left:50%;
+  bottom:calc(max(16px,env(safe-area-inset-bottom)) + var(--editor-kb));
+  transform:translateX(-50%);
+  pointer-events:none;
+  max-width:calc(100vw - 30px);
+  isolation:isolate;
+}
+.editor-tool-dock .editor-toolbar{
+  pointer-events:auto;
+  position:relative;
+  margin:0;
+  padding:7px;
+  width:max-content;
+  max-width:min(980px,calc(100vw - 30px));
+  display:flex;
+  flex-wrap:nowrap;
+  gap:5px;
+  overflow-x:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+  border:1px solid rgba(255,255,255,.46);
+  border-radius:24px;
+
+  /* Much clearer glass — page/background remains visible through it. */
+  background:
+    radial-gradient(90% 180% at 18% -20%,rgba(255,255,255,.28),transparent 56%),
+    linear-gradient(150deg,rgba(255,255,255,.22),rgba(226,243,254,.10) 52%,rgba(255,255,255,.16));
+  -webkit-backdrop-filter:blur(14px) saturate(185%) brightness(1.07);
+  backdrop-filter:blur(14px) saturate(185%) brightness(1.07);
+  box-shadow:
+    0 18px 50px rgba(47,78,105,.14),
+    0 3px 10px rgba(47,78,105,.06),
+    inset 0 1px 0 rgba(255,255,255,.62),
+    inset 0 -1px 0 rgba(79,124,160,.08);
+}
+.editor-tool-dock .editor-toolbar::-webkit-scrollbar{display:none}
+
+/* Refractive edge: moving conic rim + slightly irregular lens highlights. */
+.editor-tool-dock .editor-toolbar::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1.35px;
+  pointer-events:none;
+  z-index:4;
+  background:
+    conic-gradient(from var(--dock-rim) at 50% 50%,
+      rgba(255,255,255,.94) 0deg,
+      rgba(174,220,250,.22) 54deg,
+      rgba(255,255,255,.16) 102deg,
+      rgba(255,255,255,.88) 166deg,
+      rgba(133,196,238,.18) 226deg,
+      rgba(255,255,255,.12) 285deg,
+      rgba(255,255,255,.92) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  animation:dockRimDrift 8s ease-in-out infinite alternate;
+}
+.editor-tool-dock .editor-toolbar::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(100px 34px at 18% 4%,rgba(255,255,255,.44),transparent 72%),
+    radial-gradient(120px 44px at 82% 104%,rgba(150,211,248,.15),transparent 76%);
+  mix-blend-mode:screen;
+}
+@keyframes dockRimDrift{
+  0%{--dock-rim:110deg}
+  100%{--dock-rim:210deg}
+}
+
+.editor-tool-dock .toolbar button{
+  position:relative;
+  z-index:2;
+  flex:0 0 auto;
+  height:42px;
+  min-width:42px;
+  padding:0 12px;
+  border-radius:14px;
+  color:#587082;
+  font-size:10.5px;
+  font-weight:760;
+  letter-spacing:.01em;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.40);
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.25),rgba(255,255,255,.10));
+  -webkit-backdrop-filter:blur(6px) saturate(150%);
+  backdrop-filter:blur(6px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.50),
+    0 4px 12px rgba(64,101,130,.04);
+  transition:
+    transform .26s var(--spring),
+    background .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    color .22s ease;
+}
+.editor-tool-dock .toolbar button:hover{
+  transform:translateY(-1px);
+  color:#315a77;
+  border-color:rgba(255,255,255,.64);
+  background:linear-gradient(150deg,rgba(255,255,255,.38),rgba(222,241,253,.17));
+}
+.editor-tool-dock .toolbar button:active{
+  transform:scale(.93);
+  background:rgba(205,234,252,.34);
+}
+.editor-tool-dock .toolbar button.active{
+  color:#214f70;
+  border-color:rgba(255,255,255,.72);
+  background:linear-gradient(150deg,rgba(214,239,255,.48),rgba(255,255,255,.22));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    0 8px 20px rgba(66,116,153,.10);
+}
+.editor-tool-dock .tool-sep{
+  position:relative;
+  z-index:2;
+  flex:0 0 1px;
+  align-self:center;
+  width:1px;
+  height:23px;
+  margin:0 2px;
+  background:linear-gradient(transparent,rgba(75,112,142,.18),transparent);
+}
+.tool-fab{display:none}
+.doc-editor{padding-bottom:150px!important}
+
+/* ---------- Mobile: always live at the right center ---------- */
+@media(max-width:700px){
+  .editor-tool-dock{
+    left:auto;
+    right:max(10px,env(safe-area-inset-right));
+    top:var(--editor-vv-center);
+    bottom:auto;
+    transform:translateY(-50%);
+    max-width:none;
+  }
+  .tool-fab{
+    pointer-events:auto;
+    position:relative;
+    display:grid;
+    place-items:center;
+    width:58px;
+    height:72px;
+    margin:0;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.48);
+    color:#4d6a80;
+    font:800 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;
+    letter-spacing:-.02em;
+    cursor:pointer;
+    background:
+      radial-gradient(80% 110% at 22% 4%,rgba(255,255,255,.38),transparent 58%),
+      linear-gradient(150deg,rgba(255,255,255,.22),rgba(221,240,252,.10));
+    -webkit-backdrop-filter:blur(13px) saturate(180%) brightness(1.06);
+    backdrop-filter:blur(13px) saturate(180%) brightness(1.06);
+    box-shadow:
+      0 16px 40px rgba(48,77,103,.15),
+      inset 0 1px 0 rgba(255,255,255,.60);
+    transition:transform .28s var(--spring),background .22s ease;
+    isolation:isolate;
+  }
+  .tool-fab::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    border-radius:inherit;
+    padding:1.2px;
+    pointer-events:none;
+    background:conic-gradient(from 130deg,
+      rgba(255,255,255,.95),
+      rgba(163,215,248,.18) 23%,
+      rgba(255,255,255,.12) 46%,
+      rgba(255,255,255,.82) 68%,
+      rgba(126,190,232,.16) 84%,
+      rgba(255,255,255,.95));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;
+  }
+  .tool-fab:active{transform:scale(.91)}
+  .tool-fab::after{
+    content:"";
+    position:absolute;
+    width:7px;height:7px;
+    right:9px;top:9px;
+    border-radius:50%;
+    background:#76b8e8;
+    box-shadow:0 0 0 4px rgba(118,184,232,.11);
+  }
+
+  .editor-tool-dock .editor-toolbar{
+    position:absolute;
+    right:70px;
+    top:50%;
+    bottom:auto;
+    transform:translateY(-50%) translateX(12px) scale(.95);
+    transform-origin:100% 50%;
+    width:min(326px,calc(100vw - 94px));
+    max-width:calc(100vw - 94px);
+    max-height:min(68dvh,520px);
+    padding:9px;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:7px;
+    overflow:auto;
+    border-radius:27px;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:
+      opacity .20s ease,
+      transform .30s var(--spring),
+      visibility 0s linear .30s;
+  }
+  .editor-tool-dock.open .editor-toolbar{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(-50%) translateX(0) scale(1);
+    transition-delay:0s;
+  }
+  .editor-tool-dock .toolbar button{
+    min-width:0!important;
+    width:100%;
+    height:48px;
+    padding:0 6px;
+    border-radius:16px;
+    font-size:10.5px;
+  }
+  .editor-tool-dock .tool-sep{display:none}
+  .doc-editor{padding-bottom:92px!important;padding-right:54px!important}
+}
+@media(max-width:390px){
+  .editor-tool-dock .editor-toolbar{
+    width:min(280px,calc(100vw - 88px));
+    max-width:calc(100vw - 88px);
+    right:66px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* iPhone performance: retain transparency/refraction without excessive repaint cost. */
+@media(pointer:coarse){
+  .editor-tool-dock .editor-toolbar,
+  .tool-fab{
+    -webkit-backdrop-filter:blur(10px) saturate(160%);
+    backdrop-filter:blur(10px) saturate(160%);
+  }
+  .editor-tool-dock .toolbar button{
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+}
+body.lite .editor-tool-dock .editor-toolbar,
+body.lite .tool-fab{
+  -webkit-backdrop-filter:blur(7px) saturate(135%);
+  backdrop-filter:blur(7px) saturate(135%);
+}
+
+
+/* v12.5 heading tool sizing */
+.editor-tool-dock .toolbar button[data-val="h2"],
+.editor-tool-dock .toolbar button[data-val="h3"],
+.editor-tool-dock .toolbar button[data-val="h4"]{
+  min-width:62px;
+}
+@media(max-width:700px){
+  .editor-tool-dock .toolbar button[data-val="h2"],
+  .editor-tool-dock .toolbar button[data-val="h3"],
+  .editor-tool-dock .toolbar button[data-val="h4"]{
+    min-width:0;
+    font-size:10.5px;
+  }
+}
+
+
+/* v12.7 · clearer liquid glass login card */
+.lock-card::before{
+  display:block!important;
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(360px circle at var(--px,42%) var(--py,18%),rgba(255,255,255,.62),rgba(255,255,255,.10) 44%,transparent 70%),
+    linear-gradient(145deg,rgba(255,255,255,.18),transparent 48%);
+  mix-blend-mode:screen;
+  opacity:.72;
+}
+.lock-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
+  pointer-events:none;
+  z-index:1;
+  background:linear-gradient(145deg,rgba(255,255,255,1),rgba(255,255,255,.22) 46%,rgba(255,255,255,.72));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+}
+.lock-card>*{position:relative;z-index:2}
+@media(pointer:coarse){
+  .lock-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.30),rgba(238,248,255,.18));
+    backdrop-filter:blur(16px) saturate(155%) brightness(1.04);
+    -webkit-backdrop-filter:blur(16px) saturate(155%) brightness(1.04);
+    box-shadow:0 22px 62px rgba(50,72,96,.10),0 5px 16px rgba(50,72,96,.04),inset 0 1px 0 rgba(255,255,255,.96);
+  }
+  .lock-card::before{display:block!important;opacity:.58}
+}
+@media(prefers-reduced-motion:reduce){
+  .lock-card{transform:none!important}
+}
+
+
+/* ============================================================
+   CMS v13.1 · editor workflow + local analytics
+   ============================================================ */
+.article-row{
+  grid-template-columns:minmax(0,1.5fr) 118px 76px 86px 138px;
+}
+.views-cell{
+  color:#64798a;
+  font-size:10px;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.views-cell b{font-size:12px;color:#344d61}
+.row-actions{justify-content:flex-end;flex-wrap:wrap}
+.row-actions button[data-send]{
+  width:auto;
+  padding:0 10px;
+  background:rgba(111,154,142,.13);
+  color:#4f7d70;
+  font-weight:800;
+}
+.row-actions button[data-send]:hover{background:rgba(111,154,142,.22)}
+.analytics-panel{
+  margin-top:12px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:22px;
+  background:linear-gradient(150deg,rgba(255,255,255,.64),rgba(238,247,253,.40));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 54px rgba(50,72,96,.08);
+  overflow:hidden;
+  position:relative;
+}
+.analytics-panel::before{
+  content:"";
+  position:absolute;inset:-40% -20%;
+  background:radial-gradient(circle at 18% 20%,rgba(115,190,239,.18),transparent 30%),
+             radial-gradient(circle at 82% 70%,rgba(144,224,212,.14),transparent 28%);
+  filter:blur(24px);pointer-events:none;
+}
+.analytics-panel>*{position:relative}
+.analytics-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.analytics-head strong{display:block;font:500 26px/1 Georgia,"Noto Serif TC",serif}
+.analytics-head span{font-size:9.5px;color:#82909c;line-height:1.5}
+.analytics-total{font:500 34px/1 Georgia,"Noto Serif TC",serif;color:#2f485c;font-variant-numeric:tabular-nums}
+.analytics-chart{height:150px;margin-top:14px}
+.analytics-chart svg{width:100%;height:100%;overflow:visible}
+.analytics-grid line{stroke:rgba(82,108,130,.10);stroke-width:1}
+.analytics-area{fill:url(#trendFill)}
+.analytics-line{
+  fill:none;stroke:#6eaedc;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1200;stroke-dashoffset:1200;animation:trendDraw .9s var(--ease) forwards;
+}
+.analytics-dot{fill:#fff;stroke:#6eaedc;stroke-width:2}
+.analytics-labels{display:flex;justify-content:space-between;color:#8b99a5;font-size:8.5px;margin-top:5px}
+@keyframes trendDraw{to{stroke-dashoffset:0}}
+.analytics-note{margin-top:10px;font-size:9.5px;line-height:1.6;color:#84919d}
+.editor-tool-dock .toolbar button[data-cmd="bold"],
+.editor-tool-dock .toolbar button[data-cmd="underline"],
+.editor-tool-dock .toolbar button[data-highlight],
+.editor-tool-dock .toolbar button#insertImageBtn{
+  min-width:58px;
+}
+.preview-default-cover{
+  width:100%;height:290px;border-radius:24px;margin-bottom:28px;
+  display:grid;place-items:center;overflow:hidden;position:relative;
+  background:
+    radial-gradient(circle at 18% 10%,rgba(255,255,255,.92),transparent 34%),
+    linear-gradient(145deg,#e8f6ff,#f6fbff 54%,#e6f2f8);
+  border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 20px 52px rgba(72,123,165,.12),inset 0 1px 0 #fff;
+}
+.preview-default-cover::before{
+  content:"欣";width:86px;height:86px;border-radius:28px;display:grid;place-items:center;
+  background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.95);
+  color:#40647f;font:800 34px/1 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;
+  box-shadow:0 18px 44px rgba(66,112,147,.12);
+  backdrop-filter:blur(14px);
+}
+.cover-empty::after{
+  content:"未上傳封面時，公開網站會自動使用 SIGN WELL 預設玻璃封面。";
+  display:block;margin-top:10px;color:#7e91a1;font-size:9.5px;
+}
+@media(max-width:900px){
+  .article-row{grid-template-columns:minmax(0,1fr) 80px 92px}
+  .article-row>div:nth-child(2),.article-row>div:nth-child(4){display:none}
+  .views-cell{display:block!important}
+}
+@media(max-width:560px){
+  .article-row{grid-template-columns:minmax(0,1fr) 86px}
+  .article-row>div:nth-child(3){display:none!important}
+  .analytics-panel{padding:15px}
+  .analytics-head{align-items:flex-start;flex-direction:column;gap:8px}
+  .analytics-chart{height:125px}
+  .editor-tool-dock .toolbar button[data-cmd="bold"],
+  .editor-tool-dock .toolbar button[data-cmd="underline"],
+  .editor-tool-dock .toolbar button[data-highlight],
+  .editor-tool-dock .toolbar button#insertImageBtn{min-width:0}
+}
+
+
+/* v13.2 toolbar grouping polish */
+.editor-tool-dock .toolbar button[data-val="p"]{min-width:54px}
+.editor-tool-dock .toolbar button[data-highlight]{background:
+  linear-gradient(150deg,rgba(255,247,176,.28),rgba(255,255,255,.10))}
+.editor-tool-dock .toolbar button#insertImageBtn{background:
+  linear-gradient(150deg,rgba(213,239,255,.26),rgba(255,255,255,.10))}
+
+
+/* v13.2.1 unified view icon */
+.view-glyph{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;vertical-align:-2px;margin:0 4px 0 2px;color:#8396a8}
+.view-glyph svg{width:14px;height:14px;display:block;stroke:currentColor;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+
+
+/* ============================================================
+   v13.2.2 · Unified line icon system
+   ============================================================ */
+.ui-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;flex:0 0 18px;color:currentColor;
+}
+.ui-icon svg{
+  width:100%;height:100%;display:block;
+  stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.icon-btn{
+  display:inline-grid;place-items:center;
+}
+.row-actions button{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+}
+.row-actions button .ui-icon{width:17px;height:17px;flex-basis:17px}
+.row-actions button[data-send] .ui-icon{width:16px;height:16px;flex-basis:16px}
+
+.view-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-left:2px;
+  padding:3px 7px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.58);
+  background:rgba(255,255,255,.28);
+  color:#74899a;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.56);
+  vertical-align:middle;
+}
+.view-badge .ui-icon{width:13px;height:13px;flex-basis:13px}
+.views-cell .view-badge{
+  margin:0;
+  padding:5px 8px;
+  color:#5e788c;
+}
+body.dark .view-badge{
+  border-color:rgba(255,255,255,.10);
+  background:rgba(255,255,255,.05);
+  color:#9db4c5;
+}
+
+
+/* ============================================================
+   CMS v13.3 · Welcome / Login Glass / Confetti
+   ============================================================ */
+
+/* ---------- opening multilingual welcome ---------- */
+.cms-opening{
+  position:fixed;inset:0;z-index:3000;
+  display:grid;place-items:center;
+  background:
+    radial-gradient(70% 70% at 20% 10%,rgba(179,223,255,.46),transparent 60%),
+    radial-gradient(70% 70% at 80% 85%,rgba(182,236,225,.34),transparent 60%),
+    linear-gradient(155deg,#f8fcff,#edf5fb 52%,#e7f0f6);
+  overflow:hidden;
+  opacity:1;visibility:visible;
+  transition:opacity .52s ease,filter .52s ease,visibility 0s linear .52s;
+}
+.cms-opening.out{opacity:0;filter:blur(12px);visibility:hidden;pointer-events:none}
+.cms-opening::before,
+.cms-opening::after{
+  content:"";position:absolute;border-radius:50%;
+  filter:blur(50px);opacity:.64;will-change:transform;
+}
+.cms-opening::before{
+  width:56vmax;height:56vmax;left:-18vmax;top:-20vmax;
+  background:radial-gradient(circle,rgba(114,191,250,.54),transparent 67%);
+  animation:openingFlowA 4.8s ease-in-out infinite alternate;
+}
+.cms-opening::after{
+  width:54vmax;height:54vmax;right:-18vmax;bottom:-22vmax;
+  background:radial-gradient(circle,rgba(149,224,211,.38),transparent 67%);
+  animation:openingFlowB 5.8s ease-in-out infinite alternate;
+}
+@keyframes openingFlowA{to{transform:translate3d(11%,8%,0) scale(1.08)}}
+@keyframes openingFlowB{to{transform:translate3d(-10%,-7%,0) scale(.94)}}
+.opening-inner{
+  position:relative;z-index:2;text-align:center;
+  width:min(520px,88vw);
+}
+.opening-word{
+  min-height:1.25em;
+  font:500 clamp(54px,10vw,104px)/1.08 Georgia,"Noto Serif TC","Yu Mincho",serif;
+  letter-spacing:-.055em;color:#233447;
+  opacity:0;transform:translateY(12px) scale(.97);filter:blur(7px);
+  transition:opacity .28s ease,transform .42s cubic-bezier(.16,1,.3,1),filter .32s ease;
+}
+.opening-word.show{opacity:1;transform:none;filter:none}
+.opening-sub{
+  margin-top:15px;font-size:10px;letter-spacing:.22em;font-weight:760;color:#8091a0;
+}
+.opening-line{
+  width:0;height:1px;margin:21px auto 0;
+  background:linear-gradient(90deg,transparent,rgba(105,169,215,.52),transparent);
+  animation:openingLine 1.2s cubic-bezier(.16,1,.3,1) .16s forwards;
+}
+@keyframes openingLine{to{width:min(260px,52vw)}}
+
+/* ---------- login page: flowing background + clearer glass ---------- */
+.lock{
+  isolation:isolate;
+  background:
+    radial-gradient(70% 62% at 15% 10%,rgba(255,255,255,.22),transparent 68%),
+    linear-gradient(155deg,rgba(244,250,255,.10),rgba(231,242,250,.04));
+  overflow:hidden;
+}
+.lock::before,
+.lock::after{
+  content:"";position:absolute;pointer-events:none;z-index:0;
+  border-radius:46% 54% 58% 42% / 52% 44% 56% 48%;
+  filter:blur(50px) saturate(145%);
+  will-change:transform,border-radius;
+}
+.lock::before{
+  width:74vmax;height:58vmax;left:-26vmax;top:-23vmax;
+  background:
+    radial-gradient(circle at 40% 45%,rgba(110,192,252,.58),rgba(154,212,250,.18) 48%,transparent 72%);
+  animation:loginLiquidA 12s ease-in-out infinite alternate;
+}
+.lock::after{
+  width:68vmax;height:60vmax;right:-24vmax;bottom:-28vmax;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(143,229,210,.43),rgba(220,191,242,.14) 54%,transparent 74%);
+  animation:loginLiquidB 15s ease-in-out infinite alternate;
+}
+@keyframes loginLiquidA{
+  0%{transform:translate3d(-3%,-2%,0) rotate(-4deg) scale(.98);border-radius:46% 54% 58% 42%/52% 44% 56% 48%}
+  100%{transform:translate3d(18%,13%,0) rotate(10deg) scale(1.12);border-radius:57% 43% 40% 60%/42% 62% 38% 58%}
+}
+@keyframes loginLiquidB{
+  0%{transform:translate3d(4%,3%,0) rotate(5deg) scale(1.04);border-radius:45% 55% 47% 53%/58% 43% 57% 42%}
+  100%{transform:translate3d(-17%,-12%,0) rotate(-8deg) scale(.93);border-radius:61% 39% 55% 45%/43% 59% 41% 57%}
+}
+
+/* More transparent auth glass: background can be seen moving through it. */
+.lock-card{
+  border:1px solid rgba(255,255,255,.64)!important;
+  background:
+    radial-gradient(100% 76% at 15% 0%,rgba(255,255,255,.24),transparent 54%),
+    linear-gradient(150deg,rgba(255,255,255,.16),rgba(238,248,255,.075) 52%,rgba(255,255,255,.12))!important;
+  -webkit-backdrop-filter:blur(14px) saturate(175%) brightness(1.06)!important;
+  backdrop-filter:blur(14px) saturate(175%) brightness(1.06)!important;
+  box-shadow:
+    0 32px 86px rgba(48,76,101,.14),
+    0 5px 18px rgba(48,76,101,.055),
+    inset 0 1px 0 rgba(255,255,255,.74),
+    inset 0 -1px 0 rgba(71,112,145,.06)!important;
+}
+.lock-card::before{
+  display:block!important;
+  opacity:.58!important;
+  background:
+    radial-gradient(380px circle at var(--px,50%) var(--py,18%),rgba(255,255,255,.48),rgba(121,192,241,.08) 43%,transparent 68%)!important;
+}
+.lock-card::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.2px;
+  pointer-events:none;z-index:1;
+  background:conic-gradient(from 130deg,
+    rgba(255,255,255,.95),
+    rgba(146,208,247,.16) 18%,
+    rgba(255,255,255,.12) 38%,
+    rgba(255,255,255,.84) 58%,
+    rgba(154,223,213,.14) 76%,
+    rgba(255,255,255,.16) 91%,
+    rgba(255,255,255,.95));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+}
+.lock-mark{
+  background:rgba(255,255,255,.38)!important;
+  border-color:rgba(255,255,255,.66)!important;
+  -webkit-backdrop-filter:blur(9px) saturate(160%);
+  backdrop-filter:blur(9px) saturate(160%);
+}
+.pin{
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.35),rgba(255,255,255,.16))!important;
+  border-color:rgba(255,255,255,.50)!important;
+  -webkit-backdrop-filter:blur(9px) saturate(150%);
+  backdrop-filter:blur(9px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.64),0 8px 24px rgba(56,91,120,.045);
+  transition:border-color .22s ease,box-shadow .22s ease,background .22s ease,transform .24s ease;
+}
+.pin:focus{
+  border-color:rgba(111,183,231,.56)!important;
+  box-shadow:0 0 0 4px rgba(111,183,231,.10),inset 0 1px 0 rgba(255,255,255,.72);
+  background:linear-gradient(150deg,rgba(255,255,255,.43),rgba(235,247,255,.20))!important;
+}
+.security-question{
+  background:rgba(255,255,255,.20)!important;
+  border-color:rgba(255,255,255,.42)!important;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+.lock button{
+  box-shadow:0 14px 30px rgba(30,54,74,.15),inset 0 1px 0 rgba(255,255,255,.10);
+  transition:transform .26s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,filter .22s ease;
+}
+.lock button:active{transform:scale(.96)}
+.auth-back{
+  background:rgba(255,255,255,.18)!important;
+  border-color:rgba(255,255,255,.42)!important;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+
+/* Keep a lightweight flowing login background even in lite mode. */
+body.lite #lockScreen::before,
+body.lite #lockScreen::after{display:block!important;filter:blur(42px) saturate(125%)}
+body.lite #lockScreen .lock-card{
+  -webkit-backdrop-filter:blur(8px) saturate(135%)!important;
+  backdrop-filter:blur(8px) saturate(135%)!important;
+}
+
+/* ---------- successful login multilingual greeting ---------- */
+.login-greeting{
+  position:fixed;inset:0;z-index:2900;
+  display:grid;place-items:center;
+  pointer-events:none;
+  opacity:0;visibility:hidden;
+  background:rgba(232,244,252,.20);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+  transition:opacity .28s ease,visibility 0s linear .28s;
+}
+.login-greeting.show{opacity:1;visibility:visible;transition-delay:0s}
+.login-greeting-card{
+  min-width:min(480px,86vw);
+  padding:34px 40px;
+  border-radius:34px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.60);
+  background:linear-gradient(150deg,rgba(255,255,255,.24),rgba(235,247,255,.11));
+  -webkit-backdrop-filter:blur(18px) saturate(170%);
+  backdrop-filter:blur(18px) saturate(170%);
+  box-shadow:0 32px 88px rgba(48,77,103,.16),inset 0 1px 0 rgba(255,255,255,.72);
+  transform:translateY(12px) scale(.96);
+  transition:transform .42s cubic-bezier(.16,1,.3,1);
+}
+.login-greeting.show .login-greeting-card{transform:none}
+.login-greeting-word{
+  min-height:1.3em;
+  font:500 clamp(38px,7vw,72px)/1.12 Georgia,"Noto Serif TC","Noto Serif KR",serif;
+  letter-spacing:-.045em;color:#26394b;
+  opacity:0;transform:translateY(8px);filter:blur(5px);
+  transition:opacity .22s ease,transform .34s cubic-bezier(.16,1,.3,1),filter .26s ease;
+}
+.login-greeting-word.show{opacity:1;transform:none;filter:none}
+.login-greeting-small{
+  margin-top:12px;font-size:9.5px;letter-spacing:.18em;font-weight:760;color:#8394a2;
+}
+
+/* ---------- confetti ---------- */
+.confetti-layer{
+  position:fixed;inset:0;z-index:2600;pointer-events:none;overflow:hidden;
+}
+.confetti-piece{
+  position:absolute;
+  width:var(--w,8px);height:var(--h,13px);
+  left:var(--x,50vw);top:var(--y,50vh);
+  border-radius:var(--r,2px);
+  background:var(--c,#79bdf0);
+  opacity:0;
+  transform:translate3d(-50%,-50%,0) rotate(0deg) scale(.8);
+  animation:confettiBurst var(--dur,1.15s) cubic-bezier(.12,.72,.12,1) var(--delay,0s) forwards;
+  will-change:transform,opacity;
+}
+@keyframes confettiBurst{
+  0%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(0deg) scale(.55)}
+  10%{opacity:1}
+  58%{opacity:1}
+  100%{
+    opacity:0;
+    transform:
+      translate3d(calc(-50% + var(--dx)),calc(-50% + var(--dy)),0)
+      rotate(var(--rot)) scale(1);
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  .cms-opening::before,.cms-opening::after,
+  .lock::before,.lock::after{animation:none!important}
+  .confetti-piece{display:none!important}
+}
+@media(max-width:620px){
+  .lock{padding:18px}
+  .lock-card{padding:28px 22px!important;border-radius:30px!important}
+  .login-greeting-card{padding:30px 22px}
+}
+
+
+/* v14 · Analytics Lite range controls */
+.analytics-range-tabs{
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+  margin:12px 0 6px;
+}
+.analytics-range-tabs button{
+  appearance:none;border:1px solid rgba(255,255,255,.65);
+  background:rgba(255,255,255,.30);
+  color:#708391;border-radius:999px;
+  padding:7px 12px;font:700 10px/1 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.74);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  cursor:pointer;transition:.2s ease;
+}
+.analytics-range-tabs button.active{
+  color:#35566f;background:rgba(225,243,255,.70);
+  border-color:rgba(159,211,244,.72);
+  box-shadow:0 7px 20px rgba(81,140,180,.10),inset 0 1px 0 #fff;
+}
+.analytics-range-tabs span{
+  margin-left:auto;color:#8796a2;font-size:9.5px;font-weight:700;
+}
+@media(max-width:560px){
+  .analytics-range-tabs span{width:100%;margin-left:0}
+}
+
+</style>
+</head>
+<body>
+<div class="cms-opening" id="cmsOpening" aria-hidden="true">
+  <div class="opening-inner">
+    <div class="opening-word" id="openingWord">哈囉</div>
+    <div class="opening-sub">SIGN WELL · 欣緯生醫</div>
+    <div class="opening-line"></div>
+  </div>
+</div>
+<div class="login-greeting" id="loginGreeting" aria-hidden="true">
+  <div class="login-greeting-card">
+    <div class="login-greeting-word" id="loginGreetingWord">你好，主人</div>
+    <div class="login-greeting-small">SIGN WELL CMS · ACCESS GRANTED</div>
+  </div>
+</div>
+<div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+<div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
+<section class="lock" id="lockScreen"><div class="lock-card"><div class="lock-mark">欣</div><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
+<section class="cms hidden" id="cms">
+<aside class="sidebar glass"><div class="brand"><div class="mark">欣</div><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.0</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章管理</button><button data-new="1">新增文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="export">線上發布</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn">設為已發布</button><button class="top-action online hidden" id="onlineBtn">送出到網站</button></header><main class="view" id="view"></main></section>
+</section>
+<div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
+<div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從本機 CMS 移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">刪除</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+(()=>{'use strict';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
+const clone=x=>JSON.parse(JSON.stringify(x));
+
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+async function playOpeningWelcome(){
+  const splash=$('#cmsOpening'),word=$('#openingWord');
+  if(!splash||!word)return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+    splash.remove();return;
+  }
+  const words=['哈囉','Hello','こんにちは'];
+  for(let i=0;i<words.length;i++){
+    word.classList.remove('show');
+    await sleep(i===0?80:90);
+    word.textContent=words[i];
+    word.classList.add('show');
+    await sleep(430);
+    if(i<words.length-1){
+      word.classList.remove('show');
+      await sleep(120);
+    }
+  }
+  await sleep(80);
+  splash.classList.add('out');
+  setTimeout(()=>splash.remove(),620);
+}
+
+async function playLoginGreeting(){
+  const wrap=$('#loginGreeting'),word=$('#loginGreetingWord');
+  if(!wrap||!word)return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const words=['你好，主人','안녕하세요, 주인님','Hello, Master'];
+  wrap.classList.add('show');
+  for(let i=0;i<words.length;i++){
+    word.classList.remove('show');
+    await sleep(70);
+    word.textContent=words[i];
+    word.classList.add('show');
+    await sleep(430);
+    if(i<words.length-1){
+      word.classList.remove('show');
+      await sleep(100);
+    }
+  }
+  await sleep(120);
+  wrap.classList.remove('show');
+}
+
+function showConfetti(sourceEl=null){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const layer=$('#confettiLayer');
+  if(!layer)return;
+
+  const coarse=matchMedia('(pointer:coarse)').matches;
+  const count=coarse?42:64;
+  const palette=['#79bdf0','#a8d8ff','#91d7c8','#f1cf79','#e9a8c8','#ffffff'];
+  const rect=sourceEl?.getBoundingClientRect?.();
+  const ox=rect?rect.left+rect.width/2:innerWidth/2;
+  const oy=rect?rect.top+rect.height/2:Math.min(innerHeight*.58,innerHeight-120);
+
+  const frag=document.createDocumentFragment();
+  for(let i=0;i<count;i++){
+    const p=document.createElement('i');
+    p.className='confetti-piece';
+    const a=(Math.PI*2)*(i/count)+(Math.random()-.5)*.16;
+    const speed=(coarse?90:110)+Math.random()*(coarse?140:190);
+    const dx=Math.cos(a)*speed;
+    const dy=Math.sin(a)*speed + (Math.random()*110-40);
+    const w=5+Math.random()*6;
+    const h=7+Math.random()*10;
+    p.style.setProperty('--x',ox+'px');
+    p.style.setProperty('--y',oy+'px');
+    p.style.setProperty('--dx',dx.toFixed(1)+'px');
+    p.style.setProperty('--dy',dy.toFixed(1)+'px');
+    p.style.setProperty('--rot',(180+Math.random()*720).toFixed(0)+'deg');
+    p.style.setProperty('--w',w.toFixed(1)+'px');
+    p.style.setProperty('--h',h.toFixed(1)+'px');
+    p.style.setProperty('--r',Math.random()>.72?'50%':'2px');
+    p.style.setProperty('--c',palette[i%palette.length]);
+    p.style.setProperty('--dur',(0.95+Math.random()*.55).toFixed(2)+'s');
+    p.style.setProperty('--delay',(Math.random()*.08).toFixed(2)+'s');
+    frag.appendChild(p);
+  }
+  layer.appendChild(frag);
+  try{navigator.vibrate?.([18,24,12])}catch(_){}
+  setTimeout(()=>layer.replaceChildren(),1750);
+}
+
+function hashPin(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16)}
+const V10_DB='signwell-cms-v10',V10_STORE='state',V10_STATE_KEY='cms-state';
+function openV10DB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB unavailable'));return}const req=indexedDB.open(V10_DB,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(V10_STORE))db.createObjectStore(V10_STORE)};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'))})}
+async function idbGetState(){const db=await openV10DB();return new Promise((resolve,reject)=>{const tx=db.transaction(V10_STORE,'readonly'),req=tx.objectStore(V10_STORE).get(V10_STATE_KEY);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error);tx.oncomplete=()=>db.close()})}
+async function idbPutState(value){const db=await openV10DB();return new Promise((resolve,reject)=>{const tx=db.transaction(V10_STORE,'readwrite');tx.objectStore(V10_STORE).put(value,V10_STATE_KEY);tx.oncomplete=()=>{db.close();resolve(true)};tx.onerror=()=>{db.close();reject(tx.error)}})}
+function normalizeState(v){const x=v&&typeof v==='object'?v:{},articles=Array.isArray(x.articles)?x.articles:[];let topics=Array.isArray(x.topics)?x.topics.filter(Boolean):[];if(!topics.length){const names=[...new Set(articles.map(a=>a.category).filter(Boolean))];topics=names.map((name,i)=>({id:'topic-'+Date.now()+'-'+i,name,slug:slugify(name),description:'瀏覽 '+name+' 相關文章與延伸整理。',order:i,active:true}))}return {articles,topics,siteText:{...DEFAULT_SITE_TEXT,...(x.siteText&&typeof x.siteText==='object'?x.siteText:{})}}}
+function load(){dataReady=(async()=>{let saved=null;try{saved=await idbGetState()}catch(_){}if(!saved){try{const legacy=localStorage.getItem(KEY);if(legacy)saved=JSON.parse(legacy)}catch(_){} }data=normalizeState(saved||{articles:clone(window.BLOG_ARTICLES||[]),topics:[],siteText:clone(DEFAULT_SITE_TEXT)});try{await idbPutState(clone(data));localStorage.removeItem(KEY)}catch(_){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(__){}}return data})();return dataReady}
+function persist(silent=false){const snapshot=clone(data);try{localStorage.setItem(ACTKEY,String(Date.now()))}catch(_){}idbPutState(snapshot).then(()=>{try{localStorage.removeItem(KEY)}catch(_){};if(!silent&&$('#saveState')){$('#saveState').textContent='已儲存 ✓';$('#saveState').style.color='#6f8f86'}}).catch(()=>{try{localStorage.setItem(KEY,JSON.stringify(snapshot));if(!silent&&$('#saveState')){$('#saveState').textContent='已儲存（相容模式）';$('#saveState').style.color='#9a7b45'}}catch(_){if($('#saveState')){$('#saveState').textContent='本機儲存空間不足';$('#saveState').style.color='#a65c65'}}})}
+function showToast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>el.classList.remove('show'),1700)}
+function slugify(s){return String(s||'').toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-|-$/g,'').slice(0,80)||('article-'+Date.now())}
+function escapeHTML(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function inlineMD(s){return escapeHTML(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`([^`]+)`/g,'<code>$1</code>')}
+function markdown(md=''){const lines=md.replace(/\r/g,'').split('\n');let out='',list=null;const close=()=>{if(list){out+=`</${list}>`;list=null}};for(let i=0;i<lines.length;i++){const line=lines[i].trim();if(!line){close();continue}const c=line.match(/^> \[!(PEARL|KEY|WARNING)\]/i);if(c){close();const kind=c[1].toLowerCase(),next=(lines[++i]||'').replace(/^>\s?/,'');out+=`<div class="callout"><b>${kind==='pearl'?'Clinical Pearl':kind==='key'?'Key Point':'Warning'}</b><p>${inlineMD(next)}</p></div>`;continue}if(/^###\s+/.test(line)){close();out+=`<h3>${inlineMD(line.replace(/^###\s+/,''))}</h3>`;continue}if(/^##\s+/.test(line)){close();out+=`<h2>${inlineMD(line.replace(/^##\s+/,''))}</h2>`;continue}const ol=line.match(/^\d+\.\s+(.+)/);if(ol){if(list!=='ol'){close();list='ol';out+='<ol>'}out+=`<li>${inlineMD(ol[1])}</li>`;continue}const ul=line.match(/^[-*]\s+(.+)/);if(ul){if(list!=='ul'){close();list='ul';out+='<ul>'}out+=`<li>${inlineMD(ul[1])}</li>`;continue}close();out+=`<p>${inlineMD(line)}</p>`}close();return out}
+function clearAuthError(){const box=$('#authError');box?.classList.remove('show');$('#pinInput')?.classList.remove('invalid');$('#answerInput')?.classList.remove('invalid');$('#lockScreen .lock-card')?.classList.remove('auth-fail')}
+function showAuthError(stage,message){authFailCount[stage]=(authFailCount[stage]||0)+1;const input=stage===1?$('#pinInput'):$('#answerInput'),box=$('#authError');$('#authErrorTitle').textContent=stage===1?'管理密碼不正確':'安全問題答案不正確';$('#authErrorText').textContent=message+(authFailCount[stage]>1?` · 本次已失敗 ${authFailCount[stage]} 次`:'');box?.classList.add('show');input?.classList.add('invalid');const card=$('#lockScreen .lock-card');card?.classList.remove('auth-fail');void card?.offsetWidth;card?.classList.add('auth-fail');try{navigator.vibrate?.(35)}catch(_){};setTimeout(()=>input?.classList.remove('invalid'),650);input?.select()}
+function setAuthStage(stage){authStage=stage;clearAuthError();const second=stage===2;$('#authStep1').classList.toggle('hidden',second);$('#authStep2').classList.toggle('hidden',!second);$('#authDot1').classList.toggle('active',!second);$('#authDot1').classList.toggle('done',second);$('#authDot2').classList.toggle('active',second);if(second){$('#lockHint').textContent='第一階段已通過。請回答安全問題完成第二階段驗證。';setTimeout(()=>$('#answerInput').focus(),40)}else{$('#answerInput').value='';pendingPin='';$('#lockHint').textContent='需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。';setTimeout(()=>$('#pinInput').focus(),40)}}
+function unlock(){clearAuthError();const pin=$('#pinInput').value.trim();if(hashPin(pin)!==AUTH_PASS_HASH){showAuthError(1,'請確認 6 位數管理密碼後再試一次。');return}pendingPin=pin;authFailCount[1]=0;$('#pinInput').value='';setAuthStage(2)}
+async function verifySecond(){
+  clearAuthError();
+  const answer=$('#answerInput').value.trim().replace(/\s+/g,'');
+  if(hashPin(answer)!==AUTH_ANSWER_HASH){
+    showAuthError(2,'答案不分空格；請確認島名後再試一次。');
+    return;
+  }
+  authFailCount[2]=0;
+  authSecret='SIGNWELL|'+pendingPin+'|'+answer;
+  $('#answerInput').value='';
+  $('#lockHint').textContent='驗證完成，正在解鎖本機設定…';
+  try{await dataReady}catch(_){}
+  try{await restoreRememberedGithubToken()}catch(_){githubToken=''}
+  $('#lockScreen').classList.add('hidden');
+  $('#cms').classList.remove('hidden');
+  localStorage.setItem(ACTKEY,String(Date.now()));
+  pendingPin='';
+  setAuthStage(1);
+  renderView();
+  await playLoginGreeting();
+  showToast(githubToken?'登入完成 · GitHub 已就緒':'雙重驗證完成');
+}
+function lock(){persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
+function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
+function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView()}
+function renderView(){const editing=Boolean(currentId);$('#previewBtn').classList.toggle('hidden',!editing);$('#saveBtn').classList.toggle('hidden',!editing);$('#publishBtn').classList.toggle('hidden',!editing);$('#onlineBtn').classList.toggle('hidden',!editing);if(editing){$('#topTitle').textContent='文章編輯器';renderEditor();return}const names={dashboard:'總覽',articles:'文章管理',topics:'主題管理',site:'網站文字',export:'線上發布'};$('#topTitle').textContent=names[viewName]||'總覽';if(viewName==='articles')renderArticles();else if(viewName==='topics')renderTopicsManager();else if(viewName==='site')renderSiteText();else if(viewName==='export')renderExport();else renderDashboard()}
+
+const ANALYTICS_KEY='signwell-analytics-v1';
+const ANALYTICS_CHANNEL='signwell-analytics';
+
+let remoteAnalyticsCache=null;
+let analyticsRefreshBusy=false;
+const ANALYTICS_CFG=()=>window.SIGNWELL_ANALYTICS||{};
+function analyticsEndpoint(path=''){
+  const cfg=ANALYTICS_CFG();
+  const base=String(cfg.endpoint||'').replace(/\/+$/,'');
+  return base?base+path:'';
+}
+function remoteAnalyticsEnabled(){
+  const cfg=ANALYTICS_CFG();
+  return cfg.enabled===true && /^https:\/\//i.test(String(cfg.endpoint||''));
+}
+async function refreshRemoteAnalytics(force=false){
+  if(!remoteAnalyticsEnabled()||analyticsRefreshBusy)return false;
+  const now=Date.now();
+  if(!force&&refreshRemoteAnalytics.last&&now-refreshRemoteAnalytics.last<12000)return false;
+  analyticsRefreshBusy=true;
+  refreshRemoteAnalytics.last=now;
+  try{
+    const r=await fetch(analyticsEndpoint('/stats')+'?t='+now,{cache:'no-store',mode:'cors'});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const a=await r.json();
+    if(!a||typeof a!=='object')throw new Error('Invalid analytics payload');
+    remoteAnalyticsCache={
+      total:Number(a.total||0),
+      daily:a.daily&&typeof a.daily==='object'?a.daily:{},
+      monthly:a.monthly&&typeof a.monthly==='object'?a.monthly:{},
+      yearly:a.yearly&&typeof a.yearly==='object'?a.yearly:{},
+      articles:a.articles&&typeof a.articles==='object'?a.articles:{},
+      pages:a.pages&&typeof a.pages==='object'?a.pages:{},
+      mode:a.mode||null,
+      updatedAt:a.updatedAt||null
+    };
+    if(viewName==='dashboard'&&!$('#cms').classList.contains('hidden'))renderDashboard();
+    if(viewName==='articles'&&!$('#cms').classList.contains('hidden'))renderArticles();
+    return true;
+  }catch(_){
+    return false;
+  }finally{
+    analyticsRefreshBusy=false;
+  }
+}
+
+function readAnalytics(){
+  if(remoteAnalyticsCache)return remoteAnalyticsCache;
+  try{
+    const raw=JSON.parse(localStorage.getItem(ANALYTICS_KEY)||'{}');
+    return {
+      total:Number(raw.total||0),
+      daily:raw.daily&&typeof raw.daily==='object'?raw.daily:{},
+      monthly:raw.monthly&&typeof raw.monthly==='object'?raw.monthly:{},
+      yearly:raw.yearly&&typeof raw.yearly==='object'?raw.yearly:{},
+      articles:raw.articles&&typeof raw.articles==='object'?raw.articles:{},
+      pages:raw.pages&&typeof raw.pages==='object'?raw.pages:{}
+    };
+  }catch(_){return{total:0,daily:{},articles:{},pages:{}}}
+}
+function analyticsSlug(a){return slugify(a?.slug||a?.title||a?.id||'')}
+function articleViewCount(a){
+  const x=readAnalytics().articles?.[analyticsSlug(a)];
+  return Number(x?.total||0);
+}
+function iconSvg(name,cls='ui-icon'){
+  const icons={
+    view:'<path d="M2.6 12s3.6-5.9 9.4-5.9 9.4 5.9 9.4 5.9-3.6 5.9-9.4 5.9S2.6 12 2.6 12Z"/><circle cx="12" cy="12" r="2.8"/>',
+    copy:'<rect x="8" y="8" width="10" height="10" rx="1.8"/><path d="M6 15H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1"/>',
+    delete:'<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M7 7l1 13h8l1-13"/><path d="M10 11v5M14 11v5"/>',
+    send:'<path d="M21 3 10.2 13.8"/><path d="m21 3-6.8 18-4-7-7-4Z"/>',
+    edit:'<path d="M4 20h4l10.7-10.7a2.1 2.1 0 0 0-3-3L5 17v3Z"/><path d="m14.5 7.5 3 3"/>'
+  };
+  return `<span class="${cls}" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">${icons[name]||icons.view}</svg></span>`;
+}
+function viewGlyph(){return iconSvg('view','ui-icon')}
+function viewBadge(count){return `<span class="view-badge">${iconSvg('view')}<span>${Number(count||0).toLocaleString()} 次</span></span>`}
+let analyticsRange='7d';
+
+function analyticsTodayKey(){
+  return new Date().toISOString().slice(0,10);
+}
+function analyticsMonthKey(){
+  return analyticsTodayKey().slice(0,7);
+}
+function analyticsYearKey(){
+  return analyticsTodayKey().slice(0,4);
+}
+function sumLastDays(days){
+  const an=readAnalytics(),today=new Date();
+  let total=0;
+  for(let i=0;i<days;i++){
+    const d=new Date(today);d.setDate(today.getDate()-i);
+    total+=Number(an.daily?.[d.toISOString().slice(0,10)]||0);
+  }
+  return total;
+}
+function rangeTotal(range=analyticsRange){
+  const an=readAnalytics();
+  if(range==='7d')return sumLastDays(7);
+  if(range==='month')return Number(an.monthly?.[analyticsMonthKey()]||0) ||
+    Object.entries(an.daily||{}).filter(([k])=>k.startsWith(analyticsMonthKey())).reduce((s,[,v])=>s+Number(v||0),0);
+  if(range==='year')return Number(an.yearly?.[analyticsYearKey()]||0) ||
+    Object.entries(an.monthly||{}).filter(([k])=>k.startsWith(analyticsYearKey())).reduce((s,[,v])=>s+Number(v||0),0);
+  return Number(an.total||0);
+}
+function trendDataForRange(range=analyticsRange){
+  const an=readAnalytics(),out=[],today=new Date();
+  if(range==='7d'){
+    for(let i=6;i>=0;i--){
+      const d=new Date(today);d.setDate(today.getDate()-i);
+      const key=d.toISOString().slice(0,10);
+      out.push({key,label:`${d.getMonth()+1}/${d.getDate()}`,value:Number(an.daily?.[key]||0)});
+    }
+    return out;
+  }
+  if(range==='month'){
+    const y=today.getFullYear(),m=today.getMonth(),last=today.getDate();
+    for(let day=1;day<=last;day++){
+      const d=new Date(y,m,day),key=d.toISOString().slice(0,10);
+      out.push({key,label:`${m+1}/${day}`,value:Number(an.daily?.[key]||0)});
+    }
+    return out;
+  }
+  if(range==='year'){
+    const y=today.getFullYear();
+    for(let m=0;m<=today.getMonth();m++){
+      const key=`${y}-${String(m+1).padStart(2,'0')}`;
+      out.push({key,label:`${m+1}月`,value:Number(an.monthly?.[key]||0)});
+    }
+    return out;
+  }
+  return out;
+}
+function setAnalyticsRange(range){
+  if(!['7d','month','year'].includes(range))return;
+  analyticsRange=range;
+  if(viewName==='dashboard')renderDashboard();
+}
+function trendChartHTML(){
+  const arr=trendDataForRange(),w=720,h=130,pad=10,max=Math.max(1,...arr.map(x=>x.value));
+  const step=(w-pad*2)/Math.max(1,arr.length-1);
+  const pts=arr.map((x,i)=>({x:pad+i*step,y:h-pad-(x.value/max)*(h-pad*2),...x}));
+  const line=pts.map((p,i)=>(i?'L':'M')+p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
+  const area=pts.length?`M${pad},${h-pad} ${pts.map(p=>'L'+p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ')} L${w-pad},${h-pad} Z`:'';
+  const rangeLabel=analyticsRange==='7d'?'近 7 日':analyticsRange==='month'?'本月':'今年';
+  const selectedTotal=rangeTotal();
+  const allTotal=Number(readAnalytics().total||0);
+  return `<section class="analytics-panel">
+    <div class="analytics-head">
+      <div><span>${rangeLabel}</span><strong>網站觀看次數趨勢</strong></div>
+      <div><span>${rangeLabel}觀看</span><div class="analytics-total">${selectedTotal.toLocaleString()}</div></div>
+    </div>
+    <div class="analytics-range-tabs" role="tablist" aria-label="統計期間">
+      <button class="${analyticsRange==='7d'?'active':''}" onclick="setAnalyticsRange('7d')">7 日</button>
+      <button class="${analyticsRange==='month'?'active':''}" onclick="setAnalyticsRange('month')">本月</button>
+      <button class="${analyticsRange==='year'?'active':''}" onclick="setAnalyticsRange('year')">今年</button>
+      <span>累積 ${allTotal.toLocaleString()}</span>
+    </div>
+    <div class="analytics-chart">
+      <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="${rangeLabel}觀看趨勢">
+        <defs><linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fc1ec" stop-opacity=".26"/><stop offset="1" stop-color="#7fc1ec" stop-opacity=".02"/></linearGradient></defs>
+        <g class="analytics-grid">
+          <line x1="10" y1="${h*.33}" x2="${w-10}" y2="${h*.33}"/>
+          <line x1="10" y1="${h*.66}" x2="${w-10}" y2="${h*.66}"/>
+          <line x1="10" y1="${h-10}" x2="${w-10}" y2="${h-10}"/>
+        </g>
+        ${area?`<path class="analytics-area" d="${area}"/><path class="analytics-line" d="${line}"/>`:''}
+        ${pts.filter((_,i)=>i===0||i===pts.length-1||i===Math.floor(pts.length/2)).map(p=>`<circle class="analytics-dot" cx="${p.x}" cy="${p.y}" r="3.6"><title>${p.label}：${p.value}</title></circle>`).join('')}
+      </svg>
+    </div>
+    <div class="analytics-labels"><span>${arr[0]?.label||''}</span><span>${arr[Math.floor(arr.length/2)]?.label||''}</span><span>${arr[arr.length-1]?.label||''}</span></div>
+    <div class="analytics-note">${remoteAnalyticsCache?'SIGN WELL Analytics Lite · 聚合統計模式；最近 90 天保留每日資料，月／年總數長期保留。':'目前為本機瀏覽器統計；接上 Analytics Lite 後會自動切換為全站聚合資料。'}</div>
+  </section>`;
+}
+
+function renderDashboard(){setTimeout(()=>refreshRemoteAnalytics(false),0);
+  const published=data.articles.filter(a=>a.status==='Published').length,
+        drafts=data.articles.filter(a=>a.status!=='Published').length,
+        cats=(data.topics||[]).filter(x=>x.active!==false).length;
+  $('#view').innerHTML=`<div class="page-head"><div><h1>總覽</h1><p>你的私人文章工作台 · v13.1。草稿只留在 CMS，只有明確送出後才會進入公開網站。</p></div><button class="top-action primary" id="dashNew">新增文章</button></div>
+  <div class="stats">
+    <div class="stat"><span>文章總數</span><strong>${data.articles.length}</strong></div>
+    <div class="stat"><span>已發布</span><strong>${published}</strong></div>
+    <div class="stat"><span>草稿</span><strong>${drafts}</strong></div>
+    <div class="stat"><span>主題分類</span><strong>${cats}</strong></div>
+  </div>
+  ${trendChartHTML()}
+  <section class="panel"><div class="panel-head"><span>最近文章 · 含觀看次數</span><span>${data.articles.length} 篇</span></div>
+  ${data.articles.length?data.articles.slice().sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||''))).slice(0,8).map(rowHTML).join(''):'<div class="empty">尚未建立文章。</div>'}</section>`;
+  $('#dashNew').onclick=newArticle;
+  bindRows();
+}
+function rowHTML(a){
+  const views=articleViewCount(a),draft=a.status!=='Published';
+  return `<div class="article-row" data-edit="${escapeHTML(a.id)}">
+    <div><strong>${escapeHTML(a.title||'未命名文章')}</strong><small>${escapeHTML(a.category||'未分類')} · ${escapeHTML(a.updatedAt||'')} · ${viewBadge(views)}</small></div>
+    <div>${escapeHTML(a.category||'—')}</div>
+    <div class="views-cell">${viewBadge(views)}</div>
+    <div><span class="badge ${draft?'draft':''}">${draft?'草稿':'已發布'}</span></div>
+    <div class="row-actions">
+      ${draft?`<button title="送出到公開網站" data-send="${escapeHTML(a.id)}">${iconSvg('send')}<span>送出</span></button>`:''}
+      <button class="icon-btn" title="複製" aria-label="複製文章" data-dup="${escapeHTML(a.id)}">${iconSvg('copy')}</button>
+      <button class="icon-btn" title="刪除" aria-label="刪除文章" data-del="${escapeHTML(a.id)}">${iconSvg('delete')}</button>
+    </div>
+  </div>`;
+}
+function renderArticles(){setTimeout(()=>refreshRemoteAnalytics(false),0);const q='';$('#view').innerHTML=`<div class="page-head"><div><h1>文章管理</h1><p>草稿只保存在 CMS，不會出現在公開網站；可直接在列表按「送出」發布。</p></div><input class="searchbar" id="articleSearch" placeholder="搜尋文章…"></div><section class="panel" id="articlePanel"><div class="panel-head"><span>全部文章</span><button class="top-action primary" id="listNew">新增</button></div><div id="rows">${data.articles.length?data.articles.map(rowHTML).join(''):'<div class="empty">尚未建立文章。</div>'}</div></section>`;$('#listNew').onclick=newArticle;$('#articleSearch').oninput=e=>filterRows(e.target.value);bindRows()}
+function filterRows(q){const s=q.toLowerCase().trim(),arr=data.articles.filter(a=>[a.title,a.category,(a.tags||[]).join(' ')].join(' ').toLowerCase().includes(s));$('#rows').innerHTML=arr.length?arr.map(rowHTML).join(''):'<div class="empty">沒有符合的文章。</div>';bindRows()}
+function bindRows(){
+  $$('[data-edit]').forEach(r=>r.onclick=e=>{
+    if(e.target.closest('[data-dup],[data-del],[data-send]'))return;
+    currentId=r.dataset.edit;renderView();
+  });
+  $$('[data-dup]').forEach(b=>b.onclick=e=>{e.stopPropagation();duplicateArticle(b.dataset.dup)});
+  $$('[data-del]').forEach(b=>b.onclick=e=>{e.stopPropagation();deleteId=b.dataset.del;$('#confirmModal').classList.add('show')});
+  $$('[data-send]').forEach(b=>b.onclick=async e=>{e.stopPropagation();await publishDraftFromList(b.dataset.send,b)});
+}
+async function publishDraftFromList(id,sourceEl=null){
+  const a=data.articles.find(x=>x.id===id);
+  if(!a||a.status==='Published')return;
+  if(!confirm(`確定要把「${a.title||'未命名文章'}」送出到公開網站？`))return;
+
+  try{
+    if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();
+    if(!githubToken){
+      nav('export');
+      showToast('請先在線上發布頁解鎖 GitHub Token，再回文章管理送出草稿');
+      return;
+    }
+    const old=a.status;
+    a.status='Published';
+    a.updatedAt=new Date().toISOString().slice(0,10);
+    persist(true);
+    showToast('正在送出草稿…');
+    try{
+      const ok=await publishGitHub();
+      if(!ok)throw new Error('GitHub 發布未完成');
+      showToast('草稿已送出到公開網站');
+      showConfetti(sourceEl);
+      if(viewName==='articles')renderArticles();else renderDashboard();
+    }catch(err){
+      a.status=old;
+      persist(true);
+      throw err;
+    }
+  }catch(err){
+    showToast('送出失敗：'+(err?.message||err));
+  }
+}
+function newArticle(){
+  const id='new-'+Date.now(),today=new Date().toISOString().slice(0,10);
+  pendingNewArticle={id,title:'',subtitle:'',slug:'',category:(data.topics?.find(x=>x.active!==false)?.name||'醫學筆記'),type:'文章',excerpt:'',tags:[],cover:'',status:'Draft',featured:false,publishedAt:today,updatedAt:today,content:'<p>從這裡開始寫。</p>',contentFormat:'html',references:[]};
+  currentId='__new__';
+  renderView();
+  $('#saveState').textContent='尚未儲存';
+  $('#saveState').style.color='#9a7b45';
+  setTimeout(()=>$('#title')?.focus(),50);
+}
+function duplicateArticle(id){const src=data.articles.find(a=>a.id===id);if(!src)return;const cp=clone(src);cp.id='a-'+Date.now();cp.title=(src.title||'未命名文章')+' 副本';cp.slug=slugify(cp.title);cp.status='Draft';cp.featured=false;data.articles.unshift(cp);persist();showToast('已複製文章');renderView()}
+function getCurrent(){return currentId==='__new__'?pendingNewArticle:data.articles.find(a=>a.id===currentId)}
+function articleHTML(a){return a?.contentFormat==='html'?String(a.content||''):markdown(a?.content||'')}
+function plainFromHTML(html=''){const el=document.createElement('div');el.innerHTML=html;return (el.textContent||'').replace(/\s+/g,' ').trim()}
+function renderEditor(){const a=getCurrent();if(!a){currentId=null;nav('articles');return}const html=articleHTML(a);$('#view').innerHTML=`<div class="editor-grid"><section class="editor-main"><input id="title" class="title-input" placeholder="貼文標題" value="${escapeHTML(a.title||'')}"><div class="cover-box ${a.cover?'has-image':''}" id="coverBox">${a.cover?`<img id="coverPreview" src="${escapeHTML(a.cover)}" alt="封面圖片"><div class="cover-actions"><button id="changeCover" type="button">更換圖片</button><button id="removeCover" type="button">移除</button></div>`:`<div class="cover-empty"><strong>貼文圖片</strong><br>點一下加入封面圖片；系統會自動壓縮成適合網頁的大小。</div>`}</div><input class="file-input" id="coverInput" type="file" accept="image/*"><input class="file-input" id="inlineImageInput" type="file" accept="image/*"><div class="editor-tool-dock" id="editorToolDock">
+  <button class="tool-fab" id="toolFab" type="button" aria-label="開啟文字工具" aria-expanded="false">Aa</button>
+  <div class="toolbar editor-toolbar" id="editorToolbar" role="toolbar" aria-label="文章格式工具">
+    <button type="button" data-cmd="formatBlock" data-val="p">內文</button>
+    <button type="button" data-cmd="formatBlock" data-val="h2" title="大標題">大標題</button>
+    <button type="button" data-cmd="formatBlock" data-val="h3" title="中標題">中標題</button>
+    <button type="button" data-cmd="formatBlock" data-val="h4" title="小標題">小標題</button>
+    <span class="tool-sep"></span>
+    <button type="button" data-cmd="bold" title="粗體"><b>粗體</b></button>
+    <button type="button" data-cmd="italic" title="斜體"><i>斜體</i></button>
+    <button type="button" data-cmd="underline" title="底線"><u>底線</u></button>
+    <button type="button" data-highlight="1" title="螢光筆">螢光筆</button>
+    <button type="button" data-link="1">連結</button>
+    <span class="tool-sep"></span>
+    <button type="button" data-cmd="insertUnorderedList">• 清單</button>
+    <button type="button" data-cmd="insertOrderedList">1. 編號</button>
+    <button type="button" data-quote="1">引用</button>
+    <button type="button" id="insertImageBtn">內文圖片</button>
+  </div>
+</div><div id="content" class="doc-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true">${html}</div></section><aside class="editor-side"><div class="field-group"><label>發布狀態</label><select id="status"><option value="Draft" ${a.status==='Draft'?'selected':''}>草稿</option><option value="Published" ${a.status==='Published'?'selected':''}>已發布</option></select></div><div class="field-group"><label>公開網址</label><input id="slug" value="${escapeHTML(a.slug||'')}"></div><div class="field-group"><label>發布日期</label><input id="publishedAt" type="date" value="${escapeHTML(a.publishedAt||'')}"></div><div class="field-group"><label>主題分類</label><select id="category" class="category-select">${(()=>{const opts=(data.topics||[]).filter(t=>t.active!==false).map(t=>t.name);if(a.category&&!opts.includes(a.category))opts.unshift(a.category);return opts.map(n=>`<option value="${escapeHTML(n)}" ${n===a.category?'selected':''}>${escapeHTML(n)}</option>`).join('')})()}</select><div style="font-size:10px;color:#84919d;margin-top:6px">主題可在左側「主題管理」新增或修改。</div></div><div class="field-group"><label>同步狀態</label><div style="font-size:11px;color:#74818d;line-height:1.7">新增文章在你按「儲存草稿」或「發布」前完全不會寫入文章管理。就算把狀態切成「已發布」，也不會自動送出；一定要按送出／線上發布才會進入公開網站。</div></div></aside></div>`;bindEditor()}
+function syncEditorViewport(){
+  const vv=window.visualViewport;
+  const kb=vv?Math.max(0,Math.round(window.innerHeight-vv.height-vv.offsetTop)):0;
+  const center=vv?Math.round(vv.offsetTop+vv.height/2):Math.round(window.innerHeight/2);
+  document.documentElement.style.setProperty('--editor-kb',kb+'px');
+  document.documentElement.style.setProperty('--editor-vv-center',center+'px');
+}
+let editorViewportBound=false;
+function bindEditor(){
+  ['title','slug','publishedAt','status','category'].forEach(id=>{
+    const el=$('#'+id);
+    el?.addEventListener('input',scheduleSave);
+    el?.addEventListener('change',scheduleSave);
+  });
+  $('#content')?.addEventListener('input',scheduleSave);
+
+  $$('[data-cmd]').forEach(b=>b.onclick=()=>runCommand(b.dataset.cmd,b.dataset.val||null));
+  $$('[data-link]').forEach(b=>b.onclick=()=>{
+    const url=prompt('輸入連結網址');
+    if(url)runCommand('createLink',url);
+  });
+  $$('[data-quote]').forEach(b=>b.onclick=()=>runCommand('formatBlock','blockquote'));
+  $$('[data-highlight]').forEach(b=>b.onclick=()=>{
+    $('#content').focus();
+    try{
+      document.execCommand('styleWithCSS',false,true);
+      if(!document.execCommand('hiliteColor',false,'#fff1a8')){
+        document.execCommand('backColor',false,'#fff1a8');
+      }
+    }catch(_){
+      try{document.execCommand('backColor',false,'#fff1a8')}catch(__){}
+    }
+    scheduleSave();
+  });
+
+  const dock=$('#editorToolDock'),fab=$('#toolFab'),toolbar=$('#editorToolbar');
+  toolbar?.addEventListener('pointermove',e=>{
+    const r=toolbar.getBoundingClientRect();
+    const x=(e.clientX-r.left)/Math.max(1,r.width);
+    toolbar.style.setProperty('--dock-rim',(95+x*170)+'deg');
+  },{passive:true});
+  toolbar?.addEventListener('pointerleave',()=>toolbar.style.setProperty('--dock-rim','135deg'),{passive:true});
+  fab?.addEventListener('click',e=>{
+    e.stopPropagation();
+    const open=dock.classList.toggle('open');
+    fab.setAttribute('aria-expanded',open?'true':'false');
+  });
+  document.addEventListener('pointerdown',e=>{
+    if(!dock?.classList.contains('open'))return;
+    if(dock.contains(e.target))return;
+    dock.classList.remove('open');
+    fab?.setAttribute('aria-expanded','false');
+  },{once:true,capture:true});
+
+  $('#insertImageBtn').onclick=()=>$('#inlineImageInput').click();
+  $('#inlineImageInput').onchange=async e=>{
+    const f=e.target.files?.[0];if(!f)return;
+    try{
+      const url=await compressImage(f,1400,.82);
+      insertHTMLAtCursor(`<img src="${url}" alt="文章圖片">`);
+      scheduleSave();
+    }catch(_){showToast('圖片處理失敗')}
+    e.target.value='';
+  };
+
+  $('#coverBox').onclick=e=>{
+    if(e.target.closest('#removeCover,#changeCover'))return;
+    $('#coverInput').click();
+  };
+  $('#changeCover')?.addEventListener('click',e=>{e.stopPropagation();$('#coverInput').click()});
+  $('#removeCover')?.addEventListener('click',e=>{
+    e.stopPropagation();
+    const a=getCurrent();if(!a)return;
+    a.cover='';
+    if(currentId!=='__new__')persist(true);
+    renderEditor();
+    scheduleSave();
+  });
+  $('#coverInput').onchange=async e=>{
+    const f=e.target.files?.[0];if(!f)return;
+    showToast('正在壓縮圖片…');
+    try{
+      const url=await compressImage(f,1600,.82);
+      const a=getCurrent();if(!a)return;
+      a.cover=url;
+      if(currentId!=='__new__')persist(true);
+      renderEditor();
+      showToast('圖片已加入');
+    }catch(_){showToast('圖片處理失敗')}
+    e.target.value='';
+  };
+
+  syncEditorViewport();
+  if(!editorViewportBound&&window.visualViewport){
+    editorViewportBound=true;
+    visualViewport.addEventListener('resize',syncEditorViewport,{passive:true});
+    visualViewport.addEventListener('scroll',syncEditorViewport,{passive:true});
+  }
+}
+function updateFromEditor(){const a=getCurrent();if(!a)return;a.title=$('#title').value.trim();a.content=$('#content').innerHTML;a.contentFormat='html';a.status=$('#status').value;a.slug=$('#slug').value.trim()||slugify(a.title);a.category=$('#category')?.value||a.category||'醫學筆記';a.type='文章';a.subtitle='';a.excerpt=plainFromHTML(a.content).slice(0,180);a.tags=a.tags||[];a.publishedAt=$('#publishedAt').value||new Date().toISOString().slice(0,10);a.updatedAt=new Date().toISOString().slice(0,10)}
+function syncPublicSnapshot(){try{localStorage.removeItem('signwell-public-live-v1')}catch(_){/* 公開站只讀 GitHub 部署檔，CMS 不再跨專案寫入公開預覽快照 */}}
+function commitPendingArticle(){
+  if(currentId!=='__new__'||!pendingNewArticle)return getCurrent();
+  const a=pendingNewArticle;
+  a.id='a-'+Date.now();
+  data.articles.unshift(a);
+  pendingNewArticle=null;
+  currentId=a.id;
+  return a;
+}
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  if(currentId==='__new__'){
+    updateFromEditor();
+    $('#saveState').textContent='尚未儲存';
+    $('#saveState').style.color='#9a7b45';
+    return;
+  }
+  $('#saveState').textContent='儲存中…';
+  $('#saveState').style.color='#8b97a2';
+  saveTimer=setTimeout(()=>{updateFromEditor();persist();syncPublicSnapshot()},700);
+}
+function saveNow(){
+  clearTimeout(saveTimer);
+  updateFromEditor();
+  let a=getCurrent();if(!a)return false;
+  a.status='Draft';
+  if($('#status'))$('#status').value='Draft';
+  a=commitPendingArticle()||a;
+  a.status='Draft';
+  persist();
+  syncPublicSnapshot();
+  $('#saveState').textContent='草稿已儲存 ✓';
+  $('#saveState').style.color='#6f8f86';
+  showToast('已儲存草稿');
+  return true;
+}
+function publishNow(){
+  clearTimeout(saveTimer);
+  updateFromEditor();
+  let a=getCurrent();
+  if(!a?.title){showToast('請先輸入標題');$('#title')?.focus();return false}
+  a.status='Published';
+  if($('#status'))$('#status').value='Published';
+  a=commitPendingArticle()||a;
+  a.status='Published';
+  persist();
+  syncPublicSnapshot();
+  $('#saveState').textContent='已發布 ✓';
+  $('#saveState').style.color='#6f8f86';
+  showToast('已在後台標記為已發布；按「線上發布」才會更新公開網站');
+  return true;
+}
+function runCommand(cmd,val=null){$('#content').focus();try{document.execCommand(cmd,false,val)}catch(_){ }scheduleSave()}
+function insertHTMLAtCursor(html){$('#content').focus();try{document.execCommand('insertHTML',false,html)}catch(_){const sel=getSelection();if(!sel?.rangeCount)return;const r=sel.getRangeAt(0);const t=document.createElement('template');t.innerHTML=html;r.deleteContents();r.insertNode(t.content);r.collapse(false)}}
+function compressImage(file,maxSide=1600,quality=.82){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{let w=img.naturalWidth,h=img.naturalHeight;const scale=Math.min(1,maxSide/Math.max(w,h));w=Math.max(1,Math.round(w*scale));h=Math.max(1,Math.round(h*scale));const c=document.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d',{alpha:false});ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);let out;try{out=c.toDataURL('image/webp',quality);if(!out.startsWith('data:image/webp'))out=c.toDataURL('image/jpeg',quality)}catch(_){out=c.toDataURL('image/jpeg',quality)}resolve(out)};img.src=reader.result};reader.readAsDataURL(file)})}
+function preview(){updateFromEditor();const a=getCurrent();$('#previewContent').innerHTML=`${a.cover?`<img src="${a.cover}" alt="" style="width:100%;max-height:420px;object-fit:cover;border-radius:22px;margin-bottom:28px">`:'<div class="preview-default-cover" aria-label="SIGN WELL 預設封面"></div>'}<h1>${escapeHTML(a.title||'未命名文章')}</h1>${articleHTML(a)}`;$('#previewOverlay').classList.add('show')}
+function renderTopicsManager(){
+  data.topics=Array.isArray(data.topics)?data.topics:[];let editId=null;
+  const paint=()=>{const sorted=data.topics.slice().sort((a,b)=>(a.order??999)-(b.order??999));$('#view').innerHTML=`<div class="page-head"><div><h1>主題管理</h1><p>在這裡建立前台「主題探討」頁的分類。文章編輯器會自動使用這些主題。</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="top-action online" id="syncTopicsBtn">同步前台</button><button class="top-action primary" id="newTopicBtn">新增主題</button></div></div><div class="topic-admin"><section class="topic-list"><div class="panel-head"><span>主題列表</span><span>${sorted.length} 個</span></div>${sorted.length?sorted.map((tp,i)=>`<div class="topic-row-admin"><div><strong>${escapeHTML(tp.name||'未命名主題')} ${tp.active===false?'<span class="topic-badge">已隱藏</span>':''}</strong><span>${escapeHTML(tp.description||'尚未填寫說明')} · ${data.articles.filter(a=>a.category===tp.name).length} 篇文章</span></div><div class="topic-row-actions"><button data-topic-edit="${escapeHTML(tp.id)}">編輯</button><button data-topic-up="${escapeHTML(tp.id)}">↑</button><button data-topic-down="${escapeHTML(tp.id)}">↓</button><button data-topic-del="${escapeHTML(tp.id)}">刪除</button></div></div>`).join(''):'<div class="empty">尚未建立主題。</div>'}</section><aside class="topic-form"><h3 id="topicFormTitle">新增主題</h3><div class="field-group"><label>主題名稱</label><input id="topicName" placeholder="例如：重症醫學"></div><div class="field-group"><label>公開網址代稱</label><input id="topicSlug" placeholder="critical-care"></div><div class="field-group"><label>主題說明</label><textarea id="topicDesc" placeholder="說明這個主題涵蓋哪些內容。"></textarea></div><label class="topic-active"><input type="checkbox" id="topicActive" checked> 顯示在前台主題探討頁</label><div class="site-text-actions" style="margin-top:14px"><button class="top-action primary" id="saveTopic">儲存主題</button><button class="top-action online" id="saveTopicOnline">儲存並同步前台</button><button class="top-action" id="cancelTopic">清除</button></div><p class="topic-help">按「儲存並同步前台」會一次更新 <code>topics/index.json</code>、<code>public-data.json</code> 與 <code>site-content.js</code>，再從 GitHub 讀回驗證。主題名稱、說明與主題頁文字會使用同一份資料來源。</p></aside></div>`;
+    const clear=()=>{editId=null;$('#topicFormTitle').textContent='新增主題';$('#topicName').value='';$('#topicSlug').value='';$('#topicDesc').value='';$('#topicActive').checked=true};
+    $$('[data-topic-edit]').forEach(b=>b.onclick=()=>{const tp=data.topics.find(x=>x.id===b.dataset.topicEdit);if(!tp)return;editId=tp.id;$('#topicFormTitle').textContent='編輯主題';$('#topicName').value=tp.name||'';$('#topicSlug').value=tp.slug||'';$('#topicDesc').value=tp.description||'';$('#topicActive').checked=tp.active!==false});
+    const move=(id,dir)=>{const arr=data.topics.slice().sort((a,b)=>(a.order??999)-(b.order??999)),i=arr.findIndex(x=>x.id===id),j=i+dir;if(i<0||j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];arr.forEach((x,k)=>x.order=k);data.topics=arr;persist(true);paint()};
+    $$('[data-topic-up]').forEach(b=>b.onclick=()=>move(b.dataset.topicUp,-1));$$('[data-topic-down]').forEach(b=>b.onclick=()=>move(b.dataset.topicDown,1));
+    $$('[data-topic-del]').forEach(b=>b.onclick=()=>{const tp=data.topics.find(x=>x.id===b.dataset.topicDel);if(!tp)return;if(!confirm(`確定刪除主題「${tp.name}」？文章不會被刪除。`))return;data.topics=data.topics.filter(x=>x.id!==tp.id);persist(true);paint();showToast('主題已刪除')});
+    const saveTopicLocal=()=>{const name=$('#topicName').value.trim(),slug=$('#topicSlug').value.trim()||slugify(name),description=$('#topicDesc').value.trim(),active=$('#topicActive').checked;if(!name){showToast('請輸入主題名稱');return null}let renamed=false;if(editId){const tp=data.topics.find(x=>x.id===editId);if(!tp)return null;const oldName=tp.name||'';renamed=Boolean(oldName&&oldName!==name);Object.assign(tp,{name,slug,description,active});if(renamed)data.articles.forEach(a=>{if(a.category===oldName)a.category=name})}else data.topics.push({id:'topic-'+Date.now(),name,slug,description,active,order:data.topics.length});persist(true);editId=null;return{renamed}};$('#saveTopic').onclick=()=>{if(!saveTopicLocal())return;paint();showToast('主題已儲存')};$('#saveTopicOnline').onclick=async()=>{const result=saveTopicLocal();if(!result)return;paint();try{if(result.renamed)await publishGitHub();else await publishTopicsOnly()}catch(e){showToast('主題同步失敗：'+e.message)}};
+    $('#cancelTopic').onclick=clear;$('#newTopicBtn').onclick=clear;$('#syncTopicsBtn').onclick=async()=>{try{await publishTopicsOnly()}catch(e){showToast('主題同步失敗：'+e.message)}};
+  };paint();
+}
+function renderSiteText(){
+  data.siteText={...DEFAULT_SITE_TEXT,...(data.siteText||{})};const s=data.siteText;
+  const input=(key,label,multi=false)=>`<div class="site-field"><label>${label}</label>${multi?`<textarea data-site-key="${key}">${escapeHTML(s[key]||'')}</textarea>`:`<input data-site-key="${key}" value="${escapeHTML(s[key]||'')}">`}</div>`;
+  $('#view').innerHTML=`<div class="page-head"><div><h1>網站文字</h1><p>修改公開使用者端的品牌、首頁、關於與頁尾文字。儲存後可先在同一瀏覽器預覽；按「發布到網站」才會同步到 GitHub Pages。</p></div></div><div class="site-text-wrap"><section class="site-text-card"><h3>公開網站文案</h3><p>這些欄位會寫入 <code>site-content.js</code>；文章清單由 <code>articles/index.json</code>、完整文章由 <code>articles/*.json</code> 管理，<code>articles.js</code> 僅保留舊版相容。</p>
+  <div class="site-section"><div class="site-section-title">品牌與導覽</div>${input('siteTitle','瀏覽器標題')}${input('brandEnglish','英文品牌')}${input('brandChinese','中文品牌')}${input('navArticles','導覽：文章')}${input('navTopics','導覽：主題')}${input('navAbout','導覽：關於')}</div>
+  <div class="site-section"><div class="site-section-title">首頁主視覺</div>${input('homeEyebrow','首頁小標')}${input('homeTitle1','主標題第一行')}${input('homeTitle2','主標題第二行')}${input('homeSubtitle','首頁介紹',true)}${input('homeCardTitle','右側玻璃卡標題',true)}${input('homeCardBody','右側玻璃卡說明',true)}</div>
+  <div class="site-section"><div class="site-section-title">每日新文章</div>${input('dailyEyebrow','區段小標')}${input('dailyTitle','區段標題')}${input('dailyDescription','區段說明')}</div>
+  <div class="site-section"><div class="site-section-title">主題探討頁</div>${input('topicsEyebrow','頁面小標')}${input('topicsTitle','頁面標題',true)}${input('topicsSubtitle','頁面說明',true)}</div>
+  <div class="site-section"><div class="site-section-title">分享我們頁</div>${input('shareEyebrow','頁面小標')}${input('shareTitle','頁面標題',true)}${input('shareSubtitle','頁面說明',true)}</div>
+  <div class="site-section"><div class="site-section-title">文章頁</div>${input('articleBrand','文章作者／品牌列')}${input('minutesReadSuffix','閱讀時間文字')}${input('updatedLabel','更新日期文字')}${input('shareLabel','分享按鈕')}${input('copyLinkLabel','複製連結按鈕')}${input('tocTitle','文章目錄標題')}</div>
+  <div class="site-section"><div class="site-section-title">關於頁</div>${input('aboutEyebrow','關於頁小標')}${input('aboutTitle','關於頁標題')}${input('aboutBody','關於頁介紹',true)}${input('aboutFocusLabel','核心欄標籤')}${input('aboutFocusValue','核心欄內容')}${input('aboutFormatLabel','形式欄標籤')}${input('aboutFormatValue','形式欄內容')}${input('aboutPrincipleLabel','原則欄標籤')}${input('aboutPrincipleValue','原則欄內容')}${input('aboutDisclaimer','關於頁醫療聲明',true)}</div>
+  <div class="site-section"><div class="site-section-title">頁尾與搜尋</div>${input('footerTagline','頁尾標語',true)}${input('footerDisclaimer','頁尾醫療聲明',true)}${input('searchPlaceholder','搜尋框提示')}</div>
+  <div class="site-text-actions"><button class="top-action primary" id="saveSiteText">儲存網站文字</button><button class="top-action online" id="publishSiteText">儲存並發布到網站</button><button class="top-action" id="resetSiteText">恢復預設文字</button></div><div class="site-publish-hint">公開站優先讀取 <b>public-data.json</b>，並保留 <b>site-content.js</b> 相容備援。第一次使用新版前台時，請記得把新版 <code>index.html</code> 與 <code>site-content.js</code> 一起上傳到公開 Repository。</div></section>
+  <aside class="site-preview-box"><div class="mini-nav"><span>${escapeHTML(s.navArticles)}</span><span>${escapeHTML(s.navTopics)}</span><span>${escapeHTML(s.navAbout)}</span></div><div class="mini-eyebrow" id="miniEyebrow">${escapeHTML(s.homeEyebrow)}</div><h4 id="miniTitle">${escapeHTML(s.homeTitle1)}<br>${escapeHTML(s.homeTitle2)}</h4><p id="miniSub">${escapeHTML(s.homeSubtitle)}</p></aside></div>`;
+  const collect=()=>{$$('[data-site-key]').forEach(el=>{data.siteText[el.dataset.siteKey]=el.value});persist(true);syncPublicSnapshot();$('#saveState').textContent='網站文字已儲存 ✓';$('#saveState').style.color='#6f8f86'};
+  const updateMini=()=>{const s=data.siteText;$('#miniEyebrow').textContent=s.homeEyebrow||'';$('#miniTitle').innerHTML=escapeHTML(s.homeTitle1||'')+'<br>'+escapeHTML(s.homeTitle2||'');$('#miniSub').textContent=s.homeSubtitle||''};
+  $$('[data-site-key]').forEach(el=>el.addEventListener('input',()=>{data.siteText[el.dataset.siteKey]=el.value;updateMini();clearTimeout(saveTimer);$('#saveState').textContent='儲存中…';saveTimer=setTimeout(()=>{collect()},650)}));
+  $('#saveSiteText').onclick=()=>{collect();showToast('網站文字已儲存')};
+  $('#resetSiteText').onclick=()=>{if(!confirm('要把公開網站文字恢復為預設內容嗎？'))return;data.siteText=clone(DEFAULT_SITE_TEXT);persist();syncPublicSnapshot();renderSiteText();showToast('已恢復預設文字')};
+  $('#publishSiteText').onclick=async()=>{collect();if(!githubToken&&!hasRememberedGithubToken()){nav('export');showToast('第一次請先設定 GitHub Token');return}if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();if(!githubToken){nav('export');showToast('GitHub Token 尚未解鎖');return}try{await publishGitHub();showToast('網站文字與文章已同步')}catch(e){showToast('發布失敗：'+e.message)}};
+}
+function renderExport(){const pub=data.articles.filter(a=>a.status==='Published'),drafts=data.articles.length-pub.length,remembered=hasRememberedGithubToken(),ready=Boolean(githubToken);$('#view').innerHTML=`<div class="page-head"><div><h1>線上發布</h1><p>公開站設定已固定。之後只要登入 CMS、撰寫文章並發布，就能直接同步到 SIGN WELL。</p></div></div><div class="stats"><div class="stat"><span>已發布</span><strong>${pub.length}</strong></div><div class="stat"><span>草稿</span><strong>${drafts}</strong></div><div class="stat"><span>發布目標</span><strong style="font-size:20px">980510linz/-</strong></div><div class="stat"><span>資料檔案</span><strong style="font-size:16px">v11 JSON + 主題 + 圖片資產</strong></div></div><div class="publish-grid"><section class="publish-card"><h3>發布到 SIGN WELL</h3><p>GitHub 路徑已鎖定為你的正式公開網站。第一次貼入 Token 並勾選「記住這台裝置」後，之後只要完成 CMS 雙重登入即可自動解鎖，不必重填擁有者、Repository 或 Branch。</p><div class="connection-summary"><div class="connection-row"><span>公開網站</span><strong>https://980510linz.github.io/-/</strong></div><div class="connection-row"><span>GitHub 發布目標</span><code>980510linz/- · main · articles/index.json + assets/uploads/</code></div><div class="connection-row"><span>GitHub 憑證</span><strong id="tokenState" class="token-state ${ready?'ready':''}">${ready?'已解鎖':remembered?'已記住，重新登入即可解鎖':'尚未設定'}</strong></div></div><div class="token-setup"><label class="token-label">GitHub 細粒度存取權杖（Fine-grained PAT）<input id="ghToken" type="password" autocomplete="off" placeholder="${ready?'目前工作階段已可使用；不需重新輸入':'github_pat_…'}"></label><label class="remember-row"><input type="checkbox" id="ghRemember" checked><span>記住這台裝置。Token 會用你兩階段登入時輸入的資料經 PBKDF2 + AES-GCM 加密後存於此瀏覽器；不會寫進 HTML 或 GitHub。純前端仍不能等同硬體金鑰或伺服器端秘密儲存。</span></label></div><div class="publish-actions"><button class="top-action" id="ghTest">測試連線</button><button class="top-action online" id="ghPublish">發布到 SIGN WELL</button><button class="top-action" id="ghSync">從 GitHub 同步</button></div><div class="publish-status" id="ghStatus">${ready?'✓ GitHub 憑證已從這台裝置解鎖。':'第一次請貼入 Token，並先按「測試連線」。'}</div><div class="integrity-note" id="integrityNote"><b>資料保護：</b>第一次在新裝置使用時，建議先按 <b>從 GitHub 同步</b>，把目前公開站文章同步進 CMS，避免用空白本機資料覆蓋既有文章。</div><details class="advanced-box"><summary>進階設定 · 一般不需要修改</summary><div class="advanced-body"><div><span>擁有者</span><code>980510linz</code></div><div><span>Repository</span><code>-</code></div><div><span>Branch</span><code>main</code></div><div><span>文章資料</span><code>articles/index.json + articles/*.json</code></div><div><span>前台頁面</span><code>index.html · topics.html · share.html</code></div><div><span>統一前台資料</span><code>public-data.json</code></div><div><span>網站文字備援</span><code>site-content.js</code></div><div><span>所需權限</span><code>Contents：讀取與寫入</code></div></div></details></section><aside class="publish-card"><h3>資料檢查</h3><p>CMS 只會輸出狀態為「已發布」的文章；草稿不會出現在公開網站。</p><div class="file-map"><div><code>本機文章</code><span class="file-ok">${data.articles.length}</span></div><div><code>已發布</code><span class="file-ok">${pub.length}</span></div><div><code>未公開草稿</code><span>${drafts}</span></div><div><code>公開主題</code><span class="file-ok">${(data.topics||[]).filter(x=>x.active!==false).length}</span></div><div><code>文章格式</code><span class="file-ok">v11 · 每篇獨立 JSON</span></div><div><code>網站文字格式</code><span class="file-ok">window.SIGNWELL_SITE_TEXT</span></div></div><div class="security-note"><b>公開站資料流：</b><br>CMS → GitHub API → <code>public-data.json + articles/index.json + topics/index.json + articles/*.json + assets/uploads/*</code> → GitHub Pages → <code>https://980510linz.github.io/-/</code></div></aside></div>`;$('#exportJs')&&($('#exportJs').onclick=exportJS);bindGithubPublisher()}
+async function saveBlob(blob,name){const file=new File([blob],name,{type:blob.type||'application/octet-stream'});try{if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:name});return}}catch(e){if(e?.name==='AbortError')return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function exportJS(){const pub=data.articles.filter(a=>a.status==='Published');const text='window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n';saveBlob(new Blob([text],{type:'text/javascript;charset=utf-8'}),'articles.js');showToast(`已準備 ${pub.length} 篇文章`)}
+function exportBackup(){saveBlob(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),'signwell-cms-backup.json')}
+function importFile(file){const reader=new FileReader();reader.onload=()=>{try{let text=String(reader.result||''),obj;if(file.name.endsWith('.js')){let m=text.match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(m)obj={...data,articles:JSON.parse(m[1])};else{m=text.match(/window\.SIGNWELL_SITE_TEXT\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('JS 格式不正確');obj={...data,siteText:{...DEFAULT_SITE_TEXT,...JSON.parse(m[1])}}}}else obj=JSON.parse(text);if(!obj||!Array.isArray(obj.articles))throw new Error('備份檔格式不正確');data={...obj,siteText:{...DEFAULT_SITE_TEXT,...(obj.siteText||data.siteText||{})}};persist();syncPublicSnapshot();showToast('匯入完成');nav('articles')}catch(e){showToast('匯入失敗：檔案格式不符')}};reader.readAsText(file)}
+$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$$('[data-new]').forEach(b=>b.onclick=newArticle);$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=publishNow;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=()=>{data.articles=data.articles.filter(a=>a.id!==deleteId);persist();syncPublicSnapshot();$('#confirmModal').classList.remove('show');deleteId=null;renderView();showToast('文章已刪除')};document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#previewOverlay').classList.remove('show');$('#confirmModal').classList.remove('show')}});['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,()=>{if(!$('#cms').classList.contains('hidden'))localStorage.setItem(ACTKEY,String(Date.now()))},{passive:true}));setInterval(checkAutoLock,60000);
+function optimize(){const low=Number(navigator.deviceMemory||8)<4||matchMedia('(prefers-reduced-motion:reduce)').matches;if(low)document.body.classList.add('lite')}
+
+
+const PUBLIC_GITHUB=Object.freeze({owner:'980510linz',repo:'-',branch:'main',path:'articles.js',sitePath:'site-content.js',site:'https://980510linz.github.io/-/'}),TOKEN_STORE_KEY='signwell-github-token-v2',SYNC_KEY='signwell-github-synced-v2';let githubToken='';
+function hasRememberedGithubToken(){try{return Boolean(localStorage.getItem(TOKEN_STORE_KEY))}catch(_){return false}}
+function bytesToB64(bytes){let s='';for(let i=0;i<bytes.length;i+=0x8000)s+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(s)}
+function b64ToBytes(s){const bin=atob(s),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out}
+async function deriveTokenKey(secret,salt){if(!crypto?.subtle)throw new Error('此瀏覽器不支援 WebCrypto');const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(secret),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:160000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function rememberGithubToken(token){if(!token||!authSecret)return false;const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await deriveTokenKey(authSecret,salt),cipher=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(token)));localStorage.setItem(TOKEN_STORE_KEY,JSON.stringify({v:1,salt:bytesToB64(salt),iv:bytesToB64(iv),cipher:bytesToB64(cipher)}));return true}
+async function restoreRememberedGithubToken(){githubToken='';let raw;try{raw=localStorage.getItem(TOKEN_STORE_KEY)}catch(_){return false}if(!raw||!authSecret)return false;try{const o=JSON.parse(raw),salt=b64ToBytes(o.salt),iv=b64ToBytes(o.iv),cipher=b64ToBytes(o.cipher),key=await deriveTokenKey(authSecret,salt),plain=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,cipher);githubToken=new TextDecoder().decode(plain);return Boolean(githubToken)}catch(_){githubToken='';return false}}
+function forgetGithubToken(){githubToken='';try{localStorage.removeItem(TOKEN_STORE_KEY)}catch(_){}showToast('已忘記 GitHub Token')}
+function publishedJSText(){const pub=data.articles.filter(a=>a.status==='Published');return 'window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n'}
+function siteContentJSText(){return 'window.SIGNWELL_SITE_TEXT = '+JSON.stringify({...DEFAULT_SITE_TEXT,...(data.siteText||{})},null,2)+';\n'}
+function parseSiteContentJS(text){const m=String(text||'').match(/window\.SIGNWELL_SITE_TEXT\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('遠端 site-content.js 格式不符');const obj=JSON.parse(m[1]);if(!obj||typeof obj!=='object'||Array.isArray(obj))throw new Error('遠端網站文字不是物件');return {...DEFAULT_SITE_TEXT,...obj}}
+function utf8Base64(text){const bytes=new TextEncoder().encode(text);let bin='';const step=0x8000;for(let i=0;i<bytes.length;i+=step)bin+=String.fromCharCode(...bytes.subarray(i,i+step));return btoa(bin)}
+function base64Utf8(text){const bytes=b64ToBytes(String(text||'').replace(/\s/g,''));return new TextDecoder().decode(bytes)}
+function parseArticlesJS(text){const m=String(text||'').match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('遠端 articles.js 格式不符');const arr=JSON.parse(m[1]);if(!Array.isArray(arr))throw new Error('遠端文章資料不是陣列');return arr}
+async function githubRequest(url,token,options={}){const res=await fetch(url,{...options,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json',...(options.headers||{})}});let body=null;try{body=await res.json()}catch(_){ }if(!res.ok)throw new Error(body?.message||('GitHub API '+res.status));return body}
+function githubContentURL(path=PUBLIC_GITHUB.path){const c=PUBLIC_GITHUB;return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/${String(path).split('/').map(encodeURIComponent).join('/')}`}
+function currentTokenInput(){return $('#ghToken')?.value.trim()||githubToken}
+async function fetchRemoteArticles(token){const file=await githubRequest(githubContentURL()+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch),token);const text=base64Utf8(file.content||'');return {articles:parseArticlesJS(text),sha:file.sha||null}}
+async function fetchRemoteSiteText(token){try{const file=await githubRequest(githubContentURL(PUBLIC_GITHUB.sitePath)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch),token);const text=base64Utf8(file.content||'');return {siteText:parseSiteContentJS(text),sha:file.sha||null}}catch(e){if(/Not Found|404/i.test(e.message))return {siteText:clone(DEFAULT_SITE_TEXT),sha:null};throw e}}
+async function maybeRememberToken(token){if($('#ghRemember')?.checked&&token&&authSecret){await rememberGithubToken(token)}}
+async function testGithubConnection(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){status.textContent='請先貼入 GitHub Token。';return false}githubToken=token;status.textContent='正在測試 GitHub 連線與 articles.js…';try{const repo=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}`,token),remote=await fetchRemoteArticles(token),remoteSite=await fetchRemoteSiteText(token);await maybeRememberToken(token);const localIds=new Set(data.articles.map(a=>a.id)),missing=remote.articles.filter(a=>!localIds.has(a.id)).length;status.textContent=`✓ 已連線：${repo.full_name} · 遠端 ${remote.articles.length} 篇文章 · 網站文字 ${remoteSite.sha?'已存在':'尚未建立'}${missing?` · 本機缺少 ${missing} 篇，建議先同步`:''}`;$('#tokenState')?.classList.add('ready');if($('#tokenState'))$('#tokenState').textContent='已解鎖';return true}catch(e){status.textContent='連線失敗：'+e.message;return false}}
+async function syncFromGitHub(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){status.textContent='請先貼入或解鎖 GitHub Token。';return}githubToken=token;status.textContent='正在讀取公開站 articles.js…';try{const remote=await fetchRemoteArticles(token),remoteSite=await fetchRemoteSiteText(token),localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);syncPublicSnapshot();localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步遠端 ${remote.articles.length} 篇文章與網站文字；保留本機草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}}
+async function publishGitHub(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){if(status)status.textContent='請先貼入或解鎖 GitHub Token。';return false}githubToken=token;if(status)status.textContent='正在核對遠端文章與網站文字…';let remoteArticles=[],articleSha=null,siteSha=null;try{const existing=await fetchRemoteArticles(token);articleSha=existing.sha;remoteArticles=existing.articles}catch(e){if(!/Not Found|404/i.test(e.message))throw e}try{const rs=await fetchRemoteSiteText(token);siteSha=rs.sha}catch(e){if(!/Not Found|404/i.test(e.message))throw e}
+  const alreadySynced=localStorage.getItem(SYNC_KEY)==='1',localIds=new Set(data.articles.map(a=>a.id)),missing=remoteArticles.filter(a=>!localIds.has(a.id));if(!alreadySynced&&missing.length){throw new Error(`安全阻擋：公開站有 ${missing.length} 篇文章不在這台裝置。請先按「從 GitHub 同步」，避免覆蓋遺失。`)}
+  if(status)status.textContent='正在提交文章資料…';const articlePayload={message:'Publish SIGN WELL articles '+new Date().toISOString().slice(0,19).replace('T',' '),content:utf8Base64(publishedJSText()),branch:PUBLIC_GITHUB.branch};if(articleSha)articlePayload.sha=articleSha;await githubRequest(githubContentURL(PUBLIC_GITHUB.path),token,{method:'PUT',body:JSON.stringify(articlePayload)});
+  if(status)status.textContent='正在提交網站文字…';const sitePayload={message:'Update SIGN WELL site text '+new Date().toISOString().slice(0,19).replace('T',' '),content:utf8Base64(siteContentJSText()),branch:PUBLIC_GITHUB.branch};if(siteSha)sitePayload.sha=siteSha;await githubRequest(githubContentURL(PUBLIC_GITHUB.sitePath),token,{method:'PUT',body:JSON.stringify(sitePayload)});
+  localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent='✓ 文章與網站文字已提交到 GitHub。GitHub Pages 會在短時間內更新。';showToast('已發布到 SIGN WELL');return true}
+function bindGithubPublisher(){const tokenInput=$('#ghToken'),status=$('#ghStatus');$('#exportSiteJs')?.addEventListener('click',()=>saveBlob(new Blob([siteContentJSText()],{type:'text/javascript;charset=utf-8'}),'site-content.js'));if(githubToken&&tokenInput)tokenInput.placeholder='目前工作階段已解鎖，不需重新輸入';$('#ghPublish')?.addEventListener('click',async()=>{try{await publishGitHub()}catch(e){if(status)status.textContent='發布失敗：'+e.message;showToast('GitHub 發布失敗')}});$('#ghTest')?.addEventListener('click',testGithubConnection);$('#ghSync')?.addEventListener('click',syncFromGitHub);$('#ghForget')?.addEventListener('click',()=>{forgetGithubToken();if(tokenInput)tokenInput.value='';if($('#tokenState')){$('#tokenState').textContent='尚未設定';$('#tokenState').classList.remove('ready')}if(status)status.textContent='已從這台裝置移除記住的 token。'});tokenInput?.addEventListener('input',()=>{if(tokenInput.value.trim()&&status)status.textContent='Token 已輸入；建議先按「測試連線」。'})}
+async function publishOnlineFromEditor(){if(!publishNow())return;if(!githubToken&&!hasRememberedGithubToken()){nav('export');showToast('第一次請到「線上發布」設定 GitHub Token');return}if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();if(!githubToken){nav('export');showToast('GitHub Token 尚未解鎖，請重新登入或設定');return}try{await publishGitHub()}catch(e){nav('export');const s=$('#ghStatus');if(s)s.textContent='發布失敗：'+e.message;showToast('GitHub 發布失敗')}}
+
+/* ===== SIGN WELL Storage Architecture v10 =====
+   - Drafts/state: IndexedDB
+   - Images: GitHub assets/uploads/YYYY/MM
+   - Public list: articles/index.json
+   - Full article: articles/<slug>.json
+   - Legacy articles.js: compatibility fallback only
+   ========================================================= */
+const V10_INDEX_PATH='articles/index.json',V11_TOPICS_PATH='topics/index.json',PUBLIC_BUNDLE_PATH='public-data.json';
+const PUBLIC_FRONT_FILES=Object.freeze(['index.html','topics.html','share.html',PUBLIC_GITHUB.sitePath,V10_INDEX_PATH,V11_TOPICS_PATH,PUBLIC_BUNDLE_PATH]);
+async function checkPublicFrontFiles(token){
+  const missing=[],present=[];
+  for(const path of PUBLIC_FRONT_FILES){
+    try{
+      await githubRequest(githubContentURL(path)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch),token);
+      present.push(path);
+    }catch(e){
+      if(/Not Found|404/i.test(e.message))missing.push(path);
+      else throw e;
+    }
+  }
+  return {missing,present};
+}
+function v10Hash(s=''){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
+function v10Plain(html=''){const d=document.createElement('div');d.innerHTML=html;return (d.textContent||'').replace(/\s+/g,' ').trim()}
+function v10ReadingTime(a){return Math.max(1,Math.round(v10Plain(a.content||'').replace(/\s+/g,'').length/450))}
+function v10Revision(a){return v10Hash(JSON.stringify([a.title,a.slug,a.category,a.type,a.excerpt,a.tags,a.cover,a.content,a.publishedAt,a.featured,a.status]))}
+function v10SafeSlug(a){return slugify(a.slug||a.title||a.id||('article-'+Date.now()))}
+function v10IndexMeta(a){const slug=v10SafeSlug(a),plain=v10Plain(a.content||'');return {id:a.id,title:a.title||'未命名文章',slug,excerpt:a.excerpt||plain.slice(0,180),category:a.category||'醫學筆記',type:a.type||'文章',cover:a.cover||'',tags:Array.isArray(a.tags)?a.tags:[],publishedAt:a.publishedAt||'',updatedAt:a.updatedAt||'',featured:Boolean(a.featured),status:'Published',readingTime:v10ReadingTime(a),searchText:plain.slice(0,700),revision:v10Revision(a),file:`articles/${slug}.json`}}
+function dataUrlParts(url=''){const m=String(url).match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,([A-Za-z0-9+/=\s]+)$/);return m?{mime:m[1].toLowerCase(),base64:m[2].replace(/\s/g,'')}:null}
+function extForMime(m=''){if(m.includes('webp'))return'webp';if(m.includes('png'))return'png';if(m.includes('gif'))return'gif';return'jpg'}
+async function v10CreateBlob(base64,token){return githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/blobs`,token,{method:'POST',body:JSON.stringify({content:base64,encoding:'base64'})})}
+async function v10ImageTreeEntry(dataUrl,slug,kind,token,cache){if(cache.has(dataUrl))return cache.get(dataUrl);const p=dataUrlParts(dataUrl);if(!p)return null;const now=new Date(),ym=`${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}`,name=`${slug}-${kind}-${v10Hash(dataUrl)}.${extForMime(p.mime)}`,path=`assets/uploads/${ym}/${name}`,blob=await v10CreateBlob(p.base64,token),entry={path,mode:'100644',type:'blob',sha:blob.sha},out={entry,url:path};cache.set(dataUrl,out);return out}
+async function v10PrepareArticle(article,token,imageEntries,imageCache){const a=clone(article),slug=v10SafeSlug(a);a.slug=slug;if(dataUrlParts(a.cover||'')){const up=await v10ImageTreeEntry(a.cover,slug,'cover',token,imageCache);if(up){imageEntries.push(up.entry);a.cover=up.url}}if(a.contentFormat==='html'&&a.content){const doc=new DOMParser().parseFromString(`<div id="v10root">${a.content}</div>`,'text/html'),root=doc.getElementById('v10root'),imgs=[...root.querySelectorAll('img[src^="data:image/"]')];for(let i=0;i<imgs.length;i++){const src=imgs[i].getAttribute('src')||'',up=await v10ImageTreeEntry(src,slug,'img'+(i+1),token,imageCache);if(up){imageEntries.push(up.entry);imgs[i].setAttribute('src',up.url)}}a.content=root.innerHTML}a.updatedAt=a.updatedAt||new Date().toISOString().slice(0,10);return a}
+async function v10BranchBase(token){const ref=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/ref/heads/${encodeURIComponent(PUBLIC_GITHUB.branch)}`,token),commit=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/commits/${ref.object.sha}`,token);return {head:ref.object.sha,tree:commit.tree.sha}}
+async function v10BatchCommit(entries,token,message){const base=await v10BranchBase(token),dedup=new Map();entries.forEach(e=>dedup.set(e.path,e));const tree=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/trees`,token,{method:'POST',body:JSON.stringify({base_tree:base.tree,tree:[...dedup.values()]})}),commit=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/commits`,token,{method:'POST',body:JSON.stringify({message,tree:tree.sha,parents:[base.head]})});await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/refs/heads/${encodeURIComponent(PUBLIC_GITHUB.branch)}`,token,{method:'PATCH',body:JSON.stringify({sha:commit.sha,force:false})});return commit.sha}
+async function v11FetchTopicsRaw(){const url=`https://raw.githubusercontent.com/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/${encodeURIComponent(PUBLIC_GITHUB.branch)}/${V11_TOPICS_PATH}?v=${Date.now()}`;const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('topics not found');const a=await r.json();if(!Array.isArray(a))throw new Error('topics invalid');return a}
+function v11TopicPayload(){return (data.topics||[]).map((x,i)=>({id:x.id||('topic-'+i),name:x.name||'未命名主題',slug:x.slug||slugify(x.name||('topic-'+i)),description:x.description||'',order:Number.isFinite(Number(x.order))?Number(x.order):i,active:x.active!==false}))}
+function currentSiteTextPayload(){return {...DEFAULT_SITE_TEXT,...(data.siteText||{})}}
+function publicBundlePayload(revision=Date.now()){
+  return {
+    schema:1,
+    revision:Number(revision),
+    publishedAt:new Date().toISOString(),
+    siteText:currentSiteTextPayload(),
+    topics:v11TopicPayload()
+  };
+}
+function publicBundleJSONText(bundle){return JSON.stringify(bundle,null,2)+'\n'}
+function canonTopics(a){return JSON.stringify((a||[]).map((x,i)=>({
+  id:String(x.id||('topic-'+i)),
+  name:String(x.name||''),
+  slug:String(x.slug||''),
+  description:String(x.description||''),
+  order:Number.isFinite(Number(x.order))?Number(x.order):i,
+  active:x.active!==false
+})))}
+function canonSiteText(o){return JSON.stringify({...DEFAULT_SITE_TEXT,...(o||{})})}
+async function verifyPublicBundle(expected,token){
+  const file=await githubRequest(
+    githubContentURL(PUBLIC_BUNDLE_PATH)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),
+    token
+  );
+  let remote;
+  try{remote=JSON.parse(base64Utf8(file.content||''))}catch(_){throw new Error('public-data.json 不是有效 JSON')}
+  if(!remote||typeof remote!=='object')throw new Error('public-data.json 格式錯誤');
+  if(Number(remote.revision)!==Number(expected.revision))throw new Error('public-data.json revision 不一致');
+  if(canonTopics(remote.topics)!==canonTopics(expected.topics))throw new Error('主題內容驗證失敗');
+  if(canonSiteText(remote.siteText)!==canonSiteText(expected.siteText))throw new Error('網站文字驗證失敗');
+  return remote;
+}
+async function fetchRemotePublicBundle(token){
+  try{
+    const file=await githubRequest(
+      githubContentURL(PUBLIC_BUNDLE_PATH)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),
+      token
+    );
+    const remote=JSON.parse(base64Utf8(file.content||''));
+    return remote&&typeof remote==='object'?remote:null;
+  }catch(e){
+    if(/Not Found|404/i.test(e.message))return null;
+    throw e;
+  }
+}
+const PUBLIC_DATA_REVISION_KEY='signwell-public-data-revision';
+function signalPublicDataRefresh(){
+  try{localStorage.setItem(PUBLIC_DATA_REVISION_KEY,String(Date.now()))}catch(_){}
+}
+async function verifyPublishedTopics(expected,token){
+  const file=await githubRequest(
+    githubContentURL(V11_TOPICS_PATH)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),
+    token
+  );
+  const text=base64Utf8(file.content||'');
+  let remote;
+  try{remote=JSON.parse(text)}catch(_){throw new Error('GitHub 上的 topics/index.json 不是有效 JSON')}
+  if(!Array.isArray(remote))throw new Error('GitHub 上的 topics/index.json 格式錯誤');
+  const canon=a=>JSON.stringify((a||[]).map(x=>({
+    id:String(x.id||''),name:String(x.name||''),slug:String(x.slug||''),
+    description:String(x.description||''),order:Number(x.order||0),active:x.active!==false
+  })));
+  if(canon(remote)!==canon(expected))throw new Error('GitHub 主題檔驗證失敗：遠端內容與 CMS 不一致');
+  return {sha:file.sha||'',count:remote.length};
+}
+async function publishTopicsOnly(){
+  if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();
+  if(!githubToken){nav('export');showToast('第一次請先在線上發布設定 GitHub Token');return false}
+
+  const revision=Date.now();
+  const bundle=publicBundlePayload(revision);
+  const topicsJSON=JSON.stringify(bundle.topics,null,2)+'\n';
+  const siteJS=siteContentJSText();
+
+  const entries=[
+    {path:V11_TOPICS_PATH,mode:'100644',type:'blob',content:topicsJSON},
+    {path:PUBLIC_BUNDLE_PATH,mode:'100644',type:'blob',content:publicBundleJSONText(bundle)},
+    {path:PUBLIC_GITHUB.sitePath,mode:'100644',type:'blob',content:siteJS}
+  ];
+
+  await v10BatchCommit(entries,githubToken,'Update SIGN WELL topics '+new Date().toISOString().slice(0,19).replace('T',' '));
+  await verifyPublishedTopics(bundle.topics,githubToken);
+  await verifyPublicBundle(bundle,githubToken);
+
+  localStorage.setItem(SYNC_KEY,'1');
+  signalPublicDataRefresh();
+  showToast(`主題與文字已同步並驗證：${bundle.topics.filter(x=>x.active!==false).length} 個公開主題`);
+  return true;
+}
+
+syncFromGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){status.textContent='請先貼入或解鎖 GitHub Token。';return}githubToken=token;status.textContent='正在讀取 GitHub 正式文章與主題…';try{const remote=await v10LoadRemoteArticles(token),remoteSite=await fetchRemoteSiteText(token);let remoteTopics=[],bundle=null;try{bundle=await fetchRemotePublicBundle(token)}catch(_){}
+if(bundle&&Array.isArray(bundle.topics)){remoteTopics=clone(bundle.topics);remoteSite.siteText={...DEFAULT_SITE_TEXT,...(bundle.siteText||{})}}
+else try{remoteTopics=await v11FetchTopicsRaw()}catch(_){const names=[...new Set(remote.articles.map(a=>a.category).filter(Boolean))];remoteTopics=names.map((name,i)=>({id:'topic-remote-'+i,name,slug:slugify(name),description:'瀏覽 '+name+' 相關文章與延伸整理。',order:i,active:true}))}const localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章與 ${remoteTopics.length} 個主題；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,topics:clone(remoteTopics),siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步 ${remote.articles.length} 篇文章、${remoteTopics.length} 個主題與網站文字；保留草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}};
+publishGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){if(status)status.textContent='請先貼入或解鎖 GitHub Token。';return false}githubToken=token;if(status)status.textContent='正在準備 v10 發布資料…';let remoteIndex=[];try{remoteIndex=await v10FetchIndexRaw()}catch(_){}const alreadySynced=localStorage.getItem(SYNC_KEY)==='1';if(!alreadySynced&&remoteIndex.length){const localIds=new Set(data.articles.map(a=>a.id)),missing=remoteIndex.filter(a=>!localIds.has(a.id));if(missing.length)throw new Error(`安全阻擋：公開站有 ${missing.length} 篇文章不在這台裝置。請先按「從 GitHub 同步」。`)}
+ const published=data.articles.filter(a=>a.status==='Published'),imageEntries=[],imageCache=new Map(),prepared=[];for(let i=0;i<published.length;i++){if(status)status.textContent=`正在處理文章與圖片 ${i+1}/${published.length}…`;prepared.push(await v10PrepareArticle(published[i],token,imageEntries,imageCache))}
+ const metas=prepared.map(v10IndexMeta),entries=[...imageEntries],bundle=publicBundlePayload(Date.now());prepared.forEach(a=>entries.push({path:`articles/${v10SafeSlug(a)}.json`,mode:'100644',type:'blob',content:JSON.stringify(a,null,2)+'\n'}));entries.push({path:V10_INDEX_PATH,mode:'100644',type:'blob',content:JSON.stringify(metas,null,2)+'\n'});entries.push({path:V11_TOPICS_PATH,mode:'100644',type:'blob',content:JSON.stringify(bundle.topics,null,2)+'\n'});entries.push({path:PUBLIC_BUNDLE_PATH,mode:'100644',type:'blob',content:publicBundleJSONText(bundle)});entries.push({path:PUBLIC_GITHUB.sitePath,mode:'100644',type:'blob',content:siteContentJSText()});entries.push({path:PUBLIC_GITHUB.path,mode:'100644',type:'blob',content:'window.BLOG_ARTICLES = '+JSON.stringify(prepared,null,2)+';\n'});
+ const liveSlugs=new Set(prepared.map(v10SafeSlug));for(const old of remoteIndex){const s=old.slug;if(s&&!liveSlugs.has(s))entries.push({path:old.file||`articles/${s}.json`,mode:'100644',type:'blob',sha:null})}
+ if(status)status.textContent='正在建立單一 GitHub 發布版本…';await v10BatchCommit(entries,token,'Publish SIGN WELL v10 '+new Date().toISOString().slice(0,19).replace('T',' '));
+ if(status)status.textContent='正在驗證主題資料…';
+ await verifyPublishedTopics(bundle.topics,token);
+ await verifyPublicBundle(bundle,token);
+ signalPublicDataRefresh();
+ // Replace successful data-URL assets in local CMS state with their permanent public paths.
+ const byId=new Map(prepared.map(a=>[a.id,a]));data.articles=data.articles.map(a=>byId.has(a.id)?byId.get(a.id):a);persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent=`✓ v12.2 發布完成：${prepared.length} 篇文章、${(data.topics||[]).length} 個主題、${imageEntries.length} 個新圖片資產；主題檔已驗證。`;showToast('SIGN WELL v12.2 發布完成');return true};
+
+function initCmsPremium(){
+  if(window.__cmsPremiumBound)return;window.__cmsPremiumBound=true;
+  const fine=matchMedia('(pointer:fine)').matches&&!document.body.classList.contains('lite');if(fine){document.addEventListener('pointermove',e=>{const el=e.target.closest('.lock-card,.stat,.panel');if(!el)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.setProperty('--px',(x*100)+'%');el.style.setProperty('--py',(y*100)+'%');el.style.setProperty('--ry',((x-.5)*5)+'deg');el.style.setProperty('--rx',((.5-y)*4)+'deg')},{passive:true});document.addEventListener('pointerout',e=>{const el=e.target.closest?.('.lock-card,.stat,.panel');if(!el||e.relatedTarget&&el.contains(e.relatedTarget))return;el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')},{passive:true})}
+  document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b)return;b.classList.remove('jelly');void b.offsetWidth;b.classList.add('jelly');setTimeout(()=>b.classList.remove('jelly'),620)},{passive:true});
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target)}}),{threshold:.07});const scan=()=>document.querySelectorAll('.stat,.panel,.editor-main,.editor-side,.publish-card').forEach(el=>{if(el.dataset.fxBound)return;el.dataset.fxBound='1';el.classList.add('reveal-fx');io.observe(el)});new MutationObserver(scan).observe($('#view'),{childList:true,subtree:true});scan();
+}
+
+load();syncPublicSnapshot();optimize();initCmsPremium();setAuthStage(1);playOpeningWelcome();
+try{
+  const bc=new BroadcastChannel(ANALYTICS_CHANNEL);
+  bc.onmessage=()=>{if(viewName==='dashboard'&&!$('#cms').classList.contains('hidden'))renderDashboard()};
+}catch(_){}
+addEventListener('storage',e=>{if(e.key===ANALYTICS_KEY&&viewName==='dashboard'&&!$('#cms').classList.contains('hidden'))renderDashboard()});
+})();
+</script>
+</body>
+</html>
