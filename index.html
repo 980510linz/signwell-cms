@@ -942,6 +942,782 @@ body.lite #lockScreen .lock-card{
   .newsletter-actions button{width:100%}
 }
 
+
+/* ============================================================
+   SIGN WELL CMS v14.4 · Article Studio
+   ============================================================ */
+
+/* Article creation is now part of the article workspace. */
+.article-hub-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  align-items:end;
+  margin-bottom:14px;
+}
+.article-hub-head h1{
+  margin:0;
+  font:500 40px/1.02 Georgia,"Noto Serif TC",serif;
+  letter-spacing:-.045em;
+}
+.article-hub-head p{
+  margin:7px 0 0;
+  color:#7d8c98;
+  font-size:11px;
+  line-height:1.65;
+}
+.article-hub-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.article-create-card{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr) auto;
+  gap:14px;
+  align-items:center;
+  width:100%;
+  margin:0 0 12px;
+  padding:15px 16px;
+  border:1px solid rgba(255,255,255,.86);
+  border-radius:22px;
+  background:
+    radial-gradient(220px 100px at 5% 0%,rgba(134,202,255,.19),transparent 74%),
+    linear-gradient(145deg,rgba(255,255,255,.56),rgba(238,247,253,.32));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 16px 42px rgba(53,86,112,.07);
+  cursor:pointer;
+  text-align:left;
+  color:#3a5265;
+  transition:transform .28s var(--spring),border-color .22s ease,box-shadow .22s ease;
+}
+.article-create-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.98);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 22px 52px rgba(53,86,112,.10);
+}
+.article-create-icon{
+  width:52px;height:52px;border-radius:18px;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(221,241,253,.58));
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 10px 24px rgba(70,125,164,.10),inset 0 1px 0 #fff;
+  font-size:25px;font-weight:300;color:#4d82a7;
+}
+.article-create-copy strong{
+  display:block;
+  font:500 18px/1.2 Georgia,"Noto Serif TC",serif;
+  color:#334b5f;
+}
+.article-create-copy span{
+  display:block;margin-top:4px;
+  color:#86939e;font-size:10px;line-height:1.55;
+}
+.article-create-key{
+  min-width:58px;
+  height:28px;
+  padding:0 9px;
+  border-radius:9px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.52);
+  border:1px solid rgba(255,255,255,.80);
+  color:#8a98a3;
+  font-size:9px;
+  font-weight:700;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92);
+}
+.article-hub-tools{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.article-hub-tools .searchbar{min-width:270px}
+.article-filter{
+  height:42px;
+  border:1px solid rgba(86,106,124,.13);
+  border-radius:14px;
+  padding:0 11px;
+  background:rgba(255,255,255,.47);
+  color:#647686;
+  outline:0;
+  font-size:10.5px;
+}
+.article-panel-meta{
+  display:flex;align-items:center;gap:8px;
+  color:#84929e;font-size:9.5px;font-weight:600;
+}
+.article-panel-meta b{color:#526a7c;font-size:10px}
+@media(max-width:760px){
+  .article-hub-head{grid-template-columns:1fr;align-items:stretch}
+  .article-hub-actions,.article-hub-tools{width:100%}
+  .article-hub-tools{display:grid;grid-template-columns:1fr 112px}
+  .article-hub-tools .searchbar{min-width:0;width:100%}
+  .article-create-card{grid-template-columns:48px minmax(0,1fr)}
+  .article-create-icon{width:46px;height:46px;border-radius:16px}
+  .article-create-key{display:none}
+}
+
+/* ---------- Pages-inspired desktop formatting toolbar ---------- */
+@media(min-width:701px){
+  .editor-main{overflow:visible}
+  .editor-tool-dock{
+    position:sticky;
+    top:-22px;
+    left:auto;
+    bottom:auto;
+    transform:none;
+    z-index:18;
+    width:calc(100% + 44px);
+    max-width:none;
+    margin:18px -22px 4px;
+    padding:8px 22px;
+    pointer-events:auto;
+    background:linear-gradient(
+      180deg,
+      rgba(242,248,251,.94),
+      rgba(242,248,251,.74) 70%,
+      rgba(242,248,251,0)
+    );
+  }
+  .editor-tool-dock .editor-toolbar{
+    width:100%;
+    max-width:none;
+    min-height:54px;
+    border-radius:18px;
+    padding:6px;
+    gap:4px;
+    overflow:visible;
+    background:
+      radial-gradient(360px 80px at 14% -20%,rgba(255,255,255,.54),transparent 72%),
+      linear-gradient(155deg,rgba(255,255,255,.54),rgba(224,241,252,.25));
+    -webkit-backdrop-filter:blur(20px) saturate(175%);
+    backdrop-filter:blur(20px) saturate(175%);
+    box-shadow:
+      0 16px 42px rgba(47,78,105,.10),
+      inset 0 1px 0 rgba(255,255,255,.90),
+      inset 0 -1px 0 rgba(76,112,139,.06);
+  }
+  .editor-tool-dock .toolbar button{
+    height:40px;
+    min-width:40px;
+    padding:0 10px;
+    border-radius:11px;
+    font-size:11px;
+    border-color:rgba(255,255,255,.34);
+    background:rgba(255,255,255,.20);
+    box-shadow:none;
+  }
+  .editor-tool-dock .toolbar button:hover{
+    transform:none;
+    background:rgba(255,255,255,.60);
+    box-shadow:0 6px 16px rgba(69,104,131,.07);
+  }
+  .editor-tool-dock .toolbar button.active{
+    background:rgba(209,235,252,.78);
+    color:#285f84;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
+  }
+  .editor-tool-dock .mobile-style-btn{display:none!important}
+  .editor-tool-dock .desktop-format{display:flex!important}
+  .doc-editor{padding-bottom:80px!important}
+}
+@media(max-width:700px){
+  .editor-tool-dock .desktop-format{display:none!important}
+  .editor-tool-dock .mobile-style-btn{display:block!important}
+}
+
+.editor-tool-dock .desktop-format{display:none}
+.style-trigger{
+  align-items:center!important;
+  gap:8px;
+  min-width:132px!important;
+  justify-content:flex-start;
+  padding:0 12px!important;
+}
+.style-trigger .style-aa{
+  display:grid;place-items:center;
+  width:24px;height:24px;border-radius:8px;
+  background:rgba(255,255,255,.64);
+  color:#416a87;
+  font:800 11px/1 Georgia,serif;
+  box-shadow:inset 0 1px 0 #fff;
+}
+.style-trigger .style-current{
+  flex:1;text-align:left;
+  font-size:10.5px;font-weight:760;
+  white-space:nowrap;
+}
+.style-trigger .style-chevron{
+  font-size:11px;color:#8b99a4;transform:translateY(-1px)
+}
+.toolbar-segment{
+  position:relative;z-index:2;
+  display:flex;align-items:center;
+  padding:2px;
+  border-radius:12px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.30);
+}
+.toolbar-segment button{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  min-width:36px!important;
+  padding:0 8px!important;
+}
+.toolbar-segment button+button{border-left:1px solid rgba(82,110,132,.08)!important}
+.toolbar-size{
+  min-width:40px;
+  text-align:center;
+  color:#5f7484;
+  font-size:10px;
+  font-weight:780;
+  font-variant-numeric:tabular-nums;
+}
+.toolbar-icon-text{font-size:15px!important;font-weight:650!important}
+.toolbar-color-mark{
+  position:relative;
+  font:700 15px/1 Georgia,serif;
+}
+.toolbar-color-mark::after{
+  content:"";
+  position:absolute;left:-2px;right:-2px;bottom:-5px;
+  height:3px;border-radius:99px;background:var(--swatch,#557e9c);
+}
+.toolbar-highlight-mark{
+  display:inline-block;
+  padding:2px 4px;border-radius:5px;
+  background:#fff1a8;
+  color:#5f6670;
+  font-weight:750;
+}
+
+/* Format popover */
+.format-popover{
+  position:absolute;
+  left:8px;
+  bottom:calc(100% + 10px);
+  width:326px;
+  max-height:min(66vh,560px);
+  overflow:auto;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:22px;
+  background:
+    radial-gradient(230px 130px at 10% -10%,rgba(255,255,255,.82),transparent 76%),
+    linear-gradient(150deg,rgba(250,253,255,.91),rgba(232,244,252,.84));
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  backdrop-filter:blur(26px) saturate(180%);
+  box-shadow:
+    0 28px 72px rgba(45,74,97,.18),
+    inset 0 1px 0 rgba(255,255,255,.98);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px) scale(.98);
+  transform-origin:0 100%;
+  transition:opacity .17s ease,transform .24s var(--spring),visibility 0s linear .24s;
+  z-index:40;
+  pointer-events:none;
+}
+.format-popover.show{
+  opacity:1;visibility:visible;transform:none;
+  transition-delay:0s;
+  pointer-events:auto;
+}
+.format-popover-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:3px 4px 9px;
+}
+.format-popover-head strong{
+  font-size:10.5px;color:#5d7181;
+}
+.format-popover-head span{
+  color:#95a1aa;font-size:8.5px;
+}
+.format-section{
+  padding:9px 3px;
+  border-top:1px solid rgba(85,112,133,.09);
+}
+.format-section:first-of-type{border-top:0}
+.format-label{
+  margin:0 0 7px 3px;
+  color:#8b98a3;
+  font-size:8.5px;
+  font-weight:800;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.type-style-list{display:grid;gap:5px}
+.type-style{
+  width:100%;
+  height:auto!important;
+  min-height:45px!important;
+  display:grid!important;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:12px;
+  padding:8px 11px!important;
+  border-radius:13px!important;
+  text-align:left;
+  background:rgba(255,255,255,.30)!important;
+}
+.type-style:hover{background:rgba(255,255,255,.70)!important}
+.type-style .sample{display:block;color:#385267}
+.type-style .hint{font-size:8.5px;color:#9aa5ad;font-weight:650}
+.type-style[data-style-block="p"] .sample{font:500 13px/1.2 -apple-system,BlinkMacSystemFont,sans-serif}
+.type-style[data-style-block="h2"] .sample{font:500 24px/1.1 Georgia,serif;letter-spacing:-.03em}
+.type-style[data-style-block="h3"] .sample{font:650 17px/1.1 -apple-system,BlinkMacSystemFont,sans-serif}
+.type-style[data-style-block="h4"] .sample{font:760 13px/1.1 -apple-system,BlinkMacSystemFont,sans-serif}
+.type-style[data-style-block="blockquote"] .sample{font:500 13px/1.3 Georgia,serif;font-style:italic}
+.type-style.active{
+  background:rgba(208,235,252,.68)!important;
+  box-shadow:inset 0 0 0 1px rgba(103,166,210,.13)!important;
+}
+.swatch-row{
+  display:flex;flex-wrap:wrap;gap:8px;padding:2px 3px;
+}
+.swatch{
+  width:31px!important;height:31px!important;min-width:31px!important;
+  padding:0!important;border-radius:999px!important;
+  border:2px solid rgba(255,255,255,.92)!important;
+  background:var(--c,#26313f)!important;
+  box-shadow:0 0 0 1px rgba(69,91,109,.10),0 4px 11px rgba(50,72,96,.08)!important;
+}
+.swatch[data-text-color="auto"]{
+  background:
+    linear-gradient(135deg,#26313f 0 45%,#fff 46% 54%,#a65c65 55% 100%)!important;
+}
+.swatch[data-highlight-color="transparent"]{
+  background:
+    linear-gradient(135deg,#fff 0 45%,#d9e2e8 46% 54%,#fff 55% 100%)!important;
+}
+.swatch.active{
+  outline:2px solid rgba(84,151,198,.55);
+  outline-offset:2px;
+}
+.format-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;padding:8px 3px 2px;
+  border-top:1px solid rgba(85,112,133,.09);
+}
+.format-footer small{color:#96a1aa;font-size:8.5px}
+.format-footer button{
+  height:31px!important;padding:0 9px!important;border-radius:10px!important;font-size:9px!important
+}
+
+.editor-tool-dock .tool-sep{margin:0 3px}
+.editor-toolbar .toolbar-grow{flex:1 1 auto;min-width:8px}
+
+/* tighter on medium desktop */
+@media(min-width:701px) and (max-width:1180px){
+  .style-trigger{min-width:112px!important}
+  .style-trigger .style-current{max-width:58px;overflow:hidden;text-overflow:ellipsis}
+  .editor-tool-dock .toolbar button{padding:0 8px}
+  .toolbar-segment button{padding:0 6px!important}
+}
+
+/* selection polish */
+.doc-editor ::selection{background:rgba(134,202,255,.30)}
+.doc-editor:focus{caret-color:#3b83b4}
+
+
+/* v14.5 · Fixed Tianfeng Blue / iOS Glass email template preview */
+.newsletter-template-preview{
+  position:relative;
+  overflow:hidden;
+  margin:14px 0 18px;
+  padding:18px;
+  border-radius:24px;
+  background:
+    radial-gradient(180px 90px at 10% 0%,rgba(255,255,255,.78),transparent 70%),
+    linear-gradient(145deg,#bfe7ff 0%,#77c6f4 45%,#4f9fd6 100%);
+  border:1px solid rgba(255,255,255,.76);
+  box-shadow:0 18px 42px rgba(51,113,158,.12),inset 0 1px 0 rgba(255,255,255,.92);
+}
+.newsletter-template-preview::after{
+  content:"";
+  position:absolute;
+  width:128px;height:128px;border-radius:50%;
+  right:-34px;top:-48px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.38);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.54);
+}
+.newsletter-template-glass{
+  position:relative;z-index:1;
+  padding:16px 17px;
+  border-radius:19px;
+  background:rgba(249,253,255,.74);
+  border:1px solid rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(18px) saturate(170%);
+  backdrop-filter:blur(18px) saturate(170%);
+  box-shadow:0 14px 34px rgba(40,92,130,.12),inset 0 1px 0 rgba(255,255,255,.98);
+}
+.newsletter-template-glass small{
+  display:block;
+  color:#4e84a9;
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.14em;
+}
+.newsletter-template-glass strong{
+  display:block;
+  margin-top:7px;
+  color:#2f5168;
+  font:500 19px/1.15 Georgia,"Noto Serif TC",serif;
+}
+.newsletter-template-glass span{
+  display:block;
+  margin-top:6px;
+  color:#71899a;
+  font-size:9px;
+  line-height:1.55;
+}
+
+
+/* ============================================================
+   CMS v14.6 · no square logo + verified live analytics
+   ============================================================ */
+.brand{gap:0!important}
+.brand>div:last-child{padding-left:0}
+.lock h1{margin-top:4px!important}
+.preview-default-cover::before{
+  content:"SIGN WELL"!important;
+  width:auto!important;
+  height:auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  color:#477da4!important;
+  font:700 22px/1 Georgia,"Times New Roman",serif!important;
+  letter-spacing:.12em!important;
+}
+.analytics-live-state{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:7px;color:#6d8697;font-size:9px;font-weight:720;
+}
+.analytics-live-state i{
+  width:7px;height:7px;border-radius:50%;
+  background:#62b991;
+  box-shadow:0 0 0 4px rgba(98,185,145,.10);
+}
+.analytics-live-state.offline i{background:#b88768;box-shadow:0 0 0 4px rgba(184,135,104,.10)}
+.article-live-stats{
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid rgba(82,108,130,.10);
+}
+.article-live-stats-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:10px;
+}
+.article-live-stats-head strong{font-size:10px;color:#5c7182}
+.article-live-stats-head span{font-size:8.5px;color:#8c99a4}
+.article-live-bars{display:grid;gap:8px}
+.article-live-row{
+  display:grid;grid-template-columns:minmax(0,180px) minmax(80px,1fr) auto;
+  align-items:center;gap:10px;
+}
+.article-live-row .name{
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:#5c7080;font-size:9.5px;
+}
+.article-live-track{
+  height:7px;border-radius:999px;overflow:hidden;
+  background:rgba(91,128,156,.08);
+}
+.article-live-fill{
+  height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,#8ac7ef,#69aee0);
+  min-width:2px;
+}
+.article-live-row b{
+  min-width:38px;text-align:right;
+  color:#4d6c83;font-size:9px;font-variant-numeric:tabular-nums;
+}
+@media(max-width:560px){
+  .article-live-row{grid-template-columns:minmax(0,120px) minmax(70px,1fr) auto}
+}
+
+
+/* ============================================================
+   CMS v14.7 · About People editor
+   ============================================================ */
+.people-admin-wrap{
+  margin-top:18px;
+  padding-top:20px;
+  border-top:1px solid rgba(80,109,131,.10);
+}
+.people-admin-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
+  margin-bottom:12px;
+}
+.people-admin-head h4{
+  margin:0;
+  color:#405b70;
+  font:500 20px/1.15 Georgia,"Noto Serif TC",serif;
+}
+.people-admin-head p{
+  margin:5px 0 0;
+  color:#84939e;
+  font-size:9px;
+  line-height:1.55;
+}
+.people-admin-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(290px,.86fr);
+  gap:12px;
+}
+.people-list{
+  display:grid;
+  gap:8px;
+  align-content:start;
+}
+.person-admin-row{
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.66);
+  background:rgba(255,255,255,.30);
+}
+.person-admin-avatar{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(201,231,249,.48));
+  border:1px solid rgba(255,255,255,.88);
+  color:#4b7c9e;
+  font:700 11px/1 Georgia,serif;
+}
+.person-admin-avatar img{width:100%;height:100%;object-fit:cover}
+.person-admin-copy strong{
+  display:block;color:#486074;font-size:10.5px;
+}
+.person-admin-copy span{
+  display:block;margin-top:3px;color:#8996a0;font-size:8.5px;
+}
+.person-admin-actions{
+  display:flex;gap:4px;align-items:center;
+}
+.person-admin-actions button{
+  width:30px;height:30px;padding:0;border-radius:9px;
+  border:1px solid rgba(80,108,128,.08);
+  background:rgba(255,255,255,.42);
+  color:#718391;font-size:9px;cursor:pointer;
+}
+.person-form{
+  position:sticky;
+  top:8px;
+  align-self:start;
+  padding:14px;
+  border-radius:19px;
+  background:rgba(255,255,255,.30);
+  border:1px solid rgba(255,255,255,.70);
+}
+.person-form .site-field{margin-bottom:9px}
+.person-form textarea{min-height:82px}
+.person-form-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+.person-active{
+  display:flex;gap:7px;align-items:center;
+  color:#718391;font-size:9px;margin:9px 0 11px;
+}
+.person-form-actions{
+  display:flex;gap:6px;flex-wrap:wrap;
+}
+.people-empty{
+  padding:18px;border:1px dashed rgba(91,128,154,.18);
+  border-radius:15px;color:#8a98a3;text-align:center;font-size:9px;
+}
+@media(max-width:980px){
+  .people-admin-grid{grid-template-columns:1fr}
+  .person-form{position:relative;top:auto}
+}
+@media(max-width:560px){
+  .person-form-row{grid-template-columns:1fr}
+  .person-admin-row{grid-template-columns:40px minmax(0,1fr)}
+  .person-admin-actions{grid-column:2}
+}
+
+
+/* ===== CMS v14.8 · desktop live site preview ===== */
+@media(min-width:981px){
+  .site-text-wrap{grid-template-columns:minmax(0,1fr) minmax(360px,.82fr)!important;gap:16px!important}
+  .site-preview-box{
+    top:8px!important;max-height:calc(100vh - 34px);overflow:auto!important;padding:12px!important;border-radius:28px!important;
+    background:radial-gradient(260px 160px at 10% 0%,rgba(255,255,255,.72),transparent 70%),linear-gradient(145deg,rgba(255,255,255,.44),rgba(226,243,254,.23))!important;
+    -webkit-backdrop-filter:blur(18px) saturate(155%);backdrop-filter:blur(18px) saturate(155%)
+  }
+}
+.site-preview-box:before{display:none!important}
+.live-preview-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 5px 10px}
+.live-preview-toolbar strong{display:block;color:#476074;font-size:10px}
+.live-preview-toolbar span{display:block;margin-top:3px;color:#8b98a2;font-size:8px}
+.live-preview-tabs{display:flex;gap:4px;padding:3px;border-radius:12px;background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.65)}
+.live-preview-tabs button{height:27px;padding:0 9px;border:0;border-radius:9px;background:transparent;color:#7c8c98;font-size:8.5px;font-weight:760;cursor:pointer}
+.live-preview-tabs button.active{background:rgba(255,255,255,.78);color:#486b84;box-shadow:0 4px 10px rgba(52,92,124,.07),inset 0 1px 0 white}
+.live-browser{position:relative;overflow:hidden;min-height:560px;border-radius:22px;background:radial-gradient(330px 260px at 4% 3%,rgba(255,255,255,.94),transparent 64%),radial-gradient(320px 240px at 92% 14%,rgba(158,216,255,.26),transparent 67%),linear-gradient(155deg,#f7fbfe,#edf6fc 50%,#e7f1f7);border:1px solid rgba(255,255,255,.92);box-shadow:0 18px 44px rgba(47,86,115,.10),inset 0 1px 0 rgba(255,255,255,.98)}
+.live-browser-bar{height:36px;display:flex;align-items:center;gap:6px;padding:0 11px;border-bottom:1px solid rgba(86,115,136,.08);background:rgba(255,255,255,.35)}
+.live-browser-bar i{width:7px;height:7px;border-radius:50%;background:rgba(89,125,152,.15)}
+.live-browser-url{flex:1;margin-left:5px;height:20px;display:grid;place-items:center;border-radius:7px;background:rgba(255,255,255,.48);color:#9aa5ad;font-size:7px}
+.live-preview-stage{position:relative;min-height:524px;padding:24px 19px 28px}
+.live-preview-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:31px}
+.live-preview-brand{color:#35566d;font:700 9px/1 Georgia,serif;letter-spacing:.10em}
+.live-preview-navlinks{display:flex;gap:8px;color:#82929e;font-size:7px;font-weight:700}
+.live-preview-eyebrow{color:#6f93aa;font-size:7px;font-weight:850;letter-spacing:.15em}
+.live-preview-title{margin:9px 0 11px;color:#2e4b5e;font:500 36px/.96 Georgia,"Noto Serif TC",serif;letter-spacing:-.055em}
+.live-preview-copy{color:#6e8392;font-size:8.5px;line-height:1.65}
+.live-preview-hero-card{margin-top:18px;padding:13px;border-radius:17px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.73);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.live-preview-hero-card strong{display:block;color:#3b596d;font:500 12px/1.3 Georgia,"Noto Serif TC",serif}
+.live-preview-hero-card span{display:block;margin-top:5px;color:#7c8f9c;font-size:7.5px;line-height:1.55}
+.live-preview-about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.live-preview-about-values div{min-height:62px;padding:9px;border-radius:13px;background:rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.66)}
+.live-preview-about-values span{display:block;color:#8b99a3;font-size:6.5px}
+.live-preview-about-values b{display:block;margin-top:7px;color:#466377;font:500 9px/1.2 Georgia,"Noto Serif TC",serif}
+.live-preview-people{display:grid;gap:7px;margin-top:14px}
+.live-preview-person{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:center;padding:8px;border-radius:13px;background:rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.66)}
+.live-preview-avatar{width:30px;height:30px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#d9effd);color:#4f7d9c;font:700 7px/1 Georgia,serif}
+.live-preview-avatar img{width:100%;height:100%;object-fit:cover}
+.live-preview-person strong{display:block;color:#486378;font-size:7.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live-preview-person span{display:block;margin-top:2px;color:#8a98a2;font-size:6.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live-preview-unsaved{display:flex;align-items:center;gap:5px;margin:9px 5px 0;color:#8393a0;font-size:7.5px}
+.live-preview-unsaved i{width:6px;height:6px;border-radius:50%;background:#75b2da;box-shadow:0 0 0 3px rgba(117,178,218,.10)}
+@media(max-width:980px){.site-preview-box{display:none!important}}
+
+
+/* ============================================================
+   CMS v14.9 · article publisher
+   ============================================================ */
+.publisher-picker{
+  display:grid;
+  gap:8px;
+}
+.publisher-picker select{
+  width:100%;
+}
+.publisher-preview{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:52px;
+  padding:8px 9px;
+  border-radius:15px;
+  background:rgba(255,255,255,.34);
+  border:1px solid rgba(255,255,255,.66);
+}
+.publisher-preview-avatar{
+  width:36px;height:36px;border-radius:50%;
+  overflow:hidden;display:grid;place-items:center;flex:0 0 auto;
+  background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(202,232,250,.54));
+  border:1px solid rgba(255,255,255,.88);
+  color:#4d7e9e;font:700 9px/1 Georgia,serif;
+}
+.publisher-preview-avatar img{width:100%;height:100%;object-fit:cover}
+.publisher-preview-copy{min-width:0}
+.publisher-preview-copy strong{
+  display:block;color:#4d6477;font-size:10px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.publisher-preview-copy span{
+  display:block;margin-top:3px;color:#8a98a3;font-size:8.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.publisher-help{
+  color:#84919d;font-size:9px;line-height:1.55;
+}
+
+
+/* ============================================================
+   CMS v14.10 · interaction polish
+   ============================================================ */
+.sidebar button,
+.top-action,
+.newsletter-actions button,
+.person-admin-actions button,
+.article-row button{
+  touch-action:manipulation;
+}
+.sidebar button:focus-visible,
+.top-action:focus-visible,
+.newsletter-actions button:focus-visible,
+.person-admin-actions button:focus-visible,
+.article-row button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+  outline:2px solid rgba(87,151,198,.34);
+  outline-offset:2px;
+}
+@media(prefers-reduced-motion:reduce){
+  .view,.modal,.toast{scroll-behavior:auto!important}
+}
+
+
+/* ============================================================
+   CMS v14.11 · newsletter success confetti
+   ============================================================ */
+#newsletterConfetti{
+  position:fixed;
+  inset:0;
+  z-index:12000;
+  pointer-events:none;
+  overflow:hidden;
+}
+.sw-confetti-piece{
+  position:absolute;
+  left:var(--x);
+  top:var(--y);
+  width:var(--w);
+  height:var(--h);
+  border-radius:var(--r);
+  background:var(--c);
+  opacity:0;
+  transform:
+    translate3d(0,0,0)
+    rotate(var(--rot));
+  animation:swConfettiFly var(--dur) cubic-bezier(.13,.78,.28,1) var(--delay) both;
+  box-shadow:0 2px 4px rgba(40,78,108,.08);
+}
+@keyframes swConfettiFly{
+  0%{
+    opacity:0;
+    transform:translate3d(0,0,0) rotate(var(--rot)) scale(.65);
+  }
+  8%{opacity:1}
+  54%{opacity:1}
+  100%{
+    opacity:0;
+    transform:
+      translate3d(var(--dx),var(--dy),0)
+      rotate(calc(var(--rot) + var(--spin)))
+      scale(.92);
+  }
+}
+.newsletter-send-success{
+  animation:newsletterSendSuccess .72s cubic-bezier(.18,.86,.22,1) both;
+}
+@keyframes newsletterSendSuccess{
+  0%{transform:scale(1)}
+  38%{transform:scale(1.035);box-shadow:0 0 0 6px rgba(95,182,142,.08)}
+  100%{transform:scale(1);box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .sw-confetti-piece,
+  .newsletter-send-success{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -960,17 +1736,17 @@ body.lite #lockScreen .lock-card{
 </div>
 <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
-<section class="lock" id="lockScreen"><div class="lock-card"><div class="lock-mark">欣</div><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
+<section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div class="mark">欣</div><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.1.1</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章管理</button><button data-new="1">新增文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="newsletter">電子報</button><button data-view="export">線上發布</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
-<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn">設為已發布</button><button class="top-action online hidden" id="onlineBtn">送出到網站</button></header><main class="view" id="view"></main></section>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.11</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
-<div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從本機 CMS 移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">刪除</button></div></div></div>
+<div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從 CMS 與跨裝置雲端狀態移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">刪除</button></div></div></div>
 <div class="toast" id="toast"></div>
 <script>
 (()=>{'use strict';
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
 const clone=x=>JSON.parse(JSON.stringify(x));
 
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -1064,9 +1840,44 @@ const V10_DB='signwell-cms-v10',V10_STORE='state',V10_STATE_KEY='cms-state';
 function openV10DB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB unavailable'));return}const req=indexedDB.open(V10_DB,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(V10_STORE))db.createObjectStore(V10_STORE)};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'))})}
 async function idbGetState(){const db=await openV10DB();return new Promise((resolve,reject)=>{const tx=db.transaction(V10_STORE,'readonly'),req=tx.objectStore(V10_STORE).get(V10_STATE_KEY);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error);tx.oncomplete=()=>db.close()})}
 async function idbPutState(value){const db=await openV10DB();return new Promise((resolve,reject)=>{const tx=db.transaction(V10_STORE,'readwrite');tx.objectStore(V10_STORE).put(value,V10_STATE_KEY);tx.oncomplete=()=>{db.close();resolve(true)};tx.onerror=()=>{db.close();reject(tx.error)}})}
-function normalizeState(v){const x=v&&typeof v==='object'?v:{},articles=Array.isArray(x.articles)?x.articles:[];let topics=Array.isArray(x.topics)?x.topics.filter(Boolean):[];if(!topics.length){const names=[...new Set(articles.map(a=>a.category).filter(Boolean))];topics=names.map((name,i)=>({id:'topic-'+Date.now()+'-'+i,name,slug:slugify(name),description:'瀏覽 '+name+' 相關文章與延伸整理。',order:i,active:true}))}return {articles,topics,siteText:{...DEFAULT_SITE_TEXT,...(x.siteText&&typeof x.siteText==='object'?x.siteText:{})}}}
-function load(){dataReady=(async()=>{let saved=null;try{saved=await idbGetState()}catch(_){}if(!saved){try{const legacy=localStorage.getItem(KEY);if(legacy)saved=JSON.parse(legacy)}catch(_){} }data=normalizeState(saved||{articles:clone(window.BLOG_ARTICLES||[]),topics:[],siteText:clone(DEFAULT_SITE_TEXT)});try{await idbPutState(clone(data));localStorage.removeItem(KEY)}catch(_){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(__){}}return data})();return dataReady}
-function persist(silent=false){const snapshot=clone(data);try{localStorage.setItem(ACTKEY,String(Date.now()))}catch(_){}idbPutState(snapshot).then(()=>{try{localStorage.removeItem(KEY)}catch(_){};if(!silent&&$('#saveState')){$('#saveState').textContent='已儲存 ✓';$('#saveState').style.color='#6f8f86'}}).catch(()=>{try{localStorage.setItem(KEY,JSON.stringify(snapshot));if(!silent&&$('#saveState')){$('#saveState').textContent='已儲存（相容模式）';$('#saveState').style.color='#9a7b45'}}catch(_){if($('#saveState')){$('#saveState').textContent='本機儲存空間不足';$('#saveState').style.color='#a65c65'}}})}
+function normalizeState(v){
+  const x=v&&typeof v==='object'?v:{};
+  const articles=Array.isArray(x.articles)?x.articles:[];
+  let topics=Array.isArray(x.topics)?x.topics.filter(Boolean):[];
+  if(!topics.length){
+    const names=[...new Set(articles.map(a=>a.category).filter(Boolean))];
+    topics=names.map((name,i)=>({
+      id:'topic-'+Date.now()+'-'+i,
+      name,
+      slug:slugify(name),
+      description:'瀏覽 '+name+' 相關文章與延伸整理。',
+      order:i,
+      active:true
+    }));
+  }
+  const people=(Array.isArray(x.people)?x.people:[])
+    .filter(Boolean)
+    .map((p,i)=>({
+      id:String(p.id||('person-'+i+'-'+Date.now())),
+      name:String(p.name||''),
+      role:String(p.role||''),
+      bio:String(p.bio||''),
+      photo:String(p.photo||''),
+      expertise:Array.isArray(p.expertise)?p.expertise.map(String).filter(Boolean):[],
+      education:Array.isArray(p.education)?p.education.map(String).filter(Boolean):[],
+      experience:Array.isArray(p.experience)?p.experience.map(String).filter(Boolean):[],
+      order:Number.isFinite(Number(p.order))?Number(p.order):i,
+      active:p.active!==false
+    }));
+  return {
+    articles,
+    topics,
+    people,
+    siteText:{...DEFAULT_SITE_TEXT,...(x.siteText&&typeof x.siteText==='object'?x.siteText:{})}
+  };
+}
+function load(){dataReady=(async()=>{let saved=null;try{saved=await idbGetState()}catch(_){}if(!saved){try{const legacy=localStorage.getItem(KEY);if(legacy)saved=JSON.parse(legacy)}catch(_){} }data=normalizeState(saved||{articles:clone(window.BLOG_ARTICLES||[]),topics:[],people:[],siteText:clone(DEFAULT_SITE_TEXT)});try{await idbPutState(clone(data));localStorage.removeItem(KEY)}catch(_){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(__){}}return data})();return dataReady}
+function persist(silent=false){const snapshot=clone(data);try{localStorage.setItem(ACTKEY,String(Date.now()))}catch(_){}idbPutState(snapshot).then(()=>{try{localStorage.removeItem(KEY)}catch(_){};if(!silent&&$('#saveState')){$('#saveState').textContent='已儲存 ✓';$('#saveState').style.color='#6f8f86'}}).catch(()=>{try{localStorage.setItem(KEY,JSON.stringify(snapshot));if(!silent&&$('#saveState')){$('#saveState').textContent='已儲存（相容模式）';$('#saveState').style.color='#9a7b45'}}catch(_){if($('#saveState')){$('#saveState').textContent='本機儲存空間不足';$('#saveState').style.color='#a65c65'}}});if(!cmsCloudApplying)scheduleCmsCloudPush();}
 function showToast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>el.classList.remove('show'),1700)}
 function slugify(s){return String(s||'').toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-|-$/g,'').slice(0,80)||('article-'+Date.now())}
 function escapeHTML(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
@@ -1083,25 +1894,44 @@ async function verifySecond(){
     showAuthError(2,'答案不分空格；請確認島名後再試一次。');
     return;
   }
+
   authFailCount[2]=0;
   authSecret='SIGNWELL|'+pendingPin+'|'+answer;
   $('#answerInput').value='';
-  $('#lockHint').textContent='驗證完成，正在解鎖本機設定…';
+  $('#lockHint').textContent='驗證完成，正在同步雲端後台…';
+
   try{await dataReady}catch(_){}
   try{await restoreRememberedGithubToken()}catch(_){githubToken=''}
+
+  let cloudOK=false;
+  try{
+    cloudOK=await cmsCloudInitialSync();
+  }catch(err){
+    cmsCloudSetStatus('雲端暫時離線 · 使用本機快取','#9a7b45');
+  }
+
   $('#lockScreen').classList.add('hidden');
   $('#cms').classList.remove('hidden');
   localStorage.setItem(ACTKEY,String(Date.now()));
   pendingPin='';
   setAuthStage(1);
+
   renderView();
+  bindCmsCloudRealtime();
+  startCmsCloudPolling();
+  startAnalyticsLivePolling();
+
   await playLoginGreeting();
-  showToast(githubToken?'登入完成 · GitHub 已就緒':'雙重驗證完成');
+  showToast(
+    cloudOK
+      ? '登入完成 · 雲端資料已同步'
+      : (githubToken?'登入完成 · GitHub 已就緒':'雙重驗證完成')
+  );
 }
-function lock(){persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
+function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
-function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView()}
-function renderView(){const editing=Boolean(currentId);$('#previewBtn').classList.toggle('hidden',!editing);$('#saveBtn').classList.toggle('hidden',!editing);$('#publishBtn').classList.toggle('hidden',!editing);$('#onlineBtn').classList.toggle('hidden',!editing);if(editing){$('#topTitle').textContent='文章編輯器';renderEditor();return}const names={dashboard:'總覽',articles:'文章管理',topics:'主題管理',site:'網站文字',newsletter:'電子報',export:'線上發布'};$('#topTitle').textContent=names[viewName]||'總覽';if(viewName==='articles')renderArticles();else if(viewName==='topics')renderTopicsManager();else if(viewName==='site')renderSiteText();else if(viewName==='newsletter'){renderNewsletterCenter();setTimeout(()=>refreshNewsletterData(),0)}else if(viewName==='export')renderExport();else renderDashboard()}
+function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView();setTimeout(()=>cmsCloudApplyDeferred(),0)}
+function renderView(){const editing=Boolean(currentId);$('#previewBtn').classList.toggle('hidden',!editing);$('#saveBtn').classList.toggle('hidden',!editing);$('#publishBtn').classList.add('hidden');$('#onlineBtn').classList.toggle('hidden',!editing);if(editing){$('#topTitle').textContent='文章編輯器';renderEditor();return}const names={dashboard:'總覽',articles:'文章',topics:'主題管理',site:'網站文字',newsletter:'電子報',export:'發布設定'};$('#topTitle').textContent=names[viewName]||'總覽';if(viewName==='articles')renderArticles();else if(viewName==='topics')renderTopicsManager();else if(viewName==='site')renderSiteText();else if(viewName==='newsletter'){renderNewsletterCenter();setTimeout(()=>refreshNewsletterData(),0)}else if(viewName==='export')renderExport();else renderDashboard()}
 
 const ANALYTICS_KEY='signwell-analytics-v1';
 const ANALYTICS_CHANNEL='signwell-analytics';
@@ -1109,26 +1939,32 @@ const ANALYTICS_CHANNEL='signwell-analytics';
 let remoteAnalyticsCache=null;
 let analyticsRefreshBusy=false;
 const ANALYTICS_CFG=()=>window.SIGNWELL_ANALYTICS||{};
-function analyticsEndpoint(path=''){
-  const cfg=ANALYTICS_CFG();
-  const base=String(cfg.endpoint||'').replace(/\/+$/,'');
-  return base?base+path:'';
+function analyticsEndpoint(){
+  const a=ANALYTICS_CFG(),n=window.SIGNWELL_NEWSLETTER||{};
+  return String(a.endpoint||n.endpoint||'').replace(/\/+$/,'');
 }
 function remoteAnalyticsEnabled(){
-  const cfg=ANALYTICS_CFG();
-  return cfg.enabled===true && /^https:\/\//i.test(String(cfg.endpoint||''));
+  const a=ANALYTICS_CFG(),n=window.SIGNWELL_NEWSLETTER||{};
+  const endpoint=analyticsEndpoint();
+  const enabled=a.enabled===true||n.enabled===true;
+  return enabled&&/^https:\/\//i.test(endpoint);
 }
 async function refreshRemoteAnalytics(force=false){
   if(!remoteAnalyticsEnabled()||analyticsRefreshBusy)return false;
   const now=Date.now();
   if(!force&&refreshRemoteAnalytics.last&&now-refreshRemoteAnalytics.last<12000)return false;
+
   analyticsRefreshBusy=true;
   refreshRemoteAnalytics.last=now;
   try{
-    const r=await fetch(analyticsEndpoint('/stats')+'?t='+now,{cache:'no-store',mode:'cors'});
-    if(!r.ok)throw new Error('HTTP '+r.status);
-    const a=await r.json();
+    const a=await signwellGasBridge(
+      'admin.analytics.stats',
+      {},
+      {adminKey:newsletterAdminKey()}
+    );
+
     if(!a||typeof a!=='object')throw new Error('Invalid analytics payload');
+
     remoteAnalyticsCache={
       total:Number(a.total||0),
       daily:a.daily&&typeof a.daily==='object'?a.daily:{},
@@ -1136,11 +1972,14 @@ async function refreshRemoteAnalytics(force=false){
       yearly:a.yearly&&typeof a.yearly==='object'?a.yearly:{},
       articles:a.articles&&typeof a.articles==='object'?a.articles:{},
       pages:a.pages&&typeof a.pages==='object'?a.pages:{},
-      mode:a.mode||null,
+      mode:a.mode||'google-sheet',
+      retentionDays:Number(a.retentionDays||90),
       updatedAt:a.updatedAt||null
     };
-    if(viewName==='dashboard'&&!$('#cms').classList.contains('hidden'))renderDashboard();
-    if(viewName==='articles'&&!$('#cms').classList.contains('hidden'))renderArticles();
+
+    if(!$('#cms').classList.contains('hidden')&&(viewName==='dashboard'||viewName==='articles')){
+      refreshAnalyticsVisuals();
+    }
     return true;
   }catch(_){
     return false;
@@ -1182,21 +2021,30 @@ function viewGlyph(){return iconSvg('view','ui-icon')}
 function viewBadge(count){return `<span class="view-badge">${iconSvg('view')}<span>${Number(count||0).toLocaleString()} 次</span></span>`}
 let analyticsRange='7d';
 
-function analyticsTodayKey(){
-  return new Date().toISOString().slice(0,10);
+function analyticsTodayKey(date=new Date()){
+  try{
+    const parts=new Intl.DateTimeFormat('en-CA',{
+      timeZone:'Asia/Taipei',
+      year:'numeric',month:'2-digit',day:'2-digit'
+    }).formatToParts(date);
+    const m=Object.fromEntries(parts.map(x=>[x.type,x.value]));
+    return `${m.year}-${m.month}-${m.day}`;
+  }catch(_){return date.toISOString().slice(0,10)}
 }
-function analyticsMonthKey(){
-  return analyticsTodayKey().slice(0,7);
-}
-function analyticsYearKey(){
-  return analyticsTodayKey().slice(0,4);
+function analyticsMonthKey(){return analyticsTodayKey().slice(0,7)}
+function analyticsYearKey(){return analyticsTodayKey().slice(0,4)}
+function taipeiDayOffset(days){
+  const key=analyticsTodayKey();
+  const d=new Date(key+'T12:00:00+08:00');
+  d.setUTCDate(d.getUTCDate()+days);
+  return analyticsTodayKey(d);
 }
 function sumLastDays(days){
-  const an=readAnalytics(),today=new Date();
+  const an=readAnalytics();
   let total=0;
   for(let i=0;i<days;i++){
-    const d=new Date(today);d.setDate(today.getDate()-i);
-    total+=Number(an.daily?.[d.toISOString().slice(0,10)]||0);
+    const key=taipeiDayOffset(-i);
+    total+=Number(an.daily?.[key]||0);
   }
   return total;
 }
@@ -1210,37 +2058,69 @@ function rangeTotal(range=analyticsRange){
   return Number(an.total||0);
 }
 function trendDataForRange(range=analyticsRange){
-  const an=readAnalytics(),out=[],today=new Date();
+  const an=readAnalytics(),out=[];
+  const todayKey=analyticsTodayKey();
+  const today=new Date(todayKey+'T12:00:00+08:00');
+
   if(range==='7d'){
     for(let i=6;i>=0;i--){
-      const d=new Date(today);d.setDate(today.getDate()-i);
-      const key=d.toISOString().slice(0,10);
-      out.push({key,label:`${d.getMonth()+1}/${d.getDate()}`,value:Number(an.daily?.[key]||0)});
+      const key=taipeiDayOffset(-i);
+      const parts=key.split('-');
+      out.push({key,label:`${Number(parts[1])}/${Number(parts[2])}`,value:Number(an.daily?.[key]||0)});
     }
     return out;
   }
+
   if(range==='month'){
-    const y=today.getFullYear(),m=today.getMonth(),last=today.getDate();
-    for(let day=1;day<=last;day++){
-      const d=new Date(y,m,day),key=d.toISOString().slice(0,10);
-      out.push({key,label:`${m+1}/${day}`,value:Number(an.daily?.[key]||0)});
+    const [y,m,d]=todayKey.split('-').map(Number);
+    for(let day=1;day<=d;day++){
+      const key=`${y}-${String(m).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      out.push({key,label:`${m}/${day}`,value:Number(an.daily?.[key]||0)});
     }
     return out;
   }
+
   if(range==='year'){
-    const y=today.getFullYear();
-    for(let m=0;m<=today.getMonth();m++){
-      const key=`${y}-${String(m+1).padStart(2,'0')}`;
-      out.push({key,label:`${m+1}月`,value:Number(an.monthly?.[key]||0)});
+    const y=todayKey.slice(0,4);
+    const currentMonth=Number(todayKey.slice(5,7));
+    for(let m=1;m<=currentMonth;m++){
+      const key=`${y}-${String(m).padStart(2,'0')}`;
+      out.push({key,label:`${m}月`,value:Number(an.monthly?.[key]||0)});
     }
     return out;
   }
+
   return out;
 }
 function setAnalyticsRange(range){
   if(!['7d','month','year'].includes(range))return;
   analyticsRange=range;
-  if(viewName==='dashboard')renderDashboard();
+  refreshAnalyticsVisuals();
+}
+function topArticleAnalyticsHTML(){
+  const rows=data.articles
+    .filter(a=>a.status==='Published')
+    .map(a=>({a,count:articleViewCount(a)}))
+    .sort((x,y)=>y.count-x.count)
+    .slice(0,6);
+
+  if(!rows.length)return '';
+
+  const max=Math.max(1,...rows.map(x=>x.count));
+  return `<div class="article-live-stats">
+    <div class="article-live-stats-head">
+      <strong>文章分別瀏覽</strong>
+      <span>Google Sheet 累積值</span>
+    </div>
+    <div class="article-live-bars">
+      ${rows.map(({a,count})=>`
+        <div class="article-live-row">
+          <span class="name" title="${escapeHTML(a.title||'未命名文章')}">${escapeHTML(a.title||'未命名文章')}</span>
+          <span class="article-live-track"><span class="article-live-fill" style="width:${Math.max(2,(count/max)*100).toFixed(1)}%"></span></span>
+          <b>${Number(count||0).toLocaleString()}</b>
+        </div>`).join('')}
+    </div>
+  </div>`;
 }
 function trendChartHTML(){
   const arr=trendDataForRange(),w=720,h=130,pad=10,max=Math.max(1,...arr.map(x=>x.value));
@@ -1251,9 +2131,21 @@ function trendChartHTML(){
   const rangeLabel=analyticsRange==='7d'?'近 7 日':analyticsRange==='month'?'本月':'今年';
   const selectedTotal=rangeTotal();
   const allTotal=Number(readAnalytics().total||0);
-  return `<section class="analytics-panel">
+  const remote=Boolean(remoteAnalyticsCache);
+  const updated=remoteAnalyticsCache?.updatedAt
+    ?new Date(remoteAnalyticsCache.updatedAt).toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'})
+    :'—';
+
+  return `<section class="analytics-panel" id="analyticsLivePanel">
     <div class="analytics-head">
-      <div><span>${rangeLabel}</span><strong>網站觀看次數趨勢</strong></div>
+      <div>
+        <span>${rangeLabel}</span>
+        <strong>網站觀看次數趨勢</strong>
+        <div class="analytics-live-state ${remote?'':'offline'}">
+          <i></i>
+          ${remote?`Google Sheet LIVE · 每 6 秒更新 · ${updated}`:'等待 Google Sheet Analytics'}
+        </div>
+      </div>
       <div><span>${rangeLabel}觀看</span><div class="analytics-total">${selectedTotal.toLocaleString()}</div></div>
     </div>
     <div class="analytics-range-tabs" role="tablist" aria-label="統計期間">
@@ -1275,14 +2167,44 @@ function trendChartHTML(){
       </svg>
     </div>
     <div class="analytics-labels"><span>${arr[0]?.label||''}</span><span>${arr[Math.floor(arr.length/2)]?.label||''}</span><span>${arr[arr.length-1]?.label||''}</span></div>
-    <div class="analytics-note">${remoteAnalyticsCache?'SIGN WELL Analytics Lite · 聚合統計模式；最近 90 天保留每日資料，月／年總數長期保留。':'目前為本機瀏覽器統計；接上 Analytics Lite 後會自動切換為全站聚合資料。'}</div>
+    ${topArticleAnalyticsHTML()}
+    <div class="analytics-note">${remote?'正式數據來源：Google Sheet Analytics。網站實際 route 瀏覽寫入 Sheet；CMS 近即時讀回，不使用本機假資料。':'目前顯示 fallback；Google Backend 連線成功後會切換成正式 Google Sheet 數據。'}</div>
   </section>`;
+}
+
+let analyticsLiveTimer=null;
+function refreshAnalyticsVisuals(){
+  const panel=$('#analyticsLivePanel');
+  if(panel)panel.outerHTML=trendChartHTML();
+
+  data.articles.forEach(a=>{
+    const count=articleViewCount(a);
+    $$(`[data-article-view="${CSS.escape(String(a.id))}"]`).forEach(el=>{
+      el.innerHTML=viewBadge(count);
+    });
+  });
+}
+function startAnalyticsLivePolling(){
+  stopAnalyticsLivePolling();
+  analyticsLiveTimer=setInterval(()=>{
+    if(document.hidden||$('#cms').classList.contains('hidden'))return;
+    if(viewName==='dashboard'||viewName==='articles'){
+      refreshRemoteAnalytics(true);
+    }
+  },6000);
+}
+function stopAnalyticsLivePolling(){
+  if(analyticsLiveTimer){
+    clearInterval(analyticsLiveTimer);
+    analyticsLiveTimer=null;
+  }
 }
 
 
 /* ===== SIGN WELL Newsletter Center ===== */
 const NEWSLETTER_AUTO_KEY='signwell-newsletter-auto-v1';
-const NEWSLETTER_ADMIN_KEY='signwell-newsletter-admin-session-v1';
+const NEWSLETTER_ADMIN_KEY='signwell-newsletter-admin-local-v2';
+const NEWSLETTER_DEFAULT_ADMIN_KEY='sw_admin_G4H0tWRn0d663lsL2dKc88ih2FHlH51-';
 let newsletterCache={summary:null,subscribers:[],campaigns:[]};
 
 const NEWSLETTER_CFG=()=>window.SIGNWELL_NEWSLETTER||{};
@@ -1296,26 +2218,406 @@ function newsletterEnabled(){
   const enabled=n.enabled===true || (n.enabled!==false && a.enabled===true);
   return enabled && /^https:\/\//i.test(endpoint);
 }
-function newsletterAdminKey(){return sessionStorage.getItem(NEWSLETTER_ADMIN_KEY)||''}
+function newsletterAdminKey(){
+  return localStorage.getItem(NEWSLETTER_ADMIN_KEY)||NEWSLETTER_DEFAULT_ADMIN_KEY;
+}
+function newsletterKeyMode(){
+  return localStorage.getItem(NEWSLETTER_ADMIN_KEY)?'custom':'default';
+}
+function saveNewsletterAdminKey(v){
+  const key=String(v||'').trim();
+  if(key)localStorage.setItem(NEWSLETTER_ADMIN_KEY,key);
+  else localStorage.removeItem(NEWSLETTER_ADMIN_KEY);
+}
 function newsletterHeaders(){
   const h={'Content-Type':'application/json'};
   const key=newsletterAdminKey();
   if(key)h.Authorization='Bearer '+key;
   return h;
 }
-async function newsletterRequest(path,opt={}){
-  if(!newsletterEnabled())throw new Error('SIGN WELL Backend 尚未啟用');
-  const r=await fetch(newsletterBase()+path,{
-    mode:'cors',
-    cache:'no-store',
-    ...opt,
-    headers:{...newsletterHeaders(),...(opt.headers||{})}
+
+function signwellGasBridge(action,payload={},options={}){
+  return new Promise((resolve,reject)=>{
+    if(!newsletterEnabled())return reject(new Error('SIGN WELL Backend 尚未啟用'));
+    const endpoint=newsletterBase();
+    const requestId='sw_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2);
+    const frameName='swgas_'+requestId;
+    const iframe=document.createElement('iframe');
+    iframe.name=frameName;
+    iframe.title='SIGN WELL Backend';
+    iframe.tabIndex=-1;
+    iframe.setAttribute('aria-hidden','true');
+    Object.assign(iframe.style,{
+      position:'fixed',width:'1px',height:'1px',opacity:'0',
+      pointerEvents:'none',left:'-9999px',top:'-9999px'
+    });
+
+    const form=document.createElement('form');
+    form.method='POST';
+    form.action=endpoint;
+    form.target=frameName;
+    form.style.display='none';
+
+    const add=(name,value)=>{
+      const i=document.createElement('input');
+      i.type='hidden';
+      i.name=name;
+      i.value=String(value??'');
+      form.appendChild(i);
+    };
+
+    add('transport','iframe');
+    add('requestId',requestId);
+    add('action',action);
+    add('payload',JSON.stringify(payload||{}));
+    if(options.adminKey)add('adminKey',options.adminKey);
+
+    let timer=null;
+    const cleanup=()=>{
+      clearTimeout(timer);
+      window.removeEventListener('message',onMessage);
+      form.remove();
+      setTimeout(()=>iframe.remove(),60);
+    };
+    const onMessage=e=>{
+      const d=e.data;
+      if(!d||d.source!=='SIGNWELL_GAS'||d.requestId!==requestId)return;
+      cleanup();
+      if(d.ok)resolve(d.data||{});
+      else reject(new Error(d.error||'SIGN WELL Backend error'));
+    };
+    window.addEventListener('message',onMessage);
+
+    timer=setTimeout(()=>{
+      cleanup();
+      reject(new Error('SIGN WELL Backend 連線逾時'));
+    },30000);
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
   });
-  let body={};
-  try{body=await r.json()}catch(_){}
-  if(!r.ok)throw new Error(body.message||body.error||('HTTP '+r.status));
-  return body;
 }
+
+async function newsletterRequest(path,opt={}){
+  const map={
+    '/admin/newsletter/summary':'admin.summary',
+    '/admin/newsletter/subscribers':'admin.subscribers',
+    '/admin/newsletter/campaigns':'admin.campaigns',
+    '/admin/newsletter/test':'admin.test',
+    '/admin/newsletter/send':'admin.send',
+    '/admin/newsletter/send-article':'admin.sendArticle'
+  };
+
+  let base=String(path||''),query='';
+  const q=base.indexOf('?');
+  if(q>=0){
+    query=base.slice(q+1);
+    base=base.slice(0,q);
+  }
+
+  const action=map[base];
+  if(!action)throw new Error('Unsupported Newsletter action');
+
+  let payload={};
+  if(opt?.body){
+    try{payload=JSON.parse(opt.body)||{}}catch(_){}
+  }
+  if(query){
+    const qs=new URLSearchParams(query);
+    qs.forEach((v,k)=>payload[k]=v);
+  }
+
+  return signwellGasBridge(action,payload,{adminKey:newsletterAdminKey()});
+}
+function migrateLegacyNewsletterKey(){
+  try{
+    const legacy=sessionStorage.getItem('signwell-newsletter-admin-session-v1');
+    if(legacy&&!localStorage.getItem(NEWSLETTER_ADMIN_KEY)){
+      localStorage.setItem(NEWSLETTER_ADMIN_KEY,legacy);
+    }
+    sessionStorage.removeItem('signwell-newsletter-admin-session-v1');
+  }catch(_){}
+}
+migrateLegacyNewsletterKey();
+
+
+/* ===== SIGN WELL Cloud CMS Sync v14.2 =====
+   Google Apps Script is the canonical cross-device CMS state.
+   Local IndexedDB remains an offline cache only. */
+const CMS_CLOUD_CLIENT_KEY='signwell-cms-cloud-client-v1';
+const CMS_CLOUD_MIGRATED_KEY='signwell-cms-cloud-migrated-v1';
+const CMS_CLOUD_POLL_MS=8000;
+
+let cmsCloudRevision=0;
+let cmsCloudDirty=false;
+let cmsCloudApplying=false;
+let cmsCloudBusy=false;
+let cmsCloudPushTimer=null;
+let cmsCloudPollTimer=null;
+let cmsCloudDeferred=null;
+let cmsCloudChangeSeq=0;
+let cmsCloudLastSyncAt=0;
+
+function cmsCloudClientId(){
+  try{
+    let id=localStorage.getItem(CMS_CLOUD_CLIENT_KEY);
+    if(!id){
+      const raw=(globalThis.crypto&&typeof crypto.randomUUID==='function')
+        ? crypto.randomUUID()
+        : (Date.now()+'_'+Math.random().toString(36).slice(2));
+      id='client_'+raw;
+      localStorage.setItem(CMS_CLOUD_CLIENT_KEY,id);
+    }
+    return id;
+  }catch(_){
+    return 'client_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+  }
+}
+function cmsCloudEnabled(){
+  return newsletterEnabled() && Boolean(newsletterAdminKey());
+}
+function cmsCloudSetStatus(text,color='#6f8f86'){
+  const el=$('#saveState');
+  if(!el)return;
+  el.textContent=text;
+  el.style.color=color;
+}
+function cmsCloudSerializable(){
+  return normalizeState(clone(data));
+}
+function cmsCloudHasContent(v){
+  return Boolean(
+    v &&
+    (
+      (Array.isArray(v.articles)&&v.articles.length) ||
+      (Array.isArray(v.topics)&&v.topics.length) ||
+      (Array.isArray(v.people)&&v.people.length) ||
+      (v.siteText&&Object.keys(v.siteText).length)
+    )
+  );
+}
+function cmsCloudEditingNow(){
+  if(currentId)return true;
+  const ae=document.activeElement;
+  if(!ae)return false;
+  return Boolean(
+    ae.closest?.('#view') &&
+    (ae.matches?.('input,textarea,select,[contenteditable="true"]') || ae.isContentEditable)
+  );
+}
+async function cmsCloudRequest(action,payload={}){
+  return signwellGasBridge(action,payload,{adminKey:newsletterAdminKey()});
+}
+async function cmsCloudWriteLocalCache(){
+  const snapshot=clone(data);
+  try{
+    await idbPutState(snapshot);
+    localStorage.removeItem(KEY);
+  }catch(_){
+    try{localStorage.setItem(KEY,JSON.stringify(snapshot))}catch(__){}
+  }
+}
+async function cmsCloudApplyRemote(wrapper,{initial=false}={}){
+  if(!wrapper||!wrapper.data)return false;
+
+  if(!initial && cmsCloudEditingNow()){
+    cmsCloudDeferred=wrapper;
+    cmsCloudSetStatus('其他裝置有更新 · 離開編輯器後同步','#9a7b45');
+    return false;
+  }
+
+  const scrollTop=$('#view')?.scrollTop||0;
+  cmsCloudApplying=true;
+  try{
+    data=normalizeState(clone(wrapper.data));
+    cmsCloudRevision=Number(wrapper.revision||0);
+    cmsCloudDirty=false;
+    cmsCloudDeferred=null;
+    await cmsCloudWriteLocalCache();
+  }finally{
+    cmsCloudApplying=false;
+  }
+
+  cmsCloudLastSyncAt=Date.now();
+  cmsCloudSetStatus('雲端已同步 ✓');
+
+  if(!initial && !$('#cms').classList.contains('hidden')){
+    renderView();
+    requestAnimationFrame(()=>{
+      if($('#view'))$('#view').scrollTop=scrollTop;
+    });
+  }
+  return true;
+}
+async function cmsCloudInitialSync(){
+  if(!cmsCloudEnabled()){
+    cmsCloudSetStatus('本機模式','#9a7b45');
+    return false;
+  }
+
+  cmsCloudSetStatus('正在同步雲端…','#7f8d99');
+
+  const remote=await cmsCloudRequest('admin.cmsState.get',{
+    clientId:cmsCloudClientId()
+  });
+
+  const remoteData=remote?.data||null;
+  const remoteInitialized=remote?.initialized===true && cmsCloudHasContent(remoteData);
+
+  if(remoteInitialized){
+    await cmsCloudApplyRemote(remote,{initial:true});
+    try{localStorage.setItem(CMS_CLOUD_MIGRATED_KEY,'1')}catch(_){}
+    return true;
+  }
+
+  // First cloud initialization: current device becomes canonical.
+  const pushed=await cmsCloudRequest('admin.cmsState.put',{
+    clientId:cmsCloudClientId(),
+    baseRevision:Number(remote?.revision||0),
+    data:cmsCloudSerializable()
+  });
+
+  cmsCloudRevision=Number(pushed?.revision||1);
+  cmsCloudDirty=false;
+  cmsCloudLastSyncAt=Date.now();
+  try{localStorage.setItem(CMS_CLOUD_MIGRATED_KEY,'1')}catch(_){}
+  cmsCloudSetStatus('雲端已建立 ✓');
+  return true;
+}
+function scheduleCmsCloudPush(delay=1200){
+  if(cmsCloudApplying||!cmsCloudEnabled())return;
+  cmsCloudDirty=true;
+  cmsCloudChangeSeq++;
+  const seq=cmsCloudChangeSeq;
+  clearTimeout(cmsCloudPushTimer);
+  cmsCloudSetStatus('等待雲端同步…','#7f8d99');
+  cmsCloudPushTimer=setTimeout(()=>cmsCloudPushNow(seq),delay);
+}
+async function cmsCloudPushNow(seq=cmsCloudChangeSeq){
+  if(cmsCloudApplying||cmsCloudBusy||!cmsCloudEnabled()||!cmsCloudDirty)return false;
+
+  cmsCloudBusy=true;
+  const capturedSeq=seq;
+  const snapshot=cmsCloudSerializable();
+  cmsCloudSetStatus('雲端同步中…','#7f8d99');
+
+  try{
+    const result=await cmsCloudRequest('admin.cmsState.put',{
+      clientId:cmsCloudClientId(),
+      baseRevision:cmsCloudRevision,
+      data:snapshot
+    });
+
+    cmsCloudRevision=Number(result?.revision||cmsCloudRevision||0);
+    cmsCloudLastSyncAt=Date.now();
+
+    if(capturedSeq===cmsCloudChangeSeq){
+      cmsCloudDirty=false;
+      cmsCloudSetStatus('雲端已同步 ✓');
+    }else{
+      cmsCloudDirty=true;
+      scheduleCmsCloudPush(650);
+    }
+
+    try{
+      const bc=new BroadcastChannel('signwell-cms-cloud-v1');
+      bc.postMessage({type:'revision',revision:cmsCloudRevision,clientId:cmsCloudClientId()});
+      bc.close();
+    }catch(_){}
+
+    return true;
+  }catch(err){
+    cmsCloudDirty=true;
+    cmsCloudSetStatus('雲端同步失敗 · 將重試','#a65c65');
+    clearTimeout(cmsCloudPushTimer);
+    cmsCloudPushTimer=setTimeout(()=>cmsCloudPushNow(cmsCloudChangeSeq),5000);
+    return false;
+  }finally{
+    cmsCloudBusy=false;
+  }
+}
+async function cmsCloudPullNow({force=false}={}){
+  if(!cmsCloudEnabled()||cmsCloudBusy||document.hidden)return false;
+  if(cmsCloudDirty){
+    await cmsCloudPushNow(cmsCloudChangeSeq);
+    if(cmsCloudDirty)return false;
+  }
+
+  try{
+    const remote=await cmsCloudRequest('admin.cmsState.get',{
+      clientId:cmsCloudClientId(),
+      afterRevision:cmsCloudRevision
+    });
+
+    const rev=Number(remote?.revision||0);
+    if(remote?.unchanged===true || rev<=cmsCloudRevision)return true;
+
+    if(force || !cmsCloudEditingNow()){
+      return cmsCloudApplyRemote(remote,{initial:false});
+    }
+
+    cmsCloudDeferred=remote;
+    cmsCloudSetStatus('其他裝置有更新 · 離開編輯器後同步','#9a7b45');
+    return false;
+  }catch(_){
+    return false;
+  }
+}
+async function cmsCloudApplyDeferred(){
+  if(!cmsCloudDeferred||cmsCloudEditingNow())return false;
+  const pending=cmsCloudDeferred;
+  cmsCloudDeferred=null;
+  return cmsCloudApplyRemote(pending,{initial:false});
+}
+function startCmsCloudPolling(){
+  stopCmsCloudPolling();
+  if(!cmsCloudEnabled())return;
+
+  cmsCloudPollTimer=setInterval(()=>{
+    if(!document.hidden&&!$('#cms').classList.contains('hidden')){
+      cmsCloudPullNow();
+    }
+  },CMS_CLOUD_POLL_MS);
+}
+function stopCmsCloudPolling(){
+  if(cmsCloudPollTimer){
+    clearInterval(cmsCloudPollTimer);
+    cmsCloudPollTimer=null;
+  }
+}
+function bindCmsCloudRealtime(){
+  if(window.__signwellCmsCloudBound)return;
+  window.__signwellCmsCloudBound=true;
+
+  window.addEventListener('focus',()=>{
+    if(!$('#cms').classList.contains('hidden')){
+      cmsCloudPullNow();
+      if(viewName==='dashboard'||viewName==='articles')refreshRemoteAnalytics(true);
+    }
+  });
+
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden&&!$('#cms').classList.contains('hidden'))cmsCloudPullNow();
+  });
+
+  window.addEventListener('online',()=>{
+    if(!$('#cms').classList.contains('hidden')){
+      cmsCloudPushNow(cmsCloudChangeSeq).then(()=>cmsCloudPullNow());
+    }
+  });
+
+  try{
+    const bc=new BroadcastChannel('signwell-cms-cloud-v1');
+    bc.onmessage=e=>{
+      const msg=e.data||{};
+      if(msg.type==='revision'&&msg.clientId!==cmsCloudClientId()){
+        cmsCloudPullNow();
+      }
+    };
+  }catch(_){}
+}
+
 function newsletterAutoEnabled(){
   return localStorage.getItem(NEWSLETTER_AUTO_KEY)==='1';
 }
@@ -1403,20 +2705,84 @@ function newsletterDraft(){
     content:String($('#nlBody')?.value||'').trim()
   };
 }
+
+function celebrateNewsletterSend(originEl=null){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    originEl?.classList.add('newsletter-send-success');
+    setTimeout(()=>originEl?.classList.remove('newsletter-send-success'),500);
+    return;
+  }
+
+  document.getElementById('newsletterConfetti')?.remove();
+
+  const layer=document.createElement('div');
+  layer.id='newsletterConfetti';
+  layer.setAttribute('aria-hidden','true');
+  document.body.appendChild(layer);
+
+  const colors=[
+    '#77BDEB','#A7D9F6','#8FD0BD','#D7ECFA',
+    '#FFFFFF','#719BC0','#B8DCEB'
+  ];
+
+  const rect=originEl?.getBoundingClientRect?.();
+  const cx=rect?rect.left+rect.width/2:innerWidth/2;
+  const cy=rect?rect.top+rect.height/2:innerHeight*.56;
+
+  const pieces=Math.min(58,Math.max(38,Math.round(innerWidth/18)));
+
+  for(let i=0;i<pieces;i++){
+    const el=document.createElement('i');
+    el.className='sw-confetti-piece';
+
+    const theta=(-155+(310*(i/(pieces-1))))*Math.PI/180;
+    const spread=120+Math.random()*Math.min(260,innerWidth*.28);
+    const dx=Math.cos(theta)*spread;
+    const up=80+Math.random()*160;
+    const dy=Math.sin(theta)*spread-up+180+Math.random()*120;
+
+    const w=5+Math.random()*7;
+    const h=3+Math.random()*8;
+    const isRound=Math.random()<.22;
+
+    el.style.setProperty('--x',cx+'px');
+    el.style.setProperty('--y',cy+'px');
+    el.style.setProperty('--dx',dx.toFixed(1)+'px');
+    el.style.setProperty('--dy',dy.toFixed(1)+'px');
+    el.style.setProperty('--w',w.toFixed(1)+'px');
+    el.style.setProperty('--h',h.toFixed(1)+'px');
+    el.style.setProperty('--r',isRound?'50%':'2px');
+    el.style.setProperty('--c',colors[i%colors.length]);
+    el.style.setProperty('--rot',(Math.random()*180).toFixed(0)+'deg');
+    el.style.setProperty('--spin',((Math.random()>.5?1:-1)*(240+Math.random()*620)).toFixed(0)+'deg');
+    el.style.setProperty('--dur',(900+Math.random()*850).toFixed(0)+'ms');
+    el.style.setProperty('--delay',(Math.random()*120).toFixed(0)+'ms');
+
+    layer.appendChild(el);
+  }
+
+  originEl?.classList.add('newsletter-send-success');
+  setTimeout(()=>originEl?.classList.remove('newsletter-send-success'),760);
+  setTimeout(()=>layer.remove(),2100);
+}
+
 async function sendNewsletterTest(){
   const draft=newsletterDraft();
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
-  const to=String($('#nlTestEmail')?.value||'').trim();
-  if(!to){showToast('請輸入測試收件信箱');return}
   try{
-    const b=$('#nlTestBtn');if(b){b.disabled=true;b.textContent='寄送中…'}
+    const b=$('#nlTestBtn');
+    if(b){b.disabled=true;b.textContent='寄送中…'}
     await newsletterRequest('/admin/newsletter/test',{
       method:'POST',
-      body:JSON.stringify({...draft,to})
+      body:JSON.stringify(draft)
     });
-    showToast('測試信已送出');
-  }catch(err){showToast('測試信失敗：'+(err?.message||err))}
-  finally{const b=$('#nlTestBtn');if(b){b.disabled=false;b.textContent='發送測試信'}}
+    showToast('測試信已寄到 signwell.com@gmail.com');
+  }catch(err){
+    showToast('測試信失敗：'+(err?.message||err));
+  }finally{
+    const b=$('#nlTestBtn');
+    if(b){b.disabled=false;b.textContent='發送測試信'}
+  }
 }
 async function sendNewsletterAll(){
   const draft=newsletterDraft(),count=Number(newsletterCache.summary?.active||0);
@@ -1430,7 +2796,8 @@ async function sendNewsletterAll(){
       method:'POST',
       body:JSON.stringify({...draft,audience:'active'})
     });
-    showToast(`電子報已排入寄送${result.recipients!=null?' · '+Number(result.recipients).toLocaleString()+' 位':''}`);
+    showToast(`電子報已成功送出${result.recipients!=null?' · '+Number(result.recipients).toLocaleString()+' 位':''}`);
+    celebrateNewsletterSend($('#nlSendBtn'));
     await refreshNewsletterData();
   }catch(err){showToast('發送失敗：'+(err?.message||err))}
   finally{const b=$('#nlSendBtn');if(b){b.disabled=false;b.textContent='一鍵發送全部訂閱者'}}
@@ -1452,19 +2819,28 @@ function renderNewsletterCenter(){
   </div>
 
   <div class="newsletter-statusbar">
-    <div><b>${connected?'Backend 已設定':'Backend 尚未連線'}</b><br>${connected?(newsletterCache.error||'可讀取訂閱與寄送 API'):'先完成 Newsletter Backend 後，這裡會自動顯示真實訂閱資料。'}</div>
+    <div><b>${connected?'Backend 已設定':'Backend 尚未連線'}</b><br>${connected?(newsletterCache.error||'Google Sheet Analytics · 訂閱 · Gmail 寄送已共用同一 Backend'):'先完成 Newsletter Backend 後，這裡會自動顯示真實訂閱資料。'}</div>
     <span>${connected?'ONLINE':'SETUP'}</span>
   </div>
 
   <div class="newsletter-grid">
     <section class="newsletter-panel">
       <h3>建立電子報</h3>
-      <p>可以獨立寫內容，也可以從最新已發布文章自動帶入。</p>
+      <p>主旨、預覽文字與內容可以更換；寄送視覺固定使用 SIGN WELL 品牌模板。</p>
+
+      <div class="newsletter-template-preview" aria-label="固定電子報模板預覽">
+        <div class="newsletter-template-glass">
+          <small>SIGN WELL LETTER · FIXED TEMPLATE</small>
+          <strong>天峰藍 · iOS Glass</strong>
+          <span>Sky blue gradient · crystal white rim · glass card · SIGN WELL typography<br>正式寄送時會自動套用，不需要每次重新排版。</span>
+        </div>
+      </div>
+
       <div class="newsletter-formgrid">
         <label>主旨<input id="nlSubject" placeholder="SIGN WELL｜本週醫學精選"></label>
         <label>預覽文字<input id="nlPreheader" placeholder="收件匣中顯示的簡短摘要"></label>
         <label>內容<textarea id="nlBody" placeholder="寫下這封電子報要傳達的內容…"></textarea></label>
-        <label>測試收件信箱<input id="nlTestEmail" type="email" value="signwell.com@gmail.com"></label>
+        <label>測試收件信箱<input id="nlTestEmail" type="email" value="signwell.com@gmail.com" readonly aria-readonly="true"><small style="display:block;margin-top:5px;color:#8a98a3;font-size:8.5px">測試信固定寄給 SIGN WELL 自己，無法從 CMS 更改。</small></label>
       </div>
       <div class="newsletter-actions">
         <button id="nlFillArticle">從最新文章帶入</button>
@@ -1478,10 +2854,11 @@ function renderNewsletterCenter(){
       </label>
 
       <div class="newsletter-admin-key">
-        <input class="searchbar" id="nlAdminKey" type="password" placeholder="Newsletter Admin Key（只留在此登入階段）" value="${escapeHTML(newsletterAdminKey())}">
-        <button class="top-action" id="nlSaveKey">套用</button>
+        <input class="searchbar" id="nlAdminKey" type="password" readonly value="${escapeHTML(newsletterAdminKey())}" aria-label="Newsletter Admin Key">
+        <button class="top-action" id="nlChangeKey">更換 Key</button>
+        <button class="top-action" id="nlResetKey" ${newsletterKeyMode()==='default'?'disabled':''}>恢復預設</button>
       </div>
-      <div class="newsletter-warning">Gmail 密碼 / App Password 不會放在 CMS HTML。真正寄信時應只保存在 SIGN WELL Backend 的伺服器環境變數。</div>
+      <div class="newsletter-warning">目前使用：${newsletterKeyMode()==='default'?'預設 Admin Key':'自訂 Admin Key'}。更換後會只儲存在這台裝置的瀏覽器；「恢復預設」會重新使用內建 Key。</div>
     </section>
 
     <section class="newsletter-panel">
@@ -1503,11 +2880,22 @@ function renderNewsletterCenter(){
   $('#nlTestBtn').onclick=sendNewsletterTest;
   $('#nlSendBtn').onclick=sendNewsletterAll;
   $('#nlAuto').onchange=e=>setNewsletterAutoEnabled(e.target.checked);
-  $('#nlSaveKey').onclick=()=>{
-    const v=String($('#nlAdminKey')?.value||'').trim();
-    if(v)sessionStorage.setItem(NEWSLETTER_ADMIN_KEY,v);
-    else sessionStorage.removeItem(NEWSLETTER_ADMIN_KEY);
-    showToast(v?'Newsletter Admin Key 已套用':'Newsletter Admin Key 已清除');
+  $('#nlChangeKey').onclick=()=>{
+    const current=newsletterAdminKey();
+    const v=prompt('輸入新的 Newsletter Admin Key',newsletterKeyMode()==='custom'?current:'');
+    if(v===null)return;
+    const key=String(v||'').trim();
+    if(!key){showToast('Key 未更改');return}
+    saveNewsletterAdminKey(key);
+    showToast('Newsletter Admin Key 已更換');
+    renderNewsletterCenter();
+    refreshNewsletterData();
+  };
+  $('#nlResetKey').onclick=()=>{
+    if(!confirm('確定恢復使用預設 Newsletter Admin Key？'))return;
+    saveNewsletterAdminKey('');
+    showToast('已恢復預設 Newsletter Admin Key');
+    renderNewsletterCenter();
     refreshNewsletterData();
   };
 }
@@ -1517,7 +2905,7 @@ function renderDashboard(){setTimeout(()=>refreshRemoteAnalytics(false),0);
   const published=data.articles.filter(a=>a.status==='Published').length,
         drafts=data.articles.filter(a=>a.status!=='Published').length,
         cats=(data.topics||[]).filter(x=>x.active!==false).length;
-  $('#view').innerHTML=`<div class="page-head"><div><h1>總覽</h1><p>你的私人文章工作台 · v13.1。草稿只留在 CMS，只有明確送出後才會進入公開網站。</p></div><button class="top-action primary" id="dashNew">新增文章</button></div>
+  $('#view').innerHTML=`<div class="page-head"><div><h1>總覽</h1><p>你的私人文章工作台。草稿會跨裝置同步；只有按「發佈到網頁」才會進入公開網站。</p></div><button class="top-action primary" id="dashNew">新增文章</button></div>
   <div class="stats">
     <div class="stat"><span>文章總數</span><strong>${data.articles.length}</strong></div>
     <div class="stat"><span>已發布</span><strong>${published}</strong></div>
@@ -1533,18 +2921,81 @@ function renderDashboard(){setTimeout(()=>refreshRemoteAnalytics(false),0);
 function rowHTML(a){
   const views=articleViewCount(a),draft=a.status!=='Published';
   return `<div class="article-row" data-edit="${escapeHTML(a.id)}">
-    <div><strong>${escapeHTML(a.title||'未命名文章')}</strong><small>${escapeHTML(a.category||'未分類')} · ${escapeHTML(a.updatedAt||'')} · ${viewBadge(views)}</small></div>
+    <div><strong>${escapeHTML(a.title||'未命名文章')}</strong><small>${escapeHTML(a.category||'未分類')} · ${escapeHTML(cmsPublisherName(a))} · ${escapeHTML(a.updatedAt||'')} · <span data-article-view="${escapeHTML(a.id)}">${viewBadge(views)}</span></small></div>
     <div>${escapeHTML(a.category||'—')}</div>
-    <div class="views-cell">${viewBadge(views)}</div>
+    <div class="views-cell" data-article-view="${escapeHTML(a.id)}">${viewBadge(views)}</div>
     <div><span class="badge ${draft?'draft':''}">${draft?'草稿':'已發布'}</span></div>
     <div class="row-actions">
-      ${draft?`<button title="送出到公開網站" data-send="${escapeHTML(a.id)}">${iconSvg('send')}<span>送出</span></button>`:''}
+      ${draft?`<button title="直接發佈到公開網站" data-send="${escapeHTML(a.id)}">${iconSvg('send')}<span>發佈到網頁</span></button>`:''}
       <button class="icon-btn" title="複製" aria-label="複製文章" data-dup="${escapeHTML(a.id)}">${iconSvg('copy')}</button>
       <button class="icon-btn" title="刪除" aria-label="刪除文章" data-del="${escapeHTML(a.id)}">${iconSvg('delete')}</button>
     </div>
   </div>`;
 }
-function renderArticles(){setTimeout(()=>refreshRemoteAnalytics(false),0);const q='';$('#view').innerHTML=`<div class="page-head"><div><h1>文章管理</h1><p>草稿只保存在 CMS，不會出現在公開網站；可直接在列表按「送出」發布。</p></div><input class="searchbar" id="articleSearch" placeholder="搜尋文章…"></div><section class="panel" id="articlePanel"><div class="panel-head"><span>全部文章</span><button class="top-action primary" id="listNew">新增</button></div><div id="rows">${data.articles.length?data.articles.map(rowHTML).join(''):'<div class="empty">尚未建立文章。</div>'}</div></section>`;$('#listNew').onclick=newArticle;$('#articleSearch').oninput=e=>filterRows(e.target.value);bindRows()}
+function renderArticles(){
+  setTimeout(()=>refreshRemoteAnalytics(false),0);
+  const published=data.articles.filter(a=>a.status==='Published').length;
+  const drafts=data.articles.length-published;
+
+  $('#view').innerHTML=`
+    <div class="article-hub-head">
+      <div>
+        <h1>文章</h1>
+        <p>新增、搜尋、編輯與發佈都集中在同一個工作區；草稿會同步到 SIGN WELL 雲端，但只有按「發佈到網頁」才會公開。</p>
+      </div>
+      <div class="article-hub-actions">
+        <button class="top-action primary" id="listNew">＋ 新增文章</button>
+      </div>
+    </div>
+
+    <button class="article-create-card" id="articleCreateCard" type="button">
+      <span class="article-create-icon">＋</span>
+      <span class="article-create-copy">
+        <strong>新增一篇文章</strong>
+        <span>直接進入編輯器。草稿會自動同步，你可以稍後再回來完成。</span>
+      </span>
+      <span class="article-create-key">⌘ N</span>
+    </button>
+
+    <section class="panel" id="articlePanel">
+      <div class="panel-head">
+        <div class="article-panel-meta">
+          <span>全部文章</span>
+          <b>${data.articles.length}</b>
+          <span>· 已發布 ${published}</span>
+          <span>· 草稿 ${drafts}</span>
+        </div>
+        <div class="article-hub-tools">
+          <input class="searchbar" id="articleSearch" placeholder="搜尋文章、分類或標籤…">
+          <select class="article-filter" id="articleFilter" aria-label="文章狀態篩選">
+            <option value="all">全部狀態</option>
+            <option value="draft">草稿</option>
+            <option value="published">已發布</option>
+          </select>
+        </div>
+      </div>
+      <div id="rows">${data.articles.length?data.articles.map(rowHTML).join(''):'<div class="empty">尚未建立文章。按上方「新增一篇文章」開始。</div>'}</div>
+    </section>`;
+
+  $('#listNew').onclick=newArticle;
+  $('#articleCreateCard').onclick=newArticle;
+
+  const rerender=()=>{
+    const q=String($('#articleSearch')?.value||'').toLowerCase().trim();
+    const mode=$('#articleFilter')?.value||'all';
+    const arr=data.articles.filter(a=>{
+      const hit=[a.title,a.category,(a.tags||[]).join(' ')].join(' ').toLowerCase().includes(q);
+      const state=mode==='all'||(mode==='draft'&&a.status!=='Published')||(mode==='published'&&a.status==='Published');
+      return hit&&state;
+    });
+    $('#rows').innerHTML=arr.length?arr.map(rowHTML).join(''):'<div class="empty">沒有符合條件的文章。</div>';
+    bindRows();
+  };
+
+  $('#articleSearch').oninput=rerender;
+  $('#articleFilter').onchange=rerender;
+  bindRows();
+}
 function filterRows(q){const s=q.toLowerCase().trim(),arr=data.articles.filter(a=>[a.title,a.category,(a.tags||[]).join(' ')].join(' ').toLowerCase().includes(s));$('#rows').innerHTML=arr.length?arr.map(rowHTML).join(''):'<div class="empty">沒有符合的文章。</div>';bindRows()}
 function bindRows(){
   $$('[data-edit]').forEach(r=>r.onclick=e=>{
@@ -1575,22 +3026,48 @@ async function publishDraftFromList(id,sourceEl=null){
     try{
       const ok=await publishGitHub();
       if(!ok)throw new Error('GitHub 發布未完成');
-      showToast('草稿已送出到公開網站');
+      try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
+      showToast('已直接發佈到公開網站');
       showConfetti(sourceEl);
       await maybeAutoSendArticleNewsletter(a);
       if(viewName==='articles')renderArticles();else renderDashboard();
     }catch(err){
       a.status=old;
       persist(true);
+      try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
       throw err;
     }
   }catch(err){
     showToast('送出失敗：'+(err?.message||err));
   }
 }
+
+function activePublisherPeople(){
+  return (Array.isArray(data.people)?data.people:[])
+    .filter(p=>p&&p.active!==false)
+    .slice()
+    .sort((a,b)=>(a.order??999)-(b.order??999)||String(a.name||'').localeCompare(String(b.name||''),'zh-Hant'));
+}
+function defaultPublisherId(){
+  return String(activePublisherPeople()[0]?.id||'');
+}
+function cmsPersonById(id){
+  const key=String(id||'').trim();
+  return key?(data.people||[]).find(p=>String(p.id||'')===key)||null:null;
+}
+function cmsPublisherName(article){
+  return cmsPersonById(article?.publisherId)?.name||data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫';
+}
+function cmsPublisherInitials(name=''){
+  const clean=String(name||'').trim();
+  if(!clean)return 'SW';
+  const parts=clean.split(/\s+/).filter(Boolean);
+  return parts.length>1?(parts[0][0]+parts[parts.length-1][0]).toUpperCase():clean.slice(0,2).toUpperCase();
+}
+
 function newArticle(){
   const id='new-'+Date.now(),today=new Date().toISOString().slice(0,10);
-  pendingNewArticle={id,title:'',subtitle:'',slug:'',category:(data.topics?.find(x=>x.active!==false)?.name||'醫學筆記'),type:'文章',excerpt:'',tags:[],cover:'',status:'Draft',featured:false,publishedAt:today,updatedAt:today,content:'<p>從這裡開始寫。</p>',contentFormat:'html',references:[]};
+  pendingNewArticle={id,title:'',subtitle:'',slug:'',category:(data.topics?.find(x=>x.active!==false)?.name||'醫學筆記'),type:'文章',excerpt:'',tags:[],cover:'',status:'Draft',featured:false,publisherId:defaultPublisherId(),publishedAt:today,updatedAt:today,content:'<p>從這裡開始寫。</p>',contentFormat:'html',references:[]};
   currentId='__new__';
   renderView();
   $('#saveState').textContent='尚未儲存';
@@ -1603,24 +3080,140 @@ function articleHTML(a){return a?.contentFormat==='html'?String(a.content||''):m
 function plainFromHTML(html=''){const el=document.createElement('div');el.innerHTML=html;return (el.textContent||'').replace(/\s+/g,' ').trim()}
 function renderEditor(){const a=getCurrent();if(!a){currentId=null;nav('articles');return}const html=articleHTML(a);$('#view').innerHTML=`<div class="editor-grid"><section class="editor-main"><input id="title" class="title-input" placeholder="貼文標題" value="${escapeHTML(a.title||'')}"><div class="cover-box ${a.cover?'has-image':''}" id="coverBox">${a.cover?`<img id="coverPreview" src="${escapeHTML(a.cover)}" alt="封面圖片"><div class="cover-actions"><button id="changeCover" type="button">更換圖片</button><button id="removeCover" type="button">移除</button></div>`:`<div class="cover-empty"><strong>貼文圖片</strong><br>點一下加入封面圖片；系統會自動壓縮成適合網頁的大小。</div>`}</div><input class="file-input" id="coverInput" type="file" accept="image/*"><input class="file-input" id="inlineImageInput" type="file" accept="image/*"><div class="editor-tool-dock" id="editorToolDock">
   <button class="tool-fab" id="toolFab" type="button" aria-label="開啟文字工具" aria-expanded="false">Aa</button>
+
   <div class="toolbar editor-toolbar" id="editorToolbar" role="toolbar" aria-label="文章格式工具">
-    <button type="button" data-cmd="formatBlock" data-val="p">內文</button>
-    <button type="button" data-cmd="formatBlock" data-val="h2" title="大標題">大標題</button>
-    <button type="button" data-cmd="formatBlock" data-val="h3" title="中標題">中標題</button>
-    <button type="button" data-cmd="formatBlock" data-val="h4" title="小標題">小標題</button>
+    <div class="toolbar-segment desktop-format" aria-label="復原與重做">
+      <button type="button" data-cmd="undo" title="復原">↶</button>
+      <button type="button" data-cmd="redo" title="重做">↷</button>
+    </div>
+
+    <button type="button" class="style-trigger desktop-format" id="styleMenuBtn" aria-haspopup="true" aria-expanded="false">
+      <span class="style-aa">Aa</span>
+      <span class="style-current" id="styleCurrentLabel">內文</span>
+      <span class="style-chevron">⌄</span>
+    </button>
+
+    <button type="button" class="mobile-style-btn" data-cmd="formatBlock" data-val="p">內文</button>
+    <button type="button" class="mobile-style-btn" data-cmd="formatBlock" data-val="h2">大標題</button>
+    <button type="button" class="mobile-style-btn" data-cmd="formatBlock" data-val="h3">中標題</button>
+    <button type="button" class="mobile-style-btn" data-cmd="formatBlock" data-val="h4">小標題</button>
+
+    <span class="tool-sep desktop-format"></span>
+
+    <div class="toolbar-segment desktop-format" aria-label="字級">
+      <button type="button" id="fontSizeMinus" title="縮小字級">−</button>
+      <span class="toolbar-size" id="fontSizeLabel">16</span>
+      <button type="button" id="fontSizePlus" title="放大字級">＋</button>
+    </div>
+
     <span class="tool-sep"></span>
-    <button type="button" data-cmd="bold" title="粗體"><b>粗體</b></button>
-    <button type="button" data-cmd="italic" title="斜體"><i>斜體</i></button>
-    <button type="button" data-cmd="underline" title="底線"><u>底線</u></button>
-    <button type="button" data-highlight="1" title="螢光筆">螢光筆</button>
-    <button type="button" data-link="1">連結</button>
+
+    <div class="toolbar-segment">
+      <button type="button" class="toolbar-icon-text" data-cmd="bold" title="粗體"><b>B</b></button>
+      <button type="button" class="toolbar-icon-text" data-cmd="italic" title="斜體"><i>I</i></button>
+      <button type="button" class="toolbar-icon-text" data-cmd="underline" title="底線"><u>U</u></button>
+    </div>
+
+    <button type="button" class="desktop-format" id="textColorBtn" title="文字顏色">
+      <span class="toolbar-color-mark">A</span>
+    </button>
+    <button type="button" data-highlight="1" title="螢光筆">
+      <span class="toolbar-highlight-mark">重點</span>
+    </button>
+
+    <span class="tool-sep desktop-format"></span>
+
+    <div class="toolbar-segment desktop-format" aria-label="對齊">
+      <button type="button" data-cmd="justifyLeft" title="靠左">≡</button>
+      <button type="button" data-cmd="justifyCenter" title="置中">≣</button>
+      <button type="button" data-cmd="justifyRight" title="靠右">≡</button>
+    </div>
+
     <span class="tool-sep"></span>
+
     <button type="button" data-cmd="insertUnorderedList">• 清單</button>
     <button type="button" data-cmd="insertOrderedList">1. 編號</button>
     <button type="button" data-quote="1">引用</button>
-    <button type="button" id="insertImageBtn">內文圖片</button>
+    <button type="button" data-link="1">連結</button>
+    <button type="button" id="insertImageBtn">圖片</button>
+
+    <div class="format-popover desktop-format" id="formatPopover" role="dialog" aria-label="文字格式">
+      <div class="format-popover-head">
+        <strong>文字格式</strong>
+        <span>Pages-style inspector</span>
+      </div>
+
+      <div class="format-section">
+        <div class="format-label">段落樣式</div>
+        <div class="type-style-list">
+          <button type="button" class="type-style" data-style-block="p">
+            <span class="sample">內文</span><span class="hint">Body</span>
+          </button>
+          <button type="button" class="type-style" data-style-block="h2">
+            <span class="sample">大標題</span><span class="hint">Heading 1</span>
+          </button>
+          <button type="button" class="type-style" data-style-block="h3">
+            <span class="sample">中標題</span><span class="hint">Heading 2</span>
+          </button>
+          <button type="button" class="type-style" data-style-block="h4">
+            <span class="sample">小標題</span><span class="hint">Heading 3</span>
+          </button>
+          <button type="button" class="type-style" data-style-block="blockquote">
+            <span class="sample">引用文字</span><span class="hint">Quote</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="format-section">
+        <div class="format-label">文字顏色</div>
+        <div class="swatch-row">
+          <button type="button" class="swatch" data-text-color="auto" title="自動"></button>
+          <button type="button" class="swatch" data-text-color="#26313f" style="--c:#26313f" title="石墨"></button>
+          <button type="button" class="swatch" data-text-color="#47789a" style="--c:#47789a" title="霧藍"></button>
+          <button type="button" class="swatch" data-text-color="#587d72" style="--c:#587d72" title="鼠尾草"></button>
+          <button type="button" class="swatch" data-text-color="#9a5f67" style="--c:#9a5f67" title="莓紅"></button>
+        </div>
+      </div>
+
+      <div class="format-section">
+        <div class="format-label">標記筆觸</div>
+        <div class="swatch-row">
+          <button type="button" class="swatch" data-highlight-color="transparent" title="移除標記"></button>
+          <button type="button" class="swatch" data-highlight-color="#fff1a8" style="--c:#fff1a8" title="柔黃"></button>
+          <button type="button" class="swatch" data-highlight-color="#dff1ff" style="--c:#dff1ff" title="天藍"></button>
+          <button type="button" class="swatch" data-highlight-color="#def3e9" style="--c:#def3e9" title="薄荷"></button>
+          <button type="button" class="swatch" data-highlight-color="#f8e2e7" style="--c:#f8e2e7" title="淡粉"></button>
+        </div>
+      </div>
+
+      <div class="format-footer">
+        <small>選取文字後即可套用樣式</small>
+        <button type="button" id="clearInlineFormat">清除格式</button>
+      </div>
+    </div>
   </div>
-</div><div id="content" class="doc-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true">${html}</div></section><aside class="editor-side"><div class="field-group"><label>發布狀態</label><select id="status"><option value="Draft" ${a.status==='Draft'?'selected':''}>草稿</option><option value="Published" ${a.status==='Published'?'selected':''}>已發布</option></select></div><div class="field-group"><label>公開網址</label><input id="slug" value="${escapeHTML(a.slug||'')}"></div><div class="field-group"><label>發布日期</label><input id="publishedAt" type="date" value="${escapeHTML(a.publishedAt||'')}"></div><div class="field-group"><label>主題分類</label><select id="category" class="category-select">${(()=>{const opts=(data.topics||[]).filter(t=>t.active!==false).map(t=>t.name);if(a.category&&!opts.includes(a.category))opts.unshift(a.category);return opts.map(n=>`<option value="${escapeHTML(n)}" ${n===a.category?'selected':''}>${escapeHTML(n)}</option>`).join('')})()}</select><div style="font-size:10px;color:#84919d;margin-top:6px">主題可在左側「主題管理」新增或修改。</div></div><div class="field-group"><label>同步狀態</label><div style="font-size:11px;color:#74818d;line-height:1.7">新增文章在你按「儲存草稿」或「發布」前完全不會寫入文章管理。就算把狀態切成「已發布」，也不會自動送出；一定要按送出／線上發布才會進入公開網站。</div></div></aside></div>`;bindEditor()}
+</div><div id="content" class="doc-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true">${html}</div></section><aside class="editor-side">
+<div class="field-group">
+  <label>文章發布者</label>
+  <div class="publisher-picker">
+    <select id="publisherId">
+      ${(()=>{
+        const persons=activePublisherPeople();
+        const current=String(a.publisherId||'');
+        let html=`<option value="" ${!current?'selected':''}>${escapeHTML(data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫')}（品牌）</option>`;
+        if(current&&!persons.some(p=>String(p.id)===current)){
+          const old=cmsPersonById(current);
+          html+=`<option value="${escapeHTML(current)}" selected>${escapeHTML(old?.name||'已隱藏 / 已刪除的人物')}</option>`;
+        }
+        html+=persons.map(p=>`<option value="${escapeHTML(p.id)}" ${String(p.id)===current?'selected':''}>${escapeHTML(p.name||'未命名人物')}${p.role?' · '+escapeHTML(p.role):''}</option>`).join('');
+        return html;
+      })()}
+    </select>
+    <div class="publisher-preview" id="publisherPreview"></div>
+    <div class="publisher-help">人物來自「網站文字 → 人物與學經歷」。新增或修改人物後，這個選單會自動同步更新；公開文章以人物 ID 連動最新姓名、職稱與照片。</div>
+  </div>
+</div>
+<div class="field-group"><label>發布狀態</label><select id="status"><option value="Draft" ${a.status==='Draft'?'selected':''}>草稿</option><option value="Published" ${a.status==='Published'?'selected':''}>已發布</option></select></div><div class="field-group"><label>公開網址</label><input id="slug" value="${escapeHTML(a.slug||'')}"></div><div class="field-group"><label>發布日期</label><input id="publishedAt" type="date" value="${escapeHTML(a.publishedAt||'')}"></div><div class="field-group"><label>主題分類</label><select id="category" class="category-select">${(()=>{const opts=(data.topics||[]).filter(t=>t.active!==false).map(t=>t.name);if(a.category&&!opts.includes(a.category))opts.unshift(a.category);return opts.map(n=>`<option value="${escapeHTML(n)}" ${n===a.category?'selected':''}>${escapeHTML(n)}</option>`).join('')})()}</select><div style="font-size:10px;color:#84919d;margin-top:6px">主題可在左側「主題管理」新增或修改。</div></div><div class="field-group"><label>同步狀態</label><div style="font-size:11px;color:#74818d;line-height:1.7">右上角「發佈到網頁」就是唯一正式發布按鈕：會一次儲存文章、提交 GitHub、更新公開網站，成功後才標記完成；不需要再到「發布設定」按第二次。</div></div></aside></div>`;bindEditor()}
 function syncEditorViewport(){
   const vv=window.visualViewport;
   const kb=vv?Math.max(0,Math.round(window.innerHeight-vv.height-vv.offsetTop)):0;
@@ -1629,32 +3222,187 @@ function syncEditorViewport(){
   document.documentElement.style.setProperty('--editor-vv-center',center+'px');
 }
 let editorViewportBound=false;
+
+let editorSavedRange=null;
+
+function editorSelectionRange(){
+  const editor=$('#content');
+  const sel=window.getSelection?.();
+  if(!editor||!sel||!sel.rangeCount)return null;
+  const range=sel.getRangeAt(0);
+  const node=range.commonAncestorContainer;
+  if(node===editor||editor.contains(node.nodeType===1?node:node.parentNode))return range;
+  return null;
+}
+function rememberEditorSelection(){
+  const range=editorSelectionRange();
+  if(range)editorSavedRange=range.cloneRange();
+}
+function restoreEditorSelection(){
+  const editor=$('#content');
+  if(!editor||!editorSavedRange)return false;
+  try{
+    const sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(editorSavedRange);
+    editor.focus({preventScroll:true});
+    return true;
+  }catch(_){return false}
+}
+function editorAnchorElement(){
+  const sel=window.getSelection?.();
+  let node=sel?.anchorNode;
+  if(!node&&editorSavedRange)node=editorSavedRange.startContainer;
+  if(node?.nodeType===3)node=node.parentElement;
+  return node?.closest?.('#content *')||node;
+}
+function currentBlockTag(){
+  let el=editorAnchorElement();
+  if(!el)return 'p';
+  el=el.closest?.('h2,h3,h4,blockquote,p,li,div')||el;
+  const tag=String(el?.tagName||'P').toLowerCase();
+  return ['h2','h3','h4','blockquote'].includes(tag)?tag:'p';
+}
+function blockLabel(tag){
+  return ({p:'內文',h2:'大標題',h3:'中標題',h4:'小標題',blockquote:'引用'})[tag]||'內文';
+}
+function currentEditorFontSize(){
+  let el=editorAnchorElement();
+  if(!el||el===$('#content'))el=$('#content');
+  const n=parseFloat(getComputedStyle(el).fontSize);
+  return Number.isFinite(n)?Math.round(n):16;
+}
+function updatePagesToolbarState(){
+  const editor=$('#content');
+  if(!editor)return;
+
+  const tag=currentBlockTag();
+  const label=$('#styleCurrentLabel');
+  if(label)label.textContent=blockLabel(tag);
+
+  $$('#formatPopover [data-style-block]').forEach(b=>{
+    b.classList.toggle('active',b.dataset.styleBlock===tag);
+  });
+
+  const size=$('#fontSizeLabel');
+  if(size)size.textContent=String(currentEditorFontSize());
+
+  ['bold','italic','underline','justifyLeft','justifyCenter','justifyRight'].forEach(cmd=>{
+    try{
+      $$(`[data-cmd="${cmd}"]`).forEach(b=>b.classList.toggle('active',document.queryCommandState(cmd)));
+    }catch(_){}
+  });
+}
+function runEditorFormat(command,value=null){
+  restoreEditorSelection();
+  runCommand(command,value);
+  rememberEditorSelection();
+  updatePagesToolbarState();
+}
+function applyEditorColor(color){
+  restoreEditorSelection();
+  $('#content')?.focus();
+  try{
+    document.execCommand('styleWithCSS',false,true);
+    document.execCommand('foreColor',false,color==='auto'?'#3f4c59':color);
+  }catch(_){}
+  scheduleSave();
+  rememberEditorSelection();
+  updatePagesToolbarState();
+}
+function applyEditorHighlight(color){
+  restoreEditorSelection();
+  $('#content')?.focus();
+  const c=color==='transparent'?'transparent':color;
+  try{
+    document.execCommand('styleWithCSS',false,true);
+    if(!document.execCommand('hiliteColor',false,c)){
+      document.execCommand('backColor',false,c);
+    }
+  }catch(_){
+    try{document.execCommand('backColor',false,c)}catch(__){}
+  }
+  scheduleSave();
+  rememberEditorSelection();
+}
+function changeEditorFontSize(delta){
+  restoreEditorSelection();
+  const editor=$('#content');
+  if(!editor)return;
+
+  const range=editorSelectionRange()||editorSavedRange;
+  const current=currentEditorFontSize();
+  const next=Math.max(11,Math.min(34,current+delta));
+
+  try{
+    if(range&&!range.collapsed){
+      const span=document.createElement('span');
+      span.style.fontSize=next+'px';
+      try{
+        range.surroundContents(span);
+      }catch(_){
+        const frag=range.extractContents();
+        span.appendChild(frag);
+        range.insertNode(span);
+      }
+      const sel=window.getSelection();
+      const nr=document.createRange();
+      nr.selectNodeContents(span);
+      sel.removeAllRanges();
+      sel.addRange(nr);
+    }else{
+      let el=editorAnchorElement();
+      const block=el?.closest?.('p,h2,h3,h4,blockquote,li')||null;
+      if(block)block.style.fontSize=next+'px';
+      else document.execCommand('fontSize',false,next>=24?'5':next>=19?'4':next<=13?'2':'3');
+    }
+  }catch(_){}
+
+  scheduleSave();
+  rememberEditorSelection();
+  updatePagesToolbarState();
+}
+function toggleFormatPopover(force){
+  const pop=$('#formatPopover'),btn=$('#styleMenuBtn');
+  if(!pop||!btn)return;
+  const show=typeof force==='boolean'?force:!pop.classList.contains('show');
+  pop.classList.toggle('show',show);
+  btn.setAttribute('aria-expanded',show?'true':'false');
+}
+
 function bindEditor(){
-  ['title','slug','publishedAt','status','category'].forEach(id=>{
+  ['title','slug','publishedAt','status','category','publisherId'].forEach(id=>{
     const el=$('#'+id);
     el?.addEventListener('input',scheduleSave);
     el?.addEventListener('change',scheduleSave);
   });
   $('#content')?.addEventListener('input',scheduleSave);
 
-  $$('[data-cmd]').forEach(b=>b.onclick=()=>runCommand(b.dataset.cmd,b.dataset.val||null));
-  $$('[data-link]').forEach(b=>b.onclick=()=>{
-    const url=prompt('輸入連結網址');
-    if(url)runCommand('createLink',url);
-  });
-  $$('[data-quote]').forEach(b=>b.onclick=()=>runCommand('formatBlock','blockquote'));
-  $$('[data-highlight]').forEach(b=>b.onclick=()=>{
-    $('#content').focus();
-    try{
-      document.execCommand('styleWithCSS',false,true);
-      if(!document.execCommand('hiliteColor',false,'#fff1a8')){
-        document.execCommand('backColor',false,'#fff1a8');
-      }
-    }catch(_){
-      try{document.execCommand('backColor',false,'#fff1a8')}catch(__){}
+  const refreshPublisherPreview=()=>{
+    const select=$('#publisherId');
+    const box=$('#publisherPreview');
+    if(!box)return;
+    const p=cmsPersonById(select?.value||'');
+    if(!p){
+      const brand=data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫';
+      box.innerHTML=`<div class="publisher-preview-avatar">SW</div><div class="publisher-preview-copy"><strong>${escapeHTML(brand)}</strong><span>品牌發布者</span></div>`;
+      return;
     }
+    box.innerHTML=`<div class="publisher-preview-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(cmsPublisherInitials(p.name))}</div><div class="publisher-preview-copy"><strong>${escapeHTML(p.name||'未命名人物')}</strong><span>${escapeHTML(p.role||((p.education||[])[0]||'人物發布者'))}</span></div>`;
+  };
+  $('#publisherId')?.addEventListener('change',()=>{
+    refreshPublisherPreview();
     scheduleSave();
   });
+  refreshPublisherPreview();
+
+  $$('[data-cmd]').forEach(b=>b.onclick=()=>runEditorFormat(b.dataset.cmd,b.dataset.val||null));
+  $$('[data-link]').forEach(b=>b.onclick=()=>{
+    const url=prompt('輸入連結網址');
+    if(url)runEditorFormat('createLink',url);
+  });
+  $$('[data-quote]').forEach(b=>b.onclick=()=>runEditorFormat('formatBlock','blockquote'));
+  $$('[data-highlight]').forEach(b=>b.onclick=()=>applyEditorHighlight('#fff1a8'));
 
   const dock=$('#editorToolDock'),fab=$('#toolFab'),toolbar=$('#editorToolbar');
   toolbar?.addEventListener('pointermove',e=>{
@@ -1662,7 +3410,70 @@ function bindEditor(){
     const x=(e.clientX-r.left)/Math.max(1,r.width);
     toolbar.style.setProperty('--dock-rim',(95+x*170)+'deg');
   },{passive:true});
+
   toolbar?.addEventListener('pointerleave',()=>toolbar.style.setProperty('--dock-rim','135deg'),{passive:true});
+
+  // Pages-like formatting inspector.
+  $('#styleMenuBtn')?.addEventListener('pointerdown',rememberEditorSelection);
+  $('#styleMenuBtn')?.addEventListener('click',e=>{
+    e.stopPropagation();
+    toggleFormatPopover();
+  });
+  $('#textColorBtn')?.addEventListener('pointerdown',rememberEditorSelection);
+  $('#textColorBtn')?.addEventListener('click',e=>{
+    e.stopPropagation();
+    toggleFormatPopover(true);
+  });
+
+  $$('#formatPopover [data-style-block]').forEach(b=>{
+    b.addEventListener('pointerdown',e=>e.preventDefault());
+    b.onclick=()=>{
+      runEditorFormat('formatBlock',b.dataset.styleBlock);
+      toggleFormatPopover(false);
+    };
+  });
+  $$('#formatPopover [data-text-color]').forEach(b=>{
+    b.addEventListener('pointerdown',e=>e.preventDefault());
+    b.onclick=()=>applyEditorColor(b.dataset.textColor);
+  });
+  $$('#formatPopover [data-highlight-color]').forEach(b=>{
+    b.addEventListener('pointerdown',e=>e.preventDefault());
+    b.onclick=()=>applyEditorHighlight(b.dataset.highlightColor);
+  });
+
+  $('#fontSizeMinus')?.addEventListener('pointerdown',rememberEditorSelection);
+  $('#fontSizePlus')?.addEventListener('pointerdown',rememberEditorSelection);
+  $('#fontSizeMinus')?.addEventListener('click',()=>changeEditorFontSize(-1));
+  $('#fontSizePlus')?.addEventListener('click',()=>changeEditorFontSize(1));
+
+  $('#clearInlineFormat')?.addEventListener('pointerdown',e=>e.preventDefault());
+  $('#clearInlineFormat')?.addEventListener('click',()=>{
+    runEditorFormat('removeFormat');
+    toggleFormatPopover(false);
+  });
+
+  const content=$('#content');
+  ['mouseup','keyup','input','focus'].forEach(ev=>content?.addEventListener(ev,()=>{
+    rememberEditorSelection();
+    updatePagesToolbarState();
+  },{passive:ev!=='input'}));
+
+  document.addEventListener('selectionchange',()=>{
+    const range=editorSelectionRange();
+    if(range){
+      editorSavedRange=range.cloneRange();
+      updatePagesToolbarState();
+    }
+  });
+
+  document.addEventListener('pointerdown',e=>{
+    const pop=$('#formatPopover'),styleBtn=$('#styleMenuBtn'),colorBtn=$('#textColorBtn');
+    if(!pop?.classList.contains('show'))return;
+    if(pop.contains(e.target)||styleBtn?.contains(e.target)||colorBtn?.contains(e.target))return;
+    toggleFormatPopover(false);
+  },{capture:true});
+
+  updatePagesToolbarState();
   fab?.addEventListener('click',e=>{
     e.stopPropagation();
     const open=dock.classList.toggle('open');
@@ -1720,7 +3531,7 @@ function bindEditor(){
     visualViewport.addEventListener('scroll',syncEditorViewport,{passive:true});
   }
 }
-function updateFromEditor(){const a=getCurrent();if(!a)return;a.title=$('#title').value.trim();a.content=$('#content').innerHTML;a.contentFormat='html';a.status=$('#status').value;a.slug=$('#slug').value.trim()||slugify(a.title);a.category=$('#category')?.value||a.category||'醫學筆記';a.type='文章';a.subtitle='';a.excerpt=plainFromHTML(a.content).slice(0,180);a.tags=a.tags||[];a.publishedAt=$('#publishedAt').value||new Date().toISOString().slice(0,10);a.updatedAt=new Date().toISOString().slice(0,10)}
+function updateFromEditor(){const a=getCurrent();if(!a)return;a.title=$('#title').value.trim();a.content=$('#content').innerHTML;a.contentFormat='html';a.status=$('#status').value;a.slug=$('#slug').value.trim()||slugify(a.title);a.category=$('#category')?.value||a.category||'醫學筆記';a.publisherId=$('#publisherId')?.value||'';a.type='文章';a.subtitle='';a.excerpt=plainFromHTML(a.content).slice(0,180);a.tags=a.tags||[];a.publishedAt=$('#publishedAt').value||new Date().toISOString().slice(0,10);a.updatedAt=new Date().toISOString().slice(0,10)}
 function syncPublicSnapshot(){try{localStorage.removeItem('signwell-public-live-v1')}catch(_){/* 公開站只讀 GitHub 部署檔，CMS 不再跨專案寫入公開預覽快照 */}}
 function commitPendingArticle(){
   if(currentId!=='__new__'||!pendingNewArticle)return getCurrent();
@@ -1767,11 +3578,10 @@ function publishNow(){
   if($('#status'))$('#status').value='Published';
   a=commitPendingArticle()||a;
   a.status='Published';
-  persist();
+  persist(true);
   syncPublicSnapshot();
-  $('#saveState').textContent='已發布 ✓';
-  $('#saveState').style.color='#6f8f86';
-  showToast('已在後台標記為已發布；按「線上發布」才會更新公開網站');
+  $('#saveState').textContent='準備發佈…';
+  $('#saveState').style.color='#7f8d99';
   return true;
 }
 function runCommand(cmd,val=null){$('#content').focus();try{document.execCommand(cmd,false,val)}catch(_){ }scheduleSave()}
@@ -1780,7 +3590,7 @@ function compressImage(file,maxSide=1600,quality=.82){return new Promise((resolv
 function preview(){updateFromEditor();const a=getCurrent();$('#previewContent').innerHTML=`${a.cover?`<img src="${a.cover}" alt="" style="width:100%;max-height:420px;object-fit:cover;border-radius:22px;margin-bottom:28px">`:'<div class="preview-default-cover" aria-label="SIGN WELL 預設封面"></div>'}<h1>${escapeHTML(a.title||'未命名文章')}</h1>${articleHTML(a)}`;$('#previewOverlay').classList.add('show')}
 function renderTopicsManager(){
   data.topics=Array.isArray(data.topics)?data.topics:[];let editId=null;
-  const paint=()=>{const sorted=data.topics.slice().sort((a,b)=>(a.order??999)-(b.order??999));$('#view').innerHTML=`<div class="page-head"><div><h1>主題管理</h1><p>在這裡建立前台「主題探討」頁的分類。文章編輯器會自動使用這些主題。</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="top-action online" id="syncTopicsBtn">同步前台</button><button class="top-action primary" id="newTopicBtn">新增主題</button></div></div><div class="topic-admin"><section class="topic-list"><div class="panel-head"><span>主題列表</span><span>${sorted.length} 個</span></div>${sorted.length?sorted.map((tp,i)=>`<div class="topic-row-admin"><div><strong>${escapeHTML(tp.name||'未命名主題')} ${tp.active===false?'<span class="topic-badge">已隱藏</span>':''}</strong><span>${escapeHTML(tp.description||'尚未填寫說明')} · ${data.articles.filter(a=>a.category===tp.name).length} 篇文章</span></div><div class="topic-row-actions"><button data-topic-edit="${escapeHTML(tp.id)}">編輯</button><button data-topic-up="${escapeHTML(tp.id)}">↑</button><button data-topic-down="${escapeHTML(tp.id)}">↓</button><button data-topic-del="${escapeHTML(tp.id)}">刪除</button></div></div>`).join(''):'<div class="empty">尚未建立主題。</div>'}</section><aside class="topic-form"><h3 id="topicFormTitle">新增主題</h3><div class="field-group"><label>主題名稱</label><input id="topicName" placeholder="例如：重症醫學"></div><div class="field-group"><label>公開網址代稱</label><input id="topicSlug" placeholder="critical-care"></div><div class="field-group"><label>主題說明</label><textarea id="topicDesc" placeholder="說明這個主題涵蓋哪些內容。"></textarea></div><label class="topic-active"><input type="checkbox" id="topicActive" checked> 顯示在前台主題探討頁</label><div class="site-text-actions" style="margin-top:14px"><button class="top-action primary" id="saveTopic">儲存主題</button><button class="top-action online" id="saveTopicOnline">儲存並同步前台</button><button class="top-action" id="cancelTopic">清除</button></div><p class="topic-help">按「儲存並同步前台」會一次更新 <code>topics/index.json</code>、<code>public-data.json</code> 與 <code>site-content.js</code>，再從 GitHub 讀回驗證。主題名稱、說明與主題頁文字會使用同一份資料來源。</p></aside></div>`;
+  const paint=()=>{const sorted=data.topics.slice().sort((a,b)=>(a.order??999)-(b.order??999));$('#view').innerHTML=`<div class="page-head"><div><h1>主題管理</h1><p>在這裡建立前台「主題探討」頁的分類。文章編輯器會自動使用這些主題。</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="top-action online" id="syncTopicsBtn">發佈到網頁</button><button class="top-action primary" id="newTopicBtn">新增主題</button></div></div><div class="topic-admin"><section class="topic-list"><div class="panel-head"><span>主題列表</span><span>${sorted.length} 個</span></div>${sorted.length?sorted.map((tp,i)=>`<div class="topic-row-admin"><div><strong>${escapeHTML(tp.name||'未命名主題')} ${tp.active===false?'<span class="topic-badge">已隱藏</span>':''}</strong><span>${escapeHTML(tp.description||'尚未填寫說明')} · ${data.articles.filter(a=>a.category===tp.name).length} 篇文章</span></div><div class="topic-row-actions"><button data-topic-edit="${escapeHTML(tp.id)}">編輯</button><button data-topic-up="${escapeHTML(tp.id)}">↑</button><button data-topic-down="${escapeHTML(tp.id)}">↓</button><button data-topic-del="${escapeHTML(tp.id)}">刪除</button></div></div>`).join(''):'<div class="empty">尚未建立主題。</div>'}</section><aside class="topic-form"><h3 id="topicFormTitle">新增主題</h3><div class="field-group"><label>主題名稱</label><input id="topicName" placeholder="例如：重症醫學"></div><div class="field-group"><label>公開網址代稱</label><input id="topicSlug" placeholder="critical-care"></div><div class="field-group"><label>主題說明</label><textarea id="topicDesc" placeholder="說明這個主題涵蓋哪些內容。"></textarea></div><label class="topic-active"><input type="checkbox" id="topicActive" checked> 顯示在前台主題探討頁</label><div class="site-text-actions" style="margin-top:14px"><button class="top-action primary" id="saveTopic">儲存主題</button><button class="top-action online" id="saveTopicOnline">儲存並發佈到網頁</button><button class="top-action" id="cancelTopic">清除</button></div><p class="topic-help">按「儲存並發佈到網頁」會直接更新 <code>topics/index.json</code>、<code>public-data.json · siteText + topics + people</code> 與 <code>site-content.js</code>，再從 GitHub 讀回驗證。主題名稱、說明與主題頁文字會使用同一份資料來源。</p></aside></div>`;
     const clear=()=>{editId=null;$('#topicFormTitle').textContent='新增主題';$('#topicName').value='';$('#topicSlug').value='';$('#topicDesc').value='';$('#topicActive').checked=true};
     $$('[data-topic-edit]').forEach(b=>b.onclick=()=>{const tp=data.topics.find(x=>x.id===b.dataset.topicEdit);if(!tp)return;editId=tp.id;$('#topicFormTitle').textContent='編輯主題';$('#topicName').value=tp.name||'';$('#topicSlug').value=tp.slug||'';$('#topicDesc').value=tp.description||'';$('#topicActive').checked=tp.active!==false});
     const move=(id,dir)=>{const arr=data.topics.slice().sort((a,b)=>(a.order??999)-(b.order??999)),i=arr.findIndex(x=>x.id===id),j=i+dir;if(i<0||j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];arr.forEach((x,k)=>x.order=k);data.topics=arr;persist(true);paint()};
@@ -1791,32 +3601,439 @@ function renderTopicsManager(){
   };paint();
 }
 function renderSiteText(){
-  data.siteText={...DEFAULT_SITE_TEXT,...(data.siteText||{})};const s=data.siteText;
+  data.siteText={...DEFAULT_SITE_TEXT,...(data.siteText||{})};
+  data.people=Array.isArray(data.people)?data.people:[];
+  const s=data.siteText;
   const input=(key,label,multi=false)=>`<div class="site-field"><label>${label}</label>${multi?`<textarea data-site-key="${key}">${escapeHTML(s[key]||'')}</textarea>`:`<input data-site-key="${key}" value="${escapeHTML(s[key]||'')}">`}</div>`;
-  $('#view').innerHTML=`<div class="page-head"><div><h1>網站文字</h1><p>修改公開使用者端的品牌、首頁、關於與頁尾文字。儲存後可先在同一瀏覽器預覽；按「發布到網站」才會同步到 GitHub Pages。</p></div></div><div class="site-text-wrap"><section class="site-text-card"><h3>公開網站文案</h3><p>這些欄位會寫入 <code>site-content.js</code>；文章清單由 <code>articles/index.json</code>、完整文章由 <code>articles/*.json</code> 管理，<code>articles.js</code> 僅保留舊版相容。</p>
-  <div class="site-section"><div class="site-section-title">品牌與導覽</div>${input('siteTitle','瀏覽器標題')}${input('brandEnglish','英文品牌')}${input('brandChinese','中文品牌')}${input('navArticles','導覽：文章')}${input('navTopics','導覽：主題')}${input('navAbout','導覽：關於')}</div>
-  <div class="site-section"><div class="site-section-title">首頁主視覺</div>${input('homeEyebrow','首頁小標')}${input('homeTitle1','主標題第一行')}${input('homeTitle2','主標題第二行')}${input('homeSubtitle','首頁介紹',true)}${input('homeCardTitle','右側玻璃卡標題',true)}${input('homeCardBody','右側玻璃卡說明',true)}</div>
-  <div class="site-section"><div class="site-section-title">每日新文章</div>${input('dailyEyebrow','區段小標')}${input('dailyTitle','區段標題')}${input('dailyDescription','區段說明')}</div>
-  <div class="site-section"><div class="site-section-title">主題探討頁</div>${input('topicsEyebrow','頁面小標')}${input('topicsTitle','頁面標題',true)}${input('topicsSubtitle','頁面說明',true)}</div>
-  <div class="site-section"><div class="site-section-title">分享我們頁</div>${input('shareEyebrow','頁面小標')}${input('shareTitle','頁面標題',true)}${input('shareSubtitle','頁面說明',true)}</div>
-  <div class="site-section"><div class="site-section-title">文章頁</div>${input('articleBrand','文章作者／品牌列')}${input('minutesReadSuffix','閱讀時間文字')}${input('updatedLabel','更新日期文字')}${input('shareLabel','分享按鈕')}${input('copyLinkLabel','複製連結按鈕')}${input('tocTitle','文章目錄標題')}</div>
-  <div class="site-section"><div class="site-section-title">關於頁</div>${input('aboutEyebrow','關於頁小標')}${input('aboutTitle','關於頁標題')}${input('aboutBody','關於頁介紹',true)}${input('aboutFocusLabel','核心欄標籤')}${input('aboutFocusValue','核心欄內容')}${input('aboutFormatLabel','形式欄標籤')}${input('aboutFormatValue','形式欄內容')}${input('aboutPrincipleLabel','原則欄標籤')}${input('aboutPrincipleValue','原則欄內容')}${input('aboutDisclaimer','關於頁醫療聲明',true)}</div>
-  <div class="site-section"><div class="site-section-title">頁尾與搜尋</div>${input('footerTagline','頁尾標語',true)}${input('footerDisclaimer','頁尾醫療聲明',true)}${input('searchPlaceholder','搜尋框提示')}</div>
-  <div class="site-text-actions"><button class="top-action primary" id="saveSiteText">儲存網站文字</button><button class="top-action online" id="publishSiteText">儲存並發布到網站</button><button class="top-action" id="resetSiteText">恢復預設文字</button></div><div class="site-publish-hint">公開站優先讀取 <b>public-data.json</b>，並保留 <b>site-content.js</b> 相容備援。第一次使用新版前台時，請記得把新版 <code>index.html</code> 與 <code>site-content.js</code> 一起上傳到公開 Repository。</div></section>
-  <aside class="site-preview-box"><div class="mini-nav"><span>${escapeHTML(s.navArticles)}</span><span>${escapeHTML(s.navTopics)}</span><span>${escapeHTML(s.navAbout)}</span></div><div class="mini-eyebrow" id="miniEyebrow">${escapeHTML(s.homeEyebrow)}</div><h4 id="miniTitle">${escapeHTML(s.homeTitle1)}<br>${escapeHTML(s.homeTitle2)}</h4><p id="miniSub">${escapeHTML(s.homeSubtitle)}</p></aside></div>`;
-  const collect=()=>{$$('[data-site-key]').forEach(el=>{data.siteText[el.dataset.siteKey]=el.value});persist(true);syncPublicSnapshot();$('#saveState').textContent='網站文字已儲存 ✓';$('#saveState').style.color='#6f8f86'};
-  const updateMini=()=>{const s=data.siteText;$('#miniEyebrow').textContent=s.homeEyebrow||'';$('#miniTitle').innerHTML=escapeHTML(s.homeTitle1||'')+'<br>'+escapeHTML(s.homeTitle2||'');$('#miniSub').textContent=s.homeSubtitle||''};
-  $$('[data-site-key]').forEach(el=>el.addEventListener('input',()=>{data.siteText[el.dataset.siteKey]=el.value;updateMini();clearTimeout(saveTimer);$('#saveState').textContent='儲存中…';saveTimer=setTimeout(()=>{collect()},650)}));
+
+  $('#view').innerHTML=`<div class="page-head">
+    <div>
+      <h1>網站文字</h1>
+      <p>修改公開使用者端的品牌、首頁、關於我們、人物資料與頁尾文字。人物與學經歷會一起寫入 public-data.json。</p>
+    </div>
+  </div>
+
+  <div class="site-text-wrap">
+    <section class="site-text-card">
+      <h3>公開網站內容</h3>
+      <p>網站文字與關於人物皆由 CMS 維護；只有按「儲存並發布到網站」才會同步到 GitHub Pages。</p>
+
+      <div class="site-section">
+        <div class="site-section-title">品牌與導覽</div>
+        ${input('siteTitle','瀏覽器標題')}
+        ${input('brandEnglish','英文品牌')}
+        ${input('brandChinese','中文品牌')}
+        ${input('navArticles','導覽：文章')}
+        ${input('navTopics','導覽：主題')}
+        ${input('navAbout','導覽：關於我們')}
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">首頁主視覺</div>
+        ${input('homeEyebrow','首頁小標')}
+        ${input('homeTitle1','主標題第一行')}
+        ${input('homeTitle2','主標題第二行')}
+        ${input('homeSubtitle','首頁介紹',true)}
+        ${input('homeCardTitle','右側玻璃卡標題',true)}
+        ${input('homeCardBody','右側玻璃卡說明',true)}
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">每日新文章</div>
+        ${input('dailyEyebrow','區段小標')}
+        ${input('dailyTitle','區段標題')}
+        ${input('dailyDescription','區段說明')}
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">主題探討頁</div>
+        ${input('topicsEyebrow','頁面小標')}
+        ${input('topicsTitle','頁面標題',true)}
+        ${input('topicsSubtitle','頁面說明',true)}
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">分享我們頁</div>
+        ${input('shareEyebrow','頁面小標')}
+        ${input('shareTitle','頁面標題',true)}
+        ${input('shareSubtitle','頁面說明',true)}
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">關於我們頁</div>
+        ${input('aboutEyebrow','頁面小標')}
+        ${input('aboutTitle','頁面標題')}
+        ${input('aboutBody','品牌介紹',true)}
+        ${input('aboutManifestoTitle','右側宣言標題',true)}
+        ${input('aboutManifestoBody','右側宣言說明',true)}
+        ${input('aboutFocusLabel','核心欄標籤')}
+        ${input('aboutFocusValue','核心欄內容')}
+        ${input('aboutFormatLabel','形式欄標籤')}
+        ${input('aboutFormatValue','形式欄內容')}
+        ${input('aboutPrincipleLabel','原則欄標籤')}
+        ${input('aboutPrincipleValue','原則欄內容')}
+        ${input('aboutPeopleEyebrow','人物區小標')}
+        ${input('aboutPeopleTitle','人物區標題')}
+        ${input('aboutPeopleSubtitle','人物區說明',true)}
+        ${input('aboutDisclaimer','關於頁醫療聲明',true)}
+
+        <div class="people-admin-wrap">
+          <div class="people-admin-head">
+            <div>
+              <h4>人物與學經歷</h4>
+              <p>可新增多人、排序、隱藏；每個人物可維護角色、專長、學歷、經歷與照片 URL。</p>
+            </div>
+            <button class="top-action" id="newPersonBtn" type="button">＋ 新增人物</button>
+          </div>
+
+          <div class="people-admin-grid">
+            <div class="people-list" id="peopleList"></div>
+
+            <div class="person-form">
+              <input type="hidden" id="personId">
+              <div class="person-form-row">
+                <div class="site-field"><label>姓名</label><input id="personName" placeholder="例如：Lin Che-Kai"></div>
+                <div class="site-field"><label>角色 / 職稱</label><input id="personRole" placeholder="例如：Editor · Medical Student"></div>
+              </div>
+
+              <div class="site-field"><label>人物簡介</label><textarea id="personBio" placeholder="簡短介紹這個人與 SIGN WELL 的角色。"></textarea></div>
+              <div class="site-field"><label>照片 URL（選填）</label><input id="personPhoto" placeholder="https://..."></div>
+              <div class="site-field"><label>專長標籤（逗號分隔）</label><input id="personExpertise" placeholder="臨床推理, 預防醫學, 醫療科技"></div>
+
+              <div class="person-form-row">
+                <div class="site-field"><label>學歷（每行一項）</label><textarea id="personEducation" placeholder="中國醫藥大學 醫學系&#10;..."></textarea></div>
+                <div class="site-field"><label>經歷（每行一項）</label><textarea id="personExperience" placeholder="SIGN WELL Editor&#10;..."></textarea></div>
+              </div>
+
+              <label class="person-active"><input type="checkbox" id="personActive" checked> 顯示在公開「關於我們」頁</label>
+
+              <div class="person-form-actions">
+                <button class="top-action primary" id="savePersonBtn" type="button">儲存人物</button>
+                <button class="top-action" id="clearPersonBtn" type="button">清除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">文章頁</div>
+        ${input('articleBrand','文章作者／品牌列')}
+        ${input('minutesReadSuffix','閱讀時間文字')}
+        ${input('updatedLabel','更新日期文字')}
+        ${input('shareLabel','分享按鈕')}
+        ${input('copyLinkLabel','複製連結按鈕')}
+        ${input('tocTitle','文章目錄標題')}
+      </div>
+
+      <div class="site-section">
+        <div class="site-section-title">頁尾與搜尋</div>
+        ${input('footerTagline','頁尾標語',true)}
+        ${input('footerDisclaimer','頁尾醫療聲明',true)}
+        ${input('searchPlaceholder','搜尋框提示')}
+      </div>
+
+      <div class="site-text-actions">
+        <button class="top-action primary" id="saveSiteText">儲存網站文字</button>
+        <button class="top-action online" id="publishSiteText">儲存並發布到網站</button>
+        <button class="top-action" id="resetSiteText">恢復預設文字</button>
+      </div>
+      <div class="site-publish-hint">
+        公開站優先讀取 <b>public-data.json</b>。人物資料也包含在同一份 bundle，因此跨裝置 CMS、GitHub Pages 與 About 頁使用同一來源。
+      </div>
+    </section>
+
+    <aside class="site-preview-box">
+      <div class="live-preview-toolbar">
+        <div>
+          <strong>更改後即時預覽</strong>
+          <span>尚未發布的輸入也會立即顯示</span>
+        </div>
+        <div class="live-preview-tabs">
+          <button class="active" type="button" data-live-preview-tab="home">首頁</button>
+          <button type="button" data-live-preview-tab="about">關於</button>
+        </div>
+      </div>
+      <div class="live-browser">
+        <div class="live-browser-bar"><i></i><i></i><i></i><div class="live-browser-url">980510linz.github.io/-/</div></div>
+        <div class="live-preview-stage" id="liveSitePreview"></div>
+      </div>
+      <div class="live-preview-unsaved"><i></i>編輯中預覽；按「儲存並發布到網站」後才會公開。</div>
+    </aside>
+  </div>`;
+
+  const collect=()=>{
+    $$('[data-site-key]').forEach(el=>{data.siteText[el.dataset.siteKey]=el.value});
+    persist(true);
+    syncPublicSnapshot();
+    $('#saveState').textContent='網站文字已儲存 ✓';
+    $('#saveState').style.color='#6f8f86';
+  };
+
+  let livePreviewMode='home';
+  const livePreviewInitials=name=>{
+    const clean=String(name||'').trim();
+    if(!clean)return 'SW';
+    const parts=clean.split(/\s+/).filter(Boolean);
+    return parts.length>1?(parts[0][0]+parts[parts.length-1][0]).toUpperCase():clean.slice(0,2).toUpperCase();
+  };
+  const renderLivePreview=()=>{
+    const box=$('#liveSitePreview');
+    if(!box)return;
+    const s=data.siteText||{};
+    const visiblePeople=(data.people||[]).filter(p=>p&&p.active!==false).slice().sort((a,b)=>(a.order??999)-(b.order??999)).slice(0,3);
+    const nav=`<div class="live-preview-nav">
+      <span class="live-preview-brand">${escapeHTML(s.brandEnglish||'SIGN WELL')}</span>
+      <div class="live-preview-navlinks">
+        <span>${escapeHTML(s.navArticles||'文章')}</span>
+        <span>${escapeHTML(s.navTopics||'主題')}</span>
+        <span>${escapeHTML(s.navAbout||'關於我們')}</span>
+      </div>
+    </div>`;
+
+    if(livePreviewMode==='about'){
+      box.innerHTML=nav+`
+        <div class="live-preview-eyebrow">${escapeHTML(s.aboutEyebrow||'ABOUT SIGN WELL')}</div>
+        <div class="live-preview-title">${escapeHTML(s.aboutTitle||'關於我們')}</div>
+        <div class="live-preview-copy">${escapeHTML(s.aboutBody||'')}</div>
+        <div class="live-preview-hero-card">
+          <strong>${escapeHTML(s.aboutManifestoTitle||'')}</strong>
+          <span>${escapeHTML(s.aboutManifestoBody||'')}</span>
+        </div>
+        <div class="live-preview-about-values">
+          <div><span>${escapeHTML(s.aboutFocusLabel||'核心')}</span><b>${escapeHTML(s.aboutFocusValue||'')}</b></div>
+          <div><span>${escapeHTML(s.aboutFormatLabel||'形式')}</span><b>${escapeHTML(s.aboutFormatValue||'')}</b></div>
+          <div><span>${escapeHTML(s.aboutPrincipleLabel||'原則')}</span><b>${escapeHTML(s.aboutPrincipleValue||'')}</b></div>
+        </div>
+        <div style="margin-top:16px">
+          <div class="live-preview-eyebrow">${escapeHTML(s.aboutPeopleEyebrow||'PEOPLE')}</div>
+          <div style="margin-top:5px;color:#3c596d;font:500 17px/1.1 Georgia,'Noto Serif TC',serif">${escapeHTML(s.aboutPeopleTitle||'我們是誰')}</div>
+        </div>
+        <div class="live-preview-people">
+          ${visiblePeople.length?visiblePeople.map(p=>`
+            <div class="live-preview-person">
+              <div class="live-preview-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(livePreviewInitials(p.name))}</div>
+              <div><strong>${escapeHTML(p.name||'未命名')}</strong><span>${escapeHTML(p.role||((p.education||[])[0]||''))}</span></div>
+            </div>`).join(''):'<div class="live-preview-copy">尚未新增公開人物</div>'}
+        </div>`;
+      return;
+    }
+
+    box.innerHTML=nav+`
+      <div class="live-preview-eyebrow">${escapeHTML(s.homeEyebrow||'')}</div>
+      <div class="live-preview-title">${escapeHTML(s.homeTitle1||'')}<br>${escapeHTML(s.homeTitle2||'')}</div>
+      <div class="live-preview-copy">${escapeHTML(s.homeSubtitle||'')}</div>
+      <div class="live-preview-hero-card">
+        <strong>${escapeHTML(s.homeCardTitle||'')}</strong>
+        <span>${escapeHTML(s.homeCardBody||'')}</span>
+      </div>
+      <div style="margin-top:22px">
+        <div class="live-preview-eyebrow">${escapeHTML(s.dailyEyebrow||'')}</div>
+        <div style="margin-top:7px;color:#3c596d;font:500 18px/1.1 Georgia,'Noto Serif TC',serif">${escapeHTML(s.dailyTitle||'')}</div>
+        <div class="live-preview-copy" style="margin-top:5px">${escapeHTML(s.dailyDescription||'')}</div>
+      </div>`;
+  };
+
+  const splitLines=v=>String(v||'').split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const splitTags=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const initials=name=>{
+    const clean=String(name||'').trim();
+    if(!clean)return 'SW';
+    const parts=clean.split(/\s+/).filter(Boolean);
+    return parts.length>1?(parts[0][0]+parts[parts.length-1][0]).toUpperCase():clean.slice(0,2).toUpperCase();
+  };
+
+  const sortedPeople=()=>data.people.slice().sort((a,b)=>(a.order??999)-(b.order??999));
+
+  const clearPersonForm=()=>{
+    $('#personId').value='';
+    $('#personName').value='';
+    $('#personRole').value='';
+    $('#personBio').value='';
+    $('#personPhoto').value='';
+    $('#personExpertise').value='';
+    $('#personEducation').value='';
+    $('#personExperience').value='';
+    $('#personActive').checked=true;
+  };
+
+  const loadPerson=id=>{
+    const p=data.people.find(x=>String(x.id)===String(id));
+    if(!p)return;
+    $('#personId').value=p.id;
+    $('#personName').value=p.name||'';
+    $('#personRole').value=p.role||'';
+    $('#personBio').value=p.bio||'';
+    $('#personPhoto').value=p.photo||'';
+    $('#personExpertise').value=(p.expertise||[]).join(', ');
+    $('#personEducation').value=(p.education||[]).join('\n');
+    $('#personExperience').value=(p.experience||[]).join('\n');
+    $('#personActive').checked=p.active!==false;
+    $('#personName').focus();
+  };
+
+  const renderPeopleList=()=>{
+    const list=$('#peopleList');
+    const arr=sortedPeople();
+    if(!arr.length){
+      list.innerHTML='<div class="people-empty">尚未新增人物。按「新增人物」建立第一張公開人物卡。</div>';
+      return;
+    }
+    list.innerHTML=arr.map((p,i)=>`
+      <div class="person-admin-row">
+        <div class="person-admin-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
+        <div class="person-admin-copy">
+          <strong>${escapeHTML(p.name||'未命名人物')} ${p.active===false?'<span class="topic-badge">已隱藏</span>':''}</strong>
+          <span>${escapeHTML(p.role||'尚未填寫角色')} · ${(p.education||[]).length} 項學歷 · ${(p.experience||[]).length} 項經歷</span>
+        </div>
+        <div class="person-admin-actions">
+          <button type="button" data-person-edit="${escapeHTML(p.id)}" title="編輯">編</button>
+          <button type="button" data-person-up="${escapeHTML(p.id)}" title="上移">↑</button>
+          <button type="button" data-person-down="${escapeHTML(p.id)}" title="下移">↓</button>
+          <button type="button" data-person-del="${escapeHTML(p.id)}" title="刪除">×</button>
+        </div>
+      </div>`).join('');
+
+    $$('[data-person-edit]').forEach(b=>b.onclick=()=>loadPerson(b.dataset.personEdit));
+    $$('[data-person-del]').forEach(b=>b.onclick=()=>{
+      const p=data.people.find(x=>String(x.id)===String(b.dataset.personDel));
+      if(!p||!confirm(`刪除人物「${p.name||'未命名'}」？`))return;
+      data.people=data.people.filter(x=>String(x.id)!==String(p.id));
+      data.people.forEach((x,i)=>x.order=i);
+      persist(true);
+      renderPeopleList();
+      renderLivePreview();
+      clearPersonForm();
+      showToast('人物已刪除');
+    });
+    $$('[data-person-up],[data-person-down]').forEach(b=>b.onclick=()=>{
+      const id=b.dataset.personUp||b.dataset.personDown;
+      const arr=sortedPeople();
+      const idx=arr.findIndex(x=>String(x.id)===String(id));
+      if(idx<0)return;
+      const next=b.dataset.personUp!==undefined?Math.max(0,idx-1):Math.min(arr.length-1,idx+1);
+      if(next===idx)return;
+      [arr[idx],arr[next]]=[arr[next],arr[idx]];
+      arr.forEach((x,i)=>x.order=i);
+      data.people=arr;
+      persist(true);
+      renderPeopleList();
+      renderLivePreview();
+    });
+  };
+
+  $$('[data-site-key]').forEach(el=>el.addEventListener('input',()=>{
+    data.siteText[el.dataset.siteKey]=el.value;
+    renderLivePreview();
+    clearTimeout(saveTimer);
+    $('#saveState').textContent='儲存中…';
+    saveTimer=setTimeout(()=>collect(),650);
+  }));
+
+  $('#newPersonBtn').onclick=()=>{clearPersonForm();$('#personName').focus()};
+  $('#clearPersonBtn').onclick=clearPersonForm;
+  $('#savePersonBtn').onclick=()=>{
+    const name=$('#personName').value.trim();
+    if(!name){showToast('請先填人物姓名');$('#personName').focus();return}
+
+    const existingId=$('#personId').value.trim();
+    const existing=existingId?data.people.find(x=>String(x.id)===existingId):null;
+
+    const person={
+      id:existing?.id||('person-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)),
+      name,
+      role:$('#personRole').value.trim(),
+      bio:$('#personBio').value.trim(),
+      photo:$('#personPhoto').value.trim(),
+      expertise:splitTags($('#personExpertise').value),
+      education:splitLines($('#personEducation').value),
+      experience:splitLines($('#personExperience').value),
+      active:$('#personActive').checked,
+      order:existing?.order??data.people.length
+    };
+
+    if(existing){
+      const idx=data.people.findIndex(x=>String(x.id)===String(existing.id));
+      data.people[idx]=person;
+    }else{
+      data.people.push(person);
+    }
+
+    data.people.sort((a,b)=>(a.order??999)-(b.order??999));
+    data.people.forEach((x,i)=>x.order=i);
+    persist(true);
+    renderPeopleList();
+    renderLivePreview();
+    loadPerson(person.id);
+    showToast(existing?'人物已更新 · 文章發布者選單已同步':'人物已新增 · 可立即選為文章發布者');
+  };
+
   $('#saveSiteText').onclick=()=>{collect();showToast('網站文字已儲存')};
-  $('#resetSiteText').onclick=()=>{if(!confirm('要把公開網站文字恢復為預設內容嗎？'))return;data.siteText=clone(DEFAULT_SITE_TEXT);persist();syncPublicSnapshot();renderSiteText();showToast('已恢復預設文字')};
-  $('#publishSiteText').onclick=async()=>{collect();if(!githubToken&&!hasRememberedGithubToken()){nav('export');showToast('第一次請先設定 GitHub Token');return}if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();if(!githubToken){nav('export');showToast('GitHub Token 尚未解鎖');return}try{await publishGitHub();showToast('網站文字與文章已同步')}catch(e){showToast('發布失敗：'+e.message)}};
+
+  $('#resetSiteText').onclick=()=>{
+    if(!confirm('要把公開網站文字恢復為預設內容嗎？人物資料不會被刪除。'))return;
+    data.siteText=clone(DEFAULT_SITE_TEXT);
+    persist();
+    syncPublicSnapshot();
+    renderSiteText();
+    showToast('已恢復預設文字');
+  };
+
+  $('#publishSiteText').onclick=async()=>{
+    collect();
+    if(!githubToken&&!hasRememberedGithubToken()){
+      nav('export');
+      showToast('第一次請先設定 GitHub Token');
+      return;
+    }
+    if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();
+    if(!githubToken){
+      nav('export');
+      showToast('GitHub Token 尚未解鎖');
+      return;
+    }
+    try{
+      await publishGitHub();
+      showToast('網站文字、人物與文章已同步');
+    }catch(e){
+      showToast('發布失敗：'+e.message);
+    }
+  };
+
+  $$('[data-live-preview-tab]').forEach(btn=>btn.onclick=()=>{
+    livePreviewMode=btn.dataset.livePreviewTab||'home';
+    $$('[data-live-preview-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+    renderLivePreview();
+  });
+
+  renderPeopleList();
+  renderLivePreview();
 }
-function renderExport(){const pub=data.articles.filter(a=>a.status==='Published'),drafts=data.articles.length-pub.length,remembered=hasRememberedGithubToken(),ready=Boolean(githubToken);$('#view').innerHTML=`<div class="page-head"><div><h1>線上發布</h1><p>公開站設定已固定。之後只要登入 CMS、撰寫文章並發布，就能直接同步到 SIGN WELL。</p></div></div><div class="stats"><div class="stat"><span>已發布</span><strong>${pub.length}</strong></div><div class="stat"><span>草稿</span><strong>${drafts}</strong></div><div class="stat"><span>發布目標</span><strong style="font-size:20px">980510linz/-</strong></div><div class="stat"><span>資料檔案</span><strong style="font-size:16px">v11 JSON + 主題 + 圖片資產</strong></div></div><div class="publish-grid"><section class="publish-card"><h3>發布到 SIGN WELL</h3><p>GitHub 路徑已鎖定為你的正式公開網站。第一次貼入 Token 並勾選「記住這台裝置」後，之後只要完成 CMS 雙重登入即可自動解鎖，不必重填擁有者、Repository 或 Branch。</p><div class="connection-summary"><div class="connection-row"><span>公開網站</span><strong>https://980510linz.github.io/-/</strong></div><div class="connection-row"><span>GitHub 發布目標</span><code>980510linz/- · main · articles/index.json + assets/uploads/</code></div><div class="connection-row"><span>GitHub 憑證</span><strong id="tokenState" class="token-state ${ready?'ready':''}">${ready?'已解鎖':remembered?'已記住，重新登入即可解鎖':'尚未設定'}</strong></div></div><div class="token-setup"><label class="token-label">GitHub 細粒度存取權杖（Fine-grained PAT）<input id="ghToken" type="password" autocomplete="off" placeholder="${ready?'目前工作階段已可使用；不需重新輸入':'github_pat_…'}"></label><label class="remember-row"><input type="checkbox" id="ghRemember" checked><span>記住這台裝置。Token 會用你兩階段登入時輸入的資料經 PBKDF2 + AES-GCM 加密後存於此瀏覽器；不會寫進 HTML 或 GitHub。純前端仍不能等同硬體金鑰或伺服器端秘密儲存。</span></label></div><div class="publish-actions"><button class="top-action" id="ghTest">測試連線</button><button class="top-action online" id="ghPublish">發布到 SIGN WELL</button><button class="top-action" id="ghSync">從 GitHub 同步</button></div><div class="publish-status" id="ghStatus">${ready?'✓ GitHub 憑證已從這台裝置解鎖。':'第一次請貼入 Token，並先按「測試連線」。'}</div><div class="integrity-note" id="integrityNote"><b>資料保護：</b>第一次在新裝置使用時，建議先按 <b>從 GitHub 同步</b>，把目前公開站文章同步進 CMS，避免用空白本機資料覆蓋既有文章。</div><details class="advanced-box"><summary>進階設定 · 一般不需要修改</summary><div class="advanced-body"><div><span>擁有者</span><code>980510linz</code></div><div><span>Repository</span><code>-</code></div><div><span>Branch</span><code>main</code></div><div><span>文章資料</span><code>articles/index.json + articles/*.json</code></div><div><span>前台頁面</span><code>index.html · topics.html · share.html</code></div><div><span>統一前台資料</span><code>public-data.json</code></div><div><span>網站文字備援</span><code>site-content.js</code></div><div><span>所需權限</span><code>Contents：讀取與寫入</code></div></div></details></section><aside class="publish-card"><h3>資料檢查</h3><p>CMS 只會輸出狀態為「已發布」的文章；草稿不會出現在公開網站。</p><div class="file-map"><div><code>本機文章</code><span class="file-ok">${data.articles.length}</span></div><div><code>已發布</code><span class="file-ok">${pub.length}</span></div><div><code>未公開草稿</code><span>${drafts}</span></div><div><code>公開主題</code><span class="file-ok">${(data.topics||[]).filter(x=>x.active!==false).length}</span></div><div><code>文章格式</code><span class="file-ok">v11 · 每篇獨立 JSON</span></div><div><code>網站文字格式</code><span class="file-ok">window.SIGNWELL_SITE_TEXT</span></div></div><div class="security-note"><b>公開站資料流：</b><br>CMS → GitHub API → <code>public-data.json + articles/index.json + topics/index.json + articles/*.json + assets/uploads/*</code> → GitHub Pages → <code>https://980510linz.github.io/-/</code></div></aside></div>`;$('#exportJs')&&($('#exportJs').onclick=exportJS);bindGithubPublisher()}
+function renderExport(){const pub=data.articles.filter(a=>a.status==='Published'),drafts=data.articles.length-pub.length,remembered=hasRememberedGithubToken(),ready=Boolean(githubToken);$('#view').innerHTML=`<div class="page-head"><div><h1>線上發布</h1><p>公開站設定已固定。之後只要登入 CMS、撰寫文章並發布，就能直接同步到 SIGN WELL。</p></div></div><div class="stats"><div class="stat"><span>已發布</span><strong>${pub.length}</strong></div><div class="stat"><span>草稿</span><strong>${drafts}</strong></div><div class="stat"><span>發布目標</span><strong style="font-size:20px">980510linz/-</strong></div><div class="stat"><span>資料檔案</span><strong style="font-size:16px">v11 JSON + 主題 + 圖片資產</strong></div></div><div class="publish-grid"><section class="publish-card"><h3>GitHub 發布設定</h3><p>這裡只負責 GitHub 憑證與同步設定；文章、主題與網站文字請直接在各自頁面按「發佈到網頁」，不需要回來再按第二次。GitHub 路徑已鎖定為你的正式公開網站。第一次貼入 Token 並勾選「記住這台裝置」後，之後只要完成 CMS 雙重登入即可自動解鎖，不必重填擁有者、Repository 或 Branch。</p><div class="connection-summary"><div class="connection-row"><span>公開網站</span><strong>https://980510linz.github.io/-/</strong></div><div class="connection-row"><span>GitHub 發布目標</span><code>980510linz/- · main · articles/index.json + assets/uploads/</code></div><div class="connection-row"><span>GitHub 憑證</span><strong id="tokenState" class="token-state ${ready?'ready':''}">${ready?'已解鎖':remembered?'已記住，重新登入即可解鎖':'尚未設定'}</strong></div></div><div class="token-setup"><label class="token-label">GitHub 細粒度存取權杖（Fine-grained PAT）<input id="ghToken" type="password" autocomplete="off" placeholder="${ready?'目前工作階段已可使用；不需重新輸入':'github_pat_…'}"></label><label class="remember-row"><input type="checkbox" id="ghRemember" checked><span>記住這台裝置。Token 會用你兩階段登入時輸入的資料經 PBKDF2 + AES-GCM 加密後存於此瀏覽器；不會寫進 HTML 或 GitHub。純前端仍不能等同硬體金鑰或伺服器端秘密儲存。</span></label></div><div class="publish-actions"><button class="top-action" id="ghTest">測試連線</button><button class="top-action" id="ghSync">從 GitHub 同步</button></div><div class="publish-status" id="ghStatus">${ready?'✓ GitHub 憑證已從這台裝置解鎖。':'第一次請貼入 Token，並先按「測試連線」。'}</div><div class="integrity-note" id="integrityNote"><b>資料保護：</b>第一次在新裝置使用時，建議先按 <b>從 GitHub 同步</b>，把目前公開站文章同步進 CMS，避免用空白本機資料覆蓋既有文章。</div><details class="advanced-box"><summary>進階設定 · 一般不需要修改</summary><div class="advanced-body"><div><span>擁有者</span><code>980510linz</code></div><div><span>Repository</span><code>-</code></div><div><span>Branch</span><code>main</code></div><div><span>文章資料</span><code>articles/index.json + articles/*.json</code></div><div><span>前台頁面</span><code>index.html · topics.html · about.html · share.html · newsletter.html</code></div><div><span>統一前台資料</span><code>public-data.json</code></div><div><span>網站文字備援</span><code>site-content.js</code></div><div><span>所需權限</span><code>Contents：讀取與寫入</code></div></div></details></section><aside class="publish-card"><h3>資料檢查</h3><p>CMS 只會輸出狀態為「已發布」的文章；草稿不會出現在公開網站。</p><div class="file-map"><div><code>本機文章</code><span class="file-ok">${data.articles.length}</span></div><div><code>已發布</code><span class="file-ok">${pub.length}</span></div><div><code>未公開草稿</code><span>${drafts}</span></div><div><code>公開主題</code><span class="file-ok">${(data.topics||[]).filter(x=>x.active!==false).length}</span></div><div><code>文章格式</code><span class="file-ok">v11 · 每篇獨立 JSON</span></div><div><code>網站文字格式</code><span class="file-ok">window.SIGNWELL_SITE_TEXT</span></div></div><div class="security-note"><b>公開站資料流：</b><br>CMS → GitHub API → <code>public-data.json + articles/index.json + topics/index.json + articles/*.json + assets/uploads/*</code> → GitHub Pages → <code>https://980510linz.github.io/-/</code></div></aside></div>`;$('#exportJs')&&($('#exportJs').onclick=exportJS);bindGithubPublisher()}
 async function saveBlob(blob,name){const file=new File([blob],name,{type:blob.type||'application/octet-stream'});try{if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:name});return}}catch(e){if(e?.name==='AbortError')return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportJS(){const pub=data.articles.filter(a=>a.status==='Published');const text='window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n';saveBlob(new Blob([text],{type:'text/javascript;charset=utf-8'}),'articles.js');showToast(`已準備 ${pub.length} 篇文章`)}
 function exportBackup(){saveBlob(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),'signwell-cms-backup.json')}
-function importFile(file){const reader=new FileReader();reader.onload=()=>{try{let text=String(reader.result||''),obj;if(file.name.endsWith('.js')){let m=text.match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(m)obj={...data,articles:JSON.parse(m[1])};else{m=text.match(/window\.SIGNWELL_SITE_TEXT\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('JS 格式不正確');obj={...data,siteText:{...DEFAULT_SITE_TEXT,...JSON.parse(m[1])}}}}else obj=JSON.parse(text);if(!obj||!Array.isArray(obj.articles))throw new Error('備份檔格式不正確');data={...obj,siteText:{...DEFAULT_SITE_TEXT,...(obj.siteText||data.siteText||{})}};persist();syncPublicSnapshot();showToast('匯入完成');nav('articles')}catch(e){showToast('匯入失敗：檔案格式不符')}};reader.readAsText(file)}
-$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$$('[data-new]').forEach(b=>b.onclick=newArticle);$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=publishNow;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=()=>{data.articles=data.articles.filter(a=>a.id!==deleteId);persist();syncPublicSnapshot();$('#confirmModal').classList.remove('show');deleteId=null;renderView();showToast('文章已刪除')};document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#previewOverlay').classList.remove('show');$('#confirmModal').classList.remove('show')}});['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,()=>{if(!$('#cms').classList.contains('hidden'))localStorage.setItem(ACTKEY,String(Date.now()))},{passive:true}));setInterval(checkAutoLock,60000);
+function importFile(file){const reader=new FileReader();reader.onload=()=>{try{let text=String(reader.result||''),obj;if(file.name.endsWith('.js')){let m=text.match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(m)obj={...data,articles:JSON.parse(m[1])};else{m=text.match(/window\.SIGNWELL_SITE_TEXT\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('JS 格式不正確');obj={...data,siteText:{...DEFAULT_SITE_TEXT,...JSON.parse(m[1])}}}}else obj=JSON.parse(text);if(!obj||!Array.isArray(obj.articles))throw new Error('備份檔格式不正確');data=normalizeState({...obj,people:Array.isArray(obj.people)?obj.people:(data.people||[]),siteText:{...DEFAULT_SITE_TEXT,...(obj.siteText||data.siteText||{})}});persist();syncPublicSnapshot();showToast('匯入完成');nav('articles')}catch(e){showToast('匯入失敗：檔案格式不符')}};reader.readAsText(file)}
+$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=null;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=()=>{data.articles=data.articles.filter(a=>a.id!==deleteId);persist();syncPublicSnapshot();$('#confirmModal').classList.remove('show');deleteId=null;renderView();showToast('文章已刪除')};document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    $('#previewOverlay').classList.remove('show');
+    $('#confirmModal').classList.remove('show');
+    toggleFormatPopover(false);
+  }
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='n'&&!$('#cms').classList.contains('hidden')){
+    e.preventDefault();
+    newArticle();
+  }
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='s'&&currentId){
+    e.preventDefault();
+    saveNow();
+  }
+});['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,()=>{if(!$('#cms').classList.contains('hidden'))localStorage.setItem(ACTKEY,String(Date.now()))},{passive:true}));setInterval(checkAutoLock,60000);
+window.addEventListener('pagehide',()=>{
+  if(cmsCloudDirty&&!cmsCloudBusy){
+    cmsCloudPushNow(cmsCloudChangeSeq);
+  }
+});
 function optimize(){const low=Number(navigator.deviceMemory||8)<4||matchMedia('(prefers-reduced-motion:reduce)').matches;if(low)document.body.classList.add('lite')}
 
 
@@ -1864,7 +4081,7 @@ async function testGithubConnection(){
     return false;
   }
 }
-async function syncFromGitHub(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){status.textContent='請先貼入或解鎖 GitHub Token。';return}githubToken=token;status.textContent='正在讀取公開站 articles.js…';try{const remote=await fetchRemoteArticles(token),remoteSite=await fetchRemoteSiteText(token),localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);syncPublicSnapshot();localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步遠端 ${remote.articles.length} 篇文章與網站文字；保留本機草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}}
+async function syncFromGitHub(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){status.textContent='請先貼入或解鎖 GitHub Token。';return}githubToken=token;status.textContent='正在讀取公開站 articles.js…';try{const remote=await fetchRemoteArticles(token),remoteSite=await fetchRemoteSiteText(token),localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,people:data.people||[],siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);syncPublicSnapshot();localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步遠端 ${remote.articles.length} 篇文章與網站文字；保留本機草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}}
 async function publishGitHub(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){if(status)status.textContent='請先貼入或解鎖 GitHub Token。';return false}githubToken=token;if(status)status.textContent='正在核對遠端文章與網站文字…';let remoteArticles=[],articleSha=null,siteSha=null;try{const existing=await fetchRemoteArticles(token);articleSha=existing.sha;remoteArticles=existing.articles}catch(e){if(!/Not Found|404/i.test(e.message))throw e}try{const rs=await fetchRemoteSiteText(token);siteSha=rs.sha}catch(e){if(!/Not Found|404/i.test(e.message))throw e}
   const alreadySynced=localStorage.getItem(SYNC_KEY)==='1',localIds=new Set(data.articles.map(a=>a.id)),missing=remoteArticles.filter(a=>!localIds.has(a.id));if(!alreadySynced&&missing.length){throw new Error(`安全阻擋：公開站有 ${missing.length} 篇文章不在這台裝置。請先按「從 GitHub 同步」，避免覆蓋遺失。`)}
   if(status)status.textContent='正在提交文章資料…';const articlePayload={message:'Publish SIGN WELL articles '+new Date().toISOString().slice(0,19).replace('T',' '),content:utf8Base64(publishedJSText()),branch:PUBLIC_GITHUB.branch};if(articleSha)articlePayload.sha=articleSha;await githubRequest(githubContentURL(PUBLIC_GITHUB.path),token,{method:'PUT',body:JSON.stringify(articlePayload)});
@@ -1872,19 +4089,70 @@ async function publishGitHub(){const status=$('#ghStatus'),token=currentTokenInp
   localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent='✓ 文章與網站文字已提交到 GitHub。GitHub Pages 會在短時間內更新。';showToast('已發布到 SIGN WELL');return true}
 function bindGithubPublisher(){const tokenInput=$('#ghToken'),status=$('#ghStatus');$('#exportSiteJs')?.addEventListener('click',()=>saveBlob(new Blob([siteContentJSText()],{type:'text/javascript;charset=utf-8'}),'site-content.js'));if(githubToken&&tokenInput)tokenInput.placeholder='目前工作階段已解鎖，不需重新輸入';$('#ghPublish')?.addEventListener('click',async()=>{try{await publishGitHub()}catch(e){if(status)status.textContent='發布失敗：'+e.message;showToast('GitHub 發布失敗')}});$('#ghTest')?.addEventListener('click',testGithubConnection);$('#ghSync')?.addEventListener('click',syncFromGitHub);$('#ghForget')?.addEventListener('click',()=>{forgetGithubToken();if(tokenInput)tokenInput.value='';if($('#tokenState')){$('#tokenState').textContent='尚未設定';$('#tokenState').classList.remove('ready')}if(status)status.textContent='已從這台裝置移除記住的 token。'});tokenInput?.addEventListener('input',()=>{if(tokenInput.value.trim()&&status)status.textContent='Token 已輸入；建議先按「測試連線」。'})}
 async function publishOnlineFromEditor(){
-  if(!publishNow())return;
-  const article=getCurrent();
-  if(!githubToken&&!hasRememberedGithubToken()){nav('export');showToast('第一次請到「線上發布」設定 GitHub Token');return}
-  if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();
-  if(!githubToken){nav('export');showToast('GitHub Token 尚未解鎖，請重新登入或設定');return}
+  const sourceEl=$('#onlineBtn');
+  const before=getCurrent();
+  const previousStatus=before?.status||'Draft';
+
+  if(sourceEl){
+    sourceEl.disabled=true;
+    sourceEl.dataset.oldText=sourceEl.textContent;
+    sourceEl.textContent='發佈中…';
+  }
+
+  let article=null;
   try{
+    if(!publishNow())return;
+    article=getCurrent();
+
+    if(!githubToken&&hasRememberedGithubToken()){
+      await restoreRememberedGithubToken();
+    }
+
+    if(!githubToken){
+      if(article){
+        article.status=previousStatus;
+        if($('#status'))$('#status').value=previousStatus;
+        persist(true);
+      }
+      nav('export');
+      showToast('第一次請先完成 GitHub 連線設定；之後文章只要按「發佈到網頁」即可');
+      return;
+    }
+
+    $('#saveState').textContent='正在發佈到網頁…';
+    $('#saveState').style.color='#7f8d99';
+
     const ok=await publishGitHub();
-    if(ok)await maybeAutoSendArticleNewsletter(article);
+    if(!ok)throw new Error('GitHub 發布未完成');
+
+    // Make the published state immediately available to the other CMS devices.
+    try{
+      await cmsCloudPushNow(cmsCloudChangeSeq);
+    }catch(_){}
+
+    $('#saveState').textContent='已發佈到網頁 ✓';
+    $('#saveState').style.color='#6f8f86';
+    showToast('已直接發佈到 SIGN WELL 網頁');
+    showConfetti(sourceEl);
+
+    await maybeAutoSendArticleNewsletter(article);
   }catch(e){
-    nav('export');
-    const s=$('#ghStatus');
-    if(s)s.textContent='發布失敗：'+e.message;
-    showToast('GitHub 發布失敗');
+    if(article){
+      article.status=previousStatus;
+      if($('#status'))$('#status').value=previousStatus;
+      persist(true);
+      try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
+    }
+
+    $('#saveState').textContent='發佈失敗';
+    $('#saveState').style.color='#a65c65';
+    showToast('發佈失敗：'+(e?.message||e));
+  }finally{
+    if(sourceEl){
+      sourceEl.disabled=false;
+      sourceEl.textContent=sourceEl.dataset.oldText||'發佈到網頁';
+      delete sourceEl.dataset.oldText;
+    }
   }
 }
 
@@ -1913,9 +4181,9 @@ async function checkPublicFrontFiles(token){
 function v10Hash(s=''){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
 function v10Plain(html=''){const d=document.createElement('div');d.innerHTML=html;return (d.textContent||'').replace(/\s+/g,' ').trim()}
 function v10ReadingTime(a){return Math.max(1,Math.round(v10Plain(a.content||'').replace(/\s+/g,'').length/450))}
-function v10Revision(a){return v10Hash(JSON.stringify([a.title,a.slug,a.category,a.type,a.excerpt,a.tags,a.cover,a.content,a.publishedAt,a.featured,a.status]))}
+function v10Revision(a){return v10Hash(JSON.stringify([a.title,a.slug,a.category,a.type,a.excerpt,a.tags,a.cover,a.content,a.publisherId,a.publishedAt,a.featured,a.status]))}
 function v10SafeSlug(a){return slugify(a.slug||a.title||a.id||('article-'+Date.now()))}
-function v10IndexMeta(a){const slug=v10SafeSlug(a),plain=v10Plain(a.content||'');return {id:a.id,title:a.title||'未命名文章',slug,excerpt:a.excerpt||plain.slice(0,180),category:a.category||'醫學筆記',type:a.type||'文章',cover:a.cover||'',tags:Array.isArray(a.tags)?a.tags:[],publishedAt:a.publishedAt||'',updatedAt:a.updatedAt||'',featured:Boolean(a.featured),status:'Published',readingTime:v10ReadingTime(a),searchText:plain.slice(0,700),revision:v10Revision(a),file:`articles/${slug}.json`}}
+function v10IndexMeta(a){const slug=v10SafeSlug(a),plain=v10Plain(a.content||'');return {id:a.id,title:a.title||'未命名文章',slug,excerpt:a.excerpt||plain.slice(0,180),category:a.category||'醫學筆記',type:a.type||'文章',cover:a.cover||'',tags:Array.isArray(a.tags)?a.tags:[],publisherId:String(a.publisherId||''),publishedAt:a.publishedAt||'',updatedAt:a.updatedAt||'',featured:Boolean(a.featured),status:'Published',readingTime:v10ReadingTime(a),searchText:plain.slice(0,700),revision:v10Revision(a),file:`articles/${slug}.json`}}
 function dataUrlParts(url=''){const m=String(url).match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,([A-Za-z0-9+/=\s]+)$/);return m?{mime:m[1].toLowerCase(),base64:m[2].replace(/\s/g,'')}:null}
 function extForMime(m=''){if(m.includes('webp'))return'webp';if(m.includes('png'))return'png';if(m.includes('gif'))return'gif';return'jpg'}
 async function v10CreateBlob(base64,token){return githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/blobs`,token,{method:'POST',body:JSON.stringify({content:base64,encoding:'base64'})})}
@@ -1970,7 +4238,19 @@ function publicBundlePayload(revision=Date.now()){
     revision:Number(revision),
     publishedAt:new Date().toISOString(),
     siteText:currentSiteTextPayload(),
-    topics:v11TopicPayload()
+    topics:v11TopicPayload(),
+    people:(data.people||[]).map((p,i)=>({
+      id:String(p.id||('person-'+i)),
+      name:String(p.name||''),
+      role:String(p.role||''),
+      bio:String(p.bio||''),
+      photo:String(p.photo||''),
+      expertise:Array.isArray(p.expertise)?p.expertise.map(String).filter(Boolean):[],
+      education:Array.isArray(p.education)?p.education.map(String).filter(Boolean):[],
+      experience:Array.isArray(p.experience)?p.experience.map(String).filter(Boolean):[],
+      order:Number.isFinite(Number(p.order))?Number(p.order):i,
+      active:p.active!==false
+    }))
   };
 }
 function publicBundleJSONText(bundle){return JSON.stringify(bundle,null,2)+'\n'}
@@ -1983,6 +4263,21 @@ function canonTopics(a){return JSON.stringify((a||[]).map((x,i)=>({
   active:x.active!==false
 })))}
 function canonSiteText(o){return JSON.stringify({...DEFAULT_SITE_TEXT,...(o||{})})}
+function canonPeople(a){
+  return JSON.stringify((Array.isArray(a)?a:[]).map((p,i)=>({
+    id:String(p.id||('person-'+i)),
+    name:String(p.name||''),
+    role:String(p.role||''),
+    bio:String(p.bio||''),
+    photo:String(p.photo||''),
+    expertise:Array.isArray(p.expertise)?p.expertise.map(String).filter(Boolean):[],
+    education:Array.isArray(p.education)?p.education.map(String).filter(Boolean):[],
+    experience:Array.isArray(p.experience)?p.experience.map(String).filter(Boolean):[],
+    order:Number.isFinite(Number(p.order))?Number(p.order):i,
+    active:p.active!==false
+  })))
+}
+
 async function verifyPublicBundle(expected,token){
   const file=await githubRequest(
     githubContentURL(PUBLIC_BUNDLE_PATH)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),
@@ -1994,6 +4289,7 @@ async function verifyPublicBundle(expected,token){
   if(Number(remote.revision)!==Number(expected.revision))throw new Error('public-data.json revision 不一致');
   if(canonTopics(remote.topics)!==canonTopics(expected.topics))throw new Error('主題內容驗證失敗');
   if(canonSiteText(remote.siteText)!==canonSiteText(expected.siteText))throw new Error('網站文字驗證失敗');
+  if(canonPeople(remote.people)!==canonPeople(expected.people))throw new Error('人物資料驗證失敗');
   return remote;
 }
 async function fetchRemotePublicBundle(token){
@@ -2055,8 +4351,8 @@ async function publishTopicsOnly(){
 }
 
 syncFromGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){status.textContent='請先貼入或解鎖 GitHub Token。';return}githubToken=token;status.textContent='正在讀取 GitHub 正式文章與主題…';try{const remote=await v10LoadRemoteArticles(token),remoteSite=await fetchRemoteSiteText(token);let remoteTopics=[],bundle=null;try{bundle=await fetchRemotePublicBundle(token)}catch(_){}
-if(bundle&&Array.isArray(bundle.topics)){remoteTopics=clone(bundle.topics);remoteSite.siteText={...DEFAULT_SITE_TEXT,...(bundle.siteText||{})}}
-else try{remoteTopics=await v11FetchTopicsRaw()}catch(_){const names=[...new Set(remote.articles.map(a=>a.category).filter(Boolean))];remoteTopics=names.map((name,i)=>({id:'topic-remote-'+i,name,slug:slugify(name),description:'瀏覽 '+name+' 相關文章與延伸整理。',order:i,active:true}))}const localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章與 ${remoteTopics.length} 個主題；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,topics:clone(remoteTopics),siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步 ${remote.articles.length} 篇文章、${remoteTopics.length} 個主題與網站文字；保留草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}};
+if(bundle&&Array.isArray(bundle.topics)){remoteTopics=clone(bundle.topics);remoteSite.siteText={...DEFAULT_SITE_TEXT,...(bundle.siteText||{})};remoteSite.people=Array.isArray(bundle.people)?clone(bundle.people):[]}
+else try{remoteTopics=await v11FetchTopicsRaw()}catch(_){const names=[...new Set(remote.articles.map(a=>a.category).filter(Boolean))];remoteTopics=names.map((name,i)=>({id:'topic-remote-'+i,name,slug:slugify(name),description:'瀏覽 '+name+' 相關文章與延伸整理。',order:i,active:true}))}const localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章與 ${remoteTopics.length} 個主題；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,topics:clone(remoteTopics),people:Array.isArray(remoteSite.people)?clone(remoteSite.people):(data.people||[]),siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步 ${remote.articles.length} 篇文章、${remoteTopics.length} 個主題與網站文字；保留草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}};
 publishGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){if(status)status.textContent='請先貼入或解鎖 GitHub Token。';return false}githubToken=token;if(status)status.textContent='正在準備 v10 發布資料…';let remoteIndex=[];try{remoteIndex=await v10FetchIndexRaw()}catch(_){}const alreadySynced=localStorage.getItem(SYNC_KEY)==='1';if(!alreadySynced&&remoteIndex.length){const localIds=new Set(data.articles.map(a=>a.id)),missing=remoteIndex.filter(a=>!localIds.has(a.id));if(missing.length)throw new Error(`安全阻擋：公開站有 ${missing.length} 篇文章不在這台裝置。請先按「從 GitHub 同步」。`)}
  const published=data.articles.filter(a=>a.status==='Published'),imageEntries=[],imageCache=new Map(),prepared=[];for(let i=0;i<published.length;i++){if(status)status.textContent=`正在處理文章與圖片 ${i+1}/${published.length}…`;prepared.push(await v10PrepareArticle(published[i],token,imageEntries,imageCache))}
  const metas=prepared.map(v10IndexMeta),entries=[...imageEntries],bundle=publicBundlePayload(Date.now());prepared.forEach(a=>entries.push({path:`articles/${v10SafeSlug(a)}.json`,mode:'100644',type:'blob',content:JSON.stringify(a,null,2)+'\n'}));entries.push({path:V10_INDEX_PATH,mode:'100644',type:'blob',content:JSON.stringify(metas,null,2)+'\n'});entries.push({path:V11_TOPICS_PATH,mode:'100644',type:'blob',content:JSON.stringify(bundle.topics,null,2)+'\n'});entries.push({path:PUBLIC_BUNDLE_PATH,mode:'100644',type:'blob',content:publicBundleJSONText(bundle)});entries.push({path:PUBLIC_GITHUB.sitePath,mode:'100644',type:'blob',content:siteContentJSText()});entries.push({path:PUBLIC_GITHUB.path,mode:'100644',type:'blob',content:'window.BLOG_ARTICLES = '+JSON.stringify(prepared,null,2)+';\n'});
@@ -2076,7 +4372,7 @@ function initCmsPremium(){
   const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target)}}),{threshold:.07});const scan=()=>document.querySelectorAll('.stat,.panel,.editor-main,.editor-side,.publish-card').forEach(el=>{if(el.dataset.fxBound)return;el.dataset.fxBound='1';el.classList.add('reveal-fx');io.observe(el)});new MutationObserver(scan).observe($('#view'),{childList:true,subtree:true});scan();
 }
 
-load();syncPublicSnapshot();optimize();initCmsPremium();setAuthStage(1);playOpeningWelcome();
+load();syncPublicSnapshot();optimize();initCmsPremium();bindCmsCloudRealtime();setAuthStage(1);playOpeningWelcome();
 try{
   const bc=new BroadcastChannel(ANALYTICS_CHANNEL);
   bc.onmessage=()=>{if(viewName==='dashboard'&&!$('#cms').classList.contains('hidden'))renderDashboard()};
