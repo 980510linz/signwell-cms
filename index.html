@@ -1044,7 +1044,7 @@ body.lite #lockScreen .lock-card{
 }
 .newsletter-panel h3{margin:0 0 6px;font-size:16px;color:#31495d}
 .newsletter-panel p{margin:0;color:#83919c;font-size:10.5px;line-height:1.65}
-.newsletter-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.newsletter-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
 .newsletter-metric{
   padding:16px;border-radius:20px;
   background:rgba(255,255,255,.32);
@@ -2517,6 +2517,51 @@ select:focus-visible{
   .analytics-range-thumb{transition:none!important}
 }
 
+
+.newsletter-pending-action{
+  margin:10px 0 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 13px;
+  border-radius:18px;
+  background:
+    radial-gradient(120px 60px at 8% 0%,rgba(255,255,255,.82),transparent 72%),
+    linear-gradient(150deg,rgba(255,248,225,.62),rgba(239,248,255,.46));
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.90),0 8px 22px rgba(74,110,136,.05);
+}
+.newsletter-pending-action div{
+  color:#7f725d;
+  font-size:10px;
+  line-height:1.55;
+}
+.newsletter-pending-action strong{
+  display:block;
+  color:#695d4b;
+  font-size:11px;
+}
+.newsletter-pending-action button{
+  flex:0 0 auto;
+  min-height:38px;
+  border:1px solid rgba(255,255,255,.86);
+  border-radius:14px;
+  padding:0 13px;
+  background:linear-gradient(145deg,#fffdf7,#e9f4fb);
+  color:#526f82;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(68,105,132,.07),inset 0 1px 0 #fff;
+}
+@media(max-width:840px){
+  .newsletter-summary{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .newsletter-summary{grid-template-columns:1fr 1fr}
+  .newsletter-pending-action{align-items:flex-start;flex-direction:column}
+}
+
 </style>
 </head>
 <body>
@@ -2559,7 +2604,7 @@ select:focus-visible{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.19</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.20</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -3252,7 +3297,8 @@ async function newsletterRequest(path,opt={}){
     '/admin/newsletter/campaigns':'admin.campaigns',
     '/admin/newsletter/test':'admin.test',
     '/admin/newsletter/send':'admin.send',
-    '/admin/newsletter/send-article':'admin.sendArticle'
+    '/admin/newsletter/send-article':'admin.sendArticle',
+    '/admin/newsletter/activate-pending':'admin.activatePending'
   };
 
   let base=String(path||''),query='';
@@ -3742,6 +3788,32 @@ async function refreshNewsletterData(){
   }
   if(viewName==='newsletter')renderNewsletterCenter();
 }
+
+async function activatePendingNewsletterSubscribers(){
+  const pending=Number(newsletterCache.summary?.pending||0);
+  if(!pending){showToast('目前沒有待確認訂閱者');return}
+
+  if(!confirm(`目前有 ${pending.toLocaleString()} 位既有訂閱者仍是待確認狀態。確定將這些已在網站同意條款的訂閱者啟用為可寄送嗎？`))return;
+
+  const btn=$('#nlActivatePending');
+  try{
+    if(btn){btn.disabled=true;btn.textContent='處理中…'}
+    const result=await newsletterRequest('/admin/newsletter/activate-pending',{
+      method:'POST',
+      timeoutMs:90000,
+      body:JSON.stringify({})
+    });
+    const n=Number(result.activated||0);
+    showToast(`已啟用 ${n.toLocaleString()} 位訂閱者`);
+    celebrateNewsletterSend(btn);
+    await refreshNewsletterData();
+  }catch(err){
+    showToast('啟用失敗：'+(err?.message||err));
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent='啟用既有訂閱者'}
+  }
+}
+
 function fillNewsletterFromLatest(){
   const a=data.articles.filter(x=>x.status==='Published').slice()
     .sort((x,y)=>String(y.publishedAt||'').localeCompare(String(x.publishedAt||'')))[0]||data.articles[0];
@@ -3837,10 +3909,23 @@ async function sendNewsletterTest(){
   finally{const b=$('#nlTestBtn');if(b){b.disabled=false;b.textContent='發送測試信'}}
 }
 async function sendNewsletterAll(){
-  const draft=newsletterDraft(),count=Number(newsletterCache.summary?.active||0);
+  const draft=newsletterDraft();
+  const count=Number(newsletterCache.summary?.active||0);
+  const pending=Number(newsletterCache.summary?.pending||0);
+
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
   if(!newsletterEnabled()){showToast('Newsletter Backend 尚未連線');return}
   if(!newsletterAdminKey()){showToast('請先輸入 Newsletter Admin Key');return}
+
+  if(count<=0){
+    if(pending>0){
+      showToast(`目前 0 位可寄送；另有 ${pending.toLocaleString()} 位待確認。請先按「啟用既有訂閱者」。`);
+    }else{
+      showToast('目前沒有可寄送的訂閱者');
+    }
+    return;
+  }
+
   if(!confirm(`確定要把這封 SIGN WELL Letter 送給 ${count.toLocaleString()} 位目前訂閱者？`))return;
 
   const b=$('#nlSendBtn');
@@ -3865,7 +3950,7 @@ async function sendNewsletterAll(){
     clearTimeout(timer);if(overlayShown)hideNewsletterSendOverlay();
     showToast('發送失敗：'+(err?.message||err));
   }finally{
-    if(b){b.disabled=false;b.textContent='一鍵發送全部訂閱者'}
+    if(b){b.disabled=false;b.textContent=`一鍵發送 ${Number(newsletterCache.summary?.active||0).toLocaleString()} 位訂閱者`}
   }
 }
 
@@ -3902,10 +3987,15 @@ function renderNewsletterCenter(){
     <button class="top-action" id="nlRefresh">重新整理</button>
   </div>
   <div class="newsletter-summary">
-    <div class="newsletter-metric"><span>目前訂閱</span><strong>${Number(s.active||0).toLocaleString()}</strong></div>
+    <div class="newsletter-metric"><span>可寄送訂閱者</span><strong>${Number(s.active||0).toLocaleString()}</strong></div>
+    <div class="newsletter-metric"><span>待確認</span><strong>${Number(s.pending||0).toLocaleString()}</strong></div>
     <div class="newsletter-metric"><span>本月新增</span><strong>${Number(s.newThisMonth||0).toLocaleString()}</strong></div>
     <div class="newsletter-metric"><span>已寄送電子報</span><strong>${Number(s.campaignsSent||0).toLocaleString()}</strong></div>
   </div>
+  ${Number(s.pending||0)>0?`<div class="newsletter-pending-action">
+    <div><strong>找到 ${Number(s.pending||0).toLocaleString()} 位既有待確認訂閱者</strong>這些人已經出現在 Subscribers Sheet，但舊版 Backend 還把他們標成 pending，所以群發會顯示 0 人。</div>
+    <button type="button" id="nlActivatePending">啟用既有訂閱者</button>
+  </div>`:''}
   <div class="newsletter-statusbar">
     <div><b>${connected?'Backend 已設定':'Backend 尚未連線'}</b><br>${connected?(newsletterCache.error||'Google Sheet · 訂閱名單 · Gmail · SIGN WELL Letter Glass 已共用同一 Backend'):'先完成 Newsletter Backend 後，這裡會自動顯示真實訂閱資料。'}</div>
     <span>${connected?'ONLINE':'SETUP'}</span>
@@ -3936,7 +4026,7 @@ function renderNewsletterCenter(){
       <div class="newsletter-actions">
         <button id="nlFillArticle">從最新文章帶入</button>
         <button id="nlTestBtn">發送測試信</button>
-        <button class="primary" id="nlSendBtn">一鍵發送全部訂閱者</button>
+        <button class="primary" id="nlSendBtn">一鍵發送 ${Number(s.active||0).toLocaleString()} 位訂閱者</button>
       </div>
       <label class="newsletter-toggle">
         <input type="checkbox" id="nlAuto" ${newsletterAutoEnabled()?'checked':''}>
@@ -3958,6 +4048,7 @@ function renderNewsletterCenter(){
   </div>`;
 
   $('#nlRefresh').onclick=refreshNewsletterData;
+  if($('#nlActivatePending'))$('#nlActivatePending').onclick=activatePendingNewsletterSubscribers;
   $('#nlFillArticle').onclick=fillNewsletterFromLatest;
   $('#nlTestBtn').onclick=sendNewsletterTest;
   $('#nlSendBtn').onclick=sendNewsletterAll;
