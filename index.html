@@ -583,7 +583,7 @@ body.dark .view-badge{
     linear-gradient(155deg,#f8fcff,#edf5fb 52%,#e7f0f6);
   overflow:hidden;
   opacity:1;visibility:visible;
-  transition:opacity .52s ease,filter .52s ease,visibility 0s linear .52s;
+  transition:opacity .34s ease,filter .34s ease,visibility 0s linear .34s;
 }
 .cms-opening.out{opacity:0;filter:blur(12px);visibility:hidden;pointer-events:none}
 .cms-opening::before,
@@ -1949,6 +1949,13 @@ select:focus-visible{
   .about-live-preview{display:none}
 }
 
+
+/* CMS v14.15 · login must not wait for network */
+#verifyBtn.auth-entering{
+  opacity:.72;
+  pointer-events:none;
+}
+
 </style>
 </head>
 <body>
@@ -1969,7 +1976,7 @@ select:focus-visible{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.14</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.16</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -2003,7 +2010,7 @@ async function playOpeningWelcome(){
   }
   await sleep(80);
   splash.classList.add('out');
-  setTimeout(()=>splash.remove(),620);
+  setTimeout(()=>splash.remove(),420);
 }
 
 async function playLoginGreeting(){
@@ -2012,18 +2019,19 @@ async function playLoginGreeting(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   const words=['你好，主人','Hello, Master'];
   wrap.classList.add('show');
-  for(let i=0;i<words.length;i++){
-    word.classList.remove('show');
-    await sleep(70);
-    word.textContent=words[i];
-    word.classList.add('show');
-    await sleep(430);
-    if(i<words.length-1){
-      word.classList.remove('show');
-      await sleep(100);
-    }
-  }
-  await sleep(120);
+
+  word.classList.remove('show');
+  await sleep(35);
+  word.textContent=words[0];
+  word.classList.add('show');
+  await sleep(210);
+
+  word.classList.remove('show');
+  await sleep(55);
+  word.textContent=words[1];
+  word.classList.add('show');
+  await sleep(235);
+
   wrap.classList.remove('show');
 }
 
@@ -2121,8 +2129,11 @@ function setAuthStage(stage){authStage=stage;clearAuthError();const second=stage
 function unlock(){clearAuthError();const pin=$('#pinInput').value.trim();if(hashPin(pin)!==AUTH_PASS_HASH){showAuthError(1,'請確認 6 位數管理密碼後再試一次。');return}pendingPin=pin;authFailCount[1]=0;$('#pinInput').value='';setAuthStage(2)}
 async function verifySecond(){
   clearAuthError();
+  const verifyButton=$('#verifyBtn');
+  verifyButton?.classList.add('auth-entering');
   const answer=$('#answerInput').value.trim().replace(/\s+/g,'');
   if(hashPin(answer)!==AUTH_ANSWER_HASH){
+    verifyButton?.classList.remove('auth-entering');
     showAuthError(2,'答案不分空格；請確認島名後再試一次。');
     return;
   }
@@ -2130,35 +2141,48 @@ async function verifySecond(){
   authFailCount[2]=0;
   authSecret='SIGNWELL|'+pendingPin+'|'+answer;
   $('#answerInput').value='';
-  $('#lockHint').textContent='驗證完成，正在同步雲端後台…';
+  $('#lockHint').textContent='驗證完成，正在進入後台…';
 
+  /* Authentication must never be blocked by Google / Drive / Apps Script.
+     Open the CMS immediately using the local cache, then synchronize remote
+     services in the background. */
   try{await dataReady}catch(_){}
-  try{await restoreRememberedGithubToken()}catch(_){githubToken=''}
-
-  let cloudOK=false;
-  try{
-    cloudOK=await cmsCloudInitialSync();
-  }catch(err){
-    cmsCloudSetStatus('雲端暫時離線 · 使用本機快取','#9a7b45');
-  }
 
   $('#lockScreen').classList.add('hidden');
   $('#cms').classList.remove('hidden');
+  verifyButton?.classList.remove('auth-entering');
   localStorage.setItem(ACTKEY,String(Date.now()));
   pendingPin='';
   setAuthStage(1);
 
   renderView();
   bindCmsCloudRealtime();
-  startCmsCloudPolling();
   startAnalyticsLivePolling();
 
-  await playLoginGreeting();
-  showToast(
-    cloudOK
-      ? '登入完成 · 雲端資料已同步'
-      : (githubToken?'登入完成 · GitHub 已就緒':'雙重驗證完成')
-  );
+  /* Greeting begins immediately; it no longer waits for network I/O. */
+  playLoginGreeting().catch(()=>{});
+  showToast('登入完成 · 正在背景同步');
+
+  /* GitHub token restore is local crypto work, but keep it off the login
+     critical path in case the browser/keychain is slow. */
+  restoreRememberedGithubToken().catch(()=>{githubToken=''});
+
+  /* Cloud Sync is deliberately background-only. If Apps Script is slow,
+     unavailable, newly deployed, or blocked by Safari, the user can still
+     work from IndexedDB/local cache. A late remote response is applied safely
+     and will defer itself if the user is already editing. */
+  cmsCloudInitialSyncAfterLogin().then(cloudOK=>{
+    if(cloudOK){
+      cmsCloudSetStatus('雲端已同步 ✓');
+      showToast('雲端資料已同步');
+    }else{
+      cmsCloudSetStatus('本機模式','#9a7b45');
+    }
+  }).catch(()=>{
+    cmsCloudSetStatus('雲端暫時離線 · 使用本機快取','#9a7b45');
+  }).finally(()=>{
+    startCmsCloudPolling();
+  });
 }
 function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
@@ -2682,6 +2706,44 @@ async function cmsCloudApplyRemote(wrapper,{initial=false}={}){
   }
   return true;
 }
+
+async function cmsCloudInitialSyncAfterLogin(){
+  if(!cmsCloudEnabled()){
+    cmsCloudSetStatus('本機模式','#9a7b45');
+    return false;
+  }
+
+  cmsCloudSetStatus('正在同步雲端…','#7f8d99');
+
+  const remote=await cmsCloudRequest('admin.cmsState.get',{
+    clientId:cmsCloudClientId()
+  });
+
+  const remoteData=remote?.data||null;
+  const remoteInitialized=remote?.initialized===true && cmsCloudHasContent(remoteData);
+
+  if(remoteInitialized){
+    /* CMS is already visible. Use the normal non-initial apply path so
+       an active edit is never overwritten by a late network response. */
+    await cmsCloudApplyRemote(remote,{initial:false});
+    try{localStorage.setItem(CMS_CLOUD_MIGRATED_KEY,'1')}catch(_){}
+    return true;
+  }
+
+  const pushed=await cmsCloudRequest('admin.cmsState.put',{
+    clientId:cmsCloudClientId(),
+    baseRevision:Number(remote?.revision||0),
+    data:cmsCloudSerializable()
+  });
+
+  cmsCloudRevision=Number(pushed?.revision||1);
+  cmsCloudDirty=false;
+  cmsCloudLastSyncAt=Date.now();
+  try{localStorage.setItem(CMS_CLOUD_MIGRATED_KEY,'1')}catch(_){}
+  cmsCloudSetStatus('雲端已建立 ✓');
+  return true;
+}
+
 async function cmsCloudInitialSync(){
   if(!cmsCloudEnabled()){
     cmsCloudSetStatus('本機模式','#9a7b45');
