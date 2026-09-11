@@ -1718,6 +1718,237 @@ select:focus-visible{
   .newsletter-send-success{animation:none!important}
 }
 
+
+/* ============================================================
+   CMS v14.12 · dedicated About page editor
+   ============================================================ */
+.about-editor-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.14fr) minmax(340px,.86fr);
+  gap:16px;
+  align-items:start;
+}
+.about-editor-panel{
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.88);
+  background:linear-gradient(180deg,rgba(255,255,255,.70),rgba(244,250,255,.58));
+  box-shadow:0 22px 58px rgba(48,70,90,.08),inset 0 1px 0 rgba(255,255,255,.98);
+}
+.about-editor-panel h3{
+  margin:0;
+  color:#3f596d;
+  font:500 26px/1.1 Georgia,"Noto Serif TC",serif;
+  letter-spacing:-.035em;
+}
+.about-editor-panel>p{
+  margin:6px 0 18px;
+  color:#748694;
+  font-size:10.5px;
+  line-height:1.7;
+}
+.about-editor-section{
+  padding:17px 0;
+  border-top:1px solid rgba(92,121,143,.10);
+}
+.about-editor-section:first-of-type{
+  border-top:0;
+  padding-top:4px;
+}
+.about-editor-section-title{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:8px;
+}
+.about-editor-section-title strong{
+  color:#556c7e;
+  font-size:10.5px;
+}
+.about-editor-section-title span{
+  color:#91a0aa;
+  font-size:8px;
+}
+.about-fields-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.about-live-preview{
+  position:sticky;
+  top:8px;
+  padding:12px;
+  border-radius:28px;
+  background:
+    radial-gradient(280px 180px at 5% 0%,rgba(255,255,255,.76),transparent 70%),
+    linear-gradient(145deg,rgba(255,255,255,.46),rgba(224,242,254,.23));
+  border:1px solid rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(18px) saturate(155%);
+  backdrop-filter:blur(18px) saturate(155%);
+  box-shadow:0 20px 50px rgba(53,93,122,.09),inset 0 1px 0 rgba(255,255,255,.95);
+}
+.about-preview-toolbar{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:4px 5px 10px;
+}
+.about-preview-toolbar strong{
+  display:block;color:#476074;font-size:10px;
+}
+.about-preview-toolbar span{
+  display:block;margin-top:3px;color:#8b98a2;font-size:8px;
+}
+.about-preview-browser{
+  overflow:hidden;
+  border-radius:22px;
+  background:
+    radial-gradient(330px 250px at 4% 3%,rgba(255,255,255,.96),transparent 64%),
+    radial-gradient(320px 240px at 92% 14%,rgba(158,216,255,.26),transparent 67%),
+    linear-gradient(155deg,#f7fbfe,#edf6fc 50%,#e7f1f7);
+  border:1px solid rgba(255,255,255,.93);
+  box-shadow:0 18px 44px rgba(47,86,115,.09),inset 0 1px 0 rgba(255,255,255,.98);
+}
+.about-preview-bar{
+  height:35px;
+  display:flex;align-items:center;gap:6px;
+  padding:0 11px;
+  background:rgba(255,255,255,.36);
+  border-bottom:1px solid rgba(86,115,136,.08);
+}
+.about-preview-bar i{
+  width:7px;height:7px;border-radius:50%;background:rgba(89,125,152,.15);
+}
+.about-preview-url{
+  flex:1;margin-left:5px;
+  height:20px;display:grid;place-items:center;
+  border-radius:7px;
+  background:rgba(255,255,255,.49);
+  color:#9aa5ad;font-size:7px;
+}
+.about-preview-stage{
+  padding:24px 19px 28px;
+}
+.ap-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:30px;
+}
+.ap-brand{
+  color:#35566d;font:700 9px/1 Georgia,serif;letter-spacing:.11em;
+}
+.ap-links{
+  display:flex;gap:8px;color:#83939f;font-size:7px;font-weight:700;
+}
+.ap-eyebrow{
+  color:#6e93ab;font-size:7px;font-weight:850;letter-spacing:.15em;
+}
+.ap-title{
+  margin:9px 0 11px;
+  color:#2e4b5e;
+  font:500 36px/.96 Georgia,"Noto Serif TC",serif;
+  letter-spacing:-.055em;
+}
+.ap-copy{
+  color:#6f8392;font-size:8.5px;line-height:1.68;
+}
+.ap-manifesto{
+  margin-top:18px;padding:13px;border-radius:17px;
+  background:rgba(255,255,255,.42);
+  border:1px solid rgba(255,255,255,.73);
+}
+.ap-manifesto strong{
+  display:block;color:#3b596d;font:500 12px/1.3 Georgia,"Noto Serif TC",serif;
+}
+.ap-manifesto span{
+  display:block;margin-top:5px;color:#7c8f9c;font-size:7.5px;line-height:1.55;
+}
+.ap-values{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px;
+}
+.ap-values div{
+  min-height:62px;padding:9px;border-radius:13px;
+  background:rgba(255,255,255,.36);
+  border:1px solid rgba(255,255,255,.66);
+}
+.ap-values span{display:block;color:#8b99a3;font-size:6.5px}
+.ap-values b{
+  display:block;margin-top:7px;color:#466377;
+  font:500 9px/1.2 Georgia,"Noto Serif TC",serif;
+}
+.ap-people-head{margin-top:17px}
+.ap-people{
+  display:grid;gap:7px;margin-top:10px;
+}
+.ap-person{
+  display:grid;grid-template-columns:32px minmax(0,1fr);gap:8px;align-items:center;
+  padding:8px;border-radius:13px;
+  background:rgba(255,255,255,.36);
+  border:1px solid rgba(255,255,255,.66);
+}
+.ap-avatar{
+  width:32px;height:32px;border-radius:50%;overflow:hidden;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#fff,#d9effd);
+  color:#4f7d9c;font:700 7px/1 Georgia,serif;
+}
+.ap-avatar img{width:100%;height:100%;object-fit:cover}
+.ap-person strong{
+  display:block;color:#486378;font-size:7.6px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.ap-person small{
+  display:block;margin-top:2px;color:#8a98a2;font-size:6.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.ap-disclaimer{
+  margin-top:14px;padding:9px 10px;border-radius:12px;
+  background:rgba(255,255,255,.26);
+  color:#8b99a3;font-size:6.6px;line-height:1.55;
+}
+.about-editor-actions{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:17px;
+}
+.about-people-mini{
+  display:grid;gap:8px;
+}
+.about-person-mini{
+  display:grid;
+  grid-template-columns:40px minmax(0,1fr) auto;
+  gap:9px;align-items:center;
+  padding:9px;
+  border-radius:15px;
+  background:rgba(255,255,255,.32);
+  border:1px solid rgba(255,255,255,.65);
+}
+.about-person-mini .pic{
+  width:40px;height:40px;border-radius:50%;overflow:hidden;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#fff,#d9effd);
+  color:#4f7d9c;font:700 8px/1 Georgia,serif;
+}
+.about-person-mini .pic img{width:100%;height:100%;object-fit:cover}
+.about-person-mini strong{display:block;color:#4c6476;font-size:9.5px}
+.about-person-mini span{display:block;margin-top:3px;color:#8795a0;font-size:8px}
+.about-person-mini button{
+  border:1px solid rgba(80,108,128,.08);
+  background:rgba(255,255,255,.45);
+  color:#718391;
+  width:31px;height:31px;border-radius:10px;cursor:pointer;
+}
+.about-person-form{
+  margin-top:10px;
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.27);
+  border:1px solid rgba(255,255,255,.63);
+}
+@media(max-width:980px){
+  .about-editor-grid{grid-template-columns:1fr}
+  .about-live-preview{position:relative;top:auto}
+}
+@media(max-width:620px){
+  .about-fields-2{grid-template-columns:1fr}
+  .about-live-preview{display:none}
+}
+
 </style>
 </head>
 <body>
@@ -1738,7 +1969,7 @@ select:focus-visible{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.11</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.13</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -1778,7 +2009,7 @@ async function playLoginGreeting(){
   const wrap=$('#loginGreeting'),word=$('#loginGreetingWord');
   if(!wrap||!word)return;
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const words=['你好，主人','안녕하세요, 주인님','Hello, Master'];
+  const words=['你好，主人','Hello, Master'];
   wrap.classList.add('show');
   for(let i=0;i<words.length;i++){
     word.classList.remove('show');
@@ -1931,7 +2162,7 @@ async function verifySecond(){
 function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView();setTimeout(()=>cmsCloudApplyDeferred(),0)}
-function renderView(){const editing=Boolean(currentId);$('#previewBtn').classList.toggle('hidden',!editing);$('#saveBtn').classList.toggle('hidden',!editing);$('#publishBtn').classList.add('hidden');$('#onlineBtn').classList.toggle('hidden',!editing);if(editing){$('#topTitle').textContent='文章編輯器';renderEditor();return}const names={dashboard:'總覽',articles:'文章',topics:'主題管理',site:'網站文字',newsletter:'電子報',export:'發布設定'};$('#topTitle').textContent=names[viewName]||'總覽';if(viewName==='articles')renderArticles();else if(viewName==='topics')renderTopicsManager();else if(viewName==='site')renderSiteText();else if(viewName==='newsletter'){renderNewsletterCenter();setTimeout(()=>refreshNewsletterData(),0)}else if(viewName==='export')renderExport();else renderDashboard()}
+function renderView(){const editing=Boolean(currentId);$('#previewBtn').classList.toggle('hidden',!editing);$('#saveBtn').classList.toggle('hidden',!editing);$('#publishBtn').classList.add('hidden');$('#onlineBtn').classList.toggle('hidden',!editing);if(editing){$('#topTitle').textContent='文章編輯器';renderEditor();return}const names={dashboard:'總覽',articles:'文章',topics:'主題管理',site:'網站文字',aboutpage:'關於頁面',newsletter:'電子報',export:'發布設定'};$('#topTitle').textContent=names[viewName]||'總覽';if(viewName==='articles')renderArticles();else if(viewName==='topics')renderTopicsManager();else if(viewName==='site')renderSiteText();else if(viewName==='aboutpage')renderAboutPageEditor();else if(viewName==='newsletter'){renderNewsletterCenter();setTimeout(()=>refreshNewsletterData(),0)}else if(viewName==='export')renderExport();else renderDashboard()}
 
 const ANALYTICS_KEY='signwell-analytics-v1';
 const ANALYTICS_CHANNEL='signwell-analytics';
@@ -4009,6 +4240,307 @@ function renderSiteText(){
   renderPeopleList();
   renderLivePreview();
 }
+function renderAboutPageEditor(){
+  data.siteText={...DEFAULT_SITE_TEXT,...(data.siteText||{})};
+  data.people=Array.isArray(data.people)?data.people:[];
+  const s=data.siteText;
+  const field=(key,label,multi=false)=>`<div class="site-field"><label>${label}</label>${multi?`<textarea data-about-key="${key}">${escapeHTML(s[key]||'')}</textarea>`:`<input data-about-key="${key}" value="${escapeHTML(s[key]||'')}">`}</div>`;
+  const initials=name=>{
+    const clean=String(name||'').trim();
+    if(!clean)return 'SW';
+    const parts=clean.split(/\s+/).filter(Boolean);
+    return parts.length>1?(parts[0][0]+parts[parts.length-1][0]).toUpperCase():clean.slice(0,2).toUpperCase();
+  };
+  const sortedPeople=()=>data.people.slice().sort((a,b)=>(a.order??999)-(b.order??999));
+  const splitLines=v=>String(v||'').split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const splitTags=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean);
+
+  $('#view').innerHTML=`<div class="page-head">
+    <div>
+      <h1>關於頁面</h1>
+      <p>直接修改使用者端「關於」頁。文字、核心價值、人物與學經歷都會寫入 public-data.json。</p>
+    </div>
+  </div>
+
+  <div class="about-editor-grid">
+    <section class="about-editor-panel">
+      <h3>About SIGN WELL</h3>
+      <p>這裡的內容就是公開網站「關於」頁使用的資料。輸入時右側會立即預覽。</p>
+
+      <div class="about-editor-section">
+        <div class="about-editor-section-title"><strong>主視覺</strong><span>Hero</span></div>
+        ${field('aboutEyebrow','頁面小標')}
+        ${field('aboutTitle','頁面標題')}
+        ${field('aboutBody','品牌介紹',true)}
+      </div>
+
+      <div class="about-editor-section">
+        <div class="about-editor-section-title"><strong>品牌宣言</strong><span>Manifesto</span></div>
+        ${field('aboutManifestoTitle','宣言標題',true)}
+        ${field('aboutManifestoBody','宣言說明',true)}
+      </div>
+
+      <div class="about-editor-section">
+        <div class="about-editor-section-title"><strong>三個核心欄位</strong><span>Values</span></div>
+        <div class="about-fields-2">
+          ${field('aboutFocusLabel','第一欄標籤')}
+          ${field('aboutFocusValue','第一欄內容')}
+          ${field('aboutFormatLabel','第二欄標籤')}
+          ${field('aboutFormatValue','第二欄內容')}
+          ${field('aboutPrincipleLabel','第三欄標籤')}
+          ${field('aboutPrincipleValue','第三欄內容')}
+        </div>
+      </div>
+
+      <div class="about-editor-section">
+        <div class="about-editor-section-title"><strong>人物區標題</strong><span>People</span></div>
+        ${field('aboutPeopleEyebrow','人物區小標')}
+        ${field('aboutPeopleTitle','人物區標題')}
+        ${field('aboutPeopleSubtitle','人物區說明',true)}
+      </div>
+
+      <div class="about-editor-section">
+        <div class="about-editor-section-title">
+          <div><strong>人物與學經歷</strong><span style="margin-left:7px">會同步文章發布者</span></div>
+          <button class="top-action" type="button" id="aboutNewPerson">＋ 新增人物</button>
+        </div>
+        <div class="about-people-mini" id="aboutPeopleList"></div>
+
+        <div class="about-person-form">
+          <input type="hidden" id="aboutPersonId">
+          <div class="about-fields-2">
+            <div class="site-field"><label>姓名</label><input id="aboutPersonName" placeholder="例如：Lin Che-Kai"></div>
+            <div class="site-field"><label>角色 / 職稱</label><input id="aboutPersonRole" placeholder="例如：Editor · Medical Student"></div>
+          </div>
+          <div class="site-field"><label>人物簡介</label><textarea id="aboutPersonBio" placeholder="簡短介紹這個人的角色與背景。"></textarea></div>
+          <div class="site-field"><label>照片 URL（選填）</label><input id="aboutPersonPhoto" placeholder="https://..."></div>
+          <div class="site-field"><label>專長標籤（逗號分隔）</label><input id="aboutPersonExpertise" placeholder="臨床推理, 預防醫學, 醫療科技"></div>
+          <div class="about-fields-2">
+            <div class="site-field"><label>學歷（每行一項）</label><textarea id="aboutPersonEducation"></textarea></div>
+            <div class="site-field"><label>經歷（每行一項）</label><textarea id="aboutPersonExperience"></textarea></div>
+          </div>
+          <label class="person-active"><input type="checkbox" id="aboutPersonActive" checked> 顯示在公開 About 頁</label>
+          <div class="person-form-actions">
+            <button class="top-action primary" type="button" id="aboutSavePerson">儲存人物</button>
+            <button class="top-action" type="button" id="aboutClearPerson">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-editor-section">
+        <div class="about-editor-section-title"><strong>頁尾醫療聲明</strong><span>Disclaimer</span></div>
+        ${field('aboutDisclaimer','醫療聲明',true)}
+      </div>
+
+      <div class="about-editor-actions">
+        <button class="top-action primary" id="aboutSaveLocal">儲存關於頁面</button>
+        <button class="top-action online" id="aboutPublish">儲存並發布到網站</button>
+        <button class="top-action" id="aboutReset">恢復預設文字</button>
+      </div>
+
+      <div class="site-publish-hint">
+        公開網站會從 <b>public-data.json</b> 讀取 About 文字與人物資料。按「儲存並發布到網站」後才會更新 GitHub Pages。
+      </div>
+    </section>
+
+    <aside class="about-live-preview">
+      <div class="about-preview-toolbar">
+        <div>
+          <strong>使用者端即時預覽</strong>
+          <span>About page · 尚未發布也會即時顯示</span>
+        </div>
+      </div>
+      <div class="about-preview-browser">
+        <div class="about-preview-bar"><i></i><i></i><i></i><div class="about-preview-url">980510linz.github.io/-/about.html</div></div>
+        <div class="about-preview-stage" id="aboutPreviewStage"></div>
+      </div>
+    </aside>
+  </div>`;
+
+  const collectText=()=>{
+    $$('[data-about-key]').forEach(el=>data.siteText[el.dataset.aboutKey]=el.value);
+    persist(true);
+    syncPublicSnapshot();
+  };
+
+  const renderPreview=()=>{
+    const box=$('#aboutPreviewStage');
+    if(!box)return;
+    const st=data.siteText||{};
+    const visible=sortedPeople().filter(p=>p.active!==false).slice(0,4);
+    box.innerHTML=`
+      <div class="ap-nav">
+        <span class="ap-brand">${escapeHTML(st.brandEnglish||'SIGN WELL')}</span>
+        <div class="ap-links"><span>${escapeHTML(st.navArticles||'文章')}</span><span>${escapeHTML(st.navTopics||'主題')}</span><span>${escapeHTML(st.navAbout||'關於')}</span></div>
+      </div>
+      <div class="ap-eyebrow">${escapeHTML(st.aboutEyebrow||'ABOUT SIGN WELL')}</div>
+      <div class="ap-title">${escapeHTML(st.aboutTitle||'關於我們')}</div>
+      <div class="ap-copy">${escapeHTML(st.aboutBody||'')}</div>
+      <div class="ap-manifesto">
+        <strong>${escapeHTML(st.aboutManifestoTitle||'')}</strong>
+        <span>${escapeHTML(st.aboutManifestoBody||'')}</span>
+      </div>
+      <div class="ap-values">
+        <div><span>${escapeHTML(st.aboutFocusLabel||'核心')}</span><b>${escapeHTML(st.aboutFocusValue||'')}</b></div>
+        <div><span>${escapeHTML(st.aboutFormatLabel||'形式')}</span><b>${escapeHTML(st.aboutFormatValue||'')}</b></div>
+        <div><span>${escapeHTML(st.aboutPrincipleLabel||'原則')}</span><b>${escapeHTML(st.aboutPrincipleValue||'')}</b></div>
+      </div>
+      <div class="ap-people-head">
+        <div class="ap-eyebrow">${escapeHTML(st.aboutPeopleEyebrow||'PEOPLE')}</div>
+        <div style="margin-top:5px;color:#3c596d;font:500 17px/1.1 Georgia,'Noto Serif TC',serif">${escapeHTML(st.aboutPeopleTitle||'我們是誰')}</div>
+        <div class="ap-copy" style="margin-top:5px">${escapeHTML(st.aboutPeopleSubtitle||'')}</div>
+      </div>
+      <div class="ap-people">
+        ${visible.length?visible.map(p=>`
+          <div class="ap-person">
+            <div class="ap-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
+            <div><strong>${escapeHTML(p.name||'未命名人物')}</strong><small>${escapeHTML(p.role||((p.education||[])[0]||''))}</small></div>
+          </div>`).join(''):'<div class="ap-copy">尚未新增公開人物</div>'}
+      </div>
+      <div class="ap-disclaimer">${escapeHTML(st.aboutDisclaimer||'')}</div>`;
+  };
+
+  const clearPerson=()=>{
+    $('#aboutPersonId').value='';
+    $('#aboutPersonName').value='';
+    $('#aboutPersonRole').value='';
+    $('#aboutPersonBio').value='';
+    $('#aboutPersonPhoto').value='';
+    $('#aboutPersonExpertise').value='';
+    $('#aboutPersonEducation').value='';
+    $('#aboutPersonExperience').value='';
+    $('#aboutPersonActive').checked=true;
+  };
+
+  const loadPerson=id=>{
+    const p=data.people.find(x=>String(x.id)===String(id));
+    if(!p)return;
+    $('#aboutPersonId').value=p.id;
+    $('#aboutPersonName').value=p.name||'';
+    $('#aboutPersonRole').value=p.role||'';
+    $('#aboutPersonBio').value=p.bio||'';
+    $('#aboutPersonPhoto').value=p.photo||'';
+    $('#aboutPersonExpertise').value=(p.expertise||[]).join(', ');
+    $('#aboutPersonEducation').value=(p.education||[]).join('\n');
+    $('#aboutPersonExperience').value=(p.experience||[]).join('\n');
+    $('#aboutPersonActive').checked=p.active!==false;
+  };
+
+  const renderPeople=()=>{
+    const host=$('#aboutPeopleList');
+    const arr=sortedPeople();
+    if(!arr.length){
+      host.innerHTML='<div class="people-empty">尚未新增人物。建立人物後，公開 About 頁與文章發布者選單都會同步。</div>';
+      renderPreview();
+      return;
+    }
+    host.innerHTML=arr.map(p=>`
+      <div class="about-person-mini">
+        <div class="pic">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
+        <div>
+          <strong>${escapeHTML(p.name||'未命名人物')}</strong>
+          <span>${escapeHTML(p.role||'尚未填寫角色')} · ${(p.education||[]).length} 項學歷 · ${(p.experience||[]).length} 項經歷${p.active===false?' · 已隱藏':''}</span>
+        </div>
+        <button type="button" data-about-person-edit="${escapeHTML(p.id)}">編</button>
+      </div>`).join('');
+    $$('[data-about-person-edit]').forEach(btn=>btn.onclick=()=>loadPerson(btn.dataset.aboutPersonEdit));
+    renderPreview();
+  };
+
+  $$('[data-about-key]').forEach(el=>el.addEventListener('input',()=>{
+    data.siteText[el.dataset.aboutKey]=el.value;
+    renderPreview();
+    clearTimeout(saveTimer);
+    $('#saveState').textContent='儲存中…';
+    saveTimer=setTimeout(()=>{
+      collectText();
+      $('#saveState').textContent='已儲存 ✓';
+    },650);
+  }));
+
+  $('#aboutNewPerson').onclick=()=>{clearPerson();$('#aboutPersonName').focus()};
+  $('#aboutClearPerson').onclick=clearPerson;
+
+  $('#aboutSavePerson').onclick=()=>{
+    const name=$('#aboutPersonName').value.trim();
+    if(!name){showToast('請先填人物姓名');return}
+
+    const id=$('#aboutPersonId').value.trim();
+    const old=id?data.people.find(x=>String(x.id)===id):null;
+    const person={
+      id:old?.id||('person-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)),
+      name,
+      role:$('#aboutPersonRole').value.trim(),
+      bio:$('#aboutPersonBio').value.trim(),
+      photo:$('#aboutPersonPhoto').value.trim(),
+      expertise:splitTags($('#aboutPersonExpertise').value),
+      education:splitLines($('#aboutPersonEducation').value),
+      experience:splitLines($('#aboutPersonExperience').value),
+      active:$('#aboutPersonActive').checked,
+      order:old?.order??data.people.length
+    };
+
+    if(old){
+      const idx=data.people.findIndex(x=>String(x.id)===String(old.id));
+      data.people[idx]=person;
+    }else{
+      data.people.push(person);
+    }
+    data.people.sort((a,b)=>(a.order??999)-(b.order??999));
+    data.people.forEach((x,i)=>x.order=i);
+    persist(true);
+    renderPeople();
+    loadPerson(person.id);
+    showToast(old?'人物已更新 · 文章發布者同步':'人物已新增 · 可選為文章發布者');
+  };
+
+  $('#aboutSaveLocal').onclick=()=>{
+    collectText();
+    showToast('關於頁面已儲存');
+  };
+
+  $('#aboutReset').onclick=()=>{
+    if(!confirm('恢復 About 頁面的預設文字？人物資料不會被刪除。'))return;
+    const keys=[
+      'aboutEyebrow','aboutTitle','aboutBody',
+      'aboutManifestoTitle','aboutManifestoBody',
+      'aboutFocusLabel','aboutFocusValue',
+      'aboutFormatLabel','aboutFormatValue',
+      'aboutPrincipleLabel','aboutPrincipleValue',
+      'aboutPeopleEyebrow','aboutPeopleTitle','aboutPeopleSubtitle',
+      'aboutDisclaimer'
+    ];
+    keys.forEach(k=>data.siteText[k]=DEFAULT_SITE_TEXT[k]||'');
+    persist(true);
+    renderAboutPageEditor();
+    showToast('About 文字已恢復預設');
+  };
+
+  $('#aboutPublish').onclick=async()=>{
+    collectText();
+    if(!githubToken&&!hasRememberedGithubToken()){
+      nav('export');
+      showToast('第一次請先設定 GitHub Token');
+      return;
+    }
+    if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();
+    if(!githubToken){
+      nav('export');
+      showToast('GitHub Token 尚未解鎖');
+      return;
+    }
+    try{
+      await publishGitHub();
+      showToast('關於頁面已發布到使用者端');
+    }catch(err){
+      showToast('發布失敗：'+(err?.message||err));
+    }
+  };
+
+  renderPeople();
+  renderPreview();
+}
+
 function renderExport(){const pub=data.articles.filter(a=>a.status==='Published'),drafts=data.articles.length-pub.length,remembered=hasRememberedGithubToken(),ready=Boolean(githubToken);$('#view').innerHTML=`<div class="page-head"><div><h1>線上發布</h1><p>公開站設定已固定。之後只要登入 CMS、撰寫文章並發布，就能直接同步到 SIGN WELL。</p></div></div><div class="stats"><div class="stat"><span>已發布</span><strong>${pub.length}</strong></div><div class="stat"><span>草稿</span><strong>${drafts}</strong></div><div class="stat"><span>發布目標</span><strong style="font-size:20px">980510linz/-</strong></div><div class="stat"><span>資料檔案</span><strong style="font-size:16px">v11 JSON + 主題 + 圖片資產</strong></div></div><div class="publish-grid"><section class="publish-card"><h3>GitHub 發布設定</h3><p>這裡只負責 GitHub 憑證與同步設定；文章、主題與網站文字請直接在各自頁面按「發佈到網頁」，不需要回來再按第二次。GitHub 路徑已鎖定為你的正式公開網站。第一次貼入 Token 並勾選「記住這台裝置」後，之後只要完成 CMS 雙重登入即可自動解鎖，不必重填擁有者、Repository 或 Branch。</p><div class="connection-summary"><div class="connection-row"><span>公開網站</span><strong>https://980510linz.github.io/-/</strong></div><div class="connection-row"><span>GitHub 發布目標</span><code>980510linz/- · main · articles/index.json + assets/uploads/</code></div><div class="connection-row"><span>GitHub 憑證</span><strong id="tokenState" class="token-state ${ready?'ready':''}">${ready?'已解鎖':remembered?'已記住，重新登入即可解鎖':'尚未設定'}</strong></div></div><div class="token-setup"><label class="token-label">GitHub 細粒度存取權杖（Fine-grained PAT）<input id="ghToken" type="password" autocomplete="off" placeholder="${ready?'目前工作階段已可使用；不需重新輸入':'github_pat_…'}"></label><label class="remember-row"><input type="checkbox" id="ghRemember" checked><span>記住這台裝置。Token 會用你兩階段登入時輸入的資料經 PBKDF2 + AES-GCM 加密後存於此瀏覽器；不會寫進 HTML 或 GitHub。純前端仍不能等同硬體金鑰或伺服器端秘密儲存。</span></label></div><div class="publish-actions"><button class="top-action" id="ghTest">測試連線</button><button class="top-action" id="ghSync">從 GitHub 同步</button></div><div class="publish-status" id="ghStatus">${ready?'✓ GitHub 憑證已從這台裝置解鎖。':'第一次請貼入 Token，並先按「測試連線」。'}</div><div class="integrity-note" id="integrityNote"><b>資料保護：</b>第一次在新裝置使用時，建議先按 <b>從 GitHub 同步</b>，把目前公開站文章同步進 CMS，避免用空白本機資料覆蓋既有文章。</div><details class="advanced-box"><summary>進階設定 · 一般不需要修改</summary><div class="advanced-body"><div><span>擁有者</span><code>980510linz</code></div><div><span>Repository</span><code>-</code></div><div><span>Branch</span><code>main</code></div><div><span>文章資料</span><code>articles/index.json + articles/*.json</code></div><div><span>前台頁面</span><code>index.html · topics.html · about.html · share.html · newsletter.html</code></div><div><span>統一前台資料</span><code>public-data.json</code></div><div><span>網站文字備援</span><code>site-content.js</code></div><div><span>所需權限</span><code>Contents：讀取與寫入</code></div></div></details></section><aside class="publish-card"><h3>資料檢查</h3><p>CMS 只會輸出狀態為「已發布」的文章；草稿不會出現在公開網站。</p><div class="file-map"><div><code>本機文章</code><span class="file-ok">${data.articles.length}</span></div><div><code>已發布</code><span class="file-ok">${pub.length}</span></div><div><code>未公開草稿</code><span>${drafts}</span></div><div><code>公開主題</code><span class="file-ok">${(data.topics||[]).filter(x=>x.active!==false).length}</span></div><div><code>文章格式</code><span class="file-ok">v11 · 每篇獨立 JSON</span></div><div><code>網站文字格式</code><span class="file-ok">window.SIGNWELL_SITE_TEXT</span></div></div><div class="security-note"><b>公開站資料流：</b><br>CMS → GitHub API → <code>public-data.json + articles/index.json + topics/index.json + articles/*.json + assets/uploads/*</code> → GitHub Pages → <code>https://980510linz.github.io/-/</code></div></aside></div>`;$('#exportJs')&&($('#exportJs').onclick=exportJS);bindGithubPublisher()}
 async function saveBlob(blob,name){const file=new File([blob],name,{type:blob.type||'application/octet-stream'});try{if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:name});return}}catch(e){if(e?.name==='AbortError')return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportJS(){const pub=data.articles.filter(a=>a.status==='Published');const text='window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n';saveBlob(new Blob([text],{type:'text/javascript;charset=utf-8'}),'articles.js');showToast(`已準備 ${pub.length} 篇文章`)}
