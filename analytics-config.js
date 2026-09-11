@@ -1,9 +1,9 @@
 window.SIGNWELL_ANALYTICS = {
   enabled: true,
-  endpoint: "https://script.google.com/d/10v8JSsR_twdA99i5yHhAIkKRT70it_t-PpirIAU8s6qq8FpYhJImB38O/edit?usp=sharing"
+  endpoint: "https://script.google.com/macros/s/AKfycbzmZXZSepxCD1jbfpjMxsnvn0nRl-xEpeXdJoTO-TZL6Z5Zk7T-OsVGpTkIxWaCh-Y/exec"
 };
 
 window.SIGNWELL_NEWSLETTER = {
   enabled: true,
-  endpoint: "https://script.google.com/d/10v8JSsR_twdA99i5yHhAIkKRT70it_t-PpirIAU8s6qq8FpYhJImB38O/edit?usp=sharing"
+  endpoint: "https://script.google.com/macros/s/AKfycbzmZXZSepxCD1jbfpjMxsnvn0nRl-xEpeXdJoTO-TZL6Z5Zk7T-OsVGpTkIxWaCh-Y/exec"
 };
