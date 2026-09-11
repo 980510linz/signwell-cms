@@ -2562,6 +2562,20 @@ select:focus-visible{
   .newsletter-pending-action{align-items:flex-start;flex-direction:column}
 }
 
+
+.newsletter-diag{
+  margin:11px 0 0;
+  padding:12px 13px;
+  border-radius:18px;
+  background:linear-gradient(150deg,rgba(255,255,255,.46),rgba(227,243,252,.34));
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.88);
+  color:#758b9a;
+  font-size:9px;
+  line-height:1.6;
+}
+.newsletter-diag strong{color:#506b7e}
+
 </style>
 </head>
 <body>
@@ -2604,7 +2618,7 @@ select:focus-visible{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.20</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.21</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -3298,7 +3312,8 @@ async function newsletterRequest(path,opt={}){
     '/admin/newsletter/test':'admin.test',
     '/admin/newsletter/send':'admin.send',
     '/admin/newsletter/send-article':'admin.sendArticle',
-    '/admin/newsletter/activate-pending':'admin.activatePending'
+    '/admin/newsletter/activate-pending':'admin.activatePending',
+    '/admin/newsletter/diagnostics':'admin.subscriberDiagnostics'
   };
 
   let base=String(path||''),query='';
@@ -3727,45 +3742,106 @@ async function maybeAutoSendArticleNewsletter(a,{force=false,sourceEl=null}={}){
     return {attempted:true,success:false,error:'admin-key'};
   }
 
+  let diag;
+  try{
+    diag=await newsletterSubscriberPreflight();
+  }catch(err){
+    showToast('文章已發布，但無法確認訂閱者名單：'+(err?.message||err));
+    return {attempted:true,success:false,error:err};
+  }
+
+  const sendable=Number(diag.sendable||0);
+  if(sendable<=0){
+    showToast('文章已發布 · 目前沒有可寄送的訂閱者');
+    return {attempted:true,success:true,skipped:true};
+  }
+
   let overlayShown=false;
+  let watchdog=null;
+
   const overlayTimer=setTimeout(()=>{
     overlayShown=true;
     showNewsletterSendOverlay('auto');
+
+    watchdog=setTimeout(()=>{
+      if(!overlayShown)return;
+      overlayShown=false;
+      hideNewsletterSendOverlay();
+      showToast('電子報仍在 Backend 發送中；CMS 已解除等待畫面。');
+    },45000);
   },650);
 
   try{
     const body=await newsletterRequest('/admin/newsletter/send-article',{
       method:'POST',
       timeoutMs:300000,
-      body:JSON.stringify({article:articleNewsletterPayload(a),audience:'active',force:Boolean(force)})
+      body:JSON.stringify({
+        article:articleNewsletterPayload(a),
+        audience:'active',
+        force:Boolean(force)
+      })
     });
 
     clearTimeout(overlayTimer);
+    clearTimeout(watchdog);
 
     if(body.alreadySent){
       if(overlayShown){
         completeNewsletterSendOverlay('這篇文章先前已寄送過，不會重複寄送。');
-        await sleep(420);hideNewsletterSendOverlay();
+        await sleep(420);
+        hideNewsletterSendOverlay();
       }
       showToast('文章已發布 · 這篇電子報先前已寄送過');
       return {attempted:true,success:true,alreadySent:true,body};
     }
 
     const delivered=Number(body.delivered??body.recipients??0);
+
     if(overlayShown){
       completeNewsletterSendOverlay(`已完成寄送 · ${delivered.toLocaleString()} 位訂閱者`);
-      await sleep(420);hideNewsletterSendOverlay();
+      await sleep(420);
+      hideNewsletterSendOverlay();
     }
+
     showToast(`文章已發布 · 電子報已寄送 ${delivered.toLocaleString()} 位訂閱者`);
     celebrateNewsletterSend(sourceEl);
     return {attempted:true,success:true,body};
   }catch(err){
     clearTimeout(overlayTimer);
+    clearTimeout(watchdog);
     if(overlayShown)hideNewsletterSendOverlay();
     showToast('文章已發布，但電子報未送出：'+(err?.message||err));
     return {attempted:true,success:false,error:err};
   }
 }
+
+async function newsletterSubscriberPreflight(){
+  const diag=await newsletterRequest('/admin/newsletter/diagnostics',{
+    method:'POST',
+    timeoutMs:30000,
+    body:JSON.stringify({})
+  });
+
+  const count=Number(diag.sendable||0);
+
+  if(newsletterCache.summary){
+    newsletterCache.summary.active=count;
+    newsletterCache.summary.sendable=count;
+    newsletterCache.summary.pending=0;
+    newsletterCache.summary.repaired=Number(diag.repaired||0);
+    newsletterCache.summary.statusBreakdown=diag.statusBreakdown||{};
+  }
+
+  return diag;
+}
+
+function newsletterStatusBreakdownText(summary){
+  const b=summary?.statusBreakdown||{};
+  const entries=Object.entries(b);
+  if(!entries.length)return '—';
+  return entries.map(([k,v])=>`${k}: ${Number(v).toLocaleString()}`).join(' · ');
+}
+
 async function refreshNewsletterData(){
   if(!newsletterEnabled()){
     newsletterCache={summary:null,subscribers:[],campaigns:[]};
@@ -3783,6 +3859,12 @@ async function refreshNewsletterData(){
       subscribers:Array.isArray(subs?.items)?subs.items:[],
       campaigns:Array.isArray(camps?.items)?camps.items:[]
     };
+
+    /* v14.21: if the ordinary summary looks suspicious, run a canonical
+       subscriber scan before rendering "0". */
+    if(Number(newsletterCache.summary?.active||0)===0 && Number(newsletterCache.summary?.total||0)>0){
+      try{await newsletterSubscriberPreflight()}catch(_){}
+    }
   }catch(err){
     newsletterCache.error=err?.message||String(err);
   }
@@ -3910,47 +3992,89 @@ async function sendNewsletterTest(){
 }
 async function sendNewsletterAll(){
   const draft=newsletterDraft();
-  const count=Number(newsletterCache.summary?.active||0);
-  const pending=Number(newsletterCache.summary?.pending||0);
 
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
   if(!newsletterEnabled()){showToast('Newsletter Backend 尚未連線');return}
   if(!newsletterAdminKey()){showToast('請先輸入 Newsletter Admin Key');return}
 
-  if(count<=0){
-    if(pending>0){
-      showToast(`目前 0 位可寄送；另有 ${pending.toLocaleString()} 位待確認。請先按「啟用既有訂閱者」。`);
-    }else{
-      showToast('目前沒有可寄送的訂閱者');
-    }
+  const b=$('#nlSendBtn');
+
+  /* Always scan the actual Subscribers sheet immediately before sending.
+     Do not trust a stale CMS card count. */
+  let diag;
+  try{
+    if(b){b.disabled=true;b.textContent='檢查訂閱者…'}
+    diag=await newsletterSubscriberPreflight();
+  }catch(err){
+    if(b){b.disabled=false;b.textContent='重新檢查後發送'}
+    showToast('無法讀取訂閱者名單：'+(err?.message||err));
     return;
   }
 
-  if(!confirm(`確定要把這封 SIGN WELL Letter 送給 ${count.toLocaleString()} 位目前訂閱者？`))return;
+  const count=Number(diag.sendable||0);
 
-  const b=$('#nlSendBtn');
+  if(count<=0){
+    if(b){b.disabled=false;b.textContent='目前 0 位可寄送'}
+    showToast(`Subscribers Sheet 有 ${Number(diag.totalRows||0).toLocaleString()} 筆，但目前沒有可寄送 Email。`);
+    return;
+  }
+
+  if(!confirm(`已重新掃描 Subscribers Sheet：${count.toLocaleString()} 位可寄送。確定發送？`)){
+    if(b){b.disabled=false;b.textContent=`一鍵發送 ${count.toLocaleString()} 位訂閱者`}
+    return;
+  }
+
   let overlayShown=false;
-  const timer=setTimeout(()=>{overlayShown=true;showNewsletterSendOverlay('manual')},450);
+  let watchdog=null;
+
+  const timer=setTimeout(()=>{
+    overlayShown=true;
+    showNewsletterSendOverlay('manual');
+
+    /* Avoid an apparently endless overlay. If Apps Script takes unusually
+       long, dismiss the blocking layer and keep the request alive. */
+    watchdog=setTimeout(()=>{
+      if(!overlayShown)return;
+      overlayShown=false;
+      hideNewsletterSendOverlay();
+      showToast('寄送仍在 Backend 處理中；CMS 已解除等待畫面。');
+    },45000);
+  },450);
 
   try{
     if(b){b.disabled=true;b.textContent='正在發送…'}
+
     const result=await newsletterRequest('/admin/newsletter/send',{
-      method:'POST',timeoutMs:300000,body:JSON.stringify({...draft,audience:'active'})
+      method:'POST',
+      timeoutMs:300000,
+      body:JSON.stringify({...draft,audience:'active'})
     });
+
     clearTimeout(timer);
+    clearTimeout(watchdog);
+
     const delivered=Number(result.delivered??result.recipients??0);
+
     if(overlayShown){
       completeNewsletterSendOverlay(`已完成寄送 · ${delivered.toLocaleString()} 位訂閱者`);
-      await sleep(420);hideNewsletterSendOverlay();
+      await sleep(420);
+      hideNewsletterSendOverlay();
+      overlayShown=false;
     }
+
     showToast(`電子報已成功送出 · ${delivered.toLocaleString()} 位`);
     celebrateNewsletterSend(b);
     await refreshNewsletterData();
   }catch(err){
-    clearTimeout(timer);if(overlayShown)hideNewsletterSendOverlay();
+    clearTimeout(timer);
+    clearTimeout(watchdog);
+    if(overlayShown)hideNewsletterSendOverlay();
     showToast('發送失敗：'+(err?.message||err));
   }finally{
-    if(b){b.disabled=false;b.textContent=`一鍵發送 ${Number(newsletterCache.summary?.active||0).toLocaleString()} 位訂閱者`}
+    if(b){
+      b.disabled=false;
+      b.textContent=`一鍵發送 ${Number(newsletterCache.summary?.active||count||0).toLocaleString()} 位訂閱者`;
+    }
   }
 }
 
@@ -3993,13 +4117,14 @@ function renderNewsletterCenter(){
     <div class="newsletter-metric"><span>已寄送電子報</span><strong>${Number(s.campaignsSent||0).toLocaleString()}</strong></div>
   </div>
   ${Number(s.pending||0)>0?`<div class="newsletter-pending-action">
-    <div><strong>找到 ${Number(s.pending||0).toLocaleString()} 位既有待確認訂閱者</strong>這些人已經出現在 Subscribers Sheet，但舊版 Backend 還把他們標成 pending，所以群發會顯示 0 人。</div>
-    <button type="button" id="nlActivatePending">啟用既有訂閱者</button>
+    <div><strong>找到 ${Number(s.pending||0).toLocaleString()} 位需要重新整理的訂閱者</strong>Backend 會重新掃描 Subscribers Sheet，將有效且未取消訂閱的 Email 正規化為可寄送狀態。</div>
+    <button type="button" id="nlActivatePending">重新整理訂閱者</button>
   </div>`:''}
   <div class="newsletter-statusbar">
     <div><b>${connected?'Backend 已設定':'Backend 尚未連線'}</b><br>${connected?(newsletterCache.error||'Google Sheet · 訂閱名單 · Gmail · SIGN WELL Letter Glass 已共用同一 Backend'):'先完成 Newsletter Backend 後，這裡會自動顯示真實訂閱資料。'}</div>
     <span>${connected?'ONLINE':'SETUP'}</span>
   </div>
+  <div class="newsletter-diag"><strong>名單判定：</strong>有效 Email 且未取消訂閱即視為可寄送。狀態：${escapeHTML(newsletterStatusBreakdownText(s))}${Number(s.repaired||0)>0?` · 已自動修復 ${Number(s.repaired).toLocaleString()} 筆`:''}</div>
   <div class="newsletter-grid">
     <section class="newsletter-panel">
       <h3>建立 SIGN WELL Letter</h3>
