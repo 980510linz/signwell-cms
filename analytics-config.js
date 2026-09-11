@@ -1,9 +1,9 @@
 window.SIGNWELL_ANALYTICS = {
-  enabled: false,
-  endpoint: "https://YOUR-ANALYTICS-ENDPOINT.example.com"
+  enabled: true,
+  endpoint: "https://script.google.com/d/10v8JSsR_twdA99i5yHhAIkKRT70it_t-PpirIAU8s6qq8FpYhJImB38O/edit?usp=sharing"
 };
 
 window.SIGNWELL_NEWSLETTER = {
-  enabled: false,
-  endpoint: "https://YOUR-SIGNWELL-BACKEND.example.com"
+  enabled: true,
+  endpoint: "https://script.google.com/d/10v8JSsR_twdA99i5yHhAIkKRT70it_t-PpirIAU8s6qq8FpYhJImB38O/edit?usp=sharing"
 };
