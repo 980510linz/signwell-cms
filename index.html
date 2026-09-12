@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#eaf1f7">
 <title>SIGN WELL CMS · 欣緯生醫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
+
 <style>
 :root{--bg1:#f9fcfe;--bg2:#eaf1f8;--bg3:#e3ecf4;--ink:#26313f;--ink2:#445465;--muted:#7f8b9a;--line:rgba(73,95,116,.12);--rim:rgba(255,255,255,.88);--glass:rgba(255,255,255,.52);--glass2:rgba(255,255,255,.72);--blue:#6f92ad;--sage:#6f9a8e;--red:#a65c65;--shadow:0 24px 70px rgba(50,72,96,.11),0 8px 22px rgba(50,72,96,.05);--ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%}body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(155deg,var(--bg1),var(--bg2) 48%,var(--bg3));overflow:hidden;-webkit-tap-highlight-color:transparent}button,input,textarea,select{font:inherit}.hidden{display:none!important}.field{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px) saturate(145%);opacity:.72}.orb{position:absolute;border-radius:50%;animation:drift 28s ease-in-out infinite alternate}.orb.a{width:48vmax;height:48vmax;left:0;top:0;background:radial-gradient(circle,rgba(151,205,255,.68),transparent 68%)}.orb.b{width:44vmax;height:44vmax;right:-5%;top:16%;background:radial-gradient(circle,rgba(255,186,220,.42),transparent 68%);animation-delay:-9s}.orb.c{width:50vmax;height:50vmax;left:24%;bottom:-18%;background:radial-gradient(circle,rgba(150,238,219,.42),transparent 68%);animation-delay:-16s}@keyframes drift{to{transform:translate(6%,4%) scale(1.08)}}.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.20;background-image:radial-gradient(rgba(70,92,116,.13) .55px,transparent .75px);background-size:21px 21px}
@@ -2639,6 +2643,305 @@ select:focus-visible{
   .newsletter-exact-preview-frame{height:650px}
 }
 
+
+/* ============================================================
+   CMS v14.23 · People editor mode isolation
+   ============================================================ */
+.person-form{overflow:hidden}
+.person-form-modebar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:-2px 0 13px;padding:10px 11px;border-radius:15px;
+  background:radial-gradient(100px 45px at 8% 0%,rgba(255,255,255,.88),transparent 72%),
+             linear-gradient(150deg,rgba(255,255,255,.48),rgba(222,241,252,.30));
+  border:1px solid rgba(255,255,255,.76);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.90);
+}
+.person-form-modebar strong{display:block;color:#476479;font-size:10.5px}
+.person-form-modebar span{display:block;margin-top:2px;color:#8a99a4;font-size:8px}
+.person-mode-pill{
+  flex:0 0 auto;padding:6px 9px;border-radius:999px;
+  color:#4d7896!important;background:rgba(226,243,254,.70);
+  border:1px solid rgba(255,255,255,.84);
+  font-size:7.5px!important;font-weight:850;letter-spacing:.08em;
+}
+.person-form.is-editing .person-mode-pill{
+  color:#6e6a8f!important;background:rgba(236,233,255,.70)
+}
+.person-form.is-editing{
+  box-shadow:0 16px 42px rgba(65,98,126,.07),inset 0 1px 0 rgba(255,255,255,.82)
+}
+.person-admin-row.is-selected{
+  border-color:rgba(111,168,207,.30);
+  background:radial-gradient(110px 60px at 8% 0%,rgba(255,255,255,.78),transparent 74%),
+             linear-gradient(150deg,rgba(234,247,255,.64),rgba(255,255,255,.36));
+  box-shadow:0 10px 26px rgba(69,116,149,.07),inset 0 1px 0 rgba(255,255,255,.90);
+}
+.person-admin-row.is-selected .person-admin-copy strong{color:#365f7c}
+.person-editor-cancel{display:none}
+.person-form.is-editing .person-editor-cancel{display:inline-flex}
+
+
+/* ============================================================
+   CMS v14.24 · Typography System
+   Zen Old Mincho × Microsoft JhengHei
+   ============================================================ */
+:root{
+  --font-serif:"Zen Old Mincho","Noto Serif TC","Songti TC","PMingLiU",serif;
+  --font-sans:"Microsoft JhengHei","微軟正黑體","PingFang TC","Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+/* Core UI: heavier Microsoft JhengHei */
+html,body,
+button,input,textarea,select,
+.top-action,.nav-item,.side-nav,.segmented,.chip,.pill,.badge,
+.newsletter-statusbar,.newsletter-summary,.newsletter-diag,
+.person-form,.person-admin-row,.analytics-panel,
+.editor-toolbar,.editor-actions,.modal-actions{
+  font-family:var(--font-sans)!important;
+  font-weight:700;
+}
+
+/* Editorial / display hierarchy: Zen Old Mincho */
+h1,h2,h3,
+.brand,.brand-name,.brand-title,
+.login-greeting-word,
+.section-title,.page-title,.panel-title,
+.analytics-head strong,
+.newsletter-letter-title,
+.newsletter-exact-preview-head,
+.person-form-modebar strong,
+.modal-card h2,.modal-card h3{
+  font-family:var(--font-serif)!important;
+  font-weight:700!important;
+  letter-spacing:.015em;
+}
+
+/* Make large display text more distinctly Mincho */
+h1,.page-title,.brand-title,.login-greeting-word{
+  font-weight:900!important;
+  letter-spacing:.025em;
+}
+
+/* Dense operational copy stays crisp in JhengHei */
+label,
+.field-label,
+small,
+.helper,
+.meta,
+.status,
+.toast,
+input::placeholder,
+textarea::placeholder{
+  font-family:var(--font-sans)!important;
+  font-weight:700;
+}
+
+/* Long-form text areas: serif for readability, controls remain sans */
+.article-editor textarea,
+.editor-body,
+.preview-copy,
+.site-copy-preview,
+.about-preview,
+textarea[data-editorial="true"]{
+  font-family:var(--font-serif)!important;
+  font-weight:500;
+  line-height:1.82;
+  letter-spacing:.012em;
+}
+
+/* Buttons / tabs / metrics intentionally strong */
+button,
+.top-action,
+.nav-item,
+.segmented button,
+.analytics-range-switch button,
+.newsletter-metric,
+.person-mode-pill{
+  font-weight:800!important;
+}
+
+/* Keep numeric dashboards compact and legible */
+.analytics-total,
+.analytics-insight b,
+.newsletter-metric strong{
+  font-family:var(--font-sans)!important;
+  font-weight:800!important;
+  letter-spacing:-.025em;
+}
+
+/* Avoid browser synthetic-bold distortion on Mincho */
+.brand,.brand-name,h1,h2,h3,.page-title,.section-title{
+  font-synthesis:none;
+}
+
+
+/* ============================================================
+   CMS v14.25 · Overall Optimization
+   ============================================================ */
+
+/* Stable scrollbar prevents subtle horizontal jumps between views. */
+html{scrollbar-gutter:stable}
+
+/* Ambient field no longer relies on one giant full-screen blur filter.
+   The individual radial gradients already provide soft edges. */
+.field{
+  filter:none!important;
+  opacity:.62;
+  transform:translateZ(0);
+  contain:strict;
+}
+.orb{
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+
+/* Long/repeated UI blocks only paint when needed. */
+.article-row,
+.person-admin-row,
+.topic-row,
+.newsletter-metric,
+.analytics-insight,
+.campaign-row,
+.subscriber-row{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 72px;
+  contain:layout style;
+}
+
+/* Large panels isolate layout work without clipping glass effects. */
+.panel,
+.stat,
+.editor-main,
+.editor-side,
+.publish-card,
+.analytics-panel,
+.newsletter-exact-preview{
+  contain:layout style;
+}
+
+/* Cleaner compositor hints for elements that actually animate. */
+.lock-card,
+.login-sync-card,
+.login-greeting-card,
+.newsletter-send-card,
+.toast{
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+/* Global pause when the tab is in the background. */
+body.visual-paused *,
+body.visual-paused *::before,
+body.visual-paused *::after{
+  animation-play-state:paused!important;
+}
+
+/* Consistent interaction polish without expensive filter transitions. */
+button,
+.top-action,
+.nav button,
+.person-admin-row button,
+.analytics-range-switch button{
+  transition:
+    transform .16s cubic-bezier(.2,.72,.22,1),
+    opacity .16s ease,
+    background-color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+button:active,
+.top-action:active{
+  transform:scale(.975);
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+  outline:2px solid rgba(91,151,194,.34);
+  outline-offset:2px;
+}
+
+/* Better touch target consistency. */
+button,.top-action,.nav button{touch-action:manipulation}
+
+/* Balanced mobile rendering:
+   retain liquid glass, but lower blur radius and remove redundant paint layers. */
+@media(max-width:900px),(pointer:coarse){
+  .field{opacity:.48}
+  .orb.c{display:none}
+  .glass,
+  .panel,
+  .stat,
+  .sidebar,
+  .topbar,
+  .login-sync-card,
+  .newsletter-send-card,
+  .newsletter-exact-preview{
+    -webkit-backdrop-filter:blur(10px) saturate(135%)!important;
+    backdrop-filter:blur(10px) saturate(135%)!important;
+  }
+  .panel::before,
+  .stat::before{
+    opacity:.68;
+  }
+  .grain{opacity:.12}
+}
+
+/* Low-power tier: preserve composition, remove only nonessential cost. */
+body.perf-lite .field{display:none!important}
+body.perf-lite .grain{opacity:.08}
+body.perf-lite .orb{animation:none!important}
+body.perf-lite .glass,
+body.perf-lite .panel,
+body.perf-lite .stat,
+body.perf-lite .sidebar,
+body.perf-lite .topbar,
+body.perf-lite .login-sync-card,
+body.perf-lite .newsletter-send-card{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+body.perf-lite .panel::before,
+body.perf-lite .stat::before,
+body.perf-lite .sidebar::after{
+  display:none!important;
+}
+body.perf-lite .reveal-fx{
+  filter:none!important;
+}
+
+/* Intermediate tier for iPhone / iPad / coarse pointer. */
+body.perf-balanced .field{opacity:.44}
+body.perf-balanced .orb{animation-duration:40s!important}
+body.perf-balanced .reveal-fx{
+  filter:none!important;
+}
+
+/* Mobile nav stays smooth while horizontally scrolling. */
+@media(max-width:900px){
+  .nav{
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+  }
+  .nav button{scroll-snap-align:start}
+  .view{
+    contain:layout style;
+  }
+}
+
+/* Reduced motion still gets an immediate, fully readable UI. */
+@media(prefers-reduced-motion:reduce){
+  .orb,
+  .reveal-fx,
+  .jelly{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2681,7 +2984,7 @@ select:focus-visible{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.22</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.25</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -2944,7 +3247,48 @@ async function verifySecond(){
 function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView();setTimeout(()=>cmsCloudApplyDeferred(),0)}
-function renderView(){const editing=Boolean(currentId);$('#previewBtn').classList.toggle('hidden',!editing);$('#saveBtn').classList.toggle('hidden',!editing);$('#publishBtn').classList.add('hidden');$('#onlineBtn').classList.toggle('hidden',!editing);if(editing){$('#topTitle').textContent='文章編輯器';renderEditor();return}const names={dashboard:'總覽',articles:'文章',topics:'主題管理',site:'網站文字',aboutpage:'關於頁面',newsletter:'電子報',export:'發布設定'};$('#topTitle').textContent=names[viewName]||'總覽';if(viewName==='articles')renderArticles();else if(viewName==='topics')renderTopicsManager();else if(viewName==='site')renderSiteText();else if(viewName==='aboutpage')renderAboutPageEditor();else if(viewName==='newsletter'){renderNewsletterCenter();setTimeout(()=>refreshNewsletterData(),0)}else if(viewName==='export')renderExport();else renderDashboard()}
+function renderView(){
+  const editing=Boolean(currentId);
+
+  if(viewName!=='newsletter'&&newsletterPreviewTimer){
+    clearTimeout(newsletterPreviewTimer);
+    newsletterPreviewTimer=null;
+  }
+
+  $('#previewBtn').classList.toggle('hidden',!editing);
+  $('#saveBtn').classList.toggle('hidden',!editing);
+  $('#publishBtn').classList.add('hidden');
+  $('#onlineBtn').classList.toggle('hidden',!editing);
+
+  if(editing){
+    $('#topTitle').textContent='文章編輯器';
+    renderEditor();
+    return;
+  }
+
+  const names={
+    dashboard:'總覽',
+    articles:'文章',
+    topics:'主題管理',
+    site:'網站文字',
+    aboutpage:'關於頁面',
+    newsletter:'電子報',
+    export:'發布設定'
+  };
+
+  $('#topTitle').textContent=names[viewName]||'總覽';
+
+  if(viewName==='articles')renderArticles();
+  else if(viewName==='topics')renderTopicsManager();
+  else if(viewName==='site')renderSiteText();
+  else if(viewName==='aboutpage')renderAboutPageEditor();
+  else if(viewName==='newsletter'){
+    renderNewsletterCenter();
+    setTimeout(()=>refreshNewsletterData(),0);
+  }
+  else if(viewName==='export')renderExport();
+  else renderDashboard();
+}
 
 const ANALYTICS_KEY='signwell-analytics-v1';
 const ANALYTICS_CHANNEL='signwell-analytics';
@@ -3921,6 +4265,8 @@ function resizeNewsletterPreviewFrame(frame){
 }
 
 async function refreshNewsletterExactPreview(){
+  if(document.hidden||viewName!=='newsletter'||$('#cms')?.classList.contains('hidden'))return;
+
   const shell=$('#nlExactPreviewShell'),frame=$('#nlExactPreview');
   if(!shell||!frame)return;
 
@@ -3950,7 +4296,11 @@ async function refreshNewsletterExactPreview(){
 }
 function scheduleNewsletterExactPreview(){
   clearTimeout(newsletterPreviewTimer);
-  newsletterPreviewTimer=setTimeout(()=>refreshNewsletterExactPreview(),320);
+  newsletterPreviewTimer=setTimeout(()=>{
+    newsletterPreviewTimer=null;
+    if(document.hidden||viewName!=='newsletter')return;
+    refreshNewsletterExactPreview();
+  },560);
 }
 
 async function newsletterSubscriberPreflight(){
@@ -5157,7 +5507,14 @@ function renderSiteText(){
           <div class="people-admin-grid">
             <div class="people-list" id="peopleList"></div>
 
-            <div class="person-form">
+            <div class="person-form is-adding" id="personForm">
+              <div class="person-form-modebar">
+                <div>
+                  <strong id="personFormTitle">新增人物</strong>
+                  <span id="personFormHint">建立全新人物；不會覆蓋既有人物。</span>
+                </div>
+                <span class="person-mode-pill" id="personModePill">NEW</span>
+              </div>
               <input type="hidden" id="personId">
               <div class="person-form-row">
                 <div class="site-field"><label>姓名</label><input id="personName" placeholder="例如：Lin Che-Kai"></div>
@@ -5176,8 +5533,9 @@ function renderSiteText(){
               <label class="person-active"><input type="checkbox" id="personActive" checked> 顯示在公開「關於我們」頁</label>
 
               <div class="person-form-actions">
-                <button class="top-action primary" id="savePersonBtn" type="button">儲存人物</button>
-                <button class="top-action" id="clearPersonBtn" type="button">清除</button>
+                <button class="top-action primary" id="savePersonBtn" type="button">新增人物</button>
+                <button class="top-action person-editor-cancel" id="cancelPersonEditBtn" type="button">取消編輯</button>
+                <button class="top-action" id="clearPersonBtn" type="button">清空欄位</button>
               </div>
             </div>
           </div>
@@ -5313,8 +5671,42 @@ function renderSiteText(){
 
   const sortedPeople=()=>data.people.slice().sort((a,b)=>(a.order??999)-(b.order??999));
 
-  const clearPersonForm=()=>{
-    $('#personId').value='';
+  /* v14.23: add/edit are explicit modes, not inferred from a stale hidden ID. */
+  let personEditorMode='add';
+  let personEditingId='';
+
+  const setPersonEditorMode=(mode,id='')=>{
+    const form=$('#personForm');
+    const title=$('#personFormTitle');
+    const hint=$('#personFormHint');
+    const pill=$('#personModePill');
+    const save=$('#savePersonBtn');
+
+    personEditorMode=mode==='edit'?'edit':'add';
+    personEditingId=personEditorMode==='edit'?String(id||''):'';
+
+    if($('#personId'))$('#personId').value=personEditingId;
+
+    form?.classList.toggle('is-editing',personEditorMode==='edit');
+    form?.classList.toggle('is-adding',personEditorMode==='add');
+
+    if(personEditorMode==='edit'){
+      const person=data.people.find(x=>String(x.id)===personEditingId);
+      if(title)title.textContent='編輯人物';
+      if(hint)hint.textContent=`只會修改「${person?.name||'這位人物'}」，不會建立新人物。`;
+      if(pill)pill.textContent='EDIT';
+      if(save)save.textContent='儲存變更';
+    }else{
+      if(title)title.textContent='新增人物';
+      if(hint)hint.textContent='建立全新人物；不會覆蓋既有人物。';
+      if(pill)pill.textContent='NEW';
+      if(save)save.textContent='新增人物';
+    }
+
+    renderPeopleList();
+  };
+
+  const clearPersonFields=()=>{
     $('#personName').value='';
     $('#personRole').value='';
     $('#personBio').value='';
@@ -5325,10 +5717,22 @@ function renderSiteText(){
     $('#personActive').checked=true;
   };
 
+  const startNewPerson=({focus=true}={})=>{
+    clearPersonFields();
+    setPersonEditorMode('add');
+    if(focus)requestAnimationFrame(()=>$('#personName')?.focus());
+  };
+
+  const clearPersonForm=()=>{
+    clearPersonFields();
+    if(personEditorMode==='edit')$('#personId').value=personEditingId;
+  };
+
   const loadPerson=id=>{
     const p=data.people.find(x=>String(x.id)===String(id));
     if(!p)return;
-    $('#personId').value=p.id;
+
+    setPersonEditorMode('edit',p.id);
     $('#personName').value=p.name||'';
     $('#personRole').value=p.role||'';
     $('#personBio').value=p.bio||'';
@@ -5337,7 +5741,8 @@ function renderSiteText(){
     $('#personEducation').value=(p.education||[]).join('\n');
     $('#personExperience').value=(p.experience||[]).join('\n');
     $('#personActive').checked=p.active!==false;
-    $('#personName').focus();
+
+    requestAnimationFrame(()=>$('#personName')?.focus());
   };
 
   const renderPeopleList=()=>{
@@ -5348,7 +5753,7 @@ function renderSiteText(){
       return;
     }
     list.innerHTML=arr.map((p,i)=>`
-      <div class="person-admin-row">
+      <div class="person-admin-row ${personEditorMode==='edit'&&String(p.id)===personEditingId?'is-selected':''}">
         <div class="person-admin-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
         <div class="person-admin-copy">
           <strong>${escapeHTML(p.name||'未命名人物')} ${p.active===false?'<span class="topic-badge">已隱藏</span>':''}</strong>
@@ -5369,9 +5774,12 @@ function renderSiteText(){
       data.people=data.people.filter(x=>String(x.id)!==String(p.id));
       data.people.forEach((x,i)=>x.order=i);
       persist(true);
-      renderPeopleList();
+      if(personEditorMode==='edit'&&String(personEditingId)===String(p.id)){
+        startNewPerson({focus:false});
+      }else{
+        renderPeopleList();
+      }
       renderLivePreview();
-      clearPersonForm();
       showToast('人物已刪除');
     });
     $$('[data-person-up],[data-person-down]').forEach(b=>b.onclick=()=>{
@@ -5398,17 +5806,29 @@ function renderSiteText(){
     saveTimer=setTimeout(()=>collect(),650);
   }));
 
-  $('#newPersonBtn').onclick=()=>{clearPersonForm();$('#personName').focus()};
+  $('#newPersonBtn').onclick=()=>startNewPerson();
   $('#clearPersonBtn').onclick=clearPersonForm;
+  $('#cancelPersonEditBtn').onclick=()=>startNewPerson();
+
   $('#savePersonBtn').onclick=()=>{
     const name=$('#personName').value.trim();
     if(!name){showToast('請先填人物姓名');$('#personName').focus();return}
 
-    const existingId=$('#personId').value.trim();
-    const existing=existingId?data.people.find(x=>String(x.id)===existingId):null;
+    const isEdit=personEditorMode==='edit';
+    const existing=isEdit
+      ? data.people.find(x=>String(x.id)===String(personEditingId))
+      : null;
+
+    if(isEdit&&!existing){
+      showToast('這位人物已不存在；已切回新增模式');
+      startNewPerson();
+      return;
+    }
 
     const person={
-      id:existing?.id||('person-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)),
+      id:isEdit
+        ? existing.id
+        : ('person-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)),
       name,
       role:$('#personRole').value.trim(),
       bio:$('#personBio').value.trim(),
@@ -5417,11 +5837,16 @@ function renderSiteText(){
       education:splitLines($('#personEducation').value),
       experience:splitLines($('#personExperience').value),
       active:$('#personActive').checked,
-      order:existing?.order??data.people.length
+      order:isEdit ? (existing.order??0) : data.people.length
     };
 
-    if(existing){
+    if(isEdit){
       const idx=data.people.findIndex(x=>String(x.id)===String(existing.id));
+      if(idx<0){
+        showToast('人物同步狀態已變更，請重新選擇');
+        startNewPerson();
+        return;
+      }
       data.people[idx]=person;
     }else{
       data.people.push(person);
@@ -5430,10 +5855,16 @@ function renderSiteText(){
     data.people.sort((a,b)=>(a.order??999)-(b.order??999));
     data.people.forEach((x,i)=>x.order=i);
     persist(true);
-    renderPeopleList();
     renderLivePreview();
-    loadPerson(person.id);
-    showToast(existing?'人物已更新 · 文章發布者選單已同步':'人物已新增 · 可立即選為文章發布者');
+
+    if(isEdit){
+      loadPerson(person.id);
+      showToast('人物已更新 · 只修改這位人物');
+    }else{
+      renderPeopleList();
+      showToast('人物已新增 · 已建立獨立人物');
+      startNewPerson({focus:false});
+    }
   };
 
   $('#saveSiteText').onclick=()=>{collect();showToast('網站文字已儲存')};
@@ -5474,6 +5905,7 @@ function renderSiteText(){
     renderLivePreview();
   });
 
+  setPersonEditorMode('add');
   renderPeopleList();
   renderLivePreview();
 }
@@ -5803,7 +6235,55 @@ window.addEventListener('pagehide',()=>{
     cmsCloudPushNow(cmsCloudChangeSeq);
   }
 });
-function optimize(){const low=Number(navigator.deviceMemory||8)<4||matchMedia('(prefers-reduced-motion:reduce)').matches;if(low)document.body.classList.add('lite')}
+function optimize(){
+  const mem=Number(navigator.deviceMemory||8);
+  const cores=Number(navigator.hardwareConcurrency||8);
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const coarse=matchMedia('(pointer:coarse)').matches;
+  const narrow=matchMedia('(max-width:900px)').matches;
+  const isiOS=/iP(hone|ad|od)/.test(navigator.userAgent) ||
+    (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+
+  const lite=reduced||mem<4||cores<=4;
+  const balanced=!lite&&(coarse||narrow||isiOS);
+
+  document.body.classList.toggle('lite',lite);
+  document.body.classList.toggle('perf-lite',lite);
+  document.body.classList.toggle('perf-balanced',balanced);
+  document.body.classList.toggle('perf-high',!lite&&!balanced);
+
+  if(window.__cmsVisibilityGovernorBound)return;
+  window.__cmsVisibilityGovernorBound=true;
+
+  const syncVisibility=()=>{
+    const hidden=document.hidden;
+    document.body.classList.toggle('visual-paused',hidden);
+
+    /* Stop interval wake-ups entirely while backgrounded instead of merely
+       returning early inside each interval callback. */
+    if(hidden){
+      stopAnalyticsLivePolling();
+      stopCmsCloudPolling();
+      clearTimeout(newsletterPreviewTimer);
+      newsletterPreviewTimer=null;
+      return;
+    }
+
+    if(!$('#cms')?.classList.contains('hidden')){
+      startAnalyticsLivePolling();
+      if(cmsCloudEnabled())startCmsCloudPolling();
+
+      if(viewName==='dashboard'||viewName==='articles'){
+        refreshRemoteAnalytics(false);
+      }
+      if(viewName==='newsletter'){
+        scheduleNewsletterExactPreview();
+      }
+    }
+  };
+
+  document.addEventListener('visibilitychange',syncVisibility,{passive:true});
+}
 
 
 const PUBLIC_GITHUB=Object.freeze({owner:'980510linz',repo:'-',branch:'main',path:'articles.js',sitePath:'site-content.js',site:'https://980510linz.github.io/-/'}),TOKEN_STORE_KEY='signwell-github-token-v2',SYNC_KEY='signwell-github-synced-v2';let githubToken='';
@@ -6115,10 +6595,112 @@ publishGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInp
  const byId=new Map(prepared.map(a=>[a.id,a]));data.articles=data.articles.map(a=>byId.has(a.id)?byId.get(a.id):a);persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent=`✓ v12.2 發布完成：${prepared.length} 篇文章、${(data.topics||[]).length} 個主題、${imageEntries.length} 個新圖片資產；主題檔已驗證。`;showToast('SIGN WELL v12.2 發布完成');return true};
 
 function initCmsPremium(){
-  if(window.__cmsPremiumBound)return;window.__cmsPremiumBound=true;
-  const fine=matchMedia('(pointer:fine)').matches&&!document.body.classList.contains('lite');if(fine){document.addEventListener('pointermove',e=>{const el=e.target.closest('.lock-card,.stat,.panel');if(!el)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.setProperty('--px',(x*100)+'%');el.style.setProperty('--py',(y*100)+'%');el.style.setProperty('--ry',((x-.5)*5)+'deg');el.style.setProperty('--rx',((.5-y)*4)+'deg')},{passive:true});document.addEventListener('pointerout',e=>{const el=e.target.closest?.('.lock-card,.stat,.panel');if(!el||e.relatedTarget&&el.contains(e.relatedTarget))return;el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')},{passive:true})}
-  document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b)return;b.classList.remove('jelly');void b.offsetWidth;b.classList.add('jelly');setTimeout(()=>b.classList.remove('jelly'),620)},{passive:true});
-  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target)}}),{threshold:.07});const scan=()=>document.querySelectorAll('.stat,.panel,.editor-main,.editor-side,.publish-card').forEach(el=>{if(el.dataset.fxBound)return;el.dataset.fxBound='1';el.classList.add('reveal-fx');io.observe(el)});new MutationObserver(scan).observe($('#view'),{childList:true,subtree:true});scan();
+  if(window.__cmsPremiumBound)return;
+  window.__cmsPremiumBound=true;
+
+  const fine=matchMedia('(pointer:fine)').matches &&
+    !document.body.classList.contains('perf-lite');
+
+  if(fine){
+    let pointerRAF=0;
+    let lastEvent=null;
+    let activeCard=null;
+    let activeRect=null;
+
+    const renderPointer=()=>{
+      pointerRAF=0;
+      const e=lastEvent;
+      if(!e)return;
+
+      const el=e.target.closest?.('.lock-card,.stat,.panel');
+      if(!el)return;
+
+      if(el!==activeCard){
+        activeCard=el;
+        activeRect=el.getBoundingClientRect();
+      }
+
+      const r=activeRect;
+      if(!r||!r.width||!r.height)return;
+
+      const x=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));
+      const y=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height));
+
+      el.style.setProperty('--px',(x*100).toFixed(1)+'%');
+      el.style.setProperty('--py',(y*100).toFixed(1)+'%');
+      el.style.setProperty('--ry',((x-.5)*4).toFixed(2)+'deg');
+      el.style.setProperty('--rx',((.5-y)*3.2).toFixed(2)+'deg');
+    };
+
+    document.addEventListener('pointermove',e=>{
+      lastEvent=e;
+      if(!pointerRAF)pointerRAF=requestAnimationFrame(renderPointer);
+    },{passive:true});
+
+    document.addEventListener('pointerout',e=>{
+      const el=e.target.closest?.('.lock-card,.stat,.panel');
+      if(!el||e.relatedTarget&&el.contains(e.relatedTarget))return;
+      el.style.setProperty('--rx','0deg');
+      el.style.setProperty('--ry','0deg');
+      if(el===activeCard){
+        activeCard=null;
+        activeRect=null;
+      }
+    },{passive:true});
+
+    window.addEventListener('resize',()=>{
+      activeRect=null;
+    },{passive:true});
+  }
+
+  /* Use Web Animations when available; avoid the old offsetWidth forced reflow. */
+  document.addEventListener('pointerdown',e=>{
+    const b=e.target.closest?.('button');
+    if(!b||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+
+    if(typeof b.animate==='function'){
+      b.animate(
+        [
+          {transform:'scale(1)'},
+          {transform:'scale(.965)',offset:.34},
+          {transform:'scale(1.012)',offset:.72},
+          {transform:'scale(1)'}
+        ],
+        {duration:300,easing:'cubic-bezier(.2,.72,.22,1)'}
+      );
+    }
+  },{passive:true});
+
+  const io=new IntersectionObserver(es=>{
+    es.forEach(x=>{
+      if(x.isIntersecting){
+        x.target.classList.add('in-view');
+        io.unobserve(x.target);
+      }
+    });
+  },{threshold:.05,rootMargin:'80px 0px'});
+
+  let scanRAF=0;
+  const scan=()=>{
+    scanRAF=0;
+    const root=$('#view');
+    if(!root)return;
+    root.querySelectorAll('.stat,.panel,.editor-main,.editor-side,.publish-card').forEach(el=>{
+      if(el.dataset.fxBound)return;
+      el.dataset.fxBound='1';
+      el.classList.add('reveal-fx');
+      io.observe(el);
+    });
+  };
+  const scheduleScan=()=>{
+    if(!scanRAF)scanRAF=requestAnimationFrame(scan);
+  };
+
+  const root=$('#view');
+  if(root){
+    new MutationObserver(scheduleScan).observe(root,{childList:true,subtree:true});
+    scheduleScan();
+  }
 }
 
 load();syncPublicSnapshot();optimize();initCmsPremium();bindCmsCloudRealtime();setAuthStage(1);playOpeningWelcome();
