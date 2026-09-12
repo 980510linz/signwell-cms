@@ -1276,7 +1276,7 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
             <div class="ai-field"><label for="aiEndpointInput">API ENDPOINT</label><input id="aiEndpointInput" type="url" inputmode="url" autocomplete="off" placeholder="https://…"></div>
             <div class="ai-field"><label for="aiModelInput">MODEL ID</label><input id="aiModelInput" type="text" autocomplete="off" placeholder="模型 ID"></div>
             <div class="ai-field key"><label for="aiKeyInput">API KEY</label><input id="aiKeyInput" type="password" autocomplete="new-password" placeholder="貼上金鑰；已設定時可留空保留原金鑰"></div>
-            <div class="ai-field prompt"><label for="aiPromptInput">自訂寫作 PROMPT · 可留空</label><textarea id="aiPromptInput" maxlength="6000" placeholder="例如：語氣冷靜、像臨床醫師寫給一般讀者；避免五段式；先交代臨床意義，再談研究限制；不要使用「值得注意的是」等套話。"></textarea><div class="ai-prompt-help"><span>只控制語氣、角度與敘事偏好；<strong>不能覆蓋 Evidence Lock 與 600–800 字限制。</strong></span><span>最多 6000 字</span></div></div>
+            <div class="ai-field prompt"><label for="aiPromptInput">可編輯寫作指令 · 與 CMS「AI 指令」同步</label><textarea id="aiPromptInput" maxlength="6000" placeholder="例如：語氣冷靜、像臨床醫師寫給一般讀者；避免五段式；先交代臨床意義，再談研究限制；不要使用「值得注意的是」等套話。"></textarea><div class="ai-prompt-help"><span>此欄與 CMS「AI 指令」工作台使用同一份設定；只控制語氣、角度與敘事偏好。<strong>底層 Evidence Lock 與 600–800 字限制不可修改。</strong></span><span>最多 6000 字</span></div></div>
           </div>
           <div class="ai-setup-actions"><button class="ai-save-btn" id="aiSaveBtn" type="button">儲存並測試</button><button class="ai-cancel-btn" id="aiCancelBtn" type="button">取消</button><span class="ai-privacy">設定會儲存在後端，不寫入 GitHub。</span></div>
         </div>
