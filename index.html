@@ -12,7 +12,7 @@
 <style>
 :root{--bg1:#f9fcfe;--bg2:#eaf1f8;--bg3:#e3ecf4;--ink:#26313f;--ink2:#445465;--muted:#7f8b9a;--line:rgba(73,95,116,.12);--rim:rgba(255,255,255,.88);--glass:rgba(255,255,255,.52);--glass2:rgba(255,255,255,.72);--blue:#6f92ad;--sage:#6f9a8e;--red:#a65c65;--shadow:0 24px 70px rgba(50,72,96,.11),0 8px 22px rgba(50,72,96,.05);--ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%}body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(155deg,var(--bg1),var(--bg2) 48%,var(--bg3));overflow:hidden;-webkit-tap-highlight-color:transparent}button,input,textarea,select{font:inherit}.hidden{display:none!important}.field{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px) saturate(145%);opacity:.72}.orb{position:absolute;border-radius:50%;animation:drift 28s ease-in-out infinite alternate}.orb.a{width:48vmax;height:48vmax;left:0;top:0;background:radial-gradient(circle,rgba(151,205,255,.68),transparent 68%)}.orb.b{width:44vmax;height:44vmax;right:-5%;top:16%;background:radial-gradient(circle,rgba(255,186,220,.42),transparent 68%);animation-delay:-9s}.orb.c{width:50vmax;height:50vmax;left:24%;bottom:-18%;background:radial-gradient(circle,rgba(150,238,219,.42),transparent 68%);animation-delay:-16s}@keyframes drift{to{transform:translate(6%,4%) scale(1.08)}}.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.20;background-image:radial-gradient(rgba(70,92,116,.13) .55px,transparent .75px);background-size:21px 21px}
-.lock{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:22px}.lock-card{width:min(420px,100%);padding:34px;border-radius:32px;border:1px solid rgba(255,255,255,.94);background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(244,250,255,.20));backdrop-filter:blur(20px) saturate(165%) brightness(1.04);-webkit-backdrop-filter:blur(20px) saturate(165%) brightness(1.04);box-shadow:0 28px 78px rgba(50,72,96,.12),0 6px 20px rgba(50,72,96,.05),inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(91,121,146,.07);position:relative;z-index:2;text-align:center;overflow:hidden}.lock-mark{width:58px;height:58px;margin:auto;border-radius:19px;display:grid;place-items:center;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);box-shadow:inset 0 1px 0 #fff,0 12px 24px rgba(50,72,96,.10);font-weight:800;font-size:20px}.lock h1{font:500 36px/1 Georgia,"Noto Serif TC",serif;margin:20px 0 8px;letter-spacing:-.04em}.lock p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.pin{margin-top:22px;width:100%;height:52px;border:1px solid rgba(88,108,126,.16);border-radius:17px;background:rgba(255,255,255,.68);outline:none;text-align:center;font-size:22px;letter-spacing:.28em;color:var(--ink)}.lock button{width:100%;height:50px;margin-top:10px;border:0;border-radius:17px;background:#243140;color:#fff;font-weight:700;cursor:pointer}.lock small{display:block;color:#98a4ae;font-size:9.5px;line-height:1.6;margin-top:13px}.auth-progress{display:flex;align-items:center;justify-content:center;gap:9px;margin:19px 0 4px}.auth-progress span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(91,112,132,.14);background:rgba(255,255,255,.38);color:#95a1ac;font-size:10px;font-weight:750;transition:.25s ease}.auth-progress span.active{background:#263340;color:#fff;border-color:#263340;box-shadow:0 6px 16px rgba(38,51,64,.16)}.auth-progress span.done{background:rgba(111,143,134,.16);color:#58796f;border-color:rgba(111,143,134,.22)}.auth-progress i{width:30px;height:1px;background:rgba(91,112,132,.16)}.auth-step{margin-top:14px}.auth-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8e9aa5;margin-bottom:7px}.security-question{margin:3px 0 12px;padding:14px 15px;border-radius:16px;background:rgba(255,255,255,.40);border:1px solid rgba(255,255,255,.74);color:#455564;font-size:13px;font-weight:650;line-height:1.55}.answer-input{font-size:16px;letter-spacing:.04em}.auth-back{margin-top:7px!important;background:rgba(255,255,255,.42)!important;color:#70808f!important;border:1px solid rgba(255,255,255,.75)!important}
+.lock-screen{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:22px}.lock-card{width:min(420px,100%);padding:34px;border-radius:32px;border:1px solid rgba(255,255,255,.94);background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(244,250,255,.20));backdrop-filter:blur(20px) saturate(165%) brightness(1.04);-webkit-backdrop-filter:blur(20px) saturate(165%) brightness(1.04);box-shadow:0 28px 78px rgba(50,72,96,.12),0 6px 20px rgba(50,72,96,.05),inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(91,121,146,.07);position:relative;z-index:2;text-align:center;overflow:hidden}.lock-mark{width:58px;height:58px;margin:auto;border-radius:19px;display:grid;place-items:center;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);box-shadow:inset 0 1px 0 #fff,0 12px 24px rgba(50,72,96,.10);font-weight:800;font-size:20px}.lock-screen h1{font:500 36px/1 Georgia,"Noto Serif TC",serif;margin:20px 0 8px;letter-spacing:-.04em}.lock-screen p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.pin{margin-top:22px;width:100%;height:52px;border:1px solid rgba(88,108,126,.16);border-radius:17px;background:rgba(255,255,255,.68);outline:none;text-align:center;font-size:22px;letter-spacing:.28em;color:var(--ink)}.lock-screen button{width:100%;height:50px;margin-top:10px;border:0;border-radius:17px;background:#243140;color:#fff;font-weight:700;cursor:pointer}.lock-screen small{display:block;color:#98a4ae;font-size:9.5px;line-height:1.6;margin-top:13px}.auth-progress{display:flex;align-items:center;justify-content:center;gap:9px;margin:19px 0 4px}.auth-progress span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(91,112,132,.14);background:rgba(255,255,255,.38);color:#95a1ac;font-size:10px;font-weight:750;transition:.25s ease}.auth-progress span.active{background:#263340;color:#fff;border-color:#263340;box-shadow:0 6px 16px rgba(38,51,64,.16)}.auth-progress span.done{background:rgba(111,143,134,.16);color:#58796f;border-color:rgba(111,143,134,.22)}.auth-progress i{width:30px;height:1px;background:rgba(91,112,132,.16)}.auth-step{margin-top:14px}.auth-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8e9aa5;margin-bottom:7px}.security-question{margin:3px 0 12px;padding:14px 15px;border-radius:16px;background:rgba(255,255,255,.40);border:1px solid rgba(255,255,255,.74);color:#455564;font-size:13px;font-weight:650;line-height:1.55}.answer-input{font-size:16px;letter-spacing:.04em}.auth-back{margin-top:7px!important;background:rgba(255,255,255,.42)!important;color:#70808f!important;border:1px solid rgba(255,255,255,.75)!important}
 .cms{position:relative;z-index:2;height:100dvh;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:238px minmax(0,1fr);gap:12px}.glass{border:1px solid var(--rim);background:rgba(250,253,255,.48);backdrop-filter:blur(24px) saturate(170%);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),var(--shadow)}.sidebar{border-radius:28px;padding:16px 12px;display:flex;flex-direction:column;min-height:0}.brand{display:flex;align-items:center;gap:11px;padding:5px 8px 17px;border-bottom:1px solid var(--line)}.mark{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);font-weight:800}.brand strong{display:block;font-size:12px;letter-spacing:.1em}.brand span{display:block;color:var(--muted);font-size:9px;letter-spacing:.12em;margin-top:3px}.nav{display:grid;gap:5px;margin-top:14px}.nav button{height:43px;border:0;border-radius:14px;background:transparent;color:#667585;text-align:left;padding:0 12px;font-size:12px;font-weight:680;cursor:pointer}.nav button:hover,.nav button.active{background:rgba(255,255,255,.57);color:var(--ink)}.sidebar-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:12px;display:grid;gap:6px}.smallbtn{height:40px;border:1px solid rgba(255,255,255,.82);border-radius:13px;background:rgba(255,255,255,.42);color:#667585;font-size:11px;font-weight:650;cursor:pointer}.smallbtn.danger{color:var(--red)}
 .workspace{border-radius:28px;min-width:0;min-height:0;overflow:hidden;display:flex;flex-direction:column}.topbar{height:68px;flex:0 0 auto;padding:0 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}.topbar h2{font-size:14px;margin:0}.save-state{margin-left:auto;font-size:10.5px;color:#83919d}.top-action{height:40px;padding:0 13px;border:1px solid rgba(255,255,255,.84);border-radius:14px;background:rgba(255,255,255,.48);color:#5c6b7a;font-size:11px;font-weight:700;cursor:pointer}.top-action.primary{background:#263340;color:#fff;border-color:transparent}.view{flex:1;min-height:0;overflow:auto;padding:22px}.page-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}.page-head h1{font:500 38px/1.05 Georgia,"Noto Serif TC",serif;margin:0;letter-spacing:-.04em}.page-head p{color:var(--muted);font-size:11px;margin:6px 0 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{padding:18px;border:1px solid rgba(255,255,255,.80);border-radius:20px;background:rgba(255,255,255,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}.stat span{display:block;color:#8c99a4;font-size:9px;letter-spacing:.1em;text-transform:uppercase}.stat strong{display:block;font:500 30px/1 Georgia,"Noto Serif TC",serif;margin-top:8px}.panel{margin-top:12px;border:1px solid rgba(255,255,255,.82);border-radius:22px;background:rgba(255,255,255,.35);overflow:hidden}.panel-head{height:54px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-size:12px;font-weight:700}.article-row{display:grid;grid-template-columns:minmax(0,1.5fr) 150px 90px 110px;gap:12px;align-items:center;padding:13px 16px;border-bottom:1px solid rgba(72,94,114,.08);cursor:pointer}.article-row:hover{background:rgba(255,255,255,.30)}.article-row:last-child{border-bottom:0}.article-row strong{font-family:Georgia,"Noto Serif TC",serif;font-size:15px;font-weight:500}.article-row small{display:block;color:#8b97a2;font-size:9.5px;margin-top:3px}.badge{display:inline-flex;width:max-content;padding:6px 9px;border-radius:999px;background:rgba(108,149,139,.10);color:#5b7f76;font-size:9.5px;font-weight:700}.badge.draft{background:rgba(139,146,154,.12);color:#707983}.row-actions{display:flex;gap:5px}.row-actions button{width:32px;height:32px;border:0;border-radius:10px;background:rgba(255,255,255,.52);cursor:pointer;color:#71808e}.row-actions button:hover{background:#fff}.empty{text-align:center;padding:50px;color:var(--muted);font-size:12px}.searchbar{height:42px;min-width:240px;border:1px solid rgba(86,106,124,.13);border-radius:14px;background:rgba(255,255,255,.47);padding:0 13px;outline:0;color:var(--ink)}
 /* editor */.editor-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;min-height:100%}.editor-main,.editor-side{border:1px solid rgba(255,255,255,.82);border-radius:22px;background:rgba(255,255,255,.35);overflow:hidden}.editor-main{padding:22px}.title-input{width:100%;border:0;outline:0;background:transparent;font:500 clamp(32px,5vw,56px)/1.04 Georgia,"Noto Serif TC",serif;color:var(--ink);letter-spacing:-.04em}.subtitle-input{width:100%;border:0;outline:0;background:transparent;color:#74818d;font-size:14px;line-height:1.65;margin-top:10px;resize:none;min-height:54px}.toolbar{display:flex;flex-wrap:wrap;gap:5px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:12px}.toolbar button{height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.84);border-radius:10px;background:rgba(255,255,255,.46);color:#61707f;font-size:10px;font-weight:700;cursor:pointer}.content-area{width:100%;min-height:430px;border:0;outline:0;background:transparent;resize:vertical;padding:18px 2px;font:13px/1.8 "SFMono-Regular",Consolas,monospace;color:#3f4c59}.doc-editor{min-height:520px;padding:30px 8px 80px;outline:0;font-size:16px;line-height:1.95;color:#3f4c59;caret-color:#26313f}.doc-editor:empty:before{content:"開始撰寫文章…";color:#a1adb7}.doc-editor h2{font:500 32px/1.2 Georgia,"Noto Serif TC",serif;margin:42px 0 14px;letter-spacing:-.03em}.doc-editor h3{font-size:21px;margin:30px 0 10px}.doc-editor h4{font-size:16px;font-weight:760;margin:24px 0 8px;letter-spacing:-.01em}.doc-editor p{margin:0 0 18px}.doc-editor blockquote{margin:24px 0;padding:14px 18px;border-left:3px solid #87a8a0;background:rgba(255,255,255,.42);border-radius:0 16px 16px 0}.doc-editor img{display:block;max-width:100%;height:auto;margin:28px auto;border-radius:18px;box-shadow:0 12px 30px rgba(45,63,80,.10)}.doc-editor a{color:#547a98}.toolbar.sticky-tools{position:sticky;top:-22px;z-index:8;background:rgba(242,248,251,.88);backdrop-filter:blur(16px);margin-left:-22px;margin-right:-22px;padding:10px 22px}.toolbar .tool-sep{width:1px;height:22px;background:var(--line);margin:6px 2px}.cover-box{margin:14px 0 4px;border:1px dashed rgba(91,112,132,.22);border-radius:22px;min-height:150px;overflow:hidden;background:rgba(255,255,255,.30);display:grid;place-items:center;position:relative}.cover-box.has-image{min-height:260px;border-style:solid}.cover-box img{width:100%;height:260px;object-fit:cover;display:block}.cover-empty{text-align:center;color:#8b98a3;font-size:11px;line-height:1.7;padding:24px}.cover-actions{position:absolute;right:10px;bottom:10px;display:flex;gap:7px}.cover-actions button{height:36px;border:1px solid rgba(255,255,255,.9);border-radius:12px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);color:#596978;font-size:10px;font-weight:700;padding:0 11px;cursor:pointer}.editor-side{padding:14px;align-self:start;position:sticky;top:0}.field-group{padding:10px 0;border-bottom:1px solid var(--line)}.field-group:last-child{border-bottom:0}.field-group label{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8b98a3;margin-bottom:7px}.field-group input,.field-group select,.field-group textarea{width:100%;border:1px solid rgba(87,107,126,.13);border-radius:12px;background:rgba(255,255,255,.55);padding:10px 11px;outline:0;color:var(--ink);font-size:11px}.field-group textarea{min-height:78px;resize:vertical}.check{display:flex;align-items:center;gap:8px;font-size:11px;color:#61707f}.preview-overlay{position:fixed;inset:0;z-index:60;background:rgba(225,236,243,.52);backdrop-filter:blur(14px);display:none;padding:18px}.preview-overlay.show{display:block}.preview-shell{width:min(980px,100%);height:100%;margin:auto;border:1px solid var(--rim);border-radius:28px;background:#fff;box-shadow:0 30px 90px rgba(40,58,78,.22);overflow:auto;position:relative;padding:70px max(22px,8vw)}.preview-close{position:fixed;right:30px;top:30px;width:44px;height:44px;border:1px solid rgba(255,255,255,.9);border-radius:999px;background:rgba(255,255,255,.74);box-shadow:0 10px 26px rgba(40,58,78,.12);cursor:pointer}.preview-content{max-width:760px;margin:auto}.preview-content h1{font:500 50px/1.05 Georgia,"Noto Serif TC",serif;letter-spacing:-.04em}.preview-content .lead{color:#72808d;line-height:1.7}.preview-content h2{font:500 30px/1.2 Georgia,"Noto Serif TC",serif;margin-top:42px}.preview-content h3{font-size:19px;margin-top:28px}.preview-content h4{font-size:15px;font-weight:760;margin-top:22px}.preview-content p,.preview-content li{font-size:15px;line-height:1.9;color:#465463}.callout{margin:24px 0;padding:17px 19px;border-radius:18px;background:#eef5f3;border:1px solid #dceae6}.callout b{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#63867c;margin-bottom:6px}.toast{position:fixed;z-index:90;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translate(-50%,18px);opacity:0;background:rgba(34,46,58,.92);color:#fff;padding:10px 14px;border-radius:999px;font-size:11px;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal{position:fixed;inset:0;z-index:80;background:rgba(225,236,243,.52);backdrop-filter:blur(14px);display:none;place-items:center;padding:18px}.modal.show{display:grid}.modal-card{width:min(430px,100%);padding:24px;border:1px solid var(--rim);border-radius:26px;background:rgba(250,253,255,.86);box-shadow:0 30px 90px rgba(40,58,78,.22)}.modal-card h3{font:500 28px/1.1 Georgia,"Noto Serif TC",serif;margin:0}.modal-card p{color:#74818d;font-size:12px;line-height:1.7}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}.modal-actions button{height:40px;padding:0 13px;border:1px solid rgba(83,105,124,.12);border-radius:13px;background:#fff;color:#5d6d7c;font-weight:700;font-size:11px;cursor:pointer}.modal-actions .danger{background:#9a515b;color:#fff;border-color:transparent}.file-input{display:none}
@@ -36,7 +36,7 @@ body::before{content:"";position:fixed;inset:-14%;z-index:0;pointer-events:none;
 .stat{position:relative;overflow:hidden}.stat:hover,.panel:hover{--lift:-3px;border-color:rgba(255,255,255,.96)}
 .sidebar{position:relative;overflow:hidden}.sidebar::after{content:"";position:absolute;top:-70%;left:-55%;width:34%;height:240%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.58),transparent);transform:rotate(16deg);filter:blur(4px);animation:cmsSheen 9.2s var(--ease) infinite;pointer-events:none}@keyframes cmsSheen{0%,65%{translate:-120% 0;opacity:0}72%{opacity:.85}100%{translate:650% 0;opacity:0}}
 .mark{box-shadow:inset 0 1px 0 #fff,0 9px 24px rgba(88,169,237,.16)}
-.top-action,.smallbtn,.toolbar button,.nav button,.row-actions button,.lock button{transition:transform .25s var(--spring),box-shadow .23s ease,background .23s ease,color .23s ease}
+.top-action,.smallbtn,.toolbar button,.nav button,.row-actions button,.lock-screen button{transition:transform .25s var(--spring),box-shadow .23s ease,background .23s ease,color .23s ease}
 .top-action:hover,.smallbtn:hover,.toolbar button:hover,.nav button:hover{transform:translateY(-2px)}
 .top-action.primary{background:linear-gradient(180deg,#31485d,#22313f);box-shadow:0 12px 28px rgba(42,72,96,.18),inset 0 1px 0 rgba(255,255,255,.14)}
 .top-action.online{background:linear-gradient(180deg,#80c8fb,#58a9ed);color:#fff;border-color:rgba(255,255,255,.50);box-shadow:0 12px 28px rgba(88,169,237,.26),inset 0 1px 0 rgba(255,255,255,.38)}
@@ -630,27 +630,27 @@ body.dark .view-badge{
 @keyframes openingLine{to{width:min(260px,52vw)}}
 
 /* ---------- login page: flowing background + clearer glass ---------- */
-.lock{
+.lock-screen{
   isolation:isolate;
   background:
     radial-gradient(70% 62% at 15% 10%,rgba(255,255,255,.22),transparent 68%),
     linear-gradient(155deg,rgba(244,250,255,.10),rgba(231,242,250,.04));
   overflow:hidden;
 }
-.lock::before,
-.lock::after{
+.lock-screen::before,
+.lock-screen::after{
   content:"";position:absolute;pointer-events:none;z-index:0;
   border-radius:46% 54% 58% 42% / 52% 44% 56% 48%;
   filter:blur(50px) saturate(145%);
   will-change:transform,border-radius;
 }
-.lock::before{
+.lock-screen::before{
   width:74vmax;height:58vmax;left:-26vmax;top:-23vmax;
   background:
     radial-gradient(circle at 40% 45%,rgba(110,192,252,.58),rgba(154,212,250,.18) 48%,transparent 72%);
   animation:loginLiquidA 12s ease-in-out infinite alternate;
 }
-.lock::after{
+.lock-screen::after{
   width:68vmax;height:60vmax;right:-24vmax;bottom:-28vmax;
   background:
     radial-gradient(circle at 50% 50%,rgba(143,229,210,.43),rgba(220,191,242,.14) 54%,transparent 74%);
@@ -727,11 +727,11 @@ body.dark .view-badge{
   -webkit-backdrop-filter:blur(8px);
   backdrop-filter:blur(8px);
 }
-.lock button{
+.lock-screen button{
   box-shadow:0 14px 30px rgba(30,54,74,.15),inset 0 1px 0 rgba(255,255,255,.10);
   transition:transform .26s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,filter .22s ease;
 }
-.lock button:active{transform:scale(.96)}
+.lock-screen button:active{transform:scale(.96)}
 .auth-back{
   background:rgba(255,255,255,.18)!important;
   border-color:rgba(255,255,255,.42)!important;
@@ -999,11 +999,11 @@ body.lite #lockScreen .lock-card{
 /* ---------- reduced motion ---------- */
 @media(prefers-reduced-motion:reduce){
   .cms-opening::before,.cms-opening::after,
-  .lock::before,.lock::after{animation:none!important}
+  .lock-screen::before,.lock-screen::after{animation:none!important}
   .confetti-piece{display:none!important}
 }
 @media(max-width:620px){
-  .lock{padding:18px}
+  .lock-screen{padding:18px}
   .lock-card{padding:28px 22px!important;border-radius:30px!important}
   .login-greeting-card{padding:30px 22px}
 }
@@ -1573,7 +1573,7 @@ body.lite #lockScreen .lock-card{
    ============================================================ */
 .brand{gap:0!important}
 .brand>div:last-child{padding-left:0}
-.lock h1{margin-top:4px!important}
+.lock-screen h1{margin-top:4px!important}
 .preview-default-cover::before{
   content:"SIGN WELL"!important;
   width:auto!important;
@@ -3892,7 +3892,7 @@ body:not(.perf-lite) .publish-actions{
   box-shadow:inset 0 1px 0 rgba(255,255,255,.78);
   user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important;cursor:default;
 }
-.newsletter-key-shield .lock{font-size:13px}
+.newsletter-key-shield .lock-screen{font-size:13px}
 .newsletter-key-shield .dots{min-width:0;overflow:hidden;color:#6f8796;font-size:15px;font-weight:900;letter-spacing:.16em;white-space:nowrap}
 .newsletter-key-shield .label{margin-left:auto;color:#9aa8b1;font-size:8px;font-weight:850;letter-spacing:.08em}
 .newsletter-sender-lock{
@@ -4621,143 +4621,71 @@ body:not(.perf-lite) .publish-actions{
 
 
 /* ============================================================
-   CMS v14.42 · Newsletter Safe Mode
+   CMS v14.43 · Newsletter Root-Cause Fix
    ============================================================ */
 
 /*
- * Newsletter uses the browser/document as the only scroll root.
- * This deliberately bypasses the body:hidden -> .view overflow:auto stack
- * because WebKit can freeze hit-testing when that stack contains large
- * glass layers / iframes / fixed overlays.
+ * Critical namespace fix:
+ * Login screen uses .lock-screen.
+ * Newsletter KEY LOCKED glyph uses .key-lock-icon.
+ * Never reuse the generic class "lock" for visual icons.
  */
-body.newsletter-safe-mode{
-  overflow-y:auto!important;
-  overflow-x:hidden!important;
-  height:auto!important;
-  min-height:100dvh!important;
-}
-body.newsletter-safe-mode .cms{
-  height:auto!important;
-  min-height:100dvh!important;
-  align-items:start!important;
-}
-body.newsletter-safe-mode .workspace{
-  overflow:visible!important;
-  min-height:100dvh!important;
-}
-body.newsletter-safe-mode .view{
-  overflow:visible!important;
-  min-height:calc(100dvh - 92px)!important;
-  height:auto!important;
-  -webkit-overflow-scrolling:auto!important;
-  overscroll-behavior:auto!important;
-  transform:none!important;
-  opacity:1!important;
-}
-body.newsletter-safe-mode .sidebar{
-  position:sticky;
-  top:max(12px,env(safe-area-inset-top));
-  height:calc(100dvh - max(24px,env(safe-area-inset-top)));
-  align-self:start;
-}
-body.newsletter-safe-mode .topbar{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(244,249,253,.90)!important;
-  -webkit-backdrop-filter:none!important;
-  backdrop-filter:none!important;
-}
-
-/* No blur/compositor-heavy material inside the newsletter workspace. */
-body.newsletter-safe-mode .newsletter-panel,
-body.newsletter-safe-mode .newsletter-statusbar,
-body.newsletter-safe-mode .newsletter-backend-alert,
-body.newsletter-safe-mode .newsletter-toggle,
-body.newsletter-safe-mode .newsletter-exact-preview,
-body.newsletter-safe-mode .newsletter-admin-key,
-body.newsletter-safe-mode .newsletter-row,
-body.newsletter-safe-mode .newsletter-metric{
-  -webkit-backdrop-filter:none!important;
-  backdrop-filter:none!important;
-  filter:none!important;
-  transform:none!important;
-  will-change:auto!important;
-}
-
-/* Absolutely nothing fixed is allowed to intercept the page while the
-   newsletter workspace itself is open. Newsletter actions use inline UI. */
-body.newsletter-safe-mode #newsletterSendOverlay,
-body.newsletter-safe-mode #newsletterConfirmOverlay{
-  display:none!important;
-  visibility:hidden!important;
-  opacity:0!important;
+.newsletter-key-shield .key-lock-icon{
+  position:static!important;
+  inset:auto!important;
+  z-index:auto!important;
+  display:inline-grid!important;
+  place-items:center;
+  width:20px;
+  height:20px;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#63849a;
+  font-size:15px;
+  line-height:1;
   pointer-events:none!important;
 }
 
-/* Keep every newsletter control as an ordinary native hit target. */
-body.newsletter-safe-mode .newsletter-grid,
-body.newsletter-safe-mode .newsletter-panel,
-body.newsletter-safe-mode .newsletter-panel *,
-body.newsletter-safe-mode .newsletter-summary,
-body.newsletter-safe-mode .newsletter-statusbar,
-body.newsletter-safe-mode .newsletter-diag{
+/* Defensive compatibility:
+   if an old cached newsletter DOM somehow still contains class="lock",
+   it can never become a fullscreen blocker inside KEY LOCKED. */
+.newsletter-key-shield > .lock{
+  position:static!important;
+  inset:auto!important;
+  z-index:auto!important;
+  display:inline-grid!important;
+  width:20px!important;
+  height:20px!important;
+  min-width:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:visible!important;
+  pointer-events:none!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+
+/* Newsletter is an ordinary interactive page.
+   Explicitly preserve pointer/touch behavior after the blocker fix. */
+#view .newsletter-grid,
+#view .newsletter-panel,
+#view .newsletter-statusbar,
+#view .newsletter-diag{
   pointer-events:auto!important;
 }
-body.newsletter-safe-mode .newsletter-panel *{
+#view .newsletter-panel button,
+#view .newsletter-panel input,
+#view .newsletter-panel textarea,
+#view .newsletter-panel select,
+#view .newsletter-panel label{
+  pointer-events:auto!important;
   touch-action:auto!important;
-}
-body.newsletter-safe-mode .newsletter-grid{
-  contain:none!important;
-  isolation:auto!important;
-}
-
-/* Inline action status replaces fullscreen send overlay on this page. */
-.newsletter-inline-action{
-  display:none;
-  margin:0 0 12px;
-  padding:11px 13px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.74);
-  background:rgba(238,248,254,.90);
-  color:#587184;
-  font-size:9px;
-  font-weight:800;
-  line-height:1.55;
-}
-.newsletter-inline-action.show{display:block}
-.newsletter-inline-action.ok{
-  color:#477562;
-  background:rgba(235,249,242,.92);
-}
-.newsletter-inline-action.bad{
-  color:#965b60;
-  background:rgba(255,239,240,.94);
-}
-
-/* Preview frame is not present until user requests it. */
-#nlExactPreviewMount:empty{
-  display:none;
-}
-#nlExactPreviewMount iframe{
-  display:block;
-  width:100%;
-  height:620px;
-  border:0;
-  background:#edf6fc;
-  pointer-events:none!important;
-}
-@media(max-width:900px){
-  body.newsletter-safe-mode .cms{
-    height:auto!important;
-    min-height:100dvh!important;
-  }
-  body.newsletter-safe-mode .sidebar{
-    position:relative;
-    top:auto;
-    height:auto;
-  }
-  #nlExactPreviewMount iframe{height:500px}
 }
 
 </style>
@@ -4818,9 +4746,9 @@ body.newsletter-safe-mode .newsletter-grid{
 </div>
 <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
-<section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
+<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.42</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.43</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -4852,7 +4780,7 @@ body.newsletter-safe-mode .newsletter-grid{
     </div>
   </div>
 </div>
-<script src="analytics-config.js?v=14.42"></script>
+<script src="analytics-config.js?v=14.43"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -5106,11 +5034,10 @@ async function verifySecond(){
     startCmsCloudPolling();
   });
 }
-function lock(){document.body.classList.remove('newsletter-safe-mode');stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
+function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 function nav(v){
   if(viewName==='newsletter'||v==='newsletter')resetNewsletterInteractionState();
-  if(v!=='newsletter')document.body.classList.remove('newsletter-safe-mode');
   viewName=v;
   currentId=null;
   pendingNewArticle=null;
@@ -5177,8 +5104,6 @@ function renderMedicalNewsSuggestions(){
 function renderView(){
   const editing=Boolean(currentId);
 
-  document.body.classList.toggle('newsletter-safe-mode',viewName==='newsletter'&&!editing);
-
   if(viewName!=='newsletter'&&newsletterPreviewTimer){
     clearTimeout(newsletterPreviewTimer);
     newsletterPreviewTimer=null;
@@ -5215,6 +5140,7 @@ function renderView(){
   else if(viewName==='aboutpage')renderAboutPageEditor();
   else if(viewName==='newsletter'){
     renderNewsletterCenter();
+    setTimeout(()=>refreshNewsletterData(),0);
   }
   else if(viewName==='export')renderExport();
   else renderDashboard();
@@ -6205,13 +6131,6 @@ function closeNewsletterSendConfirm(result=false){
 }
 
 function confirmNewsletterSendUI({count=0,subject='',hero=''}={}){
-  if(viewName==='newsletter'){
-    const ok=window.confirm(
-      `確認送出電子報？\n\n收件者：${Number(count||0).toLocaleString()} 位\n主旨：${subject||'未設定主旨'}\n主推：${hero||'純內容電子報'}`
-    );
-    return Promise.resolve(ok);
-  }
-
   const wrap=$('#newsletterConfirmOverlay');
   if(!wrap)return Promise.resolve(false);
 
@@ -6259,17 +6178,6 @@ document.addEventListener('keydown',e=>{
 });
 
 function showNewsletterSendOverlay(mode='auto',count=0,subject=''){
-  if(viewName==='newsletter'){
-    const label=
-      mode==='manual'
-        ?`正在發送給 ${Number(count||0).toLocaleString()} 位訂閱者…`
-        :mode==='test'
-          ?'正在寄送測試信…'
-          :'正在送出電子報…';
-    newsletterInlineStatus(label);
-    return;
-  }
-
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('done','failed');
 
@@ -6305,11 +6213,6 @@ function showNewsletterSendOverlay(mode='auto',count=0,subject=''){
 }
 
 function completeNewsletterSendOverlay(message='電子報已發送完成',meta=''){
-  if(viewName==='newsletter'){
-    newsletterInlineStatus(meta?`${message} · ${meta}`:message,'ok');
-    return;
-  }
-
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('failed');
   wrap.classList.add('done','show');
@@ -6328,11 +6231,6 @@ function completeNewsletterSendOverlay(message='電子報已發送完成',meta='
 }
 
 function failNewsletterSendOverlay(message='電子報未能送出'){
-  if(viewName==='newsletter'){
-    newsletterInlineStatus(message,'bad');
-    return;
-  }
-
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('done');
   wrap.classList.add('failed','show');
@@ -6347,11 +6245,6 @@ function failNewsletterSendOverlay(message='電子報未能送出'){
 }
 
 function hideNewsletterSendOverlay(){
-  if(viewName==='newsletter'){
-    clearNewsletterInlineStatus();
-    return;
-  }
-
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('show','done','failed');
   wrap.setAttribute('aria-hidden','true');
@@ -6393,24 +6286,6 @@ function resetNewsletterInteractionState(){
 
   document.documentElement.style.removeProperty('overflow');
   document.body.style.removeProperty('pointer-events');
-}
-
-
-function newsletterInlineStatus(message='',kind=''){
-  if(viewName!=='newsletter')return false;
-  const el=$('#nlInlineAction');
-  if(!el)return false;
-
-  el.textContent=String(message||'');
-  el.className='newsletter-inline-action show'+(kind?(' '+kind):'');
-  return true;
-}
-
-function clearNewsletterInlineStatus(){
-  const el=$('#nlInlineAction');
-  if(!el)return;
-  el.textContent='';
-  el.className='newsletter-inline-action';
 }
 
 function newsletterAutoEnabled(){
@@ -6600,24 +6475,13 @@ async function refreshNewsletterExactPreview({force=false}={}){
   if(!newsletterPreviewMounted&&!force)return;
 
   const shell=$('#nlExactPreviewShell');
-  const mount=$('#nlExactPreviewMount');
-  if(!shell||!mount)return;
+  const frame=$('#nlExactPreview');
+  if(!shell||!frame)return;
 
   newsletterPreviewMounted=true;
   newsletterPreviewDirty=false;
 
-  let frame=$('#nlExactPreview');
-  if(!frame){
-    frame=document.createElement('iframe');
-    frame.id='nlExactPreview';
-    frame.className='newsletter-exact-preview-frame';
-    frame.title='SIGN WELL Letter 實際寄送預覽';
-    frame.setAttribute('sandbox','allow-same-origin');
-    frame.tabIndex=-1;
-    frame.setAttribute('aria-hidden','true');
-    mount.replaceChildren(frame);
-  }
-
+  frame.hidden=false;
   shell.classList.add('preview-loaded');
 
   const placeholder=$('#nlPreviewPlaceholder');
@@ -6650,7 +6514,9 @@ async function refreshNewsletterExactPreview({force=false}={}){
     newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.6');
     newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
 
+    frame.onload=()=>resizeNewsletterPreviewFrame(frame);
     frame.srcdoc=html;
+    resizeNewsletterPreviewFrame(frame);
 
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
@@ -6672,7 +6538,10 @@ async function refreshNewsletterExactPreview({force=false}={}){
       <div>
         <strong>暫時無法取得 Glass Letter 預覽</strong>
         <p>${escapeHTML(newsletterBackendCapabilityError)}</p>
+        <p>CMS 本身仍可操作；修正 Backend 後再按「更新預覽」即可。</p>
       </div>`;
+
+    resizeNewsletterPreviewFrame(frame);
 
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
@@ -6785,27 +6654,16 @@ function newsletterStatusBreakdownText(summary){
 async function refreshNewsletterData(){
   if(!newsletterEnabled()){
     newsletterCache={summary:null,subscribers:[],campaigns:[]};
-    if(viewName==='dashboard')refreshDashboardNewsletterSnapshot();
-    if(viewName==='newsletter')newsletterInlineStatus('Backend 尚未設定','bad');
+    if(viewName==='newsletter')renderNewsletterCenter();
+    else if(viewName==='dashboard')refreshDashboardNewsletterSnapshot();
     return;
   }
-
-  const btn=$('#nlRefresh');
-  const previousText=btn?.textContent||'重新整理資料';
-
   try{
-    if(btn){
-      btn.disabled=true;
-      btn.textContent='更新中…';
-    }
-    if(viewName==='newsletter')newsletterInlineStatus('正在更新訂閱與寄送資料…');
-
     const [summary,subs,camps]=await Promise.all([
       newsletterRequest('/admin/newsletter/summary'),
       newsletterRequest('/admin/newsletter/subscribers?limit=5'),
       newsletterRequest('/admin/newsletter/campaigns?limit=6')
     ]);
-
     newsletterCache={
       summary:summary||null,
       subscribers:Array.isArray(subs?.items)?subs.items:[],
@@ -6814,37 +6672,33 @@ async function refreshNewsletterData(){
       templateVersion:String(summary?.templateVersion||'')
     };
 
+    /* v14.21: if the ordinary summary looks suspicious, run a canonical
+       subscriber scan before rendering "0". */
     if(newsletterBackendIsCurrent() &&
        Number(newsletterCache.summary?.active||0)===0 &&
        Number(newsletterCache.summary?.total||0)>0){
       try{await newsletterSubscriberPreflight()}catch(_){}
     }
-
-    if(viewName==='newsletter'){
-      /*
-       * Deliberately render only once, after an explicit user click.
-       * Restore scroll after DOM replacement.
-       */
-      const y=window.scrollY;
-      renderNewsletterCenter();
-      requestAnimationFrame(()=>{
-        window.scrollTo(0,y);
-        newsletterInlineStatus('資料已更新','ok');
-        setTimeout(()=>clearNewsletterInlineStatus(),1400);
-      });
-    }else if(viewName==='dashboard'){
-      refreshDashboardNewsletterSnapshot();
-    }
   }catch(err){
     newsletterCache.error=err?.message||String(err);
-    if(viewName==='newsletter')newsletterInlineStatus('資料更新失敗：'+newsletterCache.error,'bad');
-  }finally{
-    const fresh=$('#nlRefresh');
-    if(fresh){
-      fresh.disabled=false;
-      fresh.textContent=previousText;
-    }
   }
+  if(viewName==='newsletter'){
+    const activeEl=document.activeElement;
+    const composing=Boolean(
+      activeEl?.closest?.('.newsletter-composer-panel') &&
+      activeEl.matches?.('input,textarea,select,button')
+    );
+
+    if(!composing){
+      renderNewsletterCenter();
+    }else{
+      const metrics=$$('.newsletter-metric strong');
+      if(metrics[0])metrics[0].textContent=Number(newsletterCache.summary?.active||0).toLocaleString();
+      if(metrics[1])metrics[1].textContent=Number(newsletterCache.summary?.pending||0).toLocaleString();
+      if(metrics[2])metrics[2].textContent=Number(newsletterCache.summary?.newThisMonth||0).toLocaleString();
+      if(metrics[3])metrics[3].textContent=Number(newsletterCache.summary?.campaignsSent||0).toLocaleString();
+    }
+  }else if(viewName==='dashboard')refreshDashboardNewsletterSnapshot();
 }
 
 async function activatePendingNewsletterSubscribers(){
@@ -7128,6 +6982,39 @@ function updateNewsletterComposerPreview(){
   scheduleNewsletterExactPreview();
 }
 
+
+function auditNewsletterHitTargets(){
+  if(viewName!=='newsletter')return;
+
+  const root=$('#view');
+  if(!root)return;
+
+  const suspicious=[...root.querySelectorAll('*')].filter(el=>{
+    const style=getComputedStyle(el);
+    if(style.position!=='fixed')return false;
+    if(style.display==='none'||style.visibility==='hidden'||style.pointerEvents==='none')return false;
+
+    const r=el.getBoundingClientRect();
+    return r.width>=innerWidth*.75 && r.height>=innerHeight*.75;
+  });
+
+  if(suspicious.length){
+    console.warn(
+      '[SIGN WELL CMS] Newsletter hit-target audit blocked an unexpected fullscreen element:',
+      suspicious
+    );
+
+    suspicious.forEach(el=>{
+      el.style.setProperty('position','static','important');
+      el.style.setProperty('inset','auto','important');
+      el.style.setProperty('z-index','auto','important');
+      el.style.setProperty('width','auto','important');
+      el.style.setProperty('height','auto','important');
+      el.style.setProperty('pointer-events','none','important');
+    });
+  }
+}
+
 function renderNewsletterCenter(){
   resetNewsletterInteractionState();
   const s=newsletterCache.summary||{},connected=newsletterEnabled();
@@ -7138,10 +7025,9 @@ function renderNewsletterCenter(){
     camps=newsletterCache.campaigns||[];
 
   $('#view').innerHTML=`<div class="page-head">
-    <div><h1>電子報</h1><p>SIGN WELL Letter · 安全模式：頁面不自動刷新、不建立預覽 iframe；需要時再手動操作。</p></div>
-    <button class="top-action" id="nlRefresh">重新整理資料</button>
+    <div><h1>電子報</h1><p>SIGN WELL Letter · 使用 Glass Letter 範本管理自動文章通知與手動群發。</p></div>
+    <button class="top-action" id="nlRefresh">重新整理</button>
   </div>
-  <div class="newsletter-inline-action" id="nlInlineAction"></div>
   <div class="newsletter-summary">
     <div class="newsletter-metric"><span>可寄送訂閱者</span><strong>${Number(s.active||0).toLocaleString()}</strong></div>
     <div class="newsletter-metric"><span>待確認</span><strong>${Number(s.pending||0).toLocaleString()}</strong></div>
@@ -7193,8 +7079,9 @@ function renderNewsletterCenter(){
           oncontextmenu="return false"
           ondragstart="return false"
           onselectstart="return false"
+          onpointerdown="return false"
           tabindex="-1">
-          <span class="lock" aria-hidden="true">⌁</span>
+          <span class="key-lock-icon" aria-hidden="true">⌁</span>
           <span class="dots" aria-hidden="true">••••••••••••••</span>
           <span class="label">KEY LOCKED</span>
         </div>
@@ -7227,10 +7114,10 @@ function renderNewsletterCenter(){
         <div class="newsletter-preview-placeholder" id="nlPreviewPlaceholder">
           <div>
             <strong>Glass Letter 預覽目前未載入</strong>
-            <span>目前頁面完全沒有建立 iframe。只有按「載入預覽」後才會動態建立，避免影響整個 CMS 的點擊與捲動。</span>
+            <span>內容編輯、測試信、群發與其他 CMS 操作都不需要先載入預覽。需要確認版面時再按上方按鈕即可。</span>
           </div>
         </div>
-        <div id="nlExactPreviewMount"></div>
+        <iframe hidden class="newsletter-exact-preview-frame" id="nlExactPreview" title="SIGN WELL Letter 實際寄送預覽" sandbox="allow-same-origin"></iframe>
       </div>
     </section>
 
@@ -7293,6 +7180,8 @@ function renderNewsletterCenter(){
     if(!confirm('確定恢復使用預設 Newsletter Admin Key？'))return;
     saveNewsletterAdminKey('');showToast('已恢復預設 Newsletter Admin Key');renderNewsletterCenter();refreshNewsletterData();
   };
+
+  requestAnimationFrame(auditNewsletterHitTargets);
 }
 
 
