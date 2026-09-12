@@ -5249,6 +5249,78 @@ body::before{background:radial-gradient(circle at 14% 12%,rgba(145,201,255,.24),
 .badge{background:rgba(243,216,230,.22) !important;color:#a45f79 !important;}
 .badge.draft{background:rgba(220,233,248,.44) !important;color:#5f7fa0 !important;}
 .callout{background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(243,248,255,.66)) !important;border-color:rgba(221,233,245,.9) !important;}
+
+
+/* ============================================================
+   CMS v21.4.1 · button contrast fix for About / site editors
+   ============================================================ */
+.about-editor-actions .top-action,
+.person-form-actions .top-action,
+.site-text-actions button,
+.about-photo-controls button,
+.topic-row-actions button,
+.publish-actions button{
+  color:#203447!important;
+  font-weight:800!important;
+  text-shadow:none!important;
+}
+.about-editor-actions .top-action:not(.primary):not(.online),
+.person-form-actions .top-action:not(.primary):not(.online),
+.site-text-actions button:not(.primary):not(.online),
+.about-photo-controls button,
+.topic-row-actions button,
+.publish-actions button:not(.primary):not(.online){
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(239,246,255,.70))!important;
+  border-color:rgba(255,255,255,.94)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 8px 18px rgba(54,91,128,.07)!important;
+}
+.about-editor-actions .top-action.primary,
+.about-editor-actions .top-action.online,
+.person-form-actions .top-action.primary,
+.site-text-actions button.primary,
+.site-text-actions button.online,
+.publish-actions button.primary,
+.publish-actions button.online{
+  color:#fff!important;
+}
+button[disabled],
+.top-action[disabled],
+.smallbtn[disabled],
+.toolbar button[disabled],
+.row-actions button[disabled],
+.cover-actions button[disabled],
+.modal-actions button[disabled],
+.topic-row-actions button[disabled],
+.site-text-actions button[disabled],
+.publish-actions button[disabled],
+.about-photo-controls button[disabled]{
+  opacity:.96!important;
+  color:#22384b!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(237,244,250,.68))!important;
+  border-color:rgba(224,235,245,.95)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 7px 16px rgba(54,91,128,.04)!important;
+  text-shadow:none!important;
+}
+button[disabled].primary,
+.top-action[disabled].primary,
+button[disabled].online,
+.top-action[disabled].online{
+  color:#203447!important;
+  background:linear-gradient(145deg,rgba(232,241,250,.92),rgba(221,234,247,.76))!important;
+  border-color:rgba(216,230,242,.94)!important;
+}
+.about-editor-actions .top-action,
+.person-form-actions .top-action,
+.about-photo-controls button{
+  min-width:126px;
+}
+.about-photo-controls button{
+  font-size:10px!important;
+}
+.site-publish-hint b,
+.about-editor-section-title strong,
+.about-preview-toolbar strong{color:#203447!important}
+
 </style>
 
 <style id="signwell-typography-20260912">
@@ -6018,6 +6090,7 @@ window.signwellMedicalNewsAIConfigure=async function(config={}){
       endpoint:String(config.endpoint||''),
       apiKey:String(config.apiKey||''),
       model:String(config.model||''),
+      customPrompt:String(config.customPrompt||''),
       test:Boolean(config.test)
     },
     {adminKey:newsletterAdminKey(),timeoutMs:55000}
