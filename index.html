@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#eaf1f7">
+<meta name="theme-color" content="#f4f8fb">
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://api.github.com">
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <title>SIGN WELL CMS · 欣緯生醫</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -4879,7 +4882,7 @@ body:not(.perf-lite) .publish-actions{
 
 
 /* ============================================================
-   CMS v14.48 · Stability + Performance
+   CMS v14.53 · Stability + Performance
    ============================================================ */
 
 /* Hidden tab: freeze ambient animation and avoid needless compositing. */
@@ -4939,6 +4942,289 @@ html.sw-lowfx .grain{
     opacity:1!important;
     translate:0!important;
     filter:none!important;
+  }
+}
+
+
+/* ============================================================
+   CMS v14.53 · Generated Article Typography / Image Citation
+   ============================================================ */
+.doc-editor h2.sw-section-title,
+.preview-content h2.sw-section-title{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang TC","Noto Sans TC",sans-serif;
+  font-size:24px;
+  line-height:1.38;
+  font-weight:780;
+  letter-spacing:-.025em;
+  margin:34px 0 12px;
+}
+.doc-editor .sw-source-figure,
+.preview-content .sw-source-figure{
+  margin:26px 0 30px;
+}
+.doc-editor .sw-source-figure img,
+.preview-content .sw-source-figure img{
+  width:100%;
+  max-height:480px;
+  object-fit:cover;
+  display:block;
+  margin:0;
+  border-radius:18px;
+}
+.doc-editor .sw-source-figure figcaption,
+.preview-content .sw-source-figure figcaption{
+  margin-top:8px;
+  color:#8796a3;
+  font-size:10.5px;
+  line-height:1.55;
+}
+.doc-editor .sw-source-figure figcaption a,
+.preview-content .sw-source-figure figcaption a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
+
+/* ============================================================
+   CMS v14.53 · Overall Stability / Mobile / Performance
+   ============================================================ */
+html,body{
+  overscroll-behavior-x:none;
+}
+body.visual-paused .orb,
+body.sw-page-hidden .orb{
+  animation-play-state:paused!important;
+}
+
+/* Reduce unnecessary paint on long admin pages without creating a new
+   vertical scroll owner. */
+.article-row,
+.topic-row,
+.person-row,
+.site-section,
+.about-editor-section{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 180px;
+}
+
+/* Mobile controls stay easy to hit without changing desktop density. */
+@media (max-width:900px), (pointer:coarse){
+  button,
+  .top-action,
+  .nav button,
+  select,
+  input[type="button"],
+  input[type="submit"]{
+    min-height:44px;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea{
+    font-size:16px!important; /* prevents iOS focus zoom */
+  }
+
+  .workspace,
+  #view,
+  .view{
+    max-width:100%;
+  }
+
+  .panel,
+  .newsletter-panel,
+  .site-section,
+  .about-editor-section{
+    overflow-wrap:anywhere;
+  }
+
+  /* Keep glass identity but reduce stacked blur cost on iOS. */
+  .glass{
+    -webkit-backdrop-filter:blur(13px) saturate(138%)!important;
+    backdrop-filter:blur(13px) saturate(138%)!important;
+  }
+}
+
+/* Higher contrast users should not lose the glass hierarchy. */
+@media (prefers-contrast:more){
+  .glass{
+    border-color:rgba(105,139,165,.34)!important;
+  }
+  .muted,.hint{
+    opacity:1!important;
+  }
+}
+
+
+/* ============================================================
+   CMS v14.53 · Apple Pastel Admin Material + Slider Spring
+   ============================================================ */
+:root{
+  --bg1:#fbfdff;
+  --bg2:#f3f8fb;
+  --bg3:#edf4f8;
+  --ink:#223044;
+  --ink2:#4b5e70;
+  --muted:#7f8fa0;
+  --line:rgba(82,110,136,.10);
+  --rim:rgba(255,255,255,.94);
+  --glass:rgba(255,255,255,.60);
+  --glass2:rgba(255,255,255,.78);
+  --blue:#75a9df;
+  --sage:#7da793;
+  --red:#b56c7a;
+  --shadow:
+    0 18px 48px rgba(63,91,118,.095),
+    0 4px 14px rgba(63,91,118,.045);
+  --apple-spring:cubic-bezier(.22,1.32,.36,1);
+}
+
+body{
+  background:
+    radial-gradient(56rem 40rem at -8% 0%,rgba(246,223,230,.62),transparent 58%),
+    radial-gradient(54rem 40rem at 106% 4%,rgba(223,238,255,.88),transparent 60%),
+    radial-gradient(48rem 40rem at 8% 106%,rgba(223,240,232,.58),transparent 58%),
+    linear-gradient(155deg,#fbfdff,#f4f8fb 50%,#edf4f8)!important;
+}
+.field{
+  filter:blur(78px) saturate(120%)!important;
+  opacity:.62!important;
+}
+.orb.a{
+  background:radial-gradient(circle,rgba(195,222,251,.56),transparent 68%)!important;
+}
+.orb.b{
+  background:radial-gradient(circle,rgba(247,219,228,.40),transparent 68%)!important;
+}
+.orb.c{
+  background:radial-gradient(circle,rgba(211,237,224,.34),transparent 68%)!important;
+}
+.grain{opacity:.10!important}
+
+.glass,
+.lock-card,
+.panel,
+.stat,
+.editor-main,
+.editor-side{
+  border-color:rgba(255,255,255,.90)!important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.78),rgba(247,251,255,.44))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    inset 0 -1px 0 rgba(107,139,165,.045),
+    var(--shadow)!important;
+  backdrop-filter:blur(22px) saturate(148%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(148%)!important;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.86),rgba(229,240,253,.58))!important;
+  color:#315878!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 7px 18px rgba(68,105,137,.07);
+}
+
+.top-action,
+.smallbtn,
+.toolbar button,
+.row-actions button{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(255,255,255,.92)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 6px 18px rgba(63,91,118,.055)!important;
+  transition:scale .2s var(--apple-spring),background .22s ease,box-shadow .22s ease!important;
+}
+.top-action:active,
+.smallbtn:active,
+.toolbar button:active,
+.row-actions button:active{
+  scale:.965;
+}
+.top-action.primary{
+  background:
+    linear-gradient(145deg,#31536d,#243f55)!important;
+  color:#fff!important;
+}
+
+.badge{
+  background:rgba(223,240,232,.52)!important;
+  color:#557c6c!important;
+}
+.badge.draft{
+  background:rgba(246,223,230,.50)!important;
+  color:#8c6270!important;
+}
+
+/* Analytics segmented liquid slider: grow while it is actively moving. */
+.analytics-range-switch{
+  background:
+    radial-gradient(120px 52px at 22% 0%,rgba(255,255,255,.90),transparent 72%),
+    linear-gradient(150deg,rgba(255,255,255,.64),rgba(229,240,253,.34))!important;
+  border-color:rgba(255,255,255,.92)!important;
+}
+.analytics-range-thumb{
+  scale:1;
+  will-change:transform,scale;
+  transition:
+    transform .42s cubic-bezier(.16,1,.3,1),
+    scale .38s var(--apple-spring),
+    box-shadow .28s ease!important;
+  background:
+    radial-gradient(90px 36px at 25% 0%,rgba(255,255,255,.99),transparent 72%),
+    linear-gradient(145deg,rgba(248,252,255,.96),rgba(216,234,252,.76))!important;
+}
+.analytics-range-switch.is-sliding .analytics-range-thumb{
+  scale:1.065;
+  transition:
+    transform .34s cubic-bezier(.16,1,.3,1),
+    scale .14s cubic-bezier(.2,.9,.3,1),
+    box-shadow .18s ease!important;
+  box-shadow:
+    0 12px 26px rgba(64,112,150,.16),
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(80,132,174,.06)!important;
+}
+.analytics-range-switch.is-settling .analytics-range-thumb{
+  scale:1;
+  transition:
+    transform .42s cubic-bezier(.16,1,.3,1),
+    scale .42s var(--apple-spring),
+    box-shadow .28s ease!important;
+}
+
+/* Generic hook for future liquid sliders/segmented controls. */
+[data-liquid-slider] .liquid-thumb,
+.liquid-slider .liquid-thumb{
+  scale:1;
+  transition:scale .38s var(--apple-spring)!important;
+}
+[data-liquid-slider].is-sliding .liquid-thumb,
+.liquid-slider.is-sliding .liquid-thumb{
+  scale:1.06;
+}
+
+@media(max-width:900px),(pointer:coarse){
+  .glass,
+  .lock-card,
+  .panel,
+  .stat,
+  .editor-main,
+  .editor-side{
+    backdrop-filter:blur(16px) saturate(140%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(140%)!important;
+  }
+  .analytics-range-switch.is-sliding .analytics-range-thumb{scale:1.052}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .analytics-range-thumb,
+  [data-liquid-slider] .liquid-thumb,
+  .liquid-slider .liquid-thumb{
+    scale:1!important;
+    transition:none!important;
   }
 }
 
@@ -5002,7 +5288,7 @@ html.sw-lowfx .grain{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.48</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.53</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -5034,7 +5320,7 @@ html.sw-lowfx .grain{
     </div>
   </div>
 </div>
-<script src="analytics-config.js?v=14.48"></script>
+<script src="analytics-config.js?v=14.53"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -5399,6 +5685,32 @@ window.signwellMedicalNewsLiterature=async function(topic={}){
   );
 };
 
+window.signwellMedicalNewsAIStatus=async function(){
+  return signwellGasBridge(
+    'admin.medicalNews.aiStatus',
+    {},
+    {adminKey:newsletterAdminKey(),timeoutMs:30000}
+  );
+};
+
+window.signwellMedicalNewsGenerateAIArticle=async function(topic={},options={}){
+  return signwellGasBridge(
+    'admin.medicalNews.generateArticle',
+    {
+      topic:{
+        id:String(topic.id||''),
+        title:String(topic.title||''),
+        category:String(topic.category||''),
+        summary:String(topic.summary||''),
+        extensionTerms:Array.isArray(topic.extensionTerms)?topic.extensionTerms:[],
+        sources:Array.isArray(topic.sources)?topic.sources:[]
+      },
+      variation:Number(options.variation||0)
+    },
+    {adminKey:newsletterAdminKey(),timeoutMs:170000}
+  );
+};
+
 function restoreMedicalNewsWorkspaceCache(){
   try{
     const saved=JSON.parse(sessionStorage.getItem('sw-medical-workspace-v1')||'null');
@@ -5412,17 +5724,38 @@ restoreMedicalNewsWorkspaceCache();
 
 function medicalNewsBackgroundWarmup(){
   if(medicalNewsWorkspaceFresh() || medicalNewsWarmupPromise)return;
+
+  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  const canWarm=()=>navigator.onLine!==false && !document.hidden && !connection?.saveData;
+
   const run=()=>{
+    if(!canWarm()){
+      const retry=()=>{
+        if(!canWarm())return;
+        window.removeEventListener('online',retry);
+        document.removeEventListener('visibilitychange',retry);
+        medicalNewsBackgroundWarmup();
+      };
+      window.addEventListener('online',retry,{once:true,passive:true});
+      document.addEventListener('visibilitychange',retry,{once:true,passive:true});
+      return;
+    }
+
     window.signwellMedicalNewsWorkspace({force:false})
       .then(()=>{
         if(viewName==='medicalnews'){
-          try{document.querySelector('#medicalNewsSuggestionsFrame')?.contentWindow?.postMessage({type:'SIGNWELL_MEDICAL_WORKSPACE_READY'},location.origin)}catch(_){}
+          try{
+            document.querySelector('#medicalNewsSuggestionsFrame')
+              ?.contentWindow
+              ?.postMessage({type:'SIGNWELL_MEDICAL_WORKSPACE_READY'},location.origin);
+          }catch(_){}
         }
       })
       .catch(()=>{});
   };
-  if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1600});
-  else setTimeout(run,650);
+
+  if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1800});
+  else setTimeout(run,720);
 }
 
 function ensureCurrentAffairsTopic(){
@@ -5468,7 +5801,8 @@ function normalizeGeneratedMedicalArticle(payload={}){
     cover:'',
     status:'Draft',
     featured:false,
-    publisherId:defaultPublisherId(),
+    publisherId:'',
+    publisherName:'SignWell·欣緯生醫',
     publishedAt:today,
     updatedAt:today,
     content:String(payload.content||'<p>尚未產生內容。</p>'),
@@ -5487,7 +5821,11 @@ window.signwellMedicalNewsCreateArticle=async function(payload={},mode='editor')
   const article=normalizeGeneratedMedicalArticle(payload);
 
   if(mode==='publish'){
-    const ok=confirm(`將「${article.title}」直接發布到「時事探討」？\n\n發布前仍建議快速閱讀一次引用與醫療內容。`);
+    const notifyOn=newsletterAutoEnabled();
+    const notifyLine=notifyOn
+      ? '發布完成後會自動寄送新文章通知給目前可寄送的訂閱者。'
+      : '目前「發布後自動寄送」已關閉，因此這次不會寄送訂閱通知。';
+    const ok=confirm(`將「${article.title}」直接發布到「時事探討」？\n\n${notifyLine}\n\n發布前仍建議快速閱讀一次引用與醫療內容。`);
     if(!ok)return {ok:false,cancelled:true};
     article.status='Published';
   }
@@ -5498,6 +5836,8 @@ window.signwellMedicalNewsCreateArticle=async function(payload={},mode='editor')
 
   if(mode==='publish'){
     try{
+      if(!githubToken&&hasRememberedGithubToken())await restoreRememberedGithubToken();
+
       const published=await publishGitHub();
       if(!published){
         article.status='Draft';
@@ -5505,8 +5845,54 @@ window.signwellMedicalNewsCreateArticle=async function(payload={},mode='editor')
         showToast('尚未發布：請先在發布設定解鎖 GitHub Token');
         return {ok:false,needsGithub:true,articleId:article.id};
       }
-      showToast('已發布到「時事探討」');
-      return {ok:true,published:true,articleId:article.id};
+
+      try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
+
+      const notification={
+        enabled:newsletterAutoEnabled(),
+        attempted:false,
+        success:false,
+        skipped:false,
+        delivered:0,
+        alreadySent:false,
+        reason:'disabled'
+      };
+
+      if(notification.enabled){
+        showToast('文章已上線 · 正在通知訂閱者…');
+
+        const mail=await maybeAutoSendArticleNewsletter(article,{sourceEl:null});
+        notification.attempted=Boolean(mail?.attempted);
+        notification.success=Boolean(mail?.success);
+        notification.skipped=Boolean(mail?.skipped);
+        notification.alreadySent=Boolean(mail?.alreadySent);
+        notification.delivered=Number(
+          mail?.body?.delivered ??
+          mail?.body?.recipients ??
+          0
+        );
+
+        if(mail?.success){
+          if(mail?.skipped){
+            showToast('已發布到「時事探討」 · 目前沒有可寄送訂閱者');
+          }else if(mail?.alreadySent){
+            showToast('已發布到「時事探討」 · 此文章通知先前已寄送');
+          }else{
+            showToast(`已發布並通知 ${notification.delivered.toLocaleString()} 位訂閱者`);
+          }
+        }else{
+          showToast('文章已發布，但訂閱通知未完成');
+        }
+      }else{
+        showToast('已發布到「時事探討」 · 自動訂閱通知目前關閉');
+      }
+
+      return {
+        ok:true,
+        published:true,
+        articleId:article.id,
+        notification
+      };
     }catch(err){
       article.status='Draft';
       persist(true);
@@ -5530,7 +5916,7 @@ function renderMedicalNewsSuggestions(){
       <iframe
         class="medical-news-frame"
         id="medicalNewsSuggestionsFrame"
-        src="medical-daily-focus.html?v=14.48"
+        src="medical-daily-focus.html?v=14.53"
         title="SIGN WELL 時事新聞建議"
         loading="eager"></iframe>
     </section>`;
@@ -8040,7 +8426,7 @@ function cmsPersonById(id){
   return key?(data.people||[]).find(p=>String(p.id||'')===key)||null:null;
 }
 function cmsPublisherName(article){
-  return cmsPersonById(article?.publisherId)?.name||data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫';
+  return cmsPersonById(article?.publisherId)?.name||String(article?.publisherName||'').trim()||data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫';
 }
 function cmsPublisherInitials(name=''){
   const clean=String(name||'').trim();
@@ -8399,7 +8785,8 @@ function bindEditor(){
     if(!box)return;
     const p=cmsPersonById(select?.value||'');
     if(!p){
-      const brand=data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫';
+      const article=getCurrent();
+      const brand=String(article?.publisherName||'').trim()||data.siteText?.articleBrand||'SIGN WELL · 欣緯生醫';
       box.innerHTML=`<div class="publisher-preview-avatar">SW</div><div class="publisher-preview-copy"><strong>${escapeHTML(brand)}</strong><span>品牌發布者</span></div>`;
       return;
     }
@@ -8559,7 +8946,7 @@ function bindEditor(){
     visualViewport.addEventListener('scroll',syncEditorViewport,{passive:true});
   }
 }
-function updateFromEditor(){const a=getCurrent();if(!a)return;a.title=$('#title').value.trim();a.content=$('#content').innerHTML;a.contentFormat='html';a.status=$('#status').value;a.slug=$('#slug').value.trim()||slugify(a.title);a.category=$('#category')?.value||a.category||'醫學筆記';a.publisherId=$('#publisherId')?.value||'';a.type='文章';a.subtitle='';a.excerpt=plainFromHTML(a.content).slice(0,180);a.tags=a.tags||[];a.publishedAt=$('#publishedAt').value||new Date().toISOString().slice(0,10);a.updatedAt=new Date().toISOString().slice(0,10)}
+function updateFromEditor(){const a=getCurrent();if(!a)return;a.title=$('#title').value.trim();a.content=$('#content').innerHTML;a.contentFormat='html';a.status=$('#status').value;a.slug=$('#slug').value.trim()||slugify(a.title);a.category=$('#category')?.value||a.category||'醫學筆記';a.publisherId=$('#publisherId')?.value||'';a.publisherName=a.publisherId?'':(a.publisherName||'SignWell·欣緯生醫');a.type='文章';a.subtitle='';a.excerpt=plainFromHTML(a.content).slice(0,180);a.tags=a.tags||[];a.publishedAt=$('#publishedAt').value||new Date().toISOString().slice(0,10);a.updatedAt=new Date().toISOString().slice(0,10)}
 function syncPublicSnapshot(){try{localStorage.removeItem('signwell-public-live-v1')}catch(_){/* 公開站只讀 GitHub 部署檔，CMS 不再跨專案寫入公開預覽快照 */}}
 function commitPendingArticle(){
   if(currentId!=='__new__'||!pendingNewArticle)return getCurrent();
@@ -9659,7 +10046,19 @@ $('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBack
     e.preventDefault();
     saveNow();
   }
-});['pointerdown','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,()=>{if(!$('#cms').classList.contains('hidden'))localStorage.setItem(ACTKEY,String(Date.now()))},{passive:true}));setInterval(checkAutoLock,60000);
+});
+let cmsLastActivityWrite=0;
+function markCmsActivity(){
+  if($('#cms').classList.contains('hidden'))return;
+  const now=Date.now();
+  if(now-cmsLastActivityWrite<5000)return;
+  cmsLastActivityWrite=now;
+  try{localStorage.setItem(ACTKEY,String(now))}catch(_){}
+}
+['pointerdown','keydown','touchstart'].forEach(ev=>
+  document.addEventListener(ev,markCmsActivity,{passive:true})
+);
+setInterval(()=>{if(!document.hidden)checkAutoLock()},60000);
 window.addEventListener('pagehide',()=>{
   if(cmsCloudDirty&&!cmsCloudBusy){
     cmsCloudPushNow(cmsCloudChangeSeq);
@@ -9881,7 +10280,7 @@ function v10Plain(html=''){const d=document.createElement('div');d.innerHTML=htm
 function v10ReadingTime(a){return Math.max(1,Math.round(v10Plain(a.content||'').replace(/\s+/g,'').length/450))}
 function v10Revision(a){return v10Hash(JSON.stringify([a.title,a.slug,a.category,a.type,a.excerpt,a.tags,a.cover,a.content,a.publisherId,a.publishedAt,a.featured,a.status]))}
 function v10SafeSlug(a){return slugify(a.slug||a.title||a.id||('article-'+Date.now()))}
-function v10IndexMeta(a){const slug=v10SafeSlug(a),plain=v10Plain(a.content||'');return {id:a.id,title:a.title||'未命名文章',slug,excerpt:a.excerpt||plain.slice(0,180),category:a.category||'醫學筆記',type:a.type||'文章',cover:a.cover||'',tags:Array.isArray(a.tags)?a.tags:[],publisherId:String(a.publisherId||''),publishedAt:a.publishedAt||'',updatedAt:a.updatedAt||'',featured:Boolean(a.featured),status:'Published',readingTime:v10ReadingTime(a),searchText:plain.slice(0,700),revision:v10Revision(a),file:`articles/${slug}.json`}}
+function v10IndexMeta(a){const slug=v10SafeSlug(a),plain=v10Plain(a.content||'');return {id:a.id,title:a.title||'未命名文章',slug,excerpt:a.excerpt||plain.slice(0,180),category:a.category||'醫學筆記',type:a.type||'文章',cover:a.cover||'',tags:Array.isArray(a.tags)?a.tags:[],publisherId:String(a.publisherId||''),publisherName:String(a.publisherName||''),publishedAt:a.publishedAt||'',updatedAt:a.updatedAt||'',featured:Boolean(a.featured),status:'Published',readingTime:v10ReadingTime(a),searchText:plain.slice(0,700),revision:v10Revision(a),file:`articles/${slug}.json`}}
 function dataUrlParts(url=''){const m=String(url).match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,([A-Za-z0-9+/=\s]+)$/);return m?{mime:m[1].toLowerCase(),base64:m[2].replace(/\s/g,'')}:null}
 function extForMime(m=''){if(m.includes('webp'))return'webp';if(m.includes('png'))return'png';if(m.includes('gif'))return'gif';return'jpg'}
 async function v10CreateBlob(base64,token){return githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/blobs`,token,{method:'POST',body:JSON.stringify({content:base64,encoding:'base64'})})}
@@ -10229,6 +10628,57 @@ addEventListener('storage',e=>{if(e.key===ANALYTICS_KEY&&viewName==='dashboard'&
   };
   document.addEventListener('visibilitychange',syncVisibility,{passive:true});
   syncVisibility();
+})();
+</script>
+
+
+<script id="swCms1451Runtime">
+(() => {
+  const sync=()=>{
+    document.body?.classList.toggle('sw-page-hidden',document.hidden);
+  };
+  document.addEventListener('visibilitychange',sync,{passive:true});
+  sync();
+})();
+</script>
+
+
+<script id="swAppleSliderMotion">
+(() => {
+  const sliderSelector='#analyticsRangeSwitch,[data-liquid-slider],.liquid-slider';
+  let settleTimer=0;
+
+  const engage=(slider)=>{
+    if(!slider||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    clearTimeout(settleTimer);
+    slider.classList.remove('is-settling');
+    slider.classList.add('is-sliding');
+  };
+
+  const release=(slider)=>{
+    if(!slider)return;
+    slider.classList.remove('is-sliding');
+    slider.classList.add('is-settling');
+    clearTimeout(settleTimer);
+    settleTimer=setTimeout(()=>slider.classList.remove('is-settling'),460);
+  };
+
+  document.addEventListener('pointerdown',e=>{
+    const slider=e.target.closest?.(sliderSelector);
+    if(!slider)return;
+    engage(slider);
+
+    const finish=()=>release(slider);
+    window.addEventListener('pointerup',finish,{once:true,passive:true});
+    window.addEventListener('pointercancel',finish,{once:true,passive:true});
+  },{passive:true});
+
+  document.addEventListener('click',e=>{
+    const slider=e.target.closest?.(sliderSelector);
+    if(!slider||slider.classList.contains('is-sliding'))return;
+    engage(slider);
+    setTimeout(()=>release(slider),150);
+  },{passive:true});
 })();
 </script>
 

@@ -228,12 +228,12 @@ html.lowfx .focus-card{transform:none!important}
 .draft-actions button{border:1px solid rgba(255,255,255,.75);border-radius:999px;padding:10px 13px;background:rgba(255,255,255,.48);color:var(--ink-2);font-size:10.5px;font-weight:760;cursor:pointer;box-shadow:inset 0 1px 0 #fff}
 .draft-actions button.primary{background:linear-gradient(145deg,#315f7e,#234b67);color:#fff;border-color:transparent}
 .draft-meta{margin-top:9px;color:var(--muted-2);font-size:9.5px;line-height:1.5}
-.engine-note{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(237,247,253,.48);color:#7890a1;font-size:10px;line-height:1.55}
+.engine-note{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(237,247,253,.48);color:#7890a1;font-size:10px;line-height:1.55}.engine-note.ready{background:rgba(229,248,239,.58);color:#4f7d68}
 .warm-status{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;color:var(--muted-2);font-size:10px}.warm-status i{width:7px;height:7px;border-radius:50%;background:#7db7dc;box-shadow:0 0 0 5px rgba(125,183,220,.10);animation:pulse 1.5s ease-out infinite}.warm-status.ready i{background:#66ad88;animation:none}.warm-status.error i{background:#c49a68;animation:none}
 @media(max-width:620px){.writer-head{align-items:flex-start;flex-direction:column}.generate-btn{width:100%}.draft-actions{display:grid;grid-template-columns:1fr}.draft-actions button{width:100%}.draft-paper{border-radius:20px}.draft-paper p{font-size:14px;line-height:1.88}}
 
 
-/* v14.48 performance + interaction stability */
+/* v14.53 performance + interaction stability */
 body.sw-page-hidden .orb{animation-play-state:paused!important}
 html.lowfx .orb:nth-child(n+3){display:none!important}
 html.lowfx .glass{
@@ -243,6 +243,110 @@ html.lowfx .glass{
 @media(max-width:620px){
   body{background-attachment:scroll!important}
   .draft-paper{overflow-wrap:anywhere}
+}
+
+
+/* v14.53 · generated article hierarchy */
+.draft-paper h2.sw-section-title{
+  margin:28px 0 10px;
+  color:#243746;
+  font-size:clamp(20px,4vw,25px);
+  line-height:1.38;
+  font-weight:800;
+  letter-spacing:-.025em;
+}
+.draft-paper .sw-source-figure{margin:22px 0 28px}
+.draft-paper .sw-source-figure img{
+  width:100%;max-height:430px;object-fit:cover;display:block;border-radius:18px;
+  box-shadow:0 14px 34px rgba(42,69,91,.10)
+}
+.draft-paper .sw-source-figure figcaption{
+  margin-top:7px;color:#8193a1;font-size:10px;line-height:1.55
+}
+.draft-paper .sw-source-figure figcaption a{
+  color:inherit;text-decoration:underline;text-underline-offset:2px
+}
+
+
+/* v14.53 · interaction/performance hardening */
+@media (max-width:620px), (pointer:coarse){
+  button{min-height:44px;touch-action:manipulation}
+  input,select,textarea{font-size:16px!important}
+}
+body.sw-page-hidden .orb{animation-play-state:paused!important}
+
+
+/* ============================================================
+   Medical Focus v14.53 · Apple Pastel Material
+   ============================================================ */
+:root{
+  --sw-pink:#f6dfe6;
+  --sw-green:#dff0e8;
+  --sw-blue:#dfeeff;
+  --sw-white:#fbfdff;
+}
+body{
+  background:
+    radial-gradient(44rem 34rem at -8% 0%,rgba(246,223,230,.58),transparent 58%),
+    radial-gradient(42rem 34rem at 108% 4%,rgba(223,238,255,.82),transparent 60%),
+    radial-gradient(38rem 32rem at 4% 102%,rgba(223,240,232,.50),transparent 58%),
+    linear-gradient(155deg,#fbfdff,#f5f9fc 52%,#eef5f9)!important;
+}
+.glass{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.78),rgba(247,251,255,.44))!important;
+  border-color:rgba(255,255,255,.90)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 18px 48px rgba(63,92,119,.085)!important;
+  backdrop-filter:blur(22px) saturate(148%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(148%)!important;
+}
+.scan-button,
+.icon-btn,
+.pill,
+.generate-btn,
+.draft-action{
+  background:rgba(255,255,255,.60)!important;
+  border-color:rgba(255,255,255,.92)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 10px 26px rgba(63,92,119,.08)!important;
+  transition:
+    scale .22s cubic-bezier(.22,1.32,.36,1),
+    transform .24s ease,
+    background .22s ease,
+    box-shadow .22s ease!important;
+}
+.scan-button:active,
+.icon-btn:active,
+.pill:active,
+.generate-btn:active,
+.draft-action:active{
+  scale:.965;
+}
+.tag,
+.hot-threshold{
+  background:rgba(223,240,232,.48)!important;
+}
+.source-origin{
+  background:rgba(223,238,255,.48)!important;
+}
+.source-origin.direct{
+  background:rgba(223,240,232,.56)!important;
+}
+.review-chip:nth-child(2n){
+  background:rgba(223,238,255,.50)!important;
+}
+.review-chip:nth-child(2n+1){
+  background:rgba(223,240,232,.44)!important;
+}
+
+@media(max-width:620px),(pointer:coarse){
+  .glass{
+    backdrop-filter:blur(16px) saturate(140%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(140%)!important;
+  }
 }
 
 </style>
@@ -329,7 +433,7 @@ html.lowfx .glass{
         const canonical=String(s.canonicalName||s.name||s.source||'').trim();
         const url=safeURL(s.originalUrl||s.url||s.link||'');
         if(s.isMajorMedia!==true||!canonical||url==='#'||sourceMap.has(canonical))return;
-        sourceMap.set(canonical,{name:canonical,title:s.title||s.headline||t.title||'',url,googleNewsUrl:safeURL(s.googleNewsUrl||''),publishedAt:s.publishedAt||t.publishedAt||new Date().toISOString(),isMajorMedia:true,isDirectOriginal:s.isDirectOriginal===true,snippet:s.snippet||''});
+        sourceMap.set(canonical,{name:canonical,title:s.title||s.headline||t.title||'',url,googleNewsUrl:safeURL(s.googleNewsUrl||''),publishedAt:s.publishedAt||t.publishedAt||new Date().toISOString(),isMajorMedia:true,isDirectOriginal:s.isDirectOriginal===true,snippet:s.snippet||'',imageUrl:safeURL(s.imageUrl||''),imageCredit:s.imageCredit||canonical});
       });
       const sources=[...sourceMap.values()];
       const literature=Array.isArray(t.literature)?t.literature.map(x=>({...x,url:safeURL(x.url)})).filter(x=>x.url!=='#'):[];
@@ -390,6 +494,25 @@ html.lowfx .glass{
     return base;
   }
 
+  async function refreshAiWriterStatus(){
+    const note=$('#aiEngineNote');
+    if(!note)return;
+    try{
+      if(!window.parent?.signwellMedicalNewsAIStatus)throw new Error('CMS bridge unavailable');
+      const s=await window.parent.signwellMedicalNewsAIStatus();
+      if(s?.configured){
+        note.textContent=`AI Writer 已連線 · ${s.model||'LLM'} · 兩階段編輯 · PubMed Evidence Lock`;
+        note.classList.add('ready');
+      }else{
+        note.textContent=`AI Writer 尚未連線 · 缺少 ${Array.isArray(s?.missing)?s.missing.join('、'):'AI Script Properties'}`;
+        note.classList.remove('ready');
+      }
+    }catch(_){
+      note.textContent='AI Writer 狀態目前無法確認；生成時會再次檢查。';
+      note.classList.remove('ready');
+    }
+  }
+
   function openDetail(i){
     const t=topics[i];if(!t)return;currentTopic=t;currentDraft=null;draftVariantCycle=0;
     const extensions=(t.extensionTerms?.length?t.extensionTerms:defaultExtensionSuggestions(t)).slice(0,6);
@@ -400,10 +523,10 @@ html.lowfx .glass{
       <div class="workspace-section"><h3>延伸探討建議</h3><ul class="extension-list">${extensions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></div>
       <div class="workspace-section"><h3>相關文獻 · PubMed</h3>${renderLiterature(t)}</div>
       <div class="writer-panel">
-        <div class="writer-head"><div><strong>SIGN WELL 範文生成</strong><span>600–800 字 · 白話但不超過證據 · Hook 節奏與螢光筆標記</span></div><button class="generate-btn" id="generateDraftBtn" type="button">一鍵生成範文</button></div>
-        <div class="review-strip" id="reviewStrip"><span class="review-chip">Sources ✓</span><span class="review-chip">Medical ✓</span><span class="review-chip">Regulatory ✓</span><span class="review-chip">Plain Language ✓</span></div>
-        <div class="draft-wrap" id="draftWrap"><div class="draft-paper" id="draftPaper"></div><div class="draft-actions"><button id="copyDraftBtn" type="button">複製範文</button><button class="primary" id="toEditorBtn" type="button">帶入文章編輯器</button><button id="publishDraftBtn" type="button">直接發布到「時事探討」</button></div><div class="draft-meta" id="draftMeta"></div></div>
-        <div class="engine-note">目前使用無額外金鑰的規則式 SIGN WELL Writing Engine。醫療與法規檢查是隱形生成規則，不會寫進讀者文章。之後可直接替換成你的專屬 Writing DNA，而不需重做新聞、文獻、引用與發布流程。</div>
+        <div class="writer-head"><div><strong>SIGN WELL AI Writer</strong><span>600–800 字 · 兩階段醫療編輯 · PubMed Evidence Lock</span></div><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
+        <div class="review-strip" id="reviewStrip"><span class="review-chip">Sources ✓</span><span class="review-chip">PubMed Verified ✓</span><span class="review-chip">Medical ✓</span><span class="review-chip">Regulatory ✓</span><span class="review-chip">Plain Language ✓</span></div>
+        <div class="draft-wrap" id="draftWrap"><div class="draft-paper" id="draftPaper"></div><div class="draft-actions"><button id="copyDraftBtn" type="button">複製範文</button><button class="primary" id="toEditorBtn" type="button">帶入文章編輯器</button><button id="publishDraftBtn" type="button">直接發布＋通知到「時事探討」</button></div><div class="draft-meta" id="draftMeta"></div></div>
+        <div class="engine-note" id="aiEngineNote">AI Writer 只會使用已取得的新聞來源與 Backend 重新核驗的 PubMed 文獻。文獻題名、PMID、DOI、期刊與連結不由模型生成；未通過 Evidence Lock 的草稿不會顯示。</div>
       </div>
       <div class="actions"><button class="pill primary" id="copyFocusBtn" type="button">複製焦點摘要</button><button class="pill" id="copyLinksBtn" type="button">複製全部原文</button></div>`;
 
@@ -413,6 +536,7 @@ html.lowfx .glass{
     $('#copyLinksBtn').onclick=()=>copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
     $('#generateDraftBtn').onclick=()=>generateDraft(t);
     showScreen(detailScreen);
+    refreshAiWriterStatus();
   }
 
   function renderLiterature(t){
@@ -454,6 +578,48 @@ html.lowfx .glass{
     return s.length>max?s.slice(0,max).replace(/[，、；：,.!?！？。]+$/,'')+'…':s;
   }
 
+  function naturalArticleSummary(t){
+    let s=String(t.summary||'').replace(/\s+/g,' ').trim();
+
+    /* These are cleanup rules only; none of this process language is inserted into article output. */
+    s=s
+      .replace(/近\s*24\s*小時共有\s*\d+\s*家知名媒體集中報導[^。]*。?/g,'')
+      .replace(/近\s*24\s*小時[^。]*。?/g,'')
+      .replace(/多家媒體標題共同出現的焦點包括[^。]*。?/g,'')
+      .replace(/其他來源對同一事件的標題焦點還包括[^。]*。?/g,'')
+      .replace(/這段摘要依[^。]*。?/g,'')
+      .replace(/這段整理依[^。]*。?/g,'')
+      .replace(/主要來源包含[^。]*。?/g,'')
+      .replace(/熱門門檻[^。]*。?/g,'')
+      .replace(/Google\s*News\s*RSS/ig,'')
+      .replace(/\bRSS\b/ig,'')
+      .replace(/系統以延伸詞條查到/ig,'')
+      .replace(/\s+/g,' ')
+      .trim();
+
+    if(s.length>=32)return compactText(s,210);
+
+    const snippets=(t.sources||[])
+      .map(x=>String(x.snippet||'').replace(/\s+/g,' ').trim())
+      .filter(x=>x.length>=32);
+    if(snippets.length)return compactText(snippets[0],210);
+
+    return compactText(t.title||'',160);
+  }
+
+  function sourceImageFigure(t){
+    const source=(t.sources||[]).find(s=>/^https?:\/\//i.test(String(s.imageUrl||'')));
+    if(!source)return '';
+    const image=escapeHTML(source.imageUrl);
+    const link=escapeHTML(source.url||'#');
+    const credit=escapeHTML(source.imageCredit||source.name||'原始來源');
+    return `<figure class="sw-source-figure"><a href="${link}" target="_blank" rel="noopener noreferrer"><img src="${image}" alt="與本文主題相關的新聞圖片" loading="lazy" decoding="async"></a><figcaption>圖片來源：<a href="${link}" target="_blank" rel="noopener noreferrer">${credit}</a>｜原始報導</figcaption></figure>`;
+  }
+
+  function section(title,html){
+    return `<h2 class="sw-section-title">${escapeHTML(title)}</h2><p>${guardrailText(html)}</p>`;
+  }
+
   function buildDraft(t,variantOffset=0){
     const refs=buildReferences(t);
     const src=t.sources||[];
@@ -465,131 +631,216 @@ html.lowfx .glass{
     const litIndex=lit?src.length+1:0;
     const clit=lit?citation(litIndex,lit.url):'';
 
-    const titleRaw=compactText(t.title,64);
-    const summary=compactText(t.summary,165);
-    const outlets=src.slice(0,6).map(s=>s.name).filter(Boolean).join('、');
+    const titleRaw=compactText(t.title,66);
+    const summary=naturalArticleSummary(t);
     const extensions=(t.extensionTerms?.length?t.extensionTerms:defaultExtensionSuggestions(t))
-      .map(x=>compactText(x,56)).filter(Boolean).slice(0,3);
-    const extText=extensions.join('、');
+      .map(x=>compactText(x,48)).filter(Boolean).slice(0,3);
     const variant=narrativeVariant(t,variantOffset);
 
     const titles=[
-      `${titleRaw}：真正值得注意的是什麼？`,
-      `${titleRaw}，先別急著只看新聞標題`,
-      `從「${titleRaw}」看懂這則醫療新聞真正的重點`,
-      `${titleRaw}之後，我們真正需要回答的問題`
+      `${titleRaw}：真正需要看懂的是什麼？`,
+      `${titleRaw}，別只停在第一個答案`,
+      `${titleRaw}：從資訊到醫療判斷，中間還差幾步`,
+      `${titleRaw}之後，更值得問的幾個問題`
     ];
-    const title=compactText(titles[variant],72);
+    const title=compactText(titles[variant],76);
 
-    const opening=[
-      `${mark('一則醫療新聞真正值得看的，通常不是最醒目的那句話。',true)}近 24 小時，${escapeHTML(outlets||'多家主要媒體')}等 ${t.majorMediaCount} 家知名媒體共同追蹤「${escapeHTML(titleRaw)}」${c1}。熱度告訴我們這件事值得注意，但它本身不能證明療效、風險或因果。`,
-      `${mark('新聞突然變熱，不代表醫學答案也突然變簡單。',true)}「${escapeHTML(titleRaw)}」在近 24 小時被 ${t.majorMediaCount} 家知名媒體共同報導${c1}${c2}。真正有用的第一步，是把已確認的事件、仍待查證的細節，以及它對一般人的意義分開。`,
-      `${mark('看到醫療頭條時，可以先問一句：這件事真的改變了什麼？',true)}「${escapeHTML(titleRaw)}」成為多家媒體共同焦點${c1}。對一般讀者來說，比搶著記住結論更重要的是確認：誰受到影響、證據做到哪裡，以及現在是否真的需要採取行動。`,
-      `${mark('同一件醫療事件被多家媒體同時追，值得看；但更值得看的是它們共同確認了什麼。',true)}這次「${escapeHTML(titleRaw)}」已達 SIGN WELL 的熱門門檻，共有 ${t.majorMediaCount} 家知名媒體在 24 小時內報導${c1}。接下來要做的，是把新聞還原成可以理解、也可以回頭查證的資訊。`
+    const openingHooks=[
+      `${mark('醫療資訊最容易被忽略的，往往不是答案，而是答案成立的條件。',true)}「${escapeHTML(titleRaw)}」看似是一個可以快速下結論的題目，但真正要看懂它，還得把事件本身、證據強度和適用對象分開。${c1}`,
+      `${mark('一句很有力的結論，常常少了最重要的那半句：它對誰成立？',true)}「${escapeHTML(titleRaw)}」值得關注的地方，不只是結果本身，而是背後有哪些條件、限制與尚未回答的問題。${c1}${c2}`,
+      `${mark('如果只記住標題，最容易漏掉的就是醫療判斷真正需要的上下文。',true)}「${escapeHTML(titleRaw)}」可以從幾個層次來看：先把發生的事說清楚，再看研究或政策能支持到哪裡，最後才談它和個人有沒有關係。${c1}`,
+      `${mark('同一個醫療議題，只要換了族群、研究設計或政策條件，答案就可能不一樣。',true)}「${escapeHTML(titleRaw)}」正好提醒我們，好的健康資訊不是把事情說得更肯定，而是把重要條件交代完整。${c1}`
+    ];
+
+    const eventText =
+      `${escapeHTML(summary)}${c2} `+
+      `${mark('先把「發生了什麼」和「代表什麼」分開，判讀會清楚很多。')}`+
+      `事件本身可以是新的研究結果、政策變化、監管決定或臨床進展；它的重要性，還要看原始資料究竟回答了哪一個問題，而不是直接把消息延伸成個人的治療結論。`;
+
+    const conditionText =
+      `${mark('真正影響結論的，通常藏在適用條件裡。',true)}`+
+      `研究納入的是哪些人、追蹤多久、比較的是什麼，政策又適用哪些資格，都會改變一句話可以說到多遠。`+
+      `對一般讀者而言，與其先問「這是不是更好」，不如先確認自己的情況是否和資料中的族群接近。`;
+
+    const evidenceText = lit
+      ? `延伸到研究證據，PubMed 收錄的「${escapeHTML(compactText(lit.title,112))}」可以作為理解這個議題的背景資料。${clit}`+
+        `${mark('相關研究可以補足脈絡，但不能因為題目相近，就把它直接當成同一件事的證明。')}`+
+        `閱讀時仍要看研究設計、樣本、比較組與終點，尤其不能把相關性寫成因果，也不能把特定族群的結果直接套用到所有人。`
+      : `${mark('沒有足夠精準的研究可以對應時，最好的做法不是補上一個看似完整的答案。',true)}`+
+        `這種情況下，文章應把已知資訊和仍待確認的部分分開，只談來源能支持的內容，不自行加上療效、風險或治療建議。`;
+
+    const extensionText =
+      extensions.length
+      ? `${mark('把問題再往下追，會比只記住一個結論更有價值。')}`+
+        `這個題目可以繼續從${escapeHTML(extensions.join('、'))}幾個方向理解。`+
+        `如果後續資料出現不同結果，也應回到原始研究或官方文件，確認差異來自研究族群、方法、追蹤時間，還是真正出現了新的證據。`
+      : `${mark('真正值得延伸的，是那些會改變判斷的條件。')}`+
+        `包括適用族群、研究方法、療效大小、安全性與替代方案。把這些問題補齊，往往比單獨記住一個數字更接近臨床上的真實決策。`;
+
+    const practicalText =
+      `${mark('對一般人來說，重要的不是立刻採取行動，而是知道這個資訊和自己有沒有直接關係。',true)}`+
+      `如果內容涉及藥物、療程或醫療器材，是否需要調整治療仍應放回個人的疾病背景、用藥、風險與醫療目標一起評估。`+
+      `新聞或研究可以提供新的問題，但不應取代個別診療。`;
+
+    const closeText =
+      `把這類醫療議題看懂，其實不需要記住所有專有名詞。先確認資料在說誰、比較什麼、結果有多大，再看限制與可能風險，就已經能避開很多常見誤解。`+
+      `${mark('好的醫療科普，不是把話說得最滿，而是讓讀者知道一個結論能相信到哪裡。',true)}`;
+
+    const headings=[
+      ['先把事情本身說清楚','答案成立，需要哪些條件？','研究證據能告訴我們多少？','還有哪些問題值得往下追？','對一般人最實際的意義'],
+      ['先看核心資訊','別漏掉適用條件','把研究放回原本的位置','再往下追三個方向','最後回到自己的情況'],
+      ['這件事真正改變了什麼？','誰適用，差別很大','證據強度比標題更重要','值得繼續追的問題','怎麼把資訊用在自己身上'],
+      ['先理解事件，不急著下結論','條件不同，答案也會不同','研究能支持到哪裡？','從這裡再多問一步','真正需要帶走的是什麼']
     ][variant];
 
-    const eventBlock =
-      `${mark('先把事件本身說清楚，是避免被標題帶著走的第一步。')}`+
-      `${escapeHTML(summary||`目前可確認的是，多家主要媒體正在追蹤「${titleRaw}」這個事件。`)}${c2}`+
-      `這段整理依多家媒體標題與 RSS 摘要建立；如果報導仍在更新，細節也可能跟著變動，因此不能把早期新聞直接當成最後定論。`;
+    const blocks=[
+      section(headings[0],eventText),
+      section(headings[1],conditionText),
+      section(headings[2],evidenceText),
+      section(headings[3],extensionText),
+      section(headings[4],practicalText)
+    ];
 
-    const conditionBlock =
-      `${mark('真正的核心問題，是「這個訊息對誰成立、在什麼條件下成立」。',true)}`+
-      `醫療資訊常在一句標題裡失去條件：研究可能只納入特定族群，政策可能只適用部分資格，藥物也可能有明確適應症與禁忌。對一般民眾來說，先確認自己是否接近報導中的對象，比只記住一個漂亮數字更重要。`;
-
-    const evidenceBlock = lit
-      ? `系統以延伸詞條查到 PubMed 相關文獻「${escapeHTML(compactText(lit.title,105))}」${clit}。${mark('找到相關論文，不代表它就能直接替這則新聞背書。')}研究設計、樣本、比較組與終點都會影響能下多強的結論；這裡把文獻當作延伸查證入口，而不是把論文標題直接改寫成新的療效宣稱。`
-      : `目前沒有取得足夠精準的 PubMed 文獻。${mark('找不到合適證據時，留下「目前不知道」比補上一個看似合理的答案更可靠。')}因此這篇只整理多來源可確認的事件與閱讀方向，不自行增加研究結論，也不因新聞熱度推導個別治療建議。`;
-
-    const extensionBlock =
-      `${mark('如果要把這則新聞看深一層，可以沿著幾個問題繼續追。')}`+
-      `${escapeHTML(extText||'原始資料、適用族群、療效與安全性')}，都是比單看標題更有價值的延伸方向。`+
-      `尤其當不同媒體使用的語氣強度不一致時，應優先回到官方公告、研究摘要或完整論文，確認新聞中的數字和結論是否仍保留原本的限制。`;
-
-    const actionBlock =
-      `${mark('另一個容易被忽略的地方，是「新聞上很重要」不等於「每個人現在都要做點什麼」。',true)}`+
-      `有些消息確實可能改變臨床決策，有些只是研究進度、政策討論或監管更新，仍需要後續驗證。若內容涉及藥物、療程或醫療器材，不應只因新聞熱度就自行開始、停止或更改治療。`;
-
-    const closeBlock =
-      `接下來可以持續看三件事：原始資料是否更新、後續研究是否得到相近結果，以及專業學會或主管機關是否調整建議。`+
-      `${mark('可靠的醫療資訊，不是最快下結論，而是知道哪些已經確定、哪些還在變動。',true)}`+
-      `對一般人而言，最實用的順序仍是：先確認事件，再核對證據，最後才判斷它和自己有沒有關係。`;
-
-    const blocks=[eventBlock,conditionBlock,evidenceBlock,extensionBlock,actionBlock];
     const orders=[
       [0,1,2,3,4],
       [0,3,1,2,4],
-      [0,2,1,4,3],
-      [0,1,3,4,2]
+      [0,2,1,3,4],
+      [0,1,3,2,4]
     ];
 
-    let paragraphs=[opening,...orders[variant].map(i=>blocks[i]),closeBlock]
-      .map(x=>`<p>${guardrailText(x)}</p>`);
+    const opening=`<p>${guardrailText(openingHooks[variant])}</p>`;
+    const figure=sourceImageFigure(t);
+    let body=opening;
+    orders[variant].forEach((idx,pos)=>{
+      body+=blocks[idx];
+      if(pos===0&&figure)body+=figure;
+    });
+    body+=`<p>${guardrailText(closeText)}</p>`;
 
-    let body=paragraphs.join('');
     let plain=countZhText(body);
 
     const supplements=[
-      `<p>${mark('數字看起來精確，不代表它可以直接套用到每一個人。')}如果新聞引用比例、風險或平均效果，還要一起確認基準值、追蹤時間與研究族群；缺少這些背景，同一個數字可能產生完全不同的理解。</p>`,
-      `<p>${mark('來源愈多，代表事件愈值得追蹤；但不等於證據層級自動變高。')}多家媒體可能同時引用同一份研究或同一份官方資料，因此媒體數量用來判斷新聞熱度，醫療結論仍要回到原始證據本身。</p>`
+      section('數字要怎麼看才不會被誤導？',
+        `${mark('一個百分比如果少了基準值、追蹤時間和研究族群，很容易被理解成另一件事。')}`+
+        `看到風險增加、效果提升或平均下降時，最好一起確認原本的發生率、實際差距，以及這個差距對生活或健康是否具有臨床意義。`),
+      section('來源很多，就代表證據更強嗎？',
+        `${mark('不同媒體同時引用同一份研究，並不等於有很多份獨立證據。')}`+
+        `來源數量可以幫助我們知道議題受到關注，但醫療結論的強弱，仍取決於原始研究設計與資料品質。`)
     ];
 
     let si=0;
-    while(plain<600 && si<supplements.length){
-      paragraphs.splice(paragraphs.length-1,0,supplements[si++]);
-      body=paragraphs.join('');
-      plain=countZhText(body);
-    }
-
-    /* Keep the requested 600–800 character band without cutting citations
-       or a sentence in half. Remove an optional middle paragraph if needed. */
-    while(plain>800 && paragraphs.length>6){
-      paragraphs.splice(paragraphs.length-2,1);
-      body=paragraphs.join('');
+    while(plain<600&&si<supplements.length){
+      body+=supplements[si++];
       plain=countZhText(body);
     }
 
     const refsHtml=refListHTML(refs);
     const preview=`<h1>${escapeHTML(title)}</h1>${body}${refsHtml}`;
+    const imgSource=(t.sources||[]).find(s=>/^https?:\/\//i.test(String(s.imageUrl||'')))||null;
     return {
       title,
-      excerpt:stripHTML(summary||t.summary).slice(0,180),
+      excerpt:stripHTML(summary).slice(0,180),
       content:body+refsHtml,
       preview,
       references:refs,
       wordCount:countZhText(body),
       tags:[t.category,...(t.extensionTerms||[]).slice(0,4)],
-      sources:t.sources
+      sources:t.sources,
+      publisherName:'SignWell·欣緯生醫',
+      imageSource:imgSource?{imageUrl:imgSource.imageUrl,credit:imgSource.imageCredit||imgSource.name||''}:null
     };
+  }
+
+  function bindDraftMediaFallback(){
+    document.querySelectorAll('#draftPaper .sw-source-figure img').forEach(img=>{
+      const drop=()=>img.closest('.sw-source-figure')?.remove();
+      img.addEventListener('error',drop,{once:true});
+      if(img.complete && !img.naturalWidth)drop();
+    });
   }
 
   async function generateDraft(t){
     const btn=$('#generateDraftBtn');
+    const note=$('#aiEngineNote');
+    if(!btn)return;
+
     btn.disabled=true;
-    btn.textContent=currentDraft?'正在換一種敘事…':'正在生成…';
+    btn.textContent='AI 撰寫＋證據核對中…';
+    if(note)note.textContent='第一輪撰寫 → 第二輪 Medical/Evidence Editor → Backend Evidence Lock…';
 
-    await new Promise(r=>setTimeout(r,lowPower?30:110));
+    try{
+      if(!window.parent?.signwellMedicalNewsGenerateAIArticle){
+        throw new Error('目前 CMS 尚未載入 AI Writer bridge。');
+      }
 
-    currentDraft=buildDraft(t,draftVariantCycle++);
-    $('#draftPaper').innerHTML=currentDraft.preview;
-    $('#reviewStrip').classList.add('show');
-    $('#draftWrap').classList.add('show');
-    $('#draftMeta').textContent=
-      `${currentDraft.wordCount} 字 · ${t.sources.length} 個新聞來源 · `+
-      `${t.literature?.length||0} 篇相關文獻 · `+
-      `Sources / Medical / Regulatory / Plain Language guardrails 已套用`;
+      const result=await window.parent.signwellMedicalNewsGenerateAIArticle(
+        t,
+        {variation:draftVariantCycle++}
+      );
 
-    $('#copyDraftBtn').onclick=()=>copyDraft(currentDraft);
-    $('#toEditorBtn').onclick=()=>sendArticle('editor');
-    $('#publishDraftBtn').onclick=()=>sendArticle('publish');
+      if(result?.aiConfigured===false){
+        const missing=Array.isArray(result.missing)?result.missing.join('、'):'AI Script Properties';
+        throw new Error(`AI Writer 尚未設定：${missing}`);
+      }
+      if(!result?.ok||!result?.article){
+        throw new Error(result?.error||'AI Writer 沒有產生可用文章');
+      }
 
-    btn.disabled=false;
-    btn.textContent='重新生成另一種敘事';
+      currentDraft=result.article;
+
+      $('#draftPaper').innerHTML=currentDraft.preview;
+      bindDraftMediaFallback();
+      $('#reviewStrip').classList.add('show');
+      $('#draftWrap').classList.add('show');
+
+      const audit=result.audit||currentDraft.audit||{};
+      const verified=Number(audit.verifiedLiteratureCount||0);
+      const cited=Number(audit.citedLiteratureCount||0);
+      $('#draftMeta').textContent=
+        `${currentDraft.wordCount} 字 · `+
+        `${currentDraft.sources?.length||0} 個新聞來源 · `+
+        `${verified} 篇 PubMed 後端核驗文獻 · `+
+        `${cited} 篇實際引用 · Evidence Lock PASS`;
+
+      if(note){
+        note.textContent=
+          `Evidence Lock 通過 · PubMed PMID 由 Backend 核驗 · `+
+          `模型無權建立文獻 metadata 或網址 · ${audit.twoPassEditor?'已完成兩階段醫療編輯':''}`;
+        note.classList.add('ready');
+      }
+
+      $('#copyDraftBtn').onclick=()=>copyDraft(currentDraft);
+      $('#toEditorBtn').onclick=()=>sendArticle('editor');
+      $('#publishDraftBtn').onclick=()=>sendArticle('publish');
+
+      btn.textContent='重新生成另一種 AI 敘事';
+    }catch(err){
+      const msg=String(err?.message||err);
+      showToast(msg);
+      if(note){
+        note.textContent=msg;
+        note.classList.remove('ready');
+      }
+      btn.textContent=currentDraft?'重新生成另一種 AI 敘事':'AI 一鍵生成範文';
+    }finally{
+      btn.disabled=false;
+    }
   }
 
   async function copyDraft(d){
     const plain=`${d.title}\n\n${stripHTML(d.content).replace(/參考資料/g,'\n\n參考資料\n')}`;
-    try{await navigator.clipboard.writeText(plain)}catch{await copyText(plain);return}showToast('範文已複製');
+    const rich=`<h1>${escapeHTML(d.title)}</h1>${d.content}`;
+    try{
+      if(window.ClipboardItem&&navigator.clipboard?.write){
+        await navigator.clipboard.write([new ClipboardItem({
+          'text/plain':new Blob([plain],{type:'text/plain'}),
+          'text/html':new Blob([rich],{type:'text/html'})
+        })]);
+      }else{
+        await navigator.clipboard.writeText(plain);
+      }
+    }catch{await copyText(plain);return}
+    showToast('範文已複製');
   }
 
   async function sendArticle(mode){
@@ -600,7 +851,14 @@ html.lowfx .glass{
     try{
       const res=await window.parent.signwellMedicalNewsCreateArticle({title:currentDraft.title,excerpt:currentDraft.excerpt,content:currentDraft.content,references:currentDraft.references,tags:currentDraft.tags,topicId:currentTopic.id,sources:currentTopic.sources},mode);
       if(res?.cancelled){btn.disabled=false;btn.textContent=old;return}
-      if(res?.ok&&mode==='publish')showToast('已發布到「時事探討」');
+      if(res?.ok&&mode==='publish'){
+        const n=res.notification||{};
+        if(n.enabled===false)showToast('已發布 · 自動訂閱通知目前關閉');
+        else if(n.skipped)showToast('已發布 · 目前沒有可寄送訂閱者');
+        else if(n.alreadySent)showToast('已發布 · 此文章通知先前已寄送');
+        else if(n.success)showToast(`已發布並通知 ${Number(n.delivered||0).toLocaleString()} 位訂閱者`);
+        else showToast('已發布 · 訂閱通知未完成');
+      }
       else if(res?.needsGithub)showToast('已保留草稿 · 請先解鎖 GitHub Token');
     }catch(err){showToast('操作失敗：'+String(err?.message||err))}
     finally{if(document.body.contains(btn)){btn.disabled=false;btn.textContent=old}}
