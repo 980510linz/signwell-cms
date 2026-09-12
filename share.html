@@ -121,6 +121,8 @@ body.has-pointer .cursor-glow{opacity:1}
   opacity:.5;transition:opacity .35s ease;mix-blend-mode:screen;
 }
 .lightcard:hover::after{opacity:.85}
+.card3d.lightcard::after{mix-blend-mode:normal;opacity:.4}
+.card3d.lightcard:hover::after{opacity:.62}
 
 /* diagonal sheen sweep on hover */
 .sheen{overflow:hidden}
@@ -131,6 +133,78 @@ body.has-pointer .cursor-glow{opacity:1}
 }
 .sheen:hover > .sheen-layer{animation:sweep .95s var(--ease) forwards}
 @keyframes sweep{0%{transform:translateX(-120%) rotate(2deg);opacity:0}18%{opacity:.9}100%{transform:translateX(120%) rotate(2deg);opacity:0}}
+
+
+/* ---------- 3D stage (perspective + light + cast shadow) ---------- */
+.stage3d{position:relative;width:100%;display:grid;place-items:center;
+  perspective:1100px;perspective-origin:50% 45%;touch-action:pan-y}
+.stage-glow{position:absolute;inset:4% 2%;border-radius:90px;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,45%),rgba(255,255,255,.6),transparent 62%);
+  filter:blur(36px);transition:background .18s ease-out}
+.stage-shadow{position:absolute;left:9%;right:9%;bottom:-5%;height:15%;border-radius:50%;pointer-events:none;z-index:0;
+  background:rgba(74,124,165,.38);filter:blur(40px);opacity:.55;
+  transform:translate3d(var(--sx,0px),var(--sy,0px),-90px);transition:transform .18s ease-out}
+.tilt-wrap{position:relative;width:100%;transform-style:preserve-3d;will-change:transform;
+  transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg)) translateZ(0)}
+
+/* a card whose children really sit at different depths: the blur lives on
+   its own plate so the card itself never becomes a flattening group */
+.card3d{position:relative;transform-style:preserve-3d;background:none;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none}
+.glass-plate{position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;
+  background:linear-gradient(145deg,var(--glass-tint-a),var(--glass-tint-b));
+  box-shadow:var(--glass-inner),var(--shadow-lift);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-sat))}
+.glass-plate::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(150deg,var(--glass-rim) 0%,var(--glass-rim-soft) 32%,rgba(255,255,255,.18) 55%,var(--glass-rim) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+
+/* edge lighting: the lit rim follows the tilt, the opposite edge darkens */
+.edge-light{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:4;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.26),
+    inset var(--ex,0px) var(--ey,0px) 36px -12px rgba(255,255,255,.82),
+    inset calc(var(--ex,0px) * -1) calc(var(--ey,0px) * -1) 32px -14px rgba(48,92,132,.22);
+  transition:box-shadow .18s ease-out}
+
+/* depth layers */
+.lift1{transform:translateZ(24px)}
+.lift2{transform:translateZ(44px)}
+.lift3{transform:translateZ(66px)}
+.lift1,.lift2,.lift3{transform-style:preserve-3d}
+
+/* ---------- QR: no long-press save ---------- */
+.qr-stack{position:relative;display:inline-grid;place-items:center;
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.qr-box{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.qr-box img,.qr-box canvas{pointer-events:none;-webkit-user-drag:none;
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.qr-shield{position:absolute;inset:-6px;border-radius:34px;z-index:8;display:block;
+  background:transparent;touch-action:manipulation;
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.qr-note{margin-top:12px;font-size:10px;color:#8299aa;text-align:center;letter-spacing:.02em}
+body.dark .stage-glow{background:radial-gradient(circle at var(--gx,50%) var(--gy,45%),rgba(150,205,255,.22),transparent 62%)}
+body.dark .stage-shadow{background:rgba(0,0,0,.6)}
+body.dark .edge-light{box-shadow:
+  inset 0 0 0 1px rgba(186,222,252,.16),
+  inset var(--ex,0px) var(--ey,0px) 36px -12px rgba(196,229,255,.38),
+  inset calc(var(--ex,0px) * -1) calc(var(--ey,0px) * -1) 32px -14px rgba(0,0,0,.45)}
+body.dark .qr-note{color:#8ca0b1}
+body.lite .stage-glow,body.lite .stage-shadow{display:none}
+@media(max-width:620px){
+  .stage3d{perspective:900px}
+  .stage-shadow{bottom:-3%;height:12%}
+  .lift1{transform:translateZ(14px)}
+  .lift2{transform:translateZ(26px)}
+  .lift3{transform:translateZ(38px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .tilt-wrap{transform:none!important}
+  .lift1,.lift2,.lift3{transform:none!important}
+  .edge-light{box-shadow:inset 0 0 0 1px rgba(255,255,255,.26)!important}
+}
 
 /* ---------- reading progress ---------- */
 #readingProgress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;
@@ -282,6 +356,7 @@ h1{font-size:clamp(44px,7vw,92px);line-height:.98;letter-spacing:-.06em;margin:1
   transition:transform .32s var(--ease),box-shadow .34s ease}
 .article-card:hover{--lift:-5px;box-shadow:var(--glass-inner),var(--shadow-hover)}
 .article-card > *{position:relative;z-index:3}
+.article-card .edge-light,.topic-card .edge-light,.hero-card .edge-light{z-index:4}
 .card-cover{height:155px;border-radius:18px;overflow:hidden;margin-bottom:16px;background:linear-gradient(135deg,#dceefd,#f7fbff)}
 .card-cover img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);will-change:transform}
 .article-card:hover .card-cover img{transform:scale(1.06)}
@@ -330,10 +405,10 @@ h1{font-size:clamp(44px,7vw,92px);line-height:.98;letter-spacing:-.06em;margin:1
 .backlink:hover{color:#37627f;transform:translateX(-3px)}
 
 /* ---------- share ---------- */
-.share-wrap{min-height:calc(100dvh - 130px);display:grid;place-items:center}
-.share-card{width:min(760px,100%);border-radius:var(--radius-xl);padding:34px;position:relative;overflow:hidden;
-  transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s var(--ease)}
+.share-wrap{min-height:calc(100dvh - 130px);display:grid;place-items:center;padding:30px 0 46px}
+.share-card{width:min(760px,100%);border-radius:var(--radius-xl);padding:34px;position:relative}
 .share-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;position:relative;z-index:3}
+.share-grid > div:last-child{text-align:center}
 .share-card h1{font-size:clamp(38px,5vw,62px);margin:14px 0;letter-spacing:-.05em}
 .share-card p{color:var(--muted);line-height:1.8}
 .share-url{display:flex;gap:8px;align-items:center;margin-top:22px}
@@ -2329,230 +2404,6 @@ body.is-scrolled .brand-top{
 
 
 /* ============================================================
-   Public v16.4 · Wave Hero / Smoother Native Scroll
-   ============================================================ */
-:root{
-  --home-hero-y:0px;
-  --home-hero-opacity:1;
-  --home-card-y:0px;
-  --home-next-y:30px;
-  --home-next-opacity:.42;
-  --home-wave-lift:0px;
-  --home-wave-opacity:.96;
-  --home-foam-rise:0px;
-}
-
-.home-scroll-scene{
-  position:relative;
-  isolation:isolate;
-  min-height:calc(100dvh - 92px);
-  overflow:clip;
-  padding-bottom:120px;
-}
-.home-scroll-scene::after{
-  content:"";
-  position:absolute;
-  z-index:0;
-  left:50%;
-  bottom:-18px;
-  width:min(1180px,100vw);
-  height:250px;
-  transform:translateX(-50%);
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 12%,rgba(255,255,255,.72) 0,rgba(255,255,255,.26) 18%,transparent 52%),
-    linear-gradient(180deg,rgba(163,215,246,.14),rgba(95,168,215,.08) 46%,transparent 92%);
-  opacity:.9;
-  filter:blur(14px);
-}
-
-.home-hero-copy{
-  position:relative;
-  z-index:3;
-  transform:translate3d(0,var(--home-hero-y),0);
-  opacity:var(--home-hero-opacity);
-  will-change:transform,opacity;
-}
-.home-hero-card{
-  position:relative;
-  z-index:3;
-  transform:
-    perspective(1000px)
-    rotateX(var(--rx,0deg))
-    rotateY(var(--ry,0deg))
-    translate3d(0,var(--home-card-y),0)!important;
-  will-change:transform;
-}
-
-/* Replace the old ripple bridge with layered waves and foam. */
-.home-wave-stage{
-  position:absolute;
-  z-index:1;
-  left:50%;
-  bottom:-34px;
-  width:min(1180px,100vw);
-  height:280px;
-  transform:translate3d(-50%,var(--home-wave-lift),0);
-  pointer-events:none;
-  overflow:visible;
-  opacity:var(--home-wave-opacity);
-  will-change:transform,opacity;
-}
-.home-wave{
-  position:absolute;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  border-radius:44% 56% 0 0 / 100% 100% 0 0;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
-}
-.home-wave::before{
-  content:"";
-  position:absolute;
-  left:5%;
-  right:5%;
-  top:14px;
-  height:2px;
-  border-radius:999px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.82),rgba(255,255,255,.38),transparent);
-  opacity:.72;
-}
-.home-wave.back{
-  width:min(1080px,100vw);
-  height:162px;
-  background:linear-gradient(180deg,rgba(179,228,251,.46),rgba(130,199,236,.30) 42%,rgba(105,176,221,.18) 100%);
-  filter:blur(1px);
-  animation:homeWaveSwayBack 13s ease-in-out infinite alternate;
-}
-.home-wave.mid{
-  width:min(980px,96vw);
-  height:138px;
-  bottom:18px;
-  background:linear-gradient(180deg,rgba(155,221,249,.72),rgba(113,191,232,.44) 48%,rgba(104,173,217,.24) 100%);
-  animation:homeWaveSwayMid 10s ease-in-out infinite alternate;
-}
-.home-wave.front{
-  width:min(900px,92vw);
-  height:116px;
-  bottom:34px;
-  background:linear-gradient(180deg,rgba(238,250,255,.96),rgba(190,233,252,.84) 22%,rgba(125,196,234,.52) 58%,rgba(99,166,211,.28) 100%);
-  box-shadow:
-    0 18px 42px rgba(75,143,188,.10),
-    inset 0 1px 0 rgba(255,255,255,.82);
-  animation:homeWaveSwayFront 8.2s ease-in-out infinite alternate;
-}
-
-.home-foam{
-  position:absolute;
-  top:0;
-  left:50%;
-  width:26px;
-  height:12px;
-  margin-left:-13px;
-  border-radius:999px;
-  background:rgba(255,255,255,.92);
-  box-shadow:
-    14px -8px 0 1px rgba(255,255,255,.88),
-    -14px -5px 0 1px rgba(255,255,255,.78),
-    30px -3px 0 -1px rgba(232,247,255,.72),
-    -28px -10px 0 -1px rgba(232,247,255,.70);
-  filter:drop-shadow(0 8px 12px rgba(112,180,220,.18));
-  transform:translate3d(-50%,var(--home-foam-rise),0);
-  animation:homeFoamFloat 5.8s ease-in-out infinite;
-}
-.home-foam.f1{top:42px;left:34%;animation-delay:0s}
-.home-foam.f2{top:24px;left:50%;animation-delay:1s;scale:.92}
-.home-foam.f3{top:48px;left:67%;animation-delay:2s;scale:1.06}
-.home-foam.f4{top:68px;left:80%;animation-delay:1.6s;scale:.82}
-.home-foam.f5{top:60px;left:20%;animation-delay:2.6s;scale:.86}
-
-.home-next-stage{
-  position:relative;
-  z-index:2;
-  translate:0 var(--home-next-y);
-  opacity:var(--home-next-opacity);
-  transition:opacity .12s linear;
-  will-change:translate,opacity;
-}
-.home-next-stage .section-head{position:relative}
-.home-next-stage .section-head::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:-30px;
-  width:84px;
-  height:2px;
-  border-radius:999px;
-  background:linear-gradient(90deg,rgba(107,188,236,.9),rgba(255,255,255,.65),transparent);
-  opacity:.82;
-}
-
-@keyframes homeIntroCopy{
-  from{opacity:0;transform:translate3d(0,24px,0);filter:blur(8px)}
-  to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
-}
-@keyframes homeIntroCard{
-  from{opacity:0;transform:translate3d(0,34px,0) scale(.985);filter:blur(7px)}
-  to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
-}
-.home-scroll-scene.home-fx-ready .home-hero-copy{animation:homeIntroCopy .78s cubic-bezier(.16,1,.3,1) .04s both}
-.home-scroll-scene.home-fx-ready .home-hero-card{animation:homeIntroCard .84s cubic-bezier(.16,1,.3,1) .12s both}
-
-@keyframes homeWaveSwayBack{
-  from{transform:translateX(-50%) translateY(4px) scaleX(.992)}
-  to{transform:translateX(-50%) translateY(-4px) scaleX(1.01)}
-}
-@keyframes homeWaveSwayMid{
-  from{transform:translateX(-50%) translateY(3px)}
-  to{transform:translateX(-50%) translateY(-5px)}
-}
-@keyframes homeWaveSwayFront{
-  from{transform:translateX(-50%) translateY(2px) scaleX(.996)}
-  to{transform:translateX(-50%) translateY(-6px) scaleX(1.008)}
-}
-@keyframes homeFoamFloat{
-  0%,100%{transform:translate3d(-50%,calc(var(--home-foam-rise) + 0px),0);opacity:.76}
-  50%{transform:translate3d(-50%,calc(var(--home-foam-rise) - 8px),0);opacity:1}
-}
-
-@media(max-width:900px){
-  .home-scroll-scene{padding-bottom:92px}
-  .home-wave-stage{height:230px;bottom:-16px}
-  .home-wave.back{height:136px}
-  .home-wave.mid{height:116px;bottom:16px}
-  .home-wave.front{height:98px;bottom:28px}
-  .home-scroll-scene::after{height:210px}
-}
-@media(max-width:700px){
-  .home-scroll-scene{min-height:calc(100dvh - 78px);padding-bottom:74px}
-  .home-wave-stage{height:188px;bottom:-2px}
-  .home-wave.back{height:108px}
-  .home-wave.mid{height:92px;bottom:12px}
-  .home-wave.front{height:78px;bottom:20px}
-  .home-scroll-scene::after{height:162px;filter:blur(10px)}
-  .home-foam{filter:none}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .home-scroll-scene.home-fx-ready .home-hero-copy,
-  .home-scroll-scene.home-fx-ready .home-hero-card,
-  .home-wave,
-  .home-foam{
-    animation:none!important;
-  }
-  .home-hero-copy,
-  .home-hero-card,
-  .home-next-stage,
-  .home-wave-stage,
-  .home-scroll-scene::after{
-    transform:none!important;
-    translate:none!important;
-    opacity:1!important;
-  }
-}
-
-
-/* ============================================================
    Public v16.3 · Optimistic Newsletter Flow
    ============================================================ */
 .newsletter-flow-overlay{
@@ -3933,34 +3784,6 @@ html.sw-lowfx .cursor-glow{
     translate:0!important;
     filter:none!important;
   }
-}
-
-
-/* ============================================================
-   Public v18.2 · Generated Article Typography / Image Citation
-   ============================================================ */
-.article-body h2.sw-section-title{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang TC","Noto Sans TC",sans-serif;
-  font-size:25px;line-height:1.4;font-weight:800;letter-spacing:-.025em;
-  margin:38px 0 13px;
-}
-.article-body .sw-source-figure{margin:28px 0 34px}
-.article-body .sw-source-figure>a{display:block;border:0!important}
-.article-body .sw-source-figure img{
-  width:100%;max-height:520px;object-fit:cover;display:block;margin:0;
-  border-radius:20px;box-shadow:var(--shadow-soft)
-}
-.article-body .sw-source-figure figcaption{
-  margin-top:8px;color:#8393a0;font-size:10.5px;line-height:1.55
-}
-.article-body .sw-source-figure figcaption a{
-  color:inherit;font-size:inherit;text-decoration:underline;text-underline-offset:2px;border-bottom:0
-}
-body.dark .article-body .sw-source-figure figcaption{color:#9fb2c1!important}
-@media(max-width:700px){
-  .article-body h2.sw-section-title{font-size:22px;margin-top:32px}
-  .article-body .sw-source-figure{margin:22px 0 28px}
-  .article-body .sw-source-figure figcaption{font-size:10px}
 }
 
 
@@ -5727,7 +5550,7 @@ body.dark .article-body :is(pre,code,table,th,td){color:#dce8f0!important}
 
 </style>
 </head>
-<body class="boot-preparing" data-page="home">
+<body class="boot-preparing" data-page="share">
 <div id="welcomeSplash" aria-hidden="true"><div class="splash-word">欣緯生醫<small>SIGN WELL BIOMED</small></div><div class="splash-line"></div></div>
 <div id="readingProgress"></div>
 <div class="ambient" id="ambient" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="orb d"></div></div>
@@ -5791,7 +5614,7 @@ body.dark .article-body :is(pre,code,table,th,td){color:#dce8f0!important}
 
 /* ---------- helpers ---------- */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],app=$('#app');
-const raf=requestAnimationFrame;
+const raf=cb=>requestAnimationFrame(cb);
 const reduceMotion=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
 const lite=()=>document.body.classList.contains('lite');
 
@@ -6402,7 +6225,7 @@ function articleUrl(slug){return pageUrl(PAGE_FILE.home,'article/'+encodeURIComp
 function setNav(index,instant=false){Slider.set(index,instant)}
 
 /* ---------- view builders ---------- */
-const glassLayers='<span class="sheen-layer"></span>';
+const glassLayers='<span class="sheen-layer"></span><span class="edge-light" aria-hidden="true"></span>';
 
 
 
@@ -6432,8 +6255,6 @@ function publicPersonById(id){
 function publisherForArticle(a){
   const p=publicPersonById(a?.publisherId);
   if(p)return p;
-  const override=String(a?.publisherName||'').trim();
-  if(override)return {id:'',name:override,role:'',photo:''};
   return {
     id:'',
     name:t('articleBrand')||'SIGN WELL · 欣緯生醫',
@@ -6487,83 +6308,23 @@ function skeletonArticle(){
   return `<article class="article-view"><header class="article-top"><div class="skeleton sk-line" style="width:120px;height:16px"></div><div class="skeleton sk-line" style="width:min(680px,90%);height:58px;margin-top:22px"></div><div class="skeleton sk-line" style="width:220px;height:13px;margin-top:18px"></div></header><div class="skeleton" style="height:300px;border-radius:30px;margin:22px 0"></div></article>`;
 }
 
-
-let homeFXRAF=0;
-let homeFXBound=false;
-
-function updateHomeScrollFX(){
-  homeFXRAF=0;
-  const scene=$('.home-scroll-scene');
-  const next=$('.home-next-stage');
-  if(!scene||!next)return;
-
-  const max=Math.max(320,Math.min(innerHeight*.70,560));
-  const raw=Math.max(0,Math.min(1,scrollY/max));
-  const ease=1-Math.pow(1-raw,2.35);
-
-  const root=document.documentElement.style;
-  root.setProperty('--home-hero-y',(-10*ease).toFixed(2)+'px');
-  root.setProperty('--home-card-y',(-6*ease).toFixed(2)+'px');
-  root.setProperty('--home-hero-opacity',(1-.10*ease).toFixed(3));
-
-  root.setProperty('--home-next-y',((1-ease)*32).toFixed(2)+'px');
-  root.setProperty('--home-next-opacity',(.42+.58*ease).toFixed(3));
-
-}
-
-function queueHomeScrollFX(){
-  if(homeFXRAF)return;
-  homeFXRAF=requestAnimationFrame(updateHomeScrollFX);
-}
-
-function initHomeScrollScene(){
-  const scene=$('.home-scroll-scene');
-  if(!scene)return;
-  requestAnimationFrame(()=>scene.classList.add('home-fx-ready'));
-
-  const lowMotion=reduceMotion() || matchMedia('(pointer:coarse)').matches;
-  if(lowMotion){
-    const root=document.documentElement.style;
-    root.setProperty('--home-hero-y','0px');
-    root.setProperty('--home-card-y','0px');
-    root.setProperty('--home-hero-opacity','1');
-    root.setProperty('--home-next-y','0px');
-    root.setProperty('--home-next-opacity','1');
-    return;
-  }
-
-  queueHomeScrollFX();
-  if(!homeFXBound){
-    homeFXBound=true;
-    addEventListener('scroll',queueHomeScrollFX,{passive:true});
-    addEventListener('resize',queueHomeScrollFX,{passive:true});
-  }
-}
-
-/* Restore native scrolling for smoothness. */
-const SoftWheel={
-  reset(){}
-};
-
-
-
 function renderHome(){
   const latest=articles.slice(0,9);
   app.innerHTML=`<div class="shell">
-    <section class="hero home-scroll-scene">
-      <div class="home-hero-copy">
+    <section class="hero">
+      <div>
         <div class="eyebrow"><i></i>${escapeHTML(t('homeEyebrow'))}</div>
         <h1>${escapeHTML(t('homeTitle1'))}<br>${escapeHTML(t('homeTitle2'))}</h1>
         <p class="hero-sub">${escapeHTML(t('homeSubtitle'))}</p>
         <a class="scroll-cue" href="#daily" data-scroll="daily"><i></i><span>向下閱讀最新文章</span></a>
       </div>
-      <aside class="hero-card home-hero-card glass lightcard sheen">${glassLayers}
+      <aside class="hero-card glass lightcard sheen">${glassLayers}
         <b>${escapeHTML(t('homeCardTitle'))}</b>
         <p>${escapeHTML(t('homeCardBody'))}</p>
         <div class="tiny">SIGN WELL · 欣緯生醫</div>
       </aside>
     </section>
-    <section class="section home-next-stage" id="daily">
+    <section class="section" id="daily">
       <div class="section-head">
         <div><p>${escapeHTML(t('dailyEyebrow'))}</p><h2>${escapeHTML(t('dailyTitle'))}</h2></div>
         <p>${escapeHTML(t('dailyDescription'))}</p>
@@ -6571,7 +6332,7 @@ function renderHome(){
       ${ready?`<div class="article-grid">${latest.length?latest.map(articleCard).join(''):'<div class="empty">還沒有文章。發布第一篇之後，它會出現在這裡。</div>'}</div>`:skeletonGrid()}
     </section>
   </div>`;
-  bindArticleCards();bindScrollCue();initReveal();initHomeScrollScene();
+  bindArticleCards();bindScrollCue();initReveal();
 }
 
 function renderTopics(){
@@ -6614,30 +6375,53 @@ function renderTopicDetail(slug){
 function renderShare(){
   const url=location.origin+location.pathname.replace(/[^/]*$/,'');
   app.innerHTML=`<div class="shell share-wrap">
-    <section class="share-card glass lightcard sheen">${glassLayers}
-      <div class="share-grid">
-        <div>
-          <div class="eyebrow"><i></i>${escapeHTML(t('shareEyebrow'))}</div>
-          <h1>${escapeHTML(t('shareTitle'))}</h1>
-          <p>${escapeHTML(t('shareSubtitle'))}</p>
-          <div class="share-url"><input id="shareUrl" value="${escapeHTML(url)}" readonly aria-label="網站連結"><button class="primarybtn" id="copySite">複製連結</button></div>
-          <div class="share-actions"><button class="softbtn" id="nativeShare">系統分享</button><button class="softbtn" id="refreshQr">重新產生 QR Code</button></div>
-        </div>
-        <div class="qr-box" id="qrcode"><div class="qr-fallback">正在產生 QR Code…</div></div>
+    <div class="stage3d" id="stage">
+      <div class="stage-glow" id="stageGlow" aria-hidden="true"></div>
+      <div class="stage-shadow" id="stageShadow" aria-hidden="true"></div>
+      <div class="tilt-wrap" id="tiltWrap">
+        <section class="share-card card3d lightcard" id="shareCard">
+          <span class="glass-plate" aria-hidden="true"></span>
+          <span class="edge-light" aria-hidden="true"></span>
+          <div class="share-grid">
+            <div>
+              <div class="eyebrow lift1"><i></i>${escapeHTML(t('shareEyebrow'))}</div>
+              <h1 class="lift3">${escapeHTML(t('shareTitle'))}</h1>
+              <p class="lift2">${escapeHTML(t('shareSubtitle'))}</p>
+              <div class="share-url lift2"><input id="shareUrl" value="${escapeHTML(url)}" readonly aria-label="網站連結"><button class="primarybtn" id="copySite">複製連結</button></div>
+                          </div>
+            <div class="lift3">
+              <div class="qr-stack" id="qrStack">
+                <div class="qr-box" id="qrcode"><div class="qr-fallback">正在產生 QR Code…</div></div>
+                <span class="qr-shield" id="qrShield" aria-hidden="true"></span>
+              </div>
+              <div class="qr-note">請用相機掃描，這張 QR Code 無法長按儲存</div>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </div>`;
   $('#shareUrl').onclick=e=>e.target.select();
-  $('#copySite').onclick=()=>copyText(url);
-  $('#nativeShare').onclick=async()=>{
+  $('#copySite').onclick=async()=>{
     try{
-      if(navigator.share)await navigator.share({title:t('siteTitle'),url});
-      else await copyText(url);
-    }catch(e){if(e?.name!=='AbortError')showToast('這個瀏覽器不支援系統分享，連結已可手動複製')}
+      if(navigator.share){
+        await navigator.share({title:t('siteTitle'),url});
+        return;
+      }
+      await copyText(url);
+    }catch(e){
+      if(e?.name==='AbortError')return;
+      await copyText(url);
+      showToast('系統分享不可用，已改為複製連結');
+    }
   };
-  makeQR(url);initReveal();
+  makeQR(url);
+  initStage3D();
+  initReveal();
 }
 
+/* ---------- QR: rendered as canvas only, and shielded from long-press ---------- */
+let qrGuard=null;
 
 let qrLibPromise=null;
 function ensureQRCodeLib(){
@@ -6655,16 +6439,103 @@ function ensureQRCodeLib(){
 }
 
 async function makeQR(url){
-  const box=$('#qrcode');
-  if(!box)return;
-  box.innerHTML='<div class="qr-fallback">正在產生 QR Code…</div>';
-  const ok=await ensureQRCodeLib();
-  if(!ok||!window.QRCode){
-    box.innerHTML='<div class="qr-fallback">QR Code 產生器沒有載入。<br>用上方「複製連結」一樣可以分享。</div>';
-    return;
-  }
+  const box=$('#qrcode'),stack=$('#qrStack');
+  qrGuard?.disconnect();
   box.innerHTML='';
-  new QRCode(box,{text:url,width:190,height:190,correctLevel:QRCode.CorrectLevel.M});
+  lockDown(stack);
+  lockDown(box);
+
+  /* qrcodejs swaps in an <img loading="lazy" decoding="async"> once it has a data URL — an <img loading="lazy" decoding="async"> is exactly
+     what iOS offers to save on long-press, so strip it and keep the canvas. */
+  const keepCanvasOnly=()=>{
+    const cv=box.querySelector('canvas');
+    if(cv){
+      cv.style.display='block';
+      cv.setAttribute('aria-label','網站 QR Code');
+      box.querySelectorAll('img').forEach(im=>im.remove());
+    }else{
+      box.querySelectorAll('img').forEach(im=>{im.draggable=false;im.setAttribute('alt','')});
+    }
+  };
+  qrGuard=new MutationObserver(keepCanvasOnly);
+  qrGuard.observe(box,{childList:true,subtree:true,attributes:true,attributeFilter:['style','src']});
+
+  const draw=()=>{
+    new QRCode(box,{text:url,width:190,height:190,correctLevel:QRCode.CorrectLevel.M});
+    keepCanvasOnly();
+    [40,180,600].forEach(ms=>setTimeout(keepCanvasOnly,ms));
+  };
+  if(window.QRCode)return void draw();
+  const ok=await ensureQRCodeLib();
+  if(ok&&window.QRCode){box.innerHTML='';draw()}
+  else box.innerHTML='<div class="qr-fallback">QR Code 產生器沒有載入。<br>用上方「複製連結」一樣可以分享。</div>';
+}
+
+function lockDown(el){
+  if(!el)return;
+  ['contextmenu','dragstart','selectstart'].forEach(ev=>
+    el.addEventListener(ev,e=>{e.preventDefault();return false}));
+}
+
+/* ---------- pointer-driven 3D: tilt, edge light, cast shadow, backlight ---------- */
+function initStage3D(){
+  const stage=$('#stage'),wrap=$('#tiltWrap'),card=$('#shareCard'),
+        shadow=$('#stageShadow'),glow=$('#stageGlow');
+  if(!stage||reduceMotion())return;
+
+  const MAX_Y=lite()?7:15, MAX_X=lite()?6:12;
+  let tX=0,tY=0,cX=0,cY=0,active=false,loop=null,idle=0;
+
+  const aim=(clientX,clientY)=>{
+    const r=stage.getBoundingClientRect();
+    const nx=Math.max(-1,Math.min(1,((clientX-r.left)/r.width)*2-1));
+    const ny=Math.max(-1,Math.min(1,((clientY-r.top)/r.height)*2-1));
+    tY=nx*MAX_Y;
+    tX=-ny*MAX_X;
+    card.style.setProperty('--px',(((clientX-r.left)/r.width)*100).toFixed(1)+'%');
+    card.style.setProperty('--py',(((clientY-r.top)/r.height)*100).toFixed(1)+'%');
+    card.style.setProperty('--ex',(nx*16).toFixed(1)+'px');
+    card.style.setProperty('--ey',(ny*16).toFixed(1)+'px');
+    shadow.style.setProperty('--sx',(-nx*20).toFixed(1)+'px');
+    shadow.style.setProperty('--sy',(-ny*14).toFixed(1)+'px');
+    glow.style.setProperty('--gx',(50+nx*32).toFixed(0)+'%');
+    glow.style.setProperty('--gy',(45+ny*32).toFixed(0)+'%');
+  };
+
+  const rest=()=>{
+    active=false;tX=0;tY=0;
+    card.style.setProperty('--px','50%');
+    card.style.setProperty('--py','22%');
+    card.style.setProperty('--ex','0px');
+    card.style.setProperty('--ey','0px');
+    shadow.style.setProperty('--sx','0px');
+    shadow.style.setProperty('--sy','0px');
+    glow.style.setProperty('--gx','50%');
+    glow.style.setProperty('--gy','45%');
+    run();
+  };
+
+  const frame=()=>{
+    const ease=active?.105:.075;
+    cX+=(tX-cX)*ease;
+    cY+=(tY-cY)*ease;
+    wrap.style.setProperty('--tx',cX.toFixed(3)+'deg');
+    wrap.style.setProperty('--ty',cY.toFixed(3)+'deg');
+    if(!active&&Math.abs(tX-cX)<.02&&Math.abs(tY-cY)<.02&&++idle>4){loop=null;return}
+    loop=raf(frame);
+  };
+  const run=()=>{idle=0;if(!loop)loop=raf(frame)};
+
+  stage.addEventListener('pointerenter',e=>{active=true;aim(e.clientX,e.clientY);run()});
+  stage.addEventListener('pointermove',e=>{active=true;aim(e.clientX,e.clientY);run()},{passive:true});
+  stage.addEventListener('pointerleave',rest);
+  stage.addEventListener('pointerdown',e=>{
+    active=true;stage.setPointerCapture?.(e.pointerId);aim(e.clientX,e.clientY);run();
+  });
+  const lift=e=>{if(e.pointerType!=='mouse')rest()};
+  stage.addEventListener('pointerup',lift);
+  stage.addEventListener('pointercancel',lift);
+  rest();
 }
 
 
@@ -7134,7 +7005,7 @@ async function renderArticle(slug){
       </div>
       <div class="article-actions"><button class="pillbtn" id="shareArticle">${escapeHTML(t('shareLabel'))}</button><button class="pillbtn" id="copyArticle">${iconSvg('copy')}${escapeHTML(t('copyLinkLabel'))}</button></div>
     </header>
-    ${a.cover?`<div class="article-cover"><img loading="lazy" decoding="async" src="${escapeHTML(a.cover)}" alt=""></div>`:defaultCoverMarkup(a,true)}
+    ${a.cover?`<div class="article-cover"><img loading="lazy" decoding="async" src="${escapeHTML(a.cover)}" alt="" decoding="async"></div>`:defaultCoverMarkup(a,true)}
     <div class="article-layout">
       <div class="article-body">${html}</div>
       ${heads.length?`<aside class="toc"><div class="toc-title">${escapeHTML(t('tocTitle'))}</div>${heads.map(h=>`<button data-toc="${escapeHTML(h.id)}">${escapeHTML(h.text)}</button>`).join('')}</aside>`:''}
@@ -7150,7 +7021,7 @@ async function renderArticle(slug){
     }catch(e){if(e?.name!=='AbortError')showToast('這個瀏覽器不支援系統分享，連結已可手動複製')}
   };
   document.title=`${a.title} · SIGN WELL`;
-  hardenRenderedArticleMedia();bindBack();initReveal();setupToc();
+  bindBack();initReveal();setupToc();
 }
 
 function bindBack(){
@@ -7171,7 +7042,6 @@ function bindScrollCue(){
 /* ---------- render orchestration ---------- */
 async function paint(){
   const r=route();
-  document.body.classList.toggle('home-glass-focus',r.page==='home');
   setNav(routeIndex(r));
   if(r.page==='home')renderHome();
   else if(r.page==='topics')renderTopics();
@@ -7189,8 +7059,6 @@ async function render(){
   enforceFooterContact();
   await paint();
   window.scrollTo({top:0,behavior:'auto'});
-  SoftWheel?.reset?.();
-  queueHomeScrollFX();
   if(reduceMotion())return;
   app.classList.remove('page-in-fast');
   void app.offsetWidth;
@@ -7710,19 +7578,24 @@ function initPointerFX(){
     card.style.setProperty('--py',(y*100).toFixed(1)+'%');
     card.style.setProperty('--ry',((x-.5)*7).toFixed(2)+'deg');
     card.style.setProperty('--rx',((.5-y)*5).toFixed(2)+'deg');
+    card.style.setProperty('--ex',((x-.5)*22).toFixed(1)+'px');
+    card.style.setProperty('--ey',((y-.5)*22).toFixed(1)+'px');
   };
 
   document.addEventListener('pointermove',e=>{
     tx=e.clientX;ty=e.clientY;idle=0;
     if(!looping){looping=true;raf(loop)}
-    const el=e.target.closest?.('.hero-card,.article-card,.topic-card,.share-card');
+    const el=e.target.closest?.('.hero-card,.article-card,.topic-card');
     if(el!==card&&card)resetCard(card);
     card=el;cx=e.clientX;cy=e.clientY;
     if(card&&!pending){pending=true;raf(applyCard)}
   },{passive:true});
 
   document.addEventListener('pointerleave',()=>{if(card)resetCard(card);card=null},{passive:true});
-  function resetCard(el){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')}
+  function resetCard(el){
+    el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');
+    el.style.setProperty('--ex','0px');el.style.setProperty('--ey','0px');
+  }
 }
 
 /* ---------- reveal on scroll · repeatable ---------- */
@@ -8106,7 +7979,7 @@ function initPressFX(){
       b.classList.remove('jelly');void b.offsetWidth;b.classList.add('jelly');
       setTimeout(()=>b.classList.remove('jelly'),600);
     }
-    if(lite()||reduceMotion()||document.body.classList.contains('home-glass-focus'))return;
+    if(lite()||reduceMotion())return;
     const r=b.getBoundingClientRect(),size=Math.max(r.width,r.height)*2.1;
     const ink=document.createElement('span');
     ink.className='ripple';

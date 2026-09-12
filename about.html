@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <link rel="preconnect" href="https://script.google.com">
-<title>SIGN WELL · 欣緯生醫</title>
+<title>關於我們 · SIGN WELL</title>
 <style>
 /* ============================================================
    SIGN WELL · 欣緯生醫
@@ -2329,230 +2329,6 @@ body.is-scrolled .brand-top{
 
 
 /* ============================================================
-   Public v16.4 · Wave Hero / Smoother Native Scroll
-   ============================================================ */
-:root{
-  --home-hero-y:0px;
-  --home-hero-opacity:1;
-  --home-card-y:0px;
-  --home-next-y:30px;
-  --home-next-opacity:.42;
-  --home-wave-lift:0px;
-  --home-wave-opacity:.96;
-  --home-foam-rise:0px;
-}
-
-.home-scroll-scene{
-  position:relative;
-  isolation:isolate;
-  min-height:calc(100dvh - 92px);
-  overflow:clip;
-  padding-bottom:120px;
-}
-.home-scroll-scene::after{
-  content:"";
-  position:absolute;
-  z-index:0;
-  left:50%;
-  bottom:-18px;
-  width:min(1180px,100vw);
-  height:250px;
-  transform:translateX(-50%);
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 12%,rgba(255,255,255,.72) 0,rgba(255,255,255,.26) 18%,transparent 52%),
-    linear-gradient(180deg,rgba(163,215,246,.14),rgba(95,168,215,.08) 46%,transparent 92%);
-  opacity:.9;
-  filter:blur(14px);
-}
-
-.home-hero-copy{
-  position:relative;
-  z-index:3;
-  transform:translate3d(0,var(--home-hero-y),0);
-  opacity:var(--home-hero-opacity);
-  will-change:transform,opacity;
-}
-.home-hero-card{
-  position:relative;
-  z-index:3;
-  transform:
-    perspective(1000px)
-    rotateX(var(--rx,0deg))
-    rotateY(var(--ry,0deg))
-    translate3d(0,var(--home-card-y),0)!important;
-  will-change:transform;
-}
-
-/* Replace the old ripple bridge with layered waves and foam. */
-.home-wave-stage{
-  position:absolute;
-  z-index:1;
-  left:50%;
-  bottom:-34px;
-  width:min(1180px,100vw);
-  height:280px;
-  transform:translate3d(-50%,var(--home-wave-lift),0);
-  pointer-events:none;
-  overflow:visible;
-  opacity:var(--home-wave-opacity);
-  will-change:transform,opacity;
-}
-.home-wave{
-  position:absolute;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  border-radius:44% 56% 0 0 / 100% 100% 0 0;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
-}
-.home-wave::before{
-  content:"";
-  position:absolute;
-  left:5%;
-  right:5%;
-  top:14px;
-  height:2px;
-  border-radius:999px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.82),rgba(255,255,255,.38),transparent);
-  opacity:.72;
-}
-.home-wave.back{
-  width:min(1080px,100vw);
-  height:162px;
-  background:linear-gradient(180deg,rgba(179,228,251,.46),rgba(130,199,236,.30) 42%,rgba(105,176,221,.18) 100%);
-  filter:blur(1px);
-  animation:homeWaveSwayBack 13s ease-in-out infinite alternate;
-}
-.home-wave.mid{
-  width:min(980px,96vw);
-  height:138px;
-  bottom:18px;
-  background:linear-gradient(180deg,rgba(155,221,249,.72),rgba(113,191,232,.44) 48%,rgba(104,173,217,.24) 100%);
-  animation:homeWaveSwayMid 10s ease-in-out infinite alternate;
-}
-.home-wave.front{
-  width:min(900px,92vw);
-  height:116px;
-  bottom:34px;
-  background:linear-gradient(180deg,rgba(238,250,255,.96),rgba(190,233,252,.84) 22%,rgba(125,196,234,.52) 58%,rgba(99,166,211,.28) 100%);
-  box-shadow:
-    0 18px 42px rgba(75,143,188,.10),
-    inset 0 1px 0 rgba(255,255,255,.82);
-  animation:homeWaveSwayFront 8.2s ease-in-out infinite alternate;
-}
-
-.home-foam{
-  position:absolute;
-  top:0;
-  left:50%;
-  width:26px;
-  height:12px;
-  margin-left:-13px;
-  border-radius:999px;
-  background:rgba(255,255,255,.92);
-  box-shadow:
-    14px -8px 0 1px rgba(255,255,255,.88),
-    -14px -5px 0 1px rgba(255,255,255,.78),
-    30px -3px 0 -1px rgba(232,247,255,.72),
-    -28px -10px 0 -1px rgba(232,247,255,.70);
-  filter:drop-shadow(0 8px 12px rgba(112,180,220,.18));
-  transform:translate3d(-50%,var(--home-foam-rise),0);
-  animation:homeFoamFloat 5.8s ease-in-out infinite;
-}
-.home-foam.f1{top:42px;left:34%;animation-delay:0s}
-.home-foam.f2{top:24px;left:50%;animation-delay:1s;scale:.92}
-.home-foam.f3{top:48px;left:67%;animation-delay:2s;scale:1.06}
-.home-foam.f4{top:68px;left:80%;animation-delay:1.6s;scale:.82}
-.home-foam.f5{top:60px;left:20%;animation-delay:2.6s;scale:.86}
-
-.home-next-stage{
-  position:relative;
-  z-index:2;
-  translate:0 var(--home-next-y);
-  opacity:var(--home-next-opacity);
-  transition:opacity .12s linear;
-  will-change:translate,opacity;
-}
-.home-next-stage .section-head{position:relative}
-.home-next-stage .section-head::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:-30px;
-  width:84px;
-  height:2px;
-  border-radius:999px;
-  background:linear-gradient(90deg,rgba(107,188,236,.9),rgba(255,255,255,.65),transparent);
-  opacity:.82;
-}
-
-@keyframes homeIntroCopy{
-  from{opacity:0;transform:translate3d(0,24px,0);filter:blur(8px)}
-  to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
-}
-@keyframes homeIntroCard{
-  from{opacity:0;transform:translate3d(0,34px,0) scale(.985);filter:blur(7px)}
-  to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
-}
-.home-scroll-scene.home-fx-ready .home-hero-copy{animation:homeIntroCopy .78s cubic-bezier(.16,1,.3,1) .04s both}
-.home-scroll-scene.home-fx-ready .home-hero-card{animation:homeIntroCard .84s cubic-bezier(.16,1,.3,1) .12s both}
-
-@keyframes homeWaveSwayBack{
-  from{transform:translateX(-50%) translateY(4px) scaleX(.992)}
-  to{transform:translateX(-50%) translateY(-4px) scaleX(1.01)}
-}
-@keyframes homeWaveSwayMid{
-  from{transform:translateX(-50%) translateY(3px)}
-  to{transform:translateX(-50%) translateY(-5px)}
-}
-@keyframes homeWaveSwayFront{
-  from{transform:translateX(-50%) translateY(2px) scaleX(.996)}
-  to{transform:translateX(-50%) translateY(-6px) scaleX(1.008)}
-}
-@keyframes homeFoamFloat{
-  0%,100%{transform:translate3d(-50%,calc(var(--home-foam-rise) + 0px),0);opacity:.76}
-  50%{transform:translate3d(-50%,calc(var(--home-foam-rise) - 8px),0);opacity:1}
-}
-
-@media(max-width:900px){
-  .home-scroll-scene{padding-bottom:92px}
-  .home-wave-stage{height:230px;bottom:-16px}
-  .home-wave.back{height:136px}
-  .home-wave.mid{height:116px;bottom:16px}
-  .home-wave.front{height:98px;bottom:28px}
-  .home-scroll-scene::after{height:210px}
-}
-@media(max-width:700px){
-  .home-scroll-scene{min-height:calc(100dvh - 78px);padding-bottom:74px}
-  .home-wave-stage{height:188px;bottom:-2px}
-  .home-wave.back{height:108px}
-  .home-wave.mid{height:92px;bottom:12px}
-  .home-wave.front{height:78px;bottom:20px}
-  .home-scroll-scene::after{height:162px;filter:blur(10px)}
-  .home-foam{filter:none}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .home-scroll-scene.home-fx-ready .home-hero-copy,
-  .home-scroll-scene.home-fx-ready .home-hero-card,
-  .home-wave,
-  .home-foam{
-    animation:none!important;
-  }
-  .home-hero-copy,
-  .home-hero-card,
-  .home-next-stage,
-  .home-wave-stage,
-  .home-scroll-scene::after{
-    transform:none!important;
-    translate:none!important;
-    opacity:1!important;
-  }
-}
-
-
-/* ============================================================
    Public v16.3 · Optimistic Newsletter Flow
    ============================================================ */
 .newsletter-flow-overlay{
@@ -3933,34 +3709,6 @@ html.sw-lowfx .cursor-glow{
     translate:0!important;
     filter:none!important;
   }
-}
-
-
-/* ============================================================
-   Public v18.2 · Generated Article Typography / Image Citation
-   ============================================================ */
-.article-body h2.sw-section-title{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang TC","Noto Sans TC",sans-serif;
-  font-size:25px;line-height:1.4;font-weight:800;letter-spacing:-.025em;
-  margin:38px 0 13px;
-}
-.article-body .sw-source-figure{margin:28px 0 34px}
-.article-body .sw-source-figure>a{display:block;border:0!important}
-.article-body .sw-source-figure img{
-  width:100%;max-height:520px;object-fit:cover;display:block;margin:0;
-  border-radius:20px;box-shadow:var(--shadow-soft)
-}
-.article-body .sw-source-figure figcaption{
-  margin-top:8px;color:#8393a0;font-size:10.5px;line-height:1.55
-}
-.article-body .sw-source-figure figcaption a{
-  color:inherit;font-size:inherit;text-decoration:underline;text-underline-offset:2px;border-bottom:0
-}
-body.dark .article-body .sw-source-figure figcaption{color:#9fb2c1!important}
-@media(max-width:700px){
-  .article-body h2.sw-section-title{font-size:22px;margin-top:32px}
-  .article-body .sw-source-figure{margin:22px 0 28px}
-  .article-body .sw-source-figure figcaption{font-size:10px}
 }
 
 
@@ -5727,7 +5475,7 @@ body.dark .article-body :is(pre,code,table,th,td){color:#dce8f0!important}
 
 </style>
 </head>
-<body class="boot-preparing" data-page="home">
+<body class="boot-preparing" data-page="about">
 <div id="welcomeSplash" aria-hidden="true"><div class="splash-word">欣緯生醫<small>SIGN WELL BIOMED</small></div><div class="splash-line"></div></div>
 <div id="readingProgress"></div>
 <div class="ambient" id="ambient" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="orb d"></div></div>
@@ -6432,8 +6180,6 @@ function publicPersonById(id){
 function publisherForArticle(a){
   const p=publicPersonById(a?.publisherId);
   if(p)return p;
-  const override=String(a?.publisherName||'').trim();
-  if(override)return {id:'',name:override,role:'',photo:''};
   return {
     id:'',
     name:t('articleBrand')||'SIGN WELL · 欣緯生醫',
@@ -6487,83 +6233,23 @@ function skeletonArticle(){
   return `<article class="article-view"><header class="article-top"><div class="skeleton sk-line" style="width:120px;height:16px"></div><div class="skeleton sk-line" style="width:min(680px,90%);height:58px;margin-top:22px"></div><div class="skeleton sk-line" style="width:220px;height:13px;margin-top:18px"></div></header><div class="skeleton" style="height:300px;border-radius:30px;margin:22px 0"></div></article>`;
 }
 
-
-let homeFXRAF=0;
-let homeFXBound=false;
-
-function updateHomeScrollFX(){
-  homeFXRAF=0;
-  const scene=$('.home-scroll-scene');
-  const next=$('.home-next-stage');
-  if(!scene||!next)return;
-
-  const max=Math.max(320,Math.min(innerHeight*.70,560));
-  const raw=Math.max(0,Math.min(1,scrollY/max));
-  const ease=1-Math.pow(1-raw,2.35);
-
-  const root=document.documentElement.style;
-  root.setProperty('--home-hero-y',(-10*ease).toFixed(2)+'px');
-  root.setProperty('--home-card-y',(-6*ease).toFixed(2)+'px');
-  root.setProperty('--home-hero-opacity',(1-.10*ease).toFixed(3));
-
-  root.setProperty('--home-next-y',((1-ease)*32).toFixed(2)+'px');
-  root.setProperty('--home-next-opacity',(.42+.58*ease).toFixed(3));
-
-}
-
-function queueHomeScrollFX(){
-  if(homeFXRAF)return;
-  homeFXRAF=requestAnimationFrame(updateHomeScrollFX);
-}
-
-function initHomeScrollScene(){
-  const scene=$('.home-scroll-scene');
-  if(!scene)return;
-  requestAnimationFrame(()=>scene.classList.add('home-fx-ready'));
-
-  const lowMotion=reduceMotion() || matchMedia('(pointer:coarse)').matches;
-  if(lowMotion){
-    const root=document.documentElement.style;
-    root.setProperty('--home-hero-y','0px');
-    root.setProperty('--home-card-y','0px');
-    root.setProperty('--home-hero-opacity','1');
-    root.setProperty('--home-next-y','0px');
-    root.setProperty('--home-next-opacity','1');
-    return;
-  }
-
-  queueHomeScrollFX();
-  if(!homeFXBound){
-    homeFXBound=true;
-    addEventListener('scroll',queueHomeScrollFX,{passive:true});
-    addEventListener('resize',queueHomeScrollFX,{passive:true});
-  }
-}
-
-/* Restore native scrolling for smoothness. */
-const SoftWheel={
-  reset(){}
-};
-
-
-
 function renderHome(){
   const latest=articles.slice(0,9);
   app.innerHTML=`<div class="shell">
-    <section class="hero home-scroll-scene">
-      <div class="home-hero-copy">
+    <section class="hero">
+      <div>
         <div class="eyebrow"><i></i>${escapeHTML(t('homeEyebrow'))}</div>
         <h1>${escapeHTML(t('homeTitle1'))}<br>${escapeHTML(t('homeTitle2'))}</h1>
         <p class="hero-sub">${escapeHTML(t('homeSubtitle'))}</p>
         <a class="scroll-cue" href="#daily" data-scroll="daily"><i></i><span>向下閱讀最新文章</span></a>
       </div>
-      <aside class="hero-card home-hero-card glass lightcard sheen">${glassLayers}
+      <aside class="hero-card glass lightcard sheen">${glassLayers}
         <b>${escapeHTML(t('homeCardTitle'))}</b>
         <p>${escapeHTML(t('homeCardBody'))}</p>
         <div class="tiny">SIGN WELL · 欣緯生醫</div>
       </aside>
     </section>
-    <section class="section home-next-stage" id="daily">
+    <section class="section" id="daily">
       <div class="section-head">
         <div><p>${escapeHTML(t('dailyEyebrow'))}</p><h2>${escapeHTML(t('dailyTitle'))}</h2></div>
         <p>${escapeHTML(t('dailyDescription'))}</p>
@@ -6571,7 +6257,7 @@ function renderHome(){
       ${ready?`<div class="article-grid">${latest.length?latest.map(articleCard).join(''):'<div class="empty">還沒有文章。發布第一篇之後，它會出現在這裡。</div>'}</div>`:skeletonGrid()}
     </section>
   </div>`;
-  bindArticleCards();bindScrollCue();initReveal();initHomeScrollScene();
+  bindArticleCards();bindScrollCue();initReveal();
 }
 
 function renderTopics(){
@@ -7134,7 +6820,7 @@ async function renderArticle(slug){
       </div>
       <div class="article-actions"><button class="pillbtn" id="shareArticle">${escapeHTML(t('shareLabel'))}</button><button class="pillbtn" id="copyArticle">${iconSvg('copy')}${escapeHTML(t('copyLinkLabel'))}</button></div>
     </header>
-    ${a.cover?`<div class="article-cover"><img loading="lazy" decoding="async" src="${escapeHTML(a.cover)}" alt=""></div>`:defaultCoverMarkup(a,true)}
+    ${a.cover?`<div class="article-cover"><img loading="lazy" decoding="async" src="${escapeHTML(a.cover)}" alt="" decoding="async"></div>`:defaultCoverMarkup(a,true)}
     <div class="article-layout">
       <div class="article-body">${html}</div>
       ${heads.length?`<aside class="toc"><div class="toc-title">${escapeHTML(t('tocTitle'))}</div>${heads.map(h=>`<button data-toc="${escapeHTML(h.id)}">${escapeHTML(h.text)}</button>`).join('')}</aside>`:''}
@@ -7150,7 +6836,7 @@ async function renderArticle(slug){
     }catch(e){if(e?.name!=='AbortError')showToast('這個瀏覽器不支援系統分享，連結已可手動複製')}
   };
   document.title=`${a.title} · SIGN WELL`;
-  hardenRenderedArticleMedia();bindBack();initReveal();setupToc();
+  bindBack();initReveal();setupToc();
 }
 
 function bindBack(){
@@ -7171,7 +6857,6 @@ function bindScrollCue(){
 /* ---------- render orchestration ---------- */
 async function paint(){
   const r=route();
-  document.body.classList.toggle('home-glass-focus',r.page==='home');
   setNav(routeIndex(r));
   if(r.page==='home')renderHome();
   else if(r.page==='topics')renderTopics();
@@ -7189,8 +6874,6 @@ async function render(){
   enforceFooterContact();
   await paint();
   window.scrollTo({top:0,behavior:'auto'});
-  SoftWheel?.reset?.();
-  queueHomeScrollFX();
   if(reduceMotion())return;
   app.classList.remove('page-in-fast');
   void app.offsetWidth;
@@ -8106,7 +7789,7 @@ function initPressFX(){
       b.classList.remove('jelly');void b.offsetWidth;b.classList.add('jelly');
       setTimeout(()=>b.classList.remove('jelly'),600);
     }
-    if(lite()||reduceMotion()||document.body.classList.contains('home-glass-focus'))return;
+    if(lite()||reduceMotion())return;
     const r=b.getBoundingClientRect(),size=Math.max(r.width,r.height)*2.1;
     const ink=document.createElement('span');
     ink.className='ripple';
