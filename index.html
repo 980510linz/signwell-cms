@@ -4767,6 +4767,181 @@ body:not(.perf-lite) .publish-actions{
   display:none!important;
 }
 
+
+/* ============================================================
+   CMS v14.47 · Mobile Scroll Owner Fix
+   iOS/Safari: dashboard + publish settings
+   ============================================================ */
+
+/*
+ * Root cause:
+ * Desktop layout uses .workspace overflow:hidden + #view overflow:auto.
+ * Earlier mobile rules changed body to overflow:auto, but kept the nested
+ * #view scroller and workspace clipping. On iOS/WebKit this can create two
+ * competing vertical scroll owners, especially inside backdrop-filtered
+ * glass containers. Long Dashboard / Publish Settings pages can then stop
+ * panning even though their content continues below the viewport.
+ *
+ * Mobile rule: BODY is the single vertical scroll owner.
+ */
+@media (max-width:900px), (pointer:coarse){
+  html{
+    height:auto!important;
+    min-height:100%!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    overscroll-behavior-y:auto!important;
+    scrollbar-gutter:auto!important;
+  }
+
+  body{
+    height:auto!important;
+    min-height:100%!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    position:static!important;
+    touch-action:pan-y!important;
+    overscroll-behavior-y:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .cms{
+    height:auto!important;
+    min-height:100dvh!important;
+    max-height:none!important;
+    overflow:visible!important;
+  }
+
+  .workspace{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-self:start!important;
+  }
+
+  /* No nested vertical scroller on phones/tablets. */
+  #view,
+  .view{
+    flex:none!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow-x:visible!important;
+    overflow-y:visible!important;
+    contain:none!important;
+    overscroll-behavior-y:auto!important;
+    -webkit-overflow-scrolling:auto!important;
+    touch-action:pan-y!important;
+    padding-bottom:calc(34px + env(safe-area-inset-bottom))!important;
+  }
+
+  /* Long dashboard / publish cards must participate in normal body flow. */
+  .stats,
+  .panel,
+  .dashboard-subscription-analytics,
+  .dashboard-newsletter-panel,
+  .publish-grid,
+  .publish-card,
+  .connection-summary,
+  .advanced-box{
+    max-height:none!important;
+    overflow:visible;
+    touch-action:pan-y!important;
+  }
+
+  /* Horizontal nav keeps its own X-axis gesture without stealing Y panning. */
+  .nav{
+    touch-action:pan-x pan-y!important;
+  }
+
+  /* Avoid an iOS compositor clipping layer around long glass pages. */
+  .workspace.glass{
+    -webkit-mask-image:none!important;
+    mask-image:none!important;
+    clip-path:none!important;
+  }
+}
+
+/* Narrow iPhone: extra bottom breathing room so last controls remain reachable. */
+@media (max-width:560px){
+  #view,
+  .view{
+    padding-bottom:calc(54px + env(safe-area-inset-bottom))!important;
+  }
+
+  .publish-card:last-child,
+  .dashboard-subscription-analytics:last-child,
+  .panel:last-child{
+    margin-bottom:12px;
+  }
+}
+
+
+/* ============================================================
+   CMS v14.48 · Stability + Performance
+   ============================================================ */
+
+/* Hidden tab: freeze ambient animation and avoid needless compositing. */
+body.sw-page-hidden .orb{
+  animation-play-state:paused!important;
+}
+
+/* Coarse/mobile devices: retain liquid glass while reducing the most
+   expensive full-screen blur layers. */
+@media (max-width:900px), (pointer:coarse){
+  .field{
+    filter:blur(38px) saturate(128%)!important;
+    opacity:.62!important;
+    transform:translateZ(0);
+  }
+  .orb.c{opacity:.58}
+  .grain{opacity:.14!important}
+
+  .glass{
+    backdrop-filter:blur(16px) saturate(145%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(145%)!important;
+  }
+
+  button,
+  [role="button"],
+  summary{
+    touch-action:manipulation;
+  }
+
+  /* Long forms should not accidentally create another Y scroll owner. */
+  .publish-grid,
+  .publish-card,
+  .site-text-wrap,
+  .topic-admin,
+  .newsletter-grid{
+    min-height:0;
+    max-height:none!important;
+  }
+}
+
+/* Low-power fallback, automatically enabled by JS below. */
+html.sw-lowfx .field{
+  filter:blur(28px) saturate(118%)!important;
+}
+html.sw-lowfx .orb.b,
+html.sw-lowfx .orb.c{
+  animation:none!important;
+}
+html.sw-lowfx .grain{
+  opacity:.10!important;
+}
+
+/* Preserve full readability if reduced motion is requested. */
+@media (prefers-reduced-motion:reduce){
+  .orb{animation:none!important}
+  .reveal-fx{
+    opacity:1!important;
+    translate:0!important;
+    filter:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4827,7 +5002,7 @@ body:not(.perf-lite) .publish-actions{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.45</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.48</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -4859,7 +5034,7 @@ body:not(.perf-lite) .publish-actions{
     </div>
   </div>
 </div>
-<script src="analytics-config.js?v=14.45"></script>
+<script src="analytics-config.js?v=14.48"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -5105,6 +5280,10 @@ async function verifySecond(){
 
   await playLoginSuccessSequence();
 
+  // v14.46: prepare today's medical-news workspace in the background.
+  // This never blocks entry into the CMS.
+  medicalNewsBackgroundWarmup();
+
   cloudTask.then(ok=>{
     if(ok && !cloudFinished){
       cmsCloudSetStatus('雲端已同步 ✓');
@@ -5168,13 +5347,190 @@ window.signwellMedicalNewsScan=async function(options={}){
   );
 };
 
+/* ============================================================
+   CMS v14.46 · Medical News Writing Workspace
+   ============================================================ */
+let medicalNewsWorkspaceCache=null;
+let medicalNewsWarmupPromise=null;
+let medicalNewsWarmupAt=0;
+
+function medicalNewsWorkspaceFresh(){
+  return Boolean(
+    medicalNewsWorkspaceCache &&
+    Array.isArray(medicalNewsWorkspaceCache.topics) &&
+    Date.now()-medicalNewsWarmupAt < 30*60*1000
+  );
+}
+
+window.signwellMedicalNewsWorkspace=async function(options={}){
+  const force=Boolean(options.force);
+  if(!force && medicalNewsWorkspaceFresh())return clone(medicalNewsWorkspaceCache);
+  if(!force && medicalNewsWarmupPromise)return clone(await medicalNewsWarmupPromise);
+
+  const task=signwellGasBridge(
+    'admin.medicalNews.workspace',
+    {hours:24,limit:5,minMajorMedia:2,force},
+    {adminKey:newsletterAdminKey(),timeoutMs:90000}
+  ).then(result=>{
+    medicalNewsWorkspaceCache=result;
+    medicalNewsWarmupAt=Date.now();
+    try{sessionStorage.setItem('sw-medical-workspace-v1',JSON.stringify({at:medicalNewsWarmupAt,data:result}))}catch(_){}
+    return result;
+  });
+
+  if(!force){
+    medicalNewsWarmupPromise=task.finally(()=>{medicalNewsWarmupPromise=null});
+    return clone(await medicalNewsWarmupPromise);
+  }
+
+  return clone(await task);
+};
+
+window.signwellMedicalNewsLiterature=async function(topic={}){
+  return signwellGasBridge(
+    'admin.medicalNews.literature',
+    {
+      title:String(topic.title||''),
+      category:String(topic.category||''),
+      terms:Array.isArray(topic.extensionTerms)?topic.extensionTerms:[],
+      limit:4
+    },
+    {adminKey:newsletterAdminKey(),timeoutMs:45000}
+  );
+};
+
+function restoreMedicalNewsWorkspaceCache(){
+  try{
+    const saved=JSON.parse(sessionStorage.getItem('sw-medical-workspace-v1')||'null');
+    if(saved?.data && Date.now()-Number(saved.at||0)<30*60*1000){
+      medicalNewsWorkspaceCache=saved.data;
+      medicalNewsWarmupAt=Number(saved.at||Date.now());
+    }
+  }catch(_){}
+}
+restoreMedicalNewsWorkspaceCache();
+
+function medicalNewsBackgroundWarmup(){
+  if(medicalNewsWorkspaceFresh() || medicalNewsWarmupPromise)return;
+  const run=()=>{
+    window.signwellMedicalNewsWorkspace({force:false})
+      .then(()=>{
+        if(viewName==='medicalnews'){
+          try{document.querySelector('#medicalNewsSuggestionsFrame')?.contentWindow?.postMessage({type:'SIGNWELL_MEDICAL_WORKSPACE_READY'},location.origin)}catch(_){}
+        }
+      })
+      .catch(()=>{});
+  };
+  if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1600});
+  else setTimeout(run,650);
+}
+
+function ensureCurrentAffairsTopic(){
+  data.topics=Array.isArray(data.topics)?data.topics:[];
+  let topic=data.topics.find(t=>String(t.name||'').trim()==='時事探討');
+  if(!topic){
+    topic={
+      id:'topic-current-affairs',
+      name:'時事探討',
+      slug:'current-affairs',
+      description:'從當日醫療新聞出發，回到原始來源、研究證據與臨床脈絡。',
+      active:true,
+      order:data.topics.length
+    };
+    data.topics.push(topic);
+  }
+  return topic;
+}
+
+function uniqueMedicalNewsSlug(title=''){
+  const base=slugify(title)||('medical-news-'+Date.now());
+  const used=new Set((Array.isArray(data.articles)?data.articles:[]).map(a=>String(a.slug||'')).filter(Boolean));
+  if(!used.has(base))return base;
+  let n=2;
+  while(used.has(`${base}-${n}`))n++;
+  return `${base}-${n}`;
+}
+
+function normalizeGeneratedMedicalArticle(payload={}){
+  ensureCurrentAffairsTopic();
+  const today=new Date().toISOString().slice(0,10);
+  const title=String(payload.title||'時事探討').trim();
+  const tags=Array.isArray(payload.tags)?payload.tags.filter(Boolean):[];
+  return {
+    id:'a-news-'+Date.now(),
+    title,
+    subtitle:String(payload.subtitle||'').trim(),
+    slug:uniqueMedicalNewsSlug(title),
+    category:'時事探討',
+    type:'文章',
+    excerpt:String(payload.excerpt||'').trim().slice(0,260),
+    tags:[...new Set(['時事探討',...tags])].slice(0,10),
+    cover:'',
+    status:'Draft',
+    featured:false,
+    publisherId:defaultPublisherId(),
+    publishedAt:today,
+    updatedAt:today,
+    content:String(payload.content||'<p>尚未產生內容。</p>'),
+    contentFormat:'html',
+    references:Array.isArray(payload.references)?clone(payload.references):[],
+    sourceWorkspace:{
+      type:'medical-news-workspace',
+      topicId:String(payload.topicId||''),
+      generatedAt:new Date().toISOString(),
+      sources:Array.isArray(payload.sources)?clone(payload.sources):[]
+    }
+  };
+}
+
+window.signwellMedicalNewsCreateArticle=async function(payload={},mode='editor'){
+  const article=normalizeGeneratedMedicalArticle(payload);
+
+  if(mode==='publish'){
+    const ok=confirm(`將「${article.title}」直接發布到「時事探討」？\n\n發布前仍建議快速閱讀一次引用與醫療內容。`);
+    if(!ok)return {ok:false,cancelled:true};
+    article.status='Published';
+  }
+
+  data.articles.unshift(article);
+  persist(true);
+  syncPublicSnapshot();
+
+  if(mode==='publish'){
+    try{
+      const published=await publishGitHub();
+      if(!published){
+        article.status='Draft';
+        persist(true);
+        showToast('尚未發布：請先在發布設定解鎖 GitHub Token');
+        return {ok:false,needsGithub:true,articleId:article.id};
+      }
+      showToast('已發布到「時事探討」');
+      return {ok:true,published:true,articleId:article.id};
+    }catch(err){
+      article.status='Draft';
+      persist(true);
+      showToast('發布失敗，已保留為草稿');
+      return {ok:false,error:String(err?.message||err),articleId:article.id};
+    }
+  }
+
+  currentId=article.id;
+  viewName='articles';
+  $$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view==='articles'));
+  renderView();
+  showToast('已帶入文章編輯器 · 主題：時事探討');
+  return {ok:true,published:false,articleId:article.id};
+};
+
 function renderMedicalNewsSuggestions(){
+  medicalNewsBackgroundWarmup();
   $('#view').innerHTML=`
     <section class="medical-news-shell" aria-label="時事新聞建議">
       <iframe
         class="medical-news-frame"
         id="medicalNewsSuggestionsFrame"
-        src="medical-daily-focus.html?v=14.37"
+        src="medical-daily-focus.html?v=14.48"
         title="SIGN WELL 時事新聞建議"
         loading="eager"></iframe>
     </section>`;
@@ -6495,7 +6851,7 @@ function newsletterBackendStatusHTML(){
     return `<div class="newsletter-backend-alert newsletter-backend-ok">
       <div class="newsletter-backend-main">
         <div class="newsletter-backend-title-row">
-          <strong>Backend ${v?`v${escapeHTML(v)}`:'v4.6'} · Glass Renderer 已同步</strong>
+          <strong>Backend ${v?`v${escapeHTML(v)}`:'v4.7'} · Glass Renderer 已同步</strong>
           ${returnKey}
         </div>
         <div>CMS 已直接驗證 admin.preview；預覽、測試信、手動群發與新文章自動電子報使用同一 renderer。</div>
@@ -6593,7 +6949,7 @@ async function refreshNewsletterExactPreview({force=false}={}){
     if(!html.trim())throw new Error('Backend preview 沒有回傳 HTML');
 
     newsletterBackendCapability='ok';
-    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.6');
+    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.7');
     newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
 
     frame.onload=()=>resizeNewsletterPreviewFrame(frame);
@@ -6607,7 +6963,7 @@ async function refreshNewsletterExactPreview({force=false}={}){
     if(status)status.innerHTML=newsletterBackendStatusHTML();
 
     const badge=$('#nlPreviewBackendBadge');
-    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'4.6'} · LIVE`;
+    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'4.7'} · LIVE`;
   }catch(err){
     if(seq!==newsletterPreviewSeq)return;
 
@@ -9859,5 +10215,22 @@ try{
 addEventListener('storage',e=>{if(e.key===ANALYTICS_KEY&&viewName==='dashboard'&&!$('#cms').classList.contains('hidden'))renderDashboard()});
 })();
 </script>
+
+<script id="swStabilityRuntime">
+(() => {
+  const root=document.documentElement;
+  const lowMemory=(Number(navigator.deviceMemory||8)<=4);
+  const lowCPU=(Number(navigator.hardwareConcurrency||8)<=4);
+  const saveData=Boolean(navigator.connection&&navigator.connection.saveData);
+  if(lowMemory||lowCPU||saveData)root.classList.add('sw-lowfx');
+
+  const syncVisibility=()=>{
+    document.body?.classList.toggle('sw-page-hidden',document.hidden);
+  };
+  document.addEventListener('visibilitychange',syncVisibility,{passive:true});
+  syncVisibility();
+})();
+</script>
+
 </body>
 </html>

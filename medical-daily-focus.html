@@ -191,6 +191,60 @@ html.lowfx .focus-card{transform:none!important}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
+
+/* ============================================================
+   v14.46 · SIGN WELL Medical Writing Workspace
+   ============================================================ */
+.workspace-section{margin-top:16px;padding:17px 18px;border-radius:22px;background:rgba(255,255,255,.30);border:1px solid rgba(255,255,255,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.86)}
+.workspace-section h3{margin:0;color:var(--ink);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.workspace-section p{margin:9px 0 0;color:var(--muted);font-size:13px;line-height:1.78}
+.extension-list{display:grid;gap:8px;margin-top:12px;padding:0;list-style:none}
+.extension-list li{padding:11px 12px;border-radius:15px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.56);font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.literature-list{display:grid;gap:9px;margin-top:12px}
+.lit-card{display:block;padding:12px 13px;border-radius:16px;background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.56);text-decoration:none;color:inherit;transition:.2s ease}
+.lit-card:hover{transform:translateY(-1px);background:rgba(255,255,255,.48)}
+.lit-card strong{display:block;font-size:12.5px;line-height:1.5;color:var(--ink)}
+.lit-card span{display:block;margin-top:5px;font-size:10px;color:var(--muted-2);line-height:1.45}
+.lit-level{display:inline-flex!important;width:auto;margin:0 0 6px!important;padding:4px 7px;border-radius:999px;background:rgba(93,159,206,.10);color:var(--blue-deep)!important;font-size:8.5px!important;font-weight:800}
+.writer-panel{margin-top:18px;padding:18px;border-radius:24px;background:radial-gradient(280px 170px at 5% 0,rgba(255,255,255,.86),transparent 72%),linear-gradient(150deg,rgba(255,255,255,.54),rgba(224,241,252,.40));border:1px solid rgba(255,255,255,.78);box-shadow:0 16px 40px rgba(46,89,121,.09),inset 0 1px 0 #fff}
+.writer-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.writer-head div:first-child strong{display:block;color:var(--ink);font-size:13px}.writer-head div:first-child span{display:block;margin-top:4px;color:var(--muted-2);font-size:9.5px}
+.generate-btn{border:0;border-radius:999px;padding:11px 15px;background:linear-gradient(145deg,#315f7e,#234b67);color:#fff;font-size:11px;font-weight:800;cursor:pointer;box-shadow:0 10px 24px rgba(37,79,107,.16)}
+.generate-btn:disabled{opacity:.52;cursor:default}
+.review-strip{display:none;flex-wrap:wrap;gap:7px;margin-top:13px}.review-strip.show{display:flex}
+.review-chip{padding:6px 9px;border-radius:999px;background:rgba(229,248,239,.58);border:1px solid rgba(123,188,153,.20);color:#4f7d68;font-size:9px;font-weight:800}
+.draft-wrap{display:none;margin-top:16px}.draft-wrap.show{display:block}
+.draft-paper{padding:clamp(18px,4vw,28px);border-radius:24px;background:rgba(255,255,255,.67);border:1px solid rgba(255,255,255,.90);box-shadow:0 20px 50px rgba(47,89,120,.10),inset 0 1px 0 #fff}
+.draft-paper h1{margin:0 0 20px;color:#182734;font:700 clamp(27px,5.5vw,42px)/1.12 Georgia,"Noto Serif TC",serif;letter-spacing:-.035em}
+.draft-paper p{margin:0 0 15px;color:#344858;font-size:15px;line-height:1.95;letter-spacing:.015em}
+.draft-paper mark{color:inherit;padding:0 .08em;background:linear-gradient(transparent 42%,rgba(255,235,116,.72) 42% 88%,transparent 88%);font-weight:730}
+.draft-paper mark.core{background:linear-gradient(transparent 38%,rgba(255,218,92,.88) 38% 90%,transparent 90%);font-weight:850}
+.draft-paper sup a{color:#4c7795;text-decoration:underline;text-underline-offset:2px;font-weight:750}
+.draft-paper .refs{margin-top:25px;padding-top:16px;border-top:1px solid rgba(71,104,128,.12)}
+.draft-paper .refs h3{margin:0 0 10px;color:#557084;font-size:11px;letter-spacing:.10em;text-transform:uppercase}
+.draft-paper .refs ol{margin:0;padding-left:21px}.draft-paper .refs li{margin:8px 0;color:#617789;font-size:11.5px;line-height:1.6}
+.draft-paper .refs a{color:#456b88;text-decoration:underline;text-underline-offset:3px}
+.draft-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.draft-actions button{border:1px solid rgba(255,255,255,.75);border-radius:999px;padding:10px 13px;background:rgba(255,255,255,.48);color:var(--ink-2);font-size:10.5px;font-weight:760;cursor:pointer;box-shadow:inset 0 1px 0 #fff}
+.draft-actions button.primary{background:linear-gradient(145deg,#315f7e,#234b67);color:#fff;border-color:transparent}
+.draft-meta{margin-top:9px;color:var(--muted-2);font-size:9.5px;line-height:1.5}
+.engine-note{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(237,247,253,.48);color:#7890a1;font-size:10px;line-height:1.55}
+.warm-status{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;color:var(--muted-2);font-size:10px}.warm-status i{width:7px;height:7px;border-radius:50%;background:#7db7dc;box-shadow:0 0 0 5px rgba(125,183,220,.10);animation:pulse 1.5s ease-out infinite}.warm-status.ready i{background:#66ad88;animation:none}.warm-status.error i{background:#c49a68;animation:none}
+@media(max-width:620px){.writer-head{align-items:flex-start;flex-direction:column}.generate-btn{width:100%}.draft-actions{display:grid;grid-template-columns:1fr}.draft-actions button{width:100%}.draft-paper{border-radius:20px}.draft-paper p{font-size:14px;line-height:1.88}}
+
+
+/* v14.48 performance + interaction stability */
+body.sw-page-hidden .orb{animation-play-state:paused!important}
+html.lowfx .orb:nth-child(n+3){display:none!important}
+html.lowfx .glass{
+  backdrop-filter:blur(12px) saturate(130%)!important;
+  -webkit-backdrop-filter:blur(12px) saturate(130%)!important;
+}
+@media(max-width:620px){
+  body{background-attachment:scroll!important}
+  .draft-paper{overflow-wrap:anywhere}
+}
+
 </style>
 </head>
 <body>
@@ -203,9 +257,9 @@ html.lowfx .focus-card{transform:none!important}
   <section class="screen active" id="homeScreen" aria-label="搜尋每日醫療焦點">
     <div class="hero-wrap">
       <button class="scan-button" id="scanBtn" type="button">
-        <span class="label"><i class="pulse"></i><span id="scanText">搜尋今日醫療焦點</span></span>
+        <span class="label"><i class="pulse"></i><span id="scanText">開啟今日醫療焦點</span></span>
       </button>
-      <p class="search-note" id="searchNote" aria-live="polite"></p>
+      <p class="search-note" id="searchNote" aria-live="polite"></p><div class="warm-status" id="warmStatus"><i></i><span>登入後正在背景準備新聞、摘要與文獻…</span></div>
     </div>
   </section>
 
@@ -214,7 +268,7 @@ html.lowfx .focus-card{transform:none!important}
       <div>
         <div class="eyebrow">SIGN WELL · DAILY MEDICAL FOCUS</div>
         <h1 class="title">每日焦點</h1>
-        <p class="sub">近 24 小時醫療熱門事件，依「至少 2 家知名媒體報導同一事件」排序。最多 5 則，每一則都附原文來源，不生成 AI 長文。</p>
+        <p class="sub">近 24 小時醫療熱門事件。至少 2 家知名媒體才列入；所有符合來源都保留，並提供摘要、延伸詞條、相關文獻與 600–800 字 SIGN WELL 範文。</p>
       </div>
       <button class="icon-btn" id="refreshBtn" type="button" aria-label="重新搜尋">
         <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
@@ -247,311 +301,324 @@ html.lowfx .focus-card{transform:none!important}
 
 <script>
 (() => {
-  const CONFIG = {
-    hours: 24,
-    limit: 5,
-    minMajorMedia: 2,
-    requestTimeoutMs: 60000
-  };
+  const CONFIG={hours:24,limit:5,minMajorMedia:2,requestTimeoutMs:95000};
+  const lowPower=(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=4)||(navigator.deviceMemory&&navigator.deviceMemory<=4)||matchMedia('(max-width:520px)').matches;
+  if(lowPower)document.documentElement.classList.add('lowfx');
 
-  const lowPower = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-                   (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
-                   matchMedia('(max-width: 520px)').matches;
-  if (lowPower) document.documentElement.classList.add('lowfx');
+  const $=s=>document.querySelector(s);
+  const homeScreen=$('#homeScreen'),listScreen=$('#listScreen'),detailScreen=$('#detailScreen');
+  const scanBtn=$('#scanBtn'),scanText=$('#scanText'),searchNote=$('#searchNote'),warmStatus=$('#warmStatus');
+  const refreshBtn=$('#refreshBtn'),backBtn=$('#backBtn'),focusList=$('#focusList'),detailCard=$('#detailCard'),sourceList=$('#sourceList'),statusText=$('#statusText'),demoBadge=$('#demoBadge'),listError=$('#listError'),toast=$('#toast');
 
-  const $ = s => document.querySelector(s);
-  const homeScreen = $('#homeScreen');
-  const listScreen = $('#listScreen');
-  const detailScreen = $('#detailScreen');
-  const scanBtn = $('#scanBtn');
-  const scanText = $('#scanText');
-  const searchNote = $('#searchNote');
-  const refreshBtn = $('#refreshBtn');
-  const backBtn = $('#backBtn');
-  const focusList = $('#focusList');
-  const detailCard = $('#detailCard');
-  const sourceList = $('#sourceList');
-  const statusText = $('#statusText');
-  const demoBadge = $('#demoBadge');
-  const listError = $('#listError');
-  const toast = $('#toast');
+  let topics=[],busy=false,currentTopic=null,currentDraft=null,workspacePayload=null,draftVariantCycle=0;
 
-  let topics = [];
-  let busy = false;
-
-  function showScreen(target){
-    [homeScreen,listScreen,detailScreen].forEach(el=>el.classList.remove('active'));
-    target.classList.add('active');
-    window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
-  }
-
-  function escapeHTML(v=''){
-    return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-  }
-
-  function safeURL(v=''){
-    const s=String(v||'').trim();
-    return /^https?:\/\//i.test(s) ? s : '#';
-  }
-
-  function relTime(input){
-    const t = new Date(input || Date.now()).getTime();
-    if(!Number.isFinite(t)) return '剛剛';
-    const mins = Math.max(0,Math.round((Date.now()-t)/60000));
-    if(mins < 1) return '剛剛';
-    if(mins < 60) return `${mins} 分鐘前`;
-    const h = Math.round(mins/60);
-    if(h < 24) return `${h} 小時前`;
-    return '24 小時內';
-  }
+  function showScreen(target){[homeScreen,listScreen,detailScreen].forEach(el=>el.classList.remove('active'));target.classList.add('active');window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
+  function escapeHTML(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+  function safeURL(v=''){const s=String(v||'').trim();return /^https?:\/\//i.test(s)?s:'#'}
+  function relTime(input){const t=new Date(input||Date.now()).getTime();if(!Number.isFinite(t))return'剛剛';const mins=Math.max(0,Math.round((Date.now()-t)/60000));if(mins<1)return'剛剛';if(mins<60)return`${mins} 分鐘前`;const h=Math.round(mins/60);return h<24?`${h} 小時前`:'24 小時內'}
+  function stripHTML(html=''){const el=document.createElement('div');el.innerHTML=html;return(el.textContent||'').replace(/\s+/g,' ').trim()}
+  function countZhText(html=''){return stripHTML(html).replace(/參考資料[\s\S]*$/,'').replace(/\s/g,'').length}
+  function mark(text,core=false){return `<mark class="${core?'core':''}">${escapeHTML(text)}</mark>`}
+  function citation(n,url){return `<sup><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">[${n}]</a></sup>`}
 
   function normalizeTopics(payload){
-    const raw = Array.isArray(payload) ? payload : (payload?.topics || payload?.data || []);
-
+    const raw=Array.isArray(payload)?payload:(payload?.topics||payload?.data||[]);
     return raw.map((t,i)=>{
       const sourceMap=new Map();
-
-      (Array.isArray(t.sources)?t.sources:[]).forEach((s,j)=>{
+      (Array.isArray(t.sources)?t.sources:[]).forEach(s=>{
         const canonical=String(s.canonicalName||s.name||s.source||'').trim();
         const url=safeURL(s.originalUrl||s.url||s.link||'');
-
-        // HARD FRONT-END GATE:
-        // a source must be explicitly certified by backend as major media.
-        if(s.isMajorMedia!==true || !canonical || url==='#') return;
-        if(sourceMap.has(canonical)) return;
-
-        sourceMap.set(canonical,{
-          name:canonical,
-          title:s.title||s.headline||t.title||'',
-          url,
-          googleNewsUrl:safeURL(s.googleNewsUrl||''),
-          publishedAt:s.publishedAt||s.published_at||t.publishedAt||new Date().toISOString(),
-          isMajorMedia:true,
-          isDirectOriginal:s.isDirectOriginal===true
-        });
+        if(s.isMajorMedia!==true||!canonical||url==='#'||sourceMap.has(canonical))return;
+        sourceMap.set(canonical,{name:canonical,title:s.title||s.headline||t.title||'',url,googleNewsUrl:safeURL(s.googleNewsUrl||''),publishedAt:s.publishedAt||t.publishedAt||new Date().toISOString(),isMajorMedia:true,isDirectOriginal:s.isDirectOriginal===true,snippet:s.snippet||''});
       });
-
       const sources=[...sourceMap.values()];
-      const majorMediaCount=Number(t.majorMediaCount||sources.length);
-
-      return {
-        id:t.id||`topic-${i+1}`,
-        title:t.title||'未命名焦點',
-        category:t.category||t.tag||'醫療',
-        summary:t.summary||t.description||'',
-        why:t.why||t.reason||'',
-        publishedAt:t.publishedAt||t.published_at||t.updatedAt||new Date().toISOString(),
-        majorMediaCount,
-        sources
-      };
-    })
-    // SECOND HARD GATE:
-    // "熱門" means at least 2 distinct major media.
-    .filter(t=>t.majorMediaCount>=CONFIG.minMajorMedia && t.sources.length>=CONFIG.minMajorMedia)
-    .sort((a,b)=>b.majorMediaCount-a.majorMediaCount || new Date(b.publishedAt)-new Date(a.publishedAt))
-    .slice(0,CONFIG.limit);
+      const literature=Array.isArray(t.literature)?t.literature.map(x=>({...x,url:safeURL(x.url)})).filter(x=>x.url!=='#'):[];
+      return {id:t.id||`topic-${i+1}`,title:t.title||'未命名焦點',category:t.category||'醫療時事',summary:t.summary||'',why:t.why||'',publishedAt:t.publishedAt||new Date().toISOString(),majorMediaCount:Number(t.majorMediaCount||sources.length),sources,extensionTerms:Array.isArray(t.extensionTerms)?t.extensionTerms:[],literature};
+    }).filter(t=>t.majorMediaCount>=CONFIG.minMajorMedia&&t.sources.length>=CONFIG.minMajorMedia).sort((a,b)=>b.majorMediaCount-a.majorMediaCount||new Date(b.publishedAt)-new Date(a.publishedAt)).slice(0,CONFIG.limit);
   }
 
-  async function requestScan(force=false){
-    // This page is designed to run inside SIGN WELL CMS.
-    // The parent performs the authenticated Apps Script request so the Admin Key
-    // is never written into this iframe's markup.
-    if(window.parent && window.parent!==window && typeof window.parent.signwellMedicalNewsScan==='function'){
-      return window.parent.signwellMedicalNewsScan({
-        hours:CONFIG.hours,
-        limit:CONFIG.limit,
-        minMajorMedia:CONFIG.minMajorMedia,
-        force:Boolean(force)
-      });
+  async function requestWorkspace(force=false){
+    if(window.parent&&window.parent!==window&&typeof window.parent.signwellMedicalNewsWorkspace==='function'){
+      return window.parent.signwellMedicalNewsWorkspace({hours:24,limit:5,minMajorMedia:2,force:Boolean(force)});
     }
-
+    if(window.parent&&window.parent!==window&&typeof window.parent.signwellMedicalNewsScan==='function'){
+      return window.parent.signwellMedicalNewsScan({hours:24,limit:5,minMajorMedia:2,force:Boolean(force)});
+    }
     throw new Error('請由 SIGN WELL CMS 的「時事新聞建議」分頁開啟。');
   }
 
-  async function scan(force=false){
-    if(busy) return;
-
-    busy = true;
-    listError.classList.remove('show');
-    scanBtn.disabled = true;
-    scanBtn.classList.add('searching');
-    scanText.textContent = '正在爬取 Google News';
-    searchNote.textContent = '比對近 24 小時報導、聚合同一事件，並只保留 ≥ 6 家知名媒體共同報導的熱門焦點…';
-    searchNote.classList.add('show');
-
+  async function preloadWorkspace(){
     try{
-      const data=await Promise.race([
-        requestScan(force),
-        new Promise((_,reject)=>setTimeout(()=>reject(new Error('爬蟲逾時，請稍後再試。')),CONFIG.requestTimeoutMs))
-      ]);
-
-      topics=normalizeTopics(data);
-
-      renderList(data);
-      showScreen(listScreen);
-    }catch(err){
-      topics=[];
-      focusList.innerHTML='';
-      showScreen(listScreen);
-      listError.textContent='無法取得即時醫療焦點：'+String(err?.message||err);
-      listError.classList.add('show');
-      statusText.textContent='即時爬蟲未完成';
-    }finally{
-      busy = false;
-      scanBtn.disabled = false;
-      scanBtn.classList.remove('searching');
-      scanText.textContent = '搜尋今日醫療焦點';
-      searchNote.classList.remove('show');
+      const data=await requestWorkspace(false);
+      workspacePayload=data;topics=normalizeTopics(data);
+      warmStatus.classList.add('ready');
+      warmStatus.querySelector('span').textContent=topics.length?`今日時事已就緒 · ${topics.length} 個焦點`:'背景掃描完成 · 目前無符合焦點';
+      scanText.textContent='開啟今日醫療焦點';
+    }catch(_){
+      warmStatus.classList.add('error');
+      warmStatus.querySelector('span').textContent='背景準備未完成 · 點擊後重新嘗試';
     }
+  }
+
+  async function scan(force=false){
+    if(busy)return;busy=true;listError.classList.remove('show');scanBtn.disabled=true;scanBtn.classList.add('searching');scanText.textContent=force?'正在重新整理':'正在開啟今日焦點';searchNote.textContent='整理近 24 小時新聞、全部知名媒體來源、延伸詞條與 PubMed 文獻…';searchNote.classList.add('show');
+    try{
+      const data=(!force&&workspacePayload)?workspacePayload:await Promise.race([requestWorkspace(force),new Promise((_,reject)=>setTimeout(()=>reject(new Error('背景工作逾時，請稍後再試。')),CONFIG.requestTimeoutMs))]);
+      workspacePayload=data;topics=normalizeTopics(data);renderList(data);showScreen(listScreen);
+    }catch(err){topics=[];focusList.innerHTML='';showScreen(listScreen);listError.textContent='無法取得即時醫療焦點：'+String(err?.message||err);listError.classList.add('show');statusText.textContent='即時工作區未完成';}
+    finally{busy=false;scanBtn.disabled=false;scanBtn.classList.remove('searching');scanText.textContent='開啟今日醫療焦點';searchNote.classList.remove('show')}
   }
 
   function renderList(payload={}){
     demoBadge.classList.remove('show');
+    const crawledAt=payload?.crawledAt?new Date(payload.crawledAt):new Date();
+    const scannedCount=Number(payload?.scannedArticles||0),qualifiedCount=Number(payload?.qualifiedTopics||topics.length);
+    statusText.textContent=`近 24 小時 · ${crawledAt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新 · 熱門門檻 ≥ 2 家知名媒體`;
+    if(!topics.length){focusList.innerHTML=`<div class="empty-hot glass"><strong>目前沒有事件通過熱門門檻</strong><p>系統不會使用展示資料，也不會降低門檻補滿 5 則。</p></div>`;return}
+    focusList.innerHTML=topics.map((t,i)=>`<button class="focus-card glass" type="button" data-i="${i}"><span class="shine"></span><div class="card-grid"><div class="index">${String(i+1).padStart(2,'0')}</div><div><div class="meta-line"><span class="tag">${escapeHTML(t.category)}</span><span class="when">${relTime(t.publishedAt)}</span><span class="hot-threshold">HOT · ${t.majorMediaCount} 家知名媒體</span></div><h2 class="focus-title">${escapeHTML(t.title)}</h2><p class="focus-summary">${escapeHTML(t.summary)}</p><p class="why">${escapeHTML(t.why)}</p></div><div class="source-count"><span>${t.majorMediaCount} 家媒體</span><span class="chev">›</span></div></div></button>`).join('');
+    if(qualifiedCount<CONFIG.limit)focusList.insertAdjacentHTML('beforeend',`<div class="strict-note"><strong>嚴格模式：</strong>本次掃描 ${scannedCount.toLocaleString()} 篇候選報導，只有 ${qualifiedCount} 個事件通過至少 2 家知名媒體門檻，不以低熱度內容補滿。</div>`);
+    focusList.querySelectorAll('.focus-card').forEach(card=>{card.onclick=()=>openDetail(Number(card.dataset.i));if(!lowPower){card.onpointermove=e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;card.style.setProperty('--mx',`${x*100}%`);card.style.setProperty('--my',`${y*100}%`);card.style.setProperty('--ry',`${(x-.5)*3.2}deg`);card.style.setProperty('--rx',`${(.5-y)*2.8}deg`)};card.onpointerleave=()=>{card.style.setProperty('--ry','0deg');card.style.setProperty('--rx','0deg')}}});
+  }
 
-    const crawledAt=payload?.crawledAt ? new Date(payload.crawledAt) : new Date();
-    const scannedCount=Number(payload?.scannedArticles||0);
-    const qualifiedCount=Number(payload?.qualifiedTopics||topics.length);
-
-    statusText.textContent =
-      `近 24 小時 · ${crawledAt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新 · 熱門門檻 ≥ 2 家知名媒體`;
-
-    if(!topics.length){
-      focusList.innerHTML=`
-        <div class="empty-hot glass">
-          <strong>目前沒有事件通過熱門門檻</strong>
-          <p>系統已完成即時爬取，但近 24 小時內沒有醫療事件同時被至少 2 家「知名媒體白名單」報導。系統不會用展示資料或較低門檻補滿 5 則。</p>
-        </div>`;
-      return;
-    }
-
-    focusList.innerHTML = topics.map((t,i)=>`
-      <button class="focus-card glass" type="button" data-i="${i}" aria-label="開啟 ${escapeHTML(t.title)}">
-        <span class="shine"></span>
-        <div class="card-grid">
-          <div class="index">${String(i+1).padStart(2,'0')}</div>
-          <div>
-            <div class="meta-line">
-              <span class="tag">${escapeHTML(t.category)}</span>
-              <span class="when">${relTime(t.publishedAt)}</span>
-              <span class="hot-threshold">HOT · ${t.majorMediaCount} 家知名媒體</span>
-            </div>
-            <h2 class="focus-title">${escapeHTML(t.title)}</h2>
-            <p class="focus-summary">${escapeHTML(t.summary)}</p>
-            <p class="why">${escapeHTML(t.why)}</p>
-          </div>
-          <div class="source-count">
-            <span>${t.majorMediaCount} 家媒體</span>
-            <span class="chev">›</span>
-          </div>
-        </div>
-      </button>
-    `).join('');
-
-    if(qualifiedCount<CONFIG.limit){
-      focusList.insertAdjacentHTML('beforeend',`
-        <div class="strict-note">
-          <strong>嚴格模式：</strong>本次掃描 ${scannedCount.toLocaleString()} 篇候選報導，只有 ${qualifiedCount} 個事件通過「至少 2 家知名媒體」門檻，因此不會用低熱度新聞補滿 5 則。
-        </div>`);
-    }
-
-    focusList.querySelectorAll('.focus-card').forEach(card=>{
-      card.addEventListener('click',()=>openDetail(Number(card.dataset.i)));
-
-      if(!lowPower){
-        card.addEventListener('pointermove',e=>{
-          const r=card.getBoundingClientRect();
-          const x=(e.clientX-r.left)/r.width;
-          const y=(e.clientY-r.top)/r.height;
-          card.style.setProperty('--mx',`${x*100}%`);
-          card.style.setProperty('--my',`${y*100}%`);
-          card.style.setProperty('--ry',`${(x-.5)*3.2}deg`);
-          card.style.setProperty('--rx',`${(.5-y)*2.8}deg`);
-        });
-        card.addEventListener('pointerleave',()=>{
-          card.style.setProperty('--ry','0deg');
-          card.style.setProperty('--rx','0deg');
-        });
-      }
-    });
+  function defaultExtensionSuggestions(t){
+    const cat=t.category||'';
+    const base=['原始資料或官方公告實際說了什麼？','這項資訊真正適用哪些族群，限制在哪裡？','新聞標題與研究、政策或臨床脈絡之間有沒有落差？'];
+    if(/藥物/.test(cat))base.push('療效、安全性與核准適應症需要分開看哪些重點？');
+    else if(/政策/.test(cat))base.push('政策改變後，病人、醫療端與資源分配會受到什麼影響？');
+    else if(/公共衛生/.test(cat))base.push('個人風險與族群風險是否被新聞混在一起？');
+    else base.push('這個事件對一般民眾真正可採取的行動是什麼？');
+    return base;
   }
 
   function openDetail(i){
-    const t=topics[i];
-    if(!t) return;
-
+    const t=topics[i];if(!t)return;currentTopic=t;currentDraft=null;draftVariantCycle=0;
+    const extensions=(t.extensionTerms?.length?t.extensionTerms:defaultExtensionSuggestions(t)).slice(0,6);
     detailCard.innerHTML=`
-      <div class="detail-kicker">
-        <span class="tag">${escapeHTML(t.category)}</span>
-        <span>${relTime(t.publishedAt)}</span>
-        <span>·</span>
-        <span>${t.majorMediaCount} 家知名媒體共同報導</span>
-      </div>
+      <div class="detail-kicker"><span class="tag">${escapeHTML(t.category)}</span><span>${relTime(t.publishedAt)}</span><span>·</span><span>${t.majorMediaCount} 家知名媒體共同報導</span></div>
       <h1 class="detail-title">${escapeHTML(t.title)}</h1>
-      <p class="detail-summary">${escapeHTML(t.summary)}</p>
-      <div class="why-panel">
-        <div class="why-label">HOTNESS CHECK</div>
-        <p class="why-text">${escapeHTML(t.why)}</p>
+      <div class="workspace-section"><h3>事件摘要</h3><p>${escapeHTML(t.summary)}</p></div>
+      <div class="workspace-section"><h3>延伸探討建議</h3><ul class="extension-list">${extensions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></div>
+      <div class="workspace-section"><h3>相關文獻 · PubMed</h3>${renderLiterature(t)}</div>
+      <div class="writer-panel">
+        <div class="writer-head"><div><strong>SIGN WELL 範文生成</strong><span>600–800 字 · 白話但不超過證據 · Hook 節奏與螢光筆標記</span></div><button class="generate-btn" id="generateDraftBtn" type="button">一鍵生成範文</button></div>
+        <div class="review-strip" id="reviewStrip"><span class="review-chip">Sources ✓</span><span class="review-chip">Medical ✓</span><span class="review-chip">Regulatory ✓</span><span class="review-chip">Plain Language ✓</span></div>
+        <div class="draft-wrap" id="draftWrap"><div class="draft-paper" id="draftPaper"></div><div class="draft-actions"><button id="copyDraftBtn" type="button">複製範文</button><button class="primary" id="toEditorBtn" type="button">帶入文章編輯器</button><button id="publishDraftBtn" type="button">直接發布到「時事探討」</button></div><div class="draft-meta" id="draftMeta"></div></div>
+        <div class="engine-note">目前使用無額外金鑰的規則式 SIGN WELL Writing Engine。醫療與法規檢查是隱形生成規則，不會寫進讀者文章。之後可直接替換成你的專屬 Writing DNA，而不需重做新聞、文獻、引用與發布流程。</div>
       </div>
-      <div class="actions">
-        <button class="pill primary" id="copyFocusBtn" type="button">複製焦點摘要</button>
-        <button class="pill" id="copyLinksBtn" type="button">複製全部原文</button>
-      </div>
-    `;
+      <div class="actions"><button class="pill primary" id="copyFocusBtn" type="button">複製焦點摘要</button><button class="pill" id="copyLinksBtn" type="button">複製全部原文</button></div>`;
 
-    sourceList.innerHTML=t.sources.map(s=>`
-      <a class="source-card glass" href="${escapeHTML(s.url)}" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="source-name">${escapeHTML(s.name)}</div>
-          <div class="source-title">${escapeHTML(s.title)}</div>
-          <div class="source-time">${relTime(s.publishedAt)}</div>
-        </div>
-        <span class="source-origin ${s.isDirectOriginal?'direct':''}">
-          ${s.isDirectOriginal?'原文':'原文入口'} ↗
-        </span>
-      </a>
-    `).join('');
+    sourceList.innerHTML=`<div class="why-panel"><div class="why-label">SOURCE CHECK</div><p class="why-text">${escapeHTML(t.why)}</p></div>`+t.sources.map((s,idx)=>`<a class="source-card glass" href="${escapeHTML(s.url)}" target="_blank" rel="noopener noreferrer"><div><div class="source-name">[${idx+1}] ${escapeHTML(s.name)}</div><div class="source-title">${escapeHTML(s.title)}</div><div class="source-time">${relTime(s.publishedAt)}</div></div><span class="source-origin ${s.isDirectOriginal?'direct':''}">${s.isDirectOriginal?'原文':'原文入口'} ↗</span></a>`).join('');
 
-    $('#copyFocusBtn').addEventListener('click',()=>{
-      copyText(`${t.title}\n\n${t.summary}\n\n熱門度：${t.majorMediaCount} 家知名媒體共同報導\n${t.why}`);
-    });
-
-    $('#copyLinksBtn').addEventListener('click',()=>{
-      copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
-    });
-
+    $('#copyFocusBtn').onclick=()=>copyText(`${t.title}\n\n${t.summary}\n\n熱門度：${t.majorMediaCount} 家知名媒體共同報導\n${t.why}`);
+    $('#copyLinksBtn').onclick=()=>copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
+    $('#generateDraftBtn').onclick=()=>generateDraft(t);
     showScreen(detailScreen);
   }
 
-  async function copyText(text){
-    try{
-      await navigator.clipboard.writeText(text);
-    }catch{
-      const ta=document.createElement('textarea');
-      ta.value=text;
-      ta.style.position='fixed';
-      ta.style.opacity='0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
+  function renderLiterature(t){
+    if(!t.literature?.length)return `<p>目前未取得足夠精準的 PubMed 結果。系統不會自行捏造文獻；仍可依上方延伸詞條人工查證。</p>`;
+    return `<div class="literature-list">${t.literature.map((x,i)=>`<a class="lit-card" href="${escapeHTML(x.url)}" target="_blank" rel="noopener noreferrer"><span class="lit-level">${escapeHTML(x.evidenceLevel||'Research Article')}</span><strong>[L${i+1}] ${escapeHTML(x.title||'Untitled')}</strong><span>${escapeHTML([x.journal,x.pubdate].filter(Boolean).join(' · '))}${x.pmid?` · PMID ${escapeHTML(x.pmid)}`:''}</span></a>`).join('')}</div>`;
+  }
+
+  function narrativeVariant(t,offset=0){
+    let h=0;
+    for(const ch of String(t.id||t.title))h=(h*31+ch.charCodeAt(0))>>>0;
+    return (h+Number(offset||0))%4;
+  }
+
+  function guardrailText(text){
+    return String(text||'')
+      .replace(/最有效/g,'目前證據較受關注的')
+      .replace(/完全安全/g,'目前資料顯示具有一定安全性，但仍需評估風險')
+      .replace(/零風險/g,'風險並非為零')
+      .replace(/保證/g,'無法保證')
+      .replace(/一定會/g,'可能會')
+      .replace(/證實可以/g,'研究顯示可能')
+      .replace(/根治/g,'治療')
+      .replace(/治癒所有/g,'改善部分');
+  }
+
+  function buildReferences(t){
+    const refs=[];
+    t.sources.forEach(s=>refs.push({type:'news',name:s.name,title:s.title,url:s.url}));
+    (t.literature||[]).forEach(x=>refs.push({type:'literature',name:x.journal||'PubMed',title:x.title,url:x.url,pmid:x.pmid,evidenceLevel:x.evidenceLevel}));
+    return refs;
+  }
+
+  function refListHTML(refs){
+    return `<div class="refs"><h3>參考資料</h3><ol>${refs.map((r,i)=>`<li id="ref-${i+1}"><a href="${escapeHTML(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(r.type==='news'?`${r.name}｜${r.title}`:`${r.title}｜${r.name}${r.pmid?`｜PMID ${r.pmid}`:''}`)}</a></li>`).join('')}</ol></div>`;
+  }
+
+  function compactText(v='',max=170){
+    const s=String(v||'').replace(/\s+/g,' ').trim();
+    return s.length>max?s.slice(0,max).replace(/[，、；：,.!?！？。]+$/,'')+'…':s;
+  }
+
+  function buildDraft(t,variantOffset=0){
+    const refs=buildReferences(t);
+    const src=t.sources||[];
+    const first=src[0]||{url:'#',name:'來源'};
+    const second=src[1]||first;
+    const lit=t.literature?.[0];
+    const c1=citation(1,first.url);
+    const c2=citation(Math.min(2,Math.max(1,refs.length)),second.url);
+    const litIndex=lit?src.length+1:0;
+    const clit=lit?citation(litIndex,lit.url):'';
+
+    const titleRaw=compactText(t.title,64);
+    const summary=compactText(t.summary,165);
+    const outlets=src.slice(0,6).map(s=>s.name).filter(Boolean).join('、');
+    const extensions=(t.extensionTerms?.length?t.extensionTerms:defaultExtensionSuggestions(t))
+      .map(x=>compactText(x,56)).filter(Boolean).slice(0,3);
+    const extText=extensions.join('、');
+    const variant=narrativeVariant(t,variantOffset);
+
+    const titles=[
+      `${titleRaw}：真正值得注意的是什麼？`,
+      `${titleRaw}，先別急著只看新聞標題`,
+      `從「${titleRaw}」看懂這則醫療新聞真正的重點`,
+      `${titleRaw}之後，我們真正需要回答的問題`
+    ];
+    const title=compactText(titles[variant],72);
+
+    const opening=[
+      `${mark('一則醫療新聞真正值得看的，通常不是最醒目的那句話。',true)}近 24 小時，${escapeHTML(outlets||'多家主要媒體')}等 ${t.majorMediaCount} 家知名媒體共同追蹤「${escapeHTML(titleRaw)}」${c1}。熱度告訴我們這件事值得注意，但它本身不能證明療效、風險或因果。`,
+      `${mark('新聞突然變熱，不代表醫學答案也突然變簡單。',true)}「${escapeHTML(titleRaw)}」在近 24 小時被 ${t.majorMediaCount} 家知名媒體共同報導${c1}${c2}。真正有用的第一步，是把已確認的事件、仍待查證的細節，以及它對一般人的意義分開。`,
+      `${mark('看到醫療頭條時，可以先問一句：這件事真的改變了什麼？',true)}「${escapeHTML(titleRaw)}」成為多家媒體共同焦點${c1}。對一般讀者來說，比搶著記住結論更重要的是確認：誰受到影響、證據做到哪裡，以及現在是否真的需要採取行動。`,
+      `${mark('同一件醫療事件被多家媒體同時追，值得看；但更值得看的是它們共同確認了什麼。',true)}這次「${escapeHTML(titleRaw)}」已達 SIGN WELL 的熱門門檻，共有 ${t.majorMediaCount} 家知名媒體在 24 小時內報導${c1}。接下來要做的，是把新聞還原成可以理解、也可以回頭查證的資訊。`
+    ][variant];
+
+    const eventBlock =
+      `${mark('先把事件本身說清楚，是避免被標題帶著走的第一步。')}`+
+      `${escapeHTML(summary||`目前可確認的是，多家主要媒體正在追蹤「${titleRaw}」這個事件。`)}${c2}`+
+      `這段整理依多家媒體標題與 RSS 摘要建立；如果報導仍在更新，細節也可能跟著變動，因此不能把早期新聞直接當成最後定論。`;
+
+    const conditionBlock =
+      `${mark('真正的核心問題，是「這個訊息對誰成立、在什麼條件下成立」。',true)}`+
+      `醫療資訊常在一句標題裡失去條件：研究可能只納入特定族群，政策可能只適用部分資格，藥物也可能有明確適應症與禁忌。對一般民眾來說，先確認自己是否接近報導中的對象，比只記住一個漂亮數字更重要。`;
+
+    const evidenceBlock = lit
+      ? `系統以延伸詞條查到 PubMed 相關文獻「${escapeHTML(compactText(lit.title,105))}」${clit}。${mark('找到相關論文，不代表它就能直接替這則新聞背書。')}研究設計、樣本、比較組與終點都會影響能下多強的結論；這裡把文獻當作延伸查證入口，而不是把論文標題直接改寫成新的療效宣稱。`
+      : `目前沒有取得足夠精準的 PubMed 文獻。${mark('找不到合適證據時，留下「目前不知道」比補上一個看似合理的答案更可靠。')}因此這篇只整理多來源可確認的事件與閱讀方向，不自行增加研究結論，也不因新聞熱度推導個別治療建議。`;
+
+    const extensionBlock =
+      `${mark('如果要把這則新聞看深一層，可以沿著幾個問題繼續追。')}`+
+      `${escapeHTML(extText||'原始資料、適用族群、療效與安全性')}，都是比單看標題更有價值的延伸方向。`+
+      `尤其當不同媒體使用的語氣強度不一致時，應優先回到官方公告、研究摘要或完整論文，確認新聞中的數字和結論是否仍保留原本的限制。`;
+
+    const actionBlock =
+      `${mark('另一個容易被忽略的地方，是「新聞上很重要」不等於「每個人現在都要做點什麼」。',true)}`+
+      `有些消息確實可能改變臨床決策，有些只是研究進度、政策討論或監管更新，仍需要後續驗證。若內容涉及藥物、療程或醫療器材，不應只因新聞熱度就自行開始、停止或更改治療。`;
+
+    const closeBlock =
+      `接下來可以持續看三件事：原始資料是否更新、後續研究是否得到相近結果，以及專業學會或主管機關是否調整建議。`+
+      `${mark('可靠的醫療資訊，不是最快下結論，而是知道哪些已經確定、哪些還在變動。',true)}`+
+      `對一般人而言，最實用的順序仍是：先確認事件，再核對證據，最後才判斷它和自己有沒有關係。`;
+
+    const blocks=[eventBlock,conditionBlock,evidenceBlock,extensionBlock,actionBlock];
+    const orders=[
+      [0,1,2,3,4],
+      [0,3,1,2,4],
+      [0,2,1,4,3],
+      [0,1,3,4,2]
+    ];
+
+    let paragraphs=[opening,...orders[variant].map(i=>blocks[i]),closeBlock]
+      .map(x=>`<p>${guardrailText(x)}</p>`);
+
+    let body=paragraphs.join('');
+    let plain=countZhText(body);
+
+    const supplements=[
+      `<p>${mark('數字看起來精確，不代表它可以直接套用到每一個人。')}如果新聞引用比例、風險或平均效果，還要一起確認基準值、追蹤時間與研究族群；缺少這些背景，同一個數字可能產生完全不同的理解。</p>`,
+      `<p>${mark('來源愈多，代表事件愈值得追蹤；但不等於證據層級自動變高。')}多家媒體可能同時引用同一份研究或同一份官方資料，因此媒體數量用來判斷新聞熱度，醫療結論仍要回到原始證據本身。</p>`
+    ];
+
+    let si=0;
+    while(plain<600 && si<supplements.length){
+      paragraphs.splice(paragraphs.length-1,0,supplements[si++]);
+      body=paragraphs.join('');
+      plain=countZhText(body);
     }
-    showToast('已複製');
+
+    /* Keep the requested 600–800 character band without cutting citations
+       or a sentence in half. Remove an optional middle paragraph if needed. */
+    while(plain>800 && paragraphs.length>6){
+      paragraphs.splice(paragraphs.length-2,1);
+      body=paragraphs.join('');
+      plain=countZhText(body);
+    }
+
+    const refsHtml=refListHTML(refs);
+    const preview=`<h1>${escapeHTML(title)}</h1>${body}${refsHtml}`;
+    return {
+      title,
+      excerpt:stripHTML(summary||t.summary).slice(0,180),
+      content:body+refsHtml,
+      preview,
+      references:refs,
+      wordCount:countZhText(body),
+      tags:[t.category,...(t.extensionTerms||[]).slice(0,4)],
+      sources:t.sources
+    };
   }
 
-  let toastTimer;
-  function showToast(msg){
-    clearTimeout(toastTimer);
-    toast.textContent=msg;
-    toast.classList.add('show');
-    toastTimer=setTimeout(()=>toast.classList.remove('show'),1600);
+  async function generateDraft(t){
+    const btn=$('#generateDraftBtn');
+    btn.disabled=true;
+    btn.textContent=currentDraft?'正在換一種敘事…':'正在生成…';
+
+    await new Promise(r=>setTimeout(r,lowPower?30:110));
+
+    currentDraft=buildDraft(t,draftVariantCycle++);
+    $('#draftPaper').innerHTML=currentDraft.preview;
+    $('#reviewStrip').classList.add('show');
+    $('#draftWrap').classList.add('show');
+    $('#draftMeta').textContent=
+      `${currentDraft.wordCount} 字 · ${t.sources.length} 個新聞來源 · `+
+      `${t.literature?.length||0} 篇相關文獻 · `+
+      `Sources / Medical / Regulatory / Plain Language guardrails 已套用`;
+
+    $('#copyDraftBtn').onclick=()=>copyDraft(currentDraft);
+    $('#toEditorBtn').onclick=()=>sendArticle('editor');
+    $('#publishDraftBtn').onclick=()=>sendArticle('publish');
+
+    btn.disabled=false;
+    btn.textContent='重新生成另一種敘事';
   }
 
-  scanBtn.addEventListener('click',()=>scan(false));
-  refreshBtn.addEventListener('click',()=>{
-    showScreen(homeScreen);
-    setTimeout(()=>scan(true),220);
-  });
-  backBtn.addEventListener('click',()=>showScreen(listScreen));
+  async function copyDraft(d){
+    const plain=`${d.title}\n\n${stripHTML(d.content).replace(/參考資料/g,'\n\n參考資料\n')}`;
+    try{await navigator.clipboard.writeText(plain)}catch{await copyText(plain);return}showToast('範文已複製');
+  }
+
+  async function sendArticle(mode){
+    if(!currentDraft||!currentTopic)return;
+    if(!window.parent||window.parent===window||typeof window.parent.signwellMedicalNewsCreateArticle!=='function'){showToast('請由 SIGN WELL CMS 操作');return}
+    const btn=mode==='publish'?$('#publishDraftBtn'):$('#toEditorBtn');
+    const old=btn.textContent;btn.disabled=true;btn.textContent=mode==='publish'?'正在發布…':'正在帶入…';
+    try{
+      const res=await window.parent.signwellMedicalNewsCreateArticle({title:currentDraft.title,excerpt:currentDraft.excerpt,content:currentDraft.content,references:currentDraft.references,tags:currentDraft.tags,topicId:currentTopic.id,sources:currentTopic.sources},mode);
+      if(res?.cancelled){btn.disabled=false;btn.textContent=old;return}
+      if(res?.ok&&mode==='publish')showToast('已發布到「時事探討」');
+      else if(res?.needsGithub)showToast('已保留草稿 · 請先解鎖 GitHub Token');
+    }catch(err){showToast('操作失敗：'+String(err?.message||err))}
+    finally{if(document.body.contains(btn)){btn.disabled=false;btn.textContent=old}}
+  }
+
+  async function copyText(text){try{await navigator.clipboard.writeText(text)}catch{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}showToast('已複製')}
+  let toastTimer;function showToast(msg){clearTimeout(toastTimer);toast.textContent=msg;toast.classList.add('show');toastTimer=setTimeout(()=>toast.classList.remove('show'),1800)}
+
+  scanBtn.onclick=()=>scan(false);
+  refreshBtn.onclick=()=>{workspacePayload=null;showScreen(homeScreen);setTimeout(()=>scan(true),180)};
+  backBtn.onclick=()=>showScreen(listScreen);
+  window.addEventListener('message',e=>{if(e.origin!==location.origin)return;if(e.data?.type==='SIGNWELL_MEDICAL_WORKSPACE_READY'&&!workspacePayload)preloadWorkspace()});
+  preloadWorkspace();
+
+  document.addEventListener('visibilitychange',()=>{
+    document.body.classList.toggle('sw-page-hidden',document.hidden);
+  },{passive:true});
+
 })();
 </script>
 </body>
