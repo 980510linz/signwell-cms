@@ -2942,6 +2942,423 @@ body.perf-balanced .reveal-fx{
   }
 }
 
+
+/* ============================================================
+   CMS v14.28 · Newsletter Workspace Layout
+   Left: composer · Right: exact preview · Bottom: subscribers/history
+   ============================================================ */
+.newsletter-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);
+  gap:18px;
+  align-items:start;
+}
+.newsletter-composer-panel{
+  min-width:0;
+}
+.newsletter-preview-panel{
+  min-width:0;
+  position:sticky;
+  top:16px;
+}
+.newsletter-preview-panel .newsletter-exact-preview{
+  margin:0;
+}
+.newsletter-preview-panel .newsletter-exact-preview-frame{
+  height:min(74vh,820px);
+  min-height:620px;
+}
+.newsletter-history-panel{
+  grid-column:1/-1;
+}
+.newsletter-history-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.newsletter-history-block{
+  min-width:0;
+  padding:16px;
+  border-radius:20px;
+  background:
+    radial-gradient(140px 70px at 8% 0%,rgba(255,255,255,.74),transparent 72%),
+    rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.56);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+}
+.newsletter-history-block h3{
+  margin:0 0 5px;
+}
+.newsletter-history-block > p{
+  margin-bottom:10px;
+}
+.newsletter-preview-caption{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.newsletter-preview-caption div strong{
+  display:block;
+  color:#385b73;
+  font-size:15px;
+}
+.newsletter-preview-caption div span{
+  display:block;
+  margin-top:3px;
+  color:#8a99a4;
+  font-size:9px;
+  line-height:1.5;
+}
+.newsletter-preview-chip{
+  flex:0 0 auto;
+  padding:7px 10px;
+  border-radius:999px;
+  color:#5e879f;
+  font-size:8px;
+  font-weight:850;
+  background:rgba(231,246,255,.64);
+  border:1px solid rgba(255,255,255,.78);
+}
+.newsletter-backend-tools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:10px 0 12px;
+}
+.newsletter-composer-panel .newsletter-formgrid{
+  margin-top:14px;
+}
+.newsletter-composer-panel .newsletter-toggle{
+  margin-top:14px;
+}
+.newsletter-composer-panel .newsletter-admin-key{
+  margin-top:12px;
+}
+
+/* A little more vertical room for the exact email on wide screens. */
+@media(min-width:1280px){
+  .newsletter-grid{
+    grid-template-columns:minmax(420px,.84fr) minmax(560px,1.16fr);
+  }
+  .newsletter-preview-panel .newsletter-exact-preview-frame{
+    height:min(78vh,900px);
+  }
+}
+
+/* Tablet: preview remains beside editor while space permits. */
+@media(max-width:1180px){
+  .newsletter-grid{
+    grid-template-columns:minmax(0,1fr) minmax(360px,.92fr);
+  }
+  .newsletter-preview-panel .newsletter-exact-preview-frame{
+    min-height:560px;
+  }
+}
+
+/* Mobile / narrow: stack composer, preview, then subscribers/history. */
+@media(max-width:900px){
+  .newsletter-grid{
+    grid-template-columns:1fr;
+  }
+  .newsletter-preview-panel{
+    position:relative;
+    top:auto;
+  }
+  .newsletter-preview-panel .newsletter-exact-preview-frame{
+    height:650px;
+    min-height:520px;
+  }
+  .newsletter-history-panel{
+    grid-column:auto;
+  }
+  .newsletter-history-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* ============================================================
+   CMS v14.29 · Analytics Trend Restore
+   ============================================================ */
+
+/* Re-establish the analytics card as a normal in-flow dashboard block.
+   This intentionally overrides later containment/performance rules that
+   could cause Safari to mispaint the SVG or move it outside its card. */
+#analyticsLivePanel.analytics-panel{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:14px 0 18px!important;
+  padding:22px!important;
+  position:relative!important;
+  overflow:hidden!important;
+  contain:none!important;
+  box-sizing:border-box!important;
+}
+
+#analyticsLivePanel .analytics-head{
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  min-width:0!important;
+}
+
+#analyticsLivePanel .analytics-head-copy{
+  min-width:0!important;
+  flex:1 1 auto!important;
+}
+
+#analyticsLivePanel .analytics-total-wrap{
+  flex:0 0 auto!important;
+}
+
+#analyticsLivePanel .analytics-toolbar{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  flex-wrap:wrap!important;
+  gap:12px!important;
+  width:100%!important;
+  position:relative!important;
+  z-index:3!important;
+}
+
+#analyticsLivePanel .analytics-range-switch{
+  flex:0 0 228px!important;
+  width:228px!important;
+  max-width:100%!important;
+  position:relative!important;
+}
+
+#analyticsLivePanel .analytics-chart-frame{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+}
+
+#analyticsLivePanel .analytics-chart{
+  display:block!important;
+  width:100%!important;
+  height:164px!important;
+  min-height:164px!important;
+  padding-right:22px!important;
+  position:relative!important;
+  z-index:2!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+
+#analyticsLivePanel .analytics-chart svg{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+}
+
+#analyticsLivePanel .analytics-grid{
+  pointer-events:none!important;
+}
+
+#analyticsLivePanel .analytics-area{
+  display:block!important;
+  fill:url(#trendFill)!important;
+  opacity:.92!important;
+}
+
+#analyticsLivePanel .analytics-line{
+  display:block!important;
+  fill:none!important;
+  stroke:#63ace0!important;
+  stroke-width:3.2!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:none!important;
+  stroke-dashoffset:0!important;
+  animation:none!important;
+  opacity:1!important;
+}
+
+#analyticsLivePanel .analytics-dot{
+  display:block!important;
+  opacity:1!important;
+}
+
+/* Prevent performance mode from removing the actual graph. */
+body.perf-lite #analyticsLivePanel,
+body.perf-balanced #analyticsLivePanel{
+  contain:none!important;
+}
+
+@media(max-width:620px){
+  #analyticsLivePanel.analytics-panel{
+    padding:17px!important;
+  }
+  #analyticsLivePanel .analytics-head{
+    flex-direction:column!important;
+    gap:9px!important;
+  }
+  #analyticsLivePanel .analytics-total-wrap{
+    width:100%!important;
+    text-align:left!important;
+  }
+  #analyticsLivePanel .analytics-range-switch{
+    flex:1 1 100%!important;
+    width:100%!important;
+  }
+  #analyticsLivePanel .analytics-chart{
+    height:142px!important;
+    min-height:142px!important;
+  }
+}
+
+
+/* ============================================================
+   CMS v14.30 · UX / Smoothness / UI Polish
+   ============================================================ */
+:root{
+  --sw-ease:cubic-bezier(.16,1,.3,1);
+  --sw-fast:150ms;
+  --sw-med:240ms;
+  --sw-long:360ms;
+}
+
+/* 1. Reduce layout shift and make screen changes feel intentional. */
+#view{
+  min-height:60vh;
+  transition:opacity var(--sw-fast) ease,transform var(--sw-med) var(--sw-ease);
+}
+body.view-switching #view{
+  opacity:.34;
+  transform:translate3d(0,3px,0);
+}
+
+/* 2. Cleaner glass hierarchy. */
+.panel,.stat,.newsletter-panel,.publish-card,.editor-main,.editor-side{
+  border-color:rgba(255,255,255,.72)!important;
+  box-shadow:
+    0 18px 48px rgba(51,89,118,.075),
+    0 3px 12px rgba(51,89,118,.035),
+    inset 0 1px 0 rgba(255,255,255,.88)!important;
+}
+.panel:hover,.stat:hover,.newsletter-panel:hover{
+  border-color:rgba(255,255,255,.86)!important;
+}
+
+/* 3. Buttons: larger hit areas + less visual noise. */
+button,.top-action{
+  min-height:40px;
+  border-radius:14px!important;
+}
+button.primary,.top-action.primary{
+  box-shadow:
+    0 9px 20px rgba(64,123,162,.10),
+    inset 0 1px 0 rgba(255,255,255,.82);
+}
+button[disabled],.top-action[disabled]{
+  opacity:.45!important;
+  cursor:not-allowed!important;
+  transform:none!important;
+}
+
+/* 4. Forms: consistent focus and spacing. */
+input,textarea,select{
+  transition:border-color .16s ease,box-shadow .16s ease,background-color .16s ease!important;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:rgba(86,147,190,.28)!important;
+  box-shadow:0 0 0 4px rgba(112,179,222,.08)!important;
+}
+textarea{resize:vertical}
+
+/* 5. Dense lists become easier to scan. */
+.article-row,.person-admin-row,.topic-row,.newsletter-row{
+  transition:
+    transform .18s var(--sw-ease),
+    border-color .18s ease,
+    background-color .18s ease,
+    box-shadow .18s ease!important;
+}
+.article-row:hover,.person-admin-row:hover,.topic-row:hover,.newsletter-row:hover{
+  transform:translate3d(0,-1px,0);
+}
+
+/* 6. Subtle section rhythm. */
+.view > .panel + .panel,
+.view > .stat + .panel{
+  margin-top:14px;
+}
+.newsletter-grid,
+.analytics-panel{
+  scroll-margin-top:18px;
+}
+
+/* 7. Sticky action bar on editor-like pages without covering content. */
+body:not(.perf-lite) .editor-actions,
+body:not(.perf-lite) .publish-actions{
+  -webkit-backdrop-filter:blur(10px) saturate(130%);
+  backdrop-filter:blur(10px) saturate(130%);
+}
+
+/* 8. Toast is more readable and less abrupt. */
+.toast{
+  max-width:min(460px,calc(100vw - 32px));
+  border-radius:16px!important;
+  box-shadow:0 18px 50px rgba(41,76,100,.14)!important;
+  transition:opacity .18s ease,transform .24s var(--sw-ease)!important;
+}
+
+/* 9. Skeleton utility for async sections. */
+.sw-skeleton{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.30);
+}
+.sw-skeleton::after{
+  content:"";
+  position:absolute;inset:0;
+  transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);
+  animation:swSkeleton 1.15s ease-in-out infinite;
+}
+@keyframes swSkeleton{to{transform:translateX(100%)}}
+
+/* 10. Faster mobile layout and smaller blur budget. */
+@media(max-width:900px){
+  .main{gap:12px!important}
+  .panel,.stat,.newsletter-panel{border-radius:22px!important}
+  .newsletter-grid{gap:12px!important}
+  .topbar{min-height:58px}
+  button,.top-action{min-height:42px}
+  .glass,.panel,.stat,.sidebar,.topbar,.newsletter-panel{
+    -webkit-backdrop-filter:blur(8px) saturate(128%)!important;
+    backdrop-filter:blur(8px) saturate(128%)!important;
+  }
+}
+
+/* 11. Coarse pointer: no hover-lift that can feel sticky on touch. */
+@media(hover:none),(pointer:coarse){
+  .article-row:hover,.person-admin-row:hover,.topic-row:hover,.newsletter-row:hover{
+    transform:none;
+  }
+}
+
+/* 12. Reduced motion. */
+@media(prefers-reduced-motion:reduce){
+  #view,.toast,.article-row,.person-admin-row,.topic-row,.newsletter-row{
+    transition:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2984,7 +3401,7 @@ body.perf-balanced .reveal-fx{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.27</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.30</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -3247,6 +3664,27 @@ async function verifySecond(){
 function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView();setTimeout(()=>cmsCloudApplyDeferred(),0)}
+
+let cmsViewSwitchTimer=null;
+function withCmsViewTransition(fn){
+  const body=document.body;
+  clearTimeout(cmsViewSwitchTimer);
+
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+    fn();
+    return;
+  }
+
+  body.classList.add('view-switching');
+
+  cmsViewSwitchTimer=setTimeout(()=>{
+    fn();
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>body.classList.remove('view-switching'));
+    });
+  },70);
+}
+
 function renderView(){
   const editing=Boolean(currentId);
 
@@ -3586,7 +4024,12 @@ function trendChartHTML(){
 let analyticsLiveTimer=null;
 function refreshAnalyticsVisuals(){
   const panel=$('#analyticsLivePanel');
-  if(panel)panel.outerHTML=trendChartHTML();
+  if(panel){
+    const holder=document.createElement('div');
+    holder.innerHTML=trendChartHTML();
+    const fresh=holder.firstElementChild;
+    if(fresh)panel.replaceWith(fresh);
+  }
 
   data.articles.forEach(a=>{
     const count=articleViewCount(a);
@@ -4743,14 +5186,52 @@ function renderNewsletterCenter(){
   </div>
   <div class="newsletter-diag"><strong>Backend：</strong>${escapeHTML(newsletterBackendCurrent()||'舊版 / 無版本回報')} · <strong>名單：</strong>${Number(s.total||0).toLocaleString()} 筆 / 可寄送 ${Number(s.active||0).toLocaleString()} 位 · 狀態 ${escapeHTML(newsletterStatusBreakdownText(s))}</div>
   <div class="newsletter-grid">
-    <section class="newsletter-panel">
+    <section class="newsletter-panel newsletter-composer-panel">
       <h3>建立 SIGN WELL Letter</h3>
-      <p>自動新文章通知與手動電子報都會套用相同的 Glass Letter 品牌範本；這裡可直接預覽主視覺。</p>
+      <p>左側只負責內容與寄送控制；右側固定顯示實際寄出的 Glass Letter。</p>
+
       <div id="nlBackendStatusDynamic">${newsletterBackendStatusHTML()}</div>
-      <div class="newsletter-actions" style="margin:10px 0 12px">
+      <div class="newsletter-backend-tools">
         <button type="button" id="nlBackendCheckBtn">重新檢查 Backend</button>
-        <button type="button" id="nlBackendHealthBtn">開啟 Health Check</button>
+        
       </div>
+
+      <div class="newsletter-formgrid">
+        <label>主推文章<select id="nlHeroArticle">${newsletterHeroOptionsHTML()}</select></label>
+        <label>主旨<input id="nlSubject" placeholder="SIGN WELL｜本週醫學精選"></label>
+        <label>預覽文字<input id="nlPreheader" placeholder="收件匣中顯示的簡短摘要"></label>
+        <label>內容<textarea id="nlBody" placeholder="寫下這封電子報要傳達的內容…"></textarea></label>
+        <label>測試收件信箱<input id="nlTestEmail" type="email" value="signwell.com@gmail.com" readonly aria-readonly="true"><small style="display:block;margin-top:5px;color:#8a98a3;font-size:8.5px">測試信固定寄給 SIGN WELL 自己，無法從 CMS 更改。</small></label>
+      </div>
+
+      <div class="newsletter-actions">
+        <button id="nlFillArticle">從最新文章帶入</button>
+        <button id="nlTestBtn">發送測試信</button>
+        <button class="primary" id="nlSendBtn">一鍵發送 ${Number(s.active||0).toLocaleString()} 位訂閱者</button>
+      </div>
+
+      <label class="newsletter-toggle">
+        <input type="checkbox" id="nlAuto" ${newsletterAutoEnabled()?'checked':''}>
+        <span><strong>新文章發布後自動寄送 Glass Letter</strong><span>預設啟用。只有 GitHub 網站成功發布後才開始寄送；同一文章 slug 會防止重複自動群發。</span></span>
+      </label>
+
+      <div class="newsletter-admin-key">
+        <input class="searchbar" id="nlAdminKey" type="password" readonly value="${escapeHTML(newsletterAdminKey())}" aria-label="Newsletter Admin Key">
+        <button class="top-action" id="nlChangeKey">更換 Key</button>
+        <button class="top-action" id="nlResetKey" ${newsletterKeyMode()==='default'?'disabled':''}>恢復預設</button>
+      </div>
+      <div class="newsletter-warning">目前使用：${newsletterKeyMode()==='default'?'預設 Admin Key':'自訂 Admin Key'}。更換後只儲存在這台裝置；不要把 Admin Key 放到 Public 或 analytics-config.js。</div>
+    </section>
+
+    <section class="newsletter-panel newsletter-preview-panel">
+      <div class="newsletter-preview-caption">
+        <div>
+          <strong>實際寄送預覽</strong>
+          <span>這裡直接顯示 Backend renderer 回傳的同一份 HTML。</span>
+        </div>
+        <span class="newsletter-preview-chip">LIVE LETTER</span>
+      </div>
+
       <div class="newsletter-exact-preview" id="nlExactPreviewShell">
         <div class="newsletter-exact-preview-head">
           <span>實際寄送 HTML · EXACT PREVIEW</span>
@@ -4759,40 +5240,27 @@ function renderNewsletterCenter(){
         <div class="newsletter-preview-loading">同步正式電子報預覽中…</div>
         <iframe class="newsletter-exact-preview-frame" id="nlExactPreview" title="SIGN WELL Letter 實際寄送預覽" sandbox="allow-same-origin"></iframe>
       </div>
-      <div class="newsletter-formgrid">
-        <label>主推文章<select id="nlHeroArticle">${newsletterHeroOptionsHTML()}</select></label>
-        <label>主旨<input id="nlSubject" placeholder="SIGN WELL｜本週醫學精選"></label>
-        <label>預覽文字<input id="nlPreheader" placeholder="收件匣中顯示的簡短摘要"></label>
-        <label>內容<textarea id="nlBody" placeholder="寫下這封電子報要傳達的內容…"></textarea></label>
-        <label>測試收件信箱<input id="nlTestEmail" type="email" value="signwell.com@gmail.com" readonly aria-readonly="true"><small style="display:block;margin-top:5px;color:#8a98a3;font-size:8.5px">測試信固定寄給 SIGN WELL 自己，無法從 CMS 更改。</small></label>
-      </div>
-      <div class="newsletter-actions">
-        <button id="nlFillArticle">從最新文章帶入</button>
-        <button id="nlTestBtn">發送測試信</button>
-        <button class="primary" id="nlSendBtn">一鍵發送 ${Number(s.active||0).toLocaleString()} 位訂閱者</button>
-      </div>
-      <label class="newsletter-toggle">
-        <input type="checkbox" id="nlAuto" ${newsletterAutoEnabled()?'checked':''}>
-        <span><strong>新文章發布後自動寄送 Glass Letter</strong><span>預設啟用。只有 GitHub 網站成功發布後才開始寄送；同一文章 slug 會防止重複自動群發。</span></span>
-      </label>
-      <div class="newsletter-admin-key">
-        <input class="searchbar" id="nlAdminKey" type="password" readonly value="${escapeHTML(newsletterAdminKey())}" aria-label="Newsletter Admin Key">
-        <button class="top-action" id="nlChangeKey">更換 Key</button>
-        <button class="top-action" id="nlResetKey" ${newsletterKeyMode()==='default'?'disabled':''}>恢復預設</button>
-      </div>
-      <div class="newsletter-warning">目前使用：${newsletterKeyMode()==='default'?'預設 Admin Key':'自訂 Admin Key'}。更換後只儲存在這台裝置；不要把 Admin Key 放到 Public 或 analytics-config.js。</div>
     </section>
-    <section class="newsletter-panel">
-      <h3>最近訂閱者</h3><p>後台只顯示管理用途的名單摘要。</p>
-      <div class="newsletter-list">${subs.length?subs.map(x=>`<div class="newsletter-row"><div><strong>${escapeHTML(x.emailMasked||x.email||'—')}</strong><small>${escapeHTML(x.subscribedAt||'')}</small></div><span class="newsletter-chip">${escapeHTML(x.status||'active')}</span></div>`).join(''):'<div class="empty">尚未載入訂閱者。</div>'}</div>
-      <h3 style="margin-top:22px">最近寄送</h3>
-      <div class="newsletter-list">${camps.length?camps.map(x=>`<div class="newsletter-row"><div><strong>${escapeHTML(x.subject||'未命名電子報')}</strong><small>${escapeHTML(x.sentAt||x.createdAt||'')}</small></div><span class="newsletter-chip">${Number(x.sent||x.recipients||0).toLocaleString()}</span></div>`).join(''):'<div class="empty">尚未載入寄送紀錄。</div>'}</div>
+
+    <section class="newsletter-panel newsletter-history-panel">
+      <div class="newsletter-history-grid">
+        <div class="newsletter-history-block">
+          <h3>最近訂閱者</h3>
+          <p>訂閱者名單移到工作區下方，不干擾編輯與預覽。</p>
+          <div class="newsletter-list">${subs.length?subs.map(x=>`<div class="newsletter-row"><div><strong>${escapeHTML(x.emailMasked||x.email||'—')}</strong><small>${escapeHTML(x.subscribedAt||'')}</small></div><span class="newsletter-chip">${escapeHTML(x.status||'active')}</span></div>`).join(''):'<div class="empty">尚未載入訂閱者。</div>'}</div>
+        </div>
+
+        <div class="newsletter-history-block">
+          <h3>最近寄送</h3>
+          <p>保留最近寄送紀錄與實際寄送人數摘要。</p>
+          <div class="newsletter-list">${camps.length?camps.map(x=>`<div class="newsletter-row"><div><strong>${escapeHTML(x.subject||'未命名電子報')}</strong><small>${escapeHTML(x.sentAt||x.createdAt||'')}</small></div><span class="newsletter-chip">${Number(x.sent||x.recipients||0).toLocaleString()}</span></div>`).join(''):'<div class="empty">尚未載入寄送紀錄。</div>'}</div>
+        </div>
+      </div>
     </section>
   </div>`;
 
   $('#nlRefresh').onclick=refreshNewsletterData;
   $('#nlBackendCheckBtn').onclick=recheckNewsletterBackend;
-  $('#nlBackendHealthBtn').onclick=openNewsletterBackendHealth;
   if($('#nlActivatePending'))$('#nlActivatePending').onclick=activatePendingNewsletterSubscribers;
   $('#nlFillArticle').onclick=fillNewsletterFromLatest;
   $('#nlTestBtn').onclick=sendNewsletterTest;
@@ -4818,7 +5286,14 @@ function renderNewsletterCenter(){
 }
 
 
-function renderDashboard(){setTimeout(()=>refreshRemoteAnalytics(false),0);
+function renderDashboard(){
+  setTimeout(async()=>{
+    try{
+      await refreshRemoteAnalytics(false);
+    }finally{
+      refreshAnalyticsVisuals();
+    }
+  },0);
   const published=data.articles.filter(a=>a.status==='Published').length,
         drafts=data.articles.filter(a=>a.status!=='Published').length,
         cats=(data.topics||[]).filter(x=>x.active!==false).length;
