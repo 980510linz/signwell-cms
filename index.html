@@ -2984,13 +2984,13 @@ body.perf-balanced .reveal-fx{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.25</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.26</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
 <div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從 CMS 與跨裝置雲端狀態移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">刪除</button></div></div></div>
 <div class="toast" id="toast"></div>
-<script src="analytics-config.js"></script>
+<script src="analytics-config.js?v=14.26"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -3619,6 +3619,8 @@ const NEWSLETTER_DEFAULT_ADMIN_KEY='sw_admin_G4H0tWRn0d663lsL2dKc88ih2FHlH51-';
 let newsletterCache={summary:null,subscribers:[],campaigns:[],backendVersion:'',templateVersion:''};
 let newsletterPreviewTimer=null;
 let newsletterPreviewSeq=0;
+let newsletterBackendCapability='unknown';
+let newsletterBackendCapabilityError='';
 
 const NEWSLETTER_CFG=()=>window.SIGNWELL_NEWSLETTER||{};
 function newsletterBase(){
@@ -4154,10 +4156,6 @@ async function maybeAutoSendArticleNewsletter(a,{force=false,sourceEl=null}={}){
     if(force)showToast('請先到「電子報」輸入 Newsletter Admin Key');
     return {attempted:true,success:false,error:'admin-key'};
   }
-  if(!newsletterBackendIsCurrent()){
-    showToast('文章已發布，但 Backend v3.7 尚未部署，因此未自動寄送舊版電子報。');
-    return {attempted:true,success:false,error:'backend-version'};
-  }
 
   let diag;
   try{
@@ -4237,16 +4235,41 @@ function newsletterBackendCurrent(){
   return String(newsletterCache.backendVersion||newsletterCache.summary?.backendVersion||'');
 }
 function newsletterBackendIsCurrent(){
+  if(newsletterBackendCapability==='ok')return true;
   return newsletterBackendCurrent()==='3.7' &&
     String(newsletterCache.templateVersion||newsletterCache.summary?.templateVersion||'').includes('Glass');
 }
 function newsletterBackendStatusHTML(){
   const v=newsletterBackendCurrent();
-  const template=String(newsletterCache.templateVersion||newsletterCache.summary?.templateVersion||'');
-  if(newsletterBackendIsCurrent()){
-    return `<div class="newsletter-backend-alert newsletter-backend-ok"><strong>Backend v${escapeHTML(v)} · Glass Renderer 已同步</strong>CMS 預覽、測試信、手動群發與新文章自動電子報共用同一個 newsletterHtml_ renderer。</div>`;
+  const endpoint=newsletterBase();
+
+  if(newsletterBackendCapability==='ok'||newsletterBackendIsCurrent()){
+    return `<div class="newsletter-backend-alert newsletter-backend-ok">
+      <strong>Backend ${v?`v${escapeHTML(v)}`:'v3.7+'} · Glass Renderer 已同步</strong>
+      CMS 已直接驗證 admin.preview；預覽、測試信、手動群發與新文章自動電子報使用同一 renderer。
+    </div>`;
   }
-  return `<div class="newsletter-backend-alert"><strong>Backend 版本尚未同步${v?` · 目前 v${escapeHTML(v)}`:''}</strong>你目前的 /exec 仍在跑舊版，因此會出現「預覽是新的、寄出去是舊版」以及「Subscribers Sheet 有人但群發掃描 0 人」。請把 Backend v3.7 部署到 CMS 現在使用的同一個 /exec。</div>`;
+
+  if(newsletterBackendCapability==='checking'){
+    return `<div class="newsletter-backend-alert">
+      <strong>正在直接檢查 Backend…</strong>
+      不再只依賴 summary 的版本欄位；CMS 正在測試目前 /exec 是否真的支援 Glass Renderer。
+    </div>`;
+  }
+
+  if(newsletterBackendCapability==='old'){
+    return `<div class="newsletter-backend-alert">
+      <strong>目前 /exec 不支援 Backend v3.7 Glass Renderer${v?` · 回報 v${escapeHTML(v)}`:''}</strong>
+      ${newsletterBackendCapabilityError?escapeHTML(newsletterBackendCapabilityError)+'。':''}
+      請在 Apps Script「管理部署」把<strong>同一個 Web App</strong>切到新版本；不要建立另一個 deployment。
+      <div style="margin-top:8px;word-break:break-all;opacity:.72">${escapeHTML(endpoint)}</div>
+    </div>`;
+  }
+
+  return `<div class="newsletter-backend-alert">
+    <strong>尚未完成 Backend 能力檢查</strong>
+    CMS 會直接呼叫 admin.preview 驗證，不會再因版本資訊尚未讀回而永久卡在「等待 Backend v3.7」。
+  </div>`;
 }
 
 function resizeNewsletterPreviewFrame(frame){
@@ -4270,26 +4293,56 @@ async function refreshNewsletterExactPreview(){
   const shell=$('#nlExactPreviewShell'),frame=$('#nlExactPreview');
   if(!shell||!frame)return;
 
-  if(!newsletterBackendIsCurrent()){
-    frame.srcdoc=`<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#edf6fc;font:14px -apple-system,BlinkMacSystemFont,sans-serif;color:#718695;display:grid;place-items:center;min-height:420px;padding:28px;text-align:center}strong{display:block;color:#48687d;font-size:20px;margin-bottom:10px}</style><div><strong>等待 Backend v3.7</strong>部署完成後，這裡會直接顯示「實際寄出去的同一份 HTML」。</div>`;
-    return;
-  }
-
   const seq=++newsletterPreviewSeq;
+  newsletterBackendCapability='checking';
+  newsletterBackendCapabilityError='';
   shell.classList.add('loading');
+
   try{
     const result=await newsletterRequest('/admin/newsletter/preview',{
       method:'POST',
       timeoutMs:45000,
       body:JSON.stringify(newsletterDraft())
     });
+
     if(seq!==newsletterPreviewSeq)return;
-    if(String(result.backendVersion||'')!=='3.7')throw new Error('Backend preview 版本不符');
+
+    const html=String(result?.html||'');
+    if(!html.trim())throw new Error('Backend preview 沒有回傳 HTML');
+
+    newsletterBackendCapability='ok';
+    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'3.7');
+    newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
+
     frame.onload=()=>resizeNewsletterPreviewFrame(frame);
-    frame.srcdoc=String(result.html||'');
+    frame.srcdoc=html;
+
+    const status=$('#nlBackendStatusDynamic');
+    if(status)status.innerHTML=newsletterBackendStatusHTML();
+    const badge=$('#nlPreviewBackendBadge');
+    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'3.7'} · LIVE`;
   }catch(err){
     if(seq!==newsletterPreviewSeq)return;
-    frame.srcdoc=`<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#edf6fc;font:14px -apple-system,BlinkMacSystemFont,sans-serif;color:#8a6d66;display:grid;place-items:center;min-height:420px;padding:28px;text-align:center}</style><div>無法載入實際電子報預覽：${escapeHTML(err?.message||String(err))}</div>`;
+
+    newsletterBackendCapability='old';
+    newsletterBackendCapabilityError=String(err?.message||err||'Backend 不支援 admin.preview');
+
+    frame.srcdoc=`<!doctype html><meta charset="utf-8">
+      <style>
+        body{margin:0;background:#edf6fc;font:14px -apple-system,BlinkMacSystemFont,sans-serif;color:#718695;display:grid;place-items:center;min-height:420px;padding:28px;text-align:center}
+        strong{display:block;color:#48687d;font-size:20px;margin-bottom:10px}
+        p{max-width:520px;line-height:1.7}
+      </style>
+      <div>
+        <strong>目前 Backend 仍是舊部署版本</strong>
+        <p>${escapeHTML(newsletterBackendCapabilityError)}</p>
+        <p>請更新「目前 CMS 使用的同一個 /exec」後，再按上方「重新檢查 Backend」。</p>
+      </div>`;
+
+    const status=$('#nlBackendStatusDynamic');
+    if(status)status.innerHTML=newsletterBackendStatusHTML();
+    const badge=$('#nlPreviewBackendBadge');
+    if(badge)badge.textContent='BACKEND UPDATE REQUIRED';
   }finally{
     if(seq===newsletterPreviewSeq)shell.classList.remove('loading');
   }
@@ -4304,21 +4357,23 @@ function scheduleNewsletterExactPreview(){
 }
 
 async function newsletterSubscriberPreflight(){
-  if(!newsletterBackendIsCurrent()){
-    throw new Error('Backend v3.7 尚未部署到目前 /exec');
-  }
-
   const diag=await newsletterRequest('/admin/newsletter/diagnostics',{
     method:'POST',
     timeoutMs:30000,
     body:JSON.stringify({})
   });
 
-  if(String(diag.backendVersion||'')!=='3.7'){
-    throw new Error('Backend 版本不符：'+String(diag.backendVersion||'unknown'));
+  const count=Number(diag.sendable||0);
+
+  if(diag.backendVersion){
+    newsletterCache.backendVersion=String(diag.backendVersion);
+  }
+  if(diag.templateVersion){
+    newsletterCache.templateVersion=String(diag.templateVersion);
   }
 
-  const count=Number(diag.sendable||0);
+  newsletterBackendCapability='ok';
+  newsletterBackendCapabilityError='';
 
   if(newsletterCache.summary){
     newsletterCache.summary.active=count;
@@ -4329,6 +4384,35 @@ async function newsletterSubscriberPreflight(){
   }
 
   return diag;
+}
+
+
+async function recheckNewsletterBackend(){
+  const btn=$('#nlBackendCheckBtn');
+  try{
+    if(btn){btn.disabled=true;btn.textContent='檢查中…'}
+    await refreshNewsletterExactPreview();
+
+    if(newsletterBackendCapability==='ok'){
+      try{
+        const diag=await newsletterSubscriberPreflight();
+        showToast(`Backend 已同步 · 可寄送 ${Number(diag.sendable||0).toLocaleString()} 位訂閱者`);
+        await refreshNewsletterData();
+      }catch(_){
+        showToast('Glass Renderer 已同步；訂閱者診斷將於下次重新整理更新。');
+      }
+    }else{
+      showToast('目前 /exec 仍是舊 Backend deployment version');
+    }
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent='重新檢查 Backend'}
+  }
+}
+
+function openNewsletterBackendHealth(){
+  const endpoint=newsletterBase();
+  if(!endpoint){showToast('目前沒有設定 Backend endpoint');return}
+  window.open(endpoint+'?action=health&_='+Date.now(),'_blank','noopener,noreferrer');
 }
 
 function newsletterStatusBreakdownText(summary){
@@ -4484,9 +4568,12 @@ async function sendNewsletterTest(){
   const draft=newsletterDraft();
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
 
-  if(!newsletterBackendIsCurrent()){
-    showToast('請先部署 Backend v3.7，否則測試信仍會使用舊電子報版型。');
-    return;
+  if(newsletterBackendCapability!=='ok'){
+    await refreshNewsletterExactPreview();
+    if(newsletterBackendCapability!=='ok'){
+      showToast('目前 /exec 仍不支援 Glass Renderer；請先更新 Backend deployment。');
+      return;
+    }
   }
 
   const b=$('#nlTestBtn');
@@ -4531,10 +4618,6 @@ async function sendNewsletterAll(){
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
   if(!newsletterEnabled()){showToast('Newsletter Backend 尚未連線');return}
   if(!newsletterAdminKey()){showToast('請先輸入 Newsletter Admin Key');return}
-  if(!newsletterBackendIsCurrent()){
-    showToast('Backend v3.7 尚未部署。現在的舊 Backend 會把 Subscribers 掃成 0，已停止發送避免卡住。');
-    return;
-  }
 
   const b=$('#nlSendBtn');
 
@@ -4654,11 +4737,15 @@ function renderNewsletterCenter(){
     <section class="newsletter-panel">
       <h3>建立 SIGN WELL Letter</h3>
       <p>自動新文章通知與手動電子報都會套用相同的 Glass Letter 品牌範本；這裡可直接預覽主視覺。</p>
-      ${newsletterBackendStatusHTML()}
+      <div id="nlBackendStatusDynamic">${newsletterBackendStatusHTML()}</div>
+      <div class="newsletter-actions" style="margin:10px 0 12px">
+        <button type="button" id="nlBackendCheckBtn">重新檢查 Backend</button>
+        <button type="button" id="nlBackendHealthBtn">開啟 Health Check</button>
+      </div>
       <div class="newsletter-exact-preview" id="nlExactPreviewShell">
         <div class="newsletter-exact-preview-head">
           <span>實際寄送 HTML · EXACT PREVIEW</span>
-          <span>${newsletterBackendIsCurrent()?'Backend v3.7':'WAITING FOR v3.7'}</span>
+          <span id="nlPreviewBackendBadge">CHECKING BACKEND</span>
         </div>
         <div class="newsletter-preview-loading">同步正式電子報預覽中…</div>
         <iframe class="newsletter-exact-preview-frame" id="nlExactPreview" title="SIGN WELL Letter 實際寄送預覽" sandbox="allow-same-origin"></iframe>
@@ -4695,6 +4782,8 @@ function renderNewsletterCenter(){
   </div>`;
 
   $('#nlRefresh').onclick=refreshNewsletterData;
+  $('#nlBackendCheckBtn').onclick=recheckNewsletterBackend;
+  $('#nlBackendHealthBtn').onclick=openNewsletterBackendHealth;
   if($('#nlActivatePending'))$('#nlActivatePending').onclick=activatePendingNewsletterSubscribers;
   $('#nlFillArticle').onclick=fillNewsletterFromLatest;
   $('#nlTestBtn').onclick=sendNewsletterTest;
