@@ -4393,6 +4393,103 @@ body:not(.perf-lite) .publish-actions{
   .dashboard-sub-trend{gap:3px}
 }
 
+
+/* ============================================================
+   CMS v14.39 · Newsletter Interaction Fix + About Local Upload
+   ============================================================ */
+#newsletterSendOverlay[aria-hidden="true"],
+#newsletterConfirmOverlay[aria-hidden="true"]{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+#newsletterSendOverlay.show[aria-hidden="false"],
+#newsletterConfirmOverlay.show[aria-hidden="false"]{
+  display:grid!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+#nlExactPreview{
+  pointer-events:none!important;
+  touch-action:pan-y!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+}
+.newsletter-grid,
+.newsletter-composer-panel,
+.newsletter-preview-panel,
+.newsletter-history-panel{
+  pointer-events:auto!important;
+}
+.newsletter-grid{touch-action:pan-y}
+.newsletter-panel{isolation:isolate}
+.newsletter-composer-panel{position:relative;z-index:3}
+.newsletter-preview-panel{z-index:1!important}
+.newsletter-history-panel{z-index:2!important}
+.newsletter-panel button,
+.newsletter-panel input,
+.newsletter-panel textarea,
+.newsletter-panel select,
+.newsletter-panel label{pointer-events:auto}
+
+.about-photo-field{margin-top:10px}
+.about-photo-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  gap:7px;
+  align-items:center;
+}
+.about-photo-controls input[type="url"]{min-width:0}
+.about-photo-controls button{
+  min-height:40px;
+  padding:0 11px;
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:13px;
+  background:rgba(255,255,255,.46);
+  color:#5c7485;
+  font-size:9px;
+  font-weight:800;
+  cursor:pointer;
+}
+.about-photo-controls button:hover{background:rgba(255,255,255,.68)}
+.about-photo-preview{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:64px;
+  margin-top:9px;
+  padding:9px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.56);
+}
+.about-photo-preview .thumb{
+  flex:0 0 48px;
+  width:48px;
+  height:48px;
+  overflow:hidden;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  color:#71899a;
+  font-size:8px;
+  font-weight:800;
+  background:linear-gradient(145deg,#fff,#deeff9);
+  border:1px solid rgba(255,255,255,.78);
+}
+.about-photo-preview .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.about-photo-preview .copy{min-width:0}
+.about-photo-preview .copy strong{display:block;color:#587184;font-size:9px}
+.about-photo-preview .copy span{display:block;margin-top:3px;color:#91a0aa;font-size:8px;line-height:1.5}
+.about-photo-loading{opacity:.62;pointer-events:none}
+@media(max-width:620px){
+  .about-photo-controls{grid-template-columns:1fr 1fr}
+  .about-photo-controls input[type="url"]{grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
@@ -4453,7 +4550,7 @@ body:not(.perf-lite) .publish-actions{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.38</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.39</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -4485,7 +4582,7 @@ body:not(.perf-lite) .publish-actions{
     </div>
   </div>
 </div>
-<script src="analytics-config.js?v=14.38"></script>
+<script src="analytics-config.js?v=14.39"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -4741,7 +4838,15 @@ async function verifySecond(){
 }
 function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
-function nav(v){viewName=v;currentId=null;pendingNewArticle=null;$$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderView();setTimeout(()=>cmsCloudApplyDeferred(),0)}
+function nav(v){
+  if(viewName==='newsletter'||v==='newsletter')resetNewsletterInteractionState();
+  viewName=v;
+  currentId=null;
+  pendingNewArticle=null;
+  $$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+  renderView();
+  setTimeout(()=>cmsCloudApplyDeferred(),0);
+}
 
 let cmsViewSwitchTimer=null;
 function withCmsViewTransition(fn){
@@ -5817,6 +5922,7 @@ function closeNewsletterSendConfirm(result=false){
   if(!wrap)return;
   wrap.classList.remove('show');
   wrap.setAttribute('aria-hidden','true');
+  wrap.inert=true;
 
   const resolver=newsletterConfirmResolver;
   newsletterConfirmResolver=null;
@@ -5836,6 +5942,7 @@ function confirmNewsletterSendUI({count=0,subject='',hero=''}={}){
   $('#newsletterConfirmSubject').textContent=subject||'未設定主旨';
   $('#newsletterConfirmHero').textContent=hero||'純內容電子報';
 
+  wrap.inert=false;
   wrap.classList.add('show');
   wrap.setAttribute('aria-hidden','false');
 
@@ -5845,6 +5952,9 @@ function confirmNewsletterSendUI({count=0,subject='',hero=''}={}){
     newsletterConfirmResolver=resolve;
   });
 }
+
+$('#newsletterSendOverlay').inert=true;
+$('#newsletterConfirmOverlay').inert=true;
 
 $('#newsletterConfirmCancel').onclick=()=>closeNewsletterSendConfirm(false);
 $('#newsletterConfirmSend').onclick=()=>closeNewsletterSendConfirm(true);
@@ -5896,6 +6006,7 @@ function showNewsletterSendOverlay(mode='auto',count=0,subject=''){
           :'Gmail · SIGN WELL Backend';
   }
 
+  wrap.inert=false;
   wrap.classList.add('show');
   wrap.setAttribute('aria-hidden','false');
 }
@@ -5936,6 +6047,41 @@ function hideNewsletterSendOverlay(){
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('show','done','failed');
   wrap.setAttribute('aria-hidden','true');
+  wrap.inert=true;
+}
+
+
+function resetNewsletterInteractionState(){
+  clearTimeout(newsletterPreviewTimer);
+  newsletterPreviewTimer=null;
+
+  const send=$('#newsletterSendOverlay');
+  if(send){
+    send.classList.remove('show','done','failed');
+    send.setAttribute('aria-hidden','true');
+    send.inert=true;
+  }
+
+  const confirm=$('#newsletterConfirmOverlay');
+  if(confirm){
+    confirm.classList.remove('show');
+    confirm.setAttribute('aria-hidden','true');
+    confirm.inert=true;
+  }
+
+  if(newsletterConfirmResolver){
+    try{newsletterConfirmResolver(false)}catch(_){}
+    newsletterConfirmResolver=null;
+  }
+
+  const view=$('#view');
+  if(view){
+    view.style.pointerEvents='';
+    view.style.touchAction='';
+  }
+
+  document.documentElement.style.removeProperty('overflow');
+  document.body.style.removeProperty('pointer-events');
 }
 
 function newsletterAutoEnabled(){
@@ -6066,7 +6212,7 @@ function newsletterBackendStatusHTML(){
     return `<div class="newsletter-backend-alert newsletter-backend-ok">
       <div class="newsletter-backend-main">
         <div class="newsletter-backend-title-row">
-          <strong>Backend ${v?`v${escapeHTML(v)}`:'v4.4'} · Glass Renderer 已同步</strong>
+          <strong>Backend ${v?`v${escapeHTML(v)}`:'v4.5'} · Glass Renderer 已同步</strong>
           ${returnKey}
         </div>
         <div>CMS 已直接驗證 admin.preview；預覽、測試信、手動群發與新文章自動電子報使用同一 renderer。</div>
@@ -6150,7 +6296,7 @@ async function refreshNewsletterExactPreview(){
     if(!html.trim())throw new Error('Backend preview 沒有回傳 HTML');
 
     newsletterBackendCapability='ok';
-    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.4');
+    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.5');
     newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
 
     frame.onload=()=>resizeNewsletterPreviewFrame(frame);
@@ -6159,7 +6305,7 @@ async function refreshNewsletterExactPreview(){
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
     const badge=$('#nlPreviewBackendBadge');
-    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'4.4'} · LIVE`;
+    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'4.5'} · LIVE`;
   }catch(err){
     if(seq!==newsletterPreviewSeq)return;
 
@@ -6588,6 +6734,7 @@ function updateNewsletterComposerPreview(){
 }
 
 function renderNewsletterCenter(){
+  resetNewsletterInteractionState();
   const s=newsletterCache.summary||{},connected=newsletterEnabled();
   const subs=(newsletterCache.subscribers||[])
     .slice()
@@ -8245,6 +8392,64 @@ function renderSiteText(){
   renderPeopleList();
   renderLivePreview();
 }
+
+async function aboutLocalImageToDataURL(file,{maxSide=1600,quality=.84}={}){
+  if(!file||!/^image\//i.test(String(file.type||''))){
+    throw new Error('請選擇圖片檔案');
+  }
+  if(Number(file.size||0)>18*1024*1024){
+    throw new Error('圖片過大，請選擇 18 MB 以下的檔案');
+  }
+
+  const loadViaImage=()=>new Promise((resolve,reject)=>{
+    const url=URL.createObjectURL(file);
+    const img=new Image();
+    img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};
+    img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('瀏覽器無法讀取這個圖片格式'))};
+    img.src=url;
+  });
+
+  let source=null;
+  let width=0;
+  let height=0;
+
+  try{
+    if('createImageBitmap' in window){
+      source=await createImageBitmap(file);
+      width=source.width;
+      height=source.height;
+    }else{
+      source=await loadViaImage();
+      width=source.naturalWidth||source.width;
+      height=source.naturalHeight||source.height;
+    }
+
+    if(!width||!height)throw new Error('圖片尺寸無效');
+
+    const scale=Math.min(1,maxSide/Math.max(width,height));
+    const outW=Math.max(1,Math.round(width*scale));
+    const outH=Math.max(1,Math.round(height*scale));
+
+    const canvas=document.createElement('canvas');
+    canvas.width=outW;
+    canvas.height=outH;
+
+    const ctx=canvas.getContext('2d',{alpha:true});
+    if(!ctx)throw new Error('無法建立圖片畫布');
+
+    ctx.drawImage(source,0,0,outW,outH);
+
+    let dataURL=canvas.toDataURL('image/webp',quality);
+    if(!/^data:image\/webp;base64,/i.test(dataURL)){
+      dataURL=canvas.toDataURL('image/jpeg',Math.min(.9,quality+.03));
+    }
+
+    return {dataURL,width:outW,height:outH,originalBytes:Number(file.size||0)};
+  }finally{
+    try{source?.close?.()}catch(_){}
+  }
+}
+
 function renderAboutPageEditor(){
   data.siteText={...DEFAULT_SITE_TEXT,...(data.siteText||{})};
   data.people=Array.isArray(data.people)?data.people:[];
@@ -8259,6 +8464,7 @@ function renderAboutPageEditor(){
   const sortedPeople=()=>data.people.slice().sort((a,b)=>(a.order??999)-(b.order??999));
   const splitLines=v=>String(v||'').split(/\n+/).map(x=>x.trim()).filter(Boolean);
   const splitTags=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const personPhotoValue=()=>String($('#aboutPersonPhotoData')?.value||$('#aboutPersonPhoto')?.value||'').trim();
 
   $('#view').innerHTML=`<div class="page-head">
     <div>
@@ -8318,7 +8524,20 @@ function renderAboutPageEditor(){
             <div class="site-field"><label>角色 / 職稱</label><input id="aboutPersonRole" placeholder="例如：Editor · Medical Student"></div>
           </div>
           <div class="site-field"><label>人物簡介</label><textarea id="aboutPersonBio" placeholder="簡短介紹這個人的角色與背景。"></textarea></div>
-          <div class="site-field"><label>照片 URL（選填）</label><input id="aboutPersonPhoto" placeholder="https://..."></div>
+          <div class="site-field about-photo-field">
+            <label>人物照片（URL 或本機上傳）</label>
+            <div class="about-photo-controls">
+              <input id="aboutPersonPhoto" type="url" placeholder="https://...">
+              <button type="button" id="aboutPersonPhotoPick">從本機上傳</button>
+              <button type="button" id="aboutPersonPhotoRemove">移除</button>
+            </div>
+            <input type="hidden" id="aboutPersonPhotoData">
+            <input class="file-input" id="aboutPersonPhotoFile" type="file" accept="image/*">
+            <div class="about-photo-preview" id="aboutPersonPhotoPreview">
+              <div class="thumb">NO IMG</div>
+              <div class="copy"><strong>尚未設定人物照片</strong><span>本機圖片會先壓縮，再於正式發布時上傳到 GitHub assets。</span></div>
+            </div>
+          </div>
           <div class="site-field"><label>專長標籤（逗號分隔）</label><input id="aboutPersonExpertise" placeholder="臨床推理, 預防醫學, 醫療科技"></div>
           <div class="about-fields-2">
             <div class="site-field"><label>學歷（每行一項）</label><textarea id="aboutPersonEducation"></textarea></div>
@@ -8405,16 +8624,38 @@ function renderAboutPageEditor(){
       <div class="ap-disclaimer">${escapeHTML(st.aboutDisclaimer||'')}</div>`;
   };
 
+  const renderPhotoInputPreview=(meta='')=>{
+    const host=$('#aboutPersonPhotoPreview');
+    if(!host)return;
+    const value=personPhotoValue();
+    const local=/^data:image\//i.test(value);
+
+    host.innerHTML=value
+      ?`<div class="thumb"><img src="${escapeHTML(value)}" alt=""></div>
+        <div class="copy">
+          <strong>${local?'本機圖片已載入':'外部圖片 URL'}</strong>
+          <span>${escapeHTML(meta||(local?'發布時會自動轉為 GitHub assets 圖片，不會把 Base64 留在公開資料。':'目前使用網址圖片。'))}</span>
+        </div>`
+      :`<div class="thumb">NO IMG</div>
+        <div class="copy">
+          <strong>尚未設定人物照片</strong>
+          <span>可貼網址，或直接從 Mac / iPhone / iPad 本機選擇圖片。</span>
+        </div>`;
+  };
+
   const clearPerson=()=>{
     $('#aboutPersonId').value='';
     $('#aboutPersonName').value='';
     $('#aboutPersonRole').value='';
     $('#aboutPersonBio').value='';
     $('#aboutPersonPhoto').value='';
+    $('#aboutPersonPhotoData').value='';
+    $('#aboutPersonPhotoFile').value='';
     $('#aboutPersonExpertise').value='';
     $('#aboutPersonEducation').value='';
     $('#aboutPersonExperience').value='';
     $('#aboutPersonActive').checked=true;
+    renderPhotoInputPreview();
   };
 
   const loadPerson=id=>{
@@ -8424,11 +8665,14 @@ function renderAboutPageEditor(){
     $('#aboutPersonName').value=p.name||'';
     $('#aboutPersonRole').value=p.role||'';
     $('#aboutPersonBio').value=p.bio||'';
-    $('#aboutPersonPhoto').value=p.photo||'';
+    const photo=String(p.photo||'');
+    $('#aboutPersonPhotoData').value=/^data:image\//i.test(photo)?photo:'';
+    $('#aboutPersonPhoto').value=/^data:image\//i.test(photo)?'':photo;
     $('#aboutPersonExpertise').value=(p.expertise||[]).join(', ');
     $('#aboutPersonEducation').value=(p.education||[]).join('\n');
     $('#aboutPersonExperience').value=(p.experience||[]).join('\n');
     $('#aboutPersonActive').checked=p.active!==false;
+    renderPhotoInputPreview();
   };
 
   const renderPeople=()=>{
@@ -8463,6 +8707,51 @@ function renderAboutPageEditor(){
     },650);
   }));
 
+  $('#aboutPersonPhoto').addEventListener('input',()=>{
+    $('#aboutPersonPhotoData').value='';
+    renderPhotoInputPreview();
+    renderPreview();
+  });
+
+  $('#aboutPersonPhotoPick').onclick=()=>$('#aboutPersonPhotoFile').click();
+
+  $('#aboutPersonPhotoFile').onchange=async e=>{
+    const input=e.currentTarget;
+    const file=input.files?.[0];
+    if(!file)return;
+
+    const pick=$('#aboutPersonPhotoPick');
+    const preview=$('#aboutPersonPhotoPreview');
+
+    try{
+      if(pick){pick.disabled=true;pick.textContent='處理中…'}
+      preview?.classList.add('about-photo-loading');
+
+      const img=await aboutLocalImageToDataURL(file,{maxSide:1600,quality:.84});
+      $('#aboutPersonPhotoData').value=img.dataURL;
+      $('#aboutPersonPhoto').value='';
+
+      renderPhotoInputPreview(`${img.width} × ${img.height} · 已壓縮，正式發布時上傳 GitHub assets。`);
+      renderPreview();
+      showToast('本機人物照片已載入');
+    }catch(err){
+      showToast('圖片載入失敗：'+(err?.message||err));
+    }finally{
+      if(pick){pick.disabled=false;pick.textContent='從本機上傳'}
+      preview?.classList.remove('about-photo-loading');
+      input.value='';
+    }
+  };
+
+  $('#aboutPersonPhotoRemove').onclick=()=>{
+    $('#aboutPersonPhoto').value='';
+    $('#aboutPersonPhotoData').value='';
+    $('#aboutPersonPhotoFile').value='';
+    renderPhotoInputPreview();
+    renderPreview();
+    showToast('人物照片已移除');
+  };
+
   $('#aboutNewPerson').onclick=()=>{clearPerson();$('#aboutPersonName').focus()};
   $('#aboutClearPerson').onclick=clearPerson;
 
@@ -8477,7 +8766,7 @@ function renderAboutPageEditor(){
       name,
       role:$('#aboutPersonRole').value.trim(),
       bio:$('#aboutPersonBio').value.trim(),
-      photo:$('#aboutPersonPhoto').value.trim(),
+      photo:personPhotoValue(),
       expertise:splitTags($('#aboutPersonExpertise').value),
       education:splitLines($('#aboutPersonEducation').value),
       experience:splitLines($('#aboutPersonExperience').value),
@@ -8543,6 +8832,7 @@ function renderAboutPageEditor(){
   };
 
   renderPeople();
+  renderPhotoInputPreview();
   renderPreview();
 }
 
@@ -8793,6 +9083,33 @@ function extForMime(m=''){if(m.includes('webp'))return'webp';if(m.includes('png'
 async function v10CreateBlob(base64,token){return githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/blobs`,token,{method:'POST',body:JSON.stringify({content:base64,encoding:'base64'})})}
 async function v10ImageTreeEntry(dataUrl,slug,kind,token,cache){if(cache.has(dataUrl))return cache.get(dataUrl);const p=dataUrlParts(dataUrl);if(!p)return null;const now=new Date(),ym=`${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}`,name=`${slug}-${kind}-${v10Hash(dataUrl)}.${extForMime(p.mime)}`,path=`assets/uploads/${ym}/${name}`,blob=await v10CreateBlob(p.base64,token),entry={path,mode:'100644',type:'blob',sha:blob.sha},out={entry,url:path};cache.set(dataUrl,out);return out}
 async function v10PrepareArticle(article,token,imageEntries,imageCache){const a=clone(article),slug=v10SafeSlug(a);a.slug=slug;if(dataUrlParts(a.cover||'')){const up=await v10ImageTreeEntry(a.cover,slug,'cover',token,imageCache);if(up){imageEntries.push(up.entry);a.cover=up.url}}if(a.contentFormat==='html'&&a.content){const doc=new DOMParser().parseFromString(`<div id="v10root">${a.content}</div>`,'text/html'),root=doc.getElementById('v10root'),imgs=[...root.querySelectorAll('img[src^="data:image/"]')];for(let i=0;i<imgs.length;i++){const src=imgs[i].getAttribute('src')||'',up=await v10ImageTreeEntry(src,slug,'img'+(i+1),token,imageCache);if(up){imageEntries.push(up.entry);imgs[i].setAttribute('src',up.url)}}a.content=root.innerHTML}a.updatedAt=a.updatedAt||new Date().toISOString().slice(0,10);return a}
+async function v10PreparePeoplePhotos(people,token,imageEntries,imageCache){
+  const prepared=clone(Array.isArray(people)?people:[]);
+
+  for(let i=0;i<prepared.length;i++){
+    const person=prepared[i];
+    const src=String(person.photo||'');
+
+    if(!dataUrlParts(src))continue;
+
+    const base=v10SafeSlug({
+      slug:'person-'+String(person.id||person.name||('p'+i))
+    });
+
+    const up=await v10ImageTreeEntry(src,base,'portrait',token,imageCache);
+
+    if(up){
+      if(!imageEntries.some(x=>x.path===up.entry.path)){
+        imageEntries.push(up.entry);
+      }
+      person.photo=up.url;
+    }
+  }
+
+  return prepared;
+}
+
+
 async function v10BranchBase(token){const ref=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/ref/heads/${encodeURIComponent(PUBLIC_GITHUB.branch)}`,token),commit=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/commits/${ref.object.sha}`,token);return {head:ref.object.sha,tree:commit.tree.sha}}
 async function v10BatchCommit(entries,token,message){const base=await v10BranchBase(token),dedup=new Map();entries.forEach(e=>dedup.set(e.path,e));const tree=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/trees`,token,{method:'POST',body:JSON.stringify({base_tree:base.tree,tree:[...dedup.values()]})}),commit=await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/commits`,token,{method:'POST',body:JSON.stringify({message,tree:tree.sha,parents:[base.head]})});await githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/refs/heads/${encodeURIComponent(PUBLIC_GITHUB.branch)}`,token,{method:'PATCH',body:JSON.stringify({sha:commit.sha,force:false})});return commit.sha}
 
@@ -8836,14 +9153,15 @@ async function v10LoadRemoteArticles(token){
 async function v11FetchTopicsRaw(){const url=`https://raw.githubusercontent.com/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/${encodeURIComponent(PUBLIC_GITHUB.branch)}/${V11_TOPICS_PATH}?v=${Date.now()}`;const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('topics not found');const a=await r.json();if(!Array.isArray(a))throw new Error('topics invalid');return a}
 function v11TopicPayload(){return (data.topics||[]).map((x,i)=>({id:x.id||('topic-'+i),name:x.name||'未命名主題',slug:x.slug||slugify(x.name||('topic-'+i)),description:x.description||'',order:Number.isFinite(Number(x.order))?Number(x.order):i,active:x.active!==false}))}
 function currentSiteTextPayload(){return {...DEFAULT_SITE_TEXT,...(data.siteText||{})}}
-function publicBundlePayload(revision=Date.now()){
+function publicBundlePayload(revision=Date.now(),peopleOverride=null){
+  const peopleSource=Array.isArray(peopleOverride)?peopleOverride:(data.people||[]);
   return {
     schema:1,
     revision:Number(revision),
     publishedAt:new Date().toISOString(),
     siteText:currentSiteTextPayload(),
     topics:v11TopicPayload(),
-    people:(data.people||[]).map((p,i)=>({
+    people:peopleSource.map((p,i)=>({
       id:String(p.id||('person-'+i)),
       name:String(p.name||''),
       role:String(p.role||''),
@@ -8934,11 +9252,14 @@ async function publishTopicsOnly(){
   if(!githubToken){nav('export');showToast('第一次請先在線上發布設定 GitHub Token');return false}
 
   const revision=Date.now();
-  const bundle=publicBundlePayload(revision);
+  const imageEntries=[],imageCache=new Map();
+  const preparedPeople=await v10PreparePeoplePhotos(data.people||[],githubToken,imageEntries,imageCache);
+  const bundle=publicBundlePayload(revision,preparedPeople);
   const topicsJSON=JSON.stringify(bundle.topics,null,2)+'\n';
   const siteJS=siteContentJSText();
 
   const entries=[
+    ...imageEntries,
     {path:V11_TOPICS_PATH,mode:'100644',type:'blob',content:topicsJSON},
     {path:PUBLIC_BUNDLE_PATH,mode:'100644',type:'blob',content:publicBundleJSONText(bundle)},
     {path:PUBLIC_GITHUB.sitePath,mode:'100644',type:'blob',content:siteJS}
@@ -8948,9 +9269,11 @@ async function publishTopicsOnly(){
   await verifyPublishedTopics(bundle.topics,githubToken);
   await verifyPublicBundle(bundle,githubToken);
 
+  data.people=preparedPeople;
+  persist(true);
   localStorage.setItem(SYNC_KEY,'1');
   signalPublicDataRefresh();
-  showToast(`主題與文字已同步並驗證：${bundle.topics.filter(x=>x.active!==false).length} 個公開主題`);
+  showToast(`主題、文字與人物圖片已同步並驗證：${bundle.topics.filter(x=>x.active!==false).length} 個公開主題`);
   return true;
 }
 
@@ -8959,7 +9282,9 @@ if(bundle&&Array.isArray(bundle.topics)){remoteTopics=clone(bundle.topics);remot
 else try{remoteTopics=await v11FetchTopicsRaw()}catch(_){const names=[...new Set(remote.articles.map(a=>a.category).filter(Boolean))];remoteTopics=names.map((name,i)=>({id:'topic-remote-'+i,name,slug:slugify(name),description:'瀏覽 '+name+' 相關文章與延伸整理。',order:i,active:true}))}const localDrafts=data.articles.filter(a=>a.status!=='Published'),draftIds=new Set(localDrafts.map(a=>a.id)),merged=[...localDrafts,...clone(remote.articles).filter(a=>!draftIds.has(a.id))];if(data.articles.length&&!confirm(`將同步 GitHub 上的 ${remote.articles.length} 篇公開文章與 ${remoteTopics.length} 個主題；目前 ${localDrafts.length} 篇本機草稿會保留。要繼續嗎？`)){status.textContent='已取消同步。';return}data={...data,articles:merged,topics:clone(remoteTopics),people:Array.isArray(remoteSite.people)?clone(remoteSite.people):(data.people||[]),siteText:{...DEFAULT_SITE_TEXT,...remoteSite.siteText}};persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);status.textContent=`✓ 已同步 ${remote.articles.length} 篇文章、${remoteTopics.length} 個主題與網站文字；保留草稿 ${localDrafts.length} 篇。`;showToast('GitHub 同步完成');renderExport()}catch(e){status.textContent='同步失敗：'+e.message}};
 publishGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInput();if(!token){if(status)status.textContent='請先貼入或解鎖 GitHub Token。';return false}githubToken=token;if(status)status.textContent='正在準備 v10 發布資料…';let remoteIndex=[];try{remoteIndex=await v10FetchIndexRaw()}catch(_){}const alreadySynced=localStorage.getItem(SYNC_KEY)==='1';if(!alreadySynced&&remoteIndex.length){const localIds=new Set(data.articles.map(a=>a.id)),missing=remoteIndex.filter(a=>!localIds.has(a.id));if(missing.length)throw new Error(`安全阻擋：公開站有 ${missing.length} 篇文章不在這台裝置。請先按「從 GitHub 同步」。`)}
  const published=data.articles.filter(a=>a.status==='Published'),imageEntries=[],imageCache=new Map(),prepared=[];for(let i=0;i<published.length;i++){if(status)status.textContent=`正在處理文章與圖片 ${i+1}/${published.length}…`;prepared.push(await v10PrepareArticle(published[i],token,imageEntries,imageCache))}
- const metas=prepared.map(v10IndexMeta),entries=[...imageEntries],bundle=publicBundlePayload(Date.now());prepared.forEach(a=>entries.push({path:`articles/${v10SafeSlug(a)}.json`,mode:'100644',type:'blob',content:JSON.stringify(a,null,2)+'\n'}));entries.push({path:V10_INDEX_PATH,mode:'100644',type:'blob',content:JSON.stringify(metas,null,2)+'\n'});entries.push({path:V11_TOPICS_PATH,mode:'100644',type:'blob',content:JSON.stringify(bundle.topics,null,2)+'\n'});entries.push({path:PUBLIC_BUNDLE_PATH,mode:'100644',type:'blob',content:publicBundleJSONText(bundle)});entries.push({path:PUBLIC_GITHUB.sitePath,mode:'100644',type:'blob',content:siteContentJSText()});entries.push({path:PUBLIC_GITHUB.path,mode:'100644',type:'blob',content:'window.BLOG_ARTICLES = '+JSON.stringify(prepared,null,2)+';\n'});
+ if(status)status.textContent='正在處理 About 人物圖片…';
+ const preparedPeople=await v10PreparePeoplePhotos(data.people||[],token,imageEntries,imageCache);
+ const metas=prepared.map(v10IndexMeta),entries=[...imageEntries],bundle=publicBundlePayload(Date.now(),preparedPeople);prepared.forEach(a=>entries.push({path:`articles/${v10SafeSlug(a)}.json`,mode:'100644',type:'blob',content:JSON.stringify(a,null,2)+'\n'}));entries.push({path:V10_INDEX_PATH,mode:'100644',type:'blob',content:JSON.stringify(metas,null,2)+'\n'});entries.push({path:V11_TOPICS_PATH,mode:'100644',type:'blob',content:JSON.stringify(bundle.topics,null,2)+'\n'});entries.push({path:PUBLIC_BUNDLE_PATH,mode:'100644',type:'blob',content:publicBundleJSONText(bundle)});entries.push({path:PUBLIC_GITHUB.sitePath,mode:'100644',type:'blob',content:siteContentJSText()});entries.push({path:PUBLIC_GITHUB.path,mode:'100644',type:'blob',content:'window.BLOG_ARTICLES = '+JSON.stringify(prepared,null,2)+';\n'});
  const liveSlugs=new Set(prepared.map(v10SafeSlug));for(const old of remoteIndex){const s=old.slug;if(s&&!liveSlugs.has(s))entries.push({path:old.file||`articles/${s}.json`,mode:'100644',type:'blob',sha:null})}
  if(status)status.textContent='正在建立單一 GitHub 發布版本…';await v10BatchCommit(entries,token,'Publish SIGN WELL v10 '+new Date().toISOString().slice(0,19).replace('T',' '));
  if(status)status.textContent='正在驗證主題資料…';
@@ -8967,7 +9292,7 @@ publishGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInp
  await verifyPublicBundle(bundle,token);
  signalPublicDataRefresh();
  // Replace successful data-URL assets in local CMS state with their permanent public paths.
- const byId=new Map(prepared.map(a=>[a.id,a]));data.articles=data.articles.map(a=>byId.has(a.id)?byId.get(a.id):a);persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent=`✓ v12.2 發布完成：${prepared.length} 篇文章、${(data.topics||[]).length} 個主題、${imageEntries.length} 個新圖片資產；主題檔已驗證。`;showToast('SIGN WELL v12.2 發布完成');return true};
+ const byId=new Map(prepared.map(a=>[a.id,a]));data.articles=data.articles.map(a=>byId.has(a.id)?byId.get(a.id):a);data.people=preparedPeople;persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent=`✓ v12.2 發布完成：${prepared.length} 篇文章、${(data.topics||[]).length} 個主題、${imageEntries.length} 個新圖片資產（含人物照片）；主題檔已驗證。`;showToast('SIGN WELL v12.2 發布完成');return true};
 
 function initCmsPremium(){
   if(window.__cmsPremiumBound)return;
