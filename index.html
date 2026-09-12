@@ -6010,6 +6010,28 @@ window.signwellMedicalNewsAIStatus=async function(){
   );
 };
 
+
+window.signwellMedicalNewsAIConfigure=async function(config={}){
+  return signwellGasBridge(
+    'admin.medicalNews.aiConfigure',
+    {
+      endpoint:String(config.endpoint||''),
+      apiKey:String(config.apiKey||''),
+      model:String(config.model||''),
+      test:Boolean(config.test)
+    },
+    {adminKey:newsletterAdminKey(),timeoutMs:55000}
+  );
+};
+
+window.signwellMedicalNewsAITest=async function(){
+  return signwellGasBridge(
+    'admin.medicalNews.aiTest',
+    {},
+    {adminKey:newsletterAdminKey(),timeoutMs:45000}
+  );
+};
+
 window.signwellMedicalNewsGenerateAIArticle=async function(topic={},options={}){
   return signwellGasBridge(
     'admin.medicalNews.generateArticle',
@@ -6233,7 +6255,7 @@ function renderMedicalNewsSuggestions(){
       <iframe
         class="medical-news-frame"
         id="medicalNewsSuggestionsFrame"
-        src="medical-daily-focus.html?v=21.1-embedded-compact"
+        src="medical-daily-focus.html?v=21.3-embedded-compact"
         title="SIGN WELL 時事新聞建議"
         loading="eager"></iframe>
     </section>`;

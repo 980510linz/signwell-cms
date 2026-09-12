@@ -902,6 +902,111 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
 })();
 </script>
 
+
+<style id="sw-focus-aiwriter-v213">
+/* v21.3 · visibility-safe copy controls + rebuilt AI Writer */
+.actions{align-items:center!important;gap:10px!important}
+.actions .pill{
+  min-height:44px!important;
+  padding:0 17px!important;
+  border-radius:999px!important;
+  font-weight:800!important;
+  letter-spacing:.01em!important;
+  opacity:1!important;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+#copyFocusBtn{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:linear-gradient(145deg,#5f9fe8,#477fc5)!important;
+  border:1px solid rgba(80,132,196,.34)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 10px 24px rgba(71,127,197,.18)!important;
+  text-shadow:0 1px 1px rgba(18,56,95,.18)!important;
+}
+#copyLinksBtn{
+  color:#1d3850!important;
+  -webkit-text-fill-color:#1d3850!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(233,243,254,.80))!important;
+  border:1px solid rgba(133,168,205,.22)!important;
+  box-shadow:inset 0 1px 0 #fff,0 8px 20px rgba(53,90,126,.08)!important;
+}
+#copyFocusBtn:hover{background:linear-gradient(145deg,#6aa9ef,#4c87ce)!important}
+#copyLinksBtn:hover{background:linear-gradient(145deg,#fff,#eef6ff)!important}
+
+.writer-panel{position:relative;overflow:hidden}
+.writer-panel::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.98),transparent);pointer-events:none}
+.writer-head{position:relative;z-index:2}
+.writer-head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.ai-state{
+  display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:999px;
+  background:rgba(238,245,252,.80);border:1px solid rgba(135,169,201,.18);color:#6d8497;
+  font-size:9.5px;font-weight:800;white-space:nowrap
+}
+.ai-state::before{content:"";width:7px;height:7px;border-radius:50%;background:#a7b6c3;box-shadow:0 0 0 4px rgba(167,182,195,.10)}
+.ai-state.ready{background:rgba(231,247,239,.86);color:#467761;border-color:rgba(100,174,137,.18)}
+.ai-state.ready::before{background:#69b38b;box-shadow:0 0 0 4px rgba(105,179,139,.11)}
+.ai-state.busy{background:rgba(235,244,255,.88);color:#4e79a4}
+.ai-state.busy::before{background:#6fa7df;animation:aiPulse213 1.2s ease-in-out infinite}
+.ai-settings-btn{
+  height:34px;padding:0 11px;border-radius:999px;border:1px solid rgba(255,255,255,.88)!important;
+  background:rgba(255,255,255,.68)!important;color:#496278!important;font-size:10px;font-weight:800;cursor:pointer;
+  box-shadow:inset 0 1px 0 #fff,0 7px 18px rgba(52,88,120,.06)!important
+}
+.generate-btn{
+  min-height:38px!important;padding:0 16px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:linear-gradient(145deg,#67a6ed,#4b86cf 75%,#edd2df 140%)!important;
+  border:1px solid rgba(78,143,216,.18)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 12px 26px rgba(70,130,195,.20)!important;
+  text-shadow:0 1px 1px rgba(26,69,111,.16)!important
+}
+.generate-btn:disabled{opacity:.64!important}
+.ai-setup{
+  display:none;margin-top:14px;padding:14px;border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(236,246,255,.58));
+  border:1px solid rgba(255,255,255,.90);box-shadow:inset 0 1px 0 #fff
+}
+.ai-setup.show{display:block;animation:aiSetupIn213 .24s cubic-bezier(.16,1,.3,1) both}
+.ai-setup-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.ai-setup-title strong{color:#20384e;font-size:12px}.ai-setup-title span{display:block;margin-top:4px;color:#8092a2;font-size:9.5px;line-height:1.5}
+.ai-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:9px;margin-top:12px}
+.ai-field{display:grid;gap:5px}.ai-field.key{grid-column:1/-1}
+.ai-field label{font-size:9px;font-weight:800;color:#6b8194;letter-spacing:.04em}
+.ai-field input{
+  width:100%;height:40px;border-radius:13px;border:1px solid rgba(121,155,188,.15);padding:0 12px;
+  background:rgba(255,255,255,.78);color:#20384e;font-size:11.5px;outline:none;
+  box-shadow:inset 0 1px 0 #fff;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease
+}
+.ai-field input:focus{background:#fff;border-color:rgba(78,143,216,.36);box-shadow:0 0 0 4px rgba(78,143,216,.08),inset 0 1px 0 #fff}
+.ai-field input::placeholder{color:#a3b0bc;opacity:1}
+.ai-setup-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:11px}
+.ai-setup-actions button{height:36px;border-radius:999px;padding:0 13px;font-size:10px;font-weight:800;cursor:pointer}
+.ai-save-btn{border:0;color:#fff;background:linear-gradient(145deg,#5f9fe8,#477fc5);box-shadow:0 9px 20px rgba(71,127,197,.18)}
+.ai-cancel-btn{border:1px solid rgba(121,155,188,.16);color:#4c6479;background:rgba(255,255,255,.68)}
+.ai-privacy{color:#8b9aa8;font-size:9px;line-height:1.55;margin-left:auto}
+.ai-progress{display:none;margin-top:13px;padding:11px 12px;border-radius:15px;background:rgba(236,246,255,.58);border:1px solid rgba(255,255,255,.82)}
+.ai-progress.show{display:block}
+.ai-progress-head{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:9.5px;color:#668096;font-weight:800}
+.ai-progress-track{height:4px;margin-top:9px;border-radius:999px;background:rgba(121,155,188,.12);overflow:hidden}
+.ai-progress-bar{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#73afeF,#5a91d7,#efcfe0);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.ai-stages{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.ai-stage{padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.62);color:#91a1af;font-size:8.5px;font-weight:800;border:1px solid rgba(255,255,255,.76)}
+.ai-stage.active{color:#4878a1;background:rgba(223,239,255,.80)}
+.ai-stage.done{color:#4d7d68;background:rgba(226,246,236,.80)}
+.engine-note{color:#657f93!important;background:rgba(235,246,255,.64)!important;border:1px solid rgba(255,255,255,.72)}
+.engine-note.ready{color:#467761!important;background:rgba(229,248,239,.72)!important}
+.engine-note.error{color:#9b5963!important;background:rgba(255,237,241,.72)!important}
+@keyframes aiPulse213{50%{transform:scale(1.22);box-shadow:0 0 0 6px rgba(111,167,223,.06)}}
+@keyframes aiSetupIn213{from{opacity:0;transform:translateY(-5px) scale(.99)}to{opacity:1;transform:none}}
+@media(max-width:720px){
+  .writer-head-actions{width:100%;justify-content:flex-start}
+  .ai-grid{grid-template-columns:1fr}.ai-field.key{grid-column:auto}
+  .ai-privacy{width:100%;margin-left:0}
+  .actions{display:grid!important;grid-template-columns:1fr 1fr!important}.actions .pill{width:100%!important}
+}
+@media(max-width:430px){.actions{grid-template-columns:1fr!important}.writer-head-actions{display:grid;grid-template-columns:1fr 1fr}.generate-btn{grid-column:1/-1;width:100%!important}}
+</style>
+
 </head>
 <body>
 <div class="scene" aria-hidden="true">
@@ -1046,23 +1151,97 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
     return base;
   }
 
-  async function refreshAiWriterStatus(){
+  let aiWriterStatusCache=null;
+
+  function setAiState(mode,label){
+    const el=$('#aiState');if(!el)return;
+    el.className='ai-state'+(mode?' '+mode:'');
+    el.textContent=label||'AI Writer';
+  }
+
+  function toggleAiSetup(show){
+    const panel=$('#aiSetup');if(!panel)return;
+    panel.classList.toggle('show',Boolean(show));
+    if(show)setTimeout(()=>$('#aiEndpointInput')?.focus(),80);
+  }
+
+  function renderAiStatus(s){
     const note=$('#aiEngineNote');
+    aiWriterStatusCache=s||null;
     if(!note)return;
+    note.classList.remove('ready','error');
+    if(s?.configured){
+      setAiState('ready','已連線');
+      note.textContent=`AI Writer 已就緒 · ${s.model||'LLM'}${s.endpointLabel?' · '+s.endpointLabel:''} · Evidence Lock 開啟`;
+      note.classList.add('ready');
+      const model=$('#aiModelInput');if(model&&!model.value)model.value=s.model||'';
+      toggleAiSetup(false);
+    }else{
+      setAiState('','未連線');
+      const missing=Array.isArray(s?.missing)&&s.missing.length?s.missing.join('、'):'AI 後端設定';
+      note.textContent=`AI Writer 尚未連線 · 缺少 ${missing}。點「AI 設定」即可在 CMS 內完成。`;
+      note.classList.add('error');
+    }
+  }
+
+  async function refreshAiWriterStatus({openWhenMissing=false}={}){
     try{
       if(!window.parent?.signwellMedicalNewsAIStatus)throw new Error('CMS bridge unavailable');
+      setAiState('busy','檢查中');
       const s=await window.parent.signwellMedicalNewsAIStatus();
-      if(s?.configured){
-        note.textContent=`AI Writer 已連線 · ${s.model||'LLM'} · 兩階段編輯 · PubMed Evidence Lock`;
-        note.classList.add('ready');
-      }else{
-        note.textContent=`AI Writer 尚未連線 · 缺少 ${Array.isArray(s?.missing)?s.missing.join('、'):'AI Script Properties'}`;
-        note.classList.remove('ready');
-      }
-    }catch(_){
-      note.textContent='AI Writer 狀態目前無法確認；生成時會再次檢查。';
-      note.classList.remove('ready');
+      renderAiStatus(s);
+      if(openWhenMissing&&!s?.configured)toggleAiSetup(true);
+      return s;
+    }catch(err){
+      setAiState('','狀態未知');
+      const note=$('#aiEngineNote');
+      if(note){note.textContent='AI Writer 狀態無法確認：'+String(err?.message||err);note.classList.remove('ready');note.classList.add('error')}
+      return null;
     }
+  }
+
+  async function saveAiWriterConfig(){
+    const save=$('#aiSaveBtn');
+    const endpoint=$('#aiEndpointInput')?.value.trim()||'';
+    const apiKey=$('#aiKeyInput')?.value.trim()||'';
+    const model=$('#aiModelInput')?.value.trim()||'';
+    if(!endpoint||!model){showToast('請填入 API Endpoint 與 Model ID');return false}
+    if(!/^https:\/\//i.test(endpoint)){showToast('API Endpoint 必須使用 https://');return false}
+    if(!window.parent?.signwellMedicalNewsAIConfigure){showToast('CMS 尚未載入 AI 設定 bridge');return false}
+    const old=save.textContent;save.disabled=true;save.textContent='儲存並測試中…';setAiState('busy','連線測試');
+    try{
+      const result=await window.parent.signwellMedicalNewsAIConfigure({endpoint,apiKey,model,test:true});
+      if(!result?.ok)throw new Error(result?.error||'AI 設定失敗');
+      if($('#aiKeyInput'))$('#aiKeyInput').value='';
+      renderAiStatus(result.status||result);
+      toggleAiSetup(false);
+      showToast('AI Writer 已連線');
+      return true;
+    }catch(err){
+      const note=$('#aiEngineNote');const msg=String(err?.message||err);
+      setAiState('','連線失敗');
+      if(note){note.textContent='AI Writer 連線失敗：'+msg;note.classList.remove('ready');note.classList.add('error')}
+      showToast('AI 連線失敗');
+      return false;
+    }finally{save.disabled=false;save.textContent=old}
+  }
+
+  function updateAiProgress(step,text,pct){
+    const wrap=$('#aiProgress'),bar=$('#aiProgressBar'),label=$('#aiProgressText'),percent=$('#aiProgressPct');
+    if(!wrap)return;
+    wrap.classList.add('show');
+    if(bar)bar.style.width=Math.max(0,Math.min(100,pct||0))+'%';
+    if(label)label.textContent=text||'處理中';
+    if(percent)percent.textContent=Math.round(pct||0)+'%';
+    wrap.querySelectorAll('[data-ai-stage]').forEach((el,i)=>{
+      el.classList.toggle('done',i<step);
+      el.classList.toggle('active',i===step);
+    });
+  }
+
+  function finishAiProgress(ok=true){
+    updateAiProgress(4,ok?'生成完成':'生成中止',ok?100:0);
+    setTimeout(()=>$('#aiProgress')?.classList.remove('show'),ok?1800:900);
   }
 
   function openDetail(i){
@@ -1075,10 +1254,27 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
       <div class="workspace-section"><h3>延伸探討建議</h3><ul class="extension-list">${extensions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></div>
       <div class="workspace-section"><h3>相關文獻 · PubMed</h3>${renderLiterature(t)}</div>
       <div class="writer-panel">
-        <div class="writer-head"><div><strong>SIGN WELL AI Writer</strong><span>600–800 字 · 兩階段醫療編輯 · PubMed Evidence Lock</span></div><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
+        <div class="writer-head">
+          <div><strong>SIGN WELL AI Writer</strong><span>600–800 字 · Evidence Lock · 來源與文獻分離核驗</span></div>
+          <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">AI 設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
+        </div>
+        <div class="ai-setup" id="aiSetup">
+          <div class="ai-setup-title"><div><strong>連線 AI Writer</strong><span>設定一次即可。API Key 只寫入 Google Apps Script 的 Script Properties，不會由狀態 API 回傳。</span></div></div>
+          <div class="ai-grid">
+            <div class="ai-field"><label for="aiEndpointInput">API ENDPOINT</label><input id="aiEndpointInput" type="url" inputmode="url" autocomplete="off" placeholder="https://…"></div>
+            <div class="ai-field"><label for="aiModelInput">MODEL ID</label><input id="aiModelInput" type="text" autocomplete="off" placeholder="模型 ID"></div>
+            <div class="ai-field key"><label for="aiKeyInput">API KEY</label><input id="aiKeyInput" type="password" autocomplete="new-password" placeholder="貼上金鑰；已設定時可留空保留原金鑰"></div>
+          </div>
+          <div class="ai-setup-actions"><button class="ai-save-btn" id="aiSaveBtn" type="button">儲存並測試</button><button class="ai-cancel-btn" id="aiCancelBtn" type="button">取消</button><span class="ai-privacy">設定會儲存在後端，不寫入 GitHub。</span></div>
+        </div>
+        <div class="ai-progress" id="aiProgress">
+          <div class="ai-progress-head"><span id="aiProgressText">準備生成</span><span id="aiProgressPct">0%</span></div>
+          <div class="ai-progress-track"><div class="ai-progress-bar" id="aiProgressBar"></div></div>
+          <div class="ai-stages"><span class="ai-stage" data-ai-stage="0">新聞來源鎖定</span><span class="ai-stage" data-ai-stage="1">PubMed 核驗</span><span class="ai-stage" data-ai-stage="2">AI 撰寫</span><span class="ai-stage" data-ai-stage="3">Evidence Audit</span></div>
+        </div>
         <div class="review-strip" id="reviewStrip"><span class="review-chip">Sources ✓</span><span class="review-chip">PubMed Verified ✓</span><span class="review-chip">Medical ✓</span><span class="review-chip">Regulatory ✓</span><span class="review-chip">Plain Language ✓</span></div>
         <div class="draft-wrap" id="draftWrap"><div class="draft-paper" id="draftPaper"></div><div class="draft-actions"><button id="copyDraftBtn" type="button">複製範文</button><button class="primary" id="toEditorBtn" type="button">帶入文章編輯器</button><button id="publishDraftBtn" type="button">直接發布＋通知到「時事探討」</button></div><div class="draft-meta" id="draftMeta"></div></div>
-        <div class="engine-note" id="aiEngineNote">AI Writer 只會使用已取得的新聞來源與 Backend 重新核驗的 PubMed 文獻。文獻題名、PMID、DOI、期刊與連結不由模型生成；未通過 Evidence Lock 的草稿不會顯示。</div>
+        <div class="engine-note" id="aiEngineNote">正在確認 AI Writer 後端狀態…</div>
       </div>
       <div class="actions"><button class="pill primary" id="copyFocusBtn" type="button">複製焦點摘要</button><button class="pill" id="copyLinksBtn" type="button">複製全部原文</button></div>`;
 
@@ -1087,8 +1283,11 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
     $('#copyFocusBtn').onclick=()=>copyText(`${t.title}\n\n${t.summary}\n\n熱門度：${t.majorMediaCount} 家知名媒體共同報導\n${t.why}`);
     $('#copyLinksBtn').onclick=()=>copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
     $('#generateDraftBtn').onclick=()=>generateDraft(t);
+    $('#aiSettingsBtn').onclick=()=>toggleAiSetup(!$('#aiSetup').classList.contains('show'));
+    $('#aiCancelBtn').onclick=()=>toggleAiSetup(false);
+    $('#aiSaveBtn').onclick=saveAiWriterConfig;
     showScreen(detailScreen);
-    refreshAiWriterStatus();
+    refreshAiWriterStatus({openWhenMissing:false});
   }
 
   function renderLiterature(t){
@@ -1316,9 +1515,24 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
     const note=$('#aiEngineNote');
     if(!btn)return;
 
+    let status=aiWriterStatusCache;
+    if(!status?.configured)status=await refreshAiWriterStatus({openWhenMissing:true});
+    if(!status?.configured){
+      showToast('先完成一次 AI Writer 設定');
+      return;
+    }
+
     btn.disabled=true;
-    btn.textContent='AI 撰寫＋證據核對中…';
-    if(note)note.textContent='第一輪撰寫 → 第二輪 Medical/Evidence Editor → Backend Evidence Lock…';
+    btn.textContent='AI 正在生成…';
+    setAiState('busy','生成中');
+    if(note){note.classList.remove('error');note.textContent='正在鎖定新聞來源、重新核驗 PubMed，並執行兩階段醫療編輯…'}
+    updateAiProgress(0,'鎖定已取得的新聞來源',12);
+
+    const timers=[
+      setTimeout(()=>updateAiProgress(1,'後端核驗 PubMed 文獻',30),700),
+      setTimeout(()=>updateAiProgress(2,'AI 撰寫 600–800 字初稿',54),1800),
+      setTimeout(()=>updateAiProgress(3,'Medical Editor + Evidence Audit',78),4200)
+    ];
 
     try{
       if(!window.parent?.signwellMedicalNewsGenerateAIArticle){
@@ -1331,7 +1545,9 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
       );
 
       if(result?.aiConfigured===false){
-        const missing=Array.isArray(result.missing)?result.missing.join('、'):'AI Script Properties';
+        aiWriterStatusCache=null;
+        const missing=Array.isArray(result.missing)?result.missing.join('、'):'AI 後端設定';
+        toggleAiSetup(true);
         throw new Error(`AI Writer 尚未設定：${missing}`);
       }
       if(!result?.ok||!result?.article){
@@ -1339,7 +1555,6 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
       }
 
       currentDraft=result.article;
-
       $('#draftPaper').innerHTML=currentDraft.preview;
       bindDraftMediaFallback();
       $('#reviewStrip').classList.add('show');
@@ -1356,25 +1571,26 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
 
       if(note){
         note.textContent=
-          `Evidence Lock 通過 · PubMed PMID 由 Backend 核驗 · `+
-          `模型無權建立文獻 metadata 或網址 · ${audit.twoPassEditor?'已完成兩階段醫療編輯':''}`;
-        note.classList.add('ready');
+          `Evidence Lock 通過 · PubMed metadata 由 Backend 核驗 · `+
+          `模型不能自行建立文獻 metadata 或網址${audit.twoPassEditor?' · 已完成兩階段醫療編輯':''}`;
+        note.classList.remove('error');note.classList.add('ready');
       }
 
       $('#copyDraftBtn').onclick=()=>copyDraft(currentDraft);
       $('#toEditorBtn').onclick=()=>sendArticle('editor');
       $('#publishDraftBtn').onclick=()=>sendArticle('publish');
-
-      btn.textContent='重新生成另一種 AI 敘事';
+      btn.textContent='重新生成另一種敘事';
+      setAiState('ready','已完成');
+      finishAiProgress(true);
     }catch(err){
       const msg=String(err?.message||err);
       showToast(msg);
-      if(note){
-        note.textContent=msg;
-        note.classList.remove('ready');
-      }
-      btn.textContent=currentDraft?'重新生成另一種 AI 敘事':'AI 一鍵生成範文';
+      if(note){note.textContent=msg;note.classList.remove('ready');note.classList.add('error')}
+      btn.textContent=currentDraft?'重新生成另一種敘事':'AI 一鍵生成範文';
+      setAiState('','生成失敗');
+      finishAiProgress(false);
     }finally{
+      timers.forEach(clearTimeout);
       btn.disabled=false;
     }
   }
