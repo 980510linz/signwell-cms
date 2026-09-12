@@ -4619,6 +4619,147 @@ body:not(.perf-lite) .publish-actions{
   }
 }
 
+
+/* ============================================================
+   CMS v14.42 · Newsletter Safe Mode
+   ============================================================ */
+
+/*
+ * Newsletter uses the browser/document as the only scroll root.
+ * This deliberately bypasses the body:hidden -> .view overflow:auto stack
+ * because WebKit can freeze hit-testing when that stack contains large
+ * glass layers / iframes / fixed overlays.
+ */
+body.newsletter-safe-mode{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  height:auto!important;
+  min-height:100dvh!important;
+}
+body.newsletter-safe-mode .cms{
+  height:auto!important;
+  min-height:100dvh!important;
+  align-items:start!important;
+}
+body.newsletter-safe-mode .workspace{
+  overflow:visible!important;
+  min-height:100dvh!important;
+}
+body.newsletter-safe-mode .view{
+  overflow:visible!important;
+  min-height:calc(100dvh - 92px)!important;
+  height:auto!important;
+  -webkit-overflow-scrolling:auto!important;
+  overscroll-behavior:auto!important;
+  transform:none!important;
+  opacity:1!important;
+}
+body.newsletter-safe-mode .sidebar{
+  position:sticky;
+  top:max(12px,env(safe-area-inset-top));
+  height:calc(100dvh - max(24px,env(safe-area-inset-top)));
+  align-self:start;
+}
+body.newsletter-safe-mode .topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(244,249,253,.90)!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+
+/* No blur/compositor-heavy material inside the newsletter workspace. */
+body.newsletter-safe-mode .newsletter-panel,
+body.newsletter-safe-mode .newsletter-statusbar,
+body.newsletter-safe-mode .newsletter-backend-alert,
+body.newsletter-safe-mode .newsletter-toggle,
+body.newsletter-safe-mode .newsletter-exact-preview,
+body.newsletter-safe-mode .newsletter-admin-key,
+body.newsletter-safe-mode .newsletter-row,
+body.newsletter-safe-mode .newsletter-metric{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  filter:none!important;
+  transform:none!important;
+  will-change:auto!important;
+}
+
+/* Absolutely nothing fixed is allowed to intercept the page while the
+   newsletter workspace itself is open. Newsletter actions use inline UI. */
+body.newsletter-safe-mode #newsletterSendOverlay,
+body.newsletter-safe-mode #newsletterConfirmOverlay{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+/* Keep every newsletter control as an ordinary native hit target. */
+body.newsletter-safe-mode .newsletter-grid,
+body.newsletter-safe-mode .newsletter-panel,
+body.newsletter-safe-mode .newsletter-panel *,
+body.newsletter-safe-mode .newsletter-summary,
+body.newsletter-safe-mode .newsletter-statusbar,
+body.newsletter-safe-mode .newsletter-diag{
+  pointer-events:auto!important;
+}
+body.newsletter-safe-mode .newsletter-panel *{
+  touch-action:auto!important;
+}
+body.newsletter-safe-mode .newsletter-grid{
+  contain:none!important;
+  isolation:auto!important;
+}
+
+/* Inline action status replaces fullscreen send overlay on this page. */
+.newsletter-inline-action{
+  display:none;
+  margin:0 0 12px;
+  padding:11px 13px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.74);
+  background:rgba(238,248,254,.90);
+  color:#587184;
+  font-size:9px;
+  font-weight:800;
+  line-height:1.55;
+}
+.newsletter-inline-action.show{display:block}
+.newsletter-inline-action.ok{
+  color:#477562;
+  background:rgba(235,249,242,.92);
+}
+.newsletter-inline-action.bad{
+  color:#965b60;
+  background:rgba(255,239,240,.94);
+}
+
+/* Preview frame is not present until user requests it. */
+#nlExactPreviewMount:empty{
+  display:none;
+}
+#nlExactPreviewMount iframe{
+  display:block;
+  width:100%;
+  height:620px;
+  border:0;
+  background:#edf6fc;
+  pointer-events:none!important;
+}
+@media(max-width:900px){
+  body.newsletter-safe-mode .cms{
+    height:auto!important;
+    min-height:100dvh!important;
+  }
+  body.newsletter-safe-mode .sidebar{
+    position:relative;
+    top:auto;
+    height:auto;
+  }
+  #nlExactPreviewMount iframe{height:500px}
+}
+
 </style>
 </head>
 <body>
@@ -4679,7 +4820,7 @@ body:not(.perf-lite) .publish-actions{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.41</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.42</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -4711,7 +4852,7 @@ body:not(.perf-lite) .publish-actions{
     </div>
   </div>
 </div>
-<script src="analytics-config.js?v=14.41"></script>
+<script src="analytics-config.js?v=14.42"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -4965,10 +5106,11 @@ async function verifySecond(){
     startCmsCloudPolling();
   });
 }
-function lock(){stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
+function lock(){document.body.classList.remove('newsletter-safe-mode');stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);githubToken='';authSecret='';pendingPin='';clearAuthError();$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1)}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 function nav(v){
   if(viewName==='newsletter'||v==='newsletter')resetNewsletterInteractionState();
+  if(v!=='newsletter')document.body.classList.remove('newsletter-safe-mode');
   viewName=v;
   currentId=null;
   pendingNewArticle=null;
@@ -5035,6 +5177,8 @@ function renderMedicalNewsSuggestions(){
 function renderView(){
   const editing=Boolean(currentId);
 
+  document.body.classList.toggle('newsletter-safe-mode',viewName==='newsletter'&&!editing);
+
   if(viewName!=='newsletter'&&newsletterPreviewTimer){
     clearTimeout(newsletterPreviewTimer);
     newsletterPreviewTimer=null;
@@ -5071,7 +5215,6 @@ function renderView(){
   else if(viewName==='aboutpage')renderAboutPageEditor();
   else if(viewName==='newsletter'){
     renderNewsletterCenter();
-    setTimeout(()=>refreshNewsletterData(),0);
   }
   else if(viewName==='export')renderExport();
   else renderDashboard();
@@ -6062,6 +6205,13 @@ function closeNewsletterSendConfirm(result=false){
 }
 
 function confirmNewsletterSendUI({count=0,subject='',hero=''}={}){
+  if(viewName==='newsletter'){
+    const ok=window.confirm(
+      `確認送出電子報？\n\n收件者：${Number(count||0).toLocaleString()} 位\n主旨：${subject||'未設定主旨'}\n主推：${hero||'純內容電子報'}`
+    );
+    return Promise.resolve(ok);
+  }
+
   const wrap=$('#newsletterConfirmOverlay');
   if(!wrap)return Promise.resolve(false);
 
@@ -6109,6 +6259,17 @@ document.addEventListener('keydown',e=>{
 });
 
 function showNewsletterSendOverlay(mode='auto',count=0,subject=''){
+  if(viewName==='newsletter'){
+    const label=
+      mode==='manual'
+        ?`正在發送給 ${Number(count||0).toLocaleString()} 位訂閱者…`
+        :mode==='test'
+          ?'正在寄送測試信…'
+          :'正在送出電子報…';
+    newsletterInlineStatus(label);
+    return;
+  }
+
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('done','failed');
 
@@ -6144,6 +6305,11 @@ function showNewsletterSendOverlay(mode='auto',count=0,subject=''){
 }
 
 function completeNewsletterSendOverlay(message='電子報已發送完成',meta=''){
+  if(viewName==='newsletter'){
+    newsletterInlineStatus(meta?`${message} · ${meta}`:message,'ok');
+    return;
+  }
+
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('failed');
   wrap.classList.add('done','show');
@@ -6162,6 +6328,11 @@ function completeNewsletterSendOverlay(message='電子報已發送完成',meta='
 }
 
 function failNewsletterSendOverlay(message='電子報未能送出'){
+  if(viewName==='newsletter'){
+    newsletterInlineStatus(message,'bad');
+    return;
+  }
+
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('done');
   wrap.classList.add('failed','show');
@@ -6176,6 +6347,11 @@ function failNewsletterSendOverlay(message='電子報未能送出'){
 }
 
 function hideNewsletterSendOverlay(){
+  if(viewName==='newsletter'){
+    clearNewsletterInlineStatus();
+    return;
+  }
+
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('show','done','failed');
   wrap.setAttribute('aria-hidden','true');
@@ -6217,6 +6393,24 @@ function resetNewsletterInteractionState(){
 
   document.documentElement.style.removeProperty('overflow');
   document.body.style.removeProperty('pointer-events');
+}
+
+
+function newsletterInlineStatus(message='',kind=''){
+  if(viewName!=='newsletter')return false;
+  const el=$('#nlInlineAction');
+  if(!el)return false;
+
+  el.textContent=String(message||'');
+  el.className='newsletter-inline-action show'+(kind?(' '+kind):'');
+  return true;
+}
+
+function clearNewsletterInlineStatus(){
+  const el=$('#nlInlineAction');
+  if(!el)return;
+  el.textContent='';
+  el.className='newsletter-inline-action';
 }
 
 function newsletterAutoEnabled(){
@@ -6406,13 +6600,24 @@ async function refreshNewsletterExactPreview({force=false}={}){
   if(!newsletterPreviewMounted&&!force)return;
 
   const shell=$('#nlExactPreviewShell');
-  const frame=$('#nlExactPreview');
-  if(!shell||!frame)return;
+  const mount=$('#nlExactPreviewMount');
+  if(!shell||!mount)return;
 
   newsletterPreviewMounted=true;
   newsletterPreviewDirty=false;
 
-  frame.hidden=false;
+  let frame=$('#nlExactPreview');
+  if(!frame){
+    frame=document.createElement('iframe');
+    frame.id='nlExactPreview';
+    frame.className='newsletter-exact-preview-frame';
+    frame.title='SIGN WELL Letter 實際寄送預覽';
+    frame.setAttribute('sandbox','allow-same-origin');
+    frame.tabIndex=-1;
+    frame.setAttribute('aria-hidden','true');
+    mount.replaceChildren(frame);
+  }
+
   shell.classList.add('preview-loaded');
 
   const placeholder=$('#nlPreviewPlaceholder');
@@ -6445,9 +6650,7 @@ async function refreshNewsletterExactPreview({force=false}={}){
     newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.6');
     newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
 
-    frame.onload=()=>resizeNewsletterPreviewFrame(frame);
     frame.srcdoc=html;
-    resizeNewsletterPreviewFrame(frame);
 
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
@@ -6469,10 +6672,7 @@ async function refreshNewsletterExactPreview({force=false}={}){
       <div>
         <strong>暫時無法取得 Glass Letter 預覽</strong>
         <p>${escapeHTML(newsletterBackendCapabilityError)}</p>
-        <p>CMS 本身仍可操作；修正 Backend 後再按「更新預覽」即可。</p>
       </div>`;
-
-    resizeNewsletterPreviewFrame(frame);
 
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
@@ -6585,16 +6785,27 @@ function newsletterStatusBreakdownText(summary){
 async function refreshNewsletterData(){
   if(!newsletterEnabled()){
     newsletterCache={summary:null,subscribers:[],campaigns:[]};
-    if(viewName==='newsletter')renderNewsletterCenter();
-    else if(viewName==='dashboard')refreshDashboardNewsletterSnapshot();
+    if(viewName==='dashboard')refreshDashboardNewsletterSnapshot();
+    if(viewName==='newsletter')newsletterInlineStatus('Backend 尚未設定','bad');
     return;
   }
+
+  const btn=$('#nlRefresh');
+  const previousText=btn?.textContent||'重新整理資料';
+
   try{
+    if(btn){
+      btn.disabled=true;
+      btn.textContent='更新中…';
+    }
+    if(viewName==='newsletter')newsletterInlineStatus('正在更新訂閱與寄送資料…');
+
     const [summary,subs,camps]=await Promise.all([
       newsletterRequest('/admin/newsletter/summary'),
       newsletterRequest('/admin/newsletter/subscribers?limit=5'),
       newsletterRequest('/admin/newsletter/campaigns?limit=6')
     ]);
+
     newsletterCache={
       summary:summary||null,
       subscribers:Array.isArray(subs?.items)?subs.items:[],
@@ -6603,33 +6814,37 @@ async function refreshNewsletterData(){
       templateVersion:String(summary?.templateVersion||'')
     };
 
-    /* v14.21: if the ordinary summary looks suspicious, run a canonical
-       subscriber scan before rendering "0". */
     if(newsletterBackendIsCurrent() &&
        Number(newsletterCache.summary?.active||0)===0 &&
        Number(newsletterCache.summary?.total||0)>0){
       try{await newsletterSubscriberPreflight()}catch(_){}
     }
+
+    if(viewName==='newsletter'){
+      /*
+       * Deliberately render only once, after an explicit user click.
+       * Restore scroll after DOM replacement.
+       */
+      const y=window.scrollY;
+      renderNewsletterCenter();
+      requestAnimationFrame(()=>{
+        window.scrollTo(0,y);
+        newsletterInlineStatus('資料已更新','ok');
+        setTimeout(()=>clearNewsletterInlineStatus(),1400);
+      });
+    }else if(viewName==='dashboard'){
+      refreshDashboardNewsletterSnapshot();
+    }
   }catch(err){
     newsletterCache.error=err?.message||String(err);
-  }
-  if(viewName==='newsletter'){
-    const activeEl=document.activeElement;
-    const composing=Boolean(
-      activeEl?.closest?.('.newsletter-composer-panel') &&
-      activeEl.matches?.('input,textarea,select,button')
-    );
-
-    if(!composing){
-      renderNewsletterCenter();
-    }else{
-      const metrics=$$('.newsletter-metric strong');
-      if(metrics[0])metrics[0].textContent=Number(newsletterCache.summary?.active||0).toLocaleString();
-      if(metrics[1])metrics[1].textContent=Number(newsletterCache.summary?.pending||0).toLocaleString();
-      if(metrics[2])metrics[2].textContent=Number(newsletterCache.summary?.newThisMonth||0).toLocaleString();
-      if(metrics[3])metrics[3].textContent=Number(newsletterCache.summary?.campaignsSent||0).toLocaleString();
+    if(viewName==='newsletter')newsletterInlineStatus('資料更新失敗：'+newsletterCache.error,'bad');
+  }finally{
+    const fresh=$('#nlRefresh');
+    if(fresh){
+      fresh.disabled=false;
+      fresh.textContent=previousText;
     }
-  }else if(viewName==='dashboard')refreshDashboardNewsletterSnapshot();
+  }
 }
 
 async function activatePendingNewsletterSubscribers(){
@@ -6923,9 +7138,10 @@ function renderNewsletterCenter(){
     camps=newsletterCache.campaigns||[];
 
   $('#view').innerHTML=`<div class="page-head">
-    <div><h1>電子報</h1><p>SIGN WELL Letter · 使用 Glass Letter 範本管理自動文章通知與手動群發。</p></div>
-    <button class="top-action" id="nlRefresh">重新整理</button>
+    <div><h1>電子報</h1><p>SIGN WELL Letter · 安全模式：頁面不自動刷新、不建立預覽 iframe；需要時再手動操作。</p></div>
+    <button class="top-action" id="nlRefresh">重新整理資料</button>
   </div>
+  <div class="newsletter-inline-action" id="nlInlineAction"></div>
   <div class="newsletter-summary">
     <div class="newsletter-metric"><span>可寄送訂閱者</span><strong>${Number(s.active||0).toLocaleString()}</strong></div>
     <div class="newsletter-metric"><span>待確認</span><strong>${Number(s.pending||0).toLocaleString()}</strong></div>
@@ -6977,7 +7193,6 @@ function renderNewsletterCenter(){
           oncontextmenu="return false"
           ondragstart="return false"
           onselectstart="return false"
-          onpointerdown="return false"
           tabindex="-1">
           <span class="lock" aria-hidden="true">⌁</span>
           <span class="dots" aria-hidden="true">••••••••••••••</span>
@@ -7012,10 +7227,10 @@ function renderNewsletterCenter(){
         <div class="newsletter-preview-placeholder" id="nlPreviewPlaceholder">
           <div>
             <strong>Glass Letter 預覽目前未載入</strong>
-            <span>內容編輯、測試信、群發與其他 CMS 操作都不需要先載入預覽。需要確認版面時再按上方按鈕即可。</span>
+            <span>目前頁面完全沒有建立 iframe。只有按「載入預覽」後才會動態建立，避免影響整個 CMS 的點擊與捲動。</span>
           </div>
         </div>
-        <iframe hidden class="newsletter-exact-preview-frame" id="nlExactPreview" title="SIGN WELL Letter 實際寄送預覽" sandbox="allow-same-origin"></iframe>
+        <div id="nlExactPreviewMount"></div>
       </div>
     </section>
 
