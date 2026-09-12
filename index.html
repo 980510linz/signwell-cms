@@ -2576,6 +2576,69 @@ select:focus-visible{
 }
 .newsletter-diag strong{color:#506b7e}
 
+
+/* ============================================================
+   CMS v14.22 · Exact Email Preview / Backend Proof
+   ============================================================ */
+.newsletter-exact-preview{
+  position:relative;
+  overflow:hidden;
+  margin:15px 0 18px;
+  border-radius:28px;
+  background:
+    radial-gradient(260px 120px at 8% 0%,rgba(255,255,255,.90),transparent 74%),
+    linear-gradient(155deg,rgba(244,251,255,.88),rgba(224,241,252,.66));
+  border:1px solid rgba(255,255,255,.88);
+  box-shadow:0 24px 64px rgba(53,96,129,.10),inset 0 1px 0 #fff;
+}
+.newsletter-exact-preview-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 14px;
+  color:#6d8596;font-size:8.5px;font-weight:800;letter-spacing:.08em;
+  border-bottom:1px solid rgba(72,121,156,.08);
+  background:rgba(255,255,255,.30);
+}
+.newsletter-exact-preview-head span:last-child{
+  letter-spacing:0;color:#5f8ba7;
+}
+.newsletter-exact-preview-frame{
+  display:block;width:100%;height:760px;border:0;background:#edf6fc;
+  transition:opacity .18s ease;
+}
+.newsletter-exact-preview.loading .newsletter-exact-preview-frame{opacity:.42}
+.newsletter-preview-loading{
+  position:absolute;z-index:3;left:50%;top:82px;transform:translateX(-50%);
+  padding:8px 12px;border-radius:999px;
+  color:#70899a;font-size:9px;font-weight:800;
+  background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 8px 22px rgba(54,100,132,.08);
+  opacity:0;pointer-events:none;transition:opacity .15s ease;
+}
+.newsletter-exact-preview.loading .newsletter-preview-loading{opacity:1}
+.newsletter-backend-alert{
+  margin:12px 0;
+  padding:13px 14px;
+  border-radius:19px;
+  background:linear-gradient(150deg,rgba(255,244,220,.76),rgba(240,248,255,.62));
+  border:1px solid rgba(255,255,255,.86);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.94),0 9px 24px rgba(93,87,63,.05);
+  color:#806f51;font-size:9.5px;line-height:1.65;
+}
+.newsletter-backend-alert strong{display:block;color:#695a42;font-size:11px;margin-bottom:3px}
+.newsletter-backend-ok{
+  color:#5e8075;
+}
+.newsletter-backend-alert.newsletter-backend-ok{
+  background:linear-gradient(150deg,rgba(234,250,246,.72),rgba(236,247,255,.58));
+}
+.newsletter-test-success{
+  font-weight:800;color:#5f8879;
+}
+@media(max-width:620px){
+  .newsletter-exact-preview{border-radius:22px}
+  .newsletter-exact-preview-frame{height:650px}
+}
+
 </style>
 </head>
 <body>
@@ -2618,7 +2681,7 @@ select:focus-visible{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.21</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.22</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -3209,7 +3272,9 @@ function stopAnalyticsLivePolling(){
 const NEWSLETTER_AUTO_KEY='signwell-newsletter-auto-v1';
 const NEWSLETTER_ADMIN_KEY='signwell-newsletter-admin-local-v2';
 const NEWSLETTER_DEFAULT_ADMIN_KEY='sw_admin_G4H0tWRn0d663lsL2dKc88ih2FHlH51-';
-let newsletterCache={summary:null,subscribers:[],campaigns:[]};
+let newsletterCache={summary:null,subscribers:[],campaigns:[],backendVersion:'',templateVersion:''};
+let newsletterPreviewTimer=null;
+let newsletterPreviewSeq=0;
 
 const NEWSLETTER_CFG=()=>window.SIGNWELL_NEWSLETTER||{};
 function newsletterBase(){
@@ -3309,6 +3374,7 @@ async function newsletterRequest(path,opt={}){
     '/admin/newsletter/summary':'admin.summary',
     '/admin/newsletter/subscribers':'admin.subscribers',
     '/admin/newsletter/campaigns':'admin.campaigns',
+    '/admin/newsletter/preview':'admin.preview',
     '/admin/newsletter/test':'admin.test',
     '/admin/newsletter/send':'admin.send',
     '/admin/newsletter/send-article':'admin.sendArticle',
@@ -3707,7 +3773,10 @@ function showNewsletterSendOverlay(mode='auto'){
   wrap.classList.remove('done');
   const title=$('#newsletterSendTitle'),copy=$('#newsletterSendCopy');
   if(title)title.textContent='請等一下';
-  if(copy)copy.textContent=mode==='manual'?'正在發送電子報給所有訂閱者':'自動發送給訂閱者中';
+  if(copy)copy.textContent=
+    mode==='manual'?'正在發送電子報給所有訂閱者':
+    mode==='test'?'正在發送 Glass Letter 測試信':
+    '自動發送給訂閱者中';
   wrap.classList.add('show');wrap.setAttribute('aria-hidden','false');
 }
 function completeNewsletterSendOverlay(message='電子報已發送完成'){
@@ -3740,6 +3809,10 @@ async function maybeAutoSendArticleNewsletter(a,{force=false,sourceEl=null}={}){
   if(!newsletterAdminKey()){
     if(force)showToast('請先到「電子報」輸入 Newsletter Admin Key');
     return {attempted:true,success:false,error:'admin-key'};
+  }
+  if(!newsletterBackendIsCurrent()){
+    showToast('文章已發布，但 Backend v3.7 尚未部署，因此未自動寄送舊版電子報。');
+    return {attempted:true,success:false,error:'backend-version'};
   }
 
   let diag;
@@ -3815,12 +3888,85 @@ async function maybeAutoSendArticleNewsletter(a,{force=false,sourceEl=null}={}){
   }
 }
 
+
+function newsletterBackendCurrent(){
+  return String(newsletterCache.backendVersion||newsletterCache.summary?.backendVersion||'');
+}
+function newsletterBackendIsCurrent(){
+  return newsletterBackendCurrent()==='3.7' &&
+    String(newsletterCache.templateVersion||newsletterCache.summary?.templateVersion||'').includes('Glass');
+}
+function newsletterBackendStatusHTML(){
+  const v=newsletterBackendCurrent();
+  const template=String(newsletterCache.templateVersion||newsletterCache.summary?.templateVersion||'');
+  if(newsletterBackendIsCurrent()){
+    return `<div class="newsletter-backend-alert newsletter-backend-ok"><strong>Backend v${escapeHTML(v)} · Glass Renderer 已同步</strong>CMS 預覽、測試信、手動群發與新文章自動電子報共用同一個 newsletterHtml_ renderer。</div>`;
+  }
+  return `<div class="newsletter-backend-alert"><strong>Backend 版本尚未同步${v?` · 目前 v${escapeHTML(v)}`:''}</strong>你目前的 /exec 仍在跑舊版，因此會出現「預覽是新的、寄出去是舊版」以及「Subscribers Sheet 有人但群發掃描 0 人」。請把 Backend v3.7 部署到 CMS 現在使用的同一個 /exec。</div>`;
+}
+
+function resizeNewsletterPreviewFrame(frame){
+  try{
+    const doc=frame.contentDocument;
+    if(!doc)return;
+    const h=Math.max(
+      560,
+      Math.min(1200,
+        doc.documentElement?.scrollHeight||0,
+        doc.body?.scrollHeight||0
+      )
+    );
+    frame.style.height=h+'px';
+  }catch(_){}
+}
+
+async function refreshNewsletterExactPreview(){
+  const shell=$('#nlExactPreviewShell'),frame=$('#nlExactPreview');
+  if(!shell||!frame)return;
+
+  if(!newsletterBackendIsCurrent()){
+    frame.srcdoc=`<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#edf6fc;font:14px -apple-system,BlinkMacSystemFont,sans-serif;color:#718695;display:grid;place-items:center;min-height:420px;padding:28px;text-align:center}strong{display:block;color:#48687d;font-size:20px;margin-bottom:10px}</style><div><strong>等待 Backend v3.7</strong>部署完成後，這裡會直接顯示「實際寄出去的同一份 HTML」。</div>`;
+    return;
+  }
+
+  const seq=++newsletterPreviewSeq;
+  shell.classList.add('loading');
+  try{
+    const result=await newsletterRequest('/admin/newsletter/preview',{
+      method:'POST',
+      timeoutMs:45000,
+      body:JSON.stringify(newsletterDraft())
+    });
+    if(seq!==newsletterPreviewSeq)return;
+    if(String(result.backendVersion||'')!=='3.7')throw new Error('Backend preview 版本不符');
+    frame.onload=()=>resizeNewsletterPreviewFrame(frame);
+    frame.srcdoc=String(result.html||'');
+  }catch(err){
+    if(seq!==newsletterPreviewSeq)return;
+    frame.srcdoc=`<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#edf6fc;font:14px -apple-system,BlinkMacSystemFont,sans-serif;color:#8a6d66;display:grid;place-items:center;min-height:420px;padding:28px;text-align:center}</style><div>無法載入實際電子報預覽：${escapeHTML(err?.message||String(err))}</div>`;
+  }finally{
+    if(seq===newsletterPreviewSeq)shell.classList.remove('loading');
+  }
+}
+function scheduleNewsletterExactPreview(){
+  clearTimeout(newsletterPreviewTimer);
+  newsletterPreviewTimer=setTimeout(()=>refreshNewsletterExactPreview(),320);
+}
+
 async function newsletterSubscriberPreflight(){
+  if(!newsletterBackendIsCurrent()){
+    throw new Error('Backend v3.7 尚未部署到目前 /exec');
+  }
+
   const diag=await newsletterRequest('/admin/newsletter/diagnostics',{
     method:'POST',
     timeoutMs:30000,
     body:JSON.stringify({})
   });
+
+  if(String(diag.backendVersion||'')!=='3.7'){
+    throw new Error('Backend 版本不符：'+String(diag.backendVersion||'unknown'));
+  }
 
   const count=Number(diag.sendable||0);
 
@@ -3857,12 +4003,16 @@ async function refreshNewsletterData(){
     newsletterCache={
       summary:summary||null,
       subscribers:Array.isArray(subs?.items)?subs.items:[],
-      campaigns:Array.isArray(camps?.items)?camps.items:[]
+      campaigns:Array.isArray(camps?.items)?camps.items:[],
+      backendVersion:String(summary?.backendVersion||''),
+      templateVersion:String(summary?.templateVersion||'')
     };
 
     /* v14.21: if the ordinary summary looks suspicious, run a canonical
        subscriber scan before rendering "0". */
-    if(Number(newsletterCache.summary?.active||0)===0 && Number(newsletterCache.summary?.total||0)>0){
+    if(newsletterBackendIsCurrent() &&
+       Number(newsletterCache.summary?.active||0)===0 &&
+       Number(newsletterCache.summary?.total||0)>0){
       try{await newsletterSubscriberPreflight()}catch(_){}
     }
   }catch(err){
@@ -3983,12 +4133,47 @@ function celebrateNewsletterSend(originEl=null){
 async function sendNewsletterTest(){
   const draft=newsletterDraft();
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
+
+  if(!newsletterBackendIsCurrent()){
+    showToast('請先部署 Backend v3.7，否則測試信仍會使用舊電子報版型。');
+    return;
+  }
+
+  const b=$('#nlTestBtn');
+  let shown=false;
+  const wait=setTimeout(()=>{
+    shown=true;
+    showNewsletterSendOverlay('test');
+  },220);
+
   try{
-    const b=$('#nlTestBtn');if(b){b.disabled=true;b.textContent='寄送中…'}
-    await newsletterRequest('/admin/newsletter/test',{method:'POST',timeoutMs:90000,body:JSON.stringify(draft)});
-    showToast('Glass Letter 測試信已寄到 signwell.com@gmail.com');
-  }catch(err){showToast('測試信失敗：'+(err?.message||err))}
-  finally{const b=$('#nlTestBtn');if(b){b.disabled=false;b.textContent='發送測試信'}}
+    if(b){b.disabled=true;b.textContent='寄送中…'}
+    const result=await newsletterRequest('/admin/newsletter/test',{
+      method:'POST',
+      timeoutMs:90000,
+      body:JSON.stringify(draft)
+    });
+
+    clearTimeout(wait);
+    if(!shown){
+      shown=true;
+      showNewsletterSendOverlay('test');
+    }
+
+    completeNewsletterSendOverlay('Glass Letter 測試信已寄至 signwell.com@gmail.com');
+    celebrateNewsletterSend(b);
+    showToast('測試信發送成功 ✓');
+
+    await sleep(1250);
+    hideNewsletterSendOverlay();
+    shown=false;
+  }catch(err){
+    clearTimeout(wait);
+    if(shown)hideNewsletterSendOverlay();
+    showToast('測試信失敗：'+(err?.message||err));
+  }finally{
+    if(b){b.disabled=false;b.textContent='發送測試信'}
+  }
 }
 async function sendNewsletterAll(){
   const draft=newsletterDraft();
@@ -3996,6 +4181,10 @@ async function sendNewsletterAll(){
   if(!draft.subject||!draft.content){showToast('請先填寫主旨與內容');return}
   if(!newsletterEnabled()){showToast('Newsletter Backend 尚未連線');return}
   if(!newsletterAdminKey()){showToast('請先輸入 Newsletter Admin Key');return}
+  if(!newsletterBackendIsCurrent()){
+    showToast('Backend v3.7 尚未部署。現在的舊 Backend 會把 Subscribers 掃成 0，已停止發送避免卡住。');
+    return;
+  }
 
   const b=$('#nlSendBtn');
 
@@ -4085,21 +4274,7 @@ function newsletterHeroOptionsHTML(){
     published.map(a=>`<option value="${escapeHTML(a.id)}">${escapeHTML(a.title||'未命名文章')}</option>`).join('');
 }
 function updateNewsletterComposerPreview(){
-  const title=$('#nlLetterPreviewTitle');if(!title)return;
-  const subject=String($('#nlSubject')?.value||'SIGN WELL Letter').trim()||'SIGN WELL Letter';
-  const content=String($('#nlBody')?.value||'寫下這封電子報要傳達的內容…').trim()||'寫下這封電子報要傳達的內容…';
-  const heroId=String($('#nlHeroArticle')?.value||'').trim();
-  const hero=heroId?data.articles.find(a=>String(a.id)===heroId):null;
-  title.textContent=hero?.title||subject;
-  const copy=$('#nlLetterPreviewCopy');if(copy)copy.textContent=hero?.excerpt||content;
-  const cover=$('#nlLetterPreviewCover');
-  if(cover){
-    const src=hero?newsletterAbsolutePublicUrl(hero.cover||''):'';
-    if(src){cover.src=src;cover.classList.add('show')}else{cover.removeAttribute('src');cover.classList.remove('show')}
-  }
-  const category=$('#nlLetterPreviewCategory');if(category)category.textContent=hero?.category||'SIGN WELL LETTER';
-  const minutes=$('#nlLetterPreviewMinutes');if(minutes)minutes.textContent=(hero?newsletterReadingMinutes(hero):1)+' 分鐘閱讀';
-  const cta=$('#nlLetterPreviewCTA');if(cta)cta.textContent=hero?'閱讀全文':'前往 SIGN WELL';
+  scheduleNewsletterExactPreview();
 }
 
 function renderNewsletterCenter(){
@@ -4124,22 +4299,19 @@ function renderNewsletterCenter(){
     <div><b>${connected?'Backend 已設定':'Backend 尚未連線'}</b><br>${connected?(newsletterCache.error||'Google Sheet · 訂閱名單 · Gmail · SIGN WELL Letter Glass 已共用同一 Backend'):'先完成 Newsletter Backend 後，這裡會自動顯示真實訂閱資料。'}</div>
     <span>${connected?'ONLINE':'SETUP'}</span>
   </div>
-  <div class="newsletter-diag"><strong>名單判定：</strong>有效 Email 且未取消訂閱即視為可寄送。狀態：${escapeHTML(newsletterStatusBreakdownText(s))}${Number(s.repaired||0)>0?` · 已自動修復 ${Number(s.repaired).toLocaleString()} 筆`:''}</div>
+  <div class="newsletter-diag"><strong>Backend：</strong>${escapeHTML(newsletterBackendCurrent()||'舊版 / 無版本回報')} · <strong>名單：</strong>${Number(s.total||0).toLocaleString()} 筆 / 可寄送 ${Number(s.active||0).toLocaleString()} 位 · 狀態 ${escapeHTML(newsletterStatusBreakdownText(s))}</div>
   <div class="newsletter-grid">
     <section class="newsletter-panel">
       <h3>建立 SIGN WELL Letter</h3>
       <p>自動新文章通知與手動電子報都會套用相同的 Glass Letter 品牌範本；這裡可直接預覽主視覺。</p>
-      <div class="newsletter-composer-shell">
-        <div class="newsletter-letter-preview">
-          <div class="newsletter-letter-brand"><div><strong>SIGN WELL</strong><span>欣緯生醫</span></div><div class="newsletter-letter-no">LETTER<br><span>LIVE PREVIEW</span></div></div>
-          <div class="newsletter-letter-kicker">SIGN WELL LETTER</div>
-          <div class="newsletter-letter-title" id="nlLetterPreviewTitle">SIGN WELL Letter</div>
-          <div class="newsletter-letter-copy" id="nlLetterPreviewCopy">寫下這封電子報要傳達的內容…</div>
-          <img class="newsletter-letter-cover" id="nlLetterPreviewCover" alt="">
-          <div class="newsletter-letter-meta"><b id="nlLetterPreviewCategory">SIGN WELL LETTER</b><span id="nlLetterPreviewMinutes">1 分鐘閱讀</span></div>
-          <span class="newsletter-letter-cta" id="nlLetterPreviewCTA">前往 SIGN WELL</span>
-          <div class="newsletter-letter-wave" aria-hidden="true"></div>
+      ${newsletterBackendStatusHTML()}
+      <div class="newsletter-exact-preview" id="nlExactPreviewShell">
+        <div class="newsletter-exact-preview-head">
+          <span>實際寄送 HTML · EXACT PREVIEW</span>
+          <span>${newsletterBackendIsCurrent()?'Backend v3.7':'WAITING FOR v3.7'}</span>
         </div>
+        <div class="newsletter-preview-loading">同步正式電子報預覽中…</div>
+        <iframe class="newsletter-exact-preview-frame" id="nlExactPreview" title="SIGN WELL Letter 實際寄送預覽" sandbox="allow-same-origin"></iframe>
       </div>
       <div class="newsletter-formgrid">
         <label>主推文章<select id="nlHeroArticle">${newsletterHeroOptionsHTML()}</select></label>
