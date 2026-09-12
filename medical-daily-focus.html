@@ -214,7 +214,7 @@ html.lowfx .focus-card{transform:none!important}
       <div>
         <div class="eyebrow">SIGN WELL · DAILY MEDICAL FOCUS</div>
         <h1 class="title">每日焦點</h1>
-        <p class="sub">近 24 小時醫療熱門事件，依「至少 6 家知名媒體報導同一事件」排序。最多 5 則，每一則都附原文來源，不生成 AI 長文。</p>
+        <p class="sub">近 24 小時醫療熱門事件，依「至少 2 家知名媒體報導同一事件」排序。最多 5 則，每一則都附原文來源，不生成 AI 長文。</p>
       </div>
       <button class="icon-btn" id="refreshBtn" type="button" aria-label="重新搜尋">
         <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
@@ -222,7 +222,7 @@ html.lowfx .focus-card{transform:none!important}
     </header>
 
     <div class="status-row">
-      <div class="status-left"><i class="status-dot"></i><span id="statusText">近 24 小時 · 熱門門檻 ≥ 6 家知名媒體</span></div>
+      <div class="status-left"><i class="status-dot"></i><span id="statusText">近 24 小時 · 熱門門檻 ≥ 2 家知名媒體</span></div>
       <span class="demo-badge" id="demoBadge">不使用展示資料</span>
     </div>
 
@@ -250,7 +250,7 @@ html.lowfx .focus-card{transform:none!important}
   const CONFIG = {
     hours: 24,
     limit: 5,
-    minMajorMedia: 6,
+    minMajorMedia: 2,
     requestTimeoutMs: 60000
   };
 
@@ -346,7 +346,7 @@ html.lowfx .focus-card{transform:none!important}
       };
     })
     // SECOND HARD GATE:
-    // "熱門" means MORE THAN 5 distinct major media => at least 6.
+    // "熱門" means at least 2 distinct major media.
     .filter(t=>t.majorMediaCount>=CONFIG.minMajorMedia && t.sources.length>=CONFIG.minMajorMedia)
     .sort((a,b)=>b.majorMediaCount-a.majorMediaCount || new Date(b.publishedAt)-new Date(a.publishedAt))
     .slice(0,CONFIG.limit);
@@ -413,13 +413,13 @@ html.lowfx .focus-card{transform:none!important}
     const qualifiedCount=Number(payload?.qualifiedTopics||topics.length);
 
     statusText.textContent =
-      `近 24 小時 · ${crawledAt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新 · 熱門門檻 ≥ 6 家知名媒體`;
+      `近 24 小時 · ${crawledAt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新 · 熱門門檻 ≥ 2 家知名媒體`;
 
     if(!topics.length){
       focusList.innerHTML=`
         <div class="empty-hot glass">
           <strong>目前沒有事件通過熱門門檻</strong>
-          <p>系統已完成即時爬取，但近 24 小時內沒有醫療事件同時被至少 6 家「知名媒體白名單」報導。系統不會用展示資料或較低門檻補滿 5 則。</p>
+          <p>系統已完成即時爬取，但近 24 小時內沒有醫療事件同時被至少 2 家「知名媒體白名單」報導。系統不會用展示資料或較低門檻補滿 5 則。</p>
         </div>`;
       return;
     }
@@ -450,7 +450,7 @@ html.lowfx .focus-card{transform:none!important}
     if(qualifiedCount<CONFIG.limit){
       focusList.insertAdjacentHTML('beforeend',`
         <div class="strict-note">
-          <strong>嚴格模式：</strong>本次掃描 ${scannedCount.toLocaleString()} 篇候選報導，只有 ${qualifiedCount} 個事件通過「至少 6 家知名媒體」門檻，因此不會用低熱度新聞補滿 5 則。
+          <strong>嚴格模式：</strong>本次掃描 ${scannedCount.toLocaleString()} 篇候選報導，只有 ${qualifiedCount} 個事件通過「至少 2 家知名媒體」門檻，因此不會用低熱度新聞補滿 5 則。
         </div>`);
     }
 
