@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#9EBFDA" />
+<meta name="color-scheme" content="light" />
+<title>時事新聞建議 · SIGN WELL CMS</title>
+<style>
+:root{
+  --sky-0:#eef7ff;
+  --sky-1:#d6e7f4;
+  --sky-2:#aac8df;
+  --sky-3:#7ea6c7;
+  --ink:#102b42;
+  --ink-2:#244961;
+  --muted:rgba(16,43,66,.58);
+  --muted-2:rgba(16,43,66,.40);
+  --blue:#2f709f;
+  --blue-deep:#1e587e;
+  --line:rgba(255,255,255,.74);
+  --line-soft:rgba(255,255,255,.48);
+  --glass:rgba(255,255,255,.30);
+  --glass-strong:rgba(255,255,255,.48);
+  --shadow:0 26px 80px rgba(35,76,108,.16),0 8px 28px rgba(35,76,108,.08);
+  --shadow-soft:0 14px 44px rgba(35,76,108,.12),0 3px 14px rgba(35,76,108,.06);
+  --r-xl:34px;
+  --r-lg:28px;
+  --r-md:22px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mx:50%;
+  --my:40%;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--sky-2)}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink)}
+body{min-height:100dvh;overflow-x:hidden;background:
+  radial-gradient(90vw 70vw at 8% -6%,rgba(255,255,255,.92),transparent 60%),
+  radial-gradient(66vw 60vw at 96% 16%,rgba(179,220,249,.70),transparent 64%),
+  radial-gradient(70vw 60vw at 50% 115%,rgba(71,126,169,.48),transparent 60%),
+  linear-gradient(158deg,var(--sky-0) 0%,var(--sky-1) 34%,var(--sky-2) 68%,var(--sky-3) 100%);
+  -webkit-tap-highlight-color:transparent;
+}
+button,a{font:inherit}
+button{color:inherit}
+a{color:inherit}
+
+/* performance tier: preserve the glass language but reduce GPU cost */
+html.lowfx .orb{filter:blur(34px);animation:none!important}
+html.lowfx .glass{backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%)}
+html.lowfx .focus-card{transform:none!important}
+
+.scene{position:fixed;inset:-12%;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:999px;filter:blur(58px);opacity:.85;will-change:transform}
+.orb.a{width:44vmax;height:44vmax;left:-4%;top:-8%;background:radial-gradient(circle,rgba(255,255,255,.88),rgba(255,255,255,0) 68%);animation:driftA 18s ease-in-out infinite alternate}
+.orb.b{width:38vmax;height:38vmax;right:-4%;top:10%;background:radial-gradient(circle,rgba(116,182,229,.64),rgba(116,182,229,0) 69%);animation:driftB 22s ease-in-out infinite alternate}
+.orb.c{width:48vmax;height:48vmax;left:24%;bottom:-20%;background:radial-gradient(circle,rgba(66,117,158,.32),rgba(66,117,158,0) 67%);animation:driftC 24s ease-in-out infinite alternate}
+@keyframes driftA{to{transform:translate3d(8%,6%,0) scale(1.06)}}
+@keyframes driftB{to{transform:translate3d(-8%,7%,0) scale(.95)}}
+@keyframes driftC{to{transform:translate3d(-6%,-4%,0) scale(1.08)}}
+
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.16;background-image:radial-gradient(rgba(27,64,91,.16) .45px,transparent .55px);background-size:13px 13px;mask-image:linear-gradient(to bottom,#000 0%,transparent 86%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 86%)}
+
+.app{position:relative;z-index:2;width:min(1040px,100%);margin:0 auto;min-height:100dvh;padding:max(18px,env(safe-area-inset-top)) 20px max(48px,calc(env(safe-area-inset-bottom) + 28px));}
+.screen{display:none;animation:screenIn .55s var(--ease) both}
+.screen.active{display:block}
+@keyframes screenIn{from{opacity:0;transform:translateY(12px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+
+.glass{position:relative;isolation:isolate;background:
+  radial-gradient(280px circle at var(--mx) var(--my),rgba(255,255,255,.34),transparent 72%),
+  linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,255,255,.19));
+  border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.88),inset 0 -1px 0 rgba(52,93,123,.05),var(--shadow-soft);backdrop-filter:blur(28px) saturate(165%);-webkit-backdrop-filter:blur(28px) saturate(165%)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;background:linear-gradient(135deg,rgba(176,224,255,.62),rgba(255,255,255,.92) 24%,rgba(184,241,227,.38) 44%,rgba(255,255,255,.16) 61%,rgba(235,191,255,.38) 80%,rgba(255,255,255,.75));mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);-webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);mask-composite:exclude;-webkit-mask-composite:xor;opacity:.7}
+
+/* HOME: literally one control before interaction */
+#homeScreen{min-height:calc(100dvh - 66px);display:none;place-items:center}
+#homeScreen.active{display:grid}
+.hero-wrap{text-align:center;width:100%}
+.scan-button{position:relative;overflow:hidden;min-width:min(360px,84vw);height:94px;padding:0 36px;border:0;border-radius:999px;cursor:pointer;font-size:21px;font-weight:700;letter-spacing:.02em;color:var(--ink);background:
+  radial-gradient(130% 170% at 24% -40%,rgba(255,255,255,.98),rgba(255,255,255,.58) 38%,rgba(255,255,255,.25) 68%),
+  rgba(255,255,255,.32);border:1px solid rgba(255,255,255,.88);box-shadow:inset 0 2px 0 rgba(255,255,255,.95),inset 0 -12px 26px rgba(68,113,146,.08),0 24px 60px rgba(35,76,108,.18),0 4px 16px rgba(35,76,108,.08);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);transition:transform .3s var(--ease),box-shadow .3s ease,opacity .2s ease;animation:floatButton 5.2s ease-in-out infinite alternate}
+.scan-button:hover{transform:translateY(-3px) scale(1.01);box-shadow:inset 0 2px 0 rgba(255,255,255,1),inset 0 -12px 26px rgba(68,113,146,.08),0 30px 72px rgba(35,76,108,.21),0 6px 18px rgba(35,76,108,.1)}
+.scan-button:active{transform:scale(.98)}
+.scan-button:disabled{cursor:default;animation:none;opacity:.92}
+.scan-button::before{content:"";position:absolute;top:-30%;left:-34%;width:36%;height:160%;transform:rotate(12deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.80),transparent);filter:blur(5px);animation:sheen 4.8s var(--ease) infinite}
+.scan-button.searching::before{animation:sheen 1.25s linear infinite}
+.scan-button.searching{transform:scale(.985)}
+.scan-button .label{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:12px}
+.scan-button .pulse{width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 0 rgba(47,112,159,.25);display:none}
+.scan-button.searching .pulse{display:block;animation:pulse 1.2s ease-out infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(47,112,159,0)}}
+@keyframes sheen{0%,56%{transform:translateX(-80%) rotate(12deg);opacity:0}68%{opacity:1}100%{transform:translateX(440%) rotate(12deg);opacity:0}}
+@keyframes floatButton{to{transform:translateY(-6px)}}
+.search-note{margin:20px 0 0;font-size:13px;color:var(--muted);min-height:21px;opacity:0;transition:opacity .25s ease}
+.search-note.show{opacity:1}
+
+/* LIST */
+.topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:36px 2px 18px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.title{margin:0;font-size:clamp(34px,5vw,54px);font-weight:760;letter-spacing:-.055em;line-height:1}
+.sub{margin:11px 0 0;max-width:60ch;font-size:13.5px;line-height:1.75;color:var(--muted)}
+.icon-btn{width:44px;height:44px;border:1px solid rgba(255,255,255,.76);border-radius:999px;background:rgba(255,255,255,.30);display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.88),0 10px 26px rgba(35,76,108,.10);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);transition:transform .2s var(--ease),background .2s ease}
+.icon-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.46)}
+.icon-btn:active{transform:scale(.94)}
+.icon-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.status-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 15px;padding:0 2px;font-size:11.5px;color:var(--muted-2)}
+.status-left{display:flex;align-items:center;gap:8px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#3da172;box-shadow:0 0 0 4px rgba(61,161,114,.10)}
+.demo-badge{display:none;padding:5px 9px;border-radius:999px;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.55);color:var(--blue-deep)}
+.demo-badge.show{display:inline-flex}
+
+.focus-list{display:grid;gap:14px}
+.focus-card{--rx:0deg;--ry:0deg;position:relative;border-radius:var(--r-lg);padding:22px 22px 20px;cursor:pointer;text-align:left;width:100%;color:inherit;transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .18s ease,box-shadow .25s ease,border-color .25s ease;overflow:hidden}
+.focus-card:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 22px 58px rgba(35,76,108,.16)}
+.focus-card:active{transform:perspective(1100px) scale(.99)}
+.focus-card .shine{position:absolute;inset:0;pointer-events:none;background:radial-gradient(360px circle at var(--mx) var(--my),rgba(255,255,255,.42),transparent 64%);opacity:.75}
+.card-grid{position:relative;z-index:2;display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:18px;align-items:start}
+.index{font-size:46px;font-weight:500;letter-spacing:-.06em;line-height:.92;color:rgba(16,43,66,.22)}
+.meta-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.tag{display:inline-flex;align-items:center;min-height:25px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.58);font-size:11px;font-weight:750;color:var(--blue-deep)}
+.when{font-size:11px;color:var(--muted-2)}
+.focus-title{margin:0;font-size:19px;font-weight:720;letter-spacing:-.025em;line-height:1.45}
+.focus-summary{margin:9px 0 0;font-size:13.5px;line-height:1.8;color:var(--muted);max-width:68ch}
+.why{margin:9px 0 0;font-size:12px;line-height:1.7;color:var(--blue)}
+.source-count{align-self:center;justify-self:end;min-width:86px;text-align:right;font-size:11px;color:var(--muted-2)}
+.hot-threshold{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:rgba(255,255,255,.30);border:1px solid rgba(255,255,255,.58);color:var(--blue-deep);font-size:10px;font-weight:800}
+.source-origin{justify-self:end;display:inline-flex;align-items:center;gap:5px;padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.52);font-size:10px;font-weight:800;color:var(--blue-deep)}
+.source-origin.direct{color:#32775e;background:rgba(231,250,241,.40)}
+.strict-note{margin:12px 0 0;font-size:11px;line-height:1.7;color:var(--muted-2)}
+.strict-note strong{color:var(--blue-deep)}
+.empty-hot{border-radius:26px;padding:28px;text-align:center}
+.empty-hot strong{display:block;font-size:18px}
+.empty-hot p{margin:9px auto 0;max-width:58ch;color:var(--muted);font-size:12.5px;line-height:1.75}
+.chev{display:inline-grid;place-items:center;width:34px;height:34px;margin-top:8px;border-radius:999px;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.44);font-size:18px;color:var(--ink-2)}
+
+/* DETAIL */
+.detail-wrap{padding-top:28px}
+.detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+.back-btn{flex:none}
+.detail-card{border-radius:var(--r-xl);padding:28px;overflow:hidden}
+.detail-kicker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--blue);font-weight:750;letter-spacing:.02em}
+.detail-title{margin:14px 0 0;font-size:clamp(30px,5vw,48px);line-height:1.16;letter-spacing:-.052em;font-weight:760;max-width:18ch}
+.detail-summary{margin:18px 0 0;font-size:15px;line-height:1.95;color:var(--ink-2);max-width:70ch}
+.why-panel{margin-top:22px;border-top:1px solid rgba(255,255,255,.48);padding-top:18px}
+.why-label{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted-2)}
+.why-text{margin:8px 0 0;font-size:13.5px;line-height:1.8;color:var(--blue-deep)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pill{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.68);background:rgba(255,255,255,.34);cursor:pointer;font-size:12.5px;font-weight:700;box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 8px 20px rgba(35,76,108,.08);transition:transform .2s var(--ease),background .2s ease}
+.pill:hover{transform:translateY(-1px);background:rgba(255,255,255,.5)}
+.pill.primary{background:var(--ink);color:#fff;border-color:rgba(16,43,66,.28)}
+
+.sources{margin-top:16px;display:grid;gap:10px}
+.source-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;border-radius:20px;padding:15px 16px;text-decoration:none;transition:transform .2s var(--ease),background .2s ease}
+.source-card:hover{transform:translateY(-2px);background:rgba(255,255,255,.42)}
+.source-name{font-size:13px;font-weight:750}
+.source-title{font-size:12.5px;line-height:1.55;color:var(--muted);margin-top:3px}
+.source-time{font-size:10.5px;color:var(--muted-2);margin-top:4px}
+.external{font-size:18px;color:var(--muted-2)}
+
+.toast{position:fixed;left:50%;bottom:max(24px,calc(env(safe-area-inset-bottom) + 14px));z-index:99;transform:translate(-50%,16px);opacity:0;pointer-events:none;padding:10px 15px;border-radius:999px;background:rgba(13,34,50,.86);color:#fff;font-size:12px;box-shadow:0 12px 30px rgba(13,34,50,.22);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:.25s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.error-card{display:none;margin-top:18px;border-radius:20px;padding:14px 16px;font-size:12.5px;line-height:1.65;color:#7a3d3d;background:rgba(255,238,238,.52);border:1px solid rgba(255,255,255,.62)}
+.error-card.show{display:block}
+
+.skeleton{height:150px;border-radius:28px;overflow:hidden;position:relative;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.42)}
+.skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:loading 1.25s linear infinite}
+@keyframes loading{to{transform:translateX(100%)}}
+
+@media(max-width:720px){
+  .app{padding-left:14px;padding-right:14px}
+  .topbar{padding-top:26px;align-items:flex-start}
+  .title{font-size:38px}
+  .focus-card{padding:18px 17px}
+  .card-grid{grid-template-columns:50px minmax(0,1fr);gap:12px}
+  .index{font-size:34px}
+  .source-count{grid-column:2;justify-self:start;text-align:left;display:flex;align-items:center;gap:8px;margin-top:0}
+  .chev{width:28px;height:28px;margin:0}
+  .detail-card{padding:22px 18px;border-radius:28px}
+  .detail-title{font-size:34px}
+}
+
+@media(max-width:430px){
+  .scan-button{min-width:84vw;height:86px;font-size:19px}
+  .focus-summary{font-size:13px}
+  .detail-summary{font-size:14px;line-height:1.85}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+<div class="scene" aria-hidden="true">
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+</div>
+<div class="noise" aria-hidden="true"></div>
+
+<main class="app">
+  <section class="screen active" id="homeScreen" aria-label="搜尋每日醫療焦點">
+    <div class="hero-wrap">
+      <button class="scan-button" id="scanBtn" type="button">
+        <span class="label"><i class="pulse"></i><span id="scanText">搜尋今日醫療焦點</span></span>
+      </button>
+      <p class="search-note" id="searchNote" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="listScreen">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">SIGN WELL · DAILY MEDICAL FOCUS</div>
+        <h1 class="title">每日焦點</h1>
+        <p class="sub">近 24 小時醫療熱門事件，依「至少 6 家知名媒體報導同一事件」排序。最多 5 則，每一則都附原文來源，不生成 AI 長文。</p>
+      </div>
+      <button class="icon-btn" id="refreshBtn" type="button" aria-label="重新搜尋">
+        <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
+      </button>
+    </header>
+
+    <div class="status-row">
+      <div class="status-left"><i class="status-dot"></i><span id="statusText">近 24 小時 · 熱門門檻 ≥ 6 家知名媒體</span></div>
+      <span class="demo-badge" id="demoBadge">不使用展示資料</span>
+    </div>
+
+    <div class="focus-list" id="focusList"></div>
+    <div class="error-card" id="listError"></div>
+  </section>
+
+  <section class="screen" id="detailScreen">
+    <div class="detail-wrap">
+      <div class="detail-head">
+        <button class="icon-btn back-btn" id="backBtn" type="button" aria-label="返回每日焦點">
+          <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+      </div>
+      <article class="glass detail-card" id="detailCard"></article>
+      <div class="sources" id="sourceList"></div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  const CONFIG = {
+    hours: 24,
+    limit: 5,
+    minMajorMedia: 6,
+    requestTimeoutMs: 60000
+  };
+
+  const lowPower = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+                   (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+                   matchMedia('(max-width: 520px)').matches;
+  if (lowPower) document.documentElement.classList.add('lowfx');
+
+  const $ = s => document.querySelector(s);
+  const homeScreen = $('#homeScreen');
+  const listScreen = $('#listScreen');
+  const detailScreen = $('#detailScreen');
+  const scanBtn = $('#scanBtn');
+  const scanText = $('#scanText');
+  const searchNote = $('#searchNote');
+  const refreshBtn = $('#refreshBtn');
+  const backBtn = $('#backBtn');
+  const focusList = $('#focusList');
+  const detailCard = $('#detailCard');
+  const sourceList = $('#sourceList');
+  const statusText = $('#statusText');
+  const demoBadge = $('#demoBadge');
+  const listError = $('#listError');
+  const toast = $('#toast');
+
+  let topics = [];
+  let busy = false;
+
+  function showScreen(target){
+    [homeScreen,listScreen,detailScreen].forEach(el=>el.classList.remove('active'));
+    target.classList.add('active');
+    window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  }
+
+  function escapeHTML(v=''){
+    return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+
+  function safeURL(v=''){
+    const s=String(v||'').trim();
+    return /^https?:\/\//i.test(s) ? s : '#';
+  }
+
+  function relTime(input){
+    const t = new Date(input || Date.now()).getTime();
+    if(!Number.isFinite(t)) return '剛剛';
+    const mins = Math.max(0,Math.round((Date.now()-t)/60000));
+    if(mins < 1) return '剛剛';
+    if(mins < 60) return `${mins} 分鐘前`;
+    const h = Math.round(mins/60);
+    if(h < 24) return `${h} 小時前`;
+    return '24 小時內';
+  }
+
+  function normalizeTopics(payload){
+    const raw = Array.isArray(payload) ? payload : (payload?.topics || payload?.data || []);
+
+    return raw.map((t,i)=>{
+      const sourceMap=new Map();
+
+      (Array.isArray(t.sources)?t.sources:[]).forEach((s,j)=>{
+        const canonical=String(s.canonicalName||s.name||s.source||'').trim();
+        const url=safeURL(s.originalUrl||s.url||s.link||'');
+
+        // HARD FRONT-END GATE:
+        // a source must be explicitly certified by backend as major media.
+        if(s.isMajorMedia!==true || !canonical || url==='#') return;
+        if(sourceMap.has(canonical)) return;
+
+        sourceMap.set(canonical,{
+          name:canonical,
+          title:s.title||s.headline||t.title||'',
+          url,
+          googleNewsUrl:safeURL(s.googleNewsUrl||''),
+          publishedAt:s.publishedAt||s.published_at||t.publishedAt||new Date().toISOString(),
+          isMajorMedia:true,
+          isDirectOriginal:s.isDirectOriginal===true
+        });
+      });
+
+      const sources=[...sourceMap.values()];
+      const majorMediaCount=Number(t.majorMediaCount||sources.length);
+
+      return {
+        id:t.id||`topic-${i+1}`,
+        title:t.title||'未命名焦點',
+        category:t.category||t.tag||'醫療',
+        summary:t.summary||t.description||'',
+        why:t.why||t.reason||'',
+        publishedAt:t.publishedAt||t.published_at||t.updatedAt||new Date().toISOString(),
+        majorMediaCount,
+        sources
+      };
+    })
+    // SECOND HARD GATE:
+    // "熱門" means MORE THAN 5 distinct major media => at least 6.
+    .filter(t=>t.majorMediaCount>=CONFIG.minMajorMedia && t.sources.length>=CONFIG.minMajorMedia)
+    .sort((a,b)=>b.majorMediaCount-a.majorMediaCount || new Date(b.publishedAt)-new Date(a.publishedAt))
+    .slice(0,CONFIG.limit);
+  }
+
+  async function requestScan(force=false){
+    // This page is designed to run inside SIGN WELL CMS.
+    // The parent performs the authenticated Apps Script request so the Admin Key
+    // is never written into this iframe's markup.
+    if(window.parent && window.parent!==window && typeof window.parent.signwellMedicalNewsScan==='function'){
+      return window.parent.signwellMedicalNewsScan({
+        hours:CONFIG.hours,
+        limit:CONFIG.limit,
+        minMajorMedia:CONFIG.minMajorMedia,
+        force:Boolean(force)
+      });
+    }
+
+    throw new Error('請由 SIGN WELL CMS 的「時事新聞建議」分頁開啟。');
+  }
+
+  async function scan(force=false){
+    if(busy) return;
+
+    busy = true;
+    listError.classList.remove('show');
+    scanBtn.disabled = true;
+    scanBtn.classList.add('searching');
+    scanText.textContent = '正在爬取 Google News';
+    searchNote.textContent = '比對近 24 小時報導、聚合同一事件，並只保留 ≥ 6 家知名媒體共同報導的熱門焦點…';
+    searchNote.classList.add('show');
+
+    try{
+      const data=await Promise.race([
+        requestScan(force),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error('爬蟲逾時，請稍後再試。')),CONFIG.requestTimeoutMs))
+      ]);
+
+      topics=normalizeTopics(data);
+
+      renderList(data);
+      showScreen(listScreen);
+    }catch(err){
+      topics=[];
+      focusList.innerHTML='';
+      showScreen(listScreen);
+      listError.textContent='無法取得即時醫療焦點：'+String(err?.message||err);
+      listError.classList.add('show');
+      statusText.textContent='即時爬蟲未完成';
+    }finally{
+      busy = false;
+      scanBtn.disabled = false;
+      scanBtn.classList.remove('searching');
+      scanText.textContent = '搜尋今日醫療焦點';
+      searchNote.classList.remove('show');
+    }
+  }
+
+  function renderList(payload={}){
+    demoBadge.classList.remove('show');
+
+    const crawledAt=payload?.crawledAt ? new Date(payload.crawledAt) : new Date();
+    const scannedCount=Number(payload?.scannedArticles||0);
+    const qualifiedCount=Number(payload?.qualifiedTopics||topics.length);
+
+    statusText.textContent =
+      `近 24 小時 · ${crawledAt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新 · 熱門門檻 ≥ 6 家知名媒體`;
+
+    if(!topics.length){
+      focusList.innerHTML=`
+        <div class="empty-hot glass">
+          <strong>目前沒有事件通過熱門門檻</strong>
+          <p>系統已完成即時爬取，但近 24 小時內沒有醫療事件同時被至少 6 家「知名媒體白名單」報導。系統不會用展示資料或較低門檻補滿 5 則。</p>
+        </div>`;
+      return;
+    }
+
+    focusList.innerHTML = topics.map((t,i)=>`
+      <button class="focus-card glass" type="button" data-i="${i}" aria-label="開啟 ${escapeHTML(t.title)}">
+        <span class="shine"></span>
+        <div class="card-grid">
+          <div class="index">${String(i+1).padStart(2,'0')}</div>
+          <div>
+            <div class="meta-line">
+              <span class="tag">${escapeHTML(t.category)}</span>
+              <span class="when">${relTime(t.publishedAt)}</span>
+              <span class="hot-threshold">HOT · ${t.majorMediaCount} 家知名媒體</span>
+            </div>
+            <h2 class="focus-title">${escapeHTML(t.title)}</h2>
+            <p class="focus-summary">${escapeHTML(t.summary)}</p>
+            <p class="why">${escapeHTML(t.why)}</p>
+          </div>
+          <div class="source-count">
+            <span>${t.majorMediaCount} 家媒體</span>
+            <span class="chev">›</span>
+          </div>
+        </div>
+      </button>
+    `).join('');
+
+    if(qualifiedCount<CONFIG.limit){
+      focusList.insertAdjacentHTML('beforeend',`
+        <div class="strict-note">
+          <strong>嚴格模式：</strong>本次掃描 ${scannedCount.toLocaleString()} 篇候選報導，只有 ${qualifiedCount} 個事件通過「至少 6 家知名媒體」門檻，因此不會用低熱度新聞補滿 5 則。
+        </div>`);
+    }
+
+    focusList.querySelectorAll('.focus-card').forEach(card=>{
+      card.addEventListener('click',()=>openDetail(Number(card.dataset.i)));
+
+      if(!lowPower){
+        card.addEventListener('pointermove',e=>{
+          const r=card.getBoundingClientRect();
+          const x=(e.clientX-r.left)/r.width;
+          const y=(e.clientY-r.top)/r.height;
+          card.style.setProperty('--mx',`${x*100}%`);
+          card.style.setProperty('--my',`${y*100}%`);
+          card.style.setProperty('--ry',`${(x-.5)*3.2}deg`);
+          card.style.setProperty('--rx',`${(.5-y)*2.8}deg`);
+        });
+        card.addEventListener('pointerleave',()=>{
+          card.style.setProperty('--ry','0deg');
+          card.style.setProperty('--rx','0deg');
+        });
+      }
+    });
+  }
+
+  function openDetail(i){
+    const t=topics[i];
+    if(!t) return;
+
+    detailCard.innerHTML=`
+      <div class="detail-kicker">
+        <span class="tag">${escapeHTML(t.category)}</span>
+        <span>${relTime(t.publishedAt)}</span>
+        <span>·</span>
+        <span>${t.majorMediaCount} 家知名媒體共同報導</span>
+      </div>
+      <h1 class="detail-title">${escapeHTML(t.title)}</h1>
+      <p class="detail-summary">${escapeHTML(t.summary)}</p>
+      <div class="why-panel">
+        <div class="why-label">HOTNESS CHECK</div>
+        <p class="why-text">${escapeHTML(t.why)}</p>
+      </div>
+      <div class="actions">
+        <button class="pill primary" id="copyFocusBtn" type="button">複製焦點摘要</button>
+        <button class="pill" id="copyLinksBtn" type="button">複製全部原文</button>
+      </div>
+    `;
+
+    sourceList.innerHTML=t.sources.map(s=>`
+      <a class="source-card glass" href="${escapeHTML(s.url)}" target="_blank" rel="noopener noreferrer">
+        <div>
+          <div class="source-name">${escapeHTML(s.name)}</div>
+          <div class="source-title">${escapeHTML(s.title)}</div>
+          <div class="source-time">${relTime(s.publishedAt)}</div>
+        </div>
+        <span class="source-origin ${s.isDirectOriginal?'direct':''}">
+          ${s.isDirectOriginal?'原文':'原文入口'} ↗
+        </span>
+      </a>
+    `).join('');
+
+    $('#copyFocusBtn').addEventListener('click',()=>{
+      copyText(`${t.title}\n\n${t.summary}\n\n熱門度：${t.majorMediaCount} 家知名媒體共同報導\n${t.why}`);
+    });
+
+    $('#copyLinksBtn').addEventListener('click',()=>{
+      copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
+    });
+
+    showScreen(detailScreen);
+  }
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+    }catch{
+      const ta=document.createElement('textarea');
+      ta.value=text;
+      ta.style.position='fixed';
+      ta.style.opacity='0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    showToast('已複製');
+  }
+
+  let toastTimer;
+  function showToast(msg){
+    clearTimeout(toastTimer);
+    toast.textContent=msg;
+    toast.classList.add('show');
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),1600);
+  }
+
+  scanBtn.addEventListener('click',()=>scan(false));
+  refreshBtn.addEventListener('click',()=>{
+    showScreen(homeScreen);
+    setTimeout(()=>scan(true),220);
+  });
+  backBtn.addEventListener('click',()=>showScreen(listScreen));
+})();
+</script>
+</body>
+</html>

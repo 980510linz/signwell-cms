@@ -3942,6 +3942,457 @@ body:not(.perf-lite) .publish-actions{
 }
 @media(prefers-reduced-motion:reduce){.newsletter-recheck-return.is-checking{animation:none!important}}
 
+
+/* ============================================================
+   CMS v14.36 · Inline Return / Key Shield / Canvas Analytics v3
+   ============================================================ */
+
+/* Backend recheck is now literally beside the synchronized status title. */
+.newsletter-backend-alert{
+  padding-right:14px!important;
+}
+.newsletter-backend-title-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  min-width:0!important;
+}
+.newsletter-backend-title-row strong{
+  flex:0 1 auto;
+  min-width:0;
+}
+.newsletter-return-key{
+  position:relative!important;
+  inset:auto!important;
+  flex:0 0 32px;
+  width:32px!important;
+  min-width:32px!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  border-radius:10px!important;
+  color:#587f98!important;
+  font-size:17px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  background:
+    radial-gradient(circle at 28% 18%,rgba(255,255,255,.96),transparent 44%),
+    linear-gradient(145deg,rgba(255,255,255,.58),rgba(222,242,254,.26))!important;
+  border:1px solid rgba(255,255,255,.84)!important;
+  box-shadow:
+    0 5px 13px rgba(59,107,139,.07),
+    inset 0 1px 0 rgba(255,255,255,.96)!important;
+}
+.newsletter-return-key:hover{
+  transform:translateY(-1px);
+}
+.newsletter-return-key:active{
+  transform:scale(.94)!important;
+}
+.newsletter-return-key.is-checking{
+  animation:newsletterReturnPulse .82s ease-in-out infinite!important;
+}
+@keyframes newsletterReturnPulse{
+  0%,100%{box-shadow:0 5px 13px rgba(59,107,139,.07),inset 0 1px 0 rgba(255,255,255,.96)}
+  50%{box-shadow:0 6px 18px rgba(76,151,198,.16),0 0 0 4px rgba(111,188,232,.07),inset 0 1px 0 #fff}
+}
+
+/* Admin key UI: no raw value, no text selection/copy affordance. */
+.newsletter-key-shield{
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  -webkit-touch-callout:none!important;
+  caret-color:transparent!important;
+  cursor:default!important;
+}
+.newsletter-key-shield,
+.newsletter-key-shield *{
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  -webkit-touch-callout:none!important;
+}
+.newsletter-key-shield::selection,
+.newsletter-key-shield *::selection{
+  background:transparent!important;
+}
+
+/* Canvas chart completely bypasses the Safari SVG path/overflow stack. */
+#analyticsLivePanel .analytics-chart-frame{
+  padding:14px!important;
+  overflow:hidden!important;
+  contain:layout paint!important;
+}
+#analyticsLivePanel .analytics-canvas-layout{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 42px!important;
+  gap:9px!important;
+  align-items:stretch!important;
+  width:100%!important;
+  min-width:0!important;
+}
+#analyticsLivePanel .analytics-canvas-main{
+  min-width:0!important;
+  width:100%!important;
+}
+#analyticsLivePanel .analytics-canvas-wrap{
+  position:relative;
+  width:100%;
+  height:168px;
+  min-width:0;
+  overflow:hidden;
+  border-radius:17px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.16),rgba(220,241,253,.045));
+}
+#analyticsLivePanel #analyticsTrendCanvas{
+  display:block!important;
+  width:100%!important;
+  height:168px!important;
+  max-width:100%!important;
+  min-width:0!important;
+  touch-action:pan-y;
+}
+#analyticsLivePanel .analytics-canvas-scale{
+  height:168px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:2px 0;
+  color:#92a5b2;
+  font-size:8px;
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+}
+#analyticsLivePanel .analytics-labels-v3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  width:100%;
+  min-width:0;
+  margin-top:6px;
+  color:#879aa8;
+  font-size:8px;
+  font-weight:750;
+}
+#analyticsLivePanel .analytics-labels-v3 span{
+  min-width:0;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+#analyticsLivePanel .analytics-labels-v3 span:nth-child(2){text-align:center}
+#analyticsLivePanel .analytics-labels-v3 span:last-child{text-align:right}
+#analyticsLivePanel .analytics-chart-status-v3{
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:2;
+  transform:translate(-50%,-50%);
+  padding:7px 10px;
+  border-radius:999px;
+  color:#91a3af;
+  background:rgba(255,255,255,.40);
+  border:1px solid rgba(255,255,255,.62);
+  font-size:8.5px;
+  font-weight:800;
+  pointer-events:none;
+}
+#analyticsLivePanel .analytics-chart-status-v3.hidden{display:none!important}
+
+@media(max-width:620px){
+  #analyticsLivePanel .analytics-chart-frame{padding:11px!important}
+  #analyticsLivePanel .analytics-canvas-layout{
+    grid-template-columns:minmax(0,1fr) 34px!important;
+    gap:6px!important;
+  }
+  #analyticsLivePanel .analytics-canvas-wrap,
+  #analyticsLivePanel #analyticsTrendCanvas,
+  #analyticsLivePanel .analytics-canvas-scale{
+    height:146px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .newsletter-return-key.is-checking{animation:none!important}
+}
+
+
+/* ============================================================
+   CMS v14.37 · Medical News Suggestions
+   ============================================================ */
+.medical-news-shell{
+  position:relative;
+  width:100%;
+  min-width:0;
+  height:calc(100dvh - 116px);
+  min-height:680px;
+  overflow:hidden;
+  border-radius:28px;
+  background:
+    radial-gradient(360px 180px at 10% 0%,rgba(255,255,255,.72),transparent 74%),
+    linear-gradient(145deg,rgba(255,255,255,.34),rgba(220,241,253,.15));
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:
+    0 24px 70px rgba(44,88,118,.09),
+    inset 0 1px 0 rgba(255,255,255,.90);
+}
+.medical-news-frame{
+  display:block;
+  width:100%;
+  height:100%;
+  min-width:0;
+  border:0;
+  background:transparent;
+}
+@media(max-width:900px){
+  .medical-news-shell{
+    height:calc(100dvh - 104px);
+    min-height:620px;
+    border-radius:24px;
+  }
+}
+
+
+/* ============================================================
+   CMS v14.38 · Subscription / Unsubscribe Analytics
+   ============================================================ */
+.dashboard-subscription-analytics{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:12px;
+  margin:14px 0 18px;
+}
+.dashboard-sub-card{
+  min-width:0;
+  border-radius:25px;
+  padding:18px;
+  background:
+    radial-gradient(250px 120px at 8% 0%,rgba(255,255,255,.72),transparent 72%),
+    linear-gradient(145deg,rgba(255,255,255,.40),rgba(224,243,255,.16));
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:
+    0 18px 46px rgba(49,91,122,.058),
+    inset 0 1px 0 rgba(255,255,255,.88);
+}
+.dashboard-sub-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:13px;
+}
+.dashboard-sub-head strong{
+  display:block;
+  color:#375970;
+  font-family:var(--font-serif)!important;
+  font-size:17px;
+  font-weight:800!important;
+}
+.dashboard-sub-head span{
+  display:block;
+  margin-top:4px;
+  color:#8c9ca6;
+  font-size:8.5px;
+  font-weight:750;
+}
+.dashboard-sub-mini-badge{
+  flex:0 0 auto;
+  padding:6px 8px;
+  border-radius:999px;
+  color:#5d8298;
+  background:rgba(255,255,255,.40);
+  border:1px solid rgba(255,255,255,.72);
+  font-size:7.5px;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+.dashboard-sub-metrics{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.dashboard-sub-metric{
+  min-width:0;
+  padding:11px 10px;
+  border-radius:17px;
+  background:rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.58);
+}
+.dashboard-sub-metric span{
+  display:block;
+  color:#8a9aa5;
+  font-size:8px;
+  font-weight:800;
+}
+.dashboard-sub-metric strong{
+  display:block;
+  margin-top:4px;
+  color:#3e6076;
+  font-size:21px;
+  line-height:1.05;
+  font-weight:900;
+  letter-spacing:-.03em;
+}
+.dashboard-sub-metric.good strong{color:#3f7c68}
+.dashboard-sub-metric.bad strong{color:#9b6468}
+.dashboard-sub-growth{
+  margin-top:8px;
+  color:#80929f;
+  font-size:8.5px;
+  font-weight:750;
+}
+.dashboard-sub-growth b{color:#4d748b}
+.dashboard-sub-growth .down{color:#a06468}
+.dashboard-sub-trend{
+  display:grid;
+  grid-template-columns:repeat(14,minmax(0,1fr));
+  align-items:end;
+  gap:4px;
+  height:76px;
+  margin-top:13px;
+  padding:8px 4px 2px;
+  border-radius:16px;
+  background:rgba(255,255,255,.17);
+  border:1px solid rgba(255,255,255,.48);
+  overflow:hidden;
+}
+.dashboard-sub-day{
+  min-width:0;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:2px;
+}
+.dashboard-sub-bar{
+  width:100%;
+  min-height:2px;
+  border-radius:5px 5px 2px 2px;
+}
+.dashboard-sub-bar.in{
+  background:linear-gradient(180deg,rgba(85,168,213,.88),rgba(114,193,224,.46));
+}
+.dashboard-sub-bar.out{
+  background:linear-gradient(180deg,rgba(202,108,114,.78),rgba(226,153,157,.42));
+}
+.dashboard-sub-legend{
+  display:flex;
+  gap:12px;
+  margin-top:7px;
+  color:#93a1aa;
+  font-size:7.5px;
+  font-weight:800;
+}
+.dashboard-sub-legend i{
+  width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px
+}
+.dashboard-sub-legend .in i{background:#65add5}
+.dashboard-sub-legend .out i{background:#c9797f}
+
+.dashboard-sub-list{
+  display:grid;
+  gap:7px;
+  margin-top:12px;
+}
+.dashboard-sub-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  min-width:0;
+  padding:9px 10px;
+  border-radius:15px;
+  background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.52);
+}
+.dashboard-sub-row>div{min-width:0}
+.dashboard-sub-row strong{
+  display:block;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#577284;
+  font-size:9.5px;
+  font-weight:850;
+}
+.dashboard-sub-row small{
+  display:block;
+  margin-top:3px;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#91a0aa;
+  font-size:7.8px;
+  font-weight:700;
+}
+.dashboard-sub-status{
+  flex:0 0 auto;
+  padding:5px 7px;
+  border-radius:999px;
+  color:#4f7f6f;
+  background:rgba(227,247,238,.54);
+  border:1px solid rgba(255,255,255,.66);
+  font-size:7px;
+  font-weight:900;
+}
+.dashboard-sub-status.unsub{
+  color:#a45e64;
+  background:rgba(255,230,232,.56);
+}
+.dashboard-reason-bars{
+  display:grid;
+  gap:7px;
+  margin-top:12px;
+}
+.dashboard-reason-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 34px;
+  gap:8px;
+  align-items:center;
+}
+.dashboard-reason-copy{
+  min-width:0;
+}
+.dashboard-reason-copy div{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  color:#728a9a;
+  font-size:8px;
+  font-weight:800;
+}
+.dashboard-reason-track{
+  height:6px;
+  margin-top:4px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(109,149,175,.09);
+}
+.dashboard-reason-fill{
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,rgba(202,113,119,.78),rgba(224,153,158,.48));
+}
+.dashboard-reason-count{
+  text-align:right;
+  color:#99666a;
+  font-size:9px;
+  font-weight:900;
+}
+@media(max-width:900px){
+  .dashboard-subscription-analytics{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .dashboard-sub-metrics{grid-template-columns:1fr 1fr}
+  .dashboard-sub-metric:last-child{grid-column:1/-1}
+  .dashboard-sub-trend{gap:3px}
+}
+
 </style>
 </head>
 <body>
@@ -4002,7 +4453,7 @@ body:not(.perf-lite) .publish-actions{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.35</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.38</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -4034,7 +4485,7 @@ body:not(.perf-lite) .publish-actions{
     </div>
   </div>
 </div>
-<script src="analytics-config.js?v=14.35"></script>
+<script src="analytics-config.js?v=14.38"></script>
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active',AUTH_PASS_HASH='d27a6055',AUTH_ANSWER_HASH='be64c71a';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0};
@@ -4312,6 +4763,41 @@ function withCmsViewTransition(fn){
   },70);
 }
 
+
+/*
+ * Authenticated bridge used by medical-daily-focus.html.
+ * The iframe never receives the Admin Key as visible markup.
+ */
+window.signwellMedicalNewsScan=async function(options={}){
+  const payload={
+    hours:24,
+    limit:5,
+    minMajorMedia:6,
+    force:Boolean(options.force)
+  };
+
+  return signwellGasBridge(
+    'admin.medicalNews.scan',
+    payload,
+    {
+      adminKey:newsletterAdminKey(),
+      timeoutMs:60000
+    }
+  );
+};
+
+function renderMedicalNewsSuggestions(){
+  $('#view').innerHTML=`
+    <section class="medical-news-shell" aria-label="時事新聞建議">
+      <iframe
+        class="medical-news-frame"
+        id="medicalNewsSuggestionsFrame"
+        src="medical-daily-focus.html?v=14.37"
+        title="SIGN WELL 時事新聞建議"
+        loading="eager"></iframe>
+    </section>`;
+}
+
 function renderView(){
   const editing=Boolean(currentId);
 
@@ -4333,6 +4819,7 @@ function renderView(){
 
   const names={
     dashboard:'總覽',
+    medicalnews:'時事新聞建議',
     articles:'文章',
     topics:'主題管理',
     site:'主頁設定',
@@ -4343,7 +4830,8 @@ function renderView(){
 
   $('#topTitle').textContent=names[viewName]||'總覽';
 
-  if(viewName==='articles')renderArticles();
+  if(viewName==='medicalnews')renderMedicalNewsSuggestions();
+  else if(viewName==='articles')renderArticles();
   else if(viewName==='topics')renderTopicsManager();
   else if(viewName==='site')renderSiteText();
   else if(viewName==='aboutpage')renderAboutPageEditor();
@@ -4560,23 +5048,19 @@ function topArticleAnalyticsHTML(){
     </div>
   </div>`;
 }
+function trendNiceMax(value){
+  const n=Math.max(1,Number(value||0));
+  const pow=Math.pow(10,Math.floor(Math.log10(n)));
+  const scaled=n/pow;
+  const nice=scaled<=1?1:scaled<=2?2:scaled<=5?5:10;
+  return nice*pow;
+}
+
 function trendChartHTML(){
   const arr=trendDataForRange();
-  const w=720,h=150,padX=12,padY=12;
   const values=arr.map(x=>Math.max(0,Number(x.value||0)));
-  const max=Math.max(1,...values);
-  const step=(w-padX*2)/Math.max(1,arr.length-1);
-
-  const pts=arr.map((x,i)=>({
-    x:padX+i*step,
-    y:h-padY-(Math.max(0,Number(x.value||0))/max)*(h-padY*2),
-    ...x
-  }));
-
-  const line=pts.map((p,i)=>(i?'L':'M')+p.x.toFixed(2)+','+p.y.toFixed(2)).join(' ');
-  const area=pts.length
-    ?`M${pts[0].x.toFixed(2)},${(h-padY).toFixed(2)} ${pts.map(p=>'L'+p.x.toFixed(2)+','+p.y.toFixed(2)).join(' ')} L${pts[pts.length-1].x.toFixed(2)},${(h-padY).toFixed(2)} Z`
-    :'';
+  const rawMax=Math.max(0,...values);
+  const scaleMax=trendNiceMax(rawMax);
 
   const rangeLabel=analyticsRange==='7d'?'本週':analyticsRange==='month'?'本月':'今年';
   const selectedTotal=rangeTotal();
@@ -4595,7 +5079,6 @@ function trendChartHTML(){
   const firstLabel=arr[0]?.label||'';
   const midLabel=arr[Math.floor(arr.length/2)]?.label||'';
   const lastLabel=arr[arr.length-1]?.label||'';
-  const hasData=arr.length>0;
 
   return `<section class="analytics-panel" id="analyticsLivePanel">
     <div class="analytics-head">
@@ -4603,7 +5086,8 @@ function trendChartHTML(){
         <span>${rangeLabel}</span>
         <strong>網站觀看次數趨勢</strong>
         <div class="analytics-live-state ${remote?'':'offline'}">
-          <i></i>${remote?`Google Sheet LIVE · 每 6 秒更新 · ${updated}`:'等待 Google Sheet Analytics'}
+          <i></i>
+          ${remote?`Google Sheet LIVE · 每 6 秒更新 · ${updated}`:'等待 Google Sheet Analytics'}
         </div>
       </div>
       <div class="analytics-total-wrap">
@@ -4623,46 +5107,23 @@ function trendChartHTML(){
     </div>
 
     <div class="analytics-chart-frame">
-      <div class="analytics-chart-layout">
-        <div class="analytics-chart-main">
-          ${hasData?`
-          <div class="analytics-chart">
-            <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="${rangeLabel}觀看趨勢" role="img">
-              <defs>
-                <linearGradient id="trendFillV2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#72b9e7" stop-opacity=".34"/>
-                  <stop offset=".56" stop-color="#91d1ef" stop-opacity=".13"/>
-                  <stop offset="1" stop-color="#bfe8f8" stop-opacity=".02"/>
-                </linearGradient>
-                <clipPath id="trendClipV2"><rect x="0" y="0" width="${w}" height="${h}"/></clipPath>
-              </defs>
-              <g class="analytics-grid-v2">
-                <line x1="${padX}" y1="${h*.25}" x2="${w-padX}" y2="${h*.25}"/>
-                <line x1="${padX}" y1="${h*.50}" x2="${w-padX}" y2="${h*.50}"/>
-                <line x1="${padX}" y1="${h*.75}" x2="${w-padX}" y2="${h*.75}"/>
-                <line x1="${padX}" y1="${h-padY}" x2="${w-padX}" y2="${h-padY}"/>
-              </g>
-              <g clip-path="url(#trendClipV2)">
-                ${area?`<path class="analytics-area-v2" d="${area}"/>`:''}
-                ${line?`<path class="analytics-line-v2" d="${line}"/>`:''}
-              </g>
-              ${pts.filter((_,i)=>i===0||i===pts.length-1||i===Math.floor(pts.length/2)).map(p=>`
-                <circle class="analytics-dot-v2" cx="${p.x}" cy="${p.y}" r="3.8">
-                  <title>${escapeHTML(p.label)}：${Number(p.value||0).toLocaleString()}</title>
-                </circle>`).join('')}
-            </svg>
+      <div class="analytics-canvas-layout">
+        <div class="analytics-canvas-main">
+          <div class="analytics-canvas-wrap">
+            <canvas id="analyticsTrendCanvas"
+              role="img"
+              aria-label="${rangeLabel}網站觀看次數趨勢"></canvas>
+            <div class="analytics-chart-status-v3 ${rawMax>0?'hidden':''}" id="analyticsTrendEmpty">目前這個區間尚無觀看資料</div>
           </div>
-          <div class="analytics-labels">
+          <div class="analytics-labels-v3">
             <span>${escapeHTML(firstLabel)}</span>
             <span>${escapeHTML(midLabel)}</span>
             <span>${escapeHTML(lastLabel)}</span>
-          </div>`
-          :`<div class="analytics-chart-empty">目前沒有可繪製的觀看資料</div>`}
+          </div>
         </div>
-
-        <div class="analytics-chart-scale-v2" aria-hidden="true">
-          <span>${max.toLocaleString()}</span>
-          <span>${Math.round(max/2).toLocaleString()}</span>
+        <div class="analytics-canvas-scale" aria-hidden="true">
+          <span>${scaleMax.toLocaleString()}</span>
+          <span>${Math.round(scaleMax/2).toLocaleString()}</span>
           <span>0</span>
         </div>
       </div>
@@ -4679,6 +5140,123 @@ function trendChartHTML(){
   </section>`;
 }
 
+let analyticsCanvasRAF=0;
+let analyticsCanvasResizeObserver=null;
+
+function drawAnalyticsTrendCanvas(){
+  const canvas=$('#analyticsTrendCanvas');
+  if(!canvas||viewName!=='dashboard')return;
+
+  const rect=canvas.getBoundingClientRect();
+  const cssW=Math.max(280,Math.round(rect.width||canvas.parentElement?.clientWidth||640));
+  const cssH=Math.max(120,Math.round(rect.height||168));
+  const dpr=Math.min(2,Math.max(1,window.devicePixelRatio||1));
+
+  const pixelW=Math.max(1,Math.round(cssW*dpr));
+  const pixelH=Math.max(1,Math.round(cssH*dpr));
+
+  if(canvas.width!==pixelW)canvas.width=pixelW;
+  if(canvas.height!==pixelH)canvas.height=pixelH;
+
+  const ctx=canvas.getContext('2d');
+  if(!ctx)return;
+
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,cssW,cssH);
+
+  const arr=trendDataForRange();
+  const values=arr.map(x=>Math.max(0,Number(x.value||0)));
+  const rawMax=Math.max(0,...values);
+  const max=trendNiceMax(rawMax);
+
+  const padL=8,padR=8,padT=10,padB=10;
+  const innerW=Math.max(1,cssW-padL-padR);
+  const innerH=Math.max(1,cssH-padT-padB);
+
+  // Grid.
+  ctx.save();
+  ctx.strokeStyle='rgba(83,124,154,.10)';
+  ctx.lineWidth=1;
+  [0,.25,.5,.75,1].forEach(t=>{
+    const y=padT+innerH*t+.5;
+    ctx.beginPath();
+    ctx.moveTo(padL,y);
+    ctx.lineTo(cssW-padR,y);
+    ctx.stroke();
+  });
+  ctx.restore();
+
+  if(!arr.length)return;
+
+  const pts=arr.map((item,i)=>{
+    const x=padL+(arr.length===1?innerW/2:(i/(arr.length-1))*innerW);
+    const y=padT+innerH-(Math.max(0,Number(item.value||0))/max)*innerH;
+    return {x,y,value:Number(item.value||0),label:item.label};
+  });
+
+  // Area fill.
+  const grad=ctx.createLinearGradient(0,padT,0,cssH-padB);
+  grad.addColorStop(0,'rgba(99,172,224,.26)');
+  grad.addColorStop(.62,'rgba(145,209,239,.10)');
+  grad.addColorStop(1,'rgba(191,232,248,.015)');
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x,cssH-padB);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x,cssH-padB);
+  ctx.closePath();
+  ctx.fillStyle=grad;
+  ctx.fill();
+
+  // Trend line.
+  ctx.beginPath();
+  pts.forEach((p,i)=>{
+    if(i===0)ctx.moveTo(p.x,p.y);
+    else ctx.lineTo(p.x,p.y);
+  });
+  ctx.strokeStyle='#63ace0';
+  ctx.lineWidth=2.6;
+  ctx.lineJoin='round';
+  ctx.lineCap='round';
+  ctx.stroke();
+
+  // Only three dots to reduce visual noise.
+  const dotIndexes=[0,Math.floor((pts.length-1)/2),pts.length-1];
+  [...new Set(dotIndexes)].forEach(i=>{
+    const p=pts[i];
+    if(!p)return;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,3.6,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,.98)';
+    ctx.fill();
+    ctx.lineWidth=2;
+    ctx.strokeStyle='#63ace0';
+    ctx.stroke();
+  });
+}
+
+function scheduleAnalyticsTrendCanvas(){
+  cancelAnimationFrame(analyticsCanvasRAF);
+  analyticsCanvasRAF=requestAnimationFrame(()=>{
+    analyticsCanvasRAF=0;
+    drawAnalyticsTrendCanvas();
+
+    if(analyticsCanvasResizeObserver){
+      analyticsCanvasResizeObserver.disconnect();
+      analyticsCanvasResizeObserver=null;
+    }
+
+    const wrap=$('#analyticsTrendCanvas')?.parentElement;
+    if(wrap&&'ResizeObserver' in window){
+      analyticsCanvasResizeObserver=new ResizeObserver(()=>{
+        cancelAnimationFrame(analyticsCanvasRAF);
+        analyticsCanvasRAF=requestAnimationFrame(drawAnalyticsTrendCanvas);
+      });
+      analyticsCanvasResizeObserver.observe(wrap);
+    }
+  });
+}
+
 let analyticsLiveTimer=null;
 function refreshAnalyticsVisuals(){
   const panel=$('#analyticsLivePanel');
@@ -4689,6 +5267,8 @@ function refreshAnalyticsVisuals(){
     if(fresh)panel.replaceWith(fresh);
   }
 
+  scheduleAnalyticsTrendCanvas();
+
   data.articles.forEach(a=>{
     const count=articleViewCount(a);
     $$(`[data-article-view="${CSS.escape(String(a.id))}"]`).forEach(el=>{
@@ -4696,6 +5276,11 @@ function refreshAnalyticsVisuals(){
     });
   });
 }
+
+window.addEventListener('resize',()=>{
+  if(viewName==='dashboard')scheduleAnalyticsTrendCanvas();
+},{passive:true});
+
 function startAnalyticsLivePolling(){
   stopAnalyticsLivePolling();
   analyticsLiveTimer=setInterval(()=>{
@@ -5462,38 +6047,43 @@ function newsletterBackendStatusHTML(){
   const endpoint=newsletterBase();
   const s=newsletterCache.summary||{};
   const senderReady=s.senderReady!==false;
+
   const senderChip=`
     <span class="newsletter-sender-lock ${senderReady?'':'bad'}">
       ${senderReady?'✓':'!'} 寄件者 ${senderReady?'鎖定':'未就緒'} · signwell.com@gmail.com
     </span>`;
-  const recheck=`
-    <button type="button"
-      class="newsletter-recheck-return ${newsletterBackendCapability==='checking'?'is-checking':''}"
+
+  const returnKey=`
+    <button
+      type="button"
+      class="newsletter-return-key ${newsletterBackendCapability==='checking'?'is-checking':''}"
       id="nlBackendCheckBtn"
       onclick="recheckNewsletterBackend()"
       title="重新檢查 Backend"
-      aria-label="重新檢查 Backend">↻</button>`;
+      aria-label="重新檢查 Backend">↩</button>`;
 
   if(newsletterBackendCapability==='ok'||newsletterBackendIsCurrent()){
     return `<div class="newsletter-backend-alert newsletter-backend-ok">
       <div class="newsletter-backend-main">
         <div class="newsletter-backend-title-row">
-          <strong>Backend ${v?`v${escapeHTML(v)}`:'v4.1'} · Glass Renderer 已同步</strong>
+          <strong>Backend ${v?`v${escapeHTML(v)}`:'v4.4'} · Glass Renderer 已同步</strong>
+          ${returnKey}
         </div>
         <div>CMS 已直接驗證 admin.preview；預覽、測試信、手動群發與新文章自動電子報使用同一 renderer。</div>
         ${senderChip}
       </div>
-      ${recheck}
     </div>`;
   }
 
   if(newsletterBackendCapability==='checking'){
     return `<div class="newsletter-backend-alert">
       <div class="newsletter-backend-main">
-        <div class="newsletter-backend-title-row"><strong>正在檢查 Backend…</strong></div>
+        <div class="newsletter-backend-title-row">
+          <strong>正在檢查 Backend…</strong>
+          ${returnKey}
+        </div>
         <div>正在重新驗證 Glass Renderer、訂閱名單與寄件者狀態。</div>
       </div>
-      ${recheck}
     </div>`;
   }
 
@@ -5502,20 +6092,22 @@ function newsletterBackendStatusHTML(){
       <div class="newsletter-backend-main">
         <div class="newsletter-backend-title-row">
           <strong>目前 CMS 尚未收到 Backend Glass Renderer 回應${v?` · 回報 v${escapeHTML(v)}`:''}</strong>
+          ${returnKey}
         </div>
         <div>${newsletterBackendCapabilityError?escapeHTML(newsletterBackendCapabilityError)+'。':''}</div>
         <div style="margin-top:8px;word-break:break-all;opacity:.72">${escapeHTML(endpoint)}</div>
       </div>
-      ${recheck}
     </div>`;
   }
 
   return `<div class="newsletter-backend-alert">
     <div class="newsletter-backend-main">
-      <div class="newsletter-backend-title-row"><strong>尚未完成 Backend 能力檢查</strong></div>
-      <div>按右側 ↻ 重新驗證 Glass Renderer 與寄件者。</div>
+      <div class="newsletter-backend-title-row">
+        <strong>尚未完成 Backend 能力檢查</strong>
+        ${returnKey}
+      </div>
+      <div>按 ↩ 重新驗證 Glass Renderer 與寄件者。</div>
     </div>
-    ${recheck}
   </div>`;
 }
 
@@ -5558,7 +6150,7 @@ async function refreshNewsletterExactPreview(){
     if(!html.trim())throw new Error('Backend preview 沒有回傳 HTML');
 
     newsletterBackendCapability='ok';
-    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.1');
+    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'4.4');
     newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
 
     frame.onload=()=>resizeNewsletterPreviewFrame(frame);
@@ -5567,7 +6159,7 @@ async function refreshNewsletterExactPreview(){
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
     const badge=$('#nlPreviewBackendBadge');
-    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'4.1'} · LIVE`;
+    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'4.4'} · LIVE`;
   }catch(err){
     if(seq!==newsletterPreviewSeq)return;
 
@@ -5660,7 +6252,7 @@ async function recheckNewsletterBackend(){
     if(fresh){
       fresh.disabled=false;
       fresh.classList.remove('is-checking');
-      fresh.textContent='↻';
+      fresh.textContent='↩';
       fresh.setAttribute('aria-label','重新檢查 Backend');
     }
   }
@@ -6056,7 +6648,10 @@ function renderNewsletterCenter(){
           oncopy="return false"
           oncut="return false"
           oncontextmenu="return false"
-          ondragstart="return false">
+          ondragstart="return false"
+          onselectstart="return false"
+          onpointerdown="return false"
+          tabindex="-1">
           <span class="lock" aria-hidden="true">⌁</span>
           <span class="dots" aria-hidden="true">••••••••••••••</span>
           <span class="label">KEY LOCKED</span>
@@ -6141,6 +6736,118 @@ function renderNewsletterCenter(){
 
 
 
+function dashboardSubscriptionAnalyticsHTML(summary){
+  const s=summary||{};
+  const sub=s.subscriptionInsights||{};
+  const unsub=s.unsubscribeInsights||{};
+  const recentSubs=Array.isArray(s.recentSubscriptions)?s.recentSubscriptions:[];
+  const recentUnsubs=Array.isArray(s.recentUnsubscribes)?s.recentUnsubscribes:[];
+  const daily=Array.isArray(sub.daily14)?sub.daily14:[];
+  const reasons=Array.isArray(unsub.reasonBreakdown30)?unsub.reasonBreakdown30:[];
+
+  const new7=Number(sub.new7||0);
+  const new30=Number(sub.new30||0);
+  const growth=Number(sub.growth30Pct||0);
+  const net30=Number(sub.net30||0);
+  const unsub7=Number(unsub.last7||0);
+  const unsub30=Number(unsub.last30||0);
+  const maxDay=Math.max(1,...daily.map(x=>Math.max(Number(x.subscribed||0),Number(x.unsubscribed||0))));
+  const maxReason=Math.max(1,...reasons.map(x=>Number(x.count||0)));
+
+  const trend=daily.length
+    ?daily.map(x=>{
+      const inH=Math.max(2,Math.round((Number(x.subscribed||0)/maxDay)*52));
+      const outH=Math.max(2,Math.round((Number(x.unsubscribed||0)/maxDay)*52));
+      return `<div class="dashboard-sub-day" title="${escapeHTML(x.label||'')} · 訂閱 ${Number(x.subscribed||0)} · 退訂 ${Number(x.unsubscribed||0)}">
+        <i class="dashboard-sub-bar in" style="height:${inH}px"></i>
+        <i class="dashboard-sub-bar out" style="height:${outH}px"></i>
+      </div>`;
+    }).join('')
+    :'';
+
+  return `<div class="dashboard-subscription-analytics" id="dashboardSubscriptionAnalytics">
+    <section class="dashboard-sub-card">
+      <div class="dashboard-sub-head">
+        <div>
+          <strong>近期訂閱分析</strong>
+          <span>近 7 / 30 日新增、淨增與最近 14 天趨勢。</span>
+        </div>
+        <span class="dashboard-sub-mini-badge">SUBSCRIBE</span>
+      </div>
+
+      <div class="dashboard-sub-metrics">
+        <div class="dashboard-sub-metric good"><span>近 7 日新增</span><strong>${new7.toLocaleString()}</strong></div>
+        <div class="dashboard-sub-metric"><span>近 30 日新增</span><strong>${new30.toLocaleString()}</strong></div>
+        <div class="dashboard-sub-metric ${net30<0?'bad':'good'}"><span>30 日淨增</span><strong>${net30>0?'+':''}${net30.toLocaleString()}</strong></div>
+      </div>
+
+      <div class="dashboard-sub-growth">
+        與前一個 30 日相比：
+        <b class="${growth<0?'down':''}">${growth>0?'+':''}${growth.toFixed(1)}%</b>
+      </div>
+
+      <div class="dashboard-sub-trend">${trend||'<div class="empty" style="grid-column:1/-1">尚無近期訂閱資料。</div>'}</div>
+      <div class="dashboard-sub-legend">
+        <span class="in"><i></i>新增訂閱</span>
+        <span class="out"><i></i>退訂</span>
+      </div>
+
+      <div class="dashboard-sub-list">
+        ${recentSubs.length?recentSubs.slice(0,4).map(x=>`
+          <div class="dashboard-sub-row">
+            <div>
+              <strong>${escapeHTML(x.emailMasked||'—')}</strong>
+              <small>${escapeHTML(x.subscribedAt||'')}</small>
+            </div>
+            <span class="dashboard-sub-status ${String(x.status||'').toLowerCase()==='unsubscribed'?'unsub':''}">
+              ${String(x.status||'').toLowerCase()==='unsubscribed'?'已退訂':'已訂閱'}
+            </span>
+          </div>`).join(''):'<div class="empty">目前沒有近期訂閱紀錄。</div>'}
+      </div>
+    </section>
+
+    <section class="dashboard-sub-card">
+      <div class="dashboard-sub-head">
+        <div>
+          <strong>近期退訂分析</strong>
+          <span>近 7 / 30 日退訂、原因與造成退訂的電子報。</span>
+        </div>
+        <span class="dashboard-sub-mini-badge">UNSUBSCRIBE</span>
+      </div>
+
+      <div class="dashboard-sub-metrics">
+        <div class="dashboard-sub-metric bad"><span>近 7 日退訂</span><strong>${unsub7.toLocaleString()}</strong></div>
+        <div class="dashboard-sub-metric bad"><span>近 30 日退訂</span><strong>${unsub30.toLocaleString()}</strong></div>
+        <div class="dashboard-sub-metric bad"><span>歷史退訂率</span><strong>${Number(s.unsubscribeRate||0).toFixed(2)}%</strong></div>
+      </div>
+
+      <div class="dashboard-reason-bars">
+        ${reasons.length?reasons.map(x=>{
+          const w=Math.max(6,Math.round((Number(x.count||0)/maxReason)*100));
+          return `<div class="dashboard-reason-row">
+            <div class="dashboard-reason-copy">
+              <div><span>${escapeHTML(x.reason||'未提供原因')}</span></div>
+              <div class="dashboard-reason-track"><i class="dashboard-reason-fill" style="width:${w}%"></i></div>
+            </div>
+            <div class="dashboard-reason-count">${Number(x.count||0)}</div>
+          </div>`;
+        }).join(''):'<div class="empty">近 30 日沒有退訂原因資料。</div>'}
+      </div>
+
+      <div class="dashboard-sub-list">
+        ${recentUnsubs.length?recentUnsubs.slice(0,4).map(x=>`
+          <div class="dashboard-sub-row">
+            <div>
+              <strong>${escapeHTML(x.campaignSubject||'無法判定來源郵件')}</strong>
+              <small>${escapeHTML(x.emailMasked||'—')} · ${escapeHTML(x.unsubscribedAt||'')}</small>
+            </div>
+            <span class="dashboard-sub-status unsub">${escapeHTML(x.reason||'未提供原因')}</span>
+          </div>`).join(''):'<div class="empty">目前沒有近期退訂紀錄。</div>'}
+      </div>
+    </section>
+  </div>`;
+}
+
 function dashboardNewsletterHTML(summary){
   const s=summary||{};
   const active=Number(s.active||0);
@@ -6149,37 +6856,38 @@ function dashboardNewsletterHTML(summary){
   const rate=Number.isFinite(Number(s.unsubscribeRate))
     ?Number(s.unsubscribeRate)
     :(denom?Math.round((unsub/denom)*10000)/100:0);
-  const recent=Array.isArray(s.recentUnsubscribes)?s.recentUnsubscribes:[];
 
-  return `<section class="dashboard-newsletter-panel" id="dashboardNewsletterPanel">
+  return `${dashboardSubscriptionAnalyticsHTML(s)}
+  <section class="dashboard-newsletter-panel" id="dashboardNewsletterPanel">
     <div class="dashboard-newsletter-head">
-      <div><strong>電子報健康度</strong><span>訂閱規模、歷史退訂率與近期退訂來源。</span></div>
+      <div><strong>電子報健康度</strong><span>目前訂閱規模、累積退訂率與寄送狀態。</span></div>
       <div class="dashboard-newsletter-badge">SIGN WELL LETTER</div>
     </div>
+
     <div class="dashboard-newsletter-stats">
       <div class="dashboard-newsletter-stat"><span>目前可寄送訂閱者</span><strong>${active.toLocaleString()}</strong></div>
       <div class="dashboard-newsletter-stat rate"><span>歷史退訂率</span><strong>${rate.toFixed(2)}%</strong></div>
       <div class="dashboard-newsletter-stat"><span>已退訂</span><strong>${unsub.toLocaleString()}</strong></div>
     </div>
-    <div class="dashboard-unsub-title">近期退訂 · 原因 / 來源郵件</div>
-    <div class="dashboard-unsub-list">
-      ${recent.length?recent.slice(0,4).map(x=>`
-        <div class="dashboard-unsub-row">
-          <div>
-            <strong>${escapeHTML(x.campaignSubject||'無法判定來源郵件')}</strong>
-            <small>${escapeHTML(x.emailMasked||'—')} · ${escapeHTML(x.unsubscribedAt||'')}</small>
-          </div>
-          <span class="dashboard-unsub-reason">${escapeHTML(x.reason||'未提供原因')}</span>
-        </div>`).join(''):'<div class="empty">目前沒有退訂紀錄。</div>'}
-    </div>
-    <div class="dashboard-newsletter-foot">退訂率 = 已退訂 ÷（目前可寄送 + 已退訂）。來源郵件以退訂連結綁定的 campaign 為準。</div>
+
+    <div class="dashboard-newsletter-foot">近期分析使用 Subscribers Sheet 的 subscribed_at / unsubscribed_at；退訂來源郵件以 campaign-bound unsubscribe token 為準。</div>
   </section>`;
 }
+
 function refreshDashboardNewsletterSnapshot(){
   if(viewName!=='dashboard')return;
-  const old=$('#dashboardNewsletterPanel');if(!old)return;
-  const holder=document.createElement('div');holder.innerHTML=dashboardNewsletterHTML(newsletterCache.summary);
-  const fresh=holder.firstElementChild;if(fresh)old.replaceWith(fresh);
+
+  const oldAnalytics=$('#dashboardSubscriptionAnalytics');
+  const oldHealth=$('#dashboardNewsletterPanel');
+
+  const holder=document.createElement('div');
+  holder.innerHTML=dashboardNewsletterHTML(newsletterCache.summary);
+
+  const freshAnalytics=holder.querySelector('#dashboardSubscriptionAnalytics');
+  const freshHealth=holder.querySelector('#dashboardNewsletterPanel');
+
+  if(oldAnalytics&&freshAnalytics)oldAnalytics.replaceWith(freshAnalytics);
+  if(oldHealth&&freshHealth)oldHealth.replaceWith(freshHealth);
 }
 
 function renderDashboard(){
@@ -6207,6 +6915,7 @@ function renderDashboard(){
   <section class="panel"><div class="panel-head"><span>最近文章 · 含觀看次數</span><span>${data.articles.length} 篇</span></div>
   ${data.articles.length?data.articles.slice().sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||''))).slice(0,8).map(rowHTML).join(''):'<div class="empty">尚未建立文章。</div>'}</section>`;
   $('#dashNew').onclick=newArticle;
+  scheduleAnalyticsTrendCanvas();
   bindRows();
 }
 function rowHTML(a){
@@ -6538,7 +7247,7 @@ function renderEditor(){const a=getCurrent();if(!a){currentId=null;nav('articles
       })()}
     </select>
     <div class="publisher-preview" id="publisherPreview"></div>
-    <div class="publisher-help">人物來自「網站文字 → 人物與學經歷」。新增或修改人物後，這個選單會自動同步更新；公開文章以人物 ID 連動最新姓名、職稱與照片。</div>
+    <div class="publisher-help">人物來自「主頁設定 → 人物與學經歷」。新增或修改人物後，這個選單會自動同步更新；公開文章以人物 ID 連動最新姓名、職稱與照片。</div>
   </div>
 </div>
 <div class="field-group"><label>發布狀態</label><select id="status"><option value="Draft" ${a.status==='Draft'?'selected':''}>草稿</option><option value="Published" ${a.status==='Published'?'selected':''}>已發布</option></select></div><div class="field-group"><label>公開網址</label><input id="slug" value="${escapeHTML(a.slug||'')}"></div><div class="field-group"><label>發布日期</label><input id="publishedAt" type="date" value="${escapeHTML(a.publishedAt||'')}"></div><div class="field-group"><label>主題分類</label><select id="category" class="category-select">${(()=>{const opts=(data.topics||[]).filter(t=>t.active!==false).map(t=>t.name);if(a.category&&!opts.includes(a.category))opts.unshift(a.category);return opts.map(n=>`<option value="${escapeHTML(n)}" ${n===a.category?'selected':''}>${escapeHTML(n)}</option>`).join('')})()}</select><div style="font-size:10px;color:#84919d;margin-top:6px">主題可在左側「主題管理」新增或修改。</div></div><div class="field-group"><label>同步狀態</label><div style="font-size:11px;color:#74818d;line-height:1.7">右上角「發佈到網頁」就是唯一正式發布按鈕：會一次儲存文章、提交 GitHub、更新公開網站，成功後才標記完成；不需要再到「發布設定」按第二次。</div></div></aside></div>`;bindEditor()}
@@ -7053,7 +7762,7 @@ function renderSiteText(){
 
   $('#view').innerHTML=`<div class="page-head">
     <div>
-      <h1>網站文字</h1>
+      <h1>主頁設定</h1>
       <p>修改公開使用者端的品牌、首頁、關於我們、人物資料與頁尾文字。人物與學經歷會一起寫入 public-data.json。</p>
     </div>
   </div>
@@ -7061,7 +7770,7 @@ function renderSiteText(){
   <div class="site-text-wrap">
     <section class="site-text-card">
       <h3>公開網站內容</h3>
-      <p>網站文字與關於人物皆由 CMS 維護；只有按「儲存並發布到網站」才會同步到 GitHub Pages。</p>
+      <p>主頁設定與關於人物皆由 CMS 維護；只有按「儲存並發布到網站」才會同步到 GitHub Pages。</p>
 
       <div class="site-section">
         <div class="site-section-title">品牌與導覽</div>
@@ -7187,7 +7896,7 @@ function renderSiteText(){
       </div>
 
       <div class="site-text-actions">
-        <button class="top-action primary" id="saveSiteText">儲存網站文字</button>
+        <button class="top-action primary" id="saveSiteText">儲存主頁設定</button>
         <button class="top-action online" id="publishSiteText">儲存並發布到網站</button>
         <button class="top-action" id="resetSiteText">恢復預設文字</button>
       </div>
@@ -7219,7 +7928,7 @@ function renderSiteText(){
     $$('[data-site-key]').forEach(el=>{data.siteText[el.dataset.siteKey]=el.value});
     persist(true);
     syncPublicSnapshot();
-    $('#saveState').textContent='網站文字已儲存 ✓';
+    $('#saveState').textContent='主頁設定已儲存 ✓';
     $('#saveState').style.color='#6f8f86';
   };
 
@@ -7494,10 +8203,10 @@ function renderSiteText(){
     }
   };
 
-  $('#saveSiteText').onclick=()=>{collect();showToast('網站文字已儲存')};
+  $('#saveSiteText').onclick=()=>{collect();showToast('主頁設定已儲存')};
 
   $('#resetSiteText').onclick=()=>{
-    if(!confirm('要把公開網站文字恢復為預設內容嗎？人物資料不會被刪除。'))return;
+    if(!confirm('要把公開主頁設定恢復為預設內容嗎？人物資料不會被刪除。'))return;
     data.siteText=clone(DEFAULT_SITE_TEXT);
     persist();
     syncPublicSnapshot();
@@ -7520,7 +8229,7 @@ function renderSiteText(){
     }
     try{
       await publishGitHub();
-      showToast('網站文字、人物與文章已同步');
+      showToast('主頁設定、人物與文章已同步');
     }catch(e){
       showToast('發布失敗：'+e.message);
     }
