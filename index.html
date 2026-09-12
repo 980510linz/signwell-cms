@@ -3401,7 +3401,7 @@ body:not(.perf-lite) .publish-actions{
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
 <section class="lock" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" aria-label="雙重驗證進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 管理密碼</div><input class="pin" id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question">王黃彩雲住哪一個島</div><input class="pin answer-input" id="answerInput" type="text" autocomplete="off" maxlength="20" placeholder="輸入答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><small id="lockHint">需要完成兩階段驗證才能進入後台。純前端驗證只能作為本機隱私鎖，無法等同伺服器端 2FA。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.30</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v14.31</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">網站文字</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -4688,7 +4688,8 @@ function newsletterBackendCurrent(){
 }
 function newsletterBackendIsCurrent(){
   if(newsletterBackendCapability==='ok')return true;
-  return newsletterBackendCurrent()==='3.7' &&
+  const v=parseFloat(newsletterBackendCurrent());
+  return Number.isFinite(v)&&v>=3.7 &&
     String(newsletterCache.templateVersion||newsletterCache.summary?.templateVersion||'').includes('Glass');
 }
 function newsletterBackendStatusHTML(){
@@ -4697,7 +4698,7 @@ function newsletterBackendStatusHTML(){
 
   if(newsletterBackendCapability==='ok'||newsletterBackendIsCurrent()){
     return `<div class="newsletter-backend-alert newsletter-backend-ok">
-      <strong>Backend ${v?`v${escapeHTML(v)}`:'v3.7+'} · Glass Renderer 已同步</strong>
+      <strong>Backend ${v?`v${escapeHTML(v)}`:'v3.9'} · Glass Renderer 已同步</strong>
       CMS 已直接驗證 admin.preview；預覽、測試信、手動群發與新文章自動電子報使用同一 renderer。
     </div>`;
   }
@@ -4720,7 +4721,7 @@ function newsletterBackendStatusHTML(){
 
   return `<div class="newsletter-backend-alert">
     <strong>尚未完成 Backend 能力檢查</strong>
-    CMS 會直接呼叫 admin.preview 驗證，不會再因版本資訊尚未讀回而永久卡在「等待 Backend v3.7」。
+    CMS 會直接呼叫 admin.preview 驗證 Glass Renderer 與目前 Backend 能力。
   </div>`;
 }
 
@@ -4763,7 +4764,7 @@ async function refreshNewsletterExactPreview(){
     if(!html.trim())throw new Error('Backend preview 沒有回傳 HTML');
 
     newsletterBackendCapability='ok';
-    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'3.7');
+    newsletterCache.backendVersion=String(result.backendVersion||newsletterCache.backendVersion||'3.9');
     newsletterCache.templateVersion=String(result.templateVersion||newsletterCache.templateVersion||'SIGN WELL Letter · Glass');
 
     frame.onload=()=>resizeNewsletterPreviewFrame(frame);
@@ -4772,7 +4773,7 @@ async function refreshNewsletterExactPreview(){
     const status=$('#nlBackendStatusDynamic');
     if(status)status.innerHTML=newsletterBackendStatusHTML();
     const badge=$('#nlPreviewBackendBadge');
-    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'3.7'} · LIVE`;
+    if(badge)badge.textContent=`Backend v${newsletterBackendCurrent()||'3.9'} · LIVE`;
   }catch(err){
     if(seq!==newsletterPreviewSeq)return;
 
