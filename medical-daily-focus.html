@@ -1017,6 +1017,43 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
 @media(max-width:430px){.actions{grid-template-columns:1fr!important}.writer-head-actions{display:grid;grid-template-columns:1fr 1fr}.generate-btn{grid-column:1/-1;width:100%!important}}
 
 .ai-provider-location-note{margin:0 18px 14px;padding:10px 12px;border-radius:15px;background:rgba(101,162,218,.08);border:1px solid rgba(101,162,218,.12);color:#607b91;font-size:9px;line-height:1.65}
+
+.focus-toolbar{display:flex;justify-content:flex-end;gap:10px;margin:0 0 16px}
+.settings-toggle{min-height:42px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.38);font-size:12px;font-weight:800;color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 10px 22px rgba(35,76,108,.08);cursor:pointer}
+.focus-settings{display:none;margin:0 0 18px;padding:18px;border-radius:28px}
+.focus-settings.show{display:block;animation:screenIn .35s var(--ease) both}
+.settings-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}
+.setting-card{padding:18px;border-radius:22px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 12px 28px rgba(35,76,108,.08)}
+.settings-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.settings-card-head span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6e8ba4;font-weight:800}
+.settings-card-head strong{display:block;margin-top:5px;font-size:18px;line-height:1.35;color:#18324b}
+.settings-card-head b{flex:none;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.72);font-size:10.5px;color:#50718d}
+.settings-card-head b.ready{background:rgba(230,247,238,.95);color:#42765e}
+.settings-card-head b.busy{background:rgba(232,243,255,.95);color:#4e79a4}
+.settings-card-head b.error{background:rgba(255,239,242,.95);color:#9b5963}
+.settings-fields{display:grid;grid-template-columns:1.2fr .8fr;gap:10px}
+.settings-field{display:grid;gap:6px}
+.settings-field.wide{grid-column:1/-1}
+.settings-field label{font-size:10px;font-weight:800;color:#6d8598;letter-spacing:.05em}
+.settings-field input,.settings-field textarea{width:100%;border-radius:16px;border:1px solid rgba(130,162,193,.18);background:rgba(255,255,255,.82);color:#1f3851;box-shadow:inset 0 1px 0 rgba(255,255,255,.95);padding:12px 14px;font:inherit;outline:none}
+.settings-field textarea{min-height:184px;resize:vertical;line-height:1.75;font-size:13px}
+.settings-field input{height:46px;font-size:13px}
+.settings-field input:focus,.settings-field textarea:focus{border-color:rgba(78,143,216,.34);box-shadow:0 0 0 4px rgba(78,143,216,.08),inset 0 1px 0 rgba(255,255,255,.95)}
+.settings-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.settings-actions button{min-height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.76);background:rgba(255,255,255,.62);font-size:11px;font-weight:800;color:#16314b;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 10px 20px rgba(35,76,108,.06)}
+.settings-actions button.primary{background:linear-gradient(145deg,#152535,#21384f)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 14px 28px rgba(25,42,60,.18),inset 0 1px 0 rgba(255,255,255,.18)!important}
+.settings-actions button.soft-blue{background:linear-gradient(145deg,#71acef,#528bd1)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 14px 28px rgba(71,127,197,.18),inset 0 1px 0 rgba(255,255,255,.18)!important}
+.settings-help{margin:12px 0 0;color:#617d92;font-size:11.5px;line-height:1.75}
+.instruction-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.instruction-meta span{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.72);font-size:10.5px;color:#5f7a90;font-weight:700}
+.focus-card{display:block;border:0}
+.focus-card-actions{position:relative;z-index:2;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:16px}
+.focus-card-actions .pill{min-height:38px;padding:0 14px;font-size:11px;font-weight:800}
+.focus-card-actions .pill.generate{background:linear-gradient(145deg,#172738,#22384f)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 12px 24px rgba(26,42,60,.16)!important}
+.focus-card-actions .pill.view{background:rgba(255,255,255,.52)!important}
+@media(max-width:900px){.settings-grid{grid-template-columns:1fr}.settings-fields{grid-template-columns:1fr}}
+@media(max-width:720px){.focus-toolbar{justify-content:stretch}.settings-toggle{width:100%}.focus-card-actions{justify-content:stretch}.focus-card-actions .pill{width:100%}.settings-actions button{width:100%}}
+
 </style>
 
 <style id="swFocusV222ButtonContract">
@@ -1036,8 +1073,11 @@ button,.pill,.generate-btn,.draft-actions button,.ai-settings-btn,.ai-setup-acti
 <style id="sw-focus-v23">
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button{touch-action:manipulation}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(68,139,207,.26);outline-offset:2px}@media(max-width:760px),(pointer:coarse){.focus-topbar{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 </style>
+<link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.11">
 </head>
 <body>
+<div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
+<script src="assets/signwell-loader.js?build=23.9.11"></script>
 <div class="scene" aria-hidden="true">
   <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
 </div>
@@ -1047,7 +1087,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   <section class="screen active" id="homeScreen" aria-label="搜尋每日醫療焦點">
     <div class="hero-wrap">
       <button class="scan-button" id="scanBtn" type="button">
-        <span class="label"><i class="pulse"></i><span id="scanText">開啟今日醫療焦點</span></span>
+        <span class="label"><i class="pulse"></i><span id="scanText">搜尋 24 小時醫療熱點</span></span>
       </button>
       <p class="search-note" id="searchNote" aria-live="polite"></p><div class="warm-status" id="warmStatus"><i></i><span>登入後正在背景準備新聞、摘要與文獻…</span></div>
     </div>
@@ -1069,6 +1109,37 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       <div class="status-left"><i class="status-dot"></i><span id="statusText">近 24 小時 · 熱門門檻 ≥ 2 家知名媒體</span></div>
       <span class="demo-badge" id="demoBadge">不使用展示資料</span>
     </div>
+
+    <div class="focus-toolbar"><button class="settings-toggle" id="settingsToggleBtn" type="button">AI / API 設定</button></div>
+    <section class="glass focus-settings" id="focusSettingsPanel" aria-label="AI / API 設定">
+      <div class="settings-grid">
+        <div class="setting-card">
+          <div class="settings-card-head"><div><span>AI Provider</span><strong>API Endpoint 與模型設定</strong></div><b id="focusAiProviderState">檢查中</b></div>
+          <div class="settings-fields">
+            <div class="settings-field wide"><label for="focusAiEndpointInput">API Endpoint</label><input id="focusAiEndpointInput" type="url" inputmode="url" autocomplete="off" placeholder="https://generativelanguage.googleapis.com/"></div>
+            <div class="settings-field"><label for="focusAiModelInput">Model ID</label><input id="focusAiModelInput" type="text" autocomplete="off" placeholder="gemini-..."/></div>
+            <div class="settings-field"><label>API Key</label><input id="focusAiKeyState" type="text" value="只保存在後端，不顯示內容" readonly/></div>
+          </div>
+          <div class="settings-actions">
+            <button class="soft-blue" id="focusAiSaveBtn" type="button">儲存 Provider 設定</button>
+            <button id="focusAiTestBtn" type="button">健康檢查</button>
+            <button class="primary" id="focusAiVaultBtn" type="button">設定 / 更換 Key</button>
+          </div>
+          <p class="settings-help" id="focusAiProviderHelp">API Key 只存後端；你平常只需要在這裡看狀態、改 Endpoint 與 Model。</p>
+        </div>
+        <div class="setting-card">
+          <div class="settings-card-head"><div><span>AI 指令</span><strong>把寫作偏好直接放在這裡</strong></div><b id="focusAiInstructionCount">0 條</b></div>
+          <div class="instruction-meta"><span id="focusAiInstructionState">同步中…</span><span>底層 Evidence Lock 不會被這裡改掉</span></div>
+          <div class="settings-field wide"><label for="focusAiInstructionInput">可編輯 AI 指令</label><textarea id="focusAiInstructionInput" placeholder="例如：開頭先講臨床意義、少用『此外』與『值得注意的是』、段落不要太像模板。"></textarea></div>
+          <div class="settings-actions">
+            <button class="soft-blue" id="focusAiInstructionSaveBtn" type="button">儲存 AI 指令</button>
+            <button id="focusAiInstructionClearBtn" type="button">清除可編輯指令</button>
+            <button class="primary" id="focusAiInstructionOpenBtn" type="button">開啟完整指令工作台</button>
+          </div>
+          <p class="settings-help" id="focusAiInstructionHelp">這裡可直接編輯目前有效的可自訂寫作規則，之後每篇時事範文都會沿用。</p>
+        </div>
+      </div>
+    </section>
 
     <div class="focus-list" id="focusList"></div>
     <div class="error-card" id="listError"></div>
@@ -1098,11 +1169,85 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   const $=s=>document.querySelector(s);
   const homeScreen=$('#homeScreen'),listScreen=$('#listScreen'),detailScreen=$('#detailScreen');
   const scanBtn=$('#scanBtn'),scanText=$('#scanText'),searchNote=$('#searchNote'),warmStatus=$('#warmStatus');
-  const refreshBtn=$('#refreshBtn'),backBtn=$('#backBtn'),focusList=$('#focusList'),detailCard=$('#detailCard'),sourceList=$('#sourceList'),statusText=$('#statusText'),demoBadge=$('#demoBadge'),listError=$('#listError'),toast=$('#toast');
+  const refreshBtn=$('#refreshBtn'),backBtn=$('#backBtn'),focusList=$('#focusList'),detailCard=$('#detailCard'),sourceList=$('#sourceList'),statusText=$('#statusText'),demoBadge=$('#demoBadge'),listError=$('#listError'),toast=$('#toast'),settingsToggleBtn=$('#settingsToggleBtn'),focusSettingsPanel=$('#focusSettingsPanel');
 
   let topics=[],busy=false,currentTopic=null,currentDraft=null,workspacePayload=null,draftVariantCycle=0;
 
   function showScreen(target){[homeScreen,listScreen,detailScreen].forEach(el=>el.classList.remove('active'));target.classList.add('active');window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
+
+  function toggleFocusSettings(force){
+    const next=typeof force==='boolean'?force:!focusSettingsPanel?.classList.contains('show');
+    if(focusSettingsPanel)focusSettingsPanel.classList.toggle('show',next);
+    if(settingsToggleBtn)settingsToggleBtn.textContent=next?'收合 AI / API 設定':'AI / API 設定';
+  }
+  function countInstructionItems(prompt=''){return String(prompt||'').split(/\n+/).map(x=>x.trim()).filter(Boolean).length}
+  async function refreshFocusSettings({open=false}={}){
+    if(open)toggleFocusSettings(true);
+    try{
+      if(window.parent?.signwellMedicalNewsAIStatus){
+        const status=await window.parent.signwellMedicalNewsAIStatus();
+        const stateEl=$('#focusAiProviderState'),help=$('#focusAiProviderHelp'),endpoint=$('#focusAiEndpointInput'),model=$('#focusAiModelInput'),keyState=$('#focusAiKeyState');
+        if(endpoint)endpoint.value=status?.endpoint||'';
+        if(model)model.value=status?.model||'';
+        if(keyState)keyState.value=status?.apiKeyConfigured?'API Key 已保存在後端':'尚未設定 API Key';
+        if(stateEl){stateEl.className='';stateEl.id='focusAiProviderState';stateEl.textContent=status?.configured?'已連線':'未連線';stateEl.classList.add(status?.configured?'ready':'error')}
+        if(help)help.textContent=status?.configured?`AI Provider 已就緒 · ${status.model||'model 未命名'}${status.endpointLabel?' · '+status.endpointLabel:''}`:'尚未完成 Provider 設定；可先在這裡填好 Endpoint / Model，再按「設定 / 更換 Key」';
+      }
+    }catch(err){const help=$('#focusAiProviderHelp'),stateEl=$('#focusAiProviderState'); if(stateEl){stateEl.textContent='讀取失敗';stateEl.className='error'} if(help)help.textContent='Provider 狀態讀取失敗：'+String(err?.message||err)}
+    try{
+      if(window.parent?.signwellAIInstructionState){
+        const state=await window.parent.signwellAIInstructionState();
+        const prompt=String(state?.editablePrompt||'');
+        const box=$('#focusAiInstructionInput'),count=$('#focusAiInstructionCount'),help=$('#focusAiInstructionHelp'),badge=$('#focusAiInstructionState');
+        if(box)box.value=prompt;
+        if(count)count.textContent=`${countInstructionItems(prompt)} 條`;
+        if(badge)badge.textContent=state?.configured?'AI 已連線':'AI 尚未連線';
+        if(help)help.textContent=prompt?'目前儲存的是可編輯 AI 指令；底層安全規則仍會繼續保留。':'目前尚未新增額外寫作偏好；你可以直接在這裡輸入。';
+      }
+    }catch(err){const help=$('#focusAiInstructionHelp'),badge=$('#focusAiInstructionState'); if(badge)badge.textContent='同步失敗'; if(help)help.textContent='AI 指令讀取失敗：'+String(err?.message||err)}
+  }
+  async function saveFocusProvider(){
+    const endpoint=$('#focusAiEndpointInput')?.value.trim()||'';
+    const model=$('#focusAiModelInput')?.value.trim()||'';
+    if(!endpoint||!/^https:\/\//i.test(endpoint)){showToast('請填入有效的 https:// API Endpoint');return}
+    if(!model){showToast('請填入 Model ID');return}
+    if(!window.parent?.signwellMedicalNewsAIConfigure){showToast('CMS bridge 尚未就緒');return}
+    const btn=$('#focusAiSaveBtn'); const old=btn?.textContent||''; if(btn){btn.disabled=true;btn.textContent='儲存中…'}
+    try{
+      const result=await window.parent.signwellMedicalNewsAIConfigure({endpoint,model,test:true});
+      if(!result?.ok)throw new Error(result?.error||'儲存失敗');
+      showToast('AI Provider 設定已儲存');
+      await refreshFocusSettings();
+    }catch(err){showToast('Provider 儲存失敗'); const help=$('#focusAiProviderHelp'); if(help)help.textContent='Provider 儲存失敗：'+String(err?.message||err)}
+    finally{if(btn){btn.disabled=false;btn.textContent=old}}
+  }
+  async function testFocusProvider(){
+    if(!window.parent?.signwellMedicalNewsAITest){showToast('CMS bridge 尚未就緒');return}
+    const btn=$('#focusAiTestBtn'); const old=btn?.textContent||''; if(btn){btn.disabled=true;btn.textContent='檢查中…'}
+    try{const r=await window.parent.signwellMedicalNewsAITest(); if(!r?.ok)throw new Error(r?.error||'健康檢查失敗'); showToast('AI 健康檢查完成'); await refreshFocusSettings()}
+    catch(err){const help=$('#focusAiProviderHelp'); if(help)help.textContent='健康檢查失敗：'+String(err?.message||err); showToast('健康檢查失敗')}
+    finally{if(btn){btn.disabled=false;btn.textContent=old}}
+  }
+  async function saveFocusInstructions(){
+    const prompt=$('#focusAiInstructionInput')?.value||'';
+    if(!window.parent?.signwellAIInstructionSave){showToast('AI 指令 bridge 尚未就緒');return}
+    const btn=$('#focusAiInstructionSaveBtn'); const old=btn?.textContent||''; if(btn){btn.disabled=true;btn.textContent='儲存中…'}
+    try{await window.parent.signwellAIInstructionSave(prompt); showToast('AI 指令已儲存'); await refreshFocusSettings()}
+    catch(err){const help=$('#focusAiInstructionHelp'); if(help)help.textContent='AI 指令儲存失敗：'+String(err?.message||err); showToast('AI 指令儲存失敗')}
+    finally{if(btn){btn.disabled=false;btn.textContent=old}}
+  }
+  async function clearFocusInstructions(){
+    if(!window.parent?.signwellAIInstructionClear){showToast('AI 指令 bridge 尚未就緒');return}
+    const ok=confirm('只會清除可編輯 AI 指令，不會影響底層限制。是否清除？');
+    if(!ok)return;
+    try{await window.parent.signwellAIInstructionClear(); showToast('已清除可編輯 AI 指令'); await refreshFocusSettings()}
+    catch(err){showToast('清除失敗')}
+  }
+  function quickGenerateFromCard(i){
+    openDetail(i);
+    setTimeout(()=>{const t=topics[i]; if(t)generateDraft(t)},120);
+  }
+
   function escapeHTML(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
   function safeURL(v=''){const s=String(v||'').trim();return /^https?:\/\//i.test(s)?s:'#'}
   function relTime(input){const t=new Date(input||Date.now()).getTime();if(!Number.isFinite(t))return'剛剛';const mins=Math.max(0,Math.round((Date.now()-t)/60000));if(mins<1)return'剛剛';if(mins<60)return`${mins} 分鐘前`;const h=Math.round(mins/60);return h<24?`${h} 小時前`:'24 小時內'}
@@ -1165,9 +1310,10 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     const scannedCount=Number(payload?.scannedArticles||0),qualifiedCount=Number(payload?.qualifiedTopics||topics.length);
     statusText.textContent=`近 24 小時 · ${crawledAt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新 · 熱門門檻 ≥ 2 家知名媒體`;
     if(!topics.length){focusList.innerHTML=`<div class="empty-hot glass"><strong>目前沒有事件通過熱門門檻</strong><p>系統不會使用展示資料，也不會降低門檻補滿 5 則。</p></div>`;return}
-    focusList.innerHTML=topics.map((t,i)=>`<button class="focus-card glass" type="button" data-i="${i}"><span class="shine"></span><div class="card-grid"><div class="index">${String(i+1).padStart(2,'0')}</div><div><div class="meta-line"><span class="tag">${escapeHTML(t.category)}</span><span class="when">${relTime(t.publishedAt)}</span><span class="hot-threshold">HOT · ${t.majorMediaCount} 家知名媒體</span></div><h2 class="focus-title">${escapeHTML(t.title)}</h2><p class="focus-summary">${escapeHTML(t.summary)}</p><p class="why">${escapeHTML(t.why)}</p></div><div class="source-count"><span>${t.majorMediaCount} 家媒體</span><span class="chev">›</span></div></div></button>`).join('');
+    focusList.innerHTML=topics.map((t,i)=>`<article class="focus-card glass" data-i="${i}"><span class="shine"></span><div class="card-grid"><div class="index">${String(i+1).padStart(2,'0')}</div><div><div class="meta-line"><span class="tag">${escapeHTML(t.category)}</span><span class="when">${relTime(t.publishedAt)}</span><span class="hot-threshold">HOT · ${t.majorMediaCount} 家知名媒體</span></div><h2 class="focus-title">${escapeHTML(t.title)}</h2><p class="focus-summary">${escapeHTML(t.summary)}</p><p class="why">${escapeHTML(t.why)}</p></div><div class="source-count"><span>${t.majorMediaCount} 家媒體</span><span class="chev">›</span></div></div><div class="focus-card-actions"><button class="pill view" type="button" data-action="open" data-i="${i}">查看摘要</button><button class="pill generate" type="button" data-action="generate" data-i="${i}">生成這篇</button></div></article>`).join('');
     if(qualifiedCount<CONFIG.limit)focusList.insertAdjacentHTML('beforeend',`<div class="strict-note"><strong>嚴格模式：</strong>本次掃描 ${scannedCount.toLocaleString()} 篇候選報導，只有 ${qualifiedCount} 個事件通過至少 2 家知名媒體門檻，不以低熱度內容補滿。</div>`);
-    focusList.querySelectorAll('.focus-card').forEach(card=>{card.onclick=()=>openDetail(Number(card.dataset.i));if(!lowPower){card.onpointermove=e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;card.style.setProperty('--mx',`${x*100}%`);card.style.setProperty('--my',`${y*100}%`);card.style.setProperty('--ry',`${(x-.5)*3.2}deg`);card.style.setProperty('--rx',`${(.5-y)*2.8}deg`)};card.onpointerleave=()=>{card.style.setProperty('--ry','0deg');card.style.setProperty('--rx','0deg')}}});
+    focusList.querySelectorAll('.focus-card').forEach(card=>{const idx=Number(card.dataset.i);card.onclick=e=>{if(e.target.closest('button'))return;openDetail(idx)};card.querySelector('[data-action="open"]')?.addEventListener('click',e=>{e.stopPropagation();openDetail(idx)});card.querySelector('[data-action="generate"]')?.addEventListener('click',e=>{e.stopPropagation();quickGenerateFromCard(idx)});if(!lowPower){card.onpointermove=e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;card.style.setProperty('--mx',`${x*100}%`);card.style.setProperty('--my',`${y*100}%`);card.style.setProperty('--ry',`${(x-.5)*3.2}deg`);card.style.setProperty('--rx',`${(.5-y)*2.8}deg`)};card.onpointerleave=()=>{card.style.setProperty('--ry','0deg');card.style.setProperty('--rx','0deg')}}});
+    refreshFocusSettings();
   }
 
   function defaultExtensionSuggestions(t){
@@ -1332,9 +1478,9 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       <div class="writer-panel">
         <div class="writer-head">
           <div><strong>SIGN WELL AI Writer</strong><span>600–800 字 · Claim–Evidence Lock · 逐段引用核驗</span></div>
-          <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">API 設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
+          <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">AI / API 設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
         </div>
-        <div class="ai-provider-location-note">API Endpoint、Model 與 Key 已集中到 CMS「發布設定」；寫作偏好仍由左側「AI 指令」管理。生成工作具有自動重試與逾時復原，不會因畫面短暫斷線就重複送出。</div>
+        <div class="ai-provider-location-note">這裡的範文生成會沿用上方的 AI / API 設定與可編輯 AI 指令。底層 Evidence Lock 與文獻核驗規則會繼續保留，不會被自訂偏好覆蓋。</div>
         <div class="ai-progress" id="aiProgress">
           <div class="ai-progress-head"><span id="aiProgressText">準備生成</span><span id="aiProgressPct">0%</span></div>
           <div class="ai-progress-track"><div class="ai-progress-bar" id="aiProgressBar"></div></div>
@@ -1351,7 +1497,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     $('#copyFocusBtn').onclick=()=>copyText(`${t.title}\n\n${t.summary}\n\n熱門度：${t.majorMediaCount} 家知名媒體共同報導\n${t.why}`);
     $('#copyLinksBtn').onclick=()=>copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
     $('#generateDraftBtn').onclick=()=>generateDraft(t);
-    $('#aiSettingsBtn').onclick=()=>window.parent?.signwellCmsOpenPublishSettings?.();
+    $('#aiSettingsBtn').onclick=()=>{showScreen(listScreen);toggleFocusSettings(true);refreshFocusSettings({open:true});};
     showScreen(detailScreen);
     refreshAiWriterStatus({openWhenMissing:false});
   }
@@ -1728,7 +1874,16 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   let toastTimer;function showToast(msg){clearTimeout(toastTimer);toast.textContent=msg;toast.classList.add('show');toastTimer=setTimeout(()=>toast.classList.remove('show'),1800)}
 
   scanBtn.onclick=()=>scan(false);
-  refreshBtn.onclick=()=>{workspacePayload=null;showScreen(homeScreen);setTimeout(()=>scan(true),180)};
+  settingsToggleBtn?.addEventListener('click',()=>{toggleFocusSettings();if(focusSettingsPanel?.classList.contains('show'))refreshFocusSettings({open:true})});
+  $('#focusAiSaveBtn')?.addEventListener('click',saveFocusProvider);
+  $('#focusAiTestBtn')?.addEventListener('click',testFocusProvider);
+  $('#focusAiVaultBtn')?.addEventListener('click',()=>window.parent?.signwellCmsOpenPublishSettings?.());
+  $('#focusAiInstructionSaveBtn')?.addEventListener('click',saveFocusInstructions);
+  $('#focusAiInstructionClearBtn')?.addEventListener('click',clearFocusInstructions);
+  $('#focusAiInstructionOpenBtn')?.addEventListener('click',()=>window.parent?.signwellCmsOpenAIInstructions?.());
+  window.addEventListener('message',e=>{if(e?.data?.type==='openFocusSettings'){showScreen(listScreen);toggleFocusSettings(true);refreshFocusSettings({open:true});}});
+
+  refreshBtn.onclick=()=>{workspacePayload=null;toggleFocusSettings(false);showScreen(homeScreen);setTimeout(()=>scan(true),180)};
   backBtn.onclick=()=>showScreen(listScreen);
   window.addEventListener('message',e=>{if(e.origin!==location.origin)return;if(e.data?.type==='SIGNWELL_MEDICAL_WORKSPACE_READY'&&!workspacePayload)preloadWorkspace()});
   preloadWorkspace();

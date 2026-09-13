@@ -5851,8 +5851,50 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 
 <link rel="stylesheet" href="assets/signwell-cms.css?build=23.7.0">
 <link rel="stylesheet" href="assets/signwell-dialogs.css?build=23.9.4">
+
+<style id="sw-auth-mobile-hotfix-v2396">
+.auth-question-input,.auth-answer-input,#answerInput{
+  text-align:center!important;
+  letter-spacing:0!important;
+}
+.auth-question-input::placeholder,.auth-answer-input::placeholder,#answerInput::placeholder{
+  text-align:center!important;
+  letter-spacing:0!important;
+}
+.sw-manual-password{
+  -webkit-text-security:disc!important;
+  text-security:disc!important;
+  text-align:center!important;
+  letter-spacing:.18em!important;
+  font-variant-ligatures:none!important;
+  caret-color:#203447!important;
+}
+.sw-manual-password::placeholder{
+  -webkit-text-security:none!important;
+  text-security:none!important;
+  letter-spacing:0!important;
+  text-align:center!important;
+}
+@media(max-width:760px){
+  #lockScreen .lock-card{
+    transform:none!important;
+    perspective:none!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+  }
+  #pinInput,#authSetupPassword{
+    font-size:18px!important;
+    min-height:52px!important;
+    -webkit-user-select:text!important;
+    user-select:text!important;
+  }
+}
+</style>
+<link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.11">
 </head>
 <body>
+<div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
+<script src="assets/signwell-loader.js?build=23.9.11"></script>
 <div class="cms-opening" id="cmsOpening" aria-hidden="true">
   <div class="opening-inner">
     <div class="opening-word" id="openingWord">哈囉</div>
@@ -5928,16 +5970,16 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 </div>
 <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
-<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin" id="pinInput" type="password" autocomplete="current-password" maxlength="64" placeholder="輸入管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文答案"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 5 題安全問題。</b><br>管理密碼通過後，每次登入都會由伺服器隨機抽出其中 1 題。題目存在後端；答案只保存加鹽、迭代雜湊，不會保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret" id="authSetupPassword" type="password" autocomplete="new-password" minlength="6" maxlength="64" placeholder="至少 6 個字元"></label>
+<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin sw-manual-password" id="pinInput" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" data-1p-ignore="true" data-lpignore="true" data-form-type="other" maxlength="64" placeholder="輸入管理密碼" aria-label="CMS 管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 5 題安全問題。</b><br>管理密碼通過後，每次登入都會由伺服器隨機抽出其中 1 題。題目存在後端；答案只保存加鹽、迭代雜湊，不會保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret sw-manual-password" id="authSetupPassword" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" minlength="6" maxlength="64" placeholder="至少 6 個字元" aria-label="新的 CMS 管理密碼"></label>
 <div class="auth-question-pool-title"><strong>五題安全問題題庫</strong><small>請設定 5 個彼此不同、只有你容易回答的問題</small></div>
-<label class="auth-setup-field"><span>安全問題 1</span><input class="auth-question-input" id="authSetupQuestion1" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="例如：我童年最常去的公園叫什麼？"></label><label class="auth-setup-field"><span>答案 1</span><input class="auth-answer-input" id="authSetupAnswer1" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文答案"></label>
-<label class="auth-setup-field"><span>安全問題 2</span><input class="auth-question-input" id="authSetupQuestion2" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="自訂中文問題"></label><label class="auth-setup-field"><span>答案 2</span><input class="auth-answer-input" id="authSetupAnswer2" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文答案"></label>
-<label class="auth-setup-field"><span>安全問題 3</span><input class="auth-question-input" id="authSetupQuestion3" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="自訂中文問題"></label><label class="auth-setup-field"><span>答案 3</span><input class="auth-answer-input" id="authSetupAnswer3" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文答案"></label>
-<label class="auth-setup-field"><span>安全問題 4</span><input class="auth-question-input" id="authSetupQuestion4" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="自訂中文問題"></label><label class="auth-setup-field"><span>答案 4</span><input class="auth-answer-input" id="authSetupAnswer4" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文答案"></label>
-<label class="auth-setup-field"><span>安全問題 5</span><input class="auth-question-input" id="authSetupQuestion5" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="自訂中文問題"></label><label class="auth-setup-field"><span>答案 5</span><input class="auth-answer-input" id="authSetupAnswer5" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文答案"></label>
-<div class="auth-zh-note">安全問題與答案在首次設定時都使用一般文字欄位、不遮罩，支援繁體中文、英文、數字與標點，方便中文輸入法選字、修正與輸入標點。送出後答案只在後端保存加鹽雜湊，不保存明文。建議 5 題不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立 5 題隨機安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · HTML 無長期秘密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
+<label class="auth-setup-field"><span>安全問題 1</span><input class="auth-question-input" id="authSetupQuestion1" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 1</span><input class="auth-answer-input" id="authSetupAnswer1" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
+<label class="auth-setup-field"><span>安全問題 2</span><input class="auth-question-input" id="authSetupQuestion2" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 2</span><input class="auth-answer-input" id="authSetupAnswer2" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
+<label class="auth-setup-field"><span>安全問題 3</span><input class="auth-question-input" id="authSetupQuestion3" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 3</span><input class="auth-answer-input" id="authSetupAnswer3" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
+<label class="auth-setup-field"><span>安全問題 4</span><input class="auth-question-input" id="authSetupQuestion4" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 4</span><input class="auth-answer-input" id="authSetupAnswer4" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
+<label class="auth-setup-field"><span>安全問題 5</span><input class="auth-question-input" id="authSetupQuestion5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 5</span><input class="auth-answer-input" id="authSetupAnswer5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
+<div class="auth-zh-note">安全問題與答案請以英文輸入。首次設定時使用一般文字欄位、不遮罩，方便檢查拼字與修正；送出後答案只在後端保存加鹽雜湊，不保存明文。建議 5 題不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立 5 題隨機安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · HTML 無長期秘密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.4</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="aiinstructions">AI 指令</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.6</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true"></section></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -6817,7 +6859,7 @@ function ensureMedicalNewsPersistentFrame(){
   const host=$('#medicalNewsPersistentHost');if(!host)return null;
   let frame=$('#medicalNewsSuggestionsFrame');
   if(!frame){
-    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.7.0" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
+    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.9.5" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
     frame=$('#medicalNewsSuggestionsFrame');
   }
   return frame;
@@ -6825,10 +6867,13 @@ function ensureMedicalNewsPersistentFrame(){
 function setMedicalNewsPersistentMode(active){
   const host=$('#medicalNewsPersistentHost'),view=$('#view');
   if(!host||!view)return;
-  host.classList.toggle('show',Boolean(active));
-  host.setAttribute('aria-hidden',active?'false':'true');
-  view.classList.toggle('medical-news-view-hidden',Boolean(active));
-  if(active)ensureMedicalNewsPersistentFrame();
+  const on=Boolean(active);
+  host.classList.toggle('show',on);
+  host.setAttribute('aria-hidden',on?'false':'true');
+  view.classList.toggle('medical-news-view-hidden',on);
+  view.style.display=on?'none':'';
+  host.style.display=on?'block':'';
+  if(on)ensureMedicalNewsPersistentFrame();
 }
 function resetMedicalNewsPersistentSession(){
   const host=$('#medicalNewsPersistentHost');
@@ -6840,7 +6885,7 @@ function renderMedicalNewsSuggestions(){
   setMedicalNewsPersistentMode(true);
 }
 window.signwellCmsOpenPublishSettings=()=>nav('export');
-window.signwellCmsOpenAIInstructions=()=>nav('aiinstructions');
+window.signwellCmsOpenAIInstructions=()=>{nav('medicalnews');setTimeout(()=>{try{document.querySelector('#medicalNewsSuggestionsFrame')?.contentWindow?.postMessage({type:'openFocusSettings'},'*')}catch(_){ }},160)};
 
 function renderView(){
   const editing=Boolean(currentId);
