@@ -1819,6 +1819,7 @@ body.lite #lockScreen .lock-card{
   color:#4d7e9e;font:700 9px/1 Georgia,serif;
 }
 .publisher-preview-avatar img{width:100%;height:100%;object-fit:cover}
+.cms-avatar-fallback{display:grid!important;place-items:center!important;color:#48647a!important;font-weight:850!important;background:linear-gradient(145deg,#fff,#dcecf8)!important}
 .publisher-preview-copy{min-width:0}
 .publisher-preview-copy strong{
   display:block;color:#4d6477;font-size:10px;
@@ -5798,7 +5799,9 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 }
 .about-person-dialog.show{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
 .about-person-dialog-card{
-  width:min(820px,100%);max-height:min(820px,calc(100dvh - 36px));
+  width:min(1060px,calc(100vw - 44px));
+  height:min(860px,calc(100dvh - 32px));
+  max-height:calc(100dvh - 32px);
   display:flex;flex-direction:column;overflow:hidden;
   border:1px solid rgba(255,255,255,.92);border-radius:30px;
   background:linear-gradient(145deg,rgba(253,254,255,.96),rgba(240,247,255,.90));
@@ -5819,12 +5822,12 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 .about-person-dialog-head h3{margin:0;font:500 24px/1.08 Georgia,"Noto Serif TC",serif;color:#172d40;letter-spacing:-.03em}
 .about-person-dialog-head p{margin:5px 0 0;font-size:9.5px;line-height:1.5;color:#778998}
 .about-person-dialog-close{width:38px;height:38px;flex:0 0 auto;border:1px solid rgba(255,255,255,.94)!important;border-radius:13px!important;background:rgba(255,255,255,.76)!important;color:#172d40!important;font-size:20px!important;line-height:1!important;cursor:pointer;box-shadow:inset 0 1px 0 #fff,0 6px 16px rgba(54,91,128,.06)!important}
-.about-person-dialog-body{padding:18px 22px 22px;overflow:auto;overscroll-behavior:contain}
+.about-person-dialog-body{flex:1 1 auto;min-height:0;padding:22px 26px 28px;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
 .about-person-dialog-body .site-field{margin-top:12px}
 .about-person-dialog-body .site-field label{color:#697d8e!important;font-weight:760}
 .about-person-dialog-body .site-field input,.about-person-dialog-body .site-field textarea{background:rgba(255,255,255,.74)!important;border-color:rgba(112,139,163,.14)!important;color:#172d40!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.88)}
-.about-person-dialog-body .site-field textarea{min-height:94px}
-.about-person-long-fields textarea{min-height:130px!important}
+.about-person-dialog-body .site-field textarea{min-height:112px}
+.about-person-long-fields textarea{min-height:168px!important}
 .about-person-active{margin:16px 0 0!important;padding:11px 12px;border-radius:14px;background:rgba(94,151,197,.07);border:1px solid rgba(94,151,197,.09);color:#536b7e!important}
 .about-person-dialog-actions{display:flex;justify-content:flex-end;gap:9px;padding:14px 22px 18px;border-top:1px solid rgba(96,122,146,.10);background:rgba(249,252,255,.84);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 .about-person-dialog-actions .top-action{min-width:104px;color:#102536!important}
@@ -5832,7 +5835,7 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 
 @media(max-width:720px){
   .about-person-dialog{place-items:end center;padding:10px 10px max(10px,env(safe-area-inset-bottom))}
-  .about-person-dialog-card{width:100%;max-height:92dvh;border-radius:28px 28px 22px 22px}
+  .about-person-dialog-card{width:100%;height:92dvh;max-height:92dvh;border-radius:28px 28px 22px 22px}
   .about-person-dialog-head{padding:16px 16px 14px;align-items:flex-start}
   .about-person-dialog-avatar{width:48px;height:48px;border-radius:16px}
   .about-person-dialog-head h3{font-size:22px}
@@ -5848,9 +5851,17 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 @media(prefers-reduced-motion:reduce){.about-person-dialog,.about-person-dialog-card,.about-person-mini{transition:none!important}}
 </style>
 
+/* v23.9.20 · destructive CMS lock action stays visibly red */
+#lockBtn,
+#lockBtn:hover,
+#lockBtn:focus-visible{
+  color:#d94d5c!important;
+  -webkit-text-fill-color:#d94d5c!important;
+}
 
 <link rel="stylesheet" href="assets/signwell-cms.css?build=23.7.0">
 <link rel="stylesheet" href="assets/signwell-dialogs.css?build=23.9.4">
+<style id="sw-cms-v23919-lock-danger">#lockBtn,#lockBtn:hover,#lockBtn:focus-visible{color:#d94d5c!important;-webkit-text-fill-color:#d94d5c!important}</style>
 
 <style id="sw-auth-mobile-hotfix-v2396">
 .auth-question-input,.auth-answer-input,#answerInput{
@@ -5890,11 +5901,11 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
   }
 }
 </style>
-<link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.11">
+<link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.31">
 </head>
 <body>
 <div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
-<script src="assets/signwell-loader.js?build=23.9.11"></script>
+<script src="assets/signwell-loader.js?build=23.9.31"></script>
 <div class="cms-opening" id="cmsOpening" aria-hidden="true">
   <div class="opening-inner">
     <div class="opening-word" id="openingWord">哈囉</div>
@@ -5979,8 +5990,8 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 <label class="auth-setup-field"><span>安全問題 5</span><input class="auth-question-input" id="authSetupQuestion5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 5</span><input class="auth-answer-input" id="authSetupAnswer5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
 <div class="auth-zh-note">安全問題與答案請以英文輸入。首次設定時使用一般文字欄位、不遮罩，方便檢查拼字與修正；送出後答案只在後端保存加鹽雜湊，不保存明文。建議 5 題不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立 5 題隨機安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · HTML 無長期秘密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.6</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
-<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true"></section></section>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.20</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true" hidden></section></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
 <div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從 CMS 與跨裝置雲端狀態移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">確認刪除</button></div></div></div>
@@ -6416,6 +6427,7 @@ function lock(){const oldSession=cmsSessionToken;stopCmsCloudPolling();stopAnaly
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 function nav(v){
   if(viewName==='newsletter'||v==='newsletter')resetNewsletterInteractionState();
+  if(v!=='medicalnews')setMedicalNewsPersistentMode(false);
   viewName=v;
   currentId=null;
   pendingNewArticle=null;
@@ -6740,7 +6752,7 @@ function normalizeGeneratedMedicalArticle(payload={}){
     updatedAt:today,
     content:String(payload.content||'<p>尚未產生內容。</p>'),
     contentFormat:'html',
-    references:Array.isArray(payload.references)?clone(payload.references):[],
+    references:(Array.isArray(payload.references)?clone(payload.references):[]).filter(r=>r&&r.type==='news'),
     audit:payload.audit&&typeof payload.audit==='object'?clone(payload.audit):null,
     sourceWorkspace:{
       type:'medical-news-workspace',
@@ -6859,7 +6871,7 @@ function ensureMedicalNewsPersistentFrame(){
   const host=$('#medicalNewsPersistentHost');if(!host)return null;
   let frame=$('#medicalNewsSuggestionsFrame');
   if(!frame){
-    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.9.5" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
+    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.9.20" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
     frame=$('#medicalNewsSuggestionsFrame');
   }
   return frame;
@@ -6868,17 +6880,36 @@ function setMedicalNewsPersistentMode(active){
   const host=$('#medicalNewsPersistentHost'),view=$('#view');
   if(!host||!view)return;
   const on=Boolean(active);
+  if(on)ensureMedicalNewsPersistentFrame();
+  host.hidden=!on;
   host.classList.toggle('show',on);
   host.setAttribute('aria-hidden',on?'false':'true');
+  host.style.display=on?'block':'none';
+  host.style.visibility=on?'visible':'hidden';
+  host.style.pointerEvents=on?'auto':'none';
+  host.style.height=on?'':'0px';
   view.classList.toggle('medical-news-view-hidden',on);
   view.style.display=on?'none':'';
-  host.style.display=on?'block':'';
-  if(on)ensureMedicalNewsPersistentFrame();
+  const frame=$('#medicalNewsSuggestionsFrame');
+  if(frame){
+    frame.style.visibility=on?'visible':'hidden';
+    frame.style.pointerEvents=on?'auto':'none';
+  }
 }
 function resetMedicalNewsPersistentSession(){
   const host=$('#medicalNewsPersistentHost');
-  if(host){host.innerHTML='';host.classList.remove('show');host.setAttribute('aria-hidden','true')}
-  $('#view')?.classList.remove('medical-news-view-hidden');
+  if(host){
+    host.innerHTML='';
+    host.hidden=true;
+    host.classList.remove('show');
+    host.setAttribute('aria-hidden','true');
+    host.style.display='none';
+    host.style.visibility='hidden';
+    host.style.pointerEvents='none';
+    host.style.height='0px';
+  }
+  const view=$('#view');
+  if(view){view.classList.remove('medical-news-view-hidden');view.style.display=''}
 }
 function renderMedicalNewsSuggestions(){
   medicalNewsBackgroundWarmup();
@@ -8403,9 +8434,10 @@ async function refreshNewsletterExactPreview({force=false}={}){
    ============================================================ */
 .workspace{position:relative}
 #view.medical-news-view-hidden{display:none!important}
-.medical-news-persistent{display:none;flex:1;min-height:0;padding:24px;overflow:hidden}
-.medical-news-persistent.show{display:block}
-.medical-news-persistent .medical-news-shell{height:100%;min-height:0}
+.medical-news-persistent,.medical-news-persistent[hidden]{display:none!important;visibility:hidden!important;pointer-events:none!important;height:0!important;min-height:0!important;overflow:hidden!important}
+.medical-news-persistent.show{display:block!important;visibility:visible!important;pointer-events:auto!important;height:auto!important;min-height:0!important;padding:24px;overflow:hidden}
+.medical-news-persistent.show .medical-news-shell{height:calc(100dvh - 116px);min-height:680px}
+@media(max-width:900px){.medical-news-persistent.show{padding:16px}.medical-news-persistent.show .medical-news-shell{height:calc(100dvh - 104px);min-height:620px}}
 #confirmDelete{
   background:linear-gradient(145deg,#e45f69,#c94350)!important;
   color:#fff!important;
@@ -8425,7 +8457,7 @@ async function refreshNewsletterExactPreview({force=false}={}){
 .ai-provider-form label.wide{grid-column:1/-1}
 .ai-provider-form input{width:100%;min-height:44px;border:1px solid rgba(87,107,126,.13);border-radius:14px;background:rgba(255,255,255,.64);padding:0 12px;outline:0;color:#24394c;font-size:11px}
 .ai-provider-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-@media(max-width:900px){.medical-news-persistent{padding:16px}.ai-provider-form{grid-template-columns:1fr}.ai-provider-form label.wide{grid-column:auto}}
+@media(max-width:900px){.ai-provider-form{grid-template-columns:1fr}.ai-provider-form label.wide{grid-column:auto}}
 
 </style>
       <div>
@@ -9474,6 +9506,35 @@ function cmsPublisherInitials(name=''){
   const parts=clean.split(/\s+/).filter(Boolean);
   return parts.length>1?(parts[0][0]+parts[parts.length-1][0]).toUpperCase():clean.slice(0,2).toUpperCase();
 }
+function cmsPersonPhotoURL(value=''){
+  let src=String(value||'').trim();
+  if(!src)return '';
+  if(/^\/\//.test(src))src='https:'+src;
+  const blob=src.match(/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/i);
+  if(blob)src=`https://raw.githubusercontent.com/${blob[1]}/${blob[2]}/${blob[3]}/${blob[4]}`;
+  if(/^(?:data:image\/|blob:|https?:\/\/)/i.test(src))return src;
+  src=src.replace(/^\.\//,'').replace(/^\.\.\//,'').replace(/^\/+/, '');
+  if(/^assets\//i.test(src))return 'https://980510linz.github.io/-/'+src;
+  return src;
+}
+function cmsAvatarMarkupFrom(photo,name=''){
+  const fallback=cmsPublisherInitials(name||'SW');
+  const src=cmsPersonPhotoURL(photo);
+  if(!src)return escapeHTML(fallback);
+  return `<img src="${escapeHTML(src)}" alt="${escapeHTML(name||'人物頭像')}" loading="lazy" decoding="async" data-cms-person-avatar data-fallback="${escapeHTML(fallback)}">`;
+}
+function cmsPersonAvatarMarkup(person){
+  person=person||{};
+  return cmsAvatarMarkupFrom(person.photo,person.name||'SW');
+}
+document.addEventListener('error',e=>{
+  const img=e.target;
+  if(!(img instanceof HTMLImageElement)||!img.matches('[data-cms-person-avatar]'))return;
+  const host=img.parentElement,fallback=img.dataset.fallback||'SW';
+  img.remove();
+  if(host&&!host.textContent.trim())host.textContent=fallback;
+  host?.classList?.add('cms-avatar-fallback');
+},true);
 
 function newArticle(){
   const id='new-'+Date.now(),today=new Date().toISOString().slice(0,10);
@@ -9830,7 +9891,7 @@ function bindEditor(){
       box.innerHTML=`<div class="publisher-preview-avatar">SW</div><div class="publisher-preview-copy"><strong>${escapeHTML(brand)}</strong><span>品牌發布者</span></div>`;
       return;
     }
-    box.innerHTML=`<div class="publisher-preview-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(cmsPublisherInitials(p.name))}</div><div class="publisher-preview-copy"><strong>${escapeHTML(p.name||'未命名人物')}</strong><span>${escapeHTML(p.role||((p.education||[])[0]||'人物發布者'))}</span></div>`;
+    box.innerHTML=`<div class="publisher-preview-avatar">${cmsPersonAvatarMarkup(p)}</div><div class="publisher-preview-copy"><strong>${escapeHTML(p.name||'未命名人物')}</strong><span>${escapeHTML(p.role||((p.education||[])[0]||'人物發布者'))}</span></div>`;
   };
   $('#publisherId')?.addEventListener('change',()=>{
     refreshPublisherPreview();
@@ -10352,7 +10413,7 @@ function renderSiteText(){
         <div class="live-preview-people">
           ${visiblePeople.length?visiblePeople.map(p=>`
             <div class="live-preview-person">
-              <div class="live-preview-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(livePreviewInitials(p.name))}</div>
+              <div class="live-preview-avatar">${cmsPersonAvatarMarkup(p)}</div>
               <div><strong>${escapeHTML(p.name||'未命名')}</strong><span>${escapeHTML(p.role||((p.education||[])[0]||''))}</span></div>
             </div>`).join(''):'<div class="live-preview-copy">尚未新增公開人物</div>'}
         </div>`;
@@ -10468,7 +10529,7 @@ function renderSiteText(){
     }
     list.innerHTML=arr.map((p,i)=>`
       <div class="person-admin-row ${personEditorMode==='edit'&&String(p.id)===personEditingId?'is-selected':''}">
-        <div class="person-admin-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
+        <div class="person-admin-avatar">${cmsPersonAvatarMarkup(p)}</div>
         <div class="person-admin-copy">
           <strong>${escapeHTML(p.name||'未命名人物')} ${p.active===false?'<span class="topic-badge">已隱藏</span>':''}</strong>
           <span>${escapeHTML(p.role||'尚未填寫角色')} · ${(p.education||[]).length} 項學歷 · ${(p.experience||[]).length} 項經歷</span>
@@ -11107,7 +11168,7 @@ function renderAboutPageEditor(){
       <div class="ap-people">
         ${visible.length?visible.map(p=>`
           <div class="ap-person">
-            <div class="ap-avatar">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
+            <div class="ap-avatar">${cmsPersonAvatarMarkup(p)}</div>
             <div><strong>${escapeHTML(p.name||'未命名人物')}</strong><small>${escapeHTML(p.role||((p.education||[])[0]||''))}</small></div>
           </div>`).join(''):'<div class="ap-copy">尚未新增公開人物</div>'}
       </div>
@@ -11121,7 +11182,7 @@ function renderAboutPageEditor(){
     const local=/^data:image\//i.test(value);
 
     host.innerHTML=value
-      ?`<div class="thumb"><img src="${escapeHTML(value)}" alt=""></div>
+      ?`<div class="thumb">${cmsAvatarMarkupFrom(value,'人物照片')}</div>
         <div class="copy">
           <strong>${local?'本機圖片已載入':'外部圖片 URL'}</strong>
           <span>${escapeHTML(meta||(local?'發布時會自動轉為 GitHub assets 圖片，不會把 Base64 留在公開資料。':'目前使用網址圖片。'))}</span>
@@ -11139,7 +11200,7 @@ function renderAboutPageEditor(){
     const photo=personPhotoValue();
     const avatar=$('#aboutPersonDialogAvatar');
     if(!avatar)return;
-    avatar.innerHTML=photo?`<img src="${escapeHTML(photo)}" alt="">`:escapeHTML(initials(name)||'＋');
+    avatar.innerHTML=photo?cmsAvatarMarkupFrom(photo,name||'人物'):escapeHTML(initials(name)||'＋');
   };
   const openPersonDialog=(mode='add')=>{
     const dlg=personDialog();
@@ -11207,7 +11268,7 @@ function renderAboutPageEditor(){
     }
     host.innerHTML=arr.map(p=>`
       <div class="about-person-mini ${p.active===false?'is-hidden':''}">
-        <div class="pic">${p.photo?`<img src="${escapeHTML(p.photo)}" alt="">`:escapeHTML(initials(p.name))}</div>
+        <div class="pic">${cmsPersonAvatarMarkup(p)}</div>
         <div class="about-person-mini-copy">
           <div class="about-person-mini-title"><strong>${escapeHTML(p.name||'未命名人物')}</strong>${p.active===false?'<em>已隱藏</em>':'<em class="is-live">公開</em>'}</div>
           <span>${escapeHTML(p.role||'尚未填寫角色')} · ${(p.education||[]).length} 項學歷 · ${(p.experience||[]).length} 項經歷</span>
@@ -11657,7 +11718,50 @@ function dataUrlParts(url=''){const m=String(url).match(/^data:(image\/[a-zA-Z0-
 function extForMime(m=''){if(m.includes('webp'))return'webp';if(m.includes('png'))return'png';if(m.includes('gif'))return'gif';return'jpg'}
 async function v10CreateBlob(base64,token){return githubRequest(`https://api.github.com/repos/${encodeURIComponent(PUBLIC_GITHUB.owner)}/${encodeURIComponent(PUBLIC_GITHUB.repo)}/git/blobs`,token,{method:'POST',body:JSON.stringify({content:base64,encoding:'base64'})})}
 async function v10ImageTreeEntry(dataUrl,slug,kind,token,cache){if(cache.has(dataUrl))return cache.get(dataUrl);const p=dataUrlParts(dataUrl);if(!p)return null;const now=new Date(),ym=`${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}`,name=`${slug}-${kind}-${v10Hash(dataUrl)}.${extForMime(p.mime)}`,path=`assets/uploads/${ym}/${name}`,blob=await v10CreateBlob(p.base64,token),entry={path,mode:'100644',type:'blob',sha:blob.sha},out={entry,url:path};cache.set(dataUrl,out);return out}
-async function v10PrepareArticle(article,token,imageEntries,imageCache){const a=clone(article),slug=v10SafeSlug(a);a.slug=slug;if(dataUrlParts(a.cover||'')){const up=await v10ImageTreeEntry(a.cover,slug,'cover',token,imageCache);if(up){imageEntries.push(up.entry);a.cover=up.url}}if(a.contentFormat==='html'&&a.content){const doc=new DOMParser().parseFromString(`<div id="v10root">${a.content}</div>`,'text/html'),root=doc.getElementById('v10root'),imgs=[...root.querySelectorAll('img[src^="data:image/"]')];for(let i=0;i<imgs.length;i++){const src=imgs[i].getAttribute('src')||'',up=await v10ImageTreeEntry(src,slug,'img'+(i+1),token,imageCache);if(up){imageEntries.push(up.entry);imgs[i].setAttribute('src',up.url)}}a.content=root.innerHTML}a.updatedAt=a.updatedAt||new Date().toISOString().slice(0,10);return a}
+function v10PublicAudit(audit){
+  if(!audit||typeof audit!=='object')return null;
+  return {
+    evidenceLocked:Boolean(audit.evidenceLocked),
+    claimEvidenceLocked:Boolean(audit.claimEvidenceLocked),
+    claimAuditPassed:Boolean(audit.claimAuditPassed),
+    topicFitPassed:Boolean(audit.topicFitPassed),
+    topicFitScore:Number(audit.topicFitScore||0),
+    numericalFidelityChecked:Boolean(audit.numericalFidelityChecked),
+    publicCitationPolicy:'news-only',
+    wordCount:Number(audit.wordCount||0)
+  };
+}
+function v10StripPrivatePubMedFromArticle(a){
+  const isMedicalNews=a?.sourceWorkspace?.type==='medical-news-workspace'||String(a?.category||'')==='時事探討';
+  if(!isMedicalNews)return a;
+  a.references=(Array.isArray(a.references)?a.references:[]).filter(r=>r&&r.type==='news');
+  a.audit=v10PublicAudit(a.audit);
+  if(a.contentFormat==='html'&&a.content){
+    const doc=new DOMParser().parseFromString(`<div id="sw-public-article">${a.content}</div>`,'text/html');
+    const root=doc.getElementById('sw-public-article');
+    root.querySelectorAll('a[href*="pubmed.ncbi.nlm.nih.gov"]')?.forEach(link=>{
+      const li=link.closest('li');
+      if(li)li.remove(); else link.remove();
+    });
+    root.querySelectorAll('li').forEach(li=>{if(/\bPMID\b/i.test(li.textContent||''))li.remove()});
+    root.querySelectorAll('sup').forEach(sup=>{if(!sup.textContent.trim()&&!sup.querySelector('a'))sup.remove()});
+    a.content=root.innerHTML;
+  }
+  return a;
+}
+async function v10PrepareArticle(article,token,imageEntries,imageCache){
+  let a=clone(article),slug=v10SafeSlug(a);
+  a.slug=slug;
+  a=v10StripPrivatePubMedFromArticle(a);
+  if(dataUrlParts(a.cover||'')){const up=await v10ImageTreeEntry(a.cover,slug,'cover',token,imageCache);if(up){imageEntries.push(up.entry);a.cover=up.url}}
+  if(a.contentFormat==='html'&&a.content){
+    const doc=new DOMParser().parseFromString(`<div id="v10root">${a.content}</div>`,'text/html'),root=doc.getElementById('v10root'),imgs=[...root.querySelectorAll('img[src^="data:image/"]')];
+    for(let i=0;i<imgs.length;i++){const src=imgs[i].getAttribute('src')||'',up=await v10ImageTreeEntry(src,slug,'img'+(i+1),token,imageCache);if(up){imageEntries.push(up.entry);imgs[i].setAttribute('src',up.url)}}
+    a.content=root.innerHTML;
+  }
+  a.updatedAt=a.updatedAt||new Date().toISOString().slice(0,10);
+  return a;
+}
 async function v10PreparePeoplePhotos(people,token,imageEntries,imageCache){
   const prepared=clone(Array.isArray(people)?people:[]);
 
