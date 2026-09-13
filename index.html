@@ -5891,6 +5891,71 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 }
 </style>
 <link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.11">
+
+<style id="sw-medical-news-host-visibility-fix">
+/* v23.9.12 · Daily focus host must only exist visually in medical-news view. */
+.workspace{position:relative}
+#medicalNewsPersistentHost{
+  display:none!important;
+  flex:1 1 auto;
+  min-height:0;
+  padding:0;
+  overflow:hidden;
+  visibility:hidden;
+  pointer-events:none;
+}
+#medicalNewsPersistentHost[hidden],
+#medicalNewsPersistentHost[aria-hidden="true"]{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  height:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+#medicalNewsPersistentHost.show:not([hidden])[aria-hidden="false"]{
+  display:block!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  height:auto!important;
+  min-height:0!important;
+  padding:24px!important;
+  overflow:hidden!important;
+}
+#medicalNewsPersistentHost .medical-news-shell{height:100%;min-height:0}
+#medicalNewsPersistentHost .medical-news-frame{display:block;width:100%;height:100%;min-height:0;border:0}
+@media(max-width:900px){
+  #medicalNewsPersistentHost.show:not([hidden])[aria-hidden="false"]{padding:16px!important}
+}
+</style>
+
+
+<style id="sw-cms-publish-provider-style-fix">
+/* Moved out of newsletter preview srcdoc; these rules belong to the CMS document. */
+#confirmDelete{
+  background:linear-gradient(145deg,#e45f69,#c94350)!important;
+  color:#fff!important;
+  border-color:transparent!important;
+  box-shadow:0 12px 28px rgba(191,55,68,.24),inset 0 1px 0 rgba(255,255,255,.22)!important;
+}
+#confirmDelete:hover{background:linear-gradient(145deg,#ec6a74,#c93f4d)!important;transform:translateY(-1px)}
+.ai-provider-settings-card{grid-column:1/-1!important;position:relative;overflow:hidden}
+.ai-provider-settings-card::before{content:"";position:absolute;inset:-45% auto auto -8%;width:360px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(113,181,242,.15),transparent 68%);pointer-events:none}
+.ai-provider-settings-card>*{position:relative}
+.ai-provider-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.ai-provider-head h3{margin:0 0 5px}.ai-provider-head p{margin:0;max-width:760px}
+.ai-provider-state{padding:7px 10px;border-radius:999px;background:rgba(121,139,155,.10);color:#667b8d;font-size:9px;font-weight:800;white-space:nowrap}
+.ai-provider-state.ready{background:rgba(75,160,118,.11);color:#4a8767}
+.ai-provider-form{display:grid;grid-template-columns:1.35fr .65fr;gap:10px;margin-top:16px}
+.ai-provider-form label{display:grid;gap:6px;color:#758797;font-size:9px;font-weight:800;letter-spacing:.04em}
+.ai-provider-form label.wide{grid-column:1/-1}
+.ai-provider-form input{width:100%;min-height:44px;border:1px solid rgba(87,107,126,.13);border-radius:14px;background:rgba(255,255,255,.64);padding:0 12px;outline:0;color:#24394c;font-size:11px}
+.ai-provider-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+@media(max-width:900px){.ai-provider-form{grid-template-columns:1fr}.ai-provider-form label.wide{grid-column:auto}}
+</style>
+
 </head>
 <body>
 <div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
@@ -5979,8 +6044,8 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 <label class="auth-setup-field"><span>安全問題 5</span><input class="auth-question-input" id="authSetupQuestion5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 5</span><input class="auth-answer-input" id="authSetupAnswer5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
 <div class="auth-zh-note">安全問題與答案請以英文輸入。首次設定時使用一般文字欄位、不遮罩，方便檢查拼字與修正；送出後答案只在後端保存加鹽雜湊，不保存明文。建議 5 題不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立 5 題隨機安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · HTML 無長期秘密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.6</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
-<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true"></section></section>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.7</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true" hidden style="display:none"></section></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
 <div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從 CMS 與跨裝置雲端狀態移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">確認刪除</button></div></div></div>
@@ -6859,7 +6924,7 @@ function ensureMedicalNewsPersistentFrame(){
   const host=$('#medicalNewsPersistentHost');if(!host)return null;
   let frame=$('#medicalNewsSuggestionsFrame');
   if(!frame){
-    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.9.5" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
+    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.9.12" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
     frame=$('#medicalNewsSuggestionsFrame');
   }
   return frame;
@@ -6868,17 +6933,35 @@ function setMedicalNewsPersistentMode(active){
   const host=$('#medicalNewsPersistentHost'),view=$('#view');
   if(!host||!view)return;
   const on=Boolean(active);
+
   host.classList.toggle('show',on);
   host.setAttribute('aria-hidden',on?'false':'true');
+  host.hidden=!on;
+  host.style.display=on?'block':'none';
+  host.style.visibility=on?'visible':'hidden';
+  host.style.pointerEvents=on?'auto':'none';
+
   view.classList.toggle('medical-news-view-hidden',on);
   view.style.display=on?'none':'';
-  host.style.display=on?'block':'';
+
   if(on)ensureMedicalNewsPersistentFrame();
 }
 function resetMedicalNewsPersistentSession(){
   const host=$('#medicalNewsPersistentHost');
-  if(host){host.innerHTML='';host.classList.remove('show');host.setAttribute('aria-hidden','true')}
-  $('#view')?.classList.remove('medical-news-view-hidden');
+  if(host){
+    host.innerHTML='';
+    host.classList.remove('show');
+    host.setAttribute('aria-hidden','true');
+    host.hidden=true;
+    host.style.display='none';
+    host.style.visibility='hidden';
+    host.style.pointerEvents='none';
+  }
+  const view=$('#view');
+  if(view){
+    view.classList.remove('medical-news-view-hidden');
+    view.style.display='';
+  }
 }
 function renderMedicalNewsSuggestions(){
   medicalNewsBackgroundWarmup();
@@ -8398,34 +8481,6 @@ async function refreshNewsletterExactPreview({force=false}={}){
         p{max-width:520px;line-height:1.7}
       
 
-/* ============================================================
-   CMS v14.56 · publish receipts / persistent news / provider settings
-   ============================================================ */
-.workspace{position:relative}
-#view.medical-news-view-hidden{display:none!important}
-.medical-news-persistent{display:none;flex:1;min-height:0;padding:24px;overflow:hidden}
-.medical-news-persistent.show{display:block}
-.medical-news-persistent .medical-news-shell{height:100%;min-height:0}
-#confirmDelete{
-  background:linear-gradient(145deg,#e45f69,#c94350)!important;
-  color:#fff!important;
-  border-color:transparent!important;
-  box-shadow:0 12px 28px rgba(191,55,68,.24),inset 0 1px 0 rgba(255,255,255,.22)!important;
-}
-#confirmDelete:hover{background:linear-gradient(145deg,#ec6a74,#c93f4d)!important;transform:translateY(-1px)}
-.ai-provider-settings-card{grid-column:1/-1!important;position:relative;overflow:hidden}
-.ai-provider-settings-card::before{content:"";position:absolute;inset:-45% auto auto -8%;width:360px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(113,181,242,.15),transparent 68%);pointer-events:none}
-.ai-provider-settings-card>*{position:relative}
-.ai-provider-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
-.ai-provider-head h3{margin:0 0 5px}.ai-provider-head p{margin:0;max-width:760px}
-.ai-provider-state{padding:7px 10px;border-radius:999px;background:rgba(121,139,155,.10);color:#667b8d;font-size:9px;font-weight:800;white-space:nowrap}
-.ai-provider-state.ready{background:rgba(75,160,118,.11);color:#4a8767}
-.ai-provider-form{display:grid;grid-template-columns:1.35fr .65fr;gap:10px;margin-top:16px}
-.ai-provider-form label{display:grid;gap:6px;color:#758797;font-size:9px;font-weight:800;letter-spacing:.04em}
-.ai-provider-form label.wide{grid-column:1/-1}
-.ai-provider-form input{width:100%;min-height:44px;border:1px solid rgba(87,107,126,.13);border-radius:14px;background:rgba(255,255,255,.64);padding:0 12px;outline:0;color:#24394c;font-size:11px}
-.ai-provider-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-@media(max-width:900px){.medical-news-persistent{padding:16px}.ai-provider-form{grid-template-columns:1fr}.ai-provider-form label.wide{grid-column:auto}}
 
 </style>
       <div>
