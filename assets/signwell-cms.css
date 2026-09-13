@@ -1,0 +1,124 @@
+/* SIGN WELL CMS v23 · final UX/performance layer */
+:root{--cms-v23-focus:rgba(67,139,207,.28);--cms-v23-black:#17222d}
+html{overscroll-behavior:none;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+:where(h1,h2,h3,h4,.page-head strong){text-wrap:balance}
+:where(p,.topic-help,.site-publish-hint){text-wrap:pretty}
+button,[role="button"]{touch-action:manipulation}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--cms-v23-focus)!important;outline-offset:2px!important}
+
+/* Preserve requested button contrast: black text unless the surface is truly dark or destructive red. */
+button:not(.danger):not([data-danger]),.top-action:not(.danger),.smallbtn:not(.danger),.toolbar button,.row-actions button,.topic-row-actions button,.site-text-actions button,.about-photo-controls button{
+  color:#17222d!important;-webkit-text-fill-color:#17222d!important;text-shadow:none!important;
+}
+.top-action.primary,.lock-screen button,.modal-actions .danger,.aiw-delete-card .aiw-confirm-send,[data-danger],button.danger{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+.top-action.online{color:#17222d!important;-webkit-text-fill-color:#17222d!important}
+
+/* Calm workspace: no autonomous shine/sweep. */
+.sidebar::after{content:none!important;display:none!important;animation:none!important}
+
+/* Stable touch sizing and modal ergonomics. */
+:where(.top-action,.smallbtn,.nav button,.toolbar button,.modal-actions button,.about-photo-controls button){min-height:42px}
+.modal-card,.person-dialog-card,.aiw-confirm-card{max-height:min(88dvh,820px);overflow:auto;overscroll-behavior:contain}
+textarea{line-height:1.55}
+
+/* Lower blur cost while the user is actively scrolling. */
+body.sw-cms-scrolling :where(.glass,.sidebar,.workspace,.topbar,.modal-card,.person-dialog-card,.aiw-confirm-card){
+  -webkit-backdrop-filter:blur(10px) saturate(125%)!important;
+  backdrop-filter:blur(10px) saturate(125%)!important;
+}
+body.sw-cms-hidden *{animation-play-state:paused!important}
+body.sw-cms-perf-lite .field{display:none!important}
+body.sw-cms-perf-lite .grain{opacity:.05!important}
+body.sw-cms-perf-lite :where(.glass,.sidebar,.workspace,.topbar,.modal-card){
+  -webkit-backdrop-filter:blur(8px) saturate(115%)!important;
+  backdrop-filter:blur(8px) saturate(115%)!important;
+}
+
+@media(max-width:900px),(pointer:coarse){
+  .field{filter:blur(52px) saturate(118%)!important;opacity:.52!important}
+  .view{padding:18px!important}
+  .topbar{padding-inline:14px!important}
+}
+@media(max-width:620px){
+  .view{padding:14px!important}
+  .page-head{align-items:flex-start!important;gap:12px!important}
+  .page-head h1{font-size:clamp(31px,10vw,40px)!important}
+  .about-editor-actions,.site-text-actions,.person-form-actions{gap:7px!important}
+  .about-editor-actions .top-action,.site-text-actions .top-action,.person-form-actions .top-action{flex:1 1 160px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+
+/* v23.2 · secure send step-up + audit log */
+.newsletter-stepup-overlay{position:fixed;inset:0;z-index:4100;display:grid;place-items:center;padding:20px;background:rgba(226,238,248,.48);-webkit-backdrop-filter:blur(20px) saturate(145%);backdrop-filter:blur(20px) saturate(145%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility 0s linear .2s}
+.newsletter-stepup-overlay.show{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
+.newsletter-stepup-card{width:min(520px,100%);padding:26px;border-radius:28px;border:1px solid rgba(255,255,255,.92);background:linear-gradient(145deg,rgba(255,255,255,.93),rgba(239,247,255,.82));box-shadow:0 28px 90px rgba(39,66,93,.18),inset 0 1px 0 #fff;color:#17283a}
+.newsletter-stepup-kicker{font-size:9px;letter-spacing:.14em;font-weight:850;color:#6b7f90}
+.newsletter-stepup-card h2{margin:8px 0 8px;font:600 30px/1.08 Georgia,"Noto Serif TC",serif;color:#17283a;letter-spacing:-.035em}
+.newsletter-stepup-card>p{margin:0;color:#667b8d;font-size:12px;line-height:1.75}
+.newsletter-stepup-summary{margin-top:17px;padding:13px 14px;border-radius:16px;background:rgba(255,255,255,.68);border:1px solid rgba(225,237,248,.9);display:grid;gap:4px}
+.newsletter-stepup-summary span{font-size:9px;color:#7b8e9d}.newsletter-stepup-summary strong{font-size:12px;color:#17283a}
+.newsletter-stepup-field{display:grid;gap:7px;margin-top:16px}.newsletter-stepup-field span{font-size:9px;font-weight:800;color:#607689}.newsletter-stepup-field input{height:46px;border:1px solid rgba(91,118,145,.16);border-radius:14px;padding:0 13px;background:#fff;color:#17283a;outline:0}.newsletter-stepup-field input:focus{border-color:rgba(68,124,179,.38);box-shadow:0 0 0 4px rgba(68,124,179,.08)}
+.newsletter-stepup-note{margin-top:11px;font-size:10px;line-height:1.6;color:#748798}.newsletter-stepup-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:19px}.newsletter-stepup-actions button{min-height:44px;padding:0 15px;border-radius:14px;border:1px solid rgba(96,118,138,.15);background:rgba(255,255,255,.88);color:#111;font-weight:800;cursor:pointer}.newsletter-stepup-actions .secure-send{background:#182431!important;color:#fff!important;border-color:#182431!important}
+.security-audit-card{margin-top:14px;padding:20px;border-radius:22px;border:1px solid rgba(255,255,255,.88);background:rgba(255,255,255,.46);box-shadow:inset 0 1px 0 rgba(255,255,255,.94),0 12px 34px rgba(55,87,117,.06)}
+.security-audit-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.security-audit-head h3{margin:0;font:600 21px/1.15 Georgia,"Noto Serif TC",serif;color:#1d3349}.security-audit-head p{margin:5px 0 0;color:#718492;font-size:10px;line-height:1.65}.security-audit-list{display:grid;gap:7px;margin-top:14px}.security-audit-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;border-radius:14px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.82)}.security-audit-row strong{display:block;font-size:10px;color:#1d3349}.security-audit-row span{display:block;margin-top:2px;font-size:8.5px;color:#7d8e9c}.security-audit-row em{font-style:normal;font-size:8px;font-weight:850;padding:5px 7px;border-radius:999px;background:rgba(130,143,153,.12);color:#5f7180}.security-audit-row em.ok{background:rgba(78,151,116,.12);color:#397658}.security-audit-row em.bad{background:rgba(190,77,87,.11);color:#a54650}
+@media(max-width:620px){.newsletter-stepup-overlay{align-items:end;padding:10px}.newsletter-stepup-card{border-radius:28px 28px 20px 20px;padding:22px 18px max(20px,env(safe-area-inset-bottom))}.newsletter-stepup-actions{display:grid;grid-template-columns:1fr 1fr}.security-audit-head{align-items:center}.security-audit-row{align-items:flex-start}}
+@media(prefers-color-scheme:dark){.newsletter-stepup-overlay{background:rgba(4,12,20,.62)}.newsletter-stepup-card{background:linear-gradient(145deg,rgba(23,35,47,.97),rgba(14,25,36,.95));border-color:rgba(255,255,255,.12);color:#f5f8fb}.newsletter-stepup-card h2,.newsletter-stepup-summary strong{color:#f5f8fb}.newsletter-stepup-card>p,.newsletter-stepup-note{color:#b6c5d1}.newsletter-stepup-summary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.10)}.newsletter-stepup-field span,.newsletter-stepup-summary span{color:#9fb2c2}.newsletter-stepup-field input{background:#0f1b27;color:#fff;border-color:rgba(255,255,255,.12)}.newsletter-stepup-actions button{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.12)}}
+
+
+/* ============================================================
+   SIGN WELL CMS 23.7.0 · consistency / dense-workflow polish
+   ============================================================ */
+html{scrollbar-gutter:stable}
+body{min-height:100dvh}
+::selection{background:rgba(111,178,231,.26);color:inherit}
+.view{overscroll-behavior:contain;scrollbar-gutter:stable}
+.topbar{isolation:isolate}
+.save-state{min-width:68px;text-align:right;font-variant-numeric:tabular-nums}
+:where(.article-row,.topic-row-admin,.security-audit-row,.about-person-mini){content-visibility:auto;contain-intrinsic-size:1px 72px}
+:where(input,textarea,select){accent-color:#4f91cb}
+:where(input,textarea,select):disabled{opacity:.72;cursor:not-allowed}
+
+/* Tables/lists should stay usable on narrow CMS windows instead of forcing page overflow. */
+:where(.panel,.topic-list,.security-audit-card){min-width:0}
+:where(.article-row,.topic-row-admin,.security-audit-row){overflow-wrap:anywhere}
+
+/* Network status for operational clarity. */
+.sw-cms-network{position:fixed;z-index:5200;top:max(12px,env(safe-area-inset-top));left:50%;translate:-50% -10px;padding:10px 14px;border-radius:999px;background:rgba(22,34,46,.94);border:1px solid rgba(255,255,255,.12);box-shadow:0 15px 42px rgba(20,35,50,.18);color:#fff;font-size:10.5px;font-weight:800;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,translate .28s cubic-bezier(.16,1,.3,1),visibility 0s linear .24s}.sw-cms-network.show{opacity:1;visibility:visible;translate:-50% 0;transition-delay:0s}.sw-cms-network.online{background:rgba(32,75,55,.94)}
+body.sw-cms-offline #onlineBtn,body.sw-cms-offline #publishBtn{filter:saturate(.5);opacity:.72}
+
+/* Make modal ergonomics consistent across long forms. */
+:where(.modal-card,.person-dialog-card,.aiw-confirm-card,.newsletter-stepup-card){scrollbar-gutter:stable}
+:where(.modal-card,.person-dialog-card,.aiw-confirm-card,.newsletter-stepup-card) :where(input,textarea,select){min-height:42px}
+
+@media(max-width:760px),(pointer:coarse){
+  html{scrollbar-gutter:auto}
+  :where(input,textarea,select){font-size:16px!important}
+  .view{scrollbar-gutter:auto}
+  .topbar{gap:7px!important}
+  .save-state{font-size:9px;min-width:auto}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .article-row{grid-template-columns:minmax(0,1fr)!important;gap:7px!important}
+  .article-row>.views-cell,.article-row>.badge,.article-row>.row-actions{justify-self:start}
+}
+@media(max-width:420px){.stats{grid-template-columns:1fr 1fr!important}.topbar h2{max-width:34vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(prefers-reduced-motion:reduce){.sw-cms-network{transition:none!important}}
+
+/* SIGN WELL CMS v23.6.1 · final contrast guard */
+:root{--sw-cms-copy:#203447;--sw-cms-muted:#617687}
+body{color:var(--sw-cms-copy)}
+:where(.top-action,.smallbtn,.toolbar button,.row-actions button,.cover-actions button,.topic-row-actions button,.site-text-actions button,.publish-actions button,.about-photo-controls button,.person-form-actions button,.modal-actions button){color:#111820!important;text-shadow:none!important;opacity:1}
+:where(.top-action.primary,.secure-send,.lock-screen button){color:#fff!important}
+:where(.danger,.top-action.danger,.modal-actions .danger,[data-danger="true"]){color:#fff!important;background:#b94d59!important;border-color:#b94d59!important}
+:where(button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled){opacity:.72!important;color:#263b4e!important}
+:where(.page-head p,.save-state,.site-field label,.field-group label,.about-editor-section-title span,.security-audit-head p,.security-audit-row span,.newsletter-stepup-note){color:var(--sw-cms-muted)!important;opacity:1!important}
+:where(input,textarea,select){color:#162a3c!important}
+:where(input,textarea)::placeholder{color:#71879a!important;opacity:1!important}
+@media(prefers-color-scheme:dark){.newsletter-stepup-card :where(p,span,label){color:#c6d5e1!important;opacity:1!important}.newsletter-stepup-card :where(h1,h2,h3,strong){color:#fff!important}}
+
+
+/* SIGN WELL Secret Vault v23.9 */
+.sw-secret-summary{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0;padding:14px 15px;border:1px solid rgba(255,255,255,.86);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(236,246,255,.50));box-shadow:inset 0 1px 0 rgba(255,255,255,.96)}.sw-secret-summary>div{min-width:0;display:grid;gap:3px}.sw-secret-summary span{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#738698}.sw-secret-summary strong{font-size:12px;color:#203447}.sw-secret-summary strong.ready{color:#225c50}.sw-secret-summary small{font-size:9px;color:#7d8d9b}.sw-secret-summary .top-action{color:#203447!important}.sw-secret-vault-overlay{position:fixed;inset:0;z-index:4300;display:grid;place-items:center;padding:22px;background:rgba(18,32,47,.28);backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)}.sw-secret-vault-card{width:min(520px,100%);border:1px solid rgba(255,255,255,.9);border-radius:28px;background:linear-gradient(155deg,rgba(255,255,255,.96),rgba(237,246,253,.89));box-shadow:0 28px 80px rgba(32,57,80,.22),inset 0 1px 0 #fff;padding:22px;color:#203447}.sw-secret-vault-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.sw-secret-vault-head h3{margin:0;font:600 25px/1.1 Georgia,"Noto Serif TC",serif;color:#1d3349}.sw-secret-vault-head p{margin:7px 0 0;font-size:11px;line-height:1.65;color:#6e8090}.sw-secret-close{width:38px;height:38px;border:1px solid rgba(130,151,170,.16);border-radius:999px;background:rgba(255,255,255,.72);color:#203447!important;font-size:20px;cursor:pointer}.sw-secret-vault-form{display:grid;gap:11px;margin-top:20px}.sw-secret-vault-form label{display:grid;gap:6px}.sw-secret-vault-form label span{font-size:9px;letter-spacing:.08em;color:#738698}.sw-secret-vault-form input{width:100%;min-height:46px;border:1px solid rgba(92,116,137,.17);border-radius:14px;background:rgba(255,255,255,.82);padding:0 13px;color:#1e3448;font-size:16px;outline:0}.sw-secret-vault-form input:focus{border-color:rgba(70,136,196,.42);box-shadow:0 0 0 4px rgba(70,136,196,.09)}.sw-secret-vault-note{margin-top:13px;padding:11px 12px;border-radius:13px;background:rgba(90,150,198,.07);font-size:9.5px;line-height:1.65;color:#667b8c}.sw-secret-vault-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.sw-secret-vault-actions .danger{background:#b94f5c!important;color:#fff!important;border-color:transparent!important}@media(max-width:640px){.sw-secret-vault-overlay{align-items:end;padding:0}.sw-secret-vault-card{width:100%;max-height:86dvh;overflow:auto;border-radius:30px 30px 0 0;padding:22px 18px max(22px,env(safe-area-inset-bottom))}.sw-secret-summary{align-items:flex-start;flex-direction:column}.sw-secret-summary .top-action{width:100%}.sw-secret-vault-actions{display:grid;grid-template-columns:1fr 1fr}.sw-secret-vault-actions .top-action{width:100%}}
