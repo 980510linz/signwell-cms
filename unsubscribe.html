@@ -2,11 +2,16 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
+<meta name="signwell-release" content="23.9.0">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <link rel="preconnect" href="https://script.google.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com https://challenges.cloudflare.com; frame-src 'self' https://script.google.com https://script.googleusercontent.com https://challenges.cloudflare.com; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>電子報設定 · SIGN WELL</title>
 <script src="analytics-config.js"></script>
 <style>
@@ -2158,6 +2163,39 @@ body{color:#173049!important;-webkit-font-smoothing:antialiased;text-rendering:o
 }
 
 </style>
+<style id="swPublicV222ArticleCard">
+.article-view{
+  border-radius:36px!important;padding:34px 40px 44px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(244,249,255,.58))!important;
+  border:1px solid rgba(255,255,255,.90)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 24px 64px rgba(59,94,130,.10)!important;
+}
+.article-layout{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:0 6px 10px!important}
+.article-body{padding:0 6px 8px!important}
+.article-cover,.article-cover.default-cover{margin-left:0!important;margin-right:0!important}
+body.dark .article-view{background:linear-gradient(145deg,rgba(28,42,56,.88),rgba(17,28,39,.78))!important;border-color:rgba(220,238,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 26px 66px rgba(0,0,0,.34)!important}
+@media(max-width:760px){
+  body.sw-reading #app{padding-left:max(10px,env(safe-area-inset-left))!important;padding-right:max(10px,env(safe-area-inset-right))!important}
+  .article-view{border-radius:26px!important;padding:14px 14px 28px!important}
+  .article-top{padding:8px 4px 18px!important}
+  .article-cover,.article-cover.default-cover{width:100%!important;margin:2px 0 22px!important;border-radius:20px!important}
+  .article-layout{padding:0 3px 8px!important}.article-body{padding:0 4px 8px!important}
+  .sw-mobile-toc-launch{margin-left:2px!important;margin-right:2px!important;width:calc(100% - 4px)!important}
+}
+@media(max-width:390px){.article-view{border-radius:23px!important;padding:12px 12px 26px!important}.article-body{padding-left:3px!important;padding-right:3px!important}}
+</style>
+
+<link rel="stylesheet" href="assets/signwell-runtime.css?build=23.9.0">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="assets/signwell-app-icon-192.png">
+<meta property="og:image" content="https://980510linz.github.io/-/assets/signwell-share.png">
+<meta name="twitter:image" content="https://980510linz.github.io/-/assets/signwell-share.png">
+<link rel="stylesheet" href="assets/signwell-contrast.css?build=23.9.0">
+<link rel="stylesheet" href="assets/signwell-uiux.css?build=23.9.0">
+<link rel="stylesheet" href="assets/signwell-dialogs.css?build=23.9.1">
+<meta name="signwell-public-ui" content="23.9.0">
 </head>
 <body>
 <div class="ambient" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i></div>
@@ -2254,6 +2292,8 @@ async function unsubscribe(reason='skipped'){
     const result=await gasBridge('newsletter.unsubscribe',{token,reason,note});
     try{
       localStorage.removeItem('signwell-newsletter-subscribed');
+      localStorage.removeItem('signwell-newsletter-pending');
+      localStorage.removeItem('signwell-newsletter-pending-at');
       localStorage.setItem('signwell-newsletter-last-result',JSON.stringify({ok:true,at:Date.now(),status:'unsubscribed'}));
     }catch(_){}
     try{history.replaceState(null,'',location.pathname)}catch(_){}
@@ -2413,5 +2453,8 @@ else if(!token)setResult('連結無效','請從你收到的 SIGN WELL 電子報�
 })();
 </script>
 
+
+<script src="assets/signwell-runtime.js?build=23.9.0"></script>
+<script src="assets/signwell-dialogs.js?build=23.9.1"></script>
 </body>
 </html>

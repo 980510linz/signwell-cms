@@ -2,7 +2,11 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
+<meta name="signwell-release" content="23.9.0">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
 <meta name="theme-color" content="#f5f8fb" id="themeColorMeta">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="SIGN WELL · 欣緯生醫 — 臨床筆記、主題探討與醫學知識整理。">
@@ -13,6 +17,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <link rel="preconnect" href="https://script.google.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com https://challenges.cloudflare.com; frame-src 'self' https://script.google.com https://script.googleusercontent.com https://challenges.cloudflare.com; form-action 'self' https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>SIGN WELL · 欣緯生醫</title>
 <style>
 /* ============================================================
@@ -4602,953 +4608,265 @@ body.dark .ambient{opacity:.84!important;filter:blur(82px) saturate(122%)!import
 
 </style>
 
-<style id="signwell-typography-20260912">
+<link rel="stylesheet" href="assets/signwell-common-a.css?build=23.9.0">
+
+
+
+
+
+
+
+
+
+<style id="swPublicV223NewsletterDarkContrast">
 /* ============================================================
-   SIGN WELL · Typography 2026-09-12
-   Scope: visual layer only. No application logic is changed.
-   Microsoft JhengHei = body/editorial copy
-   Yuanti / rounded fallback = headings, brand and controls
+   SIGN WELL Public v22.3 · Newsletter dark-mode readability
+   Final cascade layer. Newsletter + Terms only.
    ============================================================ */
-:root{
-  --sw-font-main:"Microsoft JhengHei","Microsoft JhengHei UI","微軟正黑體",sans-serif;
-  --sw-font-round:"Yuanti TC","STYuanti-TC-Regular","Microsoft JhengHei UI","Microsoft JhengHei","微軟正黑體",sans-serif;
-  --font-sans:var(--sw-font-main);
-  --font-serif:var(--sw-font-round);
-  --sans:var(--sw-font-main);
-  --serif:var(--sw-font-round);
+body.dark .newsletter-wrap{
+  color:#eef6fc!important;
 }
-
-html,body,
-body *,
-button,input,textarea,select,option{
-  font-family:var(--sw-font-main)!important;
-}
-
-h1,h2,h3,h4,h5,h6,
-.splash-word,
-.brand-mark,.brand-copy strong,.brand-title,.brand-name,
-.eyebrow,.kicker,.page-title,.section-title,
-.article-card h3,.topic-card h3,
-.person-name,.person-card h3,
-.newsletter-title,.newsletter-kicker,
-.search-title,.share-title,
-.about-manifesto h2,.about-team-head h2,
-.idle-subscribe-title,.nl-flow-title,.newsletter-terms-title,
-button,.pillbtn,.softbtn,.backlink,.newsletter-submit,.share-copy,
-.search-close,.to-top,.nav-item,.badge,.chip,.tag{
-  font-family:var(--sw-font-round)!important;
-}
-
-/* Keep the two-font system deterministic even when legacy declarations
-   still contain Georgia, Times, SF Pro, PingFang or Mincho. */
-code,pre,kbd,samp,.search-kbd,.content-area{
-  font-family:var(--sw-font-main)!important;
-}
-</style>
-<style id="signwell-uiux-v19">
-/* SIGN WELL Public · UI/UX refinement v19 · 2026-09-13 */
-:root{
-  --sw-blue:#78b5f7;
-  --sw-blue-deep:#4d8fd6;
-  --sw-blue-pale:#eaf4ff;
-  --sw-pink:#f2d7e5;
-  --sw-pink-pale:#fdf2f7;
-  --sw-glass:rgba(255,255,255,.66);
-  --sw-glass-strong:rgba(255,255,255,.80);
-  --sw-line:rgba(255,255,255,.88);
-  --sw-shadow:0 18px 54px rgba(55,94,132,.10),0 3px 12px rgba(55,94,132,.05);
-  --sw-shadow-hover:0 28px 72px rgba(55,94,132,.15),0 8px 24px rgba(55,94,132,.07);
-  --sw-ease:cubic-bezier(.16,1,.3,1);
-  --sw-spring:cubic-bezier(.22,1.35,.38,1);
-}
-html{background:#f5f9fe}
-body{
+body.dark .newsletter-card{
   background:
-    radial-gradient(56rem 40rem at -8% -4%,rgba(255,255,255,.96),transparent 62%),
-    radial-gradient(54rem 38rem at 108% 8%,rgba(212,232,255,.84),transparent 64%),
-    radial-gradient(38rem 30rem at 10% 105%,rgba(242,215,229,.45),transparent 66%),
-    linear-gradient(155deg,#fcfeff 0%,#f5f9fe 52%,#edf4fc 100%)!important;
+    radial-gradient(115% 90% at 0% -8%,rgba(128,183,231,.13),transparent 55%),
+    radial-gradient(75% 64% at 105% 0%,rgba(210,154,186,.08),transparent 68%),
+    linear-gradient(150deg,rgba(30,46,60,.94),rgba(15,27,38,.90))!important;
+  border-color:rgba(211,232,248,.18)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 24px 64px rgba(0,0,0,.34)!important;
 }
-body::before{
-  content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;
-  background:
-    radial-gradient(24rem 24rem at 78% 18%,rgba(255,255,255,.55),transparent 70%),
-    radial-gradient(20rem 20rem at 20% 74%,rgba(217,235,255,.34),transparent 72%);
+body.dark .newsletter-card::after{
+  background:radial-gradient(circle,rgba(116,170,222,.11),transparent 70%)!important;
 }
-.ambient{opacity:.72!important;filter:blur(88px) saturate(118%)!important}
-.orb.a{background:radial-gradient(circle,rgba(134,190,250,.42),transparent 68%)!important}
-.orb.b{background:radial-gradient(circle,rgba(219,236,255,.58),transparent 68%)!important}
-.orb.c{background:radial-gradient(circle,rgba(242,215,229,.32),transparent 68%)!important}
-.orb.d{background:radial-gradient(circle,rgba(178,213,250,.28),transparent 70%)!important}
-.grain{opacity:.055!important}
-
-/* cleaner Apple-like glass */
-.glass,.hero-card,.article-card,.topic-card,.person-card,.share-card,.newsletter-card,
-.about-manifesto,.about-value,.about-team-card,.toc,.searchbox,.idle-subscribe-card,
-.newsletter-flow-card,.newsletter-terms-card,.share-sheet{
-  border:1px solid rgba(255,255,255,.82)!important;
-  background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(242,248,255,.46))!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(110,146,182,.045),var(--sw-shadow)!important;
-  backdrop-filter:blur(22px) saturate(148%)!important;
-  -webkit-backdrop-filter:blur(22px) saturate(148%)!important;
+body.dark .newsletter-kicker{
+  color:#b8d7ef!important;
+  background:rgba(255,255,255,.055)!important;
+  border-color:rgba(212,234,251,.14)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07)!important;
 }
-.glass::before{opacity:.88}
-.lightcard::after{opacity:.34!important;transition:opacity .28s ease!important}
-.lightcard:hover::after{opacity:.62!important}
-
-/* cards: smaller motion, better hierarchy */
-.article-card,.topic-card,.person-card,.about-value,.about-team-card{
-  transform:translateZ(0);
-  transition:transform .42s var(--sw-ease),box-shadow .42s var(--sw-ease),border-color .32s ease,background .32s ease!important;
-  contain:layout paint style;
+body.dark .newsletter-card h1{
+  color:#f6f9fc!important;
+  -webkit-text-fill-color:#f6f9fc!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.07),0 16px 34px rgba(0,0,0,.24)!important;
 }
-@media (hover:hover) and (pointer:fine){
-  .article-card:hover,.topic-card:hover,.person-card:hover,.about-value:hover,.about-team-card:hover{
-    transform:translate3d(0,-4px,0)!important;
-    box-shadow:var(--sw-shadow-hover)!important;
-    border-color:rgba(255,255,255,.96)!important;
-  }
+body.dark .newsletter-lead{
+  color:#d9e6ef!important;
+  -webkit-text-fill-color:#d9e6ef!important;
 }
-
-/* buttons and controls */
-button,.pillbtn,.softbtn,.iconbtn,.backlink,.newsletter-submit,.share-copy{
-  transition:transform .26s var(--sw-spring),box-shadow .3s var(--sw-ease),background .3s ease,border-color .3s ease,opacity .2s ease!important;
-  -webkit-font-smoothing:antialiased;
+body.dark .newsletter-form{
+  background:rgba(7,17,26,.34)!important;
+  border-color:rgba(205,229,248,.14)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 15px 38px rgba(0,0,0,.15)!important;
 }
-button:active,.pillbtn:active,.softbtn:active,.iconbtn:active,.backlink:active,.newsletter-submit:active,.share-copy:active{
-  transform:scale(.965)!important;
+body.dark .newsletter-form input{
+  color:#f2f7fb!important;
+  -webkit-text-fill-color:#f2f7fb!important;
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(207,231,249,.10)!important;
+  caret-color:#9fd0f7!important;
 }
-:focus-visible{outline:3px solid rgba(77,143,214,.20)!important;outline-offset:3px!important;box-shadow:0 0 0 1px rgba(77,143,214,.52)!important}
-input,textarea,select{transition:border-color .22s ease,box-shadow .22s ease,background .22s ease!important}
-input:focus,textarea:focus,select:focus{border-color:rgba(77,143,214,.34)!important;box-shadow:0 0 0 4px rgba(77,143,214,.08),inset 0 1px 0 rgba(255,255,255,.9)!important}
-
-/* bottom liquid pager */
-.pager{
-  border:1px solid rgba(255,255,255,.84)!important;
-  background:linear-gradient(155deg,rgba(255,255,255,.46),rgba(228,240,253,.17) 48%,rgba(255,255,255,.31))!important;
-  box-shadow:0 20px 52px rgba(54,94,132,.14),0 3px 12px rgba(54,94,132,.05),inset 0 1px 1px rgba(255,255,255,.92),inset 0 -1px 1px rgba(155,193,228,.16)!important;
-  backdrop-filter:blur(24px) saturate(160%) brightness(1.035)!important;
-  -webkit-backdrop-filter:blur(24px) saturate(160%) brightness(1.035)!important;
-}
-.pager-thumb{
-  background:radial-gradient(120% 110% at 25% -6%,rgba(255,255,255,.98),rgba(255,255,255,.28) 47%,transparent 72%),linear-gradient(155deg,rgba(250,253,255,.84),rgba(212,233,255,.34) 70%,rgba(242,215,229,.17))!important;
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.99),inset 0 -10px 18px -14px rgba(88,146,200,.27),0 12px 26px rgba(55,98,138,.14),0 1px 4px rgba(55,98,138,.09)!important;
-}
-.nav-item{font-weight:760!important;letter-spacing:.015em!important}
-.nav-item.active{color:#244f73!important}
-body.pager-dragging .pager-thumb{scale:1.06!important}
-body.pager-programmatic .pager-thumb,.pager.nav-traveling .pager-thumb{scale:1.035!important}
-
-/* page gesture: make the moving screen feel like a physical sheet */
-#app{transform:translateZ(0);backface-visibility:hidden;will-change:auto}
-body.page-route-gesture #app,body.page-route-fx #app{will-change:transform,opacity}
-body.page-route-gesture .brand-top,body.page-route-fx .brand-top,
-body.page-route-gesture .top-actions,body.page-route-fx .top-actions{will-change:transform,opacity}
-
-/* reading surface */
-.article-body{max-width:70ch!important;line-height:1.95!important;letter-spacing:.005em}
-.article-body p{margin-bottom:1.24em}
-.article-body h2{scroll-margin-top:96px}
-.article-body img,.article-cover img{box-shadow:0 18px 50px rgba(49,83,117,.09)}
-.toc{border-radius:22px!important}
-
-/* Newsletter polish */
-.newsletter-card{border-radius:36px!important;overflow:hidden}
-.newsletter-card h1{letter-spacing:-.05em!important}
-.newsletter-form{border:1px solid rgba(255,255,255,.84)!important;background:rgba(255,255,255,.54)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 12px 30px rgba(60,100,140,.07)!important}
-.newsletter-consent,.newsletter-note{color:#718396!important}
-
-/* UX: avoid painting far-below content until close to viewport */
-.article-card,.topic-card,.about-value,.about-team-card{content-visibility:auto;contain-intrinsic-size:280px}
-
-/* darker theme stays readable but keeps the blue/pink optical tint */
-body.dark{
-  --sw-line:rgba(196,222,245,.12);
-  background:radial-gradient(56rem 44rem at 100% 0%,rgba(42,78,110,.24),transparent 62%),radial-gradient(42rem 32rem at 4% 100%,rgba(90,49,72,.12),transparent 68%),linear-gradient(155deg,#111a23,#15232e 50%,#111c25)!important;
-}
-body.dark .glass,body.dark .article-card,body.dark .topic-card,body.dark .newsletter-card{
-  background:linear-gradient(145deg,rgba(34,52,68,.68),rgba(20,35,48,.48))!important;
-  border-color:rgba(192,220,244,.10)!important;
-  box-shadow:inset 0 1px 0 rgba(205,230,250,.08),0 22px 54px rgba(0,0,0,.18)!important;
-}
-
-/* performance while finger is moving */
-body.pager-dragging .ambient,body.page-route-gesture .ambient{filter:blur(64px) saturate(105%)!important;opacity:.58!important}
-body.pager-dragging .cursor-glow,body.page-route-gesture .cursor-glow,
-body.pager-dragging .sheen-layer,body.page-route-gesture .sheen-layer,
-body.pager-dragging .lightcard::after,body.page-route-gesture .lightcard::after{opacity:0!important;animation:none!important}
-body.pager-dragging .glass,body.page-route-gesture .glass{backdrop-filter:blur(15px) saturate(130%)!important;-webkit-backdrop-filter:blur(15px) saturate(130%)!important}
-body.pager-dragging .article-card,body.page-route-gesture .article-card,
-body.pager-dragging .topic-card,body.page-route-gesture .topic-card{box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 8px 24px rgba(55,94,132,.07)!important}
-
-/* mobile Safari: preserve visual richness without fixed-background jank */
-@media(max-width:760px){
-  body{background-attachment:scroll!important}
-  body::before{position:absolute}
-  .ambient{filter:blur(72px) saturate(112%)!important;opacity:.64!important}
-  .glass,.hero-card,.article-card,.topic-card,.person-card,.share-card,.newsletter-card,
-  .about-manifesto,.about-value,.about-team-card,.toc,.searchbox,.idle-subscribe-card,
-  .newsletter-flow-card,.newsletter-terms-card,.share-sheet{
-    backdrop-filter:blur(18px) saturate(140%)!important;
-    -webkit-backdrop-filter:blur(18px) saturate(140%)!important;
-  }
-  .article-card,.topic-card,.person-card,.about-value,.about-team-card{transform:none!important}
-  button,.pillbtn,.softbtn,.iconbtn,.backlink,.newsletter-submit,.share-copy{min-height:44px}
-  .pager{backdrop-filter:blur(20px) saturate(150%)!important;-webkit-backdrop-filter:blur(20px) saturate(150%)!important}
-  .newsletter-card{border-radius:30px!important}
-}
-@media(max-width:430px){
-  .grain{display:none!important}
-  .cursor-glow{display:none!important}
-  .ambient{opacity:.56!important}
-}
-@media(prefers-reduced-motion:reduce){
-  .article-card,.topic-card,.person-card,.about-value,.about-team-card,button,.pager-thumb{transition:none!important}
-  .ambient .orb{animation:none!important}
-}
-body.lite .article-card,body.lite .topic-card,body.lite .newsletter-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(250,253,255,.90)!important}
-</style>
-
-<style id="signwell-glass-v20">
-/* SIGN WELL Public · Optical Liquid Glass v20 · 2026-09-13 */
-:root{
-  --sw-glass-blue:rgba(153,205,255,.22);
-  --sw-glass-pink:rgba(244,207,228,.16);
-  --sw-glass-white:rgba(255,255,255,.78);
-  --sw-glass-edge:rgba(255,255,255,.96);
-  --sw-glass-depth:0 28px 70px rgba(50,91,132,.12),0 8px 22px rgba(50,91,132,.055);
-  --sw-glass-depth-hover:0 36px 92px rgba(50,91,132,.16),0 10px 28px rgba(50,91,132,.07);
-}
-
-/* Optical material: transparent body + blue/pink chromatic refraction. */
-body:not(.lite) .glass,
-body:not(.lite) .hero-card,
-body:not(.lite) .article-card,
-body:not(.lite) .topic-card,
-body:not(.lite) .person-card,
-body:not(.lite) .share-card,
-body:not(.lite) .newsletter-card,
-body:not(.lite) .about-manifesto,
-body:not(.lite) .about-value,
-body:not(.lite) .about-team-card,
-body:not(.lite) .toc,
-body:not(.lite) .searchbox,
-body:not(.lite) .idle-subscribe-card,
-body:not(.lite) .newsletter-flow-card,
-body:not(.lite) .newsletter-terms-card,
-body:not(.lite) .share-sheet{
-  background:
-    radial-gradient(135% 100% at 8% -14%,rgba(255,255,255,.96) 0%,rgba(255,255,255,.46) 28%,transparent 56%),
-    radial-gradient(72% 60% at 102% 3%,var(--sw-glass-blue),transparent 68%),
-    radial-gradient(62% 58% at -6% 103%,var(--sw-glass-pink),transparent 72%),
-    linear-gradient(148deg,rgba(255,255,255,.60),rgba(241,248,255,.34))!important;
-  border:1px solid rgba(255,255,255,.86)!important;
-  box-shadow:
-    inset 0 1.2px 0 var(--sw-glass-edge),
-    inset 1px 0 0 rgba(255,255,255,.46),
-    inset 0 -1px 0 rgba(105,148,188,.075),
-    inset -1px 0 0 rgba(244,207,228,.055),
-    var(--sw-glass-depth)!important;
-  backdrop-filter:blur(26px) saturate(168%) brightness(1.025)!important;
-  -webkit-backdrop-filter:blur(26px) saturate(168%) brightness(1.025)!important;
-}
-
-/* Stronger refracted rim without adding an extra DOM layer. */
-body:not(.lite) .glass::before{
+body.dark .newsletter-form input::placeholder{
+  color:#a9bfce!important;
+  -webkit-text-fill-color:#a9bfce!important;
   opacity:1!important;
-  background:linear-gradient(145deg,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,.68) 18%,
-    rgba(174,216,255,.48) 40%,
-    rgba(246,211,230,.30) 64%,
-    rgba(255,255,255,.82) 84%,
-    rgba(255,255,255,1) 100%)!important;
 }
-body:not(.lite) .lightcard::after{
+body.dark .newsletter-submit{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:linear-gradient(145deg,#4f91c7,#2e6f9f)!important;
+  border-color:rgba(197,226,249,.14)!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.20)!important;
+}
+body.dark .newsletter-consent,
+body.dark .newsletter-note,
+body.dark .newsletter-status,
+body.dark .newsletter-success{
+  color:#d9e6ef!important;
+  -webkit-text-fill-color:#d9e6ef!important;
+  background:rgba(255,255,255,.045)!important;
+  border-color:rgba(208,231,249,.12)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055)!important;
+}
+body.dark .newsletter-consent span,
+body.dark .newsletter-note,
+body.dark .newsletter-status,
+body.dark .newsletter-success div,
+body.dark .newsletter-success strong{
+  color:#dce9f2!important;
+  -webkit-text-fill-color:#dce9f2!important;
+}
+body.dark .newsletter-success strong{color:#f5f9fc!important;-webkit-text-fill-color:#f5f9fc!important}
+body.dark .newsletter-status.success{color:#9fd9c2!important;-webkit-text-fill-color:#9fd9c2!important}
+body.dark .newsletter-status.error{color:#ffb1bc!important;-webkit-text-fill-color:#ffb1bc!important}
+body.dark .newsletter-consent input{
+  accent-color:#76b4e8!important;
+}
+body.dark .newsletter-consent:hover span{color:#f2f7fb!important}
+
+/* Terms / consent sheet */
+body.dark .newsletter-terms-overlay{
   background:
-    radial-gradient(430px circle at var(--px,50%) var(--py,18%),rgba(255,255,255,.88),rgba(255,255,255,.16) 34%,rgba(174,216,255,.08) 51%,transparent 68%)!important;
-  mix-blend-mode:screen;
-  opacity:.42!important;
+    radial-gradient(620px 420px at 50% 42%,rgba(68,130,181,.15),transparent 72%),
+    rgba(4,11,17,.72)!important;
 }
-@media(hover:hover) and (pointer:fine){
-  body:not(.lite) .article-card:hover,
-  body:not(.lite) .topic-card:hover,
-  body:not(.lite) .person-card:hover,
-  body:not(.lite) .about-value:hover,
-  body:not(.lite) .about-team-card:hover{
-    box-shadow:
-      inset 0 1.2px 0 #fff,
-      inset 0 -1px 0 rgba(105,148,188,.08),
-      var(--sw-glass-depth-hover)!important;
-  }
-  body:not(.lite) .lightcard:hover::after{opacity:.72!important}
-}
-
-/* Glass buttons and inputs behave like thinner material. */
-body:not(.lite) .iconbtn,
-body:not(.lite) .pillbtn,
-body:not(.lite) .softbtn,
-body:not(.lite) .backlink,
-body:not(.lite) .share-copy,
-body:not(.lite) .newsletter-form,
-body:not(.lite) .newsletter-consent,
-body:not(.lite) .newsletter-note{
+body.dark .newsletter-terms-card{
+  color:#e6eff6!important;
   background:
-    radial-gradient(120% 100% at 12% -25%,rgba(255,255,255,.94),transparent 54%),
-    linear-gradient(145deg,rgba(255,255,255,.60),rgba(233,244,255,.32))!important;
-  border-color:rgba(255,255,255,.88)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(104,147,187,.07),0 10px 24px rgba(52,91,128,.07)!important;
-  backdrop-filter:blur(18px) saturate(158%)!important;
-  -webkit-backdrop-filter:blur(18px) saturate(158%)!important;
+    radial-gradient(90% 72% at 3% -5%,rgba(125,181,227,.12),transparent 62%),
+    radial-gradient(70% 62% at 102% 102%,rgba(188,126,161,.07),transparent 72%),
+    linear-gradient(150deg,rgba(30,46,60,.98),rgba(15,26,37,.97))!important;
+  border-color:rgba(213,234,250,.17)!important;
+  box-shadow:0 34px 94px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.10)!important;
 }
-body:not(.lite) input,
-body:not(.lite) textarea,
-body:not(.lite) select{
-  background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(245,250,255,.48))!important;
-  border-color:rgba(255,255,255,.84)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(90,132,170,.05)!important;
+body.dark .newsletter-terms-card::before{
+  opacity:.34!important;
+  background:conic-gradient(from 215deg,transparent 0 26%,rgba(92,163,216,.13) 33%,transparent 43% 68%,rgba(205,143,177,.08) 76%,transparent 85%)!important;
 }
-
-/* Main navigation is the thickest glass on Public. */
-body:not(.lite) .pager{
-  background:
-    radial-gradient(120% 85% at 18% -8%,rgba(255,255,255,.98),transparent 56%),
-    radial-gradient(90% 70% at 105% 42%,rgba(164,210,255,.26),transparent 68%),
-    radial-gradient(80% 55% at -10% 100%,rgba(245,211,230,.17),transparent 70%),
-    linear-gradient(155deg,rgba(255,255,255,.43),rgba(222,239,255,.15) 48%,rgba(255,255,255,.27))!important;
-  border:1px solid rgba(255,255,255,.92)!important;
-  box-shadow:0 24px 64px rgba(49,89,128,.15),0 4px 14px rgba(49,89,128,.06),inset 0 1.3px 1px rgba(255,255,255,.98),inset 0 -1.2px 1px rgba(127,175,219,.15)!important;
-  backdrop-filter:blur(30px) saturate(180%) brightness(1.045)!important;
-  -webkit-backdrop-filter:blur(30px) saturate(180%) brightness(1.045)!important;
+body.dark .newsletter-terms-head{
+  border-bottom-color:rgba(213,234,250,.11)!important;
 }
-body:not(.lite) .pager-thumb{
-  background:
-    radial-gradient(120% 105% at 24% -10%,rgba(255,255,255,1),rgba(255,255,255,.48) 33%,transparent 64%),
-    radial-gradient(80% 70% at 105% 40%,rgba(155,205,255,.25),transparent 70%),
-    linear-gradient(155deg,rgba(255,255,255,.76),rgba(208,231,254,.28) 68%,rgba(244,208,228,.16))!important;
-  box-shadow:inset 0 1.2px 1px rgba(255,255,255,1),inset 0 -12px 20px -15px rgba(74,138,198,.34),0 14px 30px rgba(51,95,137,.16),0 2px 5px rgba(51,95,137,.09)!important;
+body.dark .newsletter-terms-kicker{
+  color:#a8cae4!important;
+  -webkit-text-fill-color:#a8cae4!important;
 }
-
-/* Fixed chrome gets a subtle glass wafer when content scrolls beneath it. */
-body.is-scrolled .brand-top,
-body:not(.lite) .top-actions .iconbtn{
-  background:linear-gradient(145deg,rgba(255,255,255,.66),rgba(235,246,255,.34))!important;
-  border:1px solid rgba(255,255,255,.82)!important;
-  backdrop-filter:blur(20px) saturate(160%)!important;
-  -webkit-backdrop-filter:blur(20px) saturate(160%)!important;
-}
-
-/* During gesture: reduce optical stack first, not the animation. */
-body.pager-dragging .glass,
-body.page-route-gesture .glass,
-body.page-route-fx .glass{
-  backdrop-filter:blur(13px) saturate(128%)!important;
-  -webkit-backdrop-filter:blur(13px) saturate(128%)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.94),0 8px 24px rgba(50,91,132,.07)!important;
-}
-body.pager-dragging .lightcard::after,
-body.page-route-gesture .lightcard::after,
-body.page-route-fx .lightcard::after{opacity:0!important}
-
-/* Dark material. */
-body.dark:not(.lite) .glass,
-body.dark:not(.lite) .article-card,
-body.dark:not(.lite) .topic-card,
-body.dark:not(.lite) .newsletter-card{
-  background:
-    radial-gradient(120% 95% at 8% -12%,rgba(202,226,246,.12),transparent 54%),
-    radial-gradient(70% 55% at 100% 0%,rgba(72,135,188,.10),transparent 68%),
-    linear-gradient(145deg,rgba(36,55,71,.60),rgba(18,34,47,.42))!important;
-  border-color:rgba(197,224,246,.13)!important;
-  box-shadow:inset 0 1px 0 rgba(218,237,251,.10),inset 0 -1px 0 rgba(0,0,0,.08),0 24px 62px rgba(0,0,0,.20)!important;
-}
-
-/* iOS / coarse pointers: maintain refraction, lower realtime blur cost. */
-@media(max-width:760px),(pointer:coarse){
-  body:not(.lite) .glass,
-  body:not(.lite) .hero-card,
-  body:not(.lite) .article-card,
-  body:not(.lite) .topic-card,
-  body:not(.lite) .person-card,
-  body:not(.lite) .share-card,
-  body:not(.lite) .newsletter-card,
-  body:not(.lite) .about-manifesto,
-  body:not(.lite) .about-value,
-  body:not(.lite) .about-team-card,
-  body:not(.lite) .toc,
-  body:not(.lite) .searchbox{
-    backdrop-filter:blur(18px) saturate(148%)!important;
-    -webkit-backdrop-filter:blur(18px) saturate(148%)!important;
-  }
-  body:not(.lite) .pager{backdrop-filter:blur(21px) saturate(158%)!important;-webkit-backdrop-filter:blur(21px) saturate(158%)!important}
-}
-@media(max-width:430px){
-  body:not(.lite) .lightcard::after{opacity:.20!important}
-}
-@media(prefers-reduced-motion:reduce){
-  .lightcard::after,.sheen-layer{transition:none!important;animation:none!important}
-}
-</style>
-
-
-<style id="swPublicV22MobileExperience">
-/* ============================================================
-   SIGN WELL Public v22 · Mobile Experience System
-   Final cascade layer — intentionally loaded after all legacy styles.
-   ============================================================ */
-:root{
-  --sw22-ink:#173049;
-  --sw22-text:#344e63;
-  --sw22-muted:#647b8e;
-  --sw22-faint:#8295a5;
-  --sw22-line:rgba(55,93,126,.12);
-  --sw22-blue:#5b9fe2;
-  --sw22-surface:rgba(255,255,255,.72);
-  --sw22-surface-strong:rgba(255,255,255,.88);
-  --sw22-shadow:0 16px 44px rgba(54,91,128,.10);
-}
-html{
-  scroll-padding-top:94px;
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
-}
-body{
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
-  font-kerning:normal;
-}
-body:not(.dark){
-  --sw22-ink:#173049;
-  --sw22-text:#344e63;
-  --sw22-muted:#647b8e;
-  --sw22-faint:#8295a5;
-  --sw22-line:rgba(55,93,126,.12);
-  --sw22-surface:rgba(255,255,255,.72);
-  --sw22-surface-strong:rgba(255,255,255,.90);
-}
-body.dark{
-  --sw22-ink:#f2f7fb;
-  --sw22-text:#d9e5ee;
-  --sw22-muted:#b6c8d7;
-  --sw22-faint:#94acbf;
-  --sw22-line:rgba(199,223,243,.14);
-  --sw22-surface:rgba(25,39,52,.76);
-  --sw22-surface-strong:rgba(28,44,59,.90);
-  --sw22-shadow:0 18px 50px rgba(0,0,0,.26);
-}
-
-/* ---- definitive title visibility ---- */
-body :is(.hero h1,.page-hero h1,.about-hero h1,.share-title,.share-card h1,.newsletter-card h1,.article-top h1,.article-view h1,.section-head h2,.about-team-head h2,.person-name,.article-card h3,.topic-card h3){
-  background:none!important;
-  background-image:none!important;
-  color:var(--sw22-ink)!important;
-  -webkit-text-fill-color:var(--sw22-ink)!important;
-  -webkit-background-clip:border-box!important;
-  background-clip:border-box!important;
-  filter:none!important;
-  text-shadow:0 1px 0 rgba(255,255,255,.16),0 12px 30px rgba(48,88,126,.10)!important;
-  text-wrap:balance;
-  overflow-wrap:anywhere;
-  backface-visibility:hidden;
-}
-body.dark :is(.hero h1,.page-hero h1,.about-hero h1,.share-title,.share-card h1,.newsletter-card h1,.article-top h1,.article-view h1,.section-head h2,.about-team-head h2,.person-name,.article-card h3,.topic-card h3){
-  color:#f4f8fc!important;
-  -webkit-text-fill-color:#f4f8fc!important;
-  text-shadow:0 1px 0 rgba(255,255,255,.08),0 16px 34px rgba(0,0,0,.26),0 0 24px rgba(126,188,239,.06)!important;
-}
-body :is(.hero-sub,.page-hero p,.about-hero-copy,.share-card p,.newsletter-lead,.article-card p,.topic-card p,.about-manifesto p,.about-team-head>span,.person-bio,.person-role,.person-history li,.footer,.newsletter-note,.newsletter-consent,.article-meta,.meta){
-  color:var(--sw22-muted)!important;
-}
-body.dark :is(.kicker,.eyebrow,.topic-no,.person-kicker,.about-value span,.section-head p,.article-publisher-copy small,.newsletter-kicker){
-  color:#a8c8e2!important;
-}
-body:not(.dark) :is(.kicker,.eyebrow,.topic-no,.person-kicker,.about-value span,.section-head p,.article-publisher-copy small,.newsletter-kicker){
-  color:#5f85a3!important;
-}
-
-/* ---- final glass contrast ---- */
-body:not(.dark) :is(.glass,.hero-card,.article-card,.topic-card,.person-card,.share-card,.newsletter-card,.about-manifesto,.about-value,.about-team-card,.searchbox,.newsletter-terms-card,.newsletter-flow-card,.share-sheet){
-  color:var(--sw22-text)!important;
-}
-body.dark :is(.glass,.hero-card,.article-card,.topic-card,.person-card,.share-card,.newsletter-card,.about-manifesto,.about-value,.about-team-card,.searchbox,.newsletter-terms-card,.newsletter-flow-card,.share-sheet){
-  color:var(--sw22-text)!important;
-  background:
-    radial-gradient(120% 90% at 8% -12%,rgba(218,236,250,.10),transparent 55%),
-    radial-gradient(70% 55% at 102% 2%,rgba(72,137,192,.10),transparent 68%),
-    linear-gradient(148deg,rgba(31,48,63,.78),rgba(17,29,41,.66))!important;
-  border-color:rgba(206,229,248,.14)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 56px rgba(0,0,0,.24)!important;
-}
-body.dark.lite :is(.article-card,.topic-card,.newsletter-card,.hero-card,.share-card,.person-card,.about-manifesto,.about-value,.about-team-card){
-  background:#1b2b38!important;
-  color:#dce8f0!important;
-}
-
-/* ---- controls: readable in both modes ---- */
-body :is(button,.pillbtn,.softbtn,.iconbtn,.backlink,.share-copy,.primarybtn,.newsletter-submit){
-  -webkit-font-smoothing:antialiased;
-}
-body:not(.dark) :is(.pillbtn,.softbtn,.iconbtn,.backlink,.share-copy,.search-close){
-  color:#254760!important;
-}
-body.dark :is(.pillbtn,.softbtn,.iconbtn,.backlink,.share-copy,.search-close){
-  color:#edf6fc!important;
-  background:linear-gradient(150deg,rgba(43,61,77,.90),rgba(22,36,49,.78))!important;
-  border-color:rgba(210,233,251,.16)!important;
-}
-body.dark input,body.dark textarea,body.dark select{
-  color:#edf5fa!important;
-  background:rgba(25,39,52,.82)!important;
-  border-color:rgba(202,225,244,.16)!important;
-}
-body.dark input::placeholder,body.dark textarea::placeholder{color:#9fb4c4!important;opacity:1}
-body:not(.dark) input::placeholder,body:not(.dark) textarea::placeholder{color:#8699a8!important;opacity:1}
-
-/* ---- article reading contrast at every width ---- */
-.article-body{color:var(--sw22-text)!important}
-.article-body :is(p,li,dd,dt){color:var(--sw22-text)!important}
-.article-body :is(h2,h3,h4,strong,b){color:var(--sw22-ink)!important}
-body.dark .article-body :is(h2,h3,h4,strong,b){color:#f5f9fc!important}
-.article-body a{color:#2f73a6!important;text-decoration-color:rgba(47,115,166,.30)!important}
-body.dark .article-body a{color:#9bd0f7!important;text-decoration-color:rgba(155,208,247,.38)!important}
-.article-body mark,
-.article-body span[style*="background-color"],
-.article-body span[style*="background:"]{
-  color:#173049!important;
-  -webkit-text-fill-color:#173049!important;
-  background:linear-gradient(180deg,transparent 22%,rgba(174,221,255,.54) 23%,rgba(214,236,255,.78) 88%,transparent 89%)!important;
-  border-radius:.18em!important;
-  padding:.02em .08em!important;
-  box-decoration-break:clone;
-  -webkit-box-decoration-break:clone;
-}
-body.dark .article-body mark,
-body.dark .article-body span[style*="background-color"],
-body.dark .article-body span[style*="background:"]{
+body.dark .newsletter-terms-title{
   color:#f5f9fc!important;
   -webkit-text-fill-color:#f5f9fc!important;
-  background:linear-gradient(180deg,transparent 20%,rgba(73,126,169,.28) 21%,rgba(86,147,198,.40) 88%,transparent 89%)!important;
+  background:none!important;
+  text-shadow:0 10px 28px rgba(0,0,0,.22)!important;
 }
-.article-body blockquote{color:var(--sw22-text)!important}
-body.dark .article-body blockquote{background:rgba(44,63,79,.66)!important;border-left-color:#78b9ec!important}
-body.dark .article-body :is(pre,code,table,th,td){color:#dce8f0!important}
+body.dark .newsletter-terms-close{
+  color:#f2f7fb!important;
+  -webkit-text-fill-color:#f2f7fb!important;
+  background:rgba(255,255,255,.065)!important;
+  border-color:rgba(213,234,250,.15)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+body.dark .newsletter-terms-body,
+body.dark .newsletter-terms-body p,
+body.dark .newsletter-terms-body li{
+  color:#d8e5ee!important;
+  -webkit-text-fill-color:#d8e5ee!important;
+}
+body.dark .newsletter-terms-body h3{
+  color:#f0f6fb!important;
+  -webkit-text-fill-color:#f0f6fb!important;
+}
+body.dark .newsletter-terms-note{
+  color:#cbdce8!important;
+  -webkit-text-fill-color:#cbdce8!important;
+  background:rgba(255,255,255,.05)!important;
+  border-color:rgba(211,233,249,.12)!important;
+}
+body.dark .newsletter-terms-actions{
+  background:rgba(10,20,29,.78)!important;
+  border-top-color:rgba(211,233,249,.11)!important;
+}
+body.dark .newsletter-terms-actions button{
+  font-weight:800!important;
+}
+body.dark .newsletter-terms-decline{
+  color:#edf5fa!important;
+  -webkit-text-fill-color:#edf5fa!important;
+  background:rgba(255,255,255,.065)!important;
+  border-color:rgba(212,234,250,.14)!important;
+}
+body.dark .newsletter-terms-agree{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  background:linear-gradient(145deg,#4f91c7,#2e6f9f)!important;
+  border-color:rgba(205,231,250,.14)!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.20)!important;
+}
+body.dark .newsletter-terms-body{
+  scrollbar-color:rgba(168,204,232,.32) transparent;
+}
+body.dark .newsletter-terms-body::-webkit-scrollbar{width:7px}
+body.dark .newsletter-terms-body::-webkit-scrollbar-thumb{background:rgba(168,204,232,.28);border-radius:999px}
 
-/* ============================================================
-   Mobile system
-   ============================================================ */
 @media(max-width:760px){
-  :root{
-    --sw22-gutter:max(16px,env(safe-area-inset-left));
-  }
-  html{scroll-padding-top:88px}
-  body{
-    background-attachment:scroll!important;
-    overscroll-behavior-y:auto;
-  }
-  body::after{animation:none!important;opacity:.36!important}
-  .ambient{opacity:.48!important;filter:blur(58px) saturate(108%)!important}
-  .orb.c,.orb.d{display:none!important}
-  .grain,.cursor-glow{display:none!important}
-  .lightcard::after,.sheen-layer{display:none!important}
-
-  #app{
-    width:100%!important;
-    max-width:100%!important;
-    padding-top:82px!important;
-    padding-left:max(16px,env(safe-area-inset-left))!important;
-    padding-right:max(16px,env(safe-area-inset-right))!important;
-    padding-bottom:max(122px,calc(env(safe-area-inset-bottom) + 112px))!important;
-  }
-  .shell{width:100%!important;max-width:100%!important}
-
-  /* top chrome */
-  .brand-top{
-    min-width:0!important;
-    width:168px!important;
-    max-width:calc(100vw - 126px)!important;
-    min-height:46px!important;
-    top:max(10px,env(safe-area-inset-top))!important;
-    padding:6px 14px!important;
-    border-radius:18px!important;
-    box-shadow:0 9px 24px rgba(51,91,128,.09),inset 0 1px 0 rgba(255,255,255,.88)!important;
-  }
-  .brand-copy strong{font-size:10.5px!important;letter-spacing:.15em!important}
-  .brand-copy span{font-size:8.8px!important;margin-top:3px!important}
-  .top-actions{top:max(11px,env(safe-area-inset-top))!important;right:max(10px,env(safe-area-inset-right))!important;gap:6px!important}
-  .top-actions .iconbtn{width:40px!important;height:40px!important;min-height:40px!important;border-radius:15px!important}
-  body.dark .brand-top{background:linear-gradient(150deg,rgba(51,67,82,.86),rgba(27,41,55,.76))!important}
-
-  /* bottom navigation */
-  .pager{
-    width:calc(100vw - 16px)!important;
-    max-width:458px!important;
-    height:68px!important;
-    bottom:calc(env(safe-area-inset-bottom) + 8px)!important;
-    padding:5px!important;
-    border-radius:25px!important;
-    box-shadow:0 18px 46px rgba(43,82,119,.16),inset 0 1px 1px rgba(255,255,255,.92)!important;
-    backdrop-filter:blur(18px) saturate(150%)!important;
-    -webkit-backdrop-filter:blur(18px) saturate(150%)!important;
-  }
-  .pager-items{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important}
-  .nav-item{
-    gap:3px!important;
-    font-size:9px!important;
-    font-weight:720!important;
-    letter-spacing:0!important;
-    color:#567188!important;
-    opacity:.96!important;
-    border-radius:18px!important;
-  }
-  .nav-item svg{width:18px!important;height:18px!important;stroke-width:1.8!important}
-  .nav-item.active{color:#214f75!important;opacity:1!important}
-  body.dark .nav-item{color:#b9cad7!important}
-  body.dark .nav-item.active{color:#f5f9fc!important}
-  .pager-thumb{border-radius:19px!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.92),0 8px 20px rgba(53,97,136,.12)!important}
-  body.dark .pager{background:linear-gradient(155deg,rgba(42,58,73,.86),rgba(24,38,51,.76))!important;border-color:rgba(218,236,250,.18)!important}
-  body.dark .pager-thumb{background:linear-gradient(155deg,rgba(100,128,151,.52),rgba(54,76,95,.52))!important}
-
-  .totop{
-    right:max(12px,env(safe-area-inset-right))!important;
-    bottom:calc(env(safe-area-inset-bottom) + 88px)!important;
-    width:42px!important;height:42px!important;border-radius:15px!important;
-  }
-
-  /* restrained title motion — always readable */
-  :is(.hero h1,.page-hero h1,.about-hero h1,.share-title,.share-card h1,.newsletter-card h1,.article-top h1){
-    animation:sw22TitleEnter .58s cubic-bezier(.18,.84,.22,1) both!important;
-    transform-origin:left center;
-  }
-  @keyframes sw22TitleEnter{
-    0%{opacity:0;transform:translate3d(0,10px,0);letter-spacing:-.07em}
-    100%{opacity:1;transform:none}
-  }
-
-  /* home */
-  .hero{
-    grid-template-columns:1fr!important;
-    gap:24px!important;
-    min-height:auto!important;
-    padding:clamp(38px,8vh,72px) 0 34px!important;
-    align-items:start!important;
-  }
-  .hero h1{font-size:clamp(44px,13.2vw,58px)!important;line-height:.98!important;margin:15px 0 18px!important;letter-spacing:-.058em!important}
-  .hero-sub{font-size:15px!important;line-height:1.82!important;max-width:32em!important}
-  .hero-card{padding:22px!important;border-radius:26px!important;transform:none!important}
-  .hero-card b{font-size:20px!important;line-height:1.45!important}
-  .hero-card p{font-size:13px!important;line-height:1.78!important}
-  .scroll-cue{margin-top:22px!important;min-height:44px;padding:5px 14px 5px 5px!important;color:var(--sw22-muted)!important}
-
-  .section{padding:30px 0 16px!important}
-  .section-head{margin-bottom:16px!important;gap:5px!important}
-  .section-head h2{font-size:30px!important;line-height:1.1!important}
-  .section-head p{font-size:11px!important;line-height:1.6!important}
-  .article-grid{grid-template-columns:1fr!important;gap:14px!important}
-  .article-card{
-    min-height:0!important;
-    padding:14px!important;
-    border-radius:23px!important;
-    transform:none!important;
-    content-visibility:auto;
-    contain-intrinsic-size:300px;
-  }
-  .card-cover{height:auto!important;aspect-ratio:16/9!important;border-radius:17px!important;margin-bottom:14px!important}
-  .article-card h3{font-size:21px!important;line-height:1.4!important;margin:8px 0 7px!important;letter-spacing:-.026em!important}
-  .article-card p{font-size:13px!important;line-height:1.72!important;margin:0!important}
-  .meta{font-size:10px!important;margin-top:12px!important;gap:8px!important}
-
-  /* topic browsing: remove sticky-card trap on phones */
-  .page-hero{padding:38px 0 20px!important}
-  .page-hero h1{font-size:clamp(42px,12vw,54px)!important;line-height:1!important;margin:10px 0 14px!important}
-  .page-hero p{font-size:14px!important;line-height:1.78!important}
-  .topic-grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important;padding:0!important}
-  .topic-card{
-    position:relative!important;
-    top:auto!important;
-    z-index:auto!important;
-    min-height:188px!important;
-    margin:0!important;
-    padding:20px!important;
-    border-radius:24px!important;
-    transform:none!important;
-  }
-  .topic-card::after{display:none!important}
-  .topic-card h3{font-size:25px!important;line-height:1.18!important;margin:24px 0 8px!important}
-  .topic-card p{font-size:13px!important;line-height:1.72!important}
-  .topic-count{margin-top:13px!important;font-size:10.5px!important;color:var(--sw22-muted)!important}
-
-  /* about */
-  .about-wrap{padding:42px 0 34px!important}
-  .about-hero{grid-template-columns:1fr!important;gap:22px!important;align-items:start!important}
-  .about-hero h1{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang TC","Microsoft JhengHei",sans-serif!important;
-    font-size:clamp(46px,13vw,58px)!important;
-    font-weight:780!important;
-    line-height:.98!important;
-    letter-spacing:-.055em!important;
-    margin:12px 0 16px!important;
-  }
-  .about-hero-copy{font-size:14px!important;line-height:1.82!important;margin:0!important}
-  .about-manifesto{padding:21px!important;border-radius:25px!important}
-  .about-manifesto strong{font-family:inherit!important;font-size:19px!important;line-height:1.45!important;color:var(--sw22-ink)!important}
-  body.dark .about-manifesto strong{color:#f2f7fb!important}
-  .about-manifesto p{font-size:12px!important;line-height:1.75!important}
-  .about-values{grid-template-columns:1fr!important;gap:10px!important;margin-top:18px!important}
-  .about-value{min-height:0!important;padding:17px 18px!important;border-radius:21px!important;display:grid!important;grid-template-columns:64px 1fr!important;gap:10px!important;align-items:center!important}
-  .about-value span{font-size:8.5px!important}
-  .about-value b{margin:0!important;font-family:inherit!important;font-size:19px!important;line-height:1.25!important;color:var(--sw22-ink)!important}
-  body.dark .about-value b{color:#f3f8fc!important}
-  .about-team{margin-top:50px!important}
-  .about-team-head{display:block!important;margin-bottom:18px!important}
-  .about-team-head h2{font-family:inherit!important;font-size:36px!important;line-height:1.05!important;margin-top:5px!important}
-  .about-team-head>span{display:block!important;margin-top:10px!important;font-size:12px!important;line-height:1.7!important}
-  .people-grid{grid-template-columns:1fr!important;gap:14px!important}
-  .person-card{min-height:0!important;padding:20px!important;border-radius:25px!important;transform:none!important}
-  .person-top{grid-template-columns:64px minmax(0,1fr)!important;gap:14px!important}
-  .person-avatar{width:64px!important;height:64px!important}
-  .person-name{font-family:inherit!important;font-size:23px!important;line-height:1.12!important}
-  .person-bio{font-size:12.5px!important;line-height:1.78!important;margin-top:16px!important;color:var(--sw22-text)!important}
-  .person-history{grid-template-columns:1fr!important;gap:16px!important;margin-top:18px!important;padding-top:17px!important}
-  .person-history h4{font-size:9px!important;color:var(--sw22-faint)!important}
-  .person-history li{font-size:11px!important;line-height:1.58!important;color:var(--sw22-text)!important}
-  .person-tag{font-size:9px!important;color:var(--sw22-muted)!important}
-  .about-disclaimer{margin-top:26px!important;padding:16px!important;border-radius:19px!important;color:var(--sw22-muted)!important}
-
-  /* share */
-  .share-wrap{min-height:auto!important;padding:36px 0 28px!important;place-items:start!important}
-  .share-card{padding:21px!important;border-radius:27px!important;transform:none!important}
-  .share-grid{grid-template-columns:1fr!important;gap:22px!important}
-  .share-card h1,.share-title{font-size:clamp(40px,11vw,50px)!important;line-height:1!important;margin:12px 0 13px!important}
-  .share-card p{font-size:14px!important;line-height:1.75!important}
-  .share-url{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;margin-top:18px!important}
-  .share-url input{height:52px!important;font-size:14px!important;border-radius:16px!important}
-  .share-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
-  .share-actions>*{width:100%!important;min-height:48px!important}
-  .qr-box{width:184px!important;height:184px!important;padding:14px!important;border-radius:24px!important}
-
-  /* newsletter */
-  .newsletter-wrap{min-height:auto!important;padding:36px 0 30px!important}
-  .newsletter-card{padding:24px 18px 21px!important;border-radius:27px!important}
-  .newsletter-card h1{font-size:clamp(39px,11vw,48px)!important;line-height:1.02!important;margin:15px 0 13px!important}
-  .newsletter-lead{font-size:14px!important;line-height:1.75!important}
-  .newsletter-form{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:8px!important;border-radius:20px!important;margin-top:18px!important}
-  .newsletter-form input,.newsletter-submit{width:100%!important;min-height:54px!important;border-radius:15px!important}
-  .newsletter-form input{font-size:16px!important;padding:0 14px!important}
-  .newsletter-submit{font-size:13px!important}
-  .newsletter-consent{padding:14px!important;border-radius:18px!important;gap:10px!important;font-size:11px!important;line-height:1.58!important}
-  .newsletter-consent input{flex:0 0 auto!important;width:20px!important;height:20px!important}
-  .newsletter-note{font-size:10px!important;line-height:1.6!important;margin-top:18px!important;padding:12px!important}
-  .newsletter-terms-overlay{align-items:flex-end!important;padding:0!important}
-  .newsletter-terms-card{width:100%!important;max-height:86dvh!important;border-radius:28px 28px 0 0!important;padding-bottom:max(18px,env(safe-area-inset-bottom))!important}
-  .newsletter-terms-body{font-size:12px!important;line-height:1.7!important}
-  .newsletter-terms-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
-
-  /* article — editorial mobile reading mode */
-  body.sw-reading #app{padding-left:max(14px,env(safe-area-inset-left))!important;padding-right:max(14px,env(safe-area-inset-right))!important}
-  .article-view{width:100%!important;max-width:100%!important;margin:0!important}
-  .article-top{padding:18px 0 20px!important}
-  .article-top .backlink{
-    min-height:42px!important;
-    padding:0 13px!important;
-    border-radius:14px!important;
-    font-size:11px!important;
-    display:inline-flex!important;
-    align-items:center!important;
-  }
-  .article-top .kicker{margin-top:18px!important;font-size:10px!important;line-height:1.5!important}
-  .article-top h1{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang TC","Microsoft JhengHei",sans-serif!important;
-    font-size:clamp(32px,9.7vw,42px)!important;
-    font-weight:790!important;
-    line-height:1.12!important;
-    letter-spacing:-.044em!important;
-    margin:12px 0 16px!important;
-  }
-  .article-meta{
-    display:grid!important;
-    grid-template-columns:1fr 1fr!important;
-    gap:8px!important;
-    font-size:10.5px!important;
-    color:var(--sw22-muted)!important;
-  }
-  .article-publisher{grid-column:1/-1!important;min-width:0!important;padding-bottom:3px!important}
-  .article-publisher-avatar{width:31px!important;height:31px!important}
-  .article-meta>span:not(.article-publisher){
-    min-height:34px!important;
-    display:flex!important;
-    align-items:center!important;
-    padding:0 10px!important;
-    border:1px solid var(--sw22-line)!important;
-    border-radius:12px!important;
-    background:rgba(255,255,255,.34)!important;
-  }
-  body.dark .article-meta>span:not(.article-publisher){background:rgba(255,255,255,.045)!important}
-  .article-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin-top:15px!important}
-  .article-actions .pillbtn{width:100%!important;min-height:46px!important;height:auto!important;justify-content:center!important;border-radius:15px!important;font-size:11px!important}
-  .article-cover,.article-cover.default-cover{
-    width:calc(100% + 4px)!important;
-    max-height:none!important;
-    margin:3px -2px 22px!important;
-    border-radius:21px!important;
-    aspect-ratio:16/10!important;
-  }
-  .article-cover img{width:100%!important;height:100%!important;object-fit:cover!important}
-  .article-layout{display:block!important;width:100%!important}
-  .toc{display:none!important}
-  .article-body{
-    width:100%!important;
-    max-width:none!important;
-    font-size:16.5px!important;
-    line-height:1.92!important;
-    letter-spacing:.002em!important;
-    word-break:normal!important;
-    overflow-wrap:break-word!important;
-  }
-  .article-body p{margin:0 0 1.18em!important}
-  .article-body h2,.article-body h2.sw-section-title{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang TC","Microsoft JhengHei",sans-serif!important;
-    font-size:25px!important;
-    font-weight:800!important;
-    line-height:1.35!important;
-    letter-spacing:-.025em!important;
-    margin:38px 0 14px!important;
-    padding-left:12px!important;
-    border-left:3px solid #72afe4!important;
-    scroll-margin-top:92px!important;
-  }
-  .article-body h3{font-size:20px!important;line-height:1.4!important;margin:30px 0 10px!important}
-  .article-body h4{font-size:17px!important;line-height:1.45!important;margin:25px 0 9px!important}
-  .article-body ul,.article-body ol{padding-left:1.25em!important;margin:0 0 1.2em!important}
-  .article-body li{margin:.48em 0!important}
-  .article-body blockquote{margin:22px 0!important;padding:15px 16px!important;border-radius:0 16px 16px 0!important;font-size:15px!important;line-height:1.82!important}
-  .article-body img{width:100%!important;height:auto!important;border-radius:17px!important;margin:20px 0!important}
-  .article-body .sw-source-figure{margin:24px 0 30px!important}
-  .article-body .sw-source-figure img{border-radius:17px!important;margin:0!important}
-  .article-body .sw-source-figure figcaption{font-size:10px!important;line-height:1.58!important;color:var(--sw22-faint)!important}
-  .article-body pre{max-width:100%!important;overflow:auto!important;padding:14px!important;border-radius:14px!important;font-size:12px!important;-webkit-overflow-scrolling:touch}
-  .article-body code{font-size:.88em!important}
-  .article-body table{display:block!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch;border-radius:15px!important;font-size:12px!important;white-space:normal!important}
-  .article-body th,.article-body td{min-width:112px!important;padding:10px 11px!important;vertical-align:top!important}
-  .article-body hr{margin:30px 0!important}
-
-  .sw-mobile-toc-launch{
-    width:100%;min-height:50px;margin:0 0 22px;padding:0 15px;
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    border:1px solid rgba(255,255,255,.88);border-radius:17px;
-    background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(234,245,255,.48));
-    color:#274b66;font:760 12px/1 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 9px 22px rgba(54,91,128,.07);
-  }
-  .sw-mobile-toc-launch small{color:#7990a2;font-size:9.5px;font-weight:650}
-  body.dark .sw-mobile-toc-launch{color:#eef6fb;background:linear-gradient(145deg,rgba(44,62,78,.90),rgba(23,37,50,.78));border-color:rgba(207,229,247,.16)}
-  body.dark .sw-mobile-toc-launch small{color:#a8bccb}
-
-  .sw-mobile-toc-sheet{position:fixed;inset:0;z-index:9800;display:none;align-items:flex-end}
-  .sw-mobile-toc-sheet.show{display:flex}
-  .sw-mobile-toc-scrim{position:absolute;inset:0;background:rgba(14,26,37,.34);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-  .sw-mobile-toc-panel{
-    position:relative;width:100%;max-height:72dvh;overflow:hidden;
-    border-radius:28px 28px 0 0;padding:10px 14px max(18px,env(safe-area-inset-bottom));
-    background:rgba(248,252,255,.94);border:1px solid rgba(255,255,255,.92);
-    box-shadow:0 -20px 70px rgba(34,66,96,.20);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%);
-    animation:sw22SheetIn .28s cubic-bezier(.16,1,.3,1) both;
-  }
-  body.dark .sw-mobile-toc-panel{background:rgba(22,35,47,.96);border-color:rgba(204,227,246,.15)}
-  @keyframes sw22SheetIn{from{transform:translateY(22px);opacity:0}to{transform:none;opacity:1}}
-  .sw-mobile-toc-handle{width:38px;height:4px;border-radius:999px;background:rgba(92,116,136,.24);margin:2px auto 11px}
-  .sw-mobile-toc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 4px 10px}
-  .sw-mobile-toc-head strong{font-size:16px;color:var(--sw22-ink)}
-  .sw-mobile-toc-close{width:38px;height:38px;border:0;border-radius:13px;background:rgba(117,153,182,.10);color:var(--sw22-ink);font-size:20px}
-  .sw-mobile-toc-list{display:grid;gap:6px;overflow:auto;max-height:calc(72dvh - 88px);padding:2px 2px 8px;-webkit-overflow-scrolling:touch}
-  .sw-mobile-toc-list button{min-height:50px;text-align:left;padding:11px 13px;border:1px solid var(--sw22-line);border-radius:15px;background:rgba(255,255,255,.46);color:var(--sw22-text);font-size:12px;font-weight:700;line-height:1.45}
-  body.dark .sw-mobile-toc-list button{background:rgba(255,255,255,.045);color:#dce8f0}
-  body.sw-mobile-sheet-open{overflow:hidden!important}
-
-  /* search */
-  .overlay{align-items:flex-end!important;padding:0!important}
-  .searchbox{width:100%!important;max-height:88dvh!important;border-radius:28px 28px 0 0!important;padding-bottom:max(8px,env(safe-area-inset-bottom))!important}
-  .search-head{padding:16px 16px 9px!important}
-  .search-input{margin:0 12px 10px!important;border-radius:17px!important;min-height:56px!important}
-  .search-input input{font-size:16px!important}
-  .search-results{max-height:calc(88dvh - 166px)!important;padding:0 8px 12px!important}
-  .search-result{grid-template-columns:50px minmax(0,1fr) 18px!important;gap:10px!important;padding:9px!important;border-radius:17px!important}
-  .search-result strong{font-size:13px!important;line-height:1.35!important;color:var(--sw22-ink)!important}
-  .search-result span{font-size:10px!important;line-height:1.45!important;color:var(--sw22-muted)!important}
-  body.dark .searchbox{background:rgba(21,34,46,.96)!important}
-
-  /* footer */
-  .footer{
-    width:calc(100% - 32px)!important;
-    margin:34px auto 0!important;
-    padding:22px 0 calc(104px + env(safe-area-inset-bottom))!important;
-    display:block!important;
-    font-size:10px!important;
-    line-height:1.7!important;
-    color:var(--sw22-muted)!important;
-  }
-  .footer>div+div{margin-top:9px!important}
-
-  /* route transitions: less blur, no text raster wobble */
-  body.page-route-gesture #app,
-  body.page-route-fx #app,
-  body.page-enter-fx #app{
-    -webkit-font-smoothing:antialiased;
-    transform-origin:50% 45%!important;
-  }
-  body.page-route-gesture #app,body.page-route-fx #app{filter:blur(calc(var(--route-progress,0) * 4px))!important}
-  body.page-enter-fx #app{filter:none!important}
+  body.dark .newsletter-card{background:linear-gradient(150deg,rgba(29,45,59,.96),rgba(15,27,38,.94))!important}
+  body.dark .newsletter-terms-card{background:linear-gradient(150deg,#203343,#111f2b)!important}
+  body.dark .newsletter-terms-body{font-size:13px!important;line-height:1.78!important}
+  body.dark .newsletter-terms-body h3{font-size:14px!important;line-height:1.45!important}
+  body.dark .newsletter-terms-actions{padding-top:12px!important}
 }
-
-@media(max-width:390px){
-  #app{padding-left:max(13px,env(safe-area-inset-left))!important;padding-right:max(13px,env(safe-area-inset-right))!important}
-  .brand-top{width:154px!important;max-width:calc(100vw - 120px)!important;padding-left:10px!important;padding-right:10px!important}
-  .brand-copy strong{font-size:9.8px!important}.brand-copy span{font-size:8.4px!important}
-  .pager{width:calc(100vw - 12px)!important;height:66px!important}
-  .nav-item{font-size:8.4px!important}.nav-item svg{width:17px!important;height:17px!important}
-  .hero h1{font-size:43px!important}
-  .article-top h1{font-size:31px!important}
-  .share-actions{grid-template-columns:1fr!important}
-}
-
-@media(prefers-contrast:more){
-  body:not(.dark){--sw22-text:#213e54;--sw22-muted:#48657a}
-  body.dark{--sw22-text:#edf5fa;--sw22-muted:#d0dde7}
-  .glass,.article-card,.topic-card,.person-card{border-width:1.25px!important}
-}
-
-@media(prefers-reduced-motion:reduce){
-  :is(.hero h1,.page-hero h1,.about-hero h1,.share-title,.share-card h1,.newsletter-card h1,.article-top h1){animation:none!important}
-  .sw-mobile-toc-panel{animation:none!important}
-}
-
 </style>
-<style id="swPublicV22MobileExperiencePatch">
-/* v22 mobile finishing pass: dynamic/detail surfaces */
-@media(max-width:760px){
-  .topic-detail-head{display:block!important;margin-bottom:18px!important}
-  .topic-detail-head>div+div,.topic-detail-head>.topic-count{margin-top:10px!important}
-  .topic-detail-badge{font-size:10px!important;min-height:32px!important;padding:0 10px!important;border-radius:999px!important}
-  .default-cover{border-radius:21px!important;min-height:220px!important}
-  .article-card .default-cover{min-height:0!important;aspect-ratio:16/9!important}
-  .empty{padding:28px 18px!important;border-radius:20px!important;font-size:12px!important;line-height:1.7!important}
-  .toast{left:12px!important;right:12px!important;bottom:calc(env(safe-area-inset-bottom) + 88px)!important;width:auto!important;max-width:none!important;border-radius:15px!important;font-size:11px!important}
-  .idle-subscribe{left:10px!important;right:10px!important;width:auto!important;bottom:calc(env(safe-area-inset-bottom) + 84px)!important}
-  .idle-subscribe-card{padding:15px!important;border-radius:21px!important}
-  .idle-subscribe-title{font-size:19px!important;line-height:1.2!important}
-  .idle-subscribe-copy{font-size:11px!important;line-height:1.62!important}
-  .idle-subscribe-form{grid-template-columns:1fr!important;gap:7px!important}
-  .idle-subscribe-form input,.idle-subscribe-form button{min-height:48px!important;width:100%!important}
-  .newsletter-flow-overlay{padding:12px!important;align-items:flex-end!important}
-  .newsletter-flow-card{width:100%!important;border-radius:26px!important;padding:24px 18px max(20px,env(safe-area-inset-bottom))!important}
-  .nl-flow-title{font-size:29px!important;line-height:1.08!important;color:var(--sw22-ink)!important;-webkit-text-fill-color:var(--sw22-ink)!important}
-  .nl-flow-copy{font-size:12px!important;line-height:1.7!important;color:var(--sw22-muted)!important}
-  .share-sheet{width:calc(100% - 20px)!important;max-width:none!important;border-radius:24px!important;padding:20px!important}
-  .share-sheet button{min-height:48px!important}
-  .search-foot{display:none!important}
-}
 
+<style id="sw-privacy-terms-v226">
+/* SIGN WELL v22.6 · Terms + Privacy policy */
+.newsletter-legal-tabs{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px;
+  margin:0 24px 2px;padding:5px;border-radius:15px;
+  background:rgba(103,131,154,.08);border:1px solid rgba(100,128,150,.10);
+}
+.newsletter-legal-tab{
+  min-height:38px;border:0;border-radius:11px;background:transparent;
+  color:#4c6274;font-weight:800;font-size:11px;letter-spacing:.01em;cursor:pointer;
+  transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .18s ease;
+}
+.newsletter-legal-tab[aria-selected="true"]{
+  background:rgba(255,255,255,.88);color:#142a3d;
+  box-shadow:0 6px 18px rgba(57,87,113,.08),inset 0 1px 0 rgba(255,255,255,.98);
+}
+.newsletter-legal-tab:active{transform:scale(.98)}
+.newsletter-legal-panel[hidden]{display:none!important}
+.newsletter-legal-panel{animation:swLegalPanelIn .22s ease both}
+@keyframes swLegalPanelIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.newsletter-terms-body .legal-intro{
+  margin-bottom:16px;padding:13px 14px;border-radius:14px;
+  background:rgba(102,159,198,.08);border:1px solid rgba(102,159,198,.10);
+  color:#526b7e;
+}
+.newsletter-terms-body .legal-meta{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.newsletter-terms-body .legal-meta span{
+  display:inline-flex;align-items:center;min-height:27px;padding:0 9px;border-radius:999px;
+  background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.78);
+  color:#6f8190;font-size:9px;font-weight:750;
+}
+.newsletter-terms-body .legal-contact{
+  margin-top:14px;padding:13px 14px;border-radius:14px;
+  background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.75);
+}
+.newsletter-terms-body .legal-contact a{color:#2e6e9d;font-weight:800;text-decoration:none}
+.newsletter-terms-note{font-size:10px!important;line-height:1.65!important}
+.newsletter-legal-open{
+  display:inline;border:0;background:transparent;padding:0;color:inherit;
+  font:inherit;font-weight:800;text-decoration:underline;text-underline-offset:2px;cursor:pointer;
+}
+body.dark .newsletter-legal-tabs{background:rgba(5,15,23,.34);border-color:rgba(154,197,228,.13)}
+body.dark .newsletter-legal-tab{color:#aac4d8!important}
+body.dark .newsletter-legal-tab[aria-selected="true"]{
+  background:rgba(136,190,229,.15)!important;color:#f4f9fd!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 7px 18px rgba(0,0,0,.12)!important;
+}
+body.dark .newsletter-terms-body .legal-intro,
+body.dark .newsletter-terms-body .legal-contact{
+  background:rgba(126,183,221,.08)!important;border-color:rgba(150,198,230,.12)!important;
+  color:#d6e5ef!important;
+}
+body.dark .newsletter-terms-body .legal-meta span{
+  background:rgba(255,255,255,.055)!important;border-color:rgba(164,204,231,.10)!important;color:#abc4d7!important;
+}
+body.dark .newsletter-terms-body .legal-contact a{color:#a9d8f7!important}
+@media(max-width:620px){
+  .newsletter-legal-tabs{margin:0 16px 1px;border-radius:14px}
+  .newsletter-legal-tab{min-height:40px;font-size:11px}
+}
 </style>
+<link rel="stylesheet" href="assets/signwell-common-b.css?build=23.9.0">
+
+<link rel="stylesheet" href="assets/signwell-runtime.css?build=23.9.0">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="assets/signwell-app-icon-192.png">
+<meta property="og:image" content="https://980510linz.github.io/-/assets/signwell-share.png">
+<meta name="twitter:image" content="https://980510linz.github.io/-/assets/signwell-share.png">
+<link rel="stylesheet" href="assets/signwell-reader.css?build=23.9.0">
+<link rel="stylesheet" href="assets/signwell-contrast.css?build=23.9.0">
+<link rel="stylesheet" href="assets/signwell-uiux.css?build=23.9.0">
+<link rel="stylesheet" href="assets/signwell-dialogs.css?build=23.9.1">
+<meta name="signwell-public-ui" content="23.9.0">
 </head>
 <body class="boot-preparing" data-page="newsletter">
 <div id="welcomeSplash" aria-hidden="true"><div class="splash-word">欣緯生醫<small>SIGN WELL BIOMED</small></div><div class="splash-line"></div></div>
@@ -5606,7 +4924,6 @@ body.dark .article-body :is(pre,code,table,th,td){color:#dce8f0!important}
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="site-content.js"></script>
 <script src="analytics-config.js"></script>
 <script>
 (()=>{
@@ -5822,14 +5139,15 @@ function slugify(s=''){return String(s).toLowerCase().replace(/[^\p{L}\p{N}]+/gu
 /* ---------- data ---------- */
 function parseLegacy(text=''){const m=String(text).match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(!m)return[];try{return JSON.parse(m[1]).filter(x=>x&&x.status==='Published')}catch(_){return[]}}
 
-const SW_ARTICLES_CACHE='signwell-public-articles-v14';
-const SW_TOPICS_CACHE='signwell-public-topics-v14';
-const SW_BUNDLE_CACHE='signwell-public-bundle-v1';
+const SW_ARTICLES_CACHE='signwell-public-articles-v22-2';
+const SW_TOPICS_CACHE='signwell-public-topics-v22-2';
+const SW_BUNDLE_CACHE='signwell-public-bundle-v22-2';
 const SW_REVISION_KEY='signwell-public-data-revision';
 const PUBLIC_BUNDLE_PATH='public-data.json';
 const PUBLIC_RAW_BUNDLE='https://raw.githubusercontent.com/980510linz/-/main/public-data.json';
 let publicBundleRevision=0;
 let swLastRefresh=0;
+const SW_IS_SHARE_DOCUMENT=(location.pathname.split('/').pop()||'').toLowerCase()==='share.html';
 
 function readSessionJSON(key){
   try{const v=sessionStorage.getItem(key);return v?JSON.parse(v):null}catch(_){return null}
@@ -5974,7 +5292,7 @@ async function fetchPublicBundleFresh(){
   return candidates[0];
 }
 async function loadPublicBundle(){
-  readCachedPublicBundle();
+  if(!SW_IS_SHARE_DOCUMENT)readCachedPublicBundle();
   const fresh=await fetchPublicBundleFresh();
   if(!fresh)return false;
   applyPublicBundle(fresh,{paintNow:false});
@@ -5983,21 +5301,17 @@ async function loadPublicBundle(){
 
 async function fetchArticlesFresh(){
   try{
+    /* v22.2: articles/index.json is the only article source of truth.
+       Legacy articles.js is intentionally not used because deleted items can survive there. */
     const r=await fetch('articles/index.json?sw='+Date.now(),{cache:'no-store'});
     if(!r.ok)throw 0;
     const a=(await r.json()).filter(x=>x&&x.status==='Published');
     return {ok:true,data:a};
-  }catch(_){
-    try{
-      const r=await fetch('articles.js?sw='+Date.now(),{cache:'no-store'});
-      const a=parseLegacy(await r.text());
-      return {ok:true,data:a};
-    }catch(__){return {ok:false,data:[]}}
-  }
+  }catch(_){return {ok:false,data:[]}}
 }
 
 async function loadArticles(){
-  const cached=readSessionJSON(SW_ARTICLES_CACHE);
+  const cached=SW_IS_SHARE_DOCUMENT?null:readSessionJSON(SW_ARTICLES_CACHE);
   if(Array.isArray(cached)){
     articles=cached.filter(x=>x&&x.status==='Published');
     sortArticles();
@@ -6124,8 +5438,12 @@ function sanitizeHTML(html=''){
     if(a.name.toLowerCase().startsWith('on')||((a.name==='src'||a.name==='href')&&/^javascript:/i.test(a.value)))el.removeAttribute(a.name);
   }));
   d.body.querySelectorAll('img').forEach(im=>{im.loading='lazy';im.decoding='async'});
-  let i=0;
-  d.body.querySelectorAll('h2,h3,h4').forEach(h=>{if(!h.id)h.id='sec-'+(++i)});
+  const used=new Set();let i=0;
+  d.body.querySelectorAll('h2,h3,h4').forEach(h=>{
+    if(h.id){used.add(h.id);return}
+    const base='section-'+(slugify(h.textContent||'')||String(++i));
+    let id=base,n=2;while(used.has(id))id=base+'-'+(n++);used.add(id);h.id=id;
+  });
   return d.body.firstElementChild?.innerHTML||'';
 }
 function renderContent(a){return sanitizeHTML(a?.content||'')}
@@ -6578,6 +5896,10 @@ function renderAbout(){
 
 
 let newsletterOptimisticBusy=false;
+let newsletterFormLoadedAt=Date.now();
+let newsletterTurnstileToken='';
+let newsletterTurnstileWidgetId=null;
+let newsletterTurnstileLoader=null;
 
 function ensureNewsletterFlowUI(){
   if(document.getElementById('newsletterFlowOverlay'))return;
@@ -6594,18 +5916,18 @@ function ensureNewsletterFlowUI(){
           <span class="nl-flow-orbit second"></span>
           <span class="nl-flow-core">✦</span>
         </div>
-        <h2 class="nl-flow-title">訂閱中</h2>
-        <p class="nl-flow-copy">正在把你的 Email 安全送往 SIGN WELL。這一步會在背景繼續完成。</p>
+        <h2 class="nl-flow-title">正在送出確認信</h2>
+        <p class="nl-flow-copy">我們正在處理你的訂閱要求。完成 Email 確認前，不會加入正式寄送名單。</p>
         <div class="nl-flow-email" data-nl-flow-email></div>
         <div class="nl-flow-progress" aria-hidden="true"><i></i></div>
       </div>
 
       <div class="nl-flow-stage nl-flow-success">
         <div class="nl-success-check">✓</div>
-        <h2 class="nl-flow-title">已訂閱</h2>
-        <p class="nl-flow-copy">你已完成 SIGN WELL Letter 訂閱。之後的新文章與電子報會寄到這個信箱。</p>
+        <h2 class="nl-flow-title">請確認你的信箱</h2>
+        <p class="nl-flow-copy">如果這個 Email 尚未完成訂閱，我們已送出確認信。點擊信中的「確認訂閱」後才會正式加入 SIGN WELL Letter。</p>
         <div class="nl-success-sub">SIGN WELL Letter · No spam. Just signal.</div>
-        <button class="nl-success-close" type="button">完成</button>
+        <button class="nl-success-close" type="button">知道了</button>
       </div>
     </div>`;
   document.body.appendChild(wrap);
@@ -6685,65 +6007,90 @@ function playNewsletterConfetti(){
   setTimeout(()=>layer.remove(),2050);
 }
 
+function newsletterTurnstileSiteKey(){
+  return String(window.SIGNWELL_TURNSTILE_SITE_KEY||'').trim();
+}
+
+function loadNewsletterTurnstile(){
+  const key=newsletterTurnstileSiteKey();
+  if(!key)return Promise.resolve(false);
+  if(window.turnstile)return Promise.resolve(true);
+  if(newsletterTurnstileLoader)return newsletterTurnstileLoader;
+  newsletterTurnstileLoader=new Promise((resolve,reject)=>{
+    const existing=document.querySelector('script[data-signwell-turnstile]');
+    if(existing){
+      const wait=()=>window.turnstile?resolve(true):setTimeout(wait,80);
+      wait();return;
+    }
+    const script=document.createElement('script');
+    script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async=true;script.defer=true;script.dataset.signwellTurnstile='1';
+    script.onload=()=>resolve(true);script.onerror=()=>reject(new Error('人機驗證元件載入失敗'));
+    document.head.appendChild(script);
+  });
+  return newsletterTurnstileLoader;
+}
+
+async function mountNewsletterTurnstile(){
+  const key=newsletterTurnstileSiteKey();
+  const host=document.getElementById('newsletterTurnstile');
+  if(!key||!host)return;
+  host.hidden=false;
+  try{
+    await loadNewsletterTurnstile();
+    if(!window.turnstile||!document.body.contains(host))return;
+    host.innerHTML='';
+    newsletterTurnstileToken='';
+    newsletterTurnstileWidgetId=window.turnstile.render(host,{
+      sitekey:key,
+      theme:document.body.classList.contains('dark')?'dark':'light',
+      callback:token=>{newsletterTurnstileToken=String(token||'')},
+      'expired-callback':()=>{newsletterTurnstileToken=''},
+      'error-callback':()=>{newsletterTurnstileToken='';return true}
+    });
+  }catch(err){
+    console.warn('SIGN WELL Turnstile:',err?.message||err);
+  }
+}
+
+function resetNewsletterTurnstile(){
+  newsletterTurnstileToken='';
+  try{
+    if(window.turnstile&&newsletterTurnstileWidgetId!=null)window.turnstile.reset(newsletterTurnstileWidgetId);
+  }catch(_){}
+}
+
 function startNewsletterBackgroundRequest(email,source='signwell-public'){
-  /*
-   * Deliberately do not await this from the UI flow.
-   * The request continues inside its hidden iframe even after the 4-second
-   * optimistic success screen is shown.
-   */
   return signwellPublicGasBridge('newsletter.subscribe',{
     email,
     consent:true,
     source,
     page:location.href,
-    honeypot:''
+    honeypot:String(document.getElementById('sw-company')?.value||''),
+    elapsed:Math.max(0,Date.now()-newsletterFormLoadedAt),
+    captchaToken:newsletterTurnstileToken
   },45000);
 }
 
-
-function runNewsletterOptimistic4s(email,source='signwell-public'){
-  /*
-   * Fixed UX contract:
-   * 0s  : "訂閱中"
-   * 4s  : "已訂閱" + confetti
-   * Apps Script continues independently in the background.
-   */
+async function runNewsletterOptimistic4s(email,source='signwell-public'){
+  // Security v23.1: success UI waits for the backend instead of declaring an
+  // active subscription before the confirmation email request is accepted.
   showNewsletterLoading(email);
-
-  const backgroundRequest=startNewsletterBackgroundRequest(email,source);
-
-  backgroundRequest
-    .then(result=>{
-      try{
-        localStorage.setItem('signwell-newsletter-last-result',JSON.stringify({
-          ok:true,
-          at:Date.now(),
-          status:result?.status||'active'
-        }));
-      }catch(_){}
-    })
-    .catch(err=>{
-      try{
-        localStorage.setItem('signwell-newsletter-last-result',JSON.stringify({
-          ok:false,
-          at:Date.now(),
-          error:String(err?.message||err||'unknown')
-        }));
-      }catch(_){}
-      console.warn('SIGN WELL newsletter background request:',err?.message||err);
-    });
-
-  return new Promise(resolve=>{
-    setTimeout(()=>{
-      showNewsletterOptimisticSuccess();
-      try{localStorage.setItem('signwell-newsletter-subscribed','1')}catch(_){}
-      resolve();
-    },4000);
-  });
+  const started=Date.now();
+  const result=await startNewsletterBackgroundRequest(email,source);
+  const floor=Math.max(0,950-(Date.now()-started));
+  if(floor)await new Promise(r=>setTimeout(r,floor));
+  showNewsletterOptimisticSuccess();
+  try{
+    localStorage.setItem('signwell-newsletter-last-result',JSON.stringify({
+      ok:true,at:Date.now(),status:result?.status||'pending'
+    }));
+    localStorage.setItem('signwell-newsletter-pending','1');
+    localStorage.setItem('signwell-newsletter-pending-at',String(Date.now()));
+  }catch(_){}
+  resetNewsletterTurnstile();
+  return result;
 }
-
-
-
 
 let newsletterTermsAgreeCallback=null;
 let newsletterTermsPriorFocus=null;
@@ -6760,37 +6107,96 @@ function ensureNewsletterTermsModal(){
     <section class="newsletter-terms-card" role="dialog" aria-modal="true" aria-labelledby="newsletterTermsTitle">
       <header class="newsletter-terms-head">
         <div>
-          <div class="newsletter-terms-kicker">SIGN WELL LETTER</div>
-          <h2 class="newsletter-terms-title" id="newsletterTermsTitle">電子報訂閱服務條款</h2>
+          <div class="newsletter-terms-kicker">SIGN WELL · LEGAL</div>
+          <h2 class="newsletter-terms-title" id="newsletterTermsTitle">訂閱服務與隱私說明</h2>
         </div>
         <button class="newsletter-terms-close" type="button" aria-label="關閉">×</button>
       </header>
 
+      <div class="newsletter-legal-tabs" role="tablist" aria-label="法律文件">
+        <button class="newsletter-legal-tab" type="button" role="tab" id="legalTermsTab" aria-selected="true" aria-controls="legalTermsPanel" data-legal-tab="terms">服務條款</button>
+        <button class="newsletter-legal-tab" type="button" role="tab" id="legalPrivacyTab" aria-selected="false" aria-controls="legalPrivacyPanel" data-legal-tab="privacy">隱私權政策</button>
+      </div>
+
       <div class="newsletter-terms-body">
-        <h3>1. 服務內容</h3>
-        <p>當你訂閱 SIGN WELL 電子報後，我們可能寄送新文章通知、醫學與健康知識整理、網站更新，以及與 SIGN WELL 內容相關的訊息。</p>
+        <section class="newsletter-legal-panel" id="legalTermsPanel" role="tabpanel" aria-labelledby="legalTermsTab" data-legal-panel="terms">
+          <div class="legal-meta"><span>適用：SIGN WELL／欣緯生醫網站</span><span>更新：2026-09-13</span></div>
+          <p class="legal-intro">使用 SIGN WELL 網站或訂閱 SIGN WELL Letter，即表示你理解本網站提供的是醫學與健康資訊整理服務。若你選擇訂閱，亦表示你同意本服務條款及隱私權政策中與訂閱資料處理有關的內容。</p>
 
-        <h3>2. Email 使用方式</h3>
-        <p>你提供的 Email 僅用於電子報訂閱、確認訂閱、寄送內容、取消訂閱與必要的服務通知。我們不會因本服務主動公開你的 Email。</p>
+          <h3>1. 服務內容</h3>
+          <p>SIGN WELL／欣緯生醫（以下稱「本站」）提供醫學、健康、研究與相關主題的文章整理、主題內容及電子報服務。訂閱後，本站可能寄送新文章通知、專題整理、網站更新及與 SIGN WELL 內容直接相關的訊息。</p>
 
-        <h3>3. 訂閱確認與取消</h3>
-        <p>當你在網站完成條款同意並送出 Email 後，訂閱會直接生效，不需要另外點擊確認信。每封正式電子報都會提供取消訂閱方式。</p>
+          <h3>2. 醫療資訊聲明</h3>
+          <p>本站內容僅供教育、資訊整理與一般知識參考，不構成個別醫療建議、診斷、治療或醫病關係，也不能取代醫師或其他合格醫療專業人員的正式評估。若有個人健康問題，應向適當的醫療專業人員諮詢。</p>
 
-        <h3>4. 第三方基礎服務</h3>
-        <p>SIGN WELL 目前可能使用 Google Apps Script、Google Sheets、Gmail 或其他雲端服務處理訂閱資料、寄送訂閱完成通知與電子報。這些服務可能依其自身條款處理必要的技術資料。</p>
+          <h3>3. 內容來源與外部連結</h3>
+          <p>本站可能引用期刊、PubMed、新聞來源、官方資料或其他第三方網站。外部網站的內容、可用性及其隱私作法由該第三方負責；本站會盡力清楚標示來源，但不保證外部網站永久可用或內容永遠維持不變。</p>
 
-        <h3>5. 醫療資訊聲明</h3>
-        <p>SIGN WELL 電子報中的醫學與健康內容僅供教育與資訊整理，不構成個別醫療建議、診斷或治療，也不能取代正式臨床評估。</p>
+          <h3>4. 電子報訂閱與取消</h3>
+          <p>SIGN WELL Letter 目前為免費訂閱服務，不收取訂閱費用。你應提供可正常收信的電子郵件地址。完成條款同意並送出後，我們會寄送確認信；只有點擊確認連結後訂閱才正式生效。每封正式電子報都會提供取消訂閱方式。你可隨時取消訂閱，取消後本站將停止寄送一般電子報，但在必要範圍內可能保留與退訂狀態相關的最少紀錄，以避免再次誤寄。</p>
 
-        <h3>6. 服務變更</h3>
-        <p>我們可能依實際營運需要調整寄送頻率、內容形式、技術服務或本條款內容。若有重大變更，會盡可能透過網站或電子報方式說明。</p>
+          <h3>5. 合理使用</h3>
+          <p>不得以自動化攻擊、惡意請求、繞過網站安全機制或其他足以影響本站正常運作的方式使用服務。本站得針對異常或濫用行為限制存取。</p>
 
-        <h3>7. 你的同意</h3>
-        <p>按下「我同意」代表你確認已閱讀並同意本電子報訂閱服務條款，並同意 SIGN WELL 依上述方式處理你的訂閱資料。</p>
+          <h3>6. 智慧財產與引用</h3>
+          <p>除另有註明外，本站自行製作的文字編排、網站介面與原創內容受相關法律保護。第三方研究、圖片、商標或資料的權利仍屬原權利人所有。合理引用時應保留來源與必要標示。</p>
 
-        <div class="newsletter-terms-note">
-          最終法律權歸 signwell.com@gmail.com 所有。
-        </div>
+          <h3>7. 服務可用性與變更</h3>
+          <p>本站可能因維護、第三方服務異常、技術更新或營運調整而暫停或變更部分功能、寄送頻率及內容形式。我們會在合理範圍內維持服務，但不保證任何功能永久不中斷。</p>
+
+          <h3>8. 隱私與資料處理</h3>
+          <p>訂閱及使用網站時涉及的個人資料與瀏覽器儲存機制，依「隱私權政策」處理。本站不以出售或出租電子郵件名單作為營運方式。</p>
+
+          <h3>9. 條款修訂</h3>
+          <p>本站可能因服務內容、法令或技術架構調整而更新本條款。重大變更會盡可能於網站或電子報中說明；更新後繼續使用相關服務，視為你已閱讀當時有效版本。</p>
+
+          <h3>10. 聯絡方式</h3>
+          <p>對本條款、電子報或資料處理有疑問，可透過 <a href="mailto:signwell.com@gmail.com">signwell.com@gmail.com</a> 聯絡。</p>
+        </section>
+
+        <section class="newsletter-legal-panel" id="legalPrivacyPanel" role="tabpanel" aria-labelledby="legalPrivacyTab" data-legal-panel="privacy" hidden>
+          <div class="legal-meta"><span>依台灣個資法原則設計</span><span>更新：2026-09-13</span></div>
+          <p class="legal-intro">SIGN WELL／欣緯生醫尊重使用者的個人資料與隱私。本政策依本站目前實際功能撰寫，說明我們蒐集哪些資料、為何使用、保存多久、可能由哪些技術服務協助處理，以及你可以如何行使個人資料相關權利。</p>
+
+          <h3>一、個人資料的取得</h3>
+          <p>本站目前主要由你主動提供電子郵件地址以訂閱 SIGN WELL Letter；系統同時會建立訂閱狀態、訂閱／取消訂閱時間、來源與寄送紀錄。公開網站並不要求你提供身分證字號、信用卡資料、銀行帳戶或個人病歷。</p>
+          <p>網站亦可能記錄不直接識別個人的彙總瀏覽統計，並在你的瀏覽器使用 localStorage 或 sessionStorage 保存主題偏好、介面狀態、暫時快取與重複計數防護資料。</p>
+
+          <h3>二、資料蒐集之目的與類別</h3>
+          <p><strong>蒐集目的：</strong>處理電子報訂閱與退訂、寄送內容與必要通知、維護網站功能、改善閱讀體驗、統計網站整體使用情形、除錯及維護服務安全。</p>
+          <p><strong>主要資料類別：</strong>電子郵件地址，以及與訂閱服務直接相關的狀態、時間與寄送紀錄；另可能包含不直接識別個人的頁面瀏覽計數、介面偏好與瀏覽器端技術資料。</p>
+
+          <h3>三、資料利用期間、地區、對象及方式</h3>
+          <p><strong>期間：</strong>原則上於提供服務所必要期間內保存；你取消訂閱或提出停止利用／刪除請求後，會依實際系統需求及法律義務處理。為避免再次誤寄，系統可能保留最少量的退訂狀態紀錄。</p>
+          <p><strong>地區：</strong>本站主要服務台灣使用者，但因使用雲端基礎設施，資料可能由服務供應商依其全球基礎設施於台灣以外地區進行技術處理或儲存。</p>
+          <p><strong>對象與方式：</strong>資料僅在提供本站功能所需範圍內由 SIGN WELL 及受委託的技術服務提供者處理，例如 Google Apps Script、Google Sheets、Gmail、GitHub Pages 或其後續替代服務。</p>
+
+          <h3>四、你的個人資料權利</h3>
+          <p>依中華民國個人資料保護法第 3 條及其他適用規定，你得依法請求查詢或閱覽、製給複製本、補充或更正、停止蒐集／處理／利用，以及刪除你的個人資料。法律另有規定或技術上必須保留的最少資料除外。</p>
+          <p>如欲行使上述權利，可來信 <a href="mailto:signwell.com@gmail.com">signwell.com@gmail.com</a>，並提供足以確認訂閱信箱的必要資訊。</p>
+
+          <h3>五、個人資料利用與第三方服務</h3>
+          <p>本站不會出售或出租你的電子郵件名單。為完成訂閱、寄送、資料保存、網站託管及系統運作，必要資料可能交由受委託的雲端或基礎服務提供者處理；其處理亦可能受該服務商自身隱私政策及法令要求約束。</p>
+
+          <h3>六、資料安全</h3>
+          <p>本站會在合理範圍內使用存取控制、權限限制、必要的金鑰／後端隔離及其他技術措施保護資料。惟任何網路傳輸或雲端系統均無法保證絕對零風險，因此本站不能保證資料永遠不會遭受未授權存取。</p>
+
+          <h3>七、資料更正、停止使用與退訂</h3>
+          <p>若電子郵件地址有誤、希望停止接收訊息或提出其他資料請求，可使用電子報中的取消訂閱功能，或直接聯絡本站。退訂後，系統不應再將該地址列入一般電子報寄送名單。</p>
+
+          <h3>八、Cookie、localStorage 與 sessionStorage</h3>
+          <p>本站目前主要使用瀏覽器端 localStorage／sessionStorage 保存深淺色模式、頁面狀態、暫存快取、訂閱提示狀態及部分統計防重複資料；部分第三方基礎服務可能依其技術需要使用 Cookie。關閉瀏覽器儲存功能可能使部分介面偏好或流程無法正常保存。</p>
+
+          <h3>九、彙總網站分析</h3>
+          <p>本站目前的網站分析以頁面瀏覽等彙總計數為主，後端不以此建立可持續識別個別讀者的廣告追蹤檔案，也不將電子報 Email 與頁面瀏覽紀錄合併成個人化廣告輪廓。</p>
+
+          <h3>十、政策修訂與聯絡</h3>
+          <p>本政策可能因網站功能、第三方服務或法令調整而更新。重大變更會盡可能於網站或電子報中說明。對隱私權政策或個人資料處理有疑問，可聯絡 <a href="mailto:signwell.com@gmail.com">signwell.com@gmail.com</a>。</p>
+
+          <div class="legal-contact"><strong>個資／隱私聯絡</strong><br><a href="mailto:signwell.com@gmail.com">signwell.com@gmail.com</a></div>
+        </section>
+
+        <div class="newsletter-terms-note">按下「我同意」代表你已閱讀並同意本頁的「服務條款」與「隱私權政策」。</div>
       </div>
 
       <footer class="newsletter-terms-actions">
@@ -6800,6 +6206,21 @@ function ensureNewsletterTermsModal(){
     </section>`;
 
   document.body.appendChild(modal);
+
+  const tabs=[...modal.querySelectorAll('[data-legal-tab]')];
+  const panels=[...modal.querySelectorAll('[data-legal-panel]')];
+  const activateLegalTab=(name,focus=false)=>{
+    tabs.forEach(btn=>{
+      const on=btn.dataset.legalTab===name;
+      btn.setAttribute('aria-selected',on?'true':'false');
+      if(on&&focus)btn.focus();
+    });
+    panels.forEach(panel=>{panel.hidden=panel.dataset.legalPanel!==name});
+    const body=modal.querySelector('.newsletter-terms-body');
+    if(body)body.scrollTop=0;
+  };
+  tabs.forEach(btn=>btn.addEventListener('click',()=>activateLegalTab(btn.dataset.legalTab)));
+  modal._activateLegalTab=activateLegalTab;
 
   const close=()=>{
     modal.classList.remove('show');
@@ -6844,6 +6265,7 @@ function showNewsletterTermsModal(onAgree){
   const modal=ensureNewsletterTermsModal();
   newsletterTermsPriorFocus=document.activeElement;
   newsletterTermsAgreeCallback=typeof onAgree==='function'?onAgree:null;
+  modal._activateLegalTab?.('terms');
   document.body.classList.add('newsletter-terms-open');
   modal.classList.remove('show');
   void modal.offsetWidth;
@@ -6894,24 +6316,14 @@ async function subscribeNewsletter(){
         btn=$('#newsletterSubmit'),status=$('#newsletterStatus'),success=$('#newsletterSuccess');
 
   if(!emailEl||!btn||!status||newsletterOptimisticBusy)return;
-
   const email=String(emailEl.value||'').trim().toLowerCase();
-
   status.className='newsletter-status';
   success?.classList.remove('show');
 
   if(!validNewsletterEmail(email)){
     status.textContent='請輸入有效的電子郵件地址。';
-    status.classList.add('error');
-    emailEl.focus();
-    return;
+    status.classList.add('error');emailEl.focus();return;
   }
-
-  /*
-   * If Subscribe is pressed before consent, the terms modal becomes the
-   * missing step. After "我同意", we check the box and automatically
-   * continue — no second click is required.
-   */
   if(consent&&!consent.checked){
     showNewsletterTermsModal(()=>{
       consent.checked=true;
@@ -6920,108 +6332,202 @@ async function subscribeNewsletter(){
     });
     return;
   }
-
   if(!newsletterEnabled()){
-    status.textContent='訂閱服務尚未啟用。網站介面已就緒，待 SIGN WELL Backend 連線後即可正式訂閱。';
-    status.classList.add('error');
-    return;
+    status.textContent='訂閱服務尚未啟用。';status.classList.add('error');return;
+  }
+  if(newsletterTurnstileSiteKey()&&!newsletterTurnstileToken){
+    status.textContent='請先完成人機驗證。';status.classList.add('error');
+    mountNewsletterTurnstile();return;
   }
 
-  newsletterOptimisticBusy=true;
-  btn.disabled=true;
-  const old=btn.textContent;
-  btn.textContent='訂閱中…';
-  status.textContent='';
-
+  newsletterOptimisticBusy=true;btn.disabled=true;
+  const old=btn.textContent;btn.textContent='送出確認信…';status.textContent='';
   try{
-    /*
-     * The visible flow is fully controlled by one local timer.
-     * Backend latency can never block or cancel the 4-second success state.
-     */
     await runNewsletterOptimistic4s(email,'signwell-public');
-
-    emailEl.value='';
-    if(consent)consent.checked=false;
-    status.textContent='';
-    success?.classList.remove('show');
+    emailEl.value='';if(consent)consent.checked=false;
+    status.textContent='請到信箱點擊確認連結；完成確認前不會收到正式電子報。';
+    status.classList.add('success');
+  }catch(err){
+    hideNewsletterFlow();
+    status.textContent=String(err?.message||'確認信暫時無法寄送，請稍後再試。');
+    status.classList.add('error');
+    resetNewsletterTurnstile();
   }finally{
-    btn.disabled=false;
-    btn.textContent=old;
-    newsletterOptimisticBusy=false;
+    btn.disabled=false;btn.textContent=old;newsletterOptimisticBusy=false;
   }
 }
+
 function renderNewsletter(){
   app.innerHTML=`<div class="shell newsletter-wrap">
     <section class="newsletter-card glass">
       <div class="newsletter-signal-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="newsletter-signal-lines" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="newsletter-kicker"><i></i>SIGN WELL LETTER</div>
+      <div class="newsletter-kicker"><i></i>SIGN WELL LETTER · 免費</div>
       <h1>留一個信箱給我們。</h1>
       <p class="newsletter-lead">醫學、健康與值得留下的新觀點。不追求每天出現在你的收件匣，只在有真正值得閱讀的內容時寫信給你。</p>
 
       <form class="newsletter-form" id="newsletterForm" novalidate>
         <input id="newsletterEmail" type="email" inputmode="email" autocomplete="email" placeholder="your@email.com" aria-label="電子郵件">
-        <button class="newsletter-submit" id="newsletterSubmit" type="submit">訂閱 SIGN WELL</button>
+        <input id="sw-company" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0;pointer-events:none">
+        <button class="newsletter-submit" id="newsletterSubmit" type="submit">免費訂閱 SIGN WELL</button>
       </form>
+      <div id="newsletterTurnstile" class="newsletter-turnstile" hidden style="margin-top:12px;min-height:0"></div>
 
       <label class="newsletter-consent" id="newsletterConsentLabel">
         <input id="newsletterConsent" type="checkbox" aria-describedby="newsletterConsentText">
-        <span id="newsletterConsentText">我同意接收 SIGN WELL 電子報與新文章通知。每封信都會提供取消訂閱方式。</span>
+        <span id="newsletterConsentText">我同意接收 SIGN WELL 電子報與新文章通知，並已閱讀服務條款與隱私權政策。送出後需完成 Email 確認；每封信都會提供取消訂閱方式。</span>
       </label>
+      <div class="newsletter-note" style="margin-top:8px">想先查看內容？可開啟 <button class="newsletter-legal-open" type="button" id="newsletterLegalOpen">服務條款與隱私權政策</button>，或閱讀 <a href="privacy.html" class="newsletter-legal-link">完整個資告知</a>。</div>
 
       <div class="newsletter-status" id="newsletterStatus" role="status" aria-live="polite"></div>
       <div class="newsletter-success" id="newsletterSuccess">
         <div class="check">✓</div>
         <div>
-          <strong>訂閱完成</strong>
-          <div data-success-copy>你已加入 SIGN WELL Letter。</div>
+          <strong>等待 Email 確認</strong>
+          <div data-success-copy>完成信箱確認後才會正式加入 SIGN WELL Letter。</div>
         </div>
       </div>
 
-      <div class="newsletter-note">No spam. Just signal. · 你的 Email 只用於 SIGN WELL 電子報，不會公開顯示。</div>
+      <div class="newsletter-note">免費訂閱 · No spam. Just signal. · 你的 Email 只用於 SIGN WELL 電子報，不會公開顯示。</div>
     </section>
   </div>`;
+  newsletterFormLoadedAt=Date.now();
+  newsletterTurnstileToken='';newsletterTurnstileWidgetId=null;
   $('#newsletterForm')?.addEventListener('submit',e=>{e.preventDefault();subscribeNewsletter()});
   bindNewsletterConsentTerms();
+  $('#newsletterLegalOpen')?.addEventListener('click',e=>{
+    e.preventDefault();e.stopPropagation();
+    showNewsletterTermsModal();
+  });
+  if(newsletterTurnstileSiteKey())requestAnimationFrame(()=>mountNewsletterTurnstile());
+
+  try{
+    const q=new URLSearchParams(location.search);
+    if(q.get('newsletter')==='confirmed'){
+      localStorage.setItem('signwell-newsletter-subscribed','1');
+      localStorage.removeItem('signwell-newsletter-pending');
+      localStorage.removeItem('signwell-newsletter-pending-at');
+      const status=$('#newsletterStatus');
+      if(status){status.textContent='✓ Email 已確認，你已正式加入 SIGN WELL Letter。';status.classList.add('success')}
+      q.delete('newsletter');
+      const clean=location.pathname+(q.toString()?'?'+q.toString():'')+location.hash;
+      history.replaceState(history.state,'',clean);
+    }
+  }catch(_){}
   initReveal();
 }
 
 
+
+function swDisplayDate(value){
+  const s=String(value||'').trim();if(!s)return '';
+  const d=new Date(s+'T00:00:00');
+  return Number.isNaN(d.getTime())?s:d.toLocaleDateString('zh-TW',{year:'numeric',month:'short',day:'numeric'});
+}
+function swArticleAgeDays(a){
+  const s=String(a?.updatedAt||a?.publishedAt||'').trim();if(!s)return 0;
+  const d=new Date(s+'T00:00:00');return Number.isNaN(d.getTime())?0:Math.floor((Date.now()-d.getTime())/86400000);
+}
+function swEvidenceLevelLabel(ref){
+  return String(ref?.evidenceLevel || (ref?.type==='literature'?'Research':'Source')).trim()||'Source';
+}
+function swArticleTrustHTML(a){
+  const pub=publisherForArticle(a),refs=Array.isArray(a?.references)?a.references:[];
+  const lit=refs.filter(r=>r&&r.type==='literature');
+  const audit=a?.audit&&typeof a.audit==='object'?a.audit:null;
+  const shown=lit.slice(0,6);
+  const auditHtml=audit?.claimEvidenceLocked?`<div class="sw-audit-strip"><span>Claim–Evidence Lock ✓</span>${Number.isFinite(Number(audit.topicFitScore))?`<span>Topic Fit ${Math.round(Number(audit.topicFitScore))}/100</span>`:''}${audit.numericalFidelityChecked?'<span>Numerical Fidelity ✓</span>':''}</div>`:'';
+  const refsHtml=shown.length?`<div class="sw-evidence-list">${shown.map(r=>`<a class="sw-evidence-ref" href="${escapeHTML(r.url||'#')}" target="_blank" rel="noopener noreferrer"><span class="sw-evidence-level">${escapeHTML(r.evidenceLevel||'PubMed')}</span><span><strong>${escapeHTML(r.title||'研究文獻')}</strong><small>${escapeHTML([r.journal,r.year,r.pmid?('PMID '+r.pmid):''].filter(Boolean).join(' · '))}</small></span></a>`).join('')}</div>`:'';
+  return `<section class="sw-trust-panel" aria-label="文章可信度資訊"><div class="sw-trust-head"><div><strong>文章資訊與證據</strong><span>讓你知道這篇內容由誰整理、何時更新，以及引用了哪些研究。</span></div>${lit.length?`<span>${lit.length} 篇研究文獻</span>`:''}</div>${auditHtml}<div class="sw-trust-grid"><div class="sw-trust-item"><b>作者 / 發布者</b><span>${escapeHTML(pub.name||'SIGN WELL')}</span></div><div class="sw-trust-item"><b>最後更新</b><span>${escapeHTML(swDisplayDate(a.updatedAt||a.publishedAt)||'未標示')}</span></div><div class="sw-trust-item"><b>閱讀時間</b><span>約 ${readingTime(a)} 分鐘</span></div></div>${refsHtml}<div class="sw-article-disclaimer">本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估、診斷或治療。研究證據可能隨時間更新；如涉及個人健康決策，請與合格醫療專業人員討論。</div></section>`;
+}
+function swRelatedArticles(a){
+  const same=articles.filter(x=>x.slug!==a.slug&&(x.category===a.category||((x.tags||[]).some(t=>(a.tags||[]).includes(t))))).slice(0,3);
+  if(!same.length)return '';
+  return `<section class="sw-related"><div class="sw-related-head"><h2>延伸閱讀</h2><span>同主題內容</span></div><div class="sw-related-grid">${same.map(x=>`<article class="sw-related-card" data-related="${escapeHTML(x.slug)}" tabindex="0"><small>${escapeHTML(x.category||'醫學筆記')} · ${readingTime(x)} 分鐘</small><b>${escapeHTML(x.title||'未命名文章')}</b><p>${escapeHTML(excerpt(x).slice(0,92))}</p></article>`).join('')}</div></section>`;
+}
+function swArticleSectionUrl(slug,sectionId=''){
+  const u=new URL(pageUrl(PAGE_FILE.home,'article/'+encodeURIComponent(slug)));
+  if(sectionId)u.searchParams.set('s',sectionId);else u.searchParams.delete('s');
+  return u.href;
+}
+function swCurrentSection(){
+  const hs=[...document.querySelectorAll('.article-body h2[id],.article-body h3[id]')];
+  let best='';for(const h of hs){if(h.getBoundingClientRect().top<=150)best=h.id;else break}return best;
+}
+function swApplyReaderFont(view,size){
+  const allowed=['small','medium','large'];const next=allowed.includes(size)?size:'medium';
+  view.dataset.fontSize=next;try{localStorage.setItem('signwell-reader-font',next)}catch(_){}
+  view.querySelectorAll('[data-font-size]').forEach(b=>b.classList.toggle('active',b.dataset.fontSize===next));
+}
+async function swOpenContinueQR(a){
+  document.querySelector('.sw-continue-overlay')?.remove();
+  const section=swCurrentSection(),url=swArticleSectionUrl(a.slug,section);
+  const overlay=document.createElement('div');overlay.className='sw-continue-overlay';overlay.innerHTML=`<div class="sw-continue-card" role="dialog" aria-modal="true"><h3>在另一台裝置繼續閱讀</h3><p>${section?'QR Code 會帶你回到目前章節。':'掃描後直接開啟這篇文章。'} 不需要登入帳號。</p><div class="sw-continue-qr" id="swContinueQr">正在產生 QR Code…</div><div class="sw-continue-actions"><button data-sw-copy>複製接續連結</button><button class="primary" data-sw-close>完成</button></div></div>`;document.body.appendChild(overlay);
+  overlay.onclick=e=>{if(e.target===overlay||e.target.closest('[data-sw-close]'))overlay.remove()};
+  overlay.querySelector('[data-sw-copy]').onclick=()=>copyText(url);
+  const ok=await ensureQRCodeLib();const box=overlay.querySelector('#swContinueQr');
+  if(ok&&window.QRCode){box.innerHTML='';new QRCode(box,{text:url,width:190,height:190,correctLevel:QRCode.CorrectLevel.M})}else box.textContent=url;
+}
+function swBindSectionLinks(a){
+  document.querySelectorAll('.article-body h2[id],.article-body h3[id]').forEach(h=>{
+    if(h.querySelector('.sw-section-link'))return;
+    const b=document.createElement('button');b.className='sw-section-link';b.type='button';b.setAttribute('aria-label','複製本段連結');b.textContent='↗';
+    b.onclick=e=>{e.preventDefault();e.stopPropagation();copyText(swArticleSectionUrl(a.slug,h.id))};h.appendChild(b);
+  });
+}
+function swScrollToRequestedSection(){
+  const id=new URLSearchParams(location.search).get('s');if(!id)return;
+  requestAnimationFrame(()=>setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}),80));
+}
+function swCopyCitation(a){
+  const pub=publisherForArticle(a);const year=String(a.updatedAt||a.publishedAt||'').slice(0,4)||new Date().getFullYear();
+  const url=articleUrl(a.slug);const text=`${pub.name||'SIGN WELL'}（${year}）。${a.title||'未命名文章'}。SIGN WELL 欣緯生醫。${url}`;return copyText(text);
+}
+function swUpdateArticleMeta(a){
+  const set=(sel,val)=>{let el=document.querySelector(sel);if(el&&val)el.setAttribute('content',val)};
+  set('meta[property="og:title"]',a.title||'SIGN WELL · 欣緯生醫');set('meta[property="og:description"]',excerpt(a));set('meta[name="twitter:title"]',a.title||'');set('meta[name="twitter:description"]',excerpt(a));if(a.cover){set('meta[property="og:image"]',a.cover);set('meta[name="twitter:image"]',a.cover)}
+}
+
 async function renderArticle(slug){
   const a=await getFullArticle(slug);
-  if(!a){app.innerHTML='<div class="shell"><div class="empty">找不到這篇文章，可能尚未發布或網址已更改。<br><button class="backlink" data-back="index.html" style="margin-top:14px">← 回到首頁</button></div></div>';bindBack();return}
-  const html=renderContent(a),wrap=document.createElement('div');
-  wrap.innerHTML=html;
+  if(!a){app.innerHTML='<div class="shell"><div class="empty"><strong>找不到這篇文章</strong><br>它可能已經移除、網址已更新，或目前尚未公開。<br><button class="backlink" data-back="index.html" style="margin-top:14px">← 回到首頁看看其他內容</button></div></div>';bindBack();return}
+  const html=renderContent(a),wrap=document.createElement('div');wrap.innerHTML=html;
   const heads=[...wrap.querySelectorAll('h2')].map(h=>({id:h.id,text:h.textContent}));
-  app.innerHTML=`<article class="article-view">
+  const age=swArticleAgeDays(a),updated=swDisplayDate(a.updatedAt||a.publishedAt),published=swDisplayDate(a.publishedAt);
+  app.innerHTML=`<article class="article-view" data-font-size="medium">
     <header class="article-top">
       <button class="backlink" data-back="index.html">← 返回首頁</button>
       <div class="kicker" style="margin-top:24px">${categoryChipHTML(a.category||'醫學筆記')} <span aria-hidden="true">·</span> ${escapeHTML(a.type||'文章')}</div>
       <h1>${escapeHTML(a.title||'未命名文章')}</h1>
       <div class="article-meta">
         ${(()=>{const publisher=publisherForArticle(a);return `<span class="article-publisher">${publisherAvatarHTML(publisher,true)}<span class="article-publisher-copy"><b>${escapeHTML(publisher.name||'SIGN WELL')}</b>${publisher.role?`<small>${escapeHTML(publisher.role)}</small>`:''}</span></span>`})()}
-        <span>${escapeHTML(a.publishedAt||'')}</span>
-        <span>${readingTime(a)} ${escapeHTML(t('minutesReadSuffix'))}</span>
+        ${published?`<span>發布 ${escapeHTML(published)}</span>`:''}
+        ${updated?`<span class="sw-updated">更新 ${escapeHTML(updated)}</span>`:''}
+        <span>約 ${readingTime(a)} ${escapeHTML(t('minutesReadSuffix'))}</span>
       </div>
       <div class="article-actions"><button class="pillbtn" id="shareArticle">${escapeHTML(t('shareLabel'))}</button><button class="pillbtn" id="copyArticle">${iconSvg('copy')}${escapeHTML(t('copyLinkLabel'))}</button></div>
+      <div class="sw-reader-tools"><div class="sw-font-controls"><span>字級</span><button data-font-size="small" aria-label="較小字級">A−</button><button data-font-size="medium" aria-label="標準字級">A</button><button data-font-size="large" aria-label="較大字級">A＋</button></div><button id="continueArticle">手機接續閱讀</button><button id="emailSelfArticle">寄給自己</button><button id="citeArticle">引用這篇</button></div>
     </header>
-    ${a.cover?`<div class="article-cover"><img loading="lazy" decoding="async" src="${escapeHTML(a.cover)}" alt="" decoding="async"></div>`:defaultCoverMarkup(a,true)}
+    ${age>365?`<div class="sw-stale-note">這篇文章最後更新於 ${escapeHTML(updated||a.updatedAt||a.publishedAt||'較早時間')}，已超過一年。醫學資訊可能已有新的研究或指引，請搭配最新專業資料判讀。</div>`:''}
+    ${a.cover?`<div class="article-cover"><img loading="eager" fetchpriority="high" decoding="async" src="${escapeHTML(a.cover)}" alt=""></div>`:defaultCoverMarkup(a,true)}
     <div class="article-layout">
-      <div class="article-body">${html}</div>
+      <div class="sw-article-main"><div class="article-body">${html}</div>${swArticleTrustHTML(a)}</div>
       ${heads.length?`<aside class="toc"><div class="toc-title">${escapeHTML(t('tocTitle'))}</div>${heads.map(h=>`<button data-toc="${escapeHTML(h.id)}">${escapeHTML(h.text)}</button>`).join('')}</aside>`:''}
     </div>
+    ${swRelatedArticles(a)}
   </article>`;
   $$('[data-toc]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.toc)?.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}));
+  $$('[data-related]').forEach(el=>{const open=()=>goto('article/'+encodeURIComponent(el.dataset.related));el.onclick=open;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}});
   const shareUrl=articleUrl(a.slug);
   $('#copyArticle').onclick=()=>copyText(shareUrl);
-  $('#shareArticle').onclick=async()=>{
-    try{
-      if(navigator.share)await navigator.share({title:a.title,text:excerpt(a),url:shareUrl});
-      else await copyText(shareUrl);
-    }catch(e){if(e?.name!=='AbortError')showToast('這個瀏覽器不支援系統分享，連結已可手動複製')}
-  };
+  $('#shareArticle').onclick=async()=>{try{if(navigator.share)await navigator.share({title:a.title,text:excerpt(a),url:shareUrl});else await copyText(shareUrl)}catch(e){if(e?.name!=='AbortError')showToast('這個瀏覽器不支援系統分享，連結已可手動複製')}};
+  $('#continueArticle').onclick=()=>swOpenContinueQR(a);
+  $('#emailSelfArticle').onclick=()=>{const u=encodeURIComponent(swArticleSectionUrl(a.slug,swCurrentSection()));const subject=encodeURIComponent('稍後閱讀｜'+(a.title||'SIGN WELL'));location.href=`mailto:?subject=${subject}&body=${u}`};
+  $('#citeArticle').onclick=()=>swCopyCitation(a);
+  const view=document.querySelector('.article-view');let fs='medium';try{fs=localStorage.getItem('signwell-reader-font')||'medium'}catch(_){}swApplyReaderFont(view,fs);$$('[data-font-size]').forEach(b=>b.onclick=()=>swApplyReaderFont(view,b.dataset.fontSize));
+  swBindSectionLinks(a);swScrollToRequestedSection();swUpdateArticleMeta(a);
   document.title=`${a.title} · SIGN WELL`;
-  bindBack();initReveal();setupToc();
+  hardenRenderedArticleMedia();bindBack();initReveal();setupToc();
 }
 
 function bindBack(){
@@ -7842,9 +7348,9 @@ function ensureIdleSubscribePrompt(){
       <p class="idle-subscribe-copy">如果你正在慢慢讀，歡迎留下 Email。新文章與精選內容才會寄出，不做廣告轟炸。</p>
       <form class="idle-subscribe-form">
         <input type="email" autocomplete="email" inputmode="email" placeholder="your@email.com" aria-label="Email" required>
-        <button type="submit">訂閱 SIGN WELL</button>
+        <button type="submit">免費訂閱 SIGN WELL</button>
       </form>
-      <div class="idle-subscribe-note">送出後訂閱即生效；你可以隨時取消訂閱。</div>
+      <div class="idle-subscribe-note">完全免費；送出後請到信箱點擊確認連結，確認後才會正式加入。你可以隨時取消訂閱。</div>
     </div>`;
   document.body.appendChild(el);
 
@@ -7874,8 +7380,8 @@ function ensureIdleSubscribePrompt(){
 
       await runNewsletterOptimistic4s(email,'signwell-idle-prompt');
 
-      note.textContent='已訂閱 ✓ 之後會收到 SIGN WELL Letter。';
-      button.textContent='已訂閱';
+      note.textContent='確認信已寄出。請到信箱點擊確認連結完成免費訂閱。';
+      button.textContent='等待確認';
       markIdleSubscribeHandled(true);
 
       setTimeout(()=>el.classList.remove('show'),900);
@@ -8184,254 +7690,21 @@ window.addEventListener('pagehide',()=>{
 
 </script>
 
-<script id="swPublicStabilityRuntime">
-(() => {
-  const root=document.documentElement;
-  const lowMemory=(Number(navigator.deviceMemory||8)<=4);
-  const lowCPU=(Number(navigator.hardwareConcurrency||8)<=4);
-  const saveData=Boolean(navigator.connection&&navigator.connection.saveData);
-  if(lowMemory||lowCPU||saveData)root.classList.add('sw-lowfx');
-
-  const syncVisibility=()=>{
-    document.body?.classList.toggle('sw-page-hidden',document.hidden);
-  };
-  document.addEventListener('visibilitychange',syncVisibility,{passive:true});
-  syncVisibility();
-})();
-</script>
+<script src="assets/signwell-common.js?build=23.9.0"></script>
 
 
-<script id="swPublicV21RefinementRuntime">
-(() => {
-  const setVar=(k,v)=>{ try{ document.body && document.body.style.setProperty(k,v); }catch(_){} };
-
-  const wrap = (name, handler) => {
-    const orig = window[name];
-    if(typeof orig !== 'function') return;
-    window[name] = function(...args){
-      const out = orig.apply(this,args);
-      try{ handler(args); }catch(_){ }
-      return out;
-    };
-  };
-
-  wrap('setPagerRouteGesture', ([progress=0,direction=0]) => {
-    const p = Math.max(0, Math.min(1, Number(progress) || 0));
-    const dir = Math.sign(Number(direction) || 0);
-    const shift = Math.min(window.innerWidth * .27, 220);
-    setVar('--route-progress', p.toFixed(3));
-    setVar('--route-opacity', (1 - (p * .62)).toFixed(3));
-    setVar('--route-chrome-opacity', (1 - (p * .48)).toFixed(3));
-    setVar('--route-scale', '1');
-    setVar('--route-veil', (p * .30).toFixed(3));
-    setVar('--route-x', (-dir * p * shift).toFixed(2) + 'px');
-    if(dir) setVar('--route-enter-x', (dir * Math.min(window.innerWidth * .18, 148)).toFixed(2) + 'px');
-  });
-
-  wrap('beginPagerGestureFX', ([seed=.035]) => {
-    const p = Math.max(.03, Math.min(1, Number(seed) || .035));
-    setVar('--route-progress', p.toFixed(3));
-    setVar('--route-scale', '1');
-  });
-
-  wrap('cancelPagerGestureFX', () => {
-    setVar('--route-progress','0');
-    setVar('--route-scale','1');
-  });
-
-  wrap('beginPagerRouteFX', ([opts]) => {
-    const direction = Math.sign(Number((opts && opts.direction) || 0));
-    setVar('--route-progress','1');
-    setVar('--route-opacity','.06');
-    setVar('--route-chrome-opacity','.18');
-    setVar('--route-scale','1');
-    setVar('--route-veil','.32');
-    if(direction) setVar('--route-enter-x', (direction * Math.min(window.innerWidth * .18, 148)).toFixed(2) + 'px');
-  });
-
-  wrap('playPagerRouteEntrance', () => {
-    setVar('--route-progress','0');
-    setVar('--route-scale','1');
-  });
-
-  wrap('playPagerSoftRouteEntrance', () => {
-    setVar('--route-progress','0');
-    setVar('--route-scale','1');
-  });
-
-  const applyTitleBalance = () => {
-    document.querySelectorAll('.hero h1,.page-hero h1,.about-hero h1,.share-title,.newsletter-card h1,.article-top h1').forEach(el => {
-      el.style.textWrap = 'balance';
-      el.style.backfaceVisibility = 'hidden';
-      el.style.transform = 'translateZ(0)';
-    });
-  };
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', applyTitleBalance, { once:true });
-  }else{
-    applyTitleBalance();
-  }
-})();
-</script>
 
 
-<script id="swPublicV212Runtime">
-(() => {
-  const root = document.documentElement;
-  const prefersDark = () => document.body && document.body.classList.contains('dark');
 
-  function enhanceTitles(){
-    document.querySelectorAll('.hero h1,.page-hero h1,.about-hero h1,.share-title,.newsletter-card h1,.article-top h1').forEach(el=>{
-      el.style.textWrap='balance';
-      el.style.transform='translateZ(0)';
-      el.style.backfaceVisibility='hidden';
-    });
-  }
 
-  function n(v, d=0){ v = Number(v); return Number.isFinite(v) ? v : d; }
 
-  const wrap = (name, handler) => {
-    const orig = window[name];
-    if(typeof orig !== 'function') return;
-    window[name] = function(...args){
-      const out = orig.apply(this, args);
-      try{ handler(args); }catch(_){ }
-      return out;
-    };
-  };
 
-  wrap('setPagerRouteGesture', ([progress=0]) => {
-    const p = Math.max(0, Math.min(1, n(progress, 0)));
-    document.body.style.setProperty('--route-progress', p.toFixed(3));
-  });
-  wrap('cancelPagerGestureFX', () => {
-    document.body.style.setProperty('--route-progress','0');
-  });
-  wrap('playPagerRouteEntrance', () => {
-    document.body.style.setProperty('--route-progress','0');
-    enhanceTitles();
-  });
-  wrap('playPagerSoftRouteEntrance', () => {
-    document.body.style.setProperty('--route-progress','0');
-    enhanceTitles();
-  });
-  wrap('render', () => {
-    setTimeout(enhanceTitles, 30);
-  });
 
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', enhanceTitles, {once:true});
-  }else{
-    enhanceTitles();
-  }
-})();
-</script>
 
-<script id="swPublicV22MobileExperience">
-(() => {
-  'use strict';
-  const mq = window.matchMedia('(max-width:760px)');
-  let lastArticle = null;
 
-  function syncViewportClass(){
-    document.documentElement.classList.toggle('sw-mobile-v22', mq.matches);
-  }
 
-  function closeTocSheet(){
-    const sheet=document.getElementById('swMobileTocSheet');
-    if(sheet) sheet.classList.remove('show');
-    document.body.classList.remove('sw-mobile-sheet-open');
-  }
 
-  function openTocSheet(article){
-    const toc=article.querySelector('.toc');
-    const buttons=[...(toc?.querySelectorAll('button[data-toc]')||[])];
-    if(!buttons.length) return;
-
-    let sheet=document.getElementById('swMobileTocSheet');
-    if(!sheet){
-      sheet=document.createElement('div');
-      sheet.id='swMobileTocSheet';
-      sheet.className='sw-mobile-toc-sheet';
-      sheet.setAttribute('role','dialog');
-      sheet.setAttribute('aria-modal','true');
-      sheet.setAttribute('aria-label','本文導覽');
-      sheet.innerHTML=`
-        <div class="sw-mobile-toc-scrim" data-sw-toc-close></div>
-        <section class="sw-mobile-toc-panel">
-          <div class="sw-mobile-toc-handle" aria-hidden="true"></div>
-          <header class="sw-mobile-toc-head"><strong>本文導覽</strong><button class="sw-mobile-toc-close" type="button" data-sw-toc-close aria-label="關閉">×</button></header>
-          <div class="sw-mobile-toc-list"></div>
-        </section>`;
-      document.body.appendChild(sheet);
-      sheet.querySelectorAll('[data-sw-toc-close]').forEach(el=>el.addEventListener('click',closeTocSheet));
-    }
-
-    const list=sheet.querySelector('.sw-mobile-toc-list');
-    list.innerHTML='';
-    buttons.forEach((src,i)=>{
-      const b=document.createElement('button');
-      b.type='button';
-      b.textContent=`${String(i+1).padStart(2,'0')}  ${src.textContent.trim()}`;
-      b.addEventListener('click',()=>{
-        const id=src.getAttribute('data-toc');
-        closeTocSheet();
-        setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'}),80);
-      });
-      list.appendChild(b);
-    });
-    sheet.classList.add('show');
-    document.body.classList.add('sw-mobile-sheet-open');
-    setTimeout(()=>sheet.querySelector('.sw-mobile-toc-close')?.focus(),40);
-  }
-
-  function enhanceArticle(article){
-    if(!article) return;
-
-    article.querySelectorAll('table').forEach(table=>{
-      table.setAttribute('role','region');
-      table.setAttribute('aria-label','可水平捲動的表格');
-      table.tabIndex=0;
-    });
-
-    const toc=article.querySelector('.toc');
-    const count=toc?.querySelectorAll('button[data-toc]').length||0;
-    if(count && !article.querySelector('.sw-mobile-toc-launch')){
-      const launch=document.createElement('button');
-      launch.type='button';
-      launch.className='sw-mobile-toc-launch';
-      launch.innerHTML=`<span>本文導覽</span><small>${count} 個章節 · 點擊展開</small>`;
-      const layout=article.querySelector('.article-layout');
-      if(layout) layout.parentNode.insertBefore(launch,layout);
-      launch.addEventListener('click',()=>openTocSheet(article));
-    }
-  }
-
-  function auditDynamicUI(){
-    syncViewportClass();
-    const article=document.querySelector('.article-view');
-    document.body.classList.toggle('sw-reading',Boolean(article));
-    if(article && article!==lastArticle){
-      lastArticle=article;
-      enhanceArticle(article);
-    }
-    if(!article){
-      lastArticle=null;
-      closeTocSheet();
-    }
-  }
-
-  const app=document.getElementById('app');
-  if(app){
-    new MutationObserver(()=>requestAnimationFrame(auditDynamicUI)).observe(app,{childList:true,subtree:true});
-  }
-  mq.addEventListener?.('change',auditDynamicUI);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTocSheet()});
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',auditDynamicUI,{once:true});
-  else auditDynamicUI();
-})();
-</script>
-
+<script src="assets/signwell-runtime.js?build=23.9.0"></script>
+<script src="assets/signwell-dialogs.js?build=23.9.1"></script>
 </body>
 </html>

@@ -1,0 +1,4 @@
+# SIGN WELL · 欣緯生醫
+# Search-engine and crawler exclusion policy
+User-agent: *
+Disallow: /
