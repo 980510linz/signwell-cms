@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#f4f8fb">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
 <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
-<meta name="signwell-release" content="23.7.0">
+<meta name="signwell-release" content="23.9.42">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com; frame-src 'self' https://script.google.com https://script.googleusercontent.com; form-action https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <link rel="preconnect" href="https://script.google.com">
 <link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <title>SIGN WELL CMS · 欣緯生醫</title>
-<script>window.SIGNWELL_RELEASE=Object.freeze({version:"23.7.0",buildDate:"2026-09-13"});</script>
+<script>window.SIGNWELL_RELEASE=Object.freeze({version:"23.9.42",buildDate:"2026-09-14"});</script>
 
 <style>
 /* Release 23.7.0: historical vXX labels in legacy comments below are patch provenance only; runtime version is window.SIGNWELL_RELEASE.version. */
@@ -5859,7 +5859,7 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
   -webkit-text-fill-color:#d94d5c!important;
 }
 
-<link rel="stylesheet" href="assets/signwell-cms.css?build=23.7.0">
+<link rel="stylesheet" href="assets/signwell-cms.css?build=23.9.43">
 <link rel="stylesheet" href="assets/signwell-dialogs.css?build=23.9.4">
 <style id="sw-cms-v23919-lock-danger">#lockBtn,#lockBtn:hover,#lockBtn:focus-visible{color:#d94d5c!important;-webkit-text-fill-color:#d94d5c!important}</style>
 
@@ -5902,6 +5902,35 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 }
 </style>
 <link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.31">
+<link rel="stylesheet" href="assets/signwell-soft-shadow.css?build=23.9.39">
+
+<style id="sw-v23-9-43-cms-button-fixes">
+/* SIGN WELL CMS v23.9.43 · requested action button colors */
+#lockBtn,
+#lockBtn:hover,
+#lockBtn:focus-visible{
+  color:#c5364d!important;
+  -webkit-text-fill-color:#c5364d!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,242,247,.62))!important;
+  border-color:rgba(197,54,77,.20)!important;
+  text-shadow:none!important;
+}
+#nlSendBtn,
+#nlSendBtn:hover,
+#nlSendBtn:focus-visible{
+  color:#111318!important;
+  -webkit-text-fill-color:#111318!important;
+  background:linear-gradient(145deg,#fff6fa 0%,#f9dce9 42%,#f4bfd6 100%)!important;
+  border-color:rgba(225,157,190,.32)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 12px 28px rgba(214,142,176,.16)!important;
+  text-shadow:none!important;
+}
+#nlSendBtn:disabled{
+  color:#33353a!important;
+  -webkit-text-fill-color:#33353a!important;
+  opacity:.68!important;
+}
+</style>
 </head>
 <body>
 <div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
@@ -5970,7 +5999,7 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
     </div>
     <label class="newsletter-stepup-field">
       <span>管理密碼</span>
-      <input id="newsletterStepupPassword" type="password" autocomplete="current-password" maxlength="64" placeholder="輸入管理密碼">
+      <input id="newsletterStepupPassword" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="current-password" maxlength="64" placeholder="輸入數字管理密碼">
     </label>
     <div class="newsletter-stepup-note">驗證成功後會簽發只綁定本次內容、約 2 分鐘有效且只能使用一次的寄送授權。</div>
     <div class="newsletter-stepup-actions">
@@ -5981,7 +6010,7 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 </div>
 <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
-<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin sw-manual-password" id="pinInput" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" data-1p-ignore="true" data-lpignore="true" data-form-type="other" maxlength="64" placeholder="輸入管理密碼" aria-label="CMS 管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 5 題安全問題。</b><br>管理密碼通過後，每次登入都會由伺服器隨機抽出其中 1 題。題目存在後端；答案只保存加鹽、迭代雜湊，不會保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret sw-manual-password" id="authSetupPassword" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" minlength="6" maxlength="64" placeholder="至少 6 個字元" aria-label="新的 CMS 管理密碼"></label>
+<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin sw-manual-password" id="pinInput" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" data-1p-ignore="true" data-lpignore="true" data-form-type="other" maxlength="64" placeholder="輸入管理密碼" aria-label="CMS 管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 5 題安全問題。</b><br>管理密碼通過後，每次登入都會由伺服器隨機抽出其中 1 題。題目存在後端；答案只保存加鹽、迭代雜湊，不會保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret sw-manual-password" id="authSetupPassword" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" minlength="6" maxlength="64" placeholder="至少 6 位數字" aria-label="新的 CMS 管理密碼"></label>
 <div class="auth-question-pool-title"><strong>五題安全問題題庫</strong><small>請設定 5 個彼此不同、只有你容易回答的問題</small></div>
 <label class="auth-setup-field"><span>安全問題 1</span><input class="auth-question-input" id="authSetupQuestion1" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 1</span><input class="auth-answer-input" id="authSetupAnswer1" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
 <label class="auth-setup-field"><span>安全問題 2</span><input class="auth-question-input" id="authSetupQuestion2" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 2</span><input class="auth-answer-input" id="authSetupAnswer2" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
@@ -5994,7 +6023,7 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true" hidden></section></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
-<div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從 CMS 與跨裝置雲端狀態移除文章。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">確認刪除</button></div></div></div>
+<div class="modal" id="confirmModal"><div class="modal-card"><h3>刪除文章？</h3><p>這會從 CMS、跨裝置雲端與公開網站同步移除文章。文章若曾寄送電子報，舊信件連結之後會顯示 404。若你先前有匯出備份，可再匯入復原。</p><div class="modal-actions"><button id="cancelDelete">取消</button><button class="danger" id="confirmDelete">確認刪除</button></div></div></div>
 <div class="article-publish-confirm" id="articlePublishConfirm" aria-hidden="true">
   <div class="article-publish-confirm-card" role="dialog" aria-modal="true" aria-labelledby="articlePublishConfirmTitle">
     <div class="article-publish-kicker">SIGN WELL · PUBLISH CHECK</div>
@@ -6025,7 +6054,7 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 <script src="analytics-config.js?v=14.53"></script>
 <script>
 (()=>{'use strict';
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0},cmsSessionToken='',authChallenge='',cmsAuthConfigured=false,cmsAuthClientId='';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估與專業診療。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本網站內容僅供醫學教育與資訊整理，不構成個別醫療建議；實際診療應依臨床情境與專業醫療評估。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0},cmsSessionToken='',authChallenge='',cmsAuthConfigured=false,cmsAuthClientId='',cmsAuthNeedsPolicyUpgrade=false;
 const clone=x=>JSON.parse(JSON.stringify(x));
 const CMS_PUBLISHED_RECEIPT_KEY='signwell-cms-published-receipts-v1';
 function cmsPublishedReceipts(){
@@ -6040,6 +6069,12 @@ function markArticlePublishedReceipt(article){
   article.publishedOnline=true;
   article.lastPublishedAt=receipts[String(article.id)].at;
   if(article.sourceWorkspace&&typeof article.sourceWorkspace==='object')article.sourceWorkspace.publishedOnline=true;
+}
+function clearArticlePublishedReceipt(article){
+  if(!article?.id)return;
+  const receipts=cmsPublishedReceipts();
+  delete receipts[String(article.id)];
+  try{localStorage.setItem(CMS_PUBLISHED_RECEIPT_KEY,JSON.stringify(receipts))}catch(_){}
 }
 function articleHasPublishedReceipt(article){
   if(!article)return false;
@@ -6256,12 +6291,46 @@ function showCmsAuthSetup(show=true){
     setTimeout(()=>$('#authBootstrapKey')?.focus(),60);
   }
 }
+function swKeepCaretAfterFilter(el,filter){
+  if(!el)return;
+  const start=el.selectionStart??String(el.value||'').length;
+  const before=String(el.value||'');
+  const next=filter(before);
+  if(next===before)return;
+  el.value=next;
+  const removed=before.slice(0,start).length-filter(before.slice(0,start)).length;
+  const pos=Math.max(0,start-removed);
+  try{el.setSelectionRange(pos,pos)}catch(_){}
+}
+function swBindCmsInputPolicies(){
+  const digits=v=>String(v||'').replace(/\D+/g,'');
+  const englishQuestion=v=>String(v||'').replace(/[^A-Za-z\s?'.,!\-]+/g,'');
+  const englishAnswer=v=>String(v||'').replace(/[^A-Za-z\s'\-]+/g,'');
+  ['pinInput','authSetupPassword','newsletterStepupPassword'].forEach(id=>{
+    const el=$('#'+id);if(!el||el.dataset.swPolicyBound)return;el.dataset.swPolicyBound='1';
+    el.inputMode='numeric';el.pattern='[0-9]*';el.addEventListener('input',()=>swKeepCaretAfterFilter(el,digits));
+  });
+  ['answerInput',...Array.from({length:5},(_,i)=>'authSetupAnswer'+(i+1))].forEach(id=>{
+    const el=$('#'+id);if(!el||el.dataset.swPolicyBound)return;el.dataset.swPolicyBound='1';
+    el.addEventListener('input',()=>swKeepCaretAfterFilter(el,englishAnswer));
+  });
+  Array.from({length:5},(_,i)=>'authSetupQuestion'+(i+1)).forEach(id=>{
+    const el=$('#'+id);if(!el||el.dataset.swPolicyBound)return;el.dataset.swPolicyBound='1';
+    el.addEventListener('input',()=>swKeepCaretAfterFilter(el,englishQuestion));
+  });
+}
 async function initCmsServerAuth(){
   cmsAuthClientIdValue();
   try{
     const s=await signwellGasBridge('cms.auth.status',{clientId:cmsAuthClientId},{timeoutMs:18000});
     cmsAuthConfigured=Boolean(s&&s.configured);
-    if(!cmsAuthConfigured){showCmsAuthSetup(true);if(s&&s.requiresQuestionUpgrade){$('#lockHint').textContent='需要升級：請重新建立管理密碼與 5 題安全問題題庫。';}return}
+    cmsAuthNeedsPolicyUpgrade=Boolean(s&&s.requiresInputPolicyUpgrade);
+    if(!cmsAuthConfigured||cmsAuthNeedsPolicyUpgrade){
+      showCmsAuthSetup(true);
+      if(cmsAuthNeedsPolicyUpgrade)$('#lockHint').textContent='安全規則已升級：請用 SW_ADMIN_KEY 重設為純數字管理密碼，並重新建立 5 題英文安全問題。';
+      else if(s&&s.requiresQuestionUpgrade)$('#lockHint').textContent='需要升級：請重新建立管理密碼與 5 題安全問題題庫。';
+      return
+    }
     showCmsAuthSetup(false);
     setAuthStage(1);
     $('#lockHint').textContent='登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。';
@@ -6283,9 +6352,13 @@ async function configureCmsServerAuth(){
   }));
   const complete=questions.every(x=>x.question&&x.answer);
   const uniqueQuestions=new Set(questions.map(x=>x.question.replace(/\s+/g,'').toLowerCase()));
-  if(!bootstrapKey||password.length<6||!complete){
-    $('#authErrorTitle').textContent='設定尚未完成';
-    $('#authErrorText').textContent='請填入 SW_ADMIN_KEY、至少 6 字元管理密碼，以及完整的 5 題安全問題與答案；答案可直接使用中文。';
+  const numericPassword=/^\d{6,64}$/.test(password);
+  const englishQuestion=/^[A-Za-z\s?'.,!\-]+$/;
+  const englishAnswer=/^[A-Za-z\s'\-]+$/;
+  const englishOnly=questions.every(x=>englishQuestion.test(x.question)&&/[A-Za-z]/.test(x.question)&&englishAnswer.test(x.answer)&&/[A-Za-z]/.test(x.answer));
+  if(!bootstrapKey||!numericPassword||!complete||!englishOnly){
+    $('#authErrorTitle').textContent='設定格式不正確';
+    $('#authErrorText').textContent='管理密碼只能使用 6–64 位數字；5 題安全問題與答案只能輸入英文。';
     $('#authError').classList.add('show');
     return;
   }
@@ -6297,8 +6370,8 @@ async function configureCmsServerAuth(){
   }
   btn.disabled=true;btn.textContent='正在建立 5 題安全問題…';
   try{
-    await signwellGasBridge('cms.auth.configure',{bootstrapKey,password,questions,clientId:cmsAuthClientIdValue()},{timeoutMs:30000});
-    cmsAuthConfigured=true;
+    await signwellGasBridge('cms.auth.configure',{bootstrapKey,password,questions,clientId:cmsAuthClientIdValue(),replaceExisting:cmsAuthNeedsPolicyUpgrade},{timeoutMs:30000});
+    cmsAuthConfigured=true;cmsAuthNeedsPolicyUpgrade=false;
     ['authBootstrapKey','authSetupPassword'].forEach(id=>{const el=$('#'+id);if(el)el.value=''});
     for(let i=1;i<=5;i++)['authSetupQuestion'+i,'authSetupAnswer'+i].forEach(id=>{const el=$('#'+id);if(el)el.value=''});
     showCmsAuthSetup(false);setAuthStage(1);
@@ -6322,6 +6395,7 @@ async function unlock(){
   const btn=$('#unlockBtn');
   const pin=String($('#pinInput').value||'');
   if(!pin){showAuthError(1,'請輸入管理密碼。');return}
+  if(!/^\d+$/.test(pin)){showAuthError(1,'管理密碼只能輸入數字。');return}
   btn.disabled=true;btn.textContent='伺服器驗證中…';
   try{
     const r=await signwellGasBridge('cms.auth.password',{password:pin,clientId:cmsAuthClientIdValue()},{timeoutMs:25000});
@@ -6339,6 +6413,7 @@ async function verifySecond(){
 
   const answer=String($('#answerInput').value||'').trim();
   if(!answer){verifyButton?.classList.remove('auth-entering');verifyButton.disabled=false;verifyButton.textContent='驗證並進入';showAuthError(2,'請輸入安全問題答案。');return}
+  if(!/^[A-Za-z\s'\-]+$/.test(answer)){verifyButton?.classList.remove('auth-entering');verifyButton.disabled=false;verifyButton.textContent='驗證並進入';showAuthError(2,'安全問題答案只能輸入英文。');return}
   try{
     const r=await signwellGasBridge('cms.auth.verify',{challenge:authChallenge,answer,clientId:cmsAuthClientIdValue()},{timeoutMs:25000});
     if(!r||!r.sessionToken)throw new Error('未取得登入工作階段');
@@ -8037,6 +8112,7 @@ $('#newsletterStepupCancel').onclick=()=>closeNewsletterStepup(null);
 $('#newsletterStepupConfirm').onclick=()=>{
   const value=String($('#newsletterStepupPassword')?.value||'');
   if(!value){$('#newsletterStepupPassword')?.focus();return}
+  if(!/^\d+$/.test(value)){showToast('CMS 管理密碼只能輸入數字');$('#newsletterStepupPassword')?.focus();return}
   closeNewsletterStepup(value);
 };
 $('#newsletterStepupOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeNewsletterStepup(null)});
@@ -11439,13 +11515,13 @@ function openSecretVaultDialog({target,title,secretLabel='',placeholder='',onCom
     const head=document.createElement('div'); head.className='sw-secret-vault-head'; const copy=document.createElement('div'); const h=document.createElement('h3'); h.textContent=title; const desc=document.createElement('p'); desc.textContent='憑證只保存在 Google Apps Script。變更前需重新驗證 CMS 管理密碼。'; copy.append(h,desc); const close=document.createElement('button'); close.type='button'; close.className='sw-secret-close'; close.textContent='×'; close.setAttribute('aria-label','關閉'); head.append(copy,close); card.appendChild(head);
     const form=document.createElement('div'); form.className='sw-secret-vault-form'; let secretInput=null;
     if(secretLabel){const l=document.createElement('label'),s=document.createElement('span');s.textContent=secretLabel;secretInput=document.createElement('input');secretInput.type='password';secretInput.autocomplete='new-password';secretInput.placeholder=placeholder;l.append(s,secretInput);form.appendChild(l)}
-    const pl=document.createElement('label'),ps=document.createElement('span'),password=document.createElement('input');ps.textContent='CMS 管理密碼';password.type='password';password.autocomplete='current-password';password.placeholder='重新輸入管理密碼';pl.append(ps,password);form.appendChild(pl);card.appendChild(form);
+    const pl=document.createElement('label'),ps=document.createElement('span'),password=document.createElement('input');ps.textContent='CMS 管理密碼';password.type='password';password.inputMode='numeric';password.pattern='[0-9]*';password.autocomplete='current-password';password.placeholder='重新輸入數字管理密碼';password.addEventListener('input',()=>{password.value=password.value.replace(/\D+/g,'')});pl.append(ps,password);form.appendChild(pl);card.appendChild(form);
     const note=document.createElement('div');note.className='sw-secret-vault-note';note.textContent='不會保存於 localStorage、sessionStorage、IndexedDB、CMS HTML 或 GitHub。';card.appendChild(note);
     const actions=document.createElement('div');actions.className='sw-secret-vault-actions';const cancel=document.createElement('button');cancel.type='button';cancel.className='top-action';cancel.textContent='取消';const commit=document.createElement('button');commit.type='button';commit.className='top-action '+(danger?'danger':'primary');commit.textContent=danger?'確認移除':'驗證並儲存';actions.append(cancel,commit);card.appendChild(actions);document.body.appendChild(overlay);
     let done=false; const keyHandler=e=>{if(e.key==='Escape')finish(false);if((e.metaKey||e.ctrlKey)&&e.key==='Enter')commit.click()};
     function finish(result){if(done)return;done=true;document.removeEventListener('keydown',keyHandler);try{if(secretInput)secretInput.value='';password.value=''}catch(_){}overlay.remove();resolve(result)}
     close.onclick=cancel.onclick=()=>finish(false);overlay.onclick=e=>{if(e.target===overlay)finish(false)};document.addEventListener('keydown',keyHandler);
-    commit.onclick=async()=>{const secret=secretInput?secretInput.value.trim():'';const pw=password.value;if(secretInput&&!secret){showToast('請輸入新的憑證');return}if(!pw){showToast('請重新輸入 CMS 管理密碼');return}const old=commit.textContent;commit.disabled=true;cancel.disabled=true;commit.textContent='驗證中…';try{const auth=await signwellGasBridge('admin.secret.authorize',{target,password:pw,clientId:cmsAuthClientIdValue()},{adminKey:newsletterAdminKey(),timeoutMs:25000});if(!auth?.secretAuthToken)throw new Error('無法取得憑證變更授權');await onCommit({secret,secretAuthToken:auth.secretAuthToken});finish(true)}catch(err){showToast(String(err?.message||err));commit.disabled=false;cancel.disabled=false;commit.textContent=old}};
+    commit.onclick=async()=>{const secret=secretInput?secretInput.value.trim():'';const pw=password.value;if(secretInput&&!secret){showToast('請輸入新的憑證');return}if(!pw){showToast('請重新輸入 CMS 管理密碼');return}if(!/^\d+$/.test(pw)){showToast('CMS 管理密碼只能輸入數字');return}const old=commit.textContent;commit.disabled=true;cancel.disabled=true;commit.textContent='驗證中…';try{const auth=await signwellGasBridge('admin.secret.authorize',{target,password:pw,clientId:cmsAuthClientIdValue()},{adminKey:newsletterAdminKey(),timeoutMs:25000});if(!auth?.secretAuthToken)throw new Error('無法取得憑證變更授權');await onCommit({secret,secretAuthToken:auth.secretAuthToken});finish(true)}catch(err){showToast(String(err?.message||err));commit.disabled=false;cancel.disabled=false;commit.textContent=old}};
     setTimeout(()=>{(secretInput||password).focus()},60);
   });
 }
@@ -11485,7 +11561,7 @@ async function saveBlob(blob,name){const file=new File([blob],name,{type:blob.ty
 function exportJS(){const pub=data.articles.filter(a=>a.status==='Published');const text='window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n';saveBlob(new Blob([text],{type:'text/javascript;charset=utf-8'}),'articles.js');showToast(`已準備 ${pub.length} 篇文章`)}
 function exportBackup(){saveBlob(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),'signwell-cms-backup.json')}
 function importFile(file){const reader=new FileReader();reader.onload=()=>{try{let text=String(reader.result||''),obj;if(file.name.endsWith('.js')){let m=text.match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(m)obj={...data,articles:JSON.parse(m[1])};else{m=text.match(/window\.SIGNWELL_SITE_TEXT\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('JS 格式不正確');obj={...data,siteText:{...DEFAULT_SITE_TEXT,...JSON.parse(m[1])}}}}else obj=JSON.parse(text);if(!obj||!Array.isArray(obj.articles))throw new Error('備份檔格式不正確');data=normalizeState({...obj,people:Array.isArray(obj.people)?obj.people:(data.people||[]),siteText:{...DEFAULT_SITE_TEXT,...(obj.siteText||data.siteText||{})}});persist();syncPublicSnapshot();showToast('匯入完成');nav('articles')}catch(e){showToast('匯入失敗：檔案格式不符')}};reader.readAsText(file)}
-$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#authSetupBtn').onclick=configureCmsServerAuth;$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});['authBootstrapKey','authSetupPassword',...Array.from({length:5},(_,i)=>'authSetupQuestion'+(i+1)),...Array.from({length:5},(_,i)=>'authSetupAnswer'+(i+1))].forEach(id=>$('#'+id)?.addEventListener('keydown',e=>{if(e.key==='Enter')configureCmsServerAuth()}));$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=null;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=()=>{data.articles=data.articles.filter(a=>a.id!==deleteId);persist();syncPublicSnapshot();$('#confirmModal').classList.remove('show');deleteId=null;renderView();showToast('文章已刪除')};document.addEventListener('keydown',e=>{
+swBindCmsInputPolicies();$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#authSetupBtn').onclick=configureCmsServerAuth;$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});['authBootstrapKey','authSetupPassword',...Array.from({length:5},(_,i)=>'authSetupQuestion'+(i+1)),...Array.from({length:5},(_,i)=>'authSetupAnswer'+(i+1))].forEach(id=>$('#'+id)?.addEventListener('keydown',e=>{if(e.key==='Enter')configureCmsServerAuth()}));$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=null;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=async()=>{await deleteArticleEverywhere(deleteId)};document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     $('#previewOverlay').classList.remove('show');
     $('#confirmModal').classList.remove('show');
@@ -11972,6 +12048,68 @@ publishGitHub=async function(){const status=$('#ghStatus'),token=currentTokenInp
  signalPublicDataRefresh();
  // Replace successful data-URL assets in local CMS state with their permanent public paths.
  const byId=new Map(prepared.map(a=>[a.id,a]));data.articles=data.articles.map(a=>byId.has(a.id)?byId.get(a.id):a);data.people=preparedPeople;persist(true);localStorage.setItem(SYNC_KEY,'1');await maybeRememberToken(token);if(status)status.textContent=`✓ v12.2 發布完成：${prepared.length} 篇文章、${(data.topics||[]).length} 個主題、${imageEntries.length} 個新圖片資產（含人物照片）；主題檔已驗證。`;showToast('SIGN WELL v12.2 發布完成');return true};
+
+async function verifyRemoteArticleDeleted(article,token='server-managed'){
+  const file=await githubRequest(githubContentURL(V10_INDEX_PATH)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),token);
+  let list=[];try{list=JSON.parse(base64Utf8(file.content||''))}catch(_){throw new Error('遠端文章索引驗證失敗')}
+  if(!Array.isArray(list))throw new Error('遠端文章索引格式錯誤');
+  const id=String(article?.id||''),slug=v10SafeSlug(article||{});
+  if(list.some(x=>String(x?.id||'')===id||String(x?.slug||'')===slug))throw new Error('公開站仍找到這篇文章，刪除尚未生效');
+  return true;
+}
+async function publishArticleDeletionToGitHub(article){
+  await restoreRememberedGithubToken();
+  const token=currentTokenInput();
+  if(!token)throw new Error('GitHub PAT 尚未在後端設定，無法同步刪除公開文章');
+  let remoteIndex=[];
+  try{
+    const indexFile=await githubRequest(githubContentURL(V10_INDEX_PATH)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),token);
+    remoteIndex=JSON.parse(base64Utf8(indexFile.content||''));
+    if(!Array.isArray(remoteIndex))throw new Error('遠端文章索引格式錯誤');
+  }catch(e){if(!/not found|404/i.test(String(e?.message||e)))throw e}
+  const id=String(article?.id||''),slug=v10SafeSlug(article||{});
+  const matched=remoteIndex.filter(x=>String(x?.id||'')===id||String(x?.slug||'')===slug);
+  const nextIndex=remoteIndex.filter(x=>!matched.includes(x));
+  let legacy=[];
+  try{legacy=(await fetchRemoteArticles(token)).articles||[]}catch(e){if(!/not found|404/i.test(String(e?.message||e)))throw e}
+  const nextLegacy=legacy.filter(x=>String(x?.id||'')!==id&&v10SafeSlug(x)!==slug);
+  const entries=[
+    {path:V10_INDEX_PATH,mode:'100644',type:'blob',content:JSON.stringify(nextIndex,null,2)+'\n'},
+    {path:PUBLIC_GITHUB.path,mode:'100644',type:'blob',content:'window.BLOG_ARTICLES = '+JSON.stringify(nextLegacy,null,2)+';\n'}
+  ];
+  const deletePaths=new Set();
+  matched.forEach(x=>deletePaths.add(String(x?.file||`articles/${String(x?.slug||slug)}.json`)));
+  deletePaths.forEach(path=>entries.push({path,mode:'100644',type:'blob',sha:null}));
+  await v10BatchCommit(entries,token,'Delete SIGN WELL article '+slug+' '+new Date().toISOString().slice(0,19).replace('T',' '));
+  await verifyRemoteArticleDeleted(article,token);
+  signalPublicDataRefresh();
+}
+async function deleteArticleEverywhere(id){
+  const btn=$('#confirmDelete');
+  const article=(data.articles||[]).find(a=>String(a.id)===String(id));
+  if(!article){$('#confirmModal')?.classList.remove('show');deleteId=null;showToast('找不到要刪除的文章');return}
+  const snapshot=clone(article),index=data.articles.findIndex(a=>String(a.id)===String(id));
+  const wasPublic=articleHasPublishedReceipt(article);
+  const oldText=btn?.textContent||'確認刪除';
+  if(btn){btn.disabled=true;btn.textContent=wasPublic?'正在同步刪除…':'正在刪除…'}
+  try{
+    data.articles=data.articles.filter(a=>String(a.id)!==String(id));
+    clearArticlePublishedReceipt(article);
+    persist(true);syncPublicSnapshot();renderView();
+    if(wasPublic)await publishArticleDeletionToGitHub(snapshot);
+    try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(err){console.warn('CMS cloud delete sync pending',err)}
+    $('#confirmModal')?.classList.remove('show');deleteId=null;
+    showToast(wasPublic?'文章已從 CMS 與公開網站同步刪除 · 舊連結會顯示 404':'文章已刪除');
+  }catch(err){
+    if(!data.articles.some(a=>String(a.id)===String(snapshot.id))){
+      data.articles.splice(Math.max(0,index),0,snapshot);if(wasPublic)markArticlePublishedReceipt(snapshot);persist(true);syncPublicSnapshot();renderView();
+      try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
+    }
+    showToast('刪除失敗，已回復文章：'+String(err?.message||err));
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent=oldText}
+  }
+}
 
 function initCmsPremium(){
   if(window.__cmsPremiumBound)return;

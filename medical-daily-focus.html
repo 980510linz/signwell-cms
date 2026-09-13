@@ -1016,7 +1016,7 @@ html.embedded-cms .detail-card{padding:22px!important;border-radius:26px!importa
 }
 @media(max-width:430px){.actions{grid-template-columns:1fr!important}.writer-head-actions{display:grid;grid-template-columns:1fr 1fr}.generate-btn{grid-column:1/-1;width:100%!important}}
 
-.ai-provider-location-note{margin:0 18px 14px;padding:10px 12px;border-radius:15px;background:rgba(101,162,218,.08);border:1px solid rgba(101,162,218,.12);color:#607b91;font-size:9px;line-height:1.65}
+.ai-provider-location-note{margin:10px 18px 18px;padding:10px 12px;border-radius:15px;background:rgba(101,162,218,.08);border:1px solid rgba(101,162,218,.12);color:#607b91;font-size:9px;line-height:1.65}
 
 .focus-toolbar{display:flex;justify-content:flex-end;gap:10px;margin:0 0 16px}
 .settings-toggle{min-height:42px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.38);font-size:12px;font-weight:800;color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 10px 22px rgba(35,76,108,.08);cursor:pointer}
@@ -1074,6 +1074,21 @@ button,.pill,.generate-btn,.draft-actions button,.ai-settings-btn,.ai-setup-acti
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button{touch-action:manipulation}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(68,139,207,.26);outline-offset:2px}@media(max-width:760px),(pointer:coarse){.focus-topbar{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 </style>
 <link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.31">
+<link rel="stylesheet" href="assets/signwell-soft-shadow.css?build=23.9.39">
+
+<style id="sw-v23-9-43-focus-api-button-text">
+/* SIGN WELL Daily Focus v23.9.43 · AI/API key + instruction CTA text */
+#focusAiVaultBtn,
+#focusAiVaultBtn:hover,
+#focusAiVaultBtn:focus-visible,
+#focusAiInstructionOpenBtn,
+#focusAiInstructionOpenBtn:hover,
+#focusAiInstructionOpenBtn:focus-visible{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important;
+}
+</style>
 </head>
 <body>
 <div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
@@ -1523,7 +1538,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
           <div><strong>SIGN WELL AI Writer</strong><span>600–800 字 · 主張－證據鎖定 · 公開引用僅限新聞來源</span></div>
           <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">AI / API 設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
         </div>
-        <div class="ai-provider-location-note">這裡的範文生成會沿用上方的 AI / API 設定與可編輯 AI 指令。PubMed 只在 CMS 後台參與核驗；公開文章的段落引用與參考資料只允許新聞來源。底層證據鎖定規則不會被自訂偏好覆蓋。</div>
+        <div class="ai-provider-location-note">這裡的範文生成會沿用上方的 AI / API 設定與可編輯 AI 指令。PubMed 只在 CMS 後台參與核驗，而且是候選文獻池：不要求每篇都使用，未採用不會判定失敗；真正拿來核驗的文獻必須與主張精確吻合。公開文章的段落引用與參考資料仍只允許新聞來源。底層證據鎖定規則不會被自訂偏好覆蓋。</div>
         <div class="ai-progress" id="aiProgress">
           <div class="ai-progress-head"><span id="aiProgressText">準備生成</span><span id="aiProgressPct">0%</span></div>
           <div class="ai-progress-track"><div class="ai-progress-bar" id="aiProgressBar"></div></div>
@@ -1856,7 +1871,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
         const warnings=Array.isArray(audit.claimWarnings)?audit.claimWarnings:[];
         auditCard.hidden=false;
         const rounds=Number(audit.claimRepairRounds||0);
-        auditCard.innerHTML=`<div class="claim-audit-head"><div><span>主張－證據審查</span><strong>逐段證據檢核通過${rounds?` · 經 ${rounds} 輪返修重審`:''}</strong></div><b>${topicScore||'—'}/100</b></div><div class="claim-audit-grid"><span>直接支持 <strong>${claimPass}/${claimTotal}</strong></span><span>保守警示 <strong>${claimWarn}</strong></span><span>引用偏移 <strong>${drift}</strong></span><span>情境外推 <strong>${transfer}</strong></span><span>因果過度推論 <strong>${causal}</strong></span><span>數字不一致 <strong>${numeric}</strong></span></div><p>${topicScore?`主題吻合度 ${topicScore}/100 · `:''}每一段公開引用都只對照新聞來源；PubMed 僅在後台作研究脈絡核驗。若審查發現問題，系統會把問題退回 AI 修正，再重新審查，直到通過或達到安全上限。${warnings.length?' · 有 '+warnings.length+' 個保守語氣警示':''}</p>`;
+        auditCard.innerHTML=`<div class="claim-audit-head"><div><span>主張－證據審查</span><strong>逐段證據檢核通過${rounds?` · 經 ${rounds} 輪返修重審`:''}</strong></div><b>${topicScore||'—'}/100</b></div><div class="claim-audit-grid"><span>直接支持 <strong>${claimPass}/${claimTotal}</strong></span><span>保守警示 <strong>${claimWarn}</strong></span><span>引用偏移 <strong>${drift}</strong></span><span>情境外推 <strong>${transfer}</strong></span><span>因果過度推論 <strong>${causal}</strong></span><span>數字不一致 <strong>${numeric}</strong></span></div><p>${topicScore?`主題吻合度 ${topicScore}/100 · `:''}每一段公開引用都只對照新聞來源；PubMed 僅在後台作研究脈絡核驗，且不要求每篇都採用；只有實際拿來核驗的論文需要與主張精確吻合。若審查發現問題，系統會把問題退回 AI 修正，再重新審查，直到通過或達到安全上限。${warnings.length?' · 有 '+warnings.length+' 個保守語氣警示':''}</p>`;
       }
 
       if(note){
