@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#f4f8fb">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
 <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
-<meta name="signwell-release" content="23.9.42">
+<meta name="signwell-release" content="23.9.48">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com; frame-src 'self' https://script.google.com https://script.googleusercontent.com; form-action https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <link rel="preconnect" href="https://script.google.com">
 <link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <title>SIGN WELL CMS · 欣緯生醫</title>
-<script>window.SIGNWELL_RELEASE=Object.freeze({version:"23.9.42",buildDate:"2026-09-14"});</script>
+<script>window.SIGNWELL_RELEASE=Object.freeze({version:"23.9.48",buildDate:"2026-09-14"});</script>
 
 <style>
 /* Release 23.7.0: historical vXX labels in legacy comments below are patch provenance only; runtime version is window.SIGNWELL_RELEASE.version. */
@@ -6010,16 +6010,14 @@ button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled
 </div>
 <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 <div class="field" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div><div class="grain"></div>
-<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin sw-manual-password" id="pinInput" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" data-1p-ignore="true" data-lpignore="true" data-form-type="other" maxlength="64" placeholder="輸入管理密碼" aria-label="CMS 管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 5 題安全問題。</b><br>管理密碼通過後，每次登入都會由伺服器隨機抽出其中 1 題。題目存在後端；答案只保存加鹽、迭代雜湊，不會保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret sw-manual-password" id="authSetupPassword" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" minlength="6" maxlength="64" placeholder="至少 6 位數字" aria-label="新的 CMS 管理密碼"></label>
-<div class="auth-question-pool-title"><strong>五題安全問題題庫</strong><small>請設定 5 個彼此不同、只有你容易回答的問題</small></div>
-<label class="auth-setup-field"><span>安全問題 1</span><input class="auth-question-input" id="authSetupQuestion1" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 1</span><input class="auth-answer-input" id="authSetupAnswer1" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
-<label class="auth-setup-field"><span>安全問題 2</span><input class="auth-question-input" id="authSetupQuestion2" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 2</span><input class="auth-answer-input" id="authSetupAnswer2" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
-<label class="auth-setup-field"><span>安全問題 3</span><input class="auth-question-input" id="authSetupQuestion3" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 3</span><input class="auth-answer-input" id="authSetupAnswer3" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
-<label class="auth-setup-field"><span>安全問題 4</span><input class="auth-question-input" id="authSetupQuestion4" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 4</span><input class="auth-answer-input" id="authSetupAnswer4" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
-<label class="auth-setup-field"><span>安全問題 5</span><input class="auth-question-input" id="authSetupQuestion5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入英文問題"></label><label class="auth-setup-field"><span>答案 5</span><input class="auth-answer-input" id="authSetupAnswer5" type="text" lang="en" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入英文"></label>
-<div class="auth-zh-note">安全問題與答案請以英文輸入。首次設定時使用一般文字欄位、不遮罩，方便檢查拼字與修正；送出後答案只在後端保存加鹽雜湊，不保存明文。建議 5 題不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立 5 題隨機安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · HTML 無長期秘密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
+<section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin sw-manual-password" id="pinInput" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" data-1p-ignore="true" data-lpignore="true" data-form-type="other" maxlength="64" placeholder="輸入管理密碼" aria-label="CMS 管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入答案（可使用中文）"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 3 題安全問題。</b><br>管理密碼通過後，每次登入都會由伺服器從 3 題中隨機抽出 1 題。題目與答案都可使用中文或英文；題目存在後端，答案只保存加鹽、迭代雜湊，不保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret sw-manual-password" id="authSetupPassword" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" minlength="6" maxlength="64" placeholder="至少 6 位數字" aria-label="新的 CMS 管理密碼"></label>
+<div class="auth-question-pool-title"><strong>三題安全問題題庫</strong><small>請設定 3 個彼此不同、只有你容易回答的問題；中文／英文皆可</small></div>
+<label class="auth-setup-field"><span>安全問題 1</span><input class="auth-question-input" id="authSetupQuestion1" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="例如：我第一所就讀的小學是？"></label><label class="auth-setup-field"><span>答案 1</span><input class="auth-answer-input" id="authSetupAnswer1" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文或英文"></label>
+<label class="auth-setup-field"><span>安全問題 2</span><input class="auth-question-input" id="authSetupQuestion2" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入安全問題"></label><label class="auth-setup-field"><span>答案 2</span><input class="auth-answer-input" id="authSetupAnswer2" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文或英文"></label>
+<label class="auth-setup-field"><span>安全問題 3</span><input class="auth-question-input" id="authSetupQuestion3" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="請輸入安全問題"></label><label class="auth-setup-field"><span>答案 3</span><input class="auth-answer-input" id="authSetupAnswer3" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文或英文"></label>
+<div class="auth-zh-note">安全問題與答案都可使用中文或英文。首次設定時維持一般文字欄位、不遮罩，方便確認內容；送出後答案只在後端保存加鹽雜湊，不保存明文。建議不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立 3 題隨機安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · HTML 無長期秘密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
 <section class="cms hidden" id="cms">
-<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.20</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
+<aside class="sidebar glass"><div class="brand"><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v23.9.48</span></div></div><nav class="nav"><button class="active" data-view="dashboard">總覽</button><button data-view="medicalnews">時事新聞建議</button><button data-view="articles">文章</button><button data-view="topics">主題管理</button><button data-view="site">主頁設定</button><button data-view="aboutpage">關於頁面</button><button data-view="newsletter">電子報</button><button data-view="export">發布設定</button></nav><div class="sidebar-foot"><button class="smallbtn" id="backupBtn">匯出備份</button><button class="smallbtn" id="importBtn">匯入備份 / articles.js</button><input class="file-input" id="importFile" type="file" accept=".json,.js,application/json,text/javascript"><button class="smallbtn danger" id="lockBtn">鎖定後台</button></div></aside>
 <section class="workspace glass"><header class="topbar"><h2 id="topTitle">總覽</h2><span class="save-state" id="saveState">已儲存 ✓</span><button class="top-action hidden" id="previewBtn">預覽</button><button class="top-action hidden" id="saveBtn">儲存草稿</button><button class="top-action primary hidden" id="publishBtn" aria-hidden="true" tabindex="-1">設為已發布</button><button class="top-action online hidden" id="onlineBtn">發佈到網頁</button></header><main class="view" id="view"></main><section class="medical-news-persistent" id="medicalNewsPersistentHost" aria-hidden="true" hidden></section></section>
 </section>
 <div class="preview-overlay" id="previewOverlay"><button class="preview-close" id="previewClose">×</button><div class="preview-shell"><div class="preview-content" id="previewContent"></div></div></div>
@@ -6304,19 +6302,13 @@ function swKeepCaretAfterFilter(el,filter){
 }
 function swBindCmsInputPolicies(){
   const digits=v=>String(v||'').replace(/\D+/g,'');
-  const englishQuestion=v=>String(v||'').replace(/[^A-Za-z\s?'.,!\-]+/g,'');
-  const englishAnswer=v=>String(v||'').replace(/[^A-Za-z\s'\-]+/g,'');
   ['pinInput','authSetupPassword','newsletterStepupPassword'].forEach(id=>{
     const el=$('#'+id);if(!el||el.dataset.swPolicyBound)return;el.dataset.swPolicyBound='1';
     el.inputMode='numeric';el.pattern='[0-9]*';el.addEventListener('input',()=>swKeepCaretAfterFilter(el,digits));
   });
-  ['answerInput',...Array.from({length:5},(_,i)=>'authSetupAnswer'+(i+1))].forEach(id=>{
+  ['answerInput',...Array.from({length:3},(_,i)=>'authSetupAnswer'+(i+1)),...Array.from({length:3},(_,i)=>'authSetupQuestion'+(i+1))].forEach(id=>{
     const el=$('#'+id);if(!el||el.dataset.swPolicyBound)return;el.dataset.swPolicyBound='1';
-    el.addEventListener('input',()=>swKeepCaretAfterFilter(el,englishAnswer));
-  });
-  Array.from({length:5},(_,i)=>'authSetupQuestion'+(i+1)).forEach(id=>{
-    const el=$('#'+id);if(!el||el.dataset.swPolicyBound)return;el.dataset.swPolicyBound='1';
-    el.addEventListener('input',()=>swKeepCaretAfterFilter(el,englishQuestion));
+    el.lang='zh-Hant';el.inputMode='text';
   });
 }
 async function initCmsServerAuth(){
@@ -6327,8 +6319,8 @@ async function initCmsServerAuth(){
     cmsAuthNeedsPolicyUpgrade=Boolean(s&&s.requiresInputPolicyUpgrade);
     if(!cmsAuthConfigured||cmsAuthNeedsPolicyUpgrade){
       showCmsAuthSetup(true);
-      if(cmsAuthNeedsPolicyUpgrade)$('#lockHint').textContent='安全規則已升級：請用 SW_ADMIN_KEY 重設為純數字管理密碼，並重新建立 5 題英文安全問題。';
-      else if(s&&s.requiresQuestionUpgrade)$('#lockHint').textContent='需要升級：請重新建立管理密碼與 5 題安全問題題庫。';
+      if(cmsAuthNeedsPolicyUpgrade)$('#lockHint').textContent='安全規則已升級：請用 SW_ADMIN_KEY 重設為純數字管理密碼，並重新建立 3 題可使用中文的安全問題。';
+      else if(s&&s.requiresQuestionUpgrade)$('#lockHint').textContent='需要升級：請重新建立管理密碼與 3 題安全問題題庫。';
       return
     }
     showCmsAuthSetup(false);
@@ -6346,48 +6338,46 @@ async function configureCmsServerAuth(){
   const btn=$('#authSetupBtn');
   const bootstrapKey=String($('#authBootstrapKey')?.value||'').trim();
   const password=String($('#authSetupPassword')?.value||'');
-  const questions=Array.from({length:5},(_,i)=>({
+  const questions=Array.from({length:3},(_,i)=>({
     question:String($('#authSetupQuestion'+(i+1))?.value||'').trim(),
     answer:String($('#authSetupAnswer'+(i+1))?.value||'').trim()
   }));
   const complete=questions.every(x=>x.question&&x.answer);
   const uniqueQuestions=new Set(questions.map(x=>x.question.replace(/\s+/g,'').toLowerCase()));
   const numericPassword=/^\d{6,64}$/.test(password);
-  const englishQuestion=/^[A-Za-z\s?'.,!\-]+$/;
-  const englishAnswer=/^[A-Za-z\s'\-]+$/;
-  const englishOnly=questions.every(x=>englishQuestion.test(x.question)&&/[A-Za-z]/.test(x.question)&&englishAnswer.test(x.answer)&&/[A-Za-z]/.test(x.answer));
-  if(!bootstrapKey||!numericPassword||!complete||!englishOnly){
+  const lengthsOk=questions.every(x=>x.question.length<=120&&x.answer.length<=80);
+  if(!bootstrapKey||!numericPassword||!complete||!lengthsOk){
     $('#authErrorTitle').textContent='設定格式不正確';
-    $('#authErrorText').textContent='管理密碼只能使用 6–64 位數字；5 題安全問題與答案只能輸入英文。';
+    $('#authErrorText').textContent='管理密碼只能使用 6–64 位數字；請完整設定 3 題安全問題與答案，中文或英文皆可。';
     $('#authError').classList.add('show');
     return;
   }
-  if(uniqueQuestions.size!==5){
+  if(uniqueQuestions.size!==3){
     $('#authErrorTitle').textContent='安全問題重複';
-    $('#authErrorText').textContent='請設定 5 個彼此不同的安全問題。';
+    $('#authErrorText').textContent='請設定 3 個彼此不同的安全問題。';
     $('#authError').classList.add('show');
     return;
   }
-  btn.disabled=true;btn.textContent='正在建立 5 題安全問題…';
+  btn.disabled=true;btn.textContent='正在建立 3 題安全問題…';
   try{
     await signwellGasBridge('cms.auth.configure',{bootstrapKey,password,questions,clientId:cmsAuthClientIdValue(),replaceExisting:cmsAuthNeedsPolicyUpgrade},{timeoutMs:30000});
     cmsAuthConfigured=true;cmsAuthNeedsPolicyUpgrade=false;
     ['authBootstrapKey','authSetupPassword'].forEach(id=>{const el=$('#'+id);if(el)el.value=''});
-    for(let i=1;i<=5;i++)['authSetupQuestion'+i,'authSetupAnswer'+i].forEach(id=>{const el=$('#'+id);if(el)el.value=''});
+    for(let i=1;i<=3;i++)['authSetupQuestion'+i,'authSetupAnswer'+i].forEach(id=>{const el=$('#'+id);if(el)el.value=''});
     showCmsAuthSetup(false);setAuthStage(1);
-    $('#lockHint').textContent='五題安全題庫已啟用；每次登入會由伺服器隨機抽 1 題。';
-    showToast('5 題隨機安全問題已建立');
+    $('#lockHint').textContent='三題安全題庫已啟用；每次登入會由伺服器隨機抽 1 題。';
+    showToast('3 題隨機安全問題已建立');
   }catch(err){
     $('#authErrorTitle').textContent='安全登入設定失敗';
     $('#authErrorText').textContent=String(err&&err.message||err||'請確認 Backend Admin Key');
     $('#authError').classList.add('show');
-  }finally{btn.disabled=false;btn.textContent='建立 5 題隨機安全問題'}
+  }finally{btn.disabled=false;btn.textContent='建立 3 題隨機安全問題'}
 }
 function setAuthStage(stage){
   authStage=stage;clearAuthError();const second=stage===2;
   $('#authStep1').classList.toggle('hidden',second);$('#authStep2').classList.toggle('hidden',!second);$('#authSetup').classList.add('hidden');$('#authProgress').classList.remove('hidden');
   $('#authDot1').classList.toggle('active',!second);$('#authDot1').classList.toggle('done',second);$('#authDot2').classList.toggle('active',second);
-  if(second){$('#lockHint').textContent='第一階段已通過；這題由五題題庫隨機抽出。';setTimeout(()=>$('#answerInput').focus(),40)}
+  if(second){$('#lockHint').textContent='第一階段已通過；這題由三題題庫隨機抽出。';setTimeout(()=>$('#answerInput').focus(),40)}
   else{$('#answerInput').value='';pendingPin='';authChallenge='';$('#securityQuestionText').textContent='安全問題會在第一階段通過後由伺服器載入';$('#lockHint').textContent='登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。';setTimeout(()=>$('#pinInput').focus(),40)}
 }
 async function unlock(){
@@ -6401,7 +6391,7 @@ async function unlock(){
     const r=await signwellGasBridge('cms.auth.password',{password:pin,clientId:cmsAuthClientIdValue()},{timeoutMs:25000});
     if(!r||!r.challenge)throw new Error('未取得安全驗證 challenge');
     pendingPin=pin;authChallenge=String(r.challenge||'');authFailCount[1]=0;
-    $('#securityQuestionText').textContent=String(r.question||'安全問題');$('#securityQuestionText').setAttribute('aria-label','五題安全問題題庫中的本次隨機題目');
+    $('#securityQuestionText').textContent=String(r.question||'安全問題');$('#securityQuestionText').setAttribute('aria-label','三題安全問題題庫中的本次隨機題目');
     $('#pinInput').value='';setAuthStage(2);
   }catch(err){showAuthError(1,String(err&&err.message||err||'密碼驗證失敗'))}
   finally{btn.disabled=false;btn.textContent='繼續'}
@@ -6413,7 +6403,6 @@ async function verifySecond(){
 
   const answer=String($('#answerInput').value||'').trim();
   if(!answer){verifyButton?.classList.remove('auth-entering');verifyButton.disabled=false;verifyButton.textContent='驗證並進入';showAuthError(2,'請輸入安全問題答案。');return}
-  if(!/^[A-Za-z\s'\-]+$/.test(answer)){verifyButton?.classList.remove('auth-entering');verifyButton.disabled=false;verifyButton.textContent='驗證並進入';showAuthError(2,'安全問題答案只能輸入英文。');return}
   try{
     const r=await signwellGasBridge('cms.auth.verify',{challenge:authChallenge,answer,clientId:cmsAuthClientIdValue()},{timeoutMs:25000});
     if(!r||!r.sessionToken)throw new Error('未取得登入工作階段');
@@ -11561,7 +11550,7 @@ async function saveBlob(blob,name){const file=new File([blob],name,{type:blob.ty
 function exportJS(){const pub=data.articles.filter(a=>a.status==='Published');const text='window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n';saveBlob(new Blob([text],{type:'text/javascript;charset=utf-8'}),'articles.js');showToast(`已準備 ${pub.length} 篇文章`)}
 function exportBackup(){saveBlob(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),'signwell-cms-backup.json')}
 function importFile(file){const reader=new FileReader();reader.onload=()=>{try{let text=String(reader.result||''),obj;if(file.name.endsWith('.js')){let m=text.match(/window\.BLOG_ARTICLES\s*=\s*([\s\S]*);\s*$/);if(m)obj={...data,articles:JSON.parse(m[1])};else{m=text.match(/window\.SIGNWELL_SITE_TEXT\s*=\s*([\s\S]*);\s*$/);if(!m)throw new Error('JS 格式不正確');obj={...data,siteText:{...DEFAULT_SITE_TEXT,...JSON.parse(m[1])}}}}else obj=JSON.parse(text);if(!obj||!Array.isArray(obj.articles))throw new Error('備份檔格式不正確');data=normalizeState({...obj,people:Array.isArray(obj.people)?obj.people:(data.people||[]),siteText:{...DEFAULT_SITE_TEXT,...(obj.siteText||data.siteText||{})}});persist();syncPublicSnapshot();showToast('匯入完成');nav('articles')}catch(e){showToast('匯入失敗：檔案格式不符')}};reader.readAsText(file)}
-swBindCmsInputPolicies();$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#authSetupBtn').onclick=configureCmsServerAuth;$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});['authBootstrapKey','authSetupPassword',...Array.from({length:5},(_,i)=>'authSetupQuestion'+(i+1)),...Array.from({length:5},(_,i)=>'authSetupAnswer'+(i+1))].forEach(id=>$('#'+id)?.addEventListener('keydown',e=>{if(e.key==='Enter')configureCmsServerAuth()}));$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=null;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=async()=>{await deleteArticleEverywhere(deleteId)};document.addEventListener('keydown',e=>{
+swBindCmsInputPolicies();$('#unlockBtn').onclick=unlock;$('#verifyBtn').onclick=verifySecond;$('#authBackBtn').onclick=()=>setAuthStage(1);$('#authSetupBtn').onclick=configureCmsServerAuth;$('#pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});$('#answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')verifySecond()});['authBootstrapKey','authSetupPassword',...Array.from({length:3},(_,i)=>'authSetupQuestion'+(i+1)),...Array.from({length:3},(_,i)=>'authSetupAnswer'+(i+1))].forEach(id=>$('#'+id)?.addEventListener('keydown',e=>{if(e.key==='Enter')configureCmsServerAuth()}));$$('.nav [data-view]').forEach(b=>b.onclick=()=>nav(b.dataset.view));$('#backupBtn').onclick=exportBackup;$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importFile(f);e.target.value=''};$('#lockBtn').onclick=lock;$('#saveBtn').onclick=saveNow;$('#publishBtn').onclick=null;$('#onlineBtn').onclick=publishOnlineFromEditor;$('#previewBtn').onclick=preview;$('#previewClose').onclick=()=>$('#previewOverlay').classList.remove('show');$('#previewOverlay').onclick=e=>{if(e.target===$('#previewOverlay'))$('#previewOverlay').classList.remove('show')};$('#cancelDelete').onclick=()=>$('#confirmModal').classList.remove('show');$('#confirmDelete').onclick=async()=>{await deleteArticleEverywhere(deleteId)};document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     $('#previewOverlay').classList.remove('show');
     $('#confirmModal').classList.remove('show');
