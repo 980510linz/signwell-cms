@@ -1,4 +1,4 @@
-/* SIGN WELL v23.9.1 · Unified Dialog UI */
+/* SIGN WELL v23.9.2 · Unified Dialog UI */
 :root{--sw-dialog-ease:cubic-bezier(.2,.8,.2,1);--sw-dialog-spring:cubic-bezier(.18,1.18,.32,1)}
 .sw-dialog-overlay{position:fixed;inset:0;z-index:99990;display:grid;place-items:center;padding:20px;background:rgba(224,236,246,.58);-webkit-backdrop-filter:blur(18px) saturate(145%);backdrop-filter:blur(18px) saturate(145%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility 0s linear .2s}
 .sw-dialog-overlay.show{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}

@@ -1,4 +1,4 @@
-/* SIGN WELL v23.9.1 · unified async dialog */
+/* SIGN WELL v23.9.2 · unified async dialog */
 (()=>{
   'use strict';
   const d=document;
