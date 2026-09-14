@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
 <meta name="theme-color" content="#9EBFDA" />
 <meta name="color-scheme" content="light" />
 <title>時事新聞建議 · SIGN WELL CMS</title>
@@ -1067,6 +1070,8 @@ button,.pill,.generate-btn,.draft-actions button,.ai-settings-btn,.ai-setup-acti
 .claim-audit-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.claim-audit-head div{display:grid;gap:3px}.claim-audit-head span{font-size:8px;letter-spacing:.14em;color:#6a88a0;font-weight:850}.claim-audit-head strong{font-size:12px;color:#20384e}.claim-audit-head>b{font:700 15px/1 Georgia,serif;color:#315e83;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.62)}
 .claim-audit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:11px}.claim-audit-grid span{padding:8px 9px;border-radius:12px;background:rgba(255,255,255,.52);font-size:8.7px;color:#6c7f90}.claim-audit-grid strong{display:block;margin-top:2px;color:#243d53;font-size:11px}.claim-audit-card p{margin:10px 1px 0;color:#6f8393;font-size:8.8px;line-height:1.65}
 @media(max-width:640px){.claim-audit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.claim-audit-card{padding:12px}.claim-audit-head strong{font-size:11px}}
+.claim-repair-log{margin-top:10px;display:grid;gap:6px}.claim-repair-step{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.72);font-size:8.5px;color:#657d91}.claim-repair-step strong{color:#28445c;font-size:9px}.claim-repair-step em{font-style:normal;color:#7c91a4}.claim-safe-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:linear-gradient(135deg,rgba(230,244,255,.78),rgba(255,235,244,.72));border:1px solid rgba(255,255,255,.88);color:#49677f;font-size:8.3px;font-weight:850}
+
 
 </style>
 
@@ -1089,6 +1094,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   text-shadow:none!important;
 }
 </style>
+<link rel="stylesheet" href="assets/signwell-wabi-dark.css?build=23.9.56">
 </head>
 <body>
 <div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
@@ -1099,10 +1105,10 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
 <div class="noise" aria-hidden="true"></div>
 
 <main class="app">
-  <section class="screen active" id="homeScreen" aria-label="搜尋每日醫療焦點">
+  <section class="screen active" id="homeScreen" aria-label="搜尋每日醫療、健康與運動焦點">
     <div class="hero-wrap">
       <button class="scan-button" id="scanBtn" type="button">
-        <span class="label"><i class="pulse"></i><span id="scanText">搜尋 24 小時醫療熱點</span></span>
+        <span class="label"><i class="pulse"></i><span id="scanText">搜尋 24 小時醫療・健康・運動熱點</span></span>
       </button>
       <p class="search-note" id="searchNote" aria-live="polite"></p><div class="warm-status" id="warmStatus"><i></i><span>登入後正在背景準備新聞、摘要與後台核驗資料…</span></div>
     </div>
@@ -1111,9 +1117,9 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   <section class="screen" id="listScreen">
     <header class="focus-topbar">
       <div class="focus-head-copy">
-        <div class="eyebrow">SIGN WELL · DAILY MEDICAL FOCUS</div>
+        <div class="eyebrow">SIGN WELL · DAILY FOCUS</div>
         <h1 class="title">每日焦點</h1>
-        <p class="sub">近 24 小時醫療熱門事件。至少 2 家知名媒體才列入；所有符合來源都保留，並提供摘要、延伸詞條與 600–800 字 SIGN WELL 範文。PubMed 僅供 CMS 後台核驗，不會出現在公開文章引用。</p>
+        <p class="sub">近 24 小時醫療、健康與運動熱門事件。至少 2 家知名媒體才列入；運動題目優先延伸到運動醫學、傷害、復健、體能、營養與恢復。所有符合來源都保留，並提供摘要、延伸詞條與 600–800 字 SIGN WELL 範文。PubMed 僅供 CMS 後台核驗，不會出現在公開文章引用；第三方新聞／期刊圖片不會自動重製，圖表以本站自行渲染或已授權素材為主。</p>
       </div>
       <button class="icon-btn" id="refreshBtn" type="button" aria-label="重新搜尋">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
@@ -1278,7 +1284,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       });
       const sources=[...sourceMap.values()];
       const literature=Array.isArray(t.literature)?t.literature.map(x=>({...x,url:safeURL(x.url)})).filter(x=>x.url!=='#'):[];
-      return {id:t.id||`topic-${i+1}`,title:t.title||'未命名焦點',category:t.category||'醫療時事',summary:t.summary||'',why:t.why||'',publishedAt:t.publishedAt||new Date().toISOString(),majorMediaCount:Number(t.majorMediaCount||sources.length),sources,extensionTerms:Array.isArray(t.extensionTerms)?t.extensionTerms:[],literature};
+      return {id:t.id||`topic-${i+1}`,title:t.title||'未命名焦點',category:t.category||'健康時事',summary:t.summary||'',why:t.why||'',publishedAt:t.publishedAt||new Date().toISOString(),majorMediaCount:Number(t.majorMediaCount||sources.length),sources,extensionTerms:Array.isArray(t.extensionTerms)?t.extensionTerms:[],literature};
     }).filter(t=>t.majorMediaCount>=CONFIG.minMajorMedia&&t.sources.length>=CONFIG.minMajorMedia).sort((a,b)=>b.majorMediaCount-a.majorMediaCount||new Date(b.publishedAt)-new Date(a.publishedAt)).slice(0,CONFIG.limit);
   }
 
@@ -1298,7 +1304,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       workspacePayload=data;topics=normalizeTopics(data);
       warmStatus.classList.add('ready');
       warmStatus.querySelector('span').textContent=topics.length?`今日時事已就緒 · ${topics.length} 個焦點`:'背景掃描完成 · 目前無符合焦點';
-      scanText.textContent='開啟今日醫療焦點';
+      scanText.textContent='開啟今日焦點';
     }catch(_){
       warmStatus.classList.add('error');
       warmStatus.querySelector('span').textContent='背景準備未完成 · 點擊後重新嘗試';
@@ -1306,12 +1312,12 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   }
 
   async function scan(force=false){
-    if(busy)return;busy=true;listError.classList.remove('show');scanBtn.disabled=true;scanBtn.classList.add('searching');scanText.textContent=force?'正在重新整理':'正在開啟今日焦點';searchNote.textContent='整理近 24 小時新聞、全部知名媒體來源與後台 PubMed 核驗資料…';searchNote.classList.add('show');
+    if(busy)return;busy=true;listError.classList.remove('show');scanBtn.disabled=true;scanBtn.classList.add('searching');scanText.textContent=force?'正在重新整理':'正在開啟今日焦點';searchNote.textContent='整理近 24 小時醫療、健康與運動新聞、全部知名媒體來源與後台 PubMed 核驗資料…';searchNote.classList.add('show');
     try{
       const data=(!force&&workspacePayload)?workspacePayload:await Promise.race([requestWorkspace(force),new Promise((_,reject)=>setTimeout(()=>reject(new Error('背景工作逾時，請稍後再試。')),CONFIG.requestTimeoutMs))]);
       workspacePayload=data;topics=normalizeTopics(data);renderList(data);showScreen(listScreen);
-    }catch(err){topics=[];focusList.innerHTML='';showScreen(listScreen);listError.textContent='無法取得即時醫療焦點：'+String(err?.message||err);listError.classList.add('show');statusText.textContent='即時工作區未完成';}
-    finally{busy=false;scanBtn.disabled=false;scanBtn.classList.remove('searching');scanText.textContent='開啟今日醫療焦點';searchNote.classList.remove('show')}
+    }catch(err){topics=[];focusList.innerHTML='';showScreen(listScreen);listError.textContent='無法取得即時焦點：'+String(err?.message||err);listError.classList.add('show');statusText.textContent='即時工作區未完成';}
+    finally{busy=false;scanBtn.disabled=false;scanBtn.classList.remove('searching');scanText.textContent='開啟今日焦點';searchNote.classList.remove('show')}
   }
 
   function renderList(payload={}){
@@ -1398,10 +1404,10 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   }
 
   function aiStageIndex(stage,pct){
-    if(stage==='format'||pct>=90)return 4;
-    if(/^claim_/.test(stage)||pct>=72)return 3;
-    if(['writer','editor','repair'].includes(stage)||pct>=28)return 2;
-    if(stage==='evidence_ready'||pct>=18)return 1;
+    if(stage==='format'||pct>=94)return 4;
+    if(['claim_audit','claim_repair','claim_safe'].includes(stage)||pct>=72)return 3;
+    if(['writer','editor','repair'].includes(stage)||pct>=30)return 2;
+    if(['evidence_ready','claim_plan'].includes(stage)||pct>=18)return 1;
     return 0;
   }
 
@@ -1450,7 +1456,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     note.classList.remove('ready','error');
     if(s?.configured){
       setAiState('ready','已連線');
-      note.textContent=`AI Writer 已就緒 · ${s.model||'LLM'}${s.endpointLabel?' · '+s.endpointLabel:''} · Evidence Lock 開啟 · 自動重試 / 工作復原啟用${s.customPromptConfigured?' · 自訂 Prompt 已啟用':''}${s?.health?.state==='error'?' · Provider 最近一次回應異常':''}`;
+      note.textContent=`AI Writer 已就緒 · ${s.model||'LLM'}${s.endpointLabel?' · '+s.endpointLabel:''} · Evidence Lock 開啟 · Claim-level 局部修復 / 工作復原啟用${s.customPromptConfigured?' · 自訂 Prompt 已啟用':''}${s?.health?.state==='error'?' · Provider 最近一次回應異常':''}`;
       note.classList.add('ready');
       const model=$('#aiModelInput');if(model&&!model.value)model.value=s.model||'';
       const prompt=$('#aiPromptInput');if(prompt&&!prompt.value)prompt.value=s.customPrompt||'';
@@ -1538,7 +1544,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
           <div><strong>SIGN WELL AI Writer</strong><span>600–800 字 · 主張－證據鎖定 · 公開引用僅限新聞來源</span></div>
           <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">AI / API 設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
         </div>
-        <div class="ai-provider-location-note">這裡的範文生成會沿用上方的 AI / API 設定與可編輯 AI 指令。PubMed 只在 CMS 後台參與核驗，而且是候選文獻池：不要求每篇都使用，未採用不會判定失敗；真正拿來核驗的文獻必須與主張精確吻合。公開文章的段落引用與參考資料仍只允許新聞來源。底層證據鎖定規則不會被自訂偏好覆蓋。</div>
+        <div class="ai-provider-location-note">這裡的範文生成會沿用上方的 AI / API 設定與可編輯 AI 指令。PubMed 只在 CMS 後台參與核驗，而且是候選文獻池：不要求每篇都使用，未採用不會判定失敗；真正拿來核驗的文獻必須與主張精確吻合。公開文章的段落引用與參考資料仍只允許新聞來源。第三方新聞／期刊圖片不會因標示來源就自動重製；僅使用自有、已獲授權、公眾領域或符合開放授權條件的素材。底層證據鎖定規則不會被自訂偏好覆蓋。</div>
         <div class="ai-progress" id="aiProgress">
           <div class="ai-progress-head"><span id="aiProgressText">準備生成</span><span id="aiProgressPct">0%</span></div>
           <div class="ai-progress-track"><div class="ai-progress-bar" id="aiProgressBar"></div></div>
@@ -1657,16 +1663,16 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     const titles=[
       `${titleRaw}：真正需要看懂的是什麼？`,
       `${titleRaw}，別只停在第一個答案`,
-      `${titleRaw}：從資訊到醫療判斷，中間還差幾步`,
+      `${titleRaw}：從資訊到健康判斷，中間還差幾步`,
       `${titleRaw}之後，更值得問的幾個問題`
     ];
     const title=compactText(titles[variant],76);
 
     const openingHooks=[
-      `${mark('醫療資訊最容易被忽略的，往往不是答案，而是答案成立的條件。',true)}「${escapeHTML(titleRaw)}」看似是一個可以快速下結論的題目，但真正要看懂它，還得把事件本身、證據強度和適用對象分開。${c1}`,
+      `${mark('健康與醫學資訊最容易被忽略的，往往不是答案，而是答案成立的條件。',true)}「${escapeHTML(titleRaw)}」看似是一個可以快速下結論的題目，但真正要看懂它，還得把事件本身、證據強度和適用對象分開。${c1}`,
       `${mark('一句很有力的結論，常常少了最重要的那半句：它對誰成立？',true)}「${escapeHTML(titleRaw)}」值得關注的地方，不只是結果本身，而是背後有哪些條件、限制與尚未回答的問題。${c1}${c2}`,
-      `${mark('如果只記住標題，最容易漏掉的就是醫療判斷真正需要的上下文。',true)}「${escapeHTML(titleRaw)}」可以從幾個層次來看：先把發生的事說清楚，再看研究或政策能支持到哪裡，最後才談它和個人有沒有關係。${c1}`,
-      `${mark('同一個醫療議題，只要換了族群、研究設計或政策條件，答案就可能不一樣。',true)}「${escapeHTML(titleRaw)}」正好提醒我們，好的健康資訊不是把事情說得更肯定，而是把重要條件交代完整。${c1}`
+      `${mark('如果只記住標題，最容易漏掉的就是健康判斷真正需要的上下文。',true)}「${escapeHTML(titleRaw)}」可以從幾個層次來看：先把發生的事說清楚，再看研究或政策能支持到哪裡，最後才談它和個人有沒有關係。${c1}`,
+      `${mark('同一個健康、醫學或運動議題，只要換了族群、研究設計或情境，答案就可能不一樣。',true)}「${escapeHTML(titleRaw)}」正好提醒我們，好的健康資訊不是把事情說得更肯定，而是把重要條件交代完整。${c1}`
     ];
 
     const eventText =
@@ -1700,7 +1706,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
 
     const closeText =
       `把這類醫療議題看懂，其實不需要記住所有專有名詞。先確認資料在說誰、比較什麼、結果有多大，再看限制與可能風險，就已經能避開很多常見誤解。`+
-      `${mark('好的醫療科普，不是把話說得最滿，而是讓讀者知道一個結論能相信到哪裡。',true)}`;
+      `${mark('好的健康與醫學科普，不是把話說得最滿，而是讓讀者知道一個結論能相信到哪裡。',true)}`;
 
     const headings=[
       ['先把事情本身說清楚','答案成立，需要哪些條件？','研究證據能告訴我們多少？','還有哪些問題值得往下追？','對一般人最實際的意義'],
@@ -1815,7 +1821,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     btn.disabled=true;
     btn.textContent='AI 正在生成…';
     setAiState('busy','生成中');
-    if(note){note.classList.remove('error','ready');note.textContent='正在建立可復原的 AI 工作：新聞來源會逐段核對，PubMed 只在後台作輔助核驗；公開文章不引用 PubMed。'}
+    if(note){note.classList.remove('error','ready');note.textContent='正在建立可復原的 AI 工作：先建立 Claim Map，再逐段核對；通過主張會鎖定，只修失敗主張。PubMed 只在後台核驗。'}
     updateAiProgress(0,'建立 AI 生成工作',4);
     startAiJobPolling(jobId);
 
@@ -1871,14 +1877,27 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
         const warnings=Array.isArray(audit.claimWarnings)?audit.claimWarnings:[];
         auditCard.hidden=false;
         const rounds=Number(audit.claimRepairRounds||0);
-        auditCard.innerHTML=`<div class="claim-audit-head"><div><span>主張－證據審查</span><strong>逐段證據檢核通過${rounds?` · 經 ${rounds} 輪返修重審`:''}</strong></div><b>${topicScore||'—'}/100</b></div><div class="claim-audit-grid"><span>直接支持 <strong>${claimPass}/${claimTotal}</strong></span><span>保守警示 <strong>${claimWarn}</strong></span><span>引用偏移 <strong>${drift}</strong></span><span>情境外推 <strong>${transfer}</strong></span><span>因果過度推論 <strong>${causal}</strong></span><span>數字不一致 <strong>${numeric}</strong></span></div><p>${topicScore?`主題吻合度 ${topicScore}/100 · `:''}每一段公開引用都只對照新聞來源；PubMed 僅在後台作研究脈絡核驗，且不要求每篇都採用；只有實際拿來核驗的論文需要與主張精確吻合。若審查發現問題，系統會把問題退回 AI 修正，再重新審查，直到通過或達到安全上限。${warnings.length?' · 有 '+warnings.length+' 個保守語氣警示':''}</p>`;
+        const safe=Boolean(audit.safeVersionApplied);
+        const removed=Number(audit.removedClaimCount||0);
+        const safeRewrite=Number(audit.safeRewriteApplied||0);
+        const locked=Number(audit.lockedClaimCount||claimPass+claimWarn);
+        const claimMapCount=Number(audit.claimMapCount||0);
+        const repairLog=Array.isArray(audit.claimRepairLog)?audit.claimRepairLog:[];
+        const logHtml=repairLog.length?`<div class="claim-repair-log">${repairLog.slice(0,6).map((x,i)=>{
+          const mode=String(x?.mode||'targeted');
+          const label=mode==='downgrade'?'弱化主張':mode==='safe'?'安全版本':mode==='safe_rewrite'?'審查員安全改寫':mode==='remove_unsupported'?'移除無法支持主張':'局部修復';
+          const targets=Array.isArray(x?.targets)?x.targets.length:Number(x?.targets||0);
+          const codes=Array.isArray(x?.errorCodes)&&x.errorCodes.length?` · ${x.errorCodes.slice(0,2).map(escapeHTML).join(' / ')}`:'';
+          return `<div class="claim-repair-step"><strong>${escapeHTML(label)}</strong><em>${targets?`處理 ${targets} 個`:''}${x?.locked?` · 鎖定 ${Number(x.locked)} 個`:''}${codes}</em></div>`;
+        }).join('')}</div>`:'';
+        auditCard.innerHTML=`<div class="claim-audit-head"><div><span>主張－證據審查</span><strong>Claim-level 檢核通過${rounds?` · ${rounds} 輪局部修復`:''}</strong></div><b>${topicScore||'—'}/100</b></div><div class="claim-audit-grid"><span>直接支持 <strong>${claimPass}/${claimTotal}</strong></span><span>已鎖定 <strong>${locked}</strong></span><span>保守警示 <strong>${claimWarn}</strong></span><span>引用偏移 <strong>${drift}</strong></span><span>情境外推 <strong>${transfer}</strong></span><span>數字不一致 <strong>${numeric}</strong></span></div><p>${topicScore?`主題吻合度 ${topicScore}/100 · `:''}先建立 ${claimMapCount||'—'} 個候選 Claim，再逐段審查。PASS／WARN 段落一旦通過就鎖定，不會在下一輪被重寫；只有 FAIL 段落會局部修復。同一主張重複失敗時會先弱化，必要時進 Safe Publish Gate。${safe?` <span class="claim-safe-badge">安全版本已啟用</span>`:''}${safeRewrite?` · 安全改寫 ${safeRewrite} 個`:''}${removed?` · 移除 ${removed} 個 unsupported claim`:''}${warnings.length?' · 有 '+warnings.length+' 個保守語氣警示':''}</p>${logHtml}`;
       }
 
       if(note){
         const evidenceWarning=Array.isArray(audit.evidenceWarnings)&&audit.evidenceWarnings.length?` · ${audit.evidenceWarnings[0]}`:'';
         note.textContent=
           `主張－證據審查通過 · PubMed metadata + abstract 僅在 CMS 後台核驗 · `+
-          `公開文章只保留新聞引用；已檢查引用吻合、PICO／情境、證據強度、數字與主題吻合度${audit.claimRepairApplied?' · 發現問題後已退回 AI 修正並重審':''}${audit.claimRepairRounds?` · 共 ${audit.claimRepairRounds} 輪返修`:''}${audit.formattingAppliedAfterGeneration?' · 排版於檢核後套用':''}${result.recovered?' · 本次結果由後端工作快取復原':''}${evidenceWarning}`;
+          `公開文章只保留新聞引用；已採 Claim-level 鎖定修復${audit.claimRepairApplied?' · 只修改 FAIL 主張':''}${audit.claimRepairRounds?` · ${audit.claimRepairRounds} 輪局部修復`:''}${audit.safeVersionApplied?' · 已使用安全版本':''}${audit.removedClaimCount?` · 移除 ${audit.removedClaimCount} 個 unsupported claim`:''}${audit.formattingAppliedAfterGeneration?' · 排版於檢核後套用':''}${result.recovered?' · 本次結果由後端工作快取復原':''}${evidenceWarning}`;
         note.classList.remove('error');note.classList.add('ready');
       }
 
