@@ -35,15 +35,4 @@ body{
   }
 }
 
-@media(prefers-color-scheme:dark){
-  body{
-    background:
-      radial-gradient(70rem 56rem at 110% -10%,rgba(54,89,120,.18) 0%,rgba(54,89,120,.09) 42%,rgba(54,89,120,.024) 70%,transparent 92%),
-      radial-gradient(58rem 46rem at -8% 108%,rgba(111,67,91,.09) 0%,rgba(111,67,91,.045) 44%,rgba(111,67,91,.012) 72%,transparent 94%),
-      linear-gradient(155deg,#111a23,#15232e 52%,#111c25)!important;
-  }
-  :is(.glass,.lock-card,.panel,.editor-main,.editor-side,.stat,.modal-card,.preview-shell,.workspace,.sidebar,
-  .security-audit-card,.sw-secret-vault-card,.newsletter-stepup-card,.sw-dialog-card,.person-dialog-card){
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 3px 12px rgba(0,0,0,.08),0 22px 62px rgba(0,0,0,.13),0 62px 145px rgba(0,0,0,.08)!important;
-  }
-}
+
