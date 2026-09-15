@@ -169,3 +169,42 @@ body.dark .sw-evidence-editor{background:linear-gradient(145deg,rgba(35,52,68,.9
 .sw-glossary-dialog-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.sw-glossary-dialog-actions button{min-height:42px;padding:0 14px;border-radius:14px;border:1px solid rgba(98,119,136,.12);background:rgba(255,255,255,.60);color:#536b7c;font-weight:800;font-size:10px}.sw-glossary-dialog-actions .primary{background:#385f78;color:#fff}.sw-glossary-dialog-actions .online{background:linear-gradient(145deg,#dceef9,#f5e3eb);color:#23343f}.sw-glossary-hint{margin:12px 0 0;color:#8a98a2;font-size:9.5px;line-height:1.6}
 body.dark .sw-glossary-note{background:rgba(220,214,201,.06);border-color:rgba(222,216,203,.08);color:#b7afa4}body.dark .sw-glossary-row{border-color:rgba(224,218,206,.08)}body.dark .sw-glossary-term strong{color:#e8e1d6}body.dark .sw-glossary-term span,body.dark .sw-glossary-main p{color:#bdb4a7}body.dark .sw-glossary-main small{color:#968d82}body.dark .sw-glossary-meta span,body.dark .sw-glossary-actions button{background:rgba(255,252,245,.06);border-color:rgba(255,252,245,.08);color:#bcb2a6}body.dark .sw-glossary-card{background:linear-gradient(145deg,rgba(67,62,55,.96),rgba(50,47,43,.94));border-color:rgba(239,231,217,.10);box-shadow:0 30px 86px rgba(25,21,18,.28),inset 0 1px 0 rgba(255,255,255,.05)}body.dark .sw-glossary-dialog-head h3{color:#eee6da}body.dark .sw-glossary-form label,body.dark .sw-glossary-hint{color:#b6ada1}body.dark .sw-glossary-form input,body.dark .sw-glossary-form textarea{background:rgba(255,252,245,.06);border-color:rgba(255,252,245,.08);color:#efe8dd}
 @media(max-width:760px){.sw-glossary-row{grid-template-columns:1fr;gap:8px;padding:13px 4px}.sw-glossary-meta{justify-content:flex-start}.sw-glossary-actions{justify-content:flex-start}.sw-glossary-tools{width:100%;justify-content:stretch}.sw-glossary-tools>*{flex:1 1 auto}.sw-glossary-tools .searchbar{flex-basis:100%;min-width:0}.sw-glossary-card{padding:18px;border-radius:24px;align-self:end;max-height:88dvh}.sw-glossary-form{grid-template-columns:1fr}.sw-glossary-form label.wide,.sw-glossary-active{grid-column:auto}.sw-glossary-dialog-actions{display:grid;grid-template-columns:1fr}.sw-glossary-dialog{place-items:end center;padding:10px}}
+
+/* ============================================================
+   SIGN WELL CMS v23.9.64 · Restore original blue-red light identity
+   Light mode only. Dark mode is owned by signwell-wabi-dark.css.
+   ============================================================ */
+@media (prefers-color-scheme: light){
+  :root{
+    --bg1:#fbfdff;--bg2:#edf5fb;--bg3:#f7edf1;
+    --ink:#26313f;--ink2:#445465;--muted:#7f8b9a;
+    --line:rgba(73,95,116,.12);--rim:rgba(255,255,255,.90);
+    --glass:rgba(255,255,255,.52);--glass2:rgba(255,255,255,.72);
+    --blue:#6f9fc1;--sage:#7e9dab;--red:#b96d78;
+  }
+  body{
+    background:
+      radial-gradient(72rem 54rem at -8% -10%,rgba(164,216,255,.44),transparent 72%),
+      radial-gradient(64rem 50rem at 108% 8%,rgba(238,164,184,.30),transparent 74%),
+      radial-gradient(56rem 44rem at 52% 112%,rgba(186,215,236,.20),transparent 76%),
+      linear-gradient(155deg,var(--bg1),var(--bg2) 48%,var(--bg3))!important;
+  }
+  .orb.a{background:radial-gradient(circle,rgba(150,207,255,.66),transparent 68%)!important}
+  .orb.b{background:radial-gradient(circle,rgba(242,164,188,.44),transparent 68%)!important}
+  .orb.c{background:radial-gradient(circle,rgba(184,215,239,.34),rgba(235,177,194,.16) 44%,transparent 70%)!important}
+  .sidebar::after{background:radial-gradient(circle,rgba(239,168,187,.12),transparent 74%)!important}
+  .top-action.primary{background:linear-gradient(145deg,#dceeff 0%,#f6e2ea 100%)!important;color:#26313f!important;border-color:rgba(255,255,255,.86)!important;box-shadow:0 8px 22px rgba(73,121,158,.10),inset 0 1px 0 rgba(255,255,255,.94)!important}
+  .auth-progress span.active,.lock-screen button{background:linear-gradient(145deg,#426e91,#9b5e68)!important;border-color:transparent!important}
+  .badge{background:rgba(108,157,193,.11)!important;color:#5e83a0!important}
+  .badge.draft{background:rgba(185,109,120,.09)!important;color:#8f6570!important}
+  .site-preview-box:before{background:radial-gradient(circle at 30% 25%,rgba(116,186,232,.20),transparent 28%),radial-gradient(circle at 80% 70%,rgba(231,146,171,.14),transparent 30%)!important}
+  .sw-data-bar-track i{background:linear-gradient(90deg,rgba(128,186,230,.82),rgba(226,150,176,.76))!important}
+  .editor-tool-dock .editor-toolbar::after{background:radial-gradient(100px 34px at 18% 4%,rgba(255,255,255,.44),transparent 72%),radial-gradient(120px 44px at 82% 104%,rgba(225,154,177,.13),transparent 76%)!important}
+}
+
+/* CMS system-theme crossfade. Avoid large blur animation / repaint spikes. */
+html.sw-cms-theme-changing body{transition:color .30s ease,background-color .34s ease!important}
+html.sw-cms-theme-changing :is(.sidebar,.workspace,.panel,.stat,.lock-card,.top-action,.smallbtn,.site-text-card,.site-preview-box){transition:background-color .36s ease,border-color .36s ease,color .28s ease,box-shadow .36s ease!important}
+.sw-cms-theme-flash{position:fixed;inset:0;z-index:2147483600;pointer-events:none;opacity:0;background:radial-gradient(circle at 88% 7%,rgba(255,255,255,.20),transparent 0 18%,rgba(255,255,255,.02) 46%,transparent 70%);mix-blend-mode:soft-light;animation:swCmsThemeFlash .56s cubic-bezier(.22,1,.36,1) both}
+@keyframes swCmsThemeFlash{0%{opacity:.72;transform:scale(.985)}100%{opacity:0;transform:scale(1.02)}}
+@media(prefers-reduced-motion:reduce){.sw-cms-theme-flash{display:none!important}html.sw-cms-theme-changing *{transition-duration:.001ms!important}}

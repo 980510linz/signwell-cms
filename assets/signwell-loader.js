@@ -81,6 +81,6 @@ if('PerformanceObserver' in window){
 }
 window.addEventListener('load',()=>{set(96,'完成最後設定');requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(finish,110)))},{once:true});
 setTimeout(()=>{if(!done)set(92,'等待頁面完成')},2400);
-setTimeout(finish,7600);
+setTimeout(finish,1800);
 window.signwellPageProgress={set:(v,label)=>set(v,label),complete:finish};
 })();
