@@ -1,0 +1,153 @@
+/* SIGN WELL CMS v23.9.85 · Original light visual restore
+   Final cascade layer: restores the early blue / pink / white CMS identity,
+   fixes the over-heavy global typography introduced by later theme layers,
+   and keeps text inside its layout containers. */
+:root{
+  color-scheme:light;
+  --bg1:#fbfdff;
+  --bg2:#edf5fb;
+  --bg3:#f7edf1;
+  --ink:#26313f;
+  --ink2:#445465;
+  --muted:#7f8b9a;
+  --line:rgba(73,95,116,.12);
+  --rim:rgba(255,255,255,.88);
+  --glass:rgba(255,255,255,.52);
+  --glass2:rgba(255,255,255,.72);
+  --blue:#6f92ad;
+  --sage:#6f9a8e;
+  --red:#a65c65;
+}
+html,body{color-scheme:light!important}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Segoe UI",sans-serif!important;
+  font-weight:400!important;
+  color:var(--ink)!important;
+  background:
+    radial-gradient(72rem 54rem at -8% -10%,rgba(150,207,255,.42),transparent 72%),
+    radial-gradient(64rem 50rem at 108% 8%,rgba(242,164,188,.28),transparent 74%),
+    radial-gradient(56rem 44rem at 52% 112%,rgba(188,230,222,.20),transparent 76%),
+    linear-gradient(155deg,var(--bg1),var(--bg2) 48%,var(--bg3))!important;
+  -webkit-text-size-adjust:100%;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  background:
+    radial-gradient(circle at 14% 12%,rgba(134,202,255,.18),transparent 27%),
+    radial-gradient(circle at 84% 30%,rgba(238,164,188,.12),transparent 26%),
+    radial-gradient(circle at 54% 88%,rgba(157,225,211,.10),transparent 28%)!important;
+  filter:blur(16px)!important;
+  opacity:.9!important;
+}
+.field{filter:none!important;opacity:.64!important}
+.orb.a{background:radial-gradient(circle,rgba(150,207,255,.66),transparent 68%)!important}
+.orb.b{background:radial-gradient(circle,rgba(242,164,188,.44),transparent 68%)!important}
+.orb.c{background:radial-gradient(circle,rgba(167,229,216,.34),rgba(235,177,194,.13) 44%,transparent 70%)!important}
+
+/* Restore the original translucent surfaces instead of the later theme wash. */
+.glass,.workspace,.sidebar{
+  border-color:var(--rim)!important;
+  background:rgba(250,253,255,.48)!important;
+  color:var(--ink)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(170%)!important;
+  backdrop-filter:blur(24px) saturate(170%)!important;
+}
+:where(.panel,.stat,.editor-main,.editor-side,.publish-card,.site-text-card,.site-preview-box,
+.canva-card,.canva-preview-card,.canva-config-card,.social-studio-card,.social-studio-chat,
+.social-preview-panel,.notion-card,.notion-cc-kpi,.security-audit-card,.sw-secret-vault-card){
+  border-color:rgba(255,255,255,.82)!important;
+  background:rgba(255,255,255,.36)!important;
+  color:var(--ink)!important;
+}
+
+/* Login returns to the original SIGN WELL light-glass appearance. */
+.lock-screen{
+  background:
+    radial-gradient(72% 64% at 12% 8%,rgba(150,207,255,.24),transparent 68%),
+    radial-gradient(68% 60% at 90% 86%,rgba(242,164,188,.18),transparent 70%),
+    linear-gradient(155deg,rgba(249,252,254,.22),rgba(234,241,248,.10))!important;
+}
+.lock-screen::before{
+  background:radial-gradient(circle at 40% 45%,rgba(150,207,255,.54),rgba(154,212,250,.16) 48%,transparent 72%)!important;
+}
+.lock-screen::after{
+  background:radial-gradient(circle at 50% 50%,rgba(167,229,216,.36),rgba(242,164,188,.13) 54%,transparent 74%)!important;
+}
+.lock-card{
+  border:1px solid rgba(255,255,255,.86)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(244,250,255,.24))!important;
+  -webkit-backdrop-filter:blur(18px) saturate(165%) brightness(1.03)!important;
+  backdrop-filter:blur(18px) saturate(165%) brightness(1.03)!important;
+  box-shadow:0 28px 78px rgba(50,72,96,.10),0 6px 20px rgba(50,72,96,.04),inset 0 1px 0 rgba(255,255,255,.96)!important;
+}
+.lock-mark{background:rgba(255,255,255,.64)!important;border-color:rgba(255,255,255,.88)!important;color:#26313f!important}
+.pin,.answer-input{
+  background:rgba(255,255,255,.68)!important;
+  border-color:rgba(88,108,126,.14)!important;
+  color:#26313f!important;
+}
+.auth-progress span.active,.lock-screen button:not(.auth-back){
+  background:linear-gradient(145deg,#426e91,#9b5e68)!important;
+  color:#fff!important;
+}
+
+/* Undo the later global JhengHei/Yuanti typography layers.
+   They were wider/heavier than the original UI and pushed labels out of place. */
+html,body,body *,button,input,textarea,select,option{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Segoe UI",sans-serif!important;
+}
+body{font-weight:400!important}
+button,.top-action,.smallbtn,.toolbar button,.row-actions button,.nav button{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC","Noto Sans TC","Segoe UI",sans-serif!important}
+button,.top-action,.smallbtn,.toolbar button,.row-actions button{font-weight:700!important;line-height:1.2}
+.nav button{font-weight:680!important}
+label,.field-label,.helper,.meta,.status,.toast,small{font-weight:500!important}
+input,textarea,select{font-weight:400!important;line-height:1.45!important}
+input::placeholder,textarea::placeholder{font-weight:400!important}
+h1,h2,h3,h4,h5,h6,
+.lock-screen h1,.page-head h1,.page-title,.section-title,.panel-title,
+.analytics-head strong,.newsletter-letter-title,.newsletter-exact-preview-head,
+.modal-card h2,.modal-card h3,.canva-page-head h1,.social-studio-head h1,
+.article-row strong,.stat strong,.title-input,.doc-editor h2,.doc-editor h3,.doc-editor h4,
+.preview-content h1,.preview-content h2,.preview-content h3,.preview-content h4{
+  font-family:Georgia,"Noto Serif TC","Songti TC",serif!important;
+  font-weight:500!important;
+  font-synthesis:none;
+}
+.page-head h1,.canva-page-head h1,.social-studio-head h1{letter-spacing:-.04em!important}
+
+/* Text-layout guard: flex/grid children may shrink, long labels stay inside cards. */
+:where(.page-head,.panel-head,.topbar,.brand,.article-row,.file-map div,.connection-row,
+.social-chat-head,.social-preview-head,.social-canva-status,.social-revision-list div,
+.canva-card-head,.notion-card-head,.security-audit-row,.meta-social-card,.social-account-head)>*{
+  min-width:0;
+}
+:where(.page-head h1,.page-head p,.panel-head,.article-row strong,.article-row small,
+.canva-card-head strong,.canva-card-head small,.social-chat-msg,.social-chat-empty,
+.social-studio-card p,.social-canva-status strong,.social-canva-status small,
+.notion-card,.security-audit-row strong,.security-audit-row span,.file-map code,
+.connection-row strong,.connection-row code){
+  max-width:100%;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+.nav button{
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.top-action,.smallbtn,.toolbar button,.row-actions button{max-width:100%}
+
+@media(max-width:900px){
+  .glass,.workspace,.sidebar{-webkit-backdrop-filter:blur(16px) saturate(150%)!important;backdrop-filter:blur(16px) saturate(150%)!important}
+  .page-head>*{width:100%;min-width:0}
+}
+@media(max-width:560px){
+  .lock-card{padding:28px 22px!important}
+  .page-head h1,.social-studio-head h1,.canva-page-head h1{overflow-wrap:anywhere}
+  .top-action,.smallbtn{white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+  body::before,.orb,.lock-screen::before,.lock-screen::after{animation:none!important}
+}
