@@ -1079,10 +1079,13 @@ button,.pill,.generate-btn,.draft-actions button,.ai-settings-btn,.ai-setup-acti
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button{touch-action:manipulation}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(68,139,207,.26);outline-offset:2px}@media(max-width:760px),(pointer:coarse){.focus-topbar{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 </style>
 <link rel="stylesheet" href="assets/signwell-loader.css?build=23.9.31">
-<link rel="stylesheet" href="assets/signwell-soft-shadow.css?build=23.9.88-STAGING">
+<link rel="stylesheet" href="assets/signwell-soft-shadow.css?build=23.9.85-STAGING">
 
 <style id="sw-v23-9-43-focus-api-button-text">
 /* SIGN WELL Daily Focus v23.9.43 · AI/API key + instruction CTA text */
+#focusAiVaultBtn,
+#focusAiVaultBtn:hover,
+#focusAiVaultBtn:focus-visible,
 #focusAiInstructionOpenBtn,
 #focusAiInstructionOpenBtn:hover,
 #focusAiInstructionOpenBtn:focus-visible{
@@ -1091,7 +1094,6 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   text-shadow:none!important;
 }
 </style>
-<link rel="stylesheet" href="assets/signwell-liquid-glass-motion.css?build=23.9.90-STAGING">
 </head>
 <body class="light">
 <div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
@@ -1128,20 +1130,33 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       <span class="demo-badge" id="demoBadge">不使用展示資料</span>
     </div>
 
-    <div class="focus-toolbar"><button class="settings-toggle" id="settingsToggleBtn" type="button">AI 狀態與指令</button></div>
-    <section class="glass focus-settings" id="focusSettingsPanel" aria-label="AI 狀態與指令">
+    <div class="focus-toolbar"><button class="settings-toggle" id="settingsToggleBtn" type="button">AI / API 設定</button></div>
+    <section class="glass focus-settings" id="focusSettingsPanel" aria-label="AI / API 設定">
       <div class="settings-grid">
         <div class="setting-card">
-          <div class="settings-card-head"><div><span>AI 連線狀態</span><strong>Provider 由 CMS 設定統一管理</strong></div><b id="focusAiProviderState">檢查中</b></div>
-          <p class="settings-help" id="focusAiProviderHelp">正在確認 AI Provider 連線狀態…</p>
-          <div class="settings-actions"><button class="primary" id="focusOpenSettingsBtn" type="button">前往設定</button></div>
+          <div class="settings-card-head"><div><span>AI Provider</span><strong>API Endpoint 與模型設定</strong></div><b id="focusAiProviderState">檢查中</b></div>
+          <div class="settings-fields">
+            <div class="settings-field wide"><label for="focusAiEndpointInput">API Endpoint</label><input id="focusAiEndpointInput" type="url" inputmode="url" autocomplete="off" placeholder="https://generativelanguage.googleapis.com/"></div>
+            <div class="settings-field"><label for="focusAiModelInput">Model ID</label><input id="focusAiModelInput" type="text" autocomplete="off" placeholder="gemini-..."/></div>
+            <div class="settings-field"><label>API Key</label><input id="focusAiKeyState" type="text" value="只保存在後端，不顯示內容" readonly/></div>
+          </div>
+          <div class="settings-actions">
+            <button class="soft-blue" id="focusAiSaveBtn" type="button">儲存 Provider 設定</button>
+            <button id="focusAiTestBtn" type="button">健康檢查</button>
+            <button class="primary" id="focusAiVaultBtn" type="button">設定 / 更換 Key</button>
+          </div>
+          <p class="settings-help" id="focusAiProviderHelp">API Key 只存後端；你平常只需要在這裡看狀態、改 Endpoint 與 Model。</p>
         </div>
         <div class="setting-card">
           <div class="settings-card-head"><div><span>AI 指令</span><strong>把寫作偏好直接放在這裡</strong></div><b id="focusAiInstructionCount">0 條</b></div>
           <div class="instruction-meta"><span id="focusAiInstructionState">同步中…</span><span>底層 Evidence Lock 不會被這裡改掉</span></div>
           <div class="settings-field wide"><label for="focusAiInstructionInput">可編輯 AI 指令</label><textarea id="focusAiInstructionInput" placeholder="例如：開頭先講臨床意義、少用『此外』與『值得注意的是』、段落不要太像模板。"></textarea></div>
-          <div class="settings-actions"><button class="soft-blue" id="focusAiInstructionSaveBtn" type="button">儲存 AI 指令</button><button id="focusAiInstructionClearBtn" type="button">清除可編輯指令</button><button class="primary" id="focusAiInstructionOpenBtn" type="button">開啟完整指令工作台</button></div>
-          <p class="settings-help" id="focusAiInstructionHelp">這裡只調整寫作偏好；API、Endpoint、Model 與 Key 統一在 CMS「設定」管理。</p>
+          <div class="settings-actions">
+            <button class="soft-blue" id="focusAiInstructionSaveBtn" type="button">儲存 AI 指令</button>
+            <button id="focusAiInstructionClearBtn" type="button">清除可編輯指令</button>
+            <button class="primary" id="focusAiInstructionOpenBtn" type="button">開啟完整指令工作台</button>
+          </div>
+          <p class="settings-help" id="focusAiInstructionHelp">這裡可直接編輯目前有效的可自訂寫作規則，之後每篇時事範文都會沿用。</p>
         </div>
       </div>
     </section>
@@ -1183,7 +1198,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
   function toggleFocusSettings(force){
     const next=typeof force==='boolean'?force:!focusSettingsPanel?.classList.contains('show');
     if(focusSettingsPanel)focusSettingsPanel.classList.toggle('show',next);
-    if(settingsToggleBtn)settingsToggleBtn.textContent=next?'收合 AI 狀態與指令':'AI 狀態與指令';
+    if(settingsToggleBtn)settingsToggleBtn.textContent=next?'收合 AI / API 設定':'AI / API 設定';
   }
   function countInstructionItems(prompt=''){return String(prompt||'').split(/\n+/).map(x=>x.trim()).filter(Boolean).length}
   async function refreshFocusSettings({open=false}={}){
@@ -1191,18 +1206,47 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     try{
       if(window.parent?.signwellMedicalNewsAIStatus){
         const status=await window.parent.signwellMedicalNewsAIStatus();
-        const stateEl=$('#focusAiProviderState'),help=$('#focusAiProviderHelp');
+        const stateEl=$('#focusAiProviderState'),help=$('#focusAiProviderHelp'),endpoint=$('#focusAiEndpointInput'),model=$('#focusAiModelInput'),keyState=$('#focusAiKeyState');
+        if(endpoint)endpoint.value=status?.endpoint||'';
+        if(model)model.value=status?.model||'';
+        if(keyState)keyState.value=status?.apiKeyConfigured?'API Key 已保存在後端':'尚未設定 API Key';
         if(stateEl){stateEl.className='';stateEl.id='focusAiProviderState';stateEl.textContent=status?.configured?'已連線':'未連線';stateEl.classList.add(status?.configured?'ready':'error')}
-        if(help)help.textContent=status?.configured?`AI Provider 已就緒 · ${status.model||'model 未命名'}${status.endpointLabel?' · '+status.endpointLabel:''}`:'AI Provider 尚未完成連線；請到 CMS「設定」完成 API / Model 設定。';
+        if(help)help.textContent=status?.configured?`AI Provider 已就緒 · ${status.model||'model 未命名'}${status.endpointLabel?' · '+status.endpointLabel:''}`:'尚未完成 Provider 設定；可先在這裡填好 Endpoint / Model，再按「設定 / 更換 Key」';
       }
-    }catch(err){const help=$('#focusAiProviderHelp'),stateEl=$('#focusAiProviderState');if(stateEl){stateEl.textContent='讀取失敗';stateEl.className='error'}if(help)help.textContent='Provider 狀態讀取失敗：'+String(err?.message||err)}
+    }catch(err){const help=$('#focusAiProviderHelp'),stateEl=$('#focusAiProviderState'); if(stateEl){stateEl.textContent='讀取失敗';stateEl.className='error'} if(help)help.textContent='Provider 狀態讀取失敗：'+String(err?.message||err)}
     try{
       if(window.parent?.signwellAIInstructionState){
-        const state=await window.parent.signwellAIInstructionState();const prompt=String(state?.editablePrompt||'');
+        const state=await window.parent.signwellAIInstructionState();
+        const prompt=String(state?.editablePrompt||'');
         const box=$('#focusAiInstructionInput'),count=$('#focusAiInstructionCount'),help=$('#focusAiInstructionHelp'),badge=$('#focusAiInstructionState');
-        if(box)box.value=prompt;if(count)count.textContent=`${countInstructionItems(prompt)} 條`;if(badge)badge.textContent=state?.configured?'AI 已連線':'AI 尚未連線';if(help)help.textContent=prompt?'目前儲存的是可編輯 AI 指令；底層安全規則仍會繼續保留。':'目前尚未新增額外寫作偏好；你可以直接在這裡輸入。';
+        if(box)box.value=prompt;
+        if(count)count.textContent=`${countInstructionItems(prompt)} 條`;
+        if(badge)badge.textContent=state?.configured?'AI 已連線':'AI 尚未連線';
+        if(help)help.textContent=prompt?'目前儲存的是可編輯 AI 指令；底層安全規則仍會繼續保留。':'目前尚未新增額外寫作偏好；你可以直接在這裡輸入。';
       }
-    }catch(err){const help=$('#focusAiInstructionHelp'),badge=$('#focusAiInstructionState');if(badge)badge.textContent='同步失敗';if(help)help.textContent='AI 指令讀取失敗：'+String(err?.message||err)}
+    }catch(err){const help=$('#focusAiInstructionHelp'),badge=$('#focusAiInstructionState'); if(badge)badge.textContent='同步失敗'; if(help)help.textContent='AI 指令讀取失敗：'+String(err?.message||err)}
+  }
+  async function saveFocusProvider(){
+    const endpoint=$('#focusAiEndpointInput')?.value.trim()||'';
+    const model=$('#focusAiModelInput')?.value.trim()||'';
+    if(!endpoint||!/^https:\/\//i.test(endpoint)){showToast('請填入有效的 https:// API Endpoint');return}
+    if(!model){showToast('請填入 Model ID');return}
+    if(!window.parent?.signwellMedicalNewsAIConfigure){showToast('CMS bridge 尚未就緒');return}
+    const btn=$('#focusAiSaveBtn'); const old=btn?.textContent||''; if(btn){btn.disabled=true;btn.textContent='儲存中…'}
+    try{
+      const result=await window.parent.signwellMedicalNewsAIConfigure({endpoint,model,test:true});
+      if(!result?.ok)throw new Error(result?.error||'儲存失敗');
+      showToast('AI Provider 設定已儲存');
+      await refreshFocusSettings();
+    }catch(err){showToast('Provider 儲存失敗'); const help=$('#focusAiProviderHelp'); if(help)help.textContent='Provider 儲存失敗：'+String(err?.message||err)}
+    finally{if(btn){btn.disabled=false;btn.textContent=old}}
+  }
+  async function testFocusProvider(){
+    if(!window.parent?.signwellMedicalNewsAITest){showToast('CMS bridge 尚未就緒');return}
+    const btn=$('#focusAiTestBtn'); const old=btn?.textContent||''; if(btn){btn.disabled=true;btn.textContent='檢查中…'}
+    try{const r=await window.parent.signwellMedicalNewsAITest(); if(!r?.ok)throw new Error(r?.error||'健康檢查失敗'); showToast('AI 健康檢查完成'); await refreshFocusSettings()}
+    catch(err){const help=$('#focusAiProviderHelp'); if(help)help.textContent='健康檢查失敗：'+String(err?.message||err); showToast('健康檢查失敗')}
+    finally{if(btn){btn.disabled=false;btn.textContent=old}}
   }
   async function saveFocusInstructions(){
     const prompt=$('#focusAiInstructionInput')?.value||'';
@@ -1419,7 +1463,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     }else{
       setAiState('','未連線');
       const missing=Array.isArray(s?.missing)&&s.missing.length?s.missing.join('、'):'AI 後端設定';
-      note.textContent=`AI Writer 尚未連線 · 缺少 ${missing}。請到 CMS「設定」完成 AI Provider。`;
+      note.textContent=`AI Writer 尚未連線 · 缺少 ${missing}。請到 CMS「發布設定」完成 AI Provider / API 設定。`;
       note.classList.add('error');
     }
   }
@@ -1430,7 +1474,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       setAiState('busy','檢查中');
       const s=await window.parent.signwellMedicalNewsAIStatus();
       renderAiStatus(s);
-      if(openWhenMissing&&!s?.configured)showToast('請到 CMS「設定」完成 AI Provider');
+      if(openWhenMissing&&!s?.configured)showToast('請到 CMS「發布設定」完成 AI API 設定');
       return s;
     }catch(err){
       setAiState('','狀態未知');
@@ -1497,9 +1541,9 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
       <div class="writer-panel">
         <div class="writer-head">
           <div><strong>SIGN WELL AI Writer</strong><span>600–1200 字 · 主張－證據鎖定 · 公開引用僅限新聞來源</span></div>
-          <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">前往設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
+          <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">AI / API 設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
         </div>
-        <div class="ai-provider-location-note">這裡的範文生成會沿用 CMS「設定」中的 AI Provider，以及本頁可編輯 AI 指令。PubMed 是候選文獻池：不要求每篇都使用，只有真正拿來支持正文主張的文獻才會成為公開引用；未採用候選不會顯示在 Public。政府來源以中華民國政府官方資料優先，跨國比較才使用其他國家政府官網。第三方新聞／期刊圖片不會因標示來源就自動重製；僅使用自有、已獲授權、公眾領域或符合開放授權條件的素材。底層證據鎖定規則不會被自訂偏好覆蓋。</div>
+        <div class="ai-provider-location-note">這裡的範文生成會沿用上方的 AI / API 設定與可編輯 AI 指令。PubMed 是候選文獻池：不要求每篇都使用，只有真正拿來支持正文主張的文獻才會成為公開引用；未採用候選不會顯示在 Public。政府來源以中華民國政府官方資料優先，跨國比較才使用其他國家政府官網。第三方新聞／期刊圖片不會因標示來源就自動重製；僅使用自有、已獲授權、公眾領域或符合開放授權條件的素材。底層證據鎖定規則不會被自訂偏好覆蓋。</div>
         <div class="ai-progress" id="aiProgress">
           <div class="ai-progress-head"><span id="aiProgressText">準備生成</span><span id="aiProgressPct">0%</span></div>
           <div class="ai-progress-track"><div class="ai-progress-bar" id="aiProgressBar"></div></div>
@@ -1516,7 +1560,7 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
     $('#copyFocusBtn').onclick=()=>copyText(`${t.title}\n\n${t.summary}\n\n熱門度：${t.majorMediaCount} 家知名媒體共同報導\n${t.why}`);
     $('#copyLinksBtn').onclick=()=>copyText(t.sources.map(s=>`${s.name}｜${s.title}\n${s.url}`).join('\n\n'));
     $('#generateDraftBtn').onclick=()=>generateDraft(t);
-    $('#aiSettingsBtn').onclick=()=>window.parent?.signwellCmsOpenSettings?.();
+    $('#aiSettingsBtn').onclick=()=>{showScreen(listScreen);toggleFocusSettings(true);refreshFocusSettings({open:true});};
     showScreen(detailScreen);
     refreshAiWriterStatus({openWhenMissing:false});
   }
@@ -1930,7 +1974,9 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
 
   scanBtn.onclick=()=>scan(false);
   settingsToggleBtn?.addEventListener('click',()=>{toggleFocusSettings();if(focusSettingsPanel?.classList.contains('show'))refreshFocusSettings({open:true})});
-  $('#focusOpenSettingsBtn')?.addEventListener('click',()=>window.parent?.signwellCmsOpenSettings?.());
+  $('#focusAiSaveBtn')?.addEventListener('click',saveFocusProvider);
+  $('#focusAiTestBtn')?.addEventListener('click',testFocusProvider);
+  $('#focusAiVaultBtn')?.addEventListener('click',()=>window.parent?.signwellCmsOpenPublishSettings?.());
   $('#focusAiInstructionSaveBtn')?.addEventListener('click',saveFocusInstructions);
   $('#focusAiInstructionClearBtn')?.addEventListener('click',clearFocusInstructions);
   $('#focusAiInstructionOpenBtn')?.addEventListener('click',()=>window.parent?.signwellCmsOpenAIInstructions?.());
@@ -1947,7 +1993,5 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button
 
 })();
 </script>
-<script src="assets/signwell-math-engine.js?build=23.9.90-STAGING"></script>
-<script src="assets/signwell-liquid-glass-motion.js?build=23.9.90-STAGING"></script>
 </body>
 </html>
