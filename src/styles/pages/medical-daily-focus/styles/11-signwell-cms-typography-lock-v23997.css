@@ -1,0 +1,41 @@
+/* medical-daily-focus style component 11 · signwell-cms-typography-lock-v23997 */
+/* SIGN WELL CMS v23.9.97 · typography contract
+   Windows: Microsoft JhengHei / Microsoft JhengHei UI
+   Apple fallback: Yuanti TC rounded, then PingFang TC
+   System fonts only: no webfont request, no font preload, no layout-shift cost. */
+:root{
+  --sw-font-main:"Microsoft JhengHei UI","Microsoft JhengHei","微軟正黑體","Yuanti TC","STYuanti-TC-Regular","PingFang TC","Noto Sans TC","Segoe UI",sans-serif;
+  --sw-font-round:"Yuanti TC","STYuanti-TC-Regular","Microsoft JhengHei UI","Microsoft JhengHei","微軟正黑體","PingFang TC","Noto Sans TC",sans-serif;
+  --font-sans:var(--sw-font-main);
+  --font-serif:var(--sw-font-round);
+  --sans:var(--sw-font-main);
+  --serif:var(--sw-font-round);
+}
+html,body,body *,
+button,input,textarea,select,option,label,summary,
+[contenteditable="true"],[role="button"],[role="tab"],[role="dialog"]{
+  font-family:var(--sw-font-main)!important;
+}
+h1,h2,h3,h4,h5,h6,
+.brand,.brand strong,.brand-name,.brand-title,.mark,.lock-mark,
+.page-head h1,.page-title,.section-title,.panel-title,
+.stat strong,.article-row strong,.title-input,
+.doc-editor h2,.doc-editor h3,.doc-editor h4,
+.preview-content h1,.preview-content h2,.preview-content h3,.preview-content h4,
+.modal-card h2,.modal-card h3,.lock-screen h1,
+.login-greeting-word,.analytics-head strong,
+.newsletter-letter-title,.newsletter-exact-preview-head,
+.newsletter-send-title,.newsletter-send-preview-title,
+.person-form-modebar strong,.draft-paper h1,
+.focus-title,.detail-title,.scan-button,
+.notion-cc-head h1,.notion-card-head strong,.notion-hero-copy strong,
+.social-account-titlebar strong,.sw-publish-social-head strong,
+button,.top-action,.smallbtn,.nav button,.toolbar button,
+.pill,.generate-btn,.badge,.chip,.segmented button{
+  font-family:var(--sw-font-round)!important;
+}
+code,pre,kbd,samp,.content-area,.notion-log{
+  font-family:var(--sw-font-main)!important;
+}
+input::placeholder,textarea::placeholder{font-family:inherit!important}
+svg text{font-family:var(--sw-font-main)!important}

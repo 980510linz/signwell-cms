@@ -1,0 +1,26 @@
+/* CMS shell component 12 · source id: sw-v23-9-43-cms-button-fixes */
+/* SIGN WELL CMS v23.9.43 · requested action button colors */
+#lockBtn,
+#lockBtn:hover,
+#lockBtn:focus-visible{
+  color:#c5364d!important;
+  -webkit-text-fill-color:#c5364d!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,242,247,.62))!important;
+  border-color:rgba(197,54,77,.20)!important;
+  text-shadow:none!important;
+}
+#nlSendBtn,
+#nlSendBtn:hover,
+#nlSendBtn:focus-visible{
+  color:#111318!important;
+  -webkit-text-fill-color:#111318!important;
+  background:linear-gradient(145deg,#fff6fa 0%,#f9dce9 42%,#f4bfd6 100%)!important;
+  border-color:rgba(225,157,190,.32)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 12px 28px rgba(214,142,176,.16)!important;
+  text-shadow:none!important;
+}
+#nlSendBtn:disabled{
+  color:#33353a!important;
+  -webkit-text-fill-color:#33353a!important;
+  opacity:.68!important;
+}

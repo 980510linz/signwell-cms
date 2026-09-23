@@ -1,0 +1,19 @@
+/* CMS shell component 07 · source id: swCmsV222ButtonContract */
+button,.top-action,.smallbtn,.toolbar button,.row-actions button,.cover-actions button,.modal-actions button,
+.topic-row-actions button,.site-text-actions button,.publish-actions button,.about-photo-controls button,
+.aiw-editor-actions button,.aiw-send,.ai-save-btn,.generate-btn{
+  color:#111820!important;-webkit-text-fill-color:#111820!important;text-shadow:none!important;
+}
+.lock-screen button:not(.auth-back),.pill.primary,.draft-actions button.primary{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+#confirmDelete{
+  background:linear-gradient(145deg,#e45561,#c73846)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border-color:transparent!important;box-shadow:0 12px 28px rgba(191,55,68,.26),inset 0 1px 0 rgba(255,255,255,.24)!important;
+}
+#confirmDelete:hover{background:linear-gradient(145deg,#ec6671,#c93b49)!important}
+button:disabled,.top-action:disabled,.smallbtn:disabled,.toolbar button:disabled,.row-actions button:disabled,
+.cover-actions button:disabled,.modal-actions button:disabled,.topic-row-actions button:disabled,
+.site-text-actions button:disabled,.publish-actions button:disabled{
+  color:#111820!important;-webkit-text-fill-color:#111820!important;opacity:.92!important;
+}
