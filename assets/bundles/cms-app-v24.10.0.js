@@ -4,6 +4,12 @@ window.SignWellErrors?.installGlobal?.({surface:'CMS',module:'cms-runtime',homeU
 function swShowOperationalError(err,context={}){return window.SignWellErrors?.show?.(err,{surface:'CMS',homeUrl:'index.html',...context});}
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const KEY='signwell-cms-data-v1',ACTKEY='signwell-cms-last-active';const DEFAULT_SITE_TEXT={"siteTitle":"SIGN WELL · 欣緯生醫","metaDescription":"SIGN WELL · 欣緯生醫 — 臨床筆記、醫學推理與值得留下的知識。","brandEnglish":"SIGN WELL","brandChinese":"欣緯生醫","navArticles":"文章","navTopics":"主題","navAbout":"關於我們","heroEyebrow":"SIGN WELL BIOMED · 欣緯生醫","heroTitleLine1":"把臨床問題，","heroTitleLine2":"寫成值得留下的答案。","heroSubtitle":"臨床筆記、醫學推理、醫療科技與自費醫療觀察。不是追求資訊最多，而是把真正值得記住的框架整理清楚。","heroCardTitle":"醫學筆記、臨床推理，與值得留下的知識。","heroCardBody":"以閱讀品質為核心的個人醫學出版空間。從床邊問題出發，保留推理脈絡與可回顧的知識。","heroCardTiny":"獨立醫學筆記","featuredEyebrow":"編輯精選","featuredTitle":"精選臨床筆記","topicsEyebrow":"知識地圖","topicsTitle":"主題分類","topicsDescription":"依臨床領域瀏覽","recentEyebrow":"最近整理","recentTitle":"最新文章","publishedCountSuffix":"篇已發布筆記","articleCountSuffix":"篇文章","minutesReadSuffix":"分鐘閱讀","articleBrand":"SIGN WELL · 欣緯生醫","updatedLabel":"更新","shareLabel":"分享","copyLinkLabel":"複製連結","tocTitle":"本頁內容","aboutEyebrow":"關於 SIGN WELL","aboutTitle":"欣緯生醫","aboutBody":"一個以臨床推理、醫學教育與自費醫療觀察為核心的個人出版空間。網站內容希望保留「為什麼」而不只留下答案，讓每篇筆記都能在下一次遇到病人或問題時真正派上用場。","aboutFocusLabel":"核心","aboutFocusValue":"臨床推理","aboutFormatLabel":"形式","aboutFormatValue":"筆記 · 深度整理","aboutPrincipleLabel":"原則","aboutPrincipleValue":"清楚勝過複雜","aboutDisclaimer":"本站不提供醫療服務、不招攬醫療業務；內容僅供醫學教育與資訊整理，不構成個別醫療建議，也不能取代正式臨床評估。","aboutManifestoTitle":"把複雜的醫學，整理成真正能被理解與使用的知識。","aboutManifestoBody":"我們重視推理、脈絡與長期可回顧性，而不只是快速堆疊資訊。","aboutPeopleEyebrow":"PEOPLE","aboutPeopleTitle":"我們是誰","aboutPeopleSubtitle":"以不同背景與專長，共同整理值得留下的醫學與健康知識。","footerTagline":"臨床筆記、醫學推理，以及值得留下的知識。","footerDisclaimer":"本站不提供醫療服務、不招攬醫療業務；內容僅供醫學教育與資訊整理，不構成個別醫療建議。","searchPlaceholder":"搜尋文章、主題、關鍵字…","emptyCategory":"目前沒有這個分類的文章。","notFoundTitle":"找不到文章","notFoundBody":"這篇文章可能尚未發布或網址已改變。","homeEyebrow":"SIGN WELL BIOMED · 欣緯生醫","homeTitle1":"從臨床出發，","homeTitle2":"把值得留下的醫學寫清楚。","homeSubtitle":"以臨床推理、醫學教育與自費醫療觀察為核心的知識平台。從一個問題開始，整理成下一次真正用得上的答案。","homeCardTitle":"醫學不只是答案，而是理解答案從哪裡來。","homeCardBody":"把床邊問題、閱讀與思考整理成可回顧的知識，讓資訊回到臨床情境。","dailyEyebrow":"每日更新","dailyTitle":"每日新文章","dailyDescription":"最新整理與近期發布","topicsSubtitle":"依領域整理文章、臨床問題與延伸閱讀。","shareEyebrow":"分享我們","shareTitle":"把 SIGN WELL 分享給需要的人。","shareSubtitle":"複製網站連結，或使用 QR Code 讓另一台裝置快速開啟。"};let data={articles:[],topics:[],people:[],glossary:[],siteText:{...DEFAULT_SITE_TEXT}},dataReady=Promise.resolve(),currentId=null,pendingNewArticle=null,viewName='dashboard',deleteId=null,saveTimer=null,swGlossaryIdleTimer=null,authStage=1,pendingPin='',authSecret='',authFailCount={1:0,2:0},cmsSessionToken='',authChallenge='',cmsAuthConfigured=false,cmsAuthClientId='',cmsAuthNeedsPolicyUpgrade=false,cmsPasskeyConfigured=false,cmsPasskeyAuthUrl='',cmsPasskeyBusy=false;
 const clone=x=>JSON.parse(JSON.stringify(x));
+// Current production public host. Custom domain activation is deliberately
+// excluded from this release; changing domains later only requires updating
+// this single runtime contract after the domain actually exists.
+const SW_CMS_PUBLIC_BASE='https://980510linz.github.io/signwell.com/';
+function swCmsPublicUrl(path=''){try{return new URL(String(path||'').replace(/^\/+/,''),SW_CMS_PUBLIC_BASE).href}catch(_){return SW_CMS_PUBLIC_BASE}}
+function swCmsPublicArticleUrl(value=''){const slug=typeof value==='object'?slugify(value.slug||value.title||value.id||''):slugify(String(value||''));const u=new URL('index.html',SW_CMS_PUBLIC_BASE);u.searchParams.set('article',slug);return u.href}
 const CMS_PUBLISHED_RECEIPT_KEY='signwell-cms-published-receipts-v1';
 function cmsPublishedReceipts(){
   try{const raw=JSON.parse(localStorage.getItem(CMS_PUBLISHED_RECEIPT_KEY)||'{}');return raw&&typeof raw==='object'?raw:{}}catch(_){return {}}
@@ -461,6 +467,7 @@ async function completeCmsLogin(method='legacy'){
   else showToast((method==='passkey'?'Passkey 登入完成':'登入完成')+' · 使用本機快取');
   await playLoginSuccessSequence();
   swReviewInboxMaybeOpen(false).catch(()=>{});
+  setTimeout(()=>window.swSidebarHealthRefresh?.(true,true),120);
   medicalNewsBackgroundWarmup();
   cloudTask.then(ok=>{if(ok&&!cloudFinished)cmsCloudSetStatus('雲端已同步 ✓')}).finally(()=>{startCmsCloudPolling()});
 }
@@ -508,7 +515,11 @@ window.signwellMedicalNewsScan=async function(options={}){
     hours:24,
     limit:5,
     minMajorMedia:2,
-    force:Boolean(options.force)
+    force:Boolean(options.force),
+    // Daily Focus list does not need direct publisher redirects. Keeping the
+    // Google News entry in the first response removes dozens of serial
+    // UrlFetch calls; direct verification is deferred to the evidence flow.
+    resolveSources:options.resolveSources!==false
   };
 
   return signwellGasBridge(
@@ -538,13 +549,23 @@ function medicalNewsWorkspaceFresh(){
 
 window.signwellMedicalNewsWorkspace=async function(options={}){
   const force=Boolean(options.force);
+  const fast=options.fast===true;
   if(!force && medicalNewsWorkspaceFresh())return clone(medicalNewsWorkspaceCache);
   if(!force && medicalNewsWarmupPromise)return clone(await medicalNewsWarmupPromise);
 
   const task=signwellGasBridge(
     'admin.medicalNews.workspace',
-    {hours:24,limit:5,minMajorMedia:2,force},
-    {adminKey:newsletterAdminKey(),timeoutMs:90000}
+    {
+      hours:24,
+      limit:5,
+      minMajorMedia:2,
+      force,
+      // Fast path: list first, expensive enrichment later.
+      fast,
+      includeLiterature:fast?false:options.includeLiterature!==false,
+      resolveSources:fast?false:options.resolveSources!==false
+    },
+    {adminKey:newsletterAdminKey(),timeoutMs:fast?45000:90000}
   ).then(result=>{
     medicalNewsWorkspaceCache=result;
     medicalNewsWarmupAt=Date.now();
@@ -748,7 +769,7 @@ function medicalNewsBackgroundWarmup(){
       return;
     }
 
-    window.signwellMedicalNewsWorkspace({force:false})
+    window.signwellMedicalNewsWorkspace({force:false,fast:true,includeLiterature:false,resolveSources:false})
       .then(()=>{
         if(viewName==='medicalnews'){
           try{
@@ -826,7 +847,8 @@ function normalizeGeneratedMedicalArticle(payload={}){
       generatedAt:new Date().toISOString(),
       sources:Array.isArray(payload.sources)?clone(payload.sources):[],
       publicationKey:medicalNewsPublicationKey(payload),
-      publishedOnline:false
+      publishedOnline:false,
+      aiBaseline:{title:title,excerpt:String(payload.excerpt||'').trim().slice(0,260),content:String(payload.content||'').slice(0,12000),capturedAt:new Date().toISOString(),source:'medical-ai-writer'}
     }
   };
 }
@@ -873,6 +895,7 @@ window.signwellMedicalNewsCreateArticle=async function(payload={},mode='editor')
       const publishedArticle=data.articles.find(x=>String(x.id)===String(article.id))||article;
       markArticlePublishedReceipt(publishedArticle);
       persist(true);
+      try{await window.signwellEditorialLearningRegisterPublish?.(publishedArticle)}catch(_){}
       try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
 
       const notification={
@@ -940,7 +963,7 @@ function ensureMedicalNewsPersistentFrame(){
   const host=$('#medicalNewsPersistentHost');if(!host)return null;
   let frame=$('#medicalNewsSuggestionsFrame');
   if(!frame){
-    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=23.9.88-STAGING" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
+    host.innerHTML=`<section class="medical-news-shell" aria-label="時事新聞建議"><iframe class="medical-news-frame" id="medicalNewsSuggestionsFrame" src="medical-daily-focus.html?build=24.25.0-STAGING" title="SIGN WELL 時事新聞建議" loading="eager"></iframe></section>`;
     frame=$('#medicalNewsSuggestionsFrame');
   }
   return frame;
@@ -1041,7 +1064,7 @@ function renderView(){
   else if(viewName==='canva')renderCanvaSocial();
   else if(viewName==='aiopenai')renderOpenAISettings();
   else if(viewName==='deepresearch')renderDeepResearchWorkspace();
-  else if(viewName==='export'){renderExport();setTimeout(swInitPasskeySettings,0);setTimeout(initPublishAIProviderSettings,0);setTimeout(initPublishGptSettings,12);setTimeout(initPublishComplianceSettings,28);setTimeout(initMetaProviderSettings,64);setTimeout(initSecurityAuditPanel,124)}
+  else if(viewName==='export'){renderExport();setTimeout(swInitPasskeySettings,0);setTimeout(initPublishAIProviderSettings,0);setTimeout(initPublishGptSettings,12);setTimeout(initPublishComplianceSettings,28);setTimeout(initMetaProviderSettings,64);setTimeout(()=>window.swServiceHealthMountSettings?.(),82);setTimeout(()=>window.swArticleIdentityMountSettings?.(),104);setTimeout(initSecurityAuditPanel,140)}
   else renderDashboard();
 }
 
@@ -1579,18 +1602,25 @@ window.addEventListener('resize',()=>{
   if(viewName==='dashboard')scheduleAnalyticsTrendCanvas();
 },{passive:true});
 
+function analyticsLivePollDelay(){
+  if(document.body.classList.contains('perf-lite'))return 30000;
+  if(document.body.classList.contains('perf-balanced'))return 20000;
+  return 15000;
+}
 function startAnalyticsLivePolling(){
   stopAnalyticsLivePolling();
-  analyticsLiveTimer=setInterval(()=>{
-    if(document.hidden||$('#cms').classList.contains('hidden'))return;
-    if(viewName==='dashboard'||viewName==='articles'){
-      refreshRemoteAnalytics(true);
+  const tick=async()=>{
+    analyticsLiveTimer=null;
+    if(!document.hidden&&!$('#cms').classList.contains('hidden')&&(viewName==='dashboard'||viewName==='articles')){
+      try{await refreshRemoteAnalytics(false)}catch(_){}
     }
-  },6000);
+    if(!$('#cms').classList.contains('hidden'))analyticsLiveTimer=setTimeout(tick,analyticsLivePollDelay());
+  };
+  analyticsLiveTimer=setTimeout(tick,analyticsLivePollDelay());
 }
 function stopAnalyticsLivePolling(){
   if(analyticsLiveTimer){
-    clearInterval(analyticsLiveTimer);
+    clearTimeout(analyticsLiveTimer);
     analyticsLiveTimer=null;
   }
 }
@@ -1636,16 +1666,16 @@ function newsletterEnabled(){
   return enabled && /^https:\/\//i.test(endpoint);
 }
 function newsletterAdminKey(){
-  return cmsSessionToken || localStorage.getItem(NEWSLETTER_ADMIN_KEY) || '';
+  return String(cmsSessionToken||'');
 }
 function newsletterKeyMode(){
-  return cmsSessionToken?'session':(localStorage.getItem(NEWSLETTER_ADMIN_KEY)?'custom':'none');
+  return cmsSessionToken?'session':'none';
 }
 
-function saveNewsletterAdminKey(v){
-  const key=String(v||'').trim();
-  if(key)localStorage.setItem(NEWSLETTER_ADMIN_KEY,key);
-  else localStorage.removeItem(NEWSLETTER_ADMIN_KEY);
+/* v24.23: static admin credentials are no longer persisted in browser storage.
+   Keep the legacy key name only so old installs can be cleaned up safely. */
+function saveNewsletterAdminKey(){
+  try{localStorage.removeItem(NEWSLETTER_ADMIN_KEY)}catch(_){}
 }
 function newsletterHeaders(){
   const h={'Content-Type':'application/json'};
@@ -1674,7 +1704,7 @@ function swGasBridgeOriginAllowed(origin){
   }catch(_){return false}
 }
 
-function signwellGasBridge(action,payload={},options={}){
+function signwellGasBridgeRaw_(action,payload={},options={}){
   return new Promise((resolve,reject)=>{
     if(!newsletterEnabled()){const e=window.SignWellErrors?.bridgeError?.('SIGN WELL Backend 尚未啟用',{status:503,errorCode:'SW-CMS-503-BACKEND-DISABLED',module:'backend-bridge',action})||new Error('SIGN WELL Backend 尚未啟用');return reject(e);}
     const endpoint=newsletterBase();
@@ -1743,7 +1773,7 @@ function signwellGasBridge(action,payload={},options={}){
     window.addEventListener('message',onMessage);
     iframe.addEventListener('load',()=>{iframeLoadCount+=1});
 
-    const timeoutMs=Math.max(5000,Number(options.timeoutMs||30000));
+    const timeoutMs=Math.min(120000,Math.max(5000,Number(options.timeoutMs||30000)));
     timer=setTimeout(()=>{
       cleanup();
       reject(window.SignWellErrors?.bridgeError?.(
@@ -1757,6 +1787,50 @@ function signwellGasBridge(action,payload={},options={}){
     form.submit();
   });
 }
+
+
+/* v24.25 Cross-Exam Gate · one expensive iframe bridge call per identical read.
+   Every Apps Script request creates an iframe + form + message listener, so duplicate
+   status/poll requests are real work. Mutations are NEVER coalesced. */
+const swGasBridgeInflight=new Map();
+const swGasBridgeStats={started:0,completed:0,failed:0,singleFlightHits:0,lastLatencyMs:0};
+function swGasBridgeReadOnly_(action){
+  const a=String(action||'');
+  if(a==='cms.auth.status'||a==='article.trace'||a==='admin.medicalNews.scan')return true;
+  return /(?:\.status|\.stats|\.health|\.list|\.candidates|\.get|\.workspace|\.literature|\.summary|\.subscribers|\.campaigns|\.preview|\.subscriberDiagnostics|\.aiInstructionState|\.aiJobStatus|\.editorialMemoryState|\.editorialPerformanceState)$/.test(a);
+}
+function swGasBridgeSingleFlightKey_(action,payload,options){
+  if(options?.singleFlight===false)return '';
+  if(options?.singleFlight!==true&&!swGasBridgeReadOnly_(action))return '';
+  let body='{}';
+  try{body=JSON.stringify(payload||{})}catch(_){return ''}
+  return String(action||'')+'|'+body;
+}
+function signwellGasBridge(action,payload={},options={}){
+  const key=swGasBridgeSingleFlightKey_(action,payload,options);
+  if(key&&swGasBridgeInflight.has(key)){
+    swGasBridgeStats.singleFlightHits+=1;
+    return swGasBridgeInflight.get(key);
+  }
+  const startedAt=performance.now();
+  swGasBridgeStats.started+=1;
+  const task=signwellGasBridgeRaw_(action,payload,options).then(value=>{
+    swGasBridgeStats.completed+=1;
+    swGasBridgeStats.lastLatencyMs=Math.max(0,Math.round(performance.now()-startedAt));
+    return value;
+  },err=>{
+    swGasBridgeStats.failed+=1;
+    swGasBridgeStats.lastLatencyMs=Math.max(0,Math.round(performance.now()-startedAt));
+    throw err;
+  }).finally(()=>{
+    if(key&&swGasBridgeInflight.get(key)===task)swGasBridgeInflight.delete(key);
+  });
+  if(key)swGasBridgeInflight.set(key,task);
+  return task;
+}
+window.SignWellGasBridgeDiagnostics=Object.freeze({
+  snapshot:()=>Object.freeze({...swGasBridgeStats,pending:swGasBridgeInflight.size})
+});
 
 async function newsletterRequest(path,opt={}){
   const map={
@@ -1796,10 +1870,7 @@ async function newsletterRequest(path,opt={}){
 }
 function migrateLegacyNewsletterKey(){
   try{
-    const legacy=sessionStorage.getItem('signwell-newsletter-admin-session-v1');
-    if(legacy&&!localStorage.getItem(NEWSLETTER_ADMIN_KEY)){
-      localStorage.setItem(NEWSLETTER_ADMIN_KEY,legacy);
-    }
+    localStorage.removeItem(NEWSLETTER_ADMIN_KEY);
     sessionStorage.removeItem('signwell-newsletter-admin-session-v1');
   }catch(_){}
 }
@@ -1811,7 +1882,12 @@ migrateLegacyNewsletterKey();
    Local IndexedDB remains an offline cache only. */
 const CMS_CLOUD_CLIENT_KEY='signwell-cms-cloud-client-v1';
 const CMS_CLOUD_MIGRATED_KEY='signwell-cms-cloud-migrated-v1';
-const CMS_CLOUD_POLL_MS=8000;
+const CMS_CLOUD_POLL_MS=18000;
+function cmsCloudPollDelay(){
+  if(document.body.classList.contains('perf-lite'))return 30000;
+  if(document.body.classList.contains('perf-balanced'))return 24000;
+  return CMS_CLOUD_POLL_MS;
+}
 
 let cmsCloudRevision=0;
 let cmsCloudDirty=false;
@@ -2083,16 +2159,18 @@ async function cmsCloudApplyDeferred(){
 function startCmsCloudPolling(){
   stopCmsCloudPolling();
   if(!cmsCloudEnabled())return;
-
-  cmsCloudPollTimer=setInterval(()=>{
+  const tick=async()=>{
+    cmsCloudPollTimer=null;
     if(!document.hidden&&!$('#cms').classList.contains('hidden')){
-      cmsCloudPullNow();
+      try{await cmsCloudPullNow()}catch(_){}
     }
-  },CMS_CLOUD_POLL_MS);
+    if(cmsCloudEnabled()&&!$('#cms').classList.contains('hidden'))cmsCloudPollTimer=setTimeout(tick,cmsCloudPollDelay());
+  };
+  cmsCloudPollTimer=setTimeout(tick,cmsCloudPollDelay());
 }
 function stopCmsCloudPolling(){
   if(cmsCloudPollTimer){
-    clearInterval(cmsCloudPollTimer);
+    clearTimeout(cmsCloudPollTimer);
     cmsCloudPollTimer=null;
   }
 }
@@ -2103,7 +2181,7 @@ function bindCmsCloudRealtime(){
   window.addEventListener('focus',()=>{
     if(!$('#cms').classList.contains('hidden')){
       cmsCloudPullNow();
-      if(viewName==='dashboard'||viewName==='articles')refreshRemoteAnalytics(true);
+      if(viewName==='dashboard'||viewName==='articles')refreshRemoteAnalytics(false);
     }
   });
 
@@ -2133,7 +2211,7 @@ function newsletterAbsolutePublicUrl(v=''){
   const s=String(v||'').trim();
   if(!s)return '';
   if(/^https?:\/\//i.test(s))return s;
-  return 'https://signwell.com.tw/'+s.replace(/^\/+/,'');
+  return swCmsPublicUrl(s);
 }
 function newsletterReadingMinutes(a){
   const text=plainFromHTML(articleHTML(a));
@@ -2148,7 +2226,7 @@ function newsletterRecommendationPayloads(excludeId=''){
       category:a.category||'SIGN WELL',
       title:a.title||'未命名文章',
       excerpt:a.excerpt||plainFromHTML(articleHTML(a)).slice(0,88),
-      url:`https://signwell.com.tw/article/${encodeURIComponent(slugify(a.slug||a.title||a.id))}/`
+      url:swCmsPublicArticleUrl(a)
     }));
 }
 function newsletterHeroPayload(a){
@@ -2162,7 +2240,7 @@ function newsletterHeroPayload(a){
     category:a.category||'SIGN WELL',
     readMinutes:newsletterReadingMinutes(a),
     publishedAt:a.publishedAt||new Date().toISOString().slice(0,10),
-    url:`https://signwell.com.tw/article/${encodeURIComponent(slug)}/`,
+    url:swCmsPublicArticleUrl(slug),
     idempotencyKey:'article:'+slug,
     recommendations:newsletterRecommendationPayloads(a.id)
   };
@@ -3917,7 +3995,7 @@ function cmsPersonPhotoURL(value=''){
   if(blob)src=`https://raw.githubusercontent.com/${blob[1]}/${blob[2]}/${blob[3]}/${blob[4]}`;
   if(/^(?:data:image\/|blob:|https?:\/\/)/i.test(src))return src;
   src=src.replace(/^\.\//,'').replace(/^\.\.\//,'').replace(/^\/+/, '');
-  if(/^assets\//i.test(src))return 'https://signwell.com.tw/'+src;
+  if(/^assets\//i.test(src))return swCmsPublicUrl(src);
   return src;
 }
 function cmsAvatarMarkupFrom(photo,name=''){
@@ -4956,7 +5034,7 @@ function renderSiteText(){
         </div>
       </div>
       <div class="live-browser">
-        <div class="live-browser-bar"><i></i><i></i><i></i><div class="live-browser-url">980510linz.github.io/-/</div></div>
+        <div class="live-browser-bar"><i></i><i></i><i></i><div class="live-browser-url">980510linz.github.io/signwell.com/</div></div>
         <div class="live-preview-stage" id="liveSitePreview"></div>
       </div>
       <div class="live-preview-unsaved"><i></i>編輯中預覽；按「儲存並發布到網站」後才會公開。</div>
@@ -5732,7 +5810,7 @@ function renderAboutPageEditor(){
         </div>
       </div>
       <div class="about-preview-browser">
-        <div class="about-preview-bar"><i></i><i></i><i></i><div class="about-preview-url">980510linz.github.io/-/about.html</div></div>
+        <div class="about-preview-bar"><i></i><i></i><i></i><div class="about-preview-url">980510linz.github.io/signwell.com/about.html</div></div>
         <div class="about-preview-stage" id="aboutPreviewStage"></div>
       </div>
     </aside>
@@ -6364,7 +6442,14 @@ window.signwellDeepResearchCancel=async function(id){
 };
 
 let swDeepResearchPollTimer=null;
+let swDeepResearchPollCount=0;
 let swDeepResearchState={config:null,jobs:[],activeId:'',activeResult:null,busy:false};
+if(!window.__swDeepResearchVisibilityBound){
+  window.__swDeepResearchVisibilityBound=true;
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden&&viewName==='deepresearch')window.__swDeepResearchStartPolling?.();
+  },{passive:true});
+}
 
 function swDeepResearchStatusLabel_(status=''){
   const s=String(status||'').toLowerCase();
@@ -6416,7 +6501,7 @@ function swDeepResearchCreateDraft_(job,result){
     contentFormat:'html',references:[],internalReferences:[],
     audit:{deepResearch:{responseId:String(job?.id||''),model:String(job?.model||''),completedAt:String(job?.completedAt||''),citations:Array.isArray(result.citations)?result.citations.length:0}},
     complianceReview:null,
-    sourceWorkspace:{type:'openai-deep-research',responseId:String(job?.id||''),generatedAt:new Date().toISOString(),sources:(result.citations||[]).map(x=>({title:x.title||'',url:x.url||''})),publishedOnline:false}
+    sourceWorkspace:{type:'openai-deep-research',responseId:String(job?.id||''),generatedAt:new Date().toISOString(),sources:(result.citations||[]).map(x=>({title:x.title||'',url:x.url||''})),publishedOnline:false,aiBaseline:{title:title,excerpt:String(result.text||'').replace(/[#*_>`\[\]]/g,' ').replace(/\s+/g,' ').trim().slice(0,240),content:swDeepResearchReportHtml_(result.text,result.citations||[]).slice(0,12000),capturedAt:new Date().toISOString(),source:'openai-deep-research'}}
   };
   data.articles.unshift(article);
   persist(true);
@@ -6445,7 +6530,7 @@ function swDeepResearchWriteDirectly_(job,result,{openEditor=true,silent=false}=
       article.contentFormat='html';
       article.updatedAt=today;
       article.audit={...(article.audit||{}),deepResearch:{responseId:String(job?.id||''),model:String(job?.model||''),completedAt:String(job?.completedAt||''),citations:Array.isArray(result.citations)?result.citations.length:0,directWrite:true}};
-      article.sourceWorkspace={...(article.sourceWorkspace||{}),type:'openai-deep-research',responseId:String(job?.id||''),generatedAt:new Date().toISOString(),sources:(result.citations||[]).map(x=>({title:x.title||'',url:x.url||''})),publishedOnline:false,directWrite:true};
+      article.sourceWorkspace={...(article.sourceWorkspace||{}),type:'openai-deep-research',responseId:String(job?.id||''),generatedAt:new Date().toISOString(),sources:(result.citations||[]).map(x=>({title:x.title||'',url:x.url||''})),publishedOnline:false,directWrite:true,aiBaseline:article.sourceWorkspace?.aiBaseline||{title:String(job?.title||article.title||'深入研究').trim(),excerpt:String(result.text||'').replace(/[#*_>`\[\]]/g,' ').replace(/\s+/g,' ').trim().slice(0,240),content:html.slice(0,12000),capturedAt:new Date().toISOString(),source:'openai-deep-research'}};
       persist(true);syncPublicSnapshot();
     }
   }else{
@@ -6491,7 +6576,7 @@ function swDeepResearchResultHtml_(job,result){
 }
 
 function renderDeepResearchWorkspace(){
-  if(swDeepResearchPollTimer){clearInterval(swDeepResearchPollTimer);swDeepResearchPollTimer=null;}
+  if(swDeepResearchPollTimer){clearTimeout(swDeepResearchPollTimer);swDeepResearchPollTimer=null;}
   $('#view').innerHTML=`
     <div class="page-head sw-dr-page-head">
       <div><span class="eyebrow">OPENAI · BACKGROUND RESEARCH</span><h1>深入研究</h1><p>把一個問題交給真實的 OpenAI Responses API 背景研究任務。長任務不佔住 CMS；完成後會自動寫入文章編輯器，同時保留完整報告與來源。</p></div>
@@ -6577,12 +6662,21 @@ async function swInitDeepResearchWorkspace(){
     }catch(err){showToast('研究狀態更新失敗：'+String(err?.message||err));}
   }
   function startPollingIfNeeded(){
-    if(swDeepResearchPollTimer){clearInterval(swDeepResearchPollTimer);swDeepResearchPollTimer=null;}
+    if(swDeepResearchPollTimer){clearTimeout(swDeepResearchPollTimer);swDeepResearchPollTimer=null;}
     const active=swDeepResearchState.jobs.find(x=>String(x.id)===String(swDeepResearchState.activeId));
-    if(!active||!swDeepResearchRunning_(active.status))return;
-    swDeepResearchPollTimer=setInterval(()=>{if(viewName!=='deepresearch'){clearInterval(swDeepResearchPollTimer);swDeepResearchPollTimer=null;return;}refreshOne(active.id);},6000);
+    if(!active||!swDeepResearchRunning_(active.status)){swDeepResearchPollCount=0;return;}
+    if(document.hidden)return;
+    const delay=swDeepResearchPollCount<3?5000:(swDeepResearchPollCount<8?8000:15000);
+    swDeepResearchPollTimer=setTimeout(()=>{
+      swDeepResearchPollTimer=null;
+      if(viewName!=='deepresearch'||document.hidden)return;
+      swDeepResearchPollCount++;
+      refreshOne(active.id);
+    },delay);
+    window.__swDeepResearchStartPolling=startPollingIfNeeded;
   }
 
+  window.__swDeepResearchStartPolling=startPollingIfNeeded;
   await reload();
   if(swDeepResearchState.activeId)await refreshOne(swDeepResearchState.activeId);
 
@@ -6591,7 +6685,7 @@ async function swInitDeepResearchWorkspace(){
     const query=$d('swDeepResearchQuery').value.trim();if(!query){showToast('請輸入研究問題');$d('swDeepResearchQuery').focus();return;}
     if(!swDeepResearchState.config?.configured){showToast('請先儲存 Deep Research Model 設定');return;}
     const btn=$d('swDeepResearchStart'),old=btn.textContent;btn.disabled=true;btn.textContent='建立研究任務…';
-    try{const r=await window.signwellDeepResearchStart({query,context:$d('swDeepResearchContext').value,instructions:$d('swDeepResearchInstructions').value,language:'zh-TW'});const job=r.job;if(job){swDeepResearchState.jobs=[job,...swDeepResearchState.jobs.filter(x=>String(x.id)!==String(job.id))];swDeepResearchState.activeId=job.id;swDeepResearchState.activeResult=null;paintJobs();paintResult();startPollingIfNeeded();showToast('Deep Research 已在背景啟動');}}
+    try{const r=await window.signwellDeepResearchStart({query,context:$d('swDeepResearchContext').value,instructions:$d('swDeepResearchInstructions').value,language:'zh-TW'});const job=r.job;if(job){swDeepResearchPollCount=0;swDeepResearchState.jobs=[job,...swDeepResearchState.jobs.filter(x=>String(x.id)!==String(job.id))];swDeepResearchState.activeId=job.id;swDeepResearchState.activeResult=null;paintJobs();paintResult();startPollingIfNeeded();showToast('Deep Research 已在背景啟動');}}
     catch(err){showToast('Deep Research 啟動失敗：'+String(err?.message||err));}
     finally{btn.disabled=false;btn.textContent=old;}
   };
@@ -6712,13 +6806,14 @@ function swNotionApplyStatus(s){
   swNotionState.status=s||{};const dbs=s?.databases||{},count=swNotionDbCount(s),badge=document.getElementById('notionCcBadge'),tokenBadge=document.getElementById('notionTokenBadge'),dbBadge=document.getElementById('notionDbBadge');
   if(badge){badge.classList.toggle('ready',Boolean(s?.accessTokenConfigured));badge.innerHTML=`<i></i>${escapeHTML(s?.accessTokenConfigured?'Notion Connected':'Notion 未連線')}`;}
   const sideNotionDot=document.getElementById('sideNotionDot'),sideNotionState=document.getElementById('sideNotionState'),sideWeeklyDot=document.getElementById('sideWeeklyDot'),sideWeeklyState=document.getElementById('sideWeeklyState');
-  if(sideNotionDot)sideNotionDot.classList.toggle('ready',Boolean(s?.accessTokenConfigured));if(sideNotionState)sideNotionState.textContent=s?.accessTokenConfigured?'CONNECTED':'待連線';
-  if(sideWeeklyDot)sideWeeklyDot.classList.toggle('ready',Boolean(s?.weekly?.enabled));if(sideWeeklyState)sideWeeklyState.textContent=s?.weekly?.enabled?'ON':'OFF';
+  const notionReady=s?.live===true,notionError=s?.live===false,weeklyReady=Boolean(s?.weekly?.enabled&&s?.weekly?.triggerInstalled);
+  if(sideNotionDot)sideNotionDot.classList.toggle('ready',notionReady);if(sideNotionState)sideNotionState.textContent=!s?.accessTokenConfigured?'待連線':notionReady?'正常':notionError?'異常':'已設定';
+  if(sideWeeklyDot)sideWeeklyDot.classList.toggle('ready',weeklyReady);if(sideWeeklyState)sideWeeklyState.textContent=!s?.weekly?.enabled?'OFF':weeklyReady?'READY':'TRIGGER MISSING';
   if(tokenBadge){tokenBadge.classList.toggle('ready',Boolean(s?.accessTokenConfigured));tokenBadge.innerHTML=`<i></i>${escapeHTML(s?.accessTokenConfigured?'Token 已保存':'Token 未設定')}`;}
   if(dbBadge){dbBadge.classList.toggle('ready',count===13);dbBadge.innerHTML=`<i></i>${count} / 13`;}
   const ws=document.getElementById('notionKpiWorkspace'),wss=document.getElementById('notionKpiWorkspaceSub');if(ws)ws.textContent=s?.accessTokenConfigured?'CONNECTED':'NOT SET';if(wss)wss.textContent=swNotionStatusLabel(s);
   const kd=document.getElementById('notionKpiDb');if(kd)kd.textContent=count+' / 13';
-  const kw=document.getElementById('notionKpiWeekly'),kws=document.getElementById('notionKpiWeeklySub');if(kw)kw.textContent=s?.weekly?.enabled?'ON':'OFF';if(kws)kws.textContent=s?.weekly?.enabled?`週一 ${String(s.weekly.hour??8).padStart(2,'0')}:00 · ${s.weekly.triggerInstalled?'Trigger Ready':'Trigger Missing'}`:'Gmail 主動通知未啟用';
+  const kw=document.getElementById('notionKpiWeekly'),kws=document.getElementById('notionKpiWeeklySub');if(kw)kw.textContent=s?.weekly?.enabled?'ON':'OFF';if(kws)kws.textContent=s?.weekly?.enabled?`週一 ${String(s.weekly.hour??8).padStart(2,'0')}:00–${String(((s.weekly.hour??8)+1)%24).padStart(2,'0')}:00 時段 · ${s.weekly.triggerInstalled?'Trigger Ready':'Trigger Missing'}`:'Gmail 主動通知未啟用';
   const ks=document.getElementById('notionKpiSync'),kss=document.getElementById('notionKpiSyncSub');if(ks)ks.textContent=s?.lastSyncAt?swNotionTime(s.lastSyncAt):'—';if(kss)kss.textContent=s?.lastSyncSummary||'尚未同步 CMS → Notion';
   const set=(id,val)=>{const el=document.getElementById(id);if(el&&!el.matches(':focus'))el.value=val||''};set('notionParentPageId',s?.parentPageId||'');set('notionApiVersion',s?.apiVersion||'2022-06-28');set('notionContentDb',dbs.content||'');set('notionSocialDb',dbs.social||'');set('notionEvidenceDb',dbs.evidence||'');set('notionReportsDb',dbs.reports||'');set('notionOperationsDb',dbs.operations||'');set('notionReviewDb',dbs.review||'');set('notionComplianceDb',dbs.compliance||'');set('notionSummaryDb',dbs.summaries||'');set('notionPromptDb',dbs.prompts||'');set('notionSourceDb',dbs.sources||'');set('notionFlagsDb',dbs.flags||'');set('notionReleasesDb',dbs.releases||'');set('notionAiPerformanceDb',dbs.aiPerformance||'');set('notionWeeklyEmail',s?.weekly?.email||'');
   const hour=document.getElementById('notionWeeklyHour');if(hour&&!hour.matches(':focus'))hour.value=String(s?.weekly?.hour??8);const enabled=document.getElementById('notionWeeklyEnabled');if(enabled)enabled.checked=Boolean(s?.weekly?.enabled);const bot=document.getElementById('notionWorkspaceBot');if(bot)bot.value=s?.bot?.workspaceName||s?.bot?.name||(s?.accessTokenConfigured?'Token 已設定；按測試連線':'尚未驗證');
@@ -6736,13 +6831,110 @@ async function swNotionSetToken(){await openSecretVaultDialog({target:'notion',t
 async function swNotionTest(){try{swNotionSetBusy(true);await swNotionSaveConfig(true);const r=await swNotionRequest('admin.notion.test',{},45000);showToast('Notion Workspace 連線成功');swNotionLog(`Workspace 連線成功\nBot: ${r.name||'—'}\nWorkspace: ${r.workspaceName||'—'}\nAPI version: ${r.apiVersion||'—'}`,'ok');await swNotionRefresh(true)}catch(err){showToast('Notion 連線失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
 async function swNotionDisconnect(){await openSecretVaultDialog({target:'notion',title:'移除 Notion Workspace Token',danger:true,onCommit:async({secretAuthToken})=>{const s=await swNotionRequest('admin.notion.disconnect',{secretAuthToken},35000);swNotionApplyStatus(s);showToast('Notion Token 已移除');swNotionLog('Token 已移除；Database mapping 保留，之後重新設定 Token 可繼續使用。','ok')}})}
 async function swNotionBootstrap(){try{swNotionSetBusy(true);await swNotionSaveConfig(true);swNotionLog('正在 Notion Command Center 下建立／補齊 13 個資料庫…');const r=await swNotionRequest('admin.notion.bootstrap',{},120000);swNotionApplyStatus(r.status||{});showToast('Notion v24.1 中控台資料庫已建立／升級');swNotionLog('建立完成：'+Object.keys(r.created||{}).join(' / ')+'\n如果部分資料庫原本就存在，系統會保留原映射。','ok')}catch(err){showToast('建立 Notion 中控台失敗：'+String(err?.message||err));swNotionLog('Bootstrap 失敗：'+String(err?.message||err)+'\n若 Notion API 版本不接受自動建庫，可手動建立後把 Database ID 貼回這頁。','bad')}finally{swNotionSetBusy(false)}}
-async function swNotionSync(){try{swNotionSetBusy(true);swNotionLog('正在雙向同步 Content / Evidence 與 v24.1 Control Plane…');const r=await swNotionRequest('admin.notion.sync',{},160000);swNotionApplyStatus(r.status||{});const x=r.summary||{},cp=r.controlPlane?.summary||{};showToast('SIGN WELL ↔ Notion 同步完成');swNotionLog(`同步完成\n文章：${x.articles||0}\nContent 新增 ${x.contentCreated||0} / 更新 ${x.contentUpdated||0}\nSocial Queue 新增 ${x.socialCreated||0}\nEvidence 新增 ${x.evidenceCreated||0} / 更新 ${x.evidenceUpdated||0}\n10 秒摘要 新增 ${x.summaryCreated||0} / 更新 ${x.summaryUpdated||0}\nControl Plane：Prompt ${cp.prompts??0} · Source ${cp.sources??0} · Flags ${cp.flags??0}\nAI Performance flush ${cp.aiPerformanceFlushed??0}`,'ok')}catch(err){showToast('Notion 同步失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
+async function swNotionSync(){try{swNotionSetBusy(true);swNotionLog('正在執行增量同步 Content / Evidence；長任務會自動 checkpoint 後續跑…');const r=await swNotionRequest('admin.notion.sync',{},160000);swNotionApplyStatus(r.status||{});const x=r.summary||{},cp=r.controlPlane?.summary||{};showToast(r.partial?'Notion 已建立 checkpoint，背景將繼續同步':'SIGN WELL ↔ Notion 增量同步完成');swNotionLog(`${r.partial?'部分同步 · 已排程續跑':'同步完成'}
+文章處理：${x.processed??x.articles??0} · 未變更略過 ${x.skippedUnchanged??0}
+Content 新增 ${x.contentCreated||0} / 更新 ${x.contentUpdated||0}
+Social Queue 新增 ${x.socialCreated||0}
+Evidence 新增 ${x.evidenceCreated||0} / 更新 ${x.evidenceUpdated||0}
+10 秒摘要 新增 ${x.summaryCreated||0} / 更新 ${x.summaryUpdated||0}
+估計省略 request ${x.requestSavedEstimate??0}
+Control Plane：Prompt ${cp.prompts??0} · Source ${cp.sources??0} · Flags ${cp.flags??0}
+AI Performance flush ${cp.aiPerformanceFlushed??0}`,'ok')}catch(err){showToast('Notion 同步失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
 async function swNotionControlPlaneSync(){try{swNotionSetBusy(true);swNotionLog('正在從 Notion 讀取 Prompt / Source / Feature Flags，並回寫 Release / AI Performance…');const r=await swNotionRequest('admin.notion.controlPlane.sync',{source:'cms'},120000);const st=await swNotionRefresh(false);const x=r.summary||{};showToast('Control Plane 已同步');swNotionLog(`Control Plane 同步完成\nPrompt ${x.prompts??0} · Source ${x.sources??0} · Flags ${x.flags??0}\nRelease ${x.releaseWritten?'written':'skipped'} · AI Performance flush ${x.aiPerformanceFlushed??0}`,'ok');return st}catch(err){showToast('Control Plane 同步失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
 async function swNotionControlPlaneSeed(){try{swNotionSetBusy(true);const r=await swNotionRequest('admin.notion.controlPlane.seed',{},120000);swNotionApplyStatus(r.status||{});const x=r.seeded||{};showToast('Control Plane 預設 Registry 已補齊');swNotionLog(`Seed 完成\nPrompt ${x.prompts||0} · Source ${x.sources||0} · Flags ${x.flags||0} · Release ${x.releases||0}`,'ok')}catch(err){showToast('Registry seed 失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
-async function swNotionWeeklySave(){try{swNotionSetBusy(true);const email=document.getElementById('notionWeeklyEmail')?.value.trim()||'',hour=Number(document.getElementById('notionWeeklyHour')?.value||8),enabled=Boolean(document.getElementById('notionWeeklyEnabled')?.checked);const s=await swNotionRequest('admin.notion.weekly.configure',{email,hour,enabled},45000);swNotionApplyStatus(s);showToast(enabled?'每週一 Gmail 週報已啟用':'Weekly Brief 自動寄送已關閉');swNotionLog(enabled?`已建立 Apps Script Trigger：每週一 ${String(hour).padStart(2,'0')}:00 Asia/Taipei → ${email}`:'已移除 Weekly Brief Trigger。','ok')}catch(err){showToast('週報排程設定失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
+async function swNotionWeeklySave(){try{swNotionSetBusy(true);const email=document.getElementById('notionWeeklyEmail')?.value.trim()||'',hour=Number(document.getElementById('notionWeeklyHour')?.value||8),enabled=Boolean(document.getElementById('notionWeeklyEnabled')?.checked);const s=await swNotionRequest('admin.notion.weekly.configure',{email,hour,enabled},45000);swNotionApplyStatus(s);showToast(enabled?'每週一 Gmail 週報已啟用':'Weekly Brief 自動寄送已關閉');swNotionLog(enabled?`已建立 Apps Script Trigger：預計每週一 ${String(hour).padStart(2,'0')}:00–${String((hour+1)%24).padStart(2,'0')}:00 Asia/Taipei 時段 → ${email}`:'已移除 Weekly Brief Trigger。','ok')}catch(err){showToast('週報排程設定失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
 async function swNotionWeeklySend(){try{swNotionSetBusy(true);const email=document.getElementById('notionWeeklyEmail')?.value.trim()||'';swNotionLog('正在彙整 Analytics / Newsletter / Meta / Content 並建立 Notion 週報…');const r=await swNotionRequest('admin.notion.weekly.send',{email,writeNotion:true},120000);showToast('測試週報已寄出');swNotionLog(`Weekly Brief 已完成\nGmail: ${r.mail?.sent?'sent':'not sent'} · ${r.mail?.email||email}\nNotion report: ${r.notion?.written?'created':'not created'}\n${r.report?.summary||''}`,'ok')}catch(err){showToast('週報寄送失敗：'+String(err?.message||err));swNotionLog(String(err?.message||err),'bad')}finally{swNotionSetBusy(false)}}
 
 
+/* ===== SIGN WELL Service Health · v24.23.0 ===== */
+let swServiceHealthLastAt=0;
+let swSidebarHealthLastAt=0;
+let swServiceHealthBusy=false;
+
+function swHealthAgeLabel(iso){
+  const t=Date.parse(String(iso||''));
+  if(!Number.isFinite(t))return '尚未檢查';
+  const sec=Math.max(0,Math.round((Date.now()-t)/1000));
+  if(sec<60)return '剛剛';
+  const min=Math.round(sec/60);if(min<60)return `${min} 分鐘前`;
+  const h=Math.round(min/60);if(h<48)return `${h} 小時前`;
+  return `${Math.round(h/24)} 天前`;
+}
+function swHealthTone(state){
+  const s=String(state||'').toLowerCase();
+  if(s==='healthy')return {dot:'#4b9b7f',text:'#3f806d',label:'正常'};
+  if(s==='configured')return {dot:'#77a6c7',text:'#5f8096',label:'已設定'};
+  if(s==='stale')return {dot:'#c79b49',text:'#9b772f',label:'過期'};
+  if(s==='error')return {dot:'#c96b6b',text:'#a85252',label:'異常'};
+  if(s==='off')return {dot:'#aeb6bc',text:'#7c8b95',label:'OFF'};
+  return {dot:'#aeb6bc',text:'#7c8b95',label:'未設定'};
+}
+function swSidebarHealthPaint(payload){
+  const notion=payload?.notion||{},weekly=payload?.weekly||{};
+  const nd=document.getElementById('sideNotionDot'),ns=document.getElementById('sideNotionState');
+  const wd=document.getElementById('sideWeeklyDot'),ws=document.getElementById('sideWeeklyState');
+  const nt=swHealthTone(notion.state),wt=swHealthTone(weekly.state);
+  if(nd){nd.classList.toggle('ready',notion.state==='healthy');nd.style.background=nt.dot;nd.title=`Notion · ${nt.label}`;}
+  if(ns){ns.style.color=nt.text;ns.textContent=notion.state==='healthy'?`正常 · ${swHealthAgeLabel(notion.lastSuccessAt)}`:notion.state==='configured'?'已設定':notion.state==='stale'?'STALE':notion.state==='error'?'異常':'待連線';}
+  if(wd){wd.classList.toggle('ready',weekly.state==='healthy');wd.style.background=wt.dot;wd.title=`Weekly Brief · ${wt.label}`;}
+  if(ws){ws.style.color=wt.text;ws.textContent=!weekly.enabled?'OFF':weekly.triggerInstalled?'READY':'TRIGGER MISSING';}
+}
+async function swSidebarHealthRefresh(live=false,force=false){
+  if(!cmsSessionToken||$('#cms')?.classList.contains('hidden'))return null;
+  const now=Date.now();
+  if(!force&&!live&&swSidebarHealthLastAt&&now-swSidebarHealthLastAt<60000)return null;
+  try{
+    const r=await signwellGasBridge('admin.sidebar.status',{live:Boolean(live)},{adminKey:newsletterAdminKey(),timeoutMs:live?45000:20000});
+    swSidebarHealthLastAt=Date.now();swSidebarHealthPaint(r);return r;
+  }catch(_){return null;}
+}
+function swServiceHealthRow(service){
+  const x=service||{},tone=swHealthTone(x.state),meta=[];
+  if(x.model)meta.push(x.model);
+  if(x.target)meta.push(x.target);
+  if(x.lastSuccessAt)meta.push(swHealthAgeLabel(x.lastSuccessAt));
+  if(x.transport)meta.push(x.transport);
+  return `<div class="connection-row"><span style="display:flex;align-items:center;gap:8px"><i style="width:7px;height:7px;border-radius:50%;background:${tone.dot};box-shadow:0 0 0 3px ${tone.dot}18"></i>${escapeHTML(x.label||'Service')}</span><strong style="color:${tone.text};text-align:right">${escapeHTML(tone.label)}${meta.length?`<small style="display:block;margin-top:3px;font-weight:500;color:#87949e">${escapeHTML(meta.join(' · '))}</small>`:''}</strong></div>`;
+}
+function swServiceHealthPaint(r){
+  const host=document.getElementById('swServiceHealthRows'),note=document.getElementById('swServiceHealthNote');
+  if(!host)return;
+  const s=r?.services||{};
+  const order=['gasBridge','cmsCloud','analytics','notion','weekly','openai','gemini','deepResearch','github','canva','meta','mail','reviewAutomation'];
+  host.innerHTML=order.map(k=>swServiceHealthRow(s[k])).join('');
+  if(note)note.textContent=`更新 ${swHealthAgeLabel(r?.generatedAt)} · ${r?.liveProbe?'已執行外部 live probe':'使用低成本狀態快照'} · 不使用常駐 WebSocket / SSE`;
+  if(s.notion||s.weekly)swSidebarHealthPaint({notion:s.notion||{},weekly:s.weekly||{}});
+}
+async function swServiceHealthRefresh(live=false){
+  if(swServiceHealthBusy||!cmsSessionToken)return null;
+  swServiceHealthBusy=true;
+  const btn=document.getElementById('swServiceHealthLive');if(btn){btn.disabled=true;btn.textContent=live?'深度檢查中…':'重新整理中…';}
+  try{
+    const r=await signwellGasBridge('admin.services.status',{live:Boolean(live)},{adminKey:newsletterAdminKey(),timeoutMs:live?90000:30000});
+    swServiceHealthLastAt=Date.now();swServiceHealthPaint(r);return r;
+  }catch(err){const note=document.getElementById('swServiceHealthNote');if(note)note.textContent='服務狀態讀取失敗：'+String(err?.message||err);return null;}
+  finally{swServiceHealthBusy=false;if(btn){btn.disabled=false;btn.textContent='外部深度檢查';}}
+}
+function swServiceHealthMountSettings(){
+  if(viewName!=='export'||document.getElementById('swServiceHealthCard'))return;
+  const grid=document.querySelector('#view .publish-grid');if(!grid)return;
+  const card=document.createElement('section');card.className='publish-card';card.id='swServiceHealthCard';
+  card.innerHTML=`<h3>服務健康 / 非同步任務</h3><p>集中查看所有內外部服務。正常狀態不做常駐串流；只在登入、重新聚焦、手動檢查或工作頁需要時刷新。外部深度檢查會實際測試已設定的 provider，可能產生少量 API 用量。</p><div class="connection-summary" id="swServiceHealthRows"><div class="connection-row"><span>狀態</span><strong>讀取中…</strong></div></div><div class="publish-actions"><button class="top-action" type="button" id="swServiceHealthRefresh">重新整理</button><button class="top-action primary" type="button" id="swServiceHealthLive">外部深度檢查</button></div><div class="publish-status" id="swServiceHealthNote">正在讀取低成本狀態快照…</div><div class="security-note"><b>傳輸策略：</b>AI Writer / 設定測試用 request/response；Deep Research / Canva 用背景任務＋輪詢；Weekly / Review 用 Apps Script Trigger；Sidebar 只讀 TTL health snapshot。</div>`;
+  grid.prepend(card);
+  document.getElementById('swServiceHealthRefresh')?.addEventListener('click',()=>swServiceHealthRefresh(false));
+  document.getElementById('swServiceHealthLive')?.addEventListener('click',()=>swServiceHealthRefresh(true));
+  swServiceHealthRefresh(false);
+}
+window.swServiceHealthRefresh=swServiceHealthRefresh;
+window.swSidebarHealthRefresh=swSidebarHealthRefresh;
+window.swServiceHealthMountSettings=swServiceHealthMountSettings;
+
+window.addEventListener('focus',()=>{
+  if($('#cms')?.classList.contains('hidden'))return;
+  const age=Date.now()-swSidebarHealthLastAt;
+  swSidebarHealthRefresh(age>5*60*1000,false);
+},{passive:true});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!$('#cms')?.classList.contains('hidden'))swSidebarHealthRefresh(false,false);},{passive:true});
 /* SIGN WELL v23.9.76 · Hourly AI Review Inbox */
 const swReviewInboxState={items:[],current:null,busy:false};
 function swReviewRequest(action,payload={},timeout=60000){return signwellGasBridge(action,payload,{adminKey:newsletterAdminKey(),timeoutMs:timeout});}
@@ -6855,7 +7047,7 @@ async function swDeletePasskeyFromSettings(id){
   try{await window.SignWellAuth.deletePasskey(id);showToast('Passkey 已刪除');await swLoadPasskeys()}catch(err){showToast('無法刪除：'+String(err?.message||err))}
 }
 
-function renderExport(){const pub=data.articles.filter(a=>a.status==='Published'),drafts=data.articles.length-pub.length;$('#view').innerHTML=`<div class="page-head"><div><h1>設定</h1><p>所有 API、OAuth、Token、Endpoint 與第三方整合集中在這裡；其他工作頁只顯示連線狀態。</p></div></div><div class="stats"><div class="stat"><span>已發布</span><strong>${pub.length}</strong></div><div class="stat"><span>草稿</span><strong>${drafts}</strong></div><div class="stat"><span>發布目標</span><strong style="font-size:20px">Backend Runtime</strong></div><div class="stat"><span>憑證位置</span><strong style="font-size:16px">Server-side</strong></div></div><div class="publish-grid"><section class="publish-card" id="settingsGithubCard"><h3>GitHub 設定</h3><p>Fine-grained PAT 只在第一次設定或主動更換時輸入。平常發布、同步與測試都直接使用後端 Secret Vault。</p><div class="connection-summary"><div class="connection-row"><span>系統版本</span><strong>v${String(window.SIGNWELL_RELEASE?.version||'24.8.0-STAGING').replace(/^v/,'')}</strong></div><div class="connection-row"><span>執行環境</span><strong id="runtimeEnv">檢查中…</strong></div><div class="connection-row"><span>公開網站</span><strong>由 Backend Runtime Config 決定</strong></div><div class="connection-row"><span>GitHub 發布目標</span><code id="runtimeGithubTarget">檢查中…</code></div><div class="connection-row"><span>GitHub 憑證</span><strong id="tokenState" class="token-state">檢查中…</strong></div></div><div class="sw-secret-summary github-secret-summary"><div><span>GitHub Fine-grained PAT</span><strong id="ghSecretState">檢查中…</strong><small id="ghSecretMeta">只保存在後端</small></div><button class="top-action" id="ghReplace" type="button">更換 PAT</button></div><div class="security-note"><b>Secret Vault：</b>瀏覽器永遠讀不到既有 PAT；同步與發布由 Apps Script 直接使用後端憑證。</div><div class="publish-actions"><button class="top-action" id="ghTest">測試連線</button><button class="top-action" id="ghSync">從 GitHub 同步</button><button class="top-action danger" id="ghForget">移除後端 PAT</button></div><div class="publish-status" id="ghStatus">正在讀取後端狀態…</div><div class="integrity-note"><b>Origin 提醒：</b>Token 已經不在瀏覽器，但如果 CMS 仍與 Public 共用 <code>980510linz.github.io</code> origin，Public XSS 仍可能在登入期間攻擊 CMS session。完整隔離需把 CMS 部署到另一個 origin。</div></section><aside class="publish-card" id="settingsDataCard"><h3>資料檢查</h3><p>CMS 只輸出已發布文章；草稿不會出現在公開網站。</p><div class="file-map"><div><code>本機文章</code><span class="file-ok">${data.articles.length}</span></div><div><code>已發布</code><span class="file-ok">${pub.length}</span></div><div><code>未公開草稿</code><span>${drafts}</span></div><div><code>公開主題</code><span class="file-ok">${(data.topics||[]).filter(x=>x.active!==false).length}</span></div><div><code>GitHub PAT</code><span class="file-ok">後端保存</span></div><div><code>CMS Session</code><span class="file-ok">登出可作廢</span></div></div></aside></div>`;bindGithubPublisher();signwellGasBridge('admin.github.status',{}, {adminKey:newsletterAdminKey(),timeoutMs:15000}).then(s=>{const el=$('#tokenState'),st=$('#ghStatus');if(el){el.textContent=s?.configured?'後端已設定':'尚未設定';el.classList.toggle('ready',!!s?.configured)}const gs=$('#ghSecretState'),gm=$('#ghSecretMeta'),gr=$('#ghReplace');if(gs){gs.textContent=s?.configured?'已安全設定':'尚未設定';gs.classList.toggle('ready',!!s?.configured)}if(gm)gm.textContent=s?.configured?swFormatSecretUpdatedAt(s?.updatedAt):'尚未存入後端';if(gr)gr.textContent=s?.configured?'更換 PAT':'設定 PAT';if(st)st.textContent=s?.configured?'✓ GitHub PAT 已安全存於後端；發布時不用再輸入。':'請按「設定 PAT」完成第一次安全設定。'}).catch(e=>{$('#ghStatus').textContent='無法讀取 GitHub 狀態：'+String(e?.message||e)});signwellGasBridge('admin.release.status',{}, {adminKey:newsletterAdminKey(),timeoutMs:15000}).then(r=>{const env=$('#runtimeEnv'),gh=$('#runtimeGithubTarget');if(env)env.textContent=String(r?.environment||'unknown')+' · v'+String(r?.release||'24.8.0');if(gh){const g=r?.github||{};if(g.owner&&g.repo&&g.branch){PUBLIC_GITHUB={...PUBLIC_GITHUB,owner:String(g.owner),repo:String(g.repo),branch:String(g.branch),site:String(r?.publicUrl||PUBLIC_GITHUB.site)};githubRuntimeSyncedAt=Date.now()}gh.textContent=[g.owner,g.repo].filter(Boolean).join('/')+' · '+String(g.branch||'')}}).catch(()=>{const env=$('#runtimeEnv');if(env)env.textContent='無法取得'})}
+function renderExport(){const pub=data.articles.filter(a=>a.status==='Published'),drafts=data.articles.length-pub.length;$('#view').innerHTML=`<div class="page-head"><div><h1>設定</h1><p>所有 API、OAuth、Token、Endpoint 與第三方整合集中在這裡；其他工作頁只顯示連線狀態。</p></div></div><div class="stats"><div class="stat"><span>已發布</span><strong>${pub.length}</strong></div><div class="stat"><span>草稿</span><strong>${drafts}</strong></div><div class="stat"><span>發布目標</span><strong style="font-size:20px">Backend Runtime</strong></div><div class="stat"><span>憑證位置</span><strong style="font-size:16px">Server-side</strong></div></div><div class="publish-grid"><section class="publish-card" id="settingsGithubCard"><h3>GitHub 設定</h3><p>Fine-grained PAT 只在第一次設定或主動更換時輸入。平常發布、同步與測試都直接使用後端 Secret Vault。</p><div class="connection-summary"><div class="connection-row"><span>系統版本</span><strong>v${String(window.SIGNWELL_RELEASE?.version||'24.8.0-STAGING').replace(/^v/,'')}</strong></div><div class="connection-row"><span>執行環境</span><strong id="runtimeEnv">檢查中…</strong></div><div class="connection-row"><span>公開網站</span><strong>由 Backend Runtime Config 決定</strong></div><div class="connection-row"><span>GitHub 發布目標</span><code id="runtimeGithubTarget">檢查中…</code></div><div class="connection-row"><span>GitHub 憑證</span><strong id="tokenState" class="token-state">檢查中…</strong></div></div><div class="sw-secret-summary github-secret-summary"><div><span>GitHub Fine-grained PAT</span><strong id="ghSecretState">檢查中…</strong><small id="ghSecretMeta">只保存在後端</small></div><button class="top-action" id="ghReplace" type="button">更換 PAT</button></div><div class="security-note"><b>Secret Vault：</b>瀏覽器永遠讀不到既有 PAT；同步與發布由 Apps Script 直接使用後端憑證。</div><div class="publish-actions"><button class="top-action" id="ghTest">測試連線</button><button class="top-action" id="ghSync">從 GitHub 同步</button><button class="top-action danger" id="ghForget">移除後端 PAT</button></div><div class="publish-status" id="ghStatus">正在讀取後端狀態…</div><div class="integrity-note"><b>Origin 提醒：</b>Token 已經不在瀏覽器，但如果 CMS 仍與 Public 共用 <code>980510linz.github.io</code> origin，Public XSS 仍可能在登入期間攻擊 CMS session。完整隔離需把 CMS 部署到另一個 origin。</div></section><aside class="publish-card" id="settingsDataCard"><h3>資料檢查</h3><p>CMS 只輸出已發布文章；草稿不會出現在公開網站。</p><div class="file-map"><div><code>本機文章</code><span class="file-ok">${data.articles.length}</span></div><div><code>已發布</code><span class="file-ok">${pub.length}</span></div><div><code>未公開草稿</code><span>${drafts}</span></div><div><code>公開主題</code><span class="file-ok">${(data.topics||[]).filter(x=>x.active!==false).length}</span></div><div><code>GitHub PAT</code><span class="file-ok">後端保存</span></div><div><code>CMS Session</code><span class="file-ok">登出可作廢</span></div></div></aside><section class="publish-card" id="swEditorialLearningSettingsCard"><h3>AI 寫作學習</h3><p>文章可以持續進步：人工定稿差異會形成風格記憶；發布滿 7 天後，文章卡 CTR 會以匿名聚合數據回傳 AI 評估下一輪標題、摘要、開場與結構。</p><div class="sw-editorial-learning-status"><div><strong data-editorial-learning-status>讀取中…</strong><small data-editorial-learning-meta>正在讀取 Editorial Learning Loop</small></div></div><div class="publish-actions"><button class="top-action" type="button" data-open-editorial-learning>管理 AI 寫作學習</button><button class="top-action" type="button" data-run-editorial-performance hidden>立即評估到期文章</button></div><div class="security-note"><b>判斷標準：</b>7 日 CTR = 合格文章卡點擊 ÷ 合格文章卡曝光。曝光需 ≥50% 可見且持續 ≥0.8 秒；低樣本不形成硬規則。<br><b>Evidence Lock 優先：</b>CTR 只優化內容包裝與可讀性，不會改寫醫療事實、證據、引用、法規邊界，也不會自動改掉已發布文章。</div></section></div>`;bindGithubPublisher();window.signwellEditorialLearningMountSettings?.();signwellGasBridge('admin.github.status',{}, {adminKey:newsletterAdminKey(),timeoutMs:15000}).then(s=>{const el=$('#tokenState'),st=$('#ghStatus');if(el){el.textContent=s?.configured?'後端已設定':'尚未設定';el.classList.toggle('ready',!!s?.configured)}const gs=$('#ghSecretState'),gm=$('#ghSecretMeta'),gr=$('#ghReplace');if(gs){gs.textContent=s?.configured?'已安全設定':'尚未設定';gs.classList.toggle('ready',!!s?.configured)}if(gm)gm.textContent=s?.configured?swFormatSecretUpdatedAt(s?.updatedAt):'尚未存入後端';if(gr)gr.textContent=s?.configured?'更換 PAT':'設定 PAT';if(st)st.textContent=s?.configured?'✓ GitHub PAT 已安全存於後端；發布時不用再輸入。':'請按「設定 PAT」完成第一次安全設定。'}).catch(e=>{$('#ghStatus').textContent='無法讀取 GitHub 狀態：'+String(e?.message||e)});signwellGasBridge('admin.release.status',{}, {adminKey:newsletterAdminKey(),timeoutMs:15000}).then(r=>{const env=$('#runtimeEnv'),gh=$('#runtimeGithubTarget');if(env)env.textContent=String(r?.environment||'unknown')+' · v'+String(r?.release||'24.8.0');if(gh){const g=r?.github||{};if(g.owner&&g.repo&&g.branch){PUBLIC_GITHUB={...PUBLIC_GITHUB,owner:String(g.owner),repo:String(g.repo),branch:String(g.branch),site:String(r?.publicUrl||PUBLIC_GITHUB.site)};githubRuntimeSyncedAt=Date.now()}gh.textContent=[g.owner,g.repo].filter(Boolean).join('/')+' · '+String(g.branch||'')}}).catch(()=>{const env=$('#runtimeEnv');if(env)env.textContent='無法取得'})}
 async function saveBlob(blob,name){const file=new File([blob],name,{type:blob.type||'application/octet-stream'});try{if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:name});return}}catch(e){if(e?.name==='AbortError')return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function exportJS(){const pub=data.articles.filter(a=>a.status==='Published');const text='window.BLOG_ARTICLES = '+JSON.stringify(pub,null,2)+';\n';saveBlob(new Blob([text],{type:'text/javascript;charset=utf-8'}),'articles.js');showToast(`已準備 ${pub.length} 篇文章`)}
 function exportBackup(){saveBlob(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),'signwell-cms-backup.json')}
@@ -6959,8 +7151,8 @@ function optimize(){
 }
 
 
-let PUBLIC_GITHUB={owner:'980510linz',repo:'-',branch:'main',path:'articles.js',sitePath:'site-content.js',site:'https://signwell.com.tw/'};const TOKEN_STORE_KEY='signwell-github-token-v2',SYNC_KEY='signwell-github-synced-v2';let githubToken='server-managed',githubRuntimeSyncedAt=0,githubLastDiagnosis=null;
-/* SIGN WELL v24.8.0 · Article Identity CMS integration */
+let PUBLIC_GITHUB={owner:'980510linz',repo:'signwell.com',branch:'main',path:'articles.js',sitePath:'site-content.js',site:SW_CMS_PUBLIC_BASE};const TOKEN_STORE_KEY='signwell-github-token-v2',SYNC_KEY='signwell-github-synced-v2';let githubToken='server-managed',githubRuntimeSyncedAt=0,githubLastDiagnosis=null;
+/* SIGN WELL v24.23.2 · Article Identity CMS integration + operational health */
 const swArticleIdentityState={lastPrepare:null,migrationDone:false};
 function swArticleIdentityReadPublishOptions(){return {changeClass:'AUTO',reviewType:''};}
 function swArticleIdentityApply(article,identity){
@@ -7031,6 +7223,98 @@ async function swArticleIdentityCommitAfterPublish(article){
   persist(true);
   return r.identity;
 }
+
+
+/* ===== Article Identity Settings / Health · v24.23.2 ===== */
+let swArticleIdentityHealthBusy=false,swArticleIdentityLastHealth=null;
+function swArticleIdentityPublishedSummary(){
+  return (data.articles||[]).filter(a=>a.status==='Published').map(a=>({
+    id:String(a.id||''),slug:String(a.slug||''),title:String(a.title||''),status:'Published',
+    article_id:String(a.article_id||''),current_version:String(a.current_version||''),content_hash:String(a.content_hash||'')
+  }));
+}
+function swArticleIdentityHealthTone(state){
+  const s=String(state||'').toUpperCase();
+  if(s==='IDENTITY HEALTHY')return {color:'#3f806d',label:'IDENTITY HEALTHY'};
+  if(s==='MIGRATION REQUIRED')return {color:'#9b772f',label:'MIGRATION REQUIRED'};
+  if(s==='ROUTE ERROR')return {color:'#9b772f',label:'ROUTE ERROR'};
+  if(s==='HASH MISMATCH')return {color:'#a85252',label:'HASH MISMATCH'};
+  return {color:'#a85252',label:s||'尚未檢查'};
+}
+function swArticleIdentityHealthPaint(r,extra=null){
+  swArticleIdentityLastHealth=r||null;const state=document.getElementById('swArticleIdentityHealthState'),rows=document.getElementById('swArticleIdentityHealthRows'),issues=document.getElementById('swArticleIdentityHealthIssues'),note=document.getElementById('swArticleIdentityHealthNote');
+  const displayState=extra&&Number(extra.failed||0)>0?'PUBLIC SURFACE ERROR':r?.state,tone=swArticleIdentityHealthTone(displayState),sum=r?.summary||{};
+  if(state){state.textContent=tone.label;state.style.color=tone.color;}
+  if(rows)rows.innerHTML=`<div class="connection-row"><span>Published articles</span><strong>${Number(sum.publishedArticles||0)}</strong></div><div class="connection-row"><span>Permanent Article ID</span><strong>${Number(sum.withId||0)} / ${Number(sum.publishedArticles||0)}</strong></div><div class="connection-row"><span>Migration required</span><strong>${Number(sum.missingId||0)}</strong></div><div class="connection-row"><span>Registry / version rows</span><strong>${Number(sum.registryRows||0)} / ${Number(sum.versionRows||0)}</strong></div><div class="connection-row"><span>Backend findings</span><strong>${Number(sum.errors||0)} errors · ${Number(sum.warnings||0)} warnings</strong></div>${extra?`<div class="connection-row"><span>PUBLIC surfaces</span><strong>${Number(extra.ok||0)} OK · ${Number(extra.failed||0)} failed</strong></div>`:''}`;
+  const list=(r?.issues||[]).slice(0,12);if(issues)issues.innerHTML=list.length?list.map(x=>`<div class="security-note" style="margin-top:8px"><b>${escapeHTML(x.code||'ISSUE')}</b> · ${escapeHTML(x.articleId||x.legacyId||'—')}<br>${escapeHTML(x.detail||'')}</div>`).join(''):'<div class="security-note"><b>Registry：</b>目前沒有偵測到結構化 Article Identity 問題。</div>';
+  if(note){const base=`Public base：${escapeHTML(r?.publicBase||SW_CMS_PUBLIC_BASE)} · Custom domain：${r?.customDomainEnabled?'ON':'OFF'}`;note.innerHTML=base+(extra?.details?.length?`<br>${extra.details.map(escapeHTML).join('<br>')}`:'');}
+}
+async function swArticleIdentityQuickHealth(){
+  if(swArticleIdentityHealthBusy||!cmsSessionToken)return null;swArticleIdentityHealthBusy=true;
+  const note=document.getElementById('swArticleIdentityHealthNote');if(note)note.textContent='正在核對 Backend registry、版本 ledger、fingerprint 與 CMS Published articles…';
+  try{const r=await signwellGasBridge('admin.articleIdentity.health',{articles:swArticleIdentityPublishedSummary()},{adminKey:newsletterAdminKey(),timeoutMs:45000});swArticleIdentityHealthPaint(r);return r;}
+  catch(err){if(note)note.textContent='Article Identity 健康檢查失敗：'+String(err?.message||err);return null;}
+  finally{swArticleIdentityHealthBusy=false;}
+}
+async function swArticleIdentityCheckOneSurface(a){
+  const id=String(a?.article_id||'');if(!/^SW-A-\d{4}-\d{6}$/.test(id))throw new Error('缺少 Article ID');
+  await swArticleIdentityVerifyFinalSurfaces(a,'server-managed');
+  await githubRequest(githubContentURL(`trace/${id}/index.html`)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),'server-managed');
+  await githubRequest(githubContentURL(`assets/article-identity/${id}.svg`)+'?ref='+encodeURIComponent(PUBLIC_GITHUB.branch)+'&sw='+Date.now(),'server-managed');
+  const live=await signwellGasBridge('article.trace',{articleId:id},{timeoutMs:25000});
+  if(String(live?.article_id||'')!==id)throw new Error('Backend Trace Article ID 不一致');
+  if(String(live?.content_hash||'')!==String(a.content_hash||''))throw new Error('Backend Trace fingerprint 不一致');
+  return true;
+}
+async function swArticleIdentityFullHealth(){
+  if(swArticleIdentityHealthBusy||!cmsSessionToken)return;swArticleIdentityHealthBusy=true;
+  const btn=document.getElementById('swArticleIdentityFullCheck'),note=document.getElementById('swArticleIdentityHealthNote');if(btn){btn.disabled=true;btn.textContent='完整檢查中…';}
+  try{
+    const backend=await signwellGasBridge('admin.articleIdentity.health',{articles:swArticleIdentityPublishedSummary()},{adminKey:newsletterAdminKey(),timeoutMs:45000}),published=(data.articles||[]).filter(a=>a.status==='Published'&&/^SW-A-\d{4}-\d{6}$/.test(String(a.article_id||'')));
+    let ok=0;const failures=[];
+    for(let i=0;i<published.length;i++){
+      if(note)note.textContent=`完整檢查 ${i+1}/${published.length} · ${published[i].article_id}`;
+      try{await swArticleIdentityCheckOneSurface(published[i]);ok++;}catch(err){failures.push(`${published[i].article_id} · ${String(err?.message||err)}`);}
+    }
+    swArticleIdentityHealthPaint(backend,{ok,failed:failures.length,details:failures.slice(0,8)});
+    if(failures.length)showToast(`Article Identity：${failures.length} 篇需要修復`);else showToast('Article Identity 完整檢查通過');
+  }catch(err){if(note)note.textContent='完整檢查失敗：'+String(err?.message||err);}
+  finally{swArticleIdentityHealthBusy=false;if(btn){btn.disabled=false;btn.textContent='完整檢查 PUBLIC';}}
+}
+async function swArticleIdentityMigratePublished(){
+  if(swArticleIdentityHealthBusy||!cmsSessionToken)return;const published=(data.articles||[]).filter(a=>a.status==='Published'),missing=published.filter(a=>!/^SW-A-\d{4}-\d{6}$/.test(String(a.article_id||'')));
+  if(!missing.length){showToast('所有已發布文章都有 Article ID');return;}
+  const ok=await swConfirm(`將為 ${missing.length} 篇既有 Published 文章核發永久 Article ID，並建立 Trace / QR / 分享卡。是否繼續？`,{title:'補發舊文章 Article ID',confirmText:'開始補發'});if(!ok)return;
+  swArticleIdentityHealthBusy=true;const note=document.getElementById('swArticleIdentityHealthNote');try{
+    if(note)note.textContent=`正在核發 ${missing.length} 篇舊文章的永久 Article ID…`;
+    const r=await signwellGasBridge('admin.articleIdentity.migrate',{articles:published},{adminKey:newsletterAdminKey(),timeoutMs:150000});swArticleIdentityApplyMigrationResult(r||{});
+    const migratedIds=new Set((r?.items||[]).filter(x=>x.migrated).map(x=>String(x.legacyId||''))),targets=(data.articles||[]).filter(a=>migratedIds.has(String(a.id||''))&&a.article_id);
+    for(let i=0;i<targets.length;i++){if(note)note.textContent=`正在建立 Trace / QR / 分享卡 ${i+1}/${targets.length}…`;await swArticleIdentityPublishFinalSurfaces(targets[i],'server-managed');}
+    persist(true);showToast(`Article ID 補發完成 · ${Number(r?.migrated||0)} 篇`);
+  }catch(err){if(note)note.textContent='補發失敗：'+String(err?.message||err);showToast('Article ID 補發未完成');}
+  finally{swArticleIdentityHealthBusy=false;await swArticleIdentityQuickHealth();}
+}
+async function swArticleIdentityRepairAll(){
+  if(swArticleIdentityHealthBusy||!cmsSessionToken)return;const ok=await swConfirm('將重寫 Article Identity 的目前 PUBLIC 路徑，並重新產生 Published 文章的 Trace page、snapshot 與分享卡。此操作不會啟用自訂網域。',{title:'修復 Article Identity',confirmText:'開始修復'});if(!ok)return;
+  swArticleIdentityHealthBusy=true;const note=document.getElementById('swArticleIdentityHealthNote');try{
+    if(note)note.textContent='正在修復 Backend registry 路徑…';const r=await signwellGasBridge('admin.articleIdentity.repairRoutes',{}, {adminKey:newsletterAdminKey(),timeoutMs:60000});
+    const byLegacy=new Map((r?.items||[]).filter(x=>x.identity).map(x=>[String(x.legacyId||''),x.identity]));(data.articles||[]).forEach(a=>{const i=byLegacy.get(String(a.id||''));if(i)swArticleIdentityApply(a,i)});persist(true);
+    const targets=(data.articles||[]).filter(a=>a.status==='Published'&&/^SW-A-\d{4}-\d{6}$/.test(String(a.article_id||'')));
+    let failures=0;for(let i=0;i<targets.length;i++){if(note)note.textContent=`重新建立 Identity surfaces ${i+1}/${targets.length}…`;try{await swArticleIdentityPublishFinalSurfaces(targets[i],'server-managed');}catch(err){failures++;console.warn('Identity surface repair failed',targets[i].article_id,err);}}
+    showToast(failures?`修復完成，但 ${failures} 篇需再檢查`:'Article Identity surfaces 已完成修復');
+  }catch(err){if(note)note.textContent='Article Identity 修復失敗：'+String(err?.message||err);}
+  finally{swArticleIdentityHealthBusy=false;await swArticleIdentityFullHealth();}
+}
+function swArticleIdentityMountSettings(){
+  if(viewName!=='export'||document.getElementById('swArticleIdentityHealthCard'))return;const grid=document.querySelector('#view .publish-grid');if(!grid)return;
+  const card=document.createElement('section');card.className='publish-card';card.id='swArticleIdentityHealthCard';card.innerHTML=`<h3>Article Identity / 文章身分證</h3><p>永久 Article ID、版本 ledger、SHA-256 fingerprint、Trace page、QR 與分享卡的實際健康狀態。這裡不是設計預覽：檢查會直接對 Backend registry 與 GitHub PUBLIC surfaces 做核對。</p><div class="connection-summary"><div class="connection-row"><span>Identity state</span><strong id="swArticleIdentityHealthState">讀取中…</strong></div></div><div class="connection-summary" id="swArticleIdentityHealthRows" style="margin-top:10px"></div><div id="swArticleIdentityHealthIssues"></div><div class="publish-actions"><button class="top-action" type="button" id="swArticleIdentityQuickCheck">快速檢查</button><button class="top-action" type="button" id="swArticleIdentityFullCheck">完整檢查 PUBLIC</button><button class="top-action primary" type="button" id="swArticleIdentityMigrate">補發舊文章 ID</button><button class="top-action" type="button" id="swArticleIdentityRepair">修復 Trace / QR / 路徑</button></div><div class="publish-status" id="swArticleIdentityHealthNote">正在讀取 Article Identity registry…</div><div class="security-note"><b>目前網域策略：</b>使用 GitHub Pages <code>980510linz.github.io/signwell.com/</code>；signwell.com.tw 僅保留為未啟用的未來設定，不會被文章卡、QR 或 Trace URL 使用。</div>`;
+  grid.prepend(card);document.getElementById('swArticleIdentityQuickCheck')?.addEventListener('click',swArticleIdentityQuickHealth);document.getElementById('swArticleIdentityFullCheck')?.addEventListener('click',swArticleIdentityFullHealth);document.getElementById('swArticleIdentityMigrate')?.addEventListener('click',swArticleIdentityMigratePublished);document.getElementById('swArticleIdentityRepair')?.addEventListener('click',swArticleIdentityRepairAll);swArticleIdentityQuickHealth();
+}
+window.swArticleIdentityQuickHealth=swArticleIdentityQuickHealth;
+window.swArticleIdentityFullHealth=swArticleIdentityFullHealth;
+window.swArticleIdentityMigratePublished=swArticleIdentityMigratePublished;
+window.swArticleIdentityRepairAll=swArticleIdentityRepairAll;
+window.swArticleIdentityMountSettings=swArticleIdentityMountSettings;
 /* SIGN WELL v24.8.0 · Article Identity Phase 3-1 · Internal Citation Core */
 const swCitationUiState={query:'',loading:false,results:[]};
 function swCitationDraftList(article){
@@ -7196,6 +7480,7 @@ async function publishOnlineFromEditor(){
     $('#saveState').textContent='正在完成 Trace / Share identity surfaces…';
     try{await swArticleIdentityPublishFinalSurfaces(article,githubToken)}catch(surfaceErr){identitySurfaceWarning=String(surfaceErr?.message||surfaceErr);console.warn('Article Identity surface finalize pending',surfaceErr)}
     try{await cmsCloudPushNow(cmsCloudChangeSeq)}catch(_){}
+    try{await window.signwellEditorialLearningRegisterPublish?.(article)}catch(learnErr){console.warn('Editorial learning registration skipped',learnErr)}
 
     if(newsletterAutoEnabled()){
       $('#saveState').textContent='網頁已上線 · 正在發送電子報…';$('#saveState').style.color='#7f8d99';
@@ -7333,7 +7618,7 @@ function v10ReadingTime(a){return Math.max(1,Math.round(v10Plain(a.content||'').
 function v10Revision(a){return v10Hash(JSON.stringify([a.title,a.slug,a.category,a.type,a.excerpt,a.tags,a.cover,a.content,a.publisherId,a.publishedAt,a.featured,a.status,a.evidenceEnabled,a.evidenceCards,a.signWellVerdict,a.anatomy]))}
 function v10SafeSlug(a){return slugify(a.slug||a.title||a.id||('article-'+Date.now()))}
 const SW_DOMAIN_CONFIG=Object.freeze({
-  currentPublicBase:'https://signwell.com.tw/',
+  currentPublicBase:SW_CMS_PUBLIC_BASE,
   legacyGithubBase:'https://980510linz.github.io/-/',
   futureCustomDomain:'https://signwell.com.tw/',
   customDomainEnabled:false
@@ -7342,7 +7627,7 @@ const SW_SEO_SITE=SW_DOMAIN_CONFIG.customDomainEnabled?SW_DOMAIN_CONFIG.futureCu
 function swSeoXmlEscape(v=''){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;')}
 function swSeoHtmlEscape(v=''){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function swSeoAbs(v=''){try{return new URL(String(v||''),SW_SEO_SITE).href}catch(_){return String(v||'')}}
-function swSeoArticleUrl(a){return SW_SEO_SITE+'article/'+encodeURIComponent(v10SafeSlug(a))+'/'}
+function swSeoArticleUrl(a){const u=new URL('index.html',SW_SEO_SITE);u.searchParams.set('article',v10SafeSlug(a));return u.href}
 function swSeoDate(v){const s=String(v||'').trim();if(!s)return new Date().toISOString();const d=new Date(s.length<=10?s+'T00:00:00+08:00':s);return isNaN(d)?new Date().toISOString():d.toISOString()}
 function swSeoIsNews(a){return a?.sourceWorkspace?.type==='medical-news-workspace'||String(a?.category||'')==='時事探討'}
 function swSeoCleanContent(a){
@@ -7359,15 +7644,15 @@ function swSeoStaticArticleHTML(a){
   const authorEntity=author==='SIGN WELL 編輯部'?{"@type":"Organization",name:'SIGN WELL · 欣緯生醫'}:{"@type":"Person",name:author};
   if(authorPhoto&&authorEntity['@type']==='Person')authorEntity.image=swSeoAbs(authorPhoto);
   const ld={"@context":"https://schema.org","@type":type,headline:title,description:desc,image:[cover],datePublished:published,dateModified:modified,inLanguage:'zh-Hant',isAccessibleForFree:true,mainEntityOfPage:{"@type":"WebPage","@id":url},author:authorEntity,publisher:{"@type":"Organization",name:'SIGN WELL · 欣緯生醫',url:SW_SEO_SITE,logo:{"@type":"ImageObject",url:SW_SEO_SITE+'assets/signwell-app-icon-512.png'}}};
-  if(a?.article_id){ld.identifier=String(a.article_id);ld.version=String(a.current_version||'1.0');ld.sameAs=String(a.trace_url||'');}
+  if(a?.article_id){ld.identifier=String(a.article_id);ld.version=String(a.current_version||'1.0');ld.sameAs=SW_SEO_SITE+'trace/'+encodeURIComponent(String(a.article_id))+'/';}
   const body=swSeoCleanContent(a),shareText='我在欣緯生醫看到了一篇超棒的文章：'+title;
   const avatar=authorPhoto?'<img src="'+swSeoHtmlEscape(swSeoAbs(authorPhoto))+'" alt="" loading="eager">':'<span>'+swSeoHtmlEscape((author||'SW').slice(0,2))+'</span>';
   const css=':root{color-scheme:light dark;--bg1:#f9fcff;--bg2:#e8f3fb;--ink:#17212d;--muted:#6f7f91;--line:rgba(89,132,168,.14);--card:rgba(255,255,255,.80)}*{box-sizing:border-box}html,body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}html{-webkit-text-size-adjust:100%}body{margin:0;min-height:100vh;touch-action:pan-y pinch-zoom;background:radial-gradient(circle at 12% 4%,rgba(119,185,246,.20),transparent 27%),radial-gradient(circle at 88% 10%,rgba(255,190,220,.14),transparent 28%),linear-gradient(155deg,var(--bg1),var(--bg2));color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC","Noto Sans TC",sans-serif}.top{max-width:920px;margin:0 auto;padding:22px 20px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}.top a{color:inherit;text-decoration:none;font-weight:850;letter-spacing:.08em}.back-home{display:inline-flex!important;align-items:center;min-height:40px;padding:0 13px;border:1px solid rgba(95,139,175,.14);border-radius:999px;background:rgba(255,255,255,.66);font-size:12px;letter-spacing:0!important}.wrap{width:min(920px,calc(100% - 28px));max-width:100%;margin:0 auto;padding:26px 0 76px;min-width:0}.article-shell{min-width:0;max-width:100%;padding:clamp(22px,4vw,46px);border:1px solid rgba(255,255,255,.86);border-radius:32px;background:var(--card);box-shadow:0 24px 70px rgba(48,92,130,.11);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%)}.hero{padding:6px 0 28px;border-bottom:1px solid var(--line);min-width:0}.kicker{font-size:10px;letter-spacing:.14em;color:#5d86a7;font-weight:850}.hero h1{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(36px,7vw,66px);line-height:1.08;letter-spacing:-.045em;margin:14px 0;overflow-wrap:anywhere}.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}.author-chip{display:inline-flex;align-items:center;gap:7px}.author-chip .avatar{width:27px;height:27px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:rgba(124,168,204,.13);font-size:9px;font-weight:800}.author-chip img{width:100%;height:100%;object-fit:cover}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.actions button{min-height:42px;padding:0 14px;border-radius:14px;border:1px solid rgba(95,139,175,.16);background:rgba(255,255,255,.78);color:#24445f;font-weight:800;cursor:pointer}.reader-size{display:inline-grid;grid-template-columns:repeat(3,40px);padding:3px;border-radius:14px;background:rgba(126,169,204,.09);border:1px solid rgba(95,139,175,.11)}.reader-size button{min-height:34px;padding:0;border:0;background:transparent;border-radius:11px;color:var(--muted)}.reader-size button[aria-pressed="true"]{background:rgba(255,255,255,.86);color:#24445f;box-shadow:0 4px 12px rgba(56,91,118,.08)}.cover{display:block;width:100%;max-width:100%;max-height:520px;object-fit:cover;border-radius:26px;margin:28px 0}.summary10s{margin:26px 0 30px;padding:15px 18px;border:1px solid rgba(95,139,175,.12);border-radius:18px;background:linear-gradient(135deg,rgba(235,246,255,.72),rgba(255,240,247,.54));overflow-wrap:anywhere}.summary10s b{display:block;font-size:10px;letter-spacing:.12em;color:#6486a1;margin-bottom:6px}.summary10s p{margin:0;font-size:15px;line-height:1.75}.article{min-width:0;max-width:100%;font-size:18px;line-height:1.95;overflow-wrap:anywhere;word-break:break-word}.article-shell[data-font-size="small"] .article{font-size:17px}.article-shell[data-font-size="medium"] .article{font-size:19px}.article-shell[data-font-size="large"] .article{font-size:21px}.article h2{font-size:1.62em;margin-top:48px;line-height:1.25}.article h3{font-size:1.30em;margin-top:34px;line-height:1.35}.article img,.article video,.article iframe,.article canvas,.article svg{max-width:100%!important;height:auto}.article table{width:100%;max-width:100%;table-layout:fixed;border-collapse:collapse;margin:24px 0;overflow-wrap:anywhere}.article th,.article td{max-width:100%;padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere;word-break:break-word}.article pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere}.article a{overflow-wrap:anywhere;word-break:break-word}.article blockquote{margin:24px 0;padding:14px 18px;border-left:3px solid #8dbde5;background:rgba(234,246,255,.55);border-radius:0 16px 16px 0}.foot{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;line-height:1.8;color:var(--muted)}.foot a{color:inherit}@media(max-width:600px){.top{padding-inline:12px}.wrap{width:min(100% - 20px,920px);padding-top:12px}.article-shell{padding:20px 17px 30px;border-radius:24px}.article-shell[data-font-size="small"] .article{font-size:16px}.article-shell[data-font-size="medium"] .article{font-size:18px}.article-shell[data-font-size="large"] .article{font-size:20px}.hero h1{font-size:clamp(34px,10vw,48px)}.cover{border-radius:20px;margin:22px 0}}@media(prefers-color-scheme:dark){:root{--bg1:#171918;--bg2:#1d201c;--ink:#f4f5f2;--muted:#b9bfc0;--line:rgba(244,246,243,.14);--card:rgba(244,246,243,.075);--oxblood:#743a3f;--walnut:#745945;--olive:#58604c}body{background:radial-gradient(circle at 12% 4%,rgba(88,96,76,.18),transparent 28%),radial-gradient(circle at 88% 8%,rgba(116,58,63,.14),transparent 30%),radial-gradient(circle at 52% 108%,rgba(116,89,69,.14),transparent 32%),linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--ink)}.article-shell{background:linear-gradient(150deg,rgba(244,246,243,.09),rgba(244,246,243,.035));border-color:rgba(244,246,243,.14);box-shadow:0 24px 70px rgba(0,0,0,.26),inset 0 1px 0 rgba(244,246,243,.08)}.actions button,.back-home{background:rgba(244,246,243,.07);color:#b9bfc0;border-color:rgba(244,246,243,.13)}.kicker{color:#b9bfc0}.hero h1,.article :is(h2,h3,h4,strong){color:#f4f5f2}.meta,.foot,.article{color:#b9bfc0}.summary10s{background:linear-gradient(135deg,rgba(88,96,76,.14),rgba(116,89,69,.08));border-color:rgba(244,246,243,.11)}.summary10s b{color:#b9bfc0}.article blockquote{background:rgba(116,89,69,.10);border-left-color:#745945;color:#b9bfc0}.article a{color:#b9bfc0}.reader-size{background:rgba(244,246,243,.055);border-color:rgba(244,246,243,.10)}.reader-size button{color:#b9bfc0}.reader-size button[aria-pressed="true"]{background:linear-gradient(145deg,rgba(88,96,76,.34),rgba(116,89,69,.24));color:#f4f5f2}}';
   const shareScript=a?.article_id?'':('<script>(function(){var u='+JSON.stringify(url).replace(/</g,'\\u003c')+',t='+JSON.stringify(shareText).replace(/</g,'\\u003c')+';var s=document.getElementById("shareArticle"),c=document.getElementById("copyArticle");async function cp(v){try{await navigator.clipboard.writeText(v)}catch(e){var x=document.createElement("textarea");x.value=v;document.body.appendChild(x);x.select();document.execCommand("copy");x.remove()}}if(s)s.addEventListener("click",async function(){try{if(navigator.share)await navigator.share({title:t,text:t,url:u});else await cp(t+"\n"+u)}catch(e){if(e&&e.name!=="AbortError")await cp(t+"\n"+u)}});if(c)c.addEventListener("click",function(){cp(u)})})();<\/script>');
   const identityButton=a?.article_id?'<button type="button" id="identityArticle">文章身分證 <small>'+swSeoHtmlEscape(String(a.article_id))+'</small></button>':'';
-  const identityRuntime=a?.article_id?'<script src="'+SW_SEO_SITE+'analytics-config.js"><\/script><script src="'+SW_SEO_SITE+'assets/bundles/article-identity-v24.8.0.js?build=24.8.0-STAGING"><\/script><script>window.SignWellArticleIdentity&&window.SignWellArticleIdentity.mountStaticArticle('+JSON.stringify({slug:v10SafeSlug(a),title:title,article_id:String(a.article_id||''),current_version:String(a.current_version||''),article_status:String(a.article_status||''),review_status:Array.isArray(a.review_status)?a.review_status:[],content_hash:String(a.content_hash||''),trace_url:String(a.trace_url||''),publisherName:author,publishedAt:String(a.publishedAt||''),updatedAt:String(a.updatedAt||''),identity:a.identity||null}).replace(/</g,'\\u003c')+');<\/script>':'';
+  const identityRuntime=a?.article_id?'<script src="'+SW_SEO_SITE+'analytics-config.js"><\/script><script src="'+SW_SEO_SITE+'assets/bundles/article-identity-v24.8.0.js?build=24.23.2-STAGING"><\/script><script>window.SignWellArticleIdentity&&window.SignWellArticleIdentity.mountStaticArticle('+JSON.stringify({slug:v10SafeSlug(a),title:title,article_id:String(a.article_id||''),current_version:String(a.current_version||''),article_status:String(a.article_status||''),review_status:Array.isArray(a.review_status)?a.review_status:[],content_hash:String(a.content_hash||''),trace_url:String(a.trace_url||''),publisherName:author,publishedAt:String(a.publishedAt||''),updatedAt:String(a.updatedAt||''),identity:a.identity||null}).replace(/</g,'\\u003c')+');<\/script>':'';
   const readerScript='<script>(function(){var k="signwell-reader-font-v2",shell=document.querySelector(".article-shell"),buttons=document.querySelectorAll("[data-font-size]");function set(v){if(["small","medium","large"].indexOf(v)<0)v="medium";shell.dataset.fontSize=v;buttons.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.fontSize===v?"true":"false")});try{localStorage.setItem(k,v)}catch(e){}}var v="medium";try{v=localStorage.getItem(k)||"medium"}catch(e){}set(v);buttons.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.fontSize)})})})();<\/script>';
-  return '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"><meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>'+swSeoHtmlEscape(title)+'｜欣緯生醫</title><meta name="description" content="'+swSeoHtmlEscape(desc)+'"><link rel="canonical" href="'+swSeoHtmlEscape(url)+'"><link rel="stylesheet" href="'+SW_SEO_SITE+'assets/signwell-anatomy-link.css?v=23.9.96"><link rel="stylesheet" href="'+SW_SEO_SITE+'assets/components/styles/12-signwell-article-identity-v24.8.0.css?build=24.8.0-STAGING"><meta property="og:type" content="article"><meta property="og:locale" content="zh_TW"><meta property="og:site_name" content="SIGN WELL · 欣緯生醫"><meta property="og:title" content="'+swSeoHtmlEscape(title)+'"><meta property="og:description" content="'+swSeoHtmlEscape(desc)+'"><meta property="og:url" content="'+swSeoHtmlEscape(url)+'"><meta property="og:image" content="'+swSeoHtmlEscape(cover)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'+swSeoHtmlEscape(title)+'"><meta name="twitter:description" content="'+swSeoHtmlEscape(desc)+'"><meta name="twitter:image" content="'+swSeoHtmlEscape(cover)+'"><meta property="article:published_time" content="'+swSeoHtmlEscape(published)+'"><meta property="article:modified_time" content="'+swSeoHtmlEscape(modified)+'"><meta property="article:section" content="'+swSeoHtmlEscape(String(a?.category||'醫學筆記'))+'"><script type="application/ld+json">'+JSON.stringify(ld).replace(/</g,'\\u003c')+'<\/script><style>'+css+'</style></head><body><header class="top"><a href="'+SW_SEO_SITE+'">SIGN WELL · 欣緯生醫</a><a class="back-home" href="'+SW_SEO_SITE+'">← 返回首頁</a></header><main class="wrap"><article class="article-shell" data-font-size="medium"><header class="hero"><div class="kicker">'+swSeoHtmlEscape(String(a?.category||'醫學筆記'))+'</div><h1>'+swSeoHtmlEscape(title)+'</h1><div class="meta"><time datetime="'+swSeoHtmlEscape(published)+'">'+swSeoHtmlEscape(visibleDate||published.slice(0,10))+'</time><span>·</span><span class="author-chip"><span class="avatar">'+avatar+'</span><span>'+swSeoHtmlEscape(author)+'</span></span></div><div class="actions">'+identityButton+'<button type="button" id="shareArticle">分享</button><button type="button" id="copyArticle">複製連結</button><span class="reader-size" role="group" aria-label="文章字級"><button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button></span></div></header>'+(a?.cover?'<img class="cover" src="'+swSeoHtmlEscape(cover)+'" alt="">':'')+(summary10s?'<aside class="summary10s"><b>10 秒摘要</b><p>'+swSeoHtmlEscape(summary10s)+'</p></aside>':'')+'<div class="article">'+body+'</div><footer class="foot">本站不提供醫療服務、不招攬醫療業務；內容僅供醫學教育與資訊整理，不構成個別醫療建議。<br><a href="'+SW_SEO_SITE+'">返回 SIGN WELL</a> · <a href="mailto:signwell.com.tw@gmail.com">聯絡我們</a></footer></article></main>'+shareScript+readerScript+identityRuntime+'<script>window.SIGNWELL_STATIC_ARTICLE='+JSON.stringify({title:title,summary10s:summary10s,excerpt:desc,anatomy:a?.anatomy||swAnatomyMapForArticle(a)}).replace(/</g,'\\u003c')+';<\/script><script src="'+SW_SEO_SITE+'assets/signwell-anatomy-link.js?v=23.9.96"><\/script></body></html>\n';
+  return '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"><meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>'+swSeoHtmlEscape(title)+'｜欣緯生醫</title><meta name="description" content="'+swSeoHtmlEscape(desc)+'"><link rel="canonical" href="'+swSeoHtmlEscape(url)+'"><link rel="stylesheet" href="'+SW_SEO_SITE+'assets/signwell-anatomy-link.css?v=23.9.96"><link rel="stylesheet" href="'+SW_SEO_SITE+'assets/components/styles/12-signwell-article-identity-v24.8.0.css?build=24.23.2-STAGING"><meta property="og:type" content="article"><meta property="og:locale" content="zh_TW"><meta property="og:site_name" content="SIGN WELL · 欣緯生醫"><meta property="og:title" content="'+swSeoHtmlEscape(title)+'"><meta property="og:description" content="'+swSeoHtmlEscape(desc)+'"><meta property="og:url" content="'+swSeoHtmlEscape(url)+'"><meta property="og:image" content="'+swSeoHtmlEscape(cover)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'+swSeoHtmlEscape(title)+'"><meta name="twitter:description" content="'+swSeoHtmlEscape(desc)+'"><meta name="twitter:image" content="'+swSeoHtmlEscape(cover)+'"><meta property="article:published_time" content="'+swSeoHtmlEscape(published)+'"><meta property="article:modified_time" content="'+swSeoHtmlEscape(modified)+'"><meta property="article:section" content="'+swSeoHtmlEscape(String(a?.category||'醫學筆記'))+'"><script type="application/ld+json">'+JSON.stringify(ld).replace(/</g,'\\u003c')+'<\/script><style>'+css+'</style></head><body><header class="top"><a href="'+SW_SEO_SITE+'">SIGN WELL · 欣緯生醫</a><a class="back-home" href="'+SW_SEO_SITE+'">← 返回首頁</a></header><main class="wrap"><article class="article-shell" data-font-size="medium"><header class="hero"><div class="kicker">'+swSeoHtmlEscape(String(a?.category||'醫學筆記'))+'</div><h1>'+swSeoHtmlEscape(title)+'</h1><div class="meta"><time datetime="'+swSeoHtmlEscape(published)+'">'+swSeoHtmlEscape(visibleDate||published.slice(0,10))+'</time><span>·</span><span class="author-chip"><span class="avatar">'+avatar+'</span><span>'+swSeoHtmlEscape(author)+'</span></span></div><div class="actions">'+identityButton+'<button type="button" id="shareArticle">分享</button><button type="button" id="copyArticle">複製連結</button><span class="reader-size" role="group" aria-label="文章字級"><button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button></span></div></header>'+(a?.cover?'<img class="cover" src="'+swSeoHtmlEscape(cover)+'" alt="">':'')+(summary10s?'<aside class="summary10s"><b>10 秒摘要</b><p>'+swSeoHtmlEscape(summary10s)+'</p></aside>':'')+'<div class="article">'+body+'</div><footer class="foot">本站不提供醫療服務、不招攬醫療業務；內容僅供醫學教育與資訊整理，不構成個別醫療建議。<br><a href="'+SW_SEO_SITE+'">返回 SIGN WELL</a> · <a href="mailto:signwell.com.tw@gmail.com">聯絡我們</a></footer></article></main>'+shareScript+readerScript+identityRuntime+'<script>window.SIGNWELL_STATIC_ARTICLE='+JSON.stringify({title:title,summary10s:summary10s,excerpt:desc,anatomy:a?.anatomy||swAnatomyMapForArticle(a)}).replace(/</g,'\\u003c')+';<\/script><script src="'+SW_SEO_SITE+'assets/signwell-anatomy-link.js?v=23.9.96"><\/script></body></html>\n';
 }
 
 
@@ -7384,8 +7669,8 @@ function swArticleIdentitySnapshotFromArticle(a){
   i.article_status=String(i.article_status||a.article_status||'NEEDS REVIEW');i.review_status=Array.isArray(i.review_status)?i.review_status:(Array.isArray(a.review_status)?a.review_status:[]);
   i.ai_involvement=i.ai_involvement&&typeof i.ai_involvement==='object'?i.ai_involvement:(a.ai_involvement||{});
   i.content_hash=String(i.content_hash||a.content_hash||'');i.hash_schema=String(i.hash_schema||a.hash_schema||'sw-content-v1');
-  i.article_url=String(i.article_url||swSeoArticleUrl(a));i.trace_url=String(i.trace_url||a.trace_url||SW_SEO_SITE+'trace/'+encodeURIComponent(i.article_id)+'/');
-  i.share_card_url=String(i.share_card_url||a.share_card_url||SW_SEO_SITE+'assets/article-identity/'+encodeURIComponent(i.article_id)+'.svg');
+  i.article_url=swSeoArticleUrl(a);i.trace_url=SW_SEO_SITE+'trace/'+encodeURIComponent(i.article_id)+'/';
+  i.share_card_url=SW_SEO_SITE+'assets/article-identity/'+encodeURIComponent(i.article_id)+'.svg';
   i.last_verified_at=String(i.last_verified_at||a.last_verified_at||'');i.citations=Array.isArray(i.citations)?i.citations:[];i.referenced_by_items=Array.isArray(i.referenced_by_items)?i.referenced_by_items:[];i.version_history=Array.isArray(i.version_history)?i.version_history:[];
   i.external_references=Number(i.external_references||i.citations.filter(c=>String(c?.target_type||'')!=='INTERNAL_ARTICLE').length||(Array.isArray(a.references)?a.references.length:0));
   i.internal_references=Number(i.internal_references||i.citations.filter(c=>String(c?.target_type||'')==='INTERNAL_ARTICLE').length);i.referenced_by=Number(i.referenced_by||i.referenced_by_items.length);
@@ -7394,10 +7679,10 @@ function swArticleIdentitySnapshotFromArticle(a){
 function swArticleIdentityTraceHTML(aOrIdentity){
   const i=(aOrIdentity&&aOrIdentity.identity)?swArticleIdentitySnapshotFromArticle(aOrIdentity):clone(aOrIdentity||{}),id=String(i.article_id||'');
   if(!/^SW-A-\d{4}-\d{6}$/.test(id))throw new Error('Trace Page 缺少有效 Article ID');
-  const title=String(i.title||'SIGN WELL 文章'),trace=String(i.trace_url||SW_SEO_SITE+'trace/'+encodeURIComponent(id)+'/'),image=String(i.share_card_url||SW_SEO_SITE+'assets/article-identity/'+encodeURIComponent(id)+'.svg');
+  const title=String(i.title||'SIGN WELL 文章'),trace=SW_SEO_SITE+'trace/'+encodeURIComponent(id)+'/',image=SW_SEO_SITE+'assets/article-identity/'+encodeURIComponent(id)+'.svg';
   const snapshot=JSON.stringify(i).replace(/</g,'\\u003c');
   const ld={"@context":"https://schema.org","@type":"WebPage",name:'文章溯源紀錄｜'+title,url:trace,inLanguage:'zh-Hant',about:{"@type":"Article",name:title,identifier:id,version:String(i.current_version||'')}};
-  return '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"><meta name="referrer" content="strict-origin-when-cross-origin"><title>文章溯源紀錄｜'+swSeoHtmlEscape(title)+'｜SIGN WELL</title><meta name="description" content="SIGN WELL '+swSeoHtmlEscape(id)+' 的文章身分、版本、引用與內容 fingerprint 溯源紀錄。"><link rel="canonical" href="'+swSeoHtmlEscape(trace)+'"><meta property="og:type" content="website"><meta property="og:site_name" content="SIGN WELL · 欣緯生醫"><meta property="og:title" content="文章溯源紀錄｜'+swSeoHtmlEscape(title)+'"><meta property="og:description" content="Every article has an identity. Traceable. Versioned. Referenced."><meta property="og:url" content="'+swSeoHtmlEscape(trace)+'"><meta property="og:image" content="'+swSeoHtmlEscape(image)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="'+swSeoHtmlEscape(image)+'"><link rel="stylesheet" href="'+SW_SEO_SITE+'assets/components/styles/12-signwell-article-identity-v24.8.0.css?build=24.8.0-STAGING"><script type="application/ld+json">'+JSON.stringify(ld).replace(/</g,'\\u003c')+'<\/script></head><body class="sw-trace-body"><div class="sw-trace-wrap"><header class="sw-trace-top"><a href="'+SW_SEO_SITE+'">SIGN WELL · 欣緯生醫</a><a href="'+swSeoHtmlEscape(i.article_url||SW_SEO_SITE)+'">原始文章</a></header><main data-sw-trace-root><section class="sw-trace-status"><b>正在讀取文章溯源紀錄…</b><span>'+swSeoHtmlEscape(id)+'</span></section></main></div><script>window.SIGNWELL_TRACE_SNAPSHOT='+snapshot+';<\/script><script src="'+SW_SEO_SITE+'analytics-config.js"><\/script><script src="'+SW_SEO_SITE+'assets/bundles/article-identity-v24.8.0.js?build=24.8.0-STAGING"><\/script><script>window.SignWellArticleIdentity&&window.SignWellArticleIdentity.mountTracePage(window.SIGNWELL_TRACE_SNAPSHOT);<\/script></body></html>\n';
+  return '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"><meta name="referrer" content="strict-origin-when-cross-origin"><title>文章溯源紀錄｜'+swSeoHtmlEscape(title)+'｜SIGN WELL</title><meta name="description" content="SIGN WELL '+swSeoHtmlEscape(id)+' 的文章身分、版本、引用與內容 fingerprint 溯源紀錄。"><link rel="canonical" href="'+swSeoHtmlEscape(trace)+'"><meta property="og:type" content="website"><meta property="og:site_name" content="SIGN WELL · 欣緯生醫"><meta property="og:title" content="文章溯源紀錄｜'+swSeoHtmlEscape(title)+'"><meta property="og:description" content="Every article has an identity. Traceable. Versioned. Referenced."><meta property="og:url" content="'+swSeoHtmlEscape(trace)+'"><meta property="og:image" content="'+swSeoHtmlEscape(image)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="'+swSeoHtmlEscape(image)+'"><link rel="stylesheet" href="'+SW_SEO_SITE+'assets/components/styles/12-signwell-article-identity-v24.8.0.css?build=24.23.2-STAGING"><script type="application/ld+json">'+JSON.stringify(ld).replace(/</g,'\\u003c')+'<\/script></head><body class="sw-trace-body"><div class="sw-trace-wrap"><header class="sw-trace-top"><a href="'+SW_SEO_SITE+'">SIGN WELL · 欣緯生醫</a><a href="'+swSeoHtmlEscape(i.article_url||SW_SEO_SITE)+'">原始文章</a></header><main data-sw-trace-root><section class="sw-trace-status"><b>正在讀取文章溯源紀錄…</b><span>'+swSeoHtmlEscape(id)+'</span></section></main></div><script>window.SIGNWELL_TRACE_SNAPSHOT='+snapshot+';<\/script><script src="'+SW_SEO_SITE+'analytics-config.js"><\/script><script src="'+SW_SEO_SITE+'assets/bundles/article-identity-v24.8.0.js?build=24.23.2-STAGING"><\/script><script>window.SignWellArticleIdentity&&window.SignWellArticleIdentity.mountTracePage(window.SIGNWELL_TRACE_SNAPSHOT);<\/script></body></html>\n';
 }
 function swArticleIdentityShareSvg(aOrIdentity){
   const article=(aOrIdentity&&aOrIdentity.identity)?aOrIdentity:{title:String(aOrIdentity?.title||''),article_id:String(aOrIdentity?.article_id||''),identity:aOrIdentity||{}};
@@ -8008,7 +8293,7 @@ async function swCanvaSetSecret(){await openSecretVaultDialog({target:'canva',ti
 async function swCanvaConnect(){let popup=null;try{popup=window.open('about:blank','signwellCanvaOAuth','width=640,height=780,resizable=yes,scrollbars=yes');if(!popup){showToast('瀏覽器封鎖了彈出視窗，請允許後再試');return}popup.document.write('<!doctype html><meta charset="utf-8"><title>SIGN WELL</title><p style="font-family:Microsoft JhengHei UI,Microsoft JhengHei,微軟正黑體,Yuanti TC,PingFang TC,sans-serif;padding:30px">正在準備 Canva 授權…</p>');swCanvaSetBusy(true,'正在準備 Canva 授權…');await swCanvaSaveConfig();const r=await swCanvaRequest('admin.canva.oauthStart',{},30000);popup.location.replace(r.authUrl)}catch(err){try{popup?.close()}catch(_){}showToast(String(err?.message||err))}finally{swCanvaSetBusy(false)}}
 async function swCanvaDisconnect(){if(!(await swConfirm('要中斷 SIGN WELL 與 Canva 的 OAuth 連結嗎？\nClient ID / Secret 會保留，之後可重新授權。',{title:'中斷 Canva？',kicker:'CANVA CONNECT',danger:true,confirmText:'中斷連結'})))return;try{swCanvaSetBusy(true);await swCanvaRequest('admin.canva.disconnect',{},30000);showToast('Canva 已中斷');await swCanvaRefreshStatus(false)}finally{swCanvaSetBusy(false)}}
 async function swCanvaPreviewArticle(a){if(!a)return;try{swCanvaSetBusy(true,'正在整理 Social Brief…');const r=await swCanvaRequest('admin.canva.preview',{article:swCanvaArticlePayload(a)},90000);swCanvaState.brief=r.brief||null;const area=document.getElementById('canvaBriefArea');if(area){area.innerHTML=swCanvaBriefHtml(swCanvaState.brief);swBindCanvaBriefButtons();swMetaPublishRefreshPanel()}showToast('Social Pack 內容預覽完成')}catch(err){showToast('Canva 預覽失敗：'+String(err?.message||err))}finally{swCanvaSetBusy(false)}}
-async function swCanvaAwaitImportJob(jobId){const started=Date.now();while(Date.now()-started<70000){const r=await swCanvaRequest('admin.canva.jobStatus',{jobId},25000);const j=r.job||{};if(j.status==='success')return j;if(j.status==='failed')throw new Error(j.error?.message||j.error?.code||'Canva 建立失敗');await new Promise(res=>setTimeout(res,2200))}throw new Error('Canva 還在處理，請稍後重試；不會重複產生同一份內容。')}
+async function swCanvaAwaitImportJob(jobId){const started=Date.now();let attempt=0;while(Date.now()-started<70000){const r=await swCanvaRequest('admin.canva.jobStatus',{jobId},25000);const j=r.job||{};if(j.status==='success')return j;if(j.status==='failed')throw new Error(j.error?.message||j.error?.code||'Canva 建立失敗');attempt++;const delay=document.hidden?8000:(attempt<=3?2500:(attempt<=8?4000:7000));await new Promise(res=>setTimeout(res,delay))}throw new Error('Canva 還在處理，請稍後重試；不會重複產生同一份內容。')}
 async function swCanvaGenerateForArticle(a){
   if(!a)return;
   try{
@@ -8095,7 +8380,7 @@ if(typeof renderExport==='function'){const swOriginalRenderExportGoogleMedia=ren
 const swPublishComposerState={articleId:'',brief:null,plan:null,metaStatus:null,canvaStatus:null,busy:false};
 function swPublishComposerReset(){swPublishComposerState.articleId='';swPublishComposerState.brief=null;swPublishComposerState.plan=null;swPublishComposerState.busy=false;}
 function swPublishComposerArticle(article){return article||data.articles.find(a=>String(a.id)===String(swPublishComposerState.articleId))||null;}
-function swPublishComposerUrl(article,brief){return String(brief?.url||article?.canvaSocial?.brief?.url||('https://signwell.com.tw/article/'+encodeURIComponent(String(article?.slug||article?.id||''))+'/')).trim();}
+function swPublishComposerUrl(article,brief){return String(brief?.url||article?.canvaSocial?.brief?.url||swCmsPublicArticleUrl(article)).trim();}
 function swPublishComposerCaption(article,brief){
   const url=swPublishComposerUrl(article,brief);let base=String(brief?.caption||'').trim();
   if(url)base=base.split(url).join('').trim();
