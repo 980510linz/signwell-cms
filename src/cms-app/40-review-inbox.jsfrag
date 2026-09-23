@@ -87,7 +87,7 @@ async function swInitPasskeySettings(){
   if(add)add.onclick=swAddPasskeyFromSettings;if(refresh)refresh.onclick=swLoadPasskeys;
   if(!swPasskeyCanOffer()){
     if(add)add.disabled=true;
-    $('#passkeyDeviceList').innerHTML='<div class="passkey-empty">'+(cmsPasskeyConfigured?'Passkey 已在後端設定，但目前網域不符合 RP ID；請從 980510linz.github.io 的 CMS 頁面開啟。':'尚未設定 Passkey Worker。部署 CODE/PASSKEY-AUTH 後再於 Apps Script 設定 SW_PASSKEY_AUTH_URL 與 PASSKEY_BRIDGE_SECRET。')+'</div>';
+    $('#passkeyDeviceList').innerHTML='<div class="passkey-empty">'+(cmsPasskeyConfigured?'Passkey 已在後端設定，但目前網域不符合 RP ID；請從 980510linz.github.io 的 CMS 頁面開啟。':'尚未設定 Passkey Worker。部署 H-PASSKEY-AUTH 後再於 Apps Script 設定 SW_PASSKEY_AUTH_URL 與 PASSKEY_BRIDGE_SECRET。')+'</div>';
     return;
   }
   await swLoadPasskeys();

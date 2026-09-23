@@ -6,6 +6,8 @@
     "00-core.jsfrag",
     "10-newsletter.jsfrag",
     "20-cloud-editor.jsfrag",
+    "25-openai-settings.jsfrag",
+    "26-openai-deep-research.jsfrag",
     "30-notion.jsfrag",
     "40-review-inbox.jsfrag",
     "45-article-identity.jsfrag",

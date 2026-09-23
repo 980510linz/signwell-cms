@@ -3662,7 +3662,7 @@ function confirmAIInstructionSend(message){
         <div class="aiw-confirm-title"><strong id="aiwConfirmTitle">確認送出 AI 指令</strong><span>Gemini 會理解你的文字，整理成長期寫作偏好，再存入 Editor Instructions。</span></div>
       </div>
       <div class="aiw-confirm-preview">${aiwEscape(message)}</div>
-      <div class="aiw-confirm-guard"><strong>這次送出不會改動底層限制</strong><div class="aiw-confirm-chips"><span>Evidence Lock 保留</span><span>自適應篇幅保留</span><span>文獻核驗保留</span><span>醫療安全規則保留</span></div></div>
+      <div class="aiw-confirm-guard"><strong>這次送出不會改動底層限制</strong><div class="aiw-confirm-chips"><span>Evidence Lock 保留</span><span>600–1200 字保留</span><span>文獻核驗保留</span><span>醫療安全規則保留</span></div></div>
       <div class="aiw-confirm-actions"><button class="aiw-confirm-cancel" id="aiwConfirmCancel" type="button">返回修改</button><button class="aiw-confirm-send" id="aiwConfirmSend" type="button">確認送出</button></div>
       <div class="aiw-confirm-hint"><kbd>Esc</kbd> 返回 · <kbd>⌘/Ctrl + Enter</kbd> 確認</div>
     </div>`;

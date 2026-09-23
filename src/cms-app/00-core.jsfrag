@@ -1019,11 +1019,13 @@ function renderView(){
     aboutpage:'關於頁面',
     newsletter:'電子報',
     canva:'Social Studio',
+    aiopenai:'AI / OpenAI',
+    deepresearch:'深入研究',
     export:'設定'
   };
 
   $('#topTitle').textContent=names[viewName]||'總覽';
-  const kicker=document.getElementById('topKicker');if(kicker){const section={dashboard:'WORKSPACE',commandcenter:'OPERATIONS',medicalnews:'INTELLIGENCE',aiinstructions:'AI',articles:'CONTENT',topics:'CONTENT',site:'SITE',aboutpage:'SITE',newsletter:'DISTRIBUTION',canva:'DISTRIBUTION',export:'SYSTEM'}[viewName]||'WORKSPACE';kicker.textContent=`SIGN WELL · ${section}`;}
+  const kicker=document.getElementById('topKicker');if(kicker){const section={dashboard:'WORKSPACE',commandcenter:'OPERATIONS',medicalnews:'INTELLIGENCE',aiinstructions:'AI',articles:'CONTENT',topics:'CONTENT',site:'SITE',aboutpage:'SITE',newsletter:'DISTRIBUTION',canva:'DISTRIBUTION',aiopenai:'AI SYSTEM',deepresearch:'AI RESEARCH',export:'SYSTEM'}[viewName]||'WORKSPACE';kicker.textContent=`SIGN WELL · ${section}`;}
 
   if(viewName==='commandcenter')renderNotionCommandCenter();
   else if(viewName==='medicalnews')renderMedicalNewsSuggestions();
@@ -1037,6 +1039,8 @@ function renderView(){
     setTimeout(()=>refreshNewsletterData(),0);
   }
   else if(viewName==='canva')renderCanvaSocial();
+  else if(viewName==='aiopenai')renderOpenAISettings();
+  else if(viewName==='deepresearch')renderDeepResearchWorkspace();
   else if(viewName==='export'){renderExport();setTimeout(swInitPasskeySettings,0);setTimeout(initPublishAIProviderSettings,0);setTimeout(initPublishGptSettings,12);setTimeout(initPublishComplianceSettings,28);setTimeout(initMetaProviderSettings,64);setTimeout(initSecurityAuditPanel,124)}
   else renderDashboard();
 }
