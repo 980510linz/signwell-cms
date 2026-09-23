@@ -1,0 +1,144 @@
+/* CMS shell component 04 · source id: signwell-cms-glass-v20 */
+/* SIGN WELL CMS · Optical Liquid Glass v20 · 2026-09-13 */
+:root{
+  --cms-glass-blue:rgba(153,205,255,.19);
+  --cms-glass-pink:rgba(242,204,226,.13);
+  --cms-glass-depth:0 26px 68px rgba(48,82,116,.105),0 7px 20px rgba(48,82,116,.045);
+}
+body:not(.perf-lite):not(.lite) .glass,
+body:not(.perf-lite):not(.lite) .sidebar,
+body:not(.perf-lite):not(.lite) .workspace,
+body:not(.perf-lite):not(.lite) .panel,
+body:not(.perf-lite):not(.lite) .editor-main,
+body:not(.perf-lite):not(.lite) .editor-side,
+body:not(.perf-lite):not(.lite) .stat,
+body:not(.perf-lite):not(.lite) .modal-card,
+body:not(.perf-lite):not(.lite) .preview-shell,
+body:not(.perf-lite):not(.lite) .topic-list,
+body:not(.perf-lite):not(.lite) .topic-form,
+body:not(.perf-lite):not(.lite) .publish-card,
+body:not(.perf-lite):not(.lite) .newsletter-admin-card,
+body:not(.perf-lite):not(.lite) .site-text-card,
+body:not(.perf-lite):not(.lite) .person-editor-card{
+  background:
+    radial-gradient(135% 105% at 8% -15%,rgba(255,255,255,.97) 0%,rgba(255,255,255,.45) 30%,transparent 56%),
+    radial-gradient(70% 62% at 103% 0%,var(--cms-glass-blue),transparent 68%),
+    radial-gradient(58% 55% at -5% 103%,var(--cms-glass-pink),transparent 72%),
+    linear-gradient(148deg,rgba(255,255,255,.58),rgba(241,248,255,.35))!important;
+  border:1px solid rgba(255,255,255,.90)!important;
+  box-shadow:inset 0 1.2px 0 rgba(255,255,255,1),inset 1px 0 0 rgba(255,255,255,.42),inset 0 -1px 0 rgba(101,139,176,.065),var(--cms-glass-depth)!important;
+  backdrop-filter:blur(26px) saturate(164%) brightness(1.02)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(164%) brightness(1.02)!important;
+}
+
+/* Sidebar/workspace are thick structural glass; inner cards are slightly thinner. */
+body:not(.perf-lite):not(.lite) .sidebar,
+body:not(.perf-lite):not(.lite) .workspace{
+  background:
+    radial-gradient(115% 80% at 10% -8%,rgba(255,255,255,.98),transparent 60%),
+    radial-gradient(72% 58% at 104% 22%,rgba(157,205,252,.19),transparent 70%),
+    linear-gradient(148deg,rgba(255,255,255,.63),rgba(236,246,255,.33))!important;
+  box-shadow:inset 0 1.2px 0 #fff,inset 0 -1px 0 rgba(99,139,178,.07),0 30px 80px rgba(49,83,116,.12),0 8px 22px rgba(49,83,116,.05)!important;
+}
+body:not(.perf-lite):not(.lite) .topbar{
+  background:
+    radial-gradient(100% 140% at 16% -60%,rgba(255,255,255,.98),transparent 62%),
+    linear-gradient(180deg,rgba(255,255,255,.54),rgba(242,248,255,.25))!important;
+  border-bottom:1px solid rgba(255,255,255,.64)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 9px 26px rgba(55,88,119,.045)!important;
+  backdrop-filter:blur(21px) saturate(158%)!important;
+  -webkit-backdrop-filter:blur(21px) saturate(158%)!important;
+}
+
+/* Admin controls as thin glass wafers. */
+body:not(.perf-lite):not(.lite) .nav button,
+body:not(.perf-lite):not(.lite) .top-action,
+body:not(.perf-lite):not(.lite) .smallbtn,
+body:not(.perf-lite):not(.lite) .toolbar button,
+body:not(.perf-lite):not(.lite) .row-actions button,
+body:not(.perf-lite):not(.lite) .cover-actions button,
+body:not(.perf-lite):not(.lite) .modal-actions button,
+body:not(.perf-lite):not(.lite) .topic-row-actions button,
+body:not(.perf-lite):not(.lite) .site-text-actions button,
+body:not(.perf-lite):not(.lite) .publish-actions button{
+  background:
+    radial-gradient(115% 100% at 14% -35%,rgba(255,255,255,.96),transparent 58%),
+    linear-gradient(145deg,rgba(255,255,255,.66),rgba(235,245,255,.37))!important;
+  border-color:rgba(255,255,255,.88)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.99),inset 0 -1px 0 rgba(101,139,176,.06),0 9px 22px rgba(47,82,116,.06)!important;
+  backdrop-filter:blur(14px) saturate(150%)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(150%)!important;
+}
+body:not(.perf-lite):not(.lite) .nav button.active{
+  background:
+    radial-gradient(120% 105% at 18% -30%,rgba(255,255,255,1),transparent 58%),
+    radial-gradient(80% 70% at 104% 50%,rgba(158,207,255,.22),transparent 72%),
+    linear-gradient(145deg,rgba(255,255,255,.74),rgba(224,240,255,.44))!important;
+  box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(90,136,178,.07),0 11px 26px rgba(54,95,136,.075)!important;
+}
+
+body:not(.perf-lite):not(.lite) .searchbar,
+body:not(.perf-lite):not(.lite) .field-group input,
+body:not(.perf-lite):not(.lite) .field-group select,
+body:not(.perf-lite):not(.lite) .field-group textarea,
+body:not(.perf-lite):not(.lite) .subtitle-input,
+body:not(.perf-lite):not(.lite) .content-area,
+body:not(.perf-lite):not(.lite) .pin,
+body:not(.perf-lite):not(.lite) .answer-input,
+body:not(.perf-lite):not(.lite) .cover-box{
+  background:
+    radial-gradient(110% 85% at 12% -32%,rgba(255,255,255,.93),transparent 60%),
+    linear-gradient(145deg,rgba(255,255,255,.64),rgba(241,248,255,.43))!important;
+  border-color:rgba(255,255,255,.86)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(98,136,173,.055)!important;
+  backdrop-filter:blur(12px) saturate(140%)!important;
+  -webkit-backdrop-filter:blur(12px) saturate(140%)!important;
+}
+
+/* Modal and preview: frontmost thick glass. */
+body:not(.perf-lite):not(.lite) .modal-card,
+body:not(.perf-lite):not(.lite) .preview-shell,
+body:not(.perf-lite):not(.lite) .login-sync-card,
+body:not(.perf-lite):not(.lite) .newsletter-send-card,
+body:not(.perf-lite):not(.lite) .newsletter-confirm-card,
+body:not(.perf-lite):not(.lite) .article-publish-confirm-card{
+  background:
+    radial-gradient(130% 100% at 8% -12%,rgba(255,255,255,.99),rgba(255,255,255,.48) 30%,transparent 58%),
+    radial-gradient(70% 60% at 102% 0%,rgba(155,205,255,.20),transparent 70%),
+    radial-gradient(60% 55% at 0% 105%,rgba(241,207,225,.14),transparent 72%),
+    linear-gradient(148deg,rgba(255,255,255,.67),rgba(239,247,255,.39))!important;
+  border:1px solid rgba(255,255,255,.94)!important;
+  box-shadow:inset 0 1.2px 0 #fff,inset 0 -1px 0 rgba(94,132,168,.07),0 34px 94px rgba(45,74,104,.16),0 10px 28px rgba(45,74,104,.06)!important;
+  backdrop-filter:blur(30px) saturate(170%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(170%)!important;
+}
+
+@media(hover:hover) and (pointer:fine){
+  body:not(.perf-lite):not(.lite) .stat:hover,
+  body:not(.perf-lite):not(.lite) .panel:hover{
+    border-color:rgba(255,255,255,.98)!important;
+    box-shadow:inset 0 1.2px 0 #fff,inset 0 -1px 0 rgba(101,139,176,.07),0 32px 82px rgba(48,82,116,.135),0 8px 24px rgba(48,82,116,.055)!important;
+  }
+}
+
+/* Tablet/iOS: optical color remains, expensive blur is reduced. */
+@media(max-width:980px),(pointer:coarse){
+  body:not(.perf-lite):not(.lite) .glass,
+  body:not(.perf-lite):not(.lite) .sidebar,
+  body:not(.perf-lite):not(.lite) .workspace,
+  body:not(.perf-lite):not(.lite) .panel,
+  body:not(.perf-lite):not(.lite) .editor-main,
+  body:not(.perf-lite):not(.lite) .editor-side,
+  body:not(.perf-lite):not(.lite) .stat,
+  body:not(.perf-lite):not(.lite) .modal-card,
+  body:not(.perf-lite):not(.lite) .preview-shell{
+    backdrop-filter:blur(18px) saturate(145%)!important;
+    -webkit-backdrop-filter:blur(18px) saturate(145%)!important;
+  }
+}
+@media(max-width:760px){
+  body:not(.perf-lite):not(.lite) .topbar{backdrop-filter:blur(15px) saturate(140%)!important;-webkit-backdrop-filter:blur(15px) saturate(140%)!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .glass,.panel,.stat,.sidebar,.workspace{transition:none!important}
+}

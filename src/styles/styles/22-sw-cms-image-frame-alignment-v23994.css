@@ -1,0 +1,123 @@
+/* CMS shell component 22 · source id: sw-cms-image-frame-alignment-v23994 */
+/* ============================================================
+   SIGN WELL CMS v23.9.94 · image/frame alignment guard
+   Scope: right-side live preview + CMS avatar/photo frames only.
+   Prevents grid/sticky/transform rules from separating the image
+   painting box from its visible glass frame, especially in Safari.
+   ============================================================ */
+.about-editor-grid > *,
+.about-live-preview,
+.about-preview-browser,
+.about-preview-stage{
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+}
+.about-live-preview{
+  width:100%;
+  align-self:start;
+  isolation:isolate;
+  contain:layout paint;
+}
+.about-preview-browser{
+  position:relative;
+  width:100%;
+  isolation:isolate;
+  contain:paint;
+}
+.about-preview-stage{
+  position:relative;
+  overflow:hidden;
+}
+
+/* Every UI photo owns its own coordinate system. */
+.person-admin-avatar,
+.live-preview-avatar,
+.publisher-preview-avatar,
+.about-photo-preview .thumb,
+.about-person-mini .pic,
+.about-person-dialog-avatar,
+.ap-avatar{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  flex-shrink:0;
+  transform:none;
+  translate:none;
+}
+
+/* The image is painted by the frame, not by an outer transformed parent. */
+.person-admin-avatar > img,
+.live-preview-avatar > img,
+.publisher-preview-avatar > img,
+.about-photo-preview .thumb > img,
+.about-person-mini .pic > img,
+.about-person-dialog-avatar > img,
+.ap-avatar > img{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:inherit!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  transform:none!important;
+  translate:none!important;
+  scale:1!important;
+  transform-origin:50% 50%!important;
+}
+
+/* Keep text from pushing the photo/frame columns apart. */
+.ap-person,
+.about-person-mini,
+.person-admin-row,
+.about-photo-preview,
+.about-person-dialog-identity{
+  min-width:0;
+}
+.ap-person > div:last-child,
+.about-person-mini-copy,
+.person-admin-copy,
+.about-photo-preview .copy,
+.about-person-dialog-identity > div:last-child{
+  min-width:0;
+}
+
+/* Safari sticky/grid rounding guard for the right preview. */
+@supports (-webkit-touch-callout:none){
+  .about-live-preview{
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+  }
+  .about-preview-browser,
+  .about-preview-stage{
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+  }
+  .person-admin-avatar > img,
+  .live-preview-avatar > img,
+  .publisher-preview-avatar > img,
+  .about-photo-preview .thumb > img,
+  .about-person-mini .pic > img,
+  .about-person-dialog-avatar > img,
+  .ap-avatar > img{
+    -webkit-transform:translateZ(0)!important;
+    transform:translateZ(0)!important;
+  }
+}
+
+@media(max-width:980px){
+  .about-live-preview{
+    position:relative!important;
+    top:auto!important;
+    width:100%!important;
+  }
+}

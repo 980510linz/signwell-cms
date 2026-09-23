@@ -1,0 +1,12 @@
+/* medical-daily-focus style component 08 · swFocusV222ButtonContract */
+button,.pill,.generate-btn,.draft-actions button,.ai-settings-btn,.ai-setup-actions button,.icon-btn{
+  color:#111820!important;-webkit-text-fill-color:#111820!important;text-shadow:none!important;
+}
+.pill.primary,.draft-actions button.primary{background:#17212a!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+
+/* v22.5 · Claim–Evidence Lock audit card */
+.claim-audit-card{margin-top:12px;padding:13px 14px;border-radius:18px;border:1px solid rgba(255,255,255,.86);background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(231,244,255,.48));box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 10px 26px rgba(69,112,151,.07)}
+.claim-audit-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.claim-audit-head div{display:grid;gap:3px}.claim-audit-head span{font-size:8px;letter-spacing:.14em;color:#6a88a0;font-weight:850}.claim-audit-head strong{font-size:12px;color:#20384e}.claim-audit-head>b{font:700 15px/1 Georgia,serif;color:#315e83;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.62)}
+.claim-audit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:11px}.claim-audit-grid span{padding:8px 9px;border-radius:12px;background:rgba(255,255,255,.52);font-size:8.7px;color:#6c7f90}.claim-audit-grid strong{display:block;margin-top:2px;color:#243d53;font-size:11px}.claim-audit-card p{margin:10px 1px 0;color:#6f8393;font-size:8.8px;line-height:1.65}
+@media(max-width:640px){.claim-audit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.claim-audit-card{padding:12px}.claim-audit-head strong{font-size:11px}}
+.claim-repair-log{margin-top:10px;display:grid;gap:6px}.claim-repair-step{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.72);font-size:8.5px;color:#657d91}.claim-repair-step strong{color:#28445c;font-size:9px}.claim-repair-step em{font-style:normal;color:#7c91a4}.claim-safe-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:linear-gradient(135deg,rgba(230,244,255,.78),rgba(255,235,244,.72));border:1px solid rgba(255,255,255,.88);color:#49677f;font-size:8.3px;font-weight:850}

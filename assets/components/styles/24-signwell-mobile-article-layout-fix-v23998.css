@@ -1,0 +1,195 @@
+/* CMS shell component 24 · source id: signwell-mobile-article-layout-fix-v23998 */
+/* ============================================================
+   SIGN WELL CMS · Mobile Article Workspace Hotfix · 2026-09-18
+   - Restore iOS safe-area spacing overwritten by legacy mobile CSS
+   - Let glossary header grow with its two/three-row mobile toolbar
+   - Keep glossary controls and explanatory copy in normal flow
+   ============================================================ */
+@media (max-width: 900px){
+  .cms{
+    padding-top:max(14px, env(safe-area-inset-top)) !important;
+    padding-right:max(10px, env(safe-area-inset-right)) !important;
+    padding-bottom:max(14px, env(safe-area-inset-bottom)) !important;
+    padding-left:max(10px, env(safe-area-inset-left)) !important;
+  }
+  .sidebar{
+    top:max(10px, env(safe-area-inset-top)) !important;
+  }
+}
+
+@media (max-width: 760px){
+  .article-hub-head{
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .article-hub-head h1{
+    font-size:36px;
+    line-height:1.08;
+  }
+  .article-hub-head p{
+    max-width:100%;
+    font-size:10.5px;
+    line-height:1.7;
+  }
+  .article-hub-actions{
+    width:100%;
+  }
+  .article-hub-actions .top-action{
+    width:100%;
+    justify-content:center;
+  }
+
+  /* The generic .panel-head is 54px tall.  The glossary has four
+     controls on mobile, so it must size from content instead. */
+  .sw-glossary-panel .panel-head{
+    height:auto !important;
+    min-height:0 !important;
+    padding:14px 14px 12px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    gap:12px !important;
+    overflow:visible !important;
+  }
+  .sw-glossary-panel .article-panel-meta{
+    width:100%;
+    min-width:0;
+    min-height:20px;
+    flex-wrap:wrap;
+  }
+  .sw-glossary-panel .sw-glossary-tools{
+    width:100% !important;
+    min-width:0;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    gap:8px !important;
+    align-items:stretch !important;
+  }
+  .sw-glossary-tools .searchbar{
+    grid-column:1 / -1;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  .sw-glossary-tools #glossaryAdd,
+  .sw-glossary-tools #glossaryRescan{
+    width:100%;
+    min-width:0;
+  }
+  .sw-glossary-tools #glossaryPublish{
+    grid-column:1 / -1;
+    width:100%;
+    min-width:0;
+  }
+  .sw-glossary-tools .top-action{
+    min-height:44px;
+    height:44px;
+    padding:0 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    white-space:nowrap;
+    font-size:10.5px;
+    line-height:1;
+  }
+
+  .sw-glossary-note{
+    position:relative !important;
+    z-index:0 !important;
+    margin:0 !important;
+    padding:14px 16px 16px !important;
+    border-top:1px solid rgba(72,94,114,.08);
+    background:rgba(255,255,255,.18);
+    color:#768693;
+    font-size:10.5px;
+    line-height:1.72;
+  }
+
+  #glossaryRows{
+    min-width:0;
+    overflow:hidden;
+  }
+  .sw-glossary-row{
+    min-width:0;
+    padding:16px 14px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:10px;
+    border-top:1px solid rgba(72,94,114,.08);
+  }
+  .sw-glossary-main,
+  .sw-glossary-term{
+    min-width:0;
+  }
+  .sw-glossary-term{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:6px 10px;
+  }
+  .sw-glossary-term strong{
+    font-size:17px;
+    line-height:1.35;
+    overflow-wrap:anywhere;
+  }
+  .sw-glossary-term span{
+    font-size:12px;
+    line-height:1.4;
+    overflow-wrap:anywhere;
+  }
+  .sw-glossary-main p{
+    margin:7px 0 0;
+    font-size:11.5px;
+    line-height:1.72;
+    overflow-wrap:anywhere;
+  }
+  .sw-glossary-main small{
+    display:block;
+    margin-top:6px;
+    line-height:1.55;
+    overflow-wrap:anywhere;
+  }
+  .sw-glossary-meta,
+  .sw-glossary-actions{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:7px;
+    min-width:0;
+  }
+  .sw-glossary-actions button{
+    min-height:42px;
+    padding:0 14px;
+    border-radius:14px;
+    white-space:nowrap;
+  }
+}
+
+@media (max-width: 430px){
+  .view{
+    padding:14px 10px 24px !important;
+  }
+  .article-hub-head h1{
+    font-size:34px;
+  }
+  .article-create-card{
+    padding:14px;
+    gap:12px;
+  }
+  .sw-glossary-panel{
+    border-radius:20px;
+  }
+  .sw-glossary-panel .panel-head{
+    padding:12px !important;
+  }
+}
+
+@media (max-width: 350px){
+  .sw-glossary-panel .sw-glossary-tools{
+    grid-template-columns:1fr !important;
+  }
+  .sw-glossary-tools .searchbar,
+  .sw-glossary-tools #glossaryPublish{
+    grid-column:1;
+  }
+}

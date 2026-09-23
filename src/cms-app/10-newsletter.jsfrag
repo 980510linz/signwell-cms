@@ -1,0 +1,210 @@
+/* ===== SIGN WELL Newsletter Center ===== */
+const NEWSLETTER_AUTO_KEY='signwell-newsletter-auto-v1';
+const NEWSLETTER_ADMIN_KEY='signwell-newsletter-admin-local-v2';
+const NEWSLETTER_DEFAULT_ADMIN_KEY='';
+let newsletterCache={summary:null,subscribers:[],campaigns:[],backendVersion:'',templateVersion:''};
+let newsletterPreviewTimer=null;
+let newsletterPreviewMounted=false;
+let newsletterPreviewDirty=true;
+let newsletterPreviewSeq=0;
+let newsletterBackendCapability='unknown';
+let newsletterBackendCapabilityError='';
+let newsletterBridgeLastMessageAt=0;
+let newsletterBridgeLastVersion='';
+
+const NEWSLETTER_CFG=()=>window.SIGNWELL_NEWSLETTER||{};
+function expectedBackendRelease(){
+  // Compatibility is pinned to the bridge protocol, not the product release.
+  // This lets /health expose the real deployed release without breaking a proven bridge contract.
+  return String(window.SIGNWELL_RELEASE?.bridgeProtocol||'').trim();
+}
+function assertBackendReleaseCompatible(actualVersion){
+  const expected=expectedBackendRelease();
+  const actual=String(actualVersion||'').trim();
+  if(!expected||actual===expected)return true;
+  throw new Error(
+    `Backend Bridge Protocol 不相容：CMS 需要 ${expected}，目前 /exec 回傳 ${actual||'未知版本'}。`+
+    '請重新部署 Code.gs，並確認 CMS 與 Backend 使用相容的 bridge protocol。'
+  );
+}
+function newsletterBase(){
+  const n=NEWSLETTER_CFG(),a=ANALYTICS_CFG();
+  return String(n.endpoint||a.endpoint||'').replace(/\/+$/,'');
+}
+function newsletterEnabled(){
+  const n=NEWSLETTER_CFG(),a=ANALYTICS_CFG();
+  const endpoint=newsletterBase();
+  const enabled=n.enabled===true || (n.enabled!==false && a.enabled===true);
+  return enabled && /^https:\/\//i.test(endpoint);
+}
+function newsletterAdminKey(){
+  return cmsSessionToken || localStorage.getItem(NEWSLETTER_ADMIN_KEY) || '';
+}
+function newsletterKeyMode(){
+  return cmsSessionToken?'session':(localStorage.getItem(NEWSLETTER_ADMIN_KEY)?'custom':'none');
+}
+
+function saveNewsletterAdminKey(v){
+  const key=String(v||'').trim();
+  if(key)localStorage.setItem(NEWSLETTER_ADMIN_KEY,key);
+  else localStorage.removeItem(NEWSLETTER_ADMIN_KEY);
+}
+function newsletterHeaders(){
+  const h={'Content-Type':'application/json'};
+  const key=newsletterAdminKey();
+  if(key)h.Authorization='Bearer '+key;
+  return h;
+}
+
+function swGasBridgeNonce(){
+  try{
+    const b=new Uint8Array(16);
+    crypto.getRandomValues(b);
+    return Array.from(b,x=>x.toString(16).padStart(2,'0')).join('');
+  }catch(_){
+    return 'fb_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+  }
+}
+function swGasBridgeOriginAllowed(origin){
+  const o=String(origin||'');
+  if(o==='null')return true; // sandboxed Apps Script page; nonce remains mandatory
+  try{
+    const u=new URL(o);
+    if(u.protocol!=='https:')return false;
+    const h=u.hostname.toLowerCase();
+    return h==='script.google.com'||h.endsWith('.googleusercontent.com')||h==='script.googleusercontent.com';
+  }catch(_){return false}
+}
+
+function signwellGasBridge(action,payload={},options={}){
+  return new Promise((resolve,reject)=>{
+    if(!newsletterEnabled()){const e=window.SignWellErrors?.bridgeError?.('SIGN WELL Backend 尚未啟用',{status:503,errorCode:'SW-CMS-503-BACKEND-DISABLED',module:'backend-bridge',action})||new Error('SIGN WELL Backend 尚未啟用');return reject(e);}
+    const endpoint=newsletterBase();
+    const requestId='sw_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2);
+    const frameName='swgas_'+requestId;
+    const bridgeNonce=swGasBridgeNonce();
+    let iframeLoadCount=0;
+    const iframe=document.createElement('iframe');
+    iframe.name=frameName;
+    iframe.title='SIGN WELL Backend';
+    iframe.tabIndex=-1;
+    iframe.setAttribute('aria-hidden','true');
+    Object.assign(iframe.style,{
+      position:'fixed',width:'1px',height:'1px',opacity:'0',
+      pointerEvents:'none',left:'-9999px',top:'-9999px'
+    });
+
+    const form=document.createElement('form');
+    form.method='POST';
+    form.action=endpoint;
+    form.target=frameName;
+    form.style.display='none';
+
+    const add=(name,value)=>{
+      const i=document.createElement('input');
+      i.type='hidden';
+      i.name=name;
+      i.value=String(value??'');
+      form.appendChild(i);
+    };
+
+    add('transport','iframe');
+    add('requestId',requestId);
+    add('returnOrigin',location.origin);
+    add('bridgeNonce',bridgeNonce);
+    add('action',action);
+    add('payload',JSON.stringify(payload||{}));
+    if(options.adminKey)add('adminKey',options.adminKey);
+
+    let timer=null;
+    const cleanup=()=>{
+      clearTimeout(timer);
+      window.removeEventListener('message',onMessage);
+      form.remove();
+      setTimeout(()=>iframe.remove(),60);
+    };
+    const onMessage=e=>{
+      const d=e.data;
+      if(!d||d.source!=='SIGNWELL_GAS'||d.requestId!==requestId)return;
+      if(String(d.bridgeNonce||'')!==bridgeNonce)return;
+      if(!swGasBridgeOriginAllowed(e.origin))return;
+
+      newsletterBridgeLastMessageAt=Date.now();
+      newsletterBridgeLastVersion=String(d.bridgeVersion||'');
+
+      cleanup();
+      try{
+        assertBackendReleaseCompatible(d.bridgeVersion);
+      }catch(versionError){
+        reject(versionError);
+        return;
+      }
+      if(d.ok)resolve(d.data||{});
+      else reject(window.SignWellErrors?.bridgeError?.(d.error||'SIGN WELL Backend error',{status:d.status,errorCode:d.errorCode,errorId:d.errorId,requestId:d.errorRequestId||d.requestId,module:d.errorModule||'backend-bridge',action:d.errorAction||action,reason:d.errorReason,retryable:d.retryable})||new Error(d.error||'SIGN WELL Backend error'));
+    };
+    window.addEventListener('message',onMessage);
+    iframe.addEventListener('load',()=>{iframeLoadCount+=1});
+
+    const timeoutMs=Math.max(5000,Number(options.timeoutMs||30000));
+    timer=setTimeout(()=>{
+      cleanup();
+      reject(window.SignWellErrors?.bridgeError?.(
+        'SIGN WELL Backend iframe bridge 逾時：後端頁面載入 '+iframeLoadCount+' 次，但 nonce handshake 沒有回到 CMS。請確認 Code.gs 已重新部署為新版本。',
+        {status:504,errorCode:'SW-CMS-504-BRIDGE-TIMEOUT',requestId,module:'backend-bridge',action,reason:'Apps Script iframe 已載入，但 nonce handshake 未在期限內回到 CMS；請檢查 /exec 部署版本與 endpoint。',retryable:true}
+      )||new Error('SIGN WELL Backend iframe bridge 逾時'));
+    },timeoutMs);
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
+  });
+}
+
+async function newsletterRequest(path,opt={}){
+  const map={
+    '/admin/newsletter/summary':'admin.summary',
+    '/admin/newsletter/subscribers':'admin.subscribers',
+    '/admin/newsletter/campaigns':'admin.campaigns',
+    '/admin/newsletter/preview':'admin.preview',
+    '/admin/newsletter/test':'admin.test',
+    '/admin/newsletter/authorize-send':'admin.sendAuthorize',
+    '/admin/newsletter/send':'admin.send',
+    '/admin/newsletter/send-article':'admin.sendArticle',
+    '/admin/newsletter/diagnostics':'admin.subscriberDiagnostics',
+    '/admin/newsletter/otp-enable':'admin.newsletter.otpEnable',
+    '/admin/newsletter/otp-test':'admin.newsletter.otpTest'
+  };
+
+  let base=String(path||''),query='';
+  const q=base.indexOf('?');
+  if(q>=0){
+    query=base.slice(q+1);
+    base=base.slice(0,q);
+  }
+
+  const action=map[base];
+  if(!action)throw new Error('Unsupported Newsletter action');
+
+  let payload={};
+  if(opt?.body){
+    try{payload=JSON.parse(opt.body)||{}}catch(_){}
+  }
+  if(query){
+    const qs=new URLSearchParams(query);
+    qs.forEach((v,k)=>payload[k]=v);
+  }
+
+  return signwellGasBridge(action,payload,{adminKey:newsletterAdminKey(),timeoutMs:opt.timeoutMs});
+}
+function migrateLegacyNewsletterKey(){
+  try{
+    const legacy=sessionStorage.getItem('signwell-newsletter-admin-session-v1');
+    if(legacy&&!localStorage.getItem(NEWSLETTER_ADMIN_KEY)){
+      localStorage.setItem(NEWSLETTER_ADMIN_KEY,legacy);
+    }
+    sessionStorage.removeItem('signwell-newsletter-admin-session-v1');
+  }catch(_){}
+}
+migrateLegacyNewsletterKey();
+
+

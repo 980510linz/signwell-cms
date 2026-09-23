@@ -1,0 +1,38 @@
+/* CMS shell component 11 · source id: sw-auth-mobile-hotfix-v2396 */
+.auth-question-input,.auth-answer-input,#answerInput{
+  text-align:center!important;
+  letter-spacing:0!important;
+}
+.auth-question-input::placeholder,.auth-answer-input::placeholder,#answerInput::placeholder{
+  text-align:center!important;
+  letter-spacing:0!important;
+}
+.sw-manual-password{
+  -webkit-text-security:disc!important;
+  text-security:disc!important;
+  text-align:center!important;
+  letter-spacing:.18em!important;
+  font-variant-ligatures:none!important;
+  caret-color:#203447!important;
+}
+.sw-manual-password::placeholder{
+  -webkit-text-security:none!important;
+  text-security:none!important;
+  letter-spacing:0!important;
+  text-align:center!important;
+}
+@media(max-width:760px){
+  #lockScreen .lock-card{
+    transform:none!important;
+    perspective:none!important;
+    backface-visibility:hidden!important;
+    -webkit-backface-visibility:hidden!important;
+  }
+  #pinInput,#authSetupPassword{
+    font-size:18px!important;
+    min-height:52px!important;
+    -webkit-user-select:text!important;
+    user-select:text!important;
+  }
+}
+.media-rights-note{margin:7px 2px 2px;color:#887d72;font-size:10px;line-height:1.55}.media-rights-note::before{content:"Rights · ";font-weight:800;letter-spacing:.04em;color:#6f665d}

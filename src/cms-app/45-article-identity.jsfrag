@@ -1,0 +1,71 @@
+/* SIGN WELL v24.8.0 · Article Identity CMS integration */
+const swArticleIdentityState={lastPrepare:null,migrationDone:false};
+function swArticleIdentityReadPublishOptions(){return {changeClass:'AUTO',reviewType:''};}
+function swArticleIdentityApply(article,identity){
+  if(!article||!identity)return article;
+  article.article_uuid=String(identity.article_uuid||article.article_uuid||'');
+  article.article_id=String(identity.article_id||article.article_id||'');
+  article.current_version=String(identity.current_version||article.current_version||'1.0');
+  article.revision_seq=Number(identity.revision_seq||article.revision_seq||1);
+  article.article_status=String(identity.article_status||article.article_status||'');
+  article.review_status=Array.isArray(identity.review_status)?identity.review_status.slice():[];
+  article.ai_involvement=identity.ai_involvement&&typeof identity.ai_involvement==='object'?clone(identity.ai_involvement):{};
+  article.content_hash=String(identity.content_hash||article.content_hash||'');
+  article.hash_schema=String(identity.hash_schema||article.hash_schema||'sw-content-v1');
+  article.trace_url=String(identity.trace_url||article.trace_url||'');
+  article.share_card_url=String(identity.share_card_url||article.share_card_url||'');
+  article.last_verified_at=String(identity.last_verified_at||article.last_verified_at||'');
+  article.internal_references=Number(identity.internal_references||article.internal_references||0);
+  article.referenced_by=Number(identity.referenced_by||article.referenced_by||0);
+  article.referenced_by_items=Array.isArray(identity.referenced_by_items)?clone(identity.referenced_by_items):(Array.isArray(article.referenced_by_items)?article.referenced_by_items:[]);
+  article.identity=clone(identity);
+  return article;
+}
+function swArticleIdentityApplyMigrationResult(result){
+  const map=new Map((result?.items||[]).map(x=>[String(x.legacyId||''),x.identity||null]));
+  let changed=false;
+  (data.articles||[]).forEach(a=>{const identity=map.get(String(a.id||''));if(identity){swArticleIdentityApply(a,identity);changed=true}});
+  if(changed)persist(true);
+  swArticleIdentityState.migrationDone=true;
+  return result;
+}
+async function swArticleIdentityEnsureMigration(excludeLegacyId=''){
+  if(swArticleIdentityState.migrationDone)return null;
+  excludeLegacyId=String(excludeLegacyId||'');
+  const published=(data.articles||[]).filter(a=>a.status==='Published'&&String(a.id||'')!==excludeLegacyId);
+  if(!published.length){swArticleIdentityState.migrationDone=true;return null;}
+  const r=await signwellGasBridge('admin.articleIdentity.migrate',{articles:published,excludeLegacyIds:excludeLegacyId?[excludeLegacyId]:[]},{adminKey:newsletterAdminKey(),timeoutMs:120000});
+  swArticleIdentityApplyMigrationResult(r||{});
+  return r;
+}
+async function swArticleIdentityPrepareForPublish(article){
+  if(!article)throw new Error('找不到待發布文章');
+  const options=swArticleIdentityReadPublishOptions();
+  const r=await signwellGasBridge('admin.articleIdentity.prepare',{article:article,changeClass:options.changeClass},{adminKey:newsletterAdminKey(),timeoutMs:60000});
+  if(!r?.identity?.article_id)throw new Error('Article Identity Backend 沒有核發 Article ID');
+  swArticleIdentityApply(article,r.identity);
+  swArticleIdentityState.lastPrepare={legacyId:String(article.id||''),changeClass:String(r.changeClass||''),identity:clone(r.identity)};
+  if(options.reviewType){
+    const rr=await signwellGasBridge('admin.articleIdentity.review',{articleId:article.article_id,version:article.current_version,revisionSeq:Number(article.revision_seq||0),reviewType:options.reviewType,reviewerId:String(article.publisherId||'cms-admin'),reviewerName:String(article.publisherName||'SIGN WELL Editor')},{adminKey:newsletterAdminKey(),timeoutMs:45000});
+    if(rr?.identity)swArticleIdentityApply(article,rr.identity);
+  }
+  persist(true);
+  return r;
+}
+async function swArticleIdentityVerifyRemote(article,token){
+  if(!article?.article_id||!article?.content_hash)return {ok:false,skipped:true};
+  const slug=v10SafeSlug(article),remote=await v10FetchArticleRaw(`articles/${slug}.json`);
+  if(String(remote?.article_id||'')!==String(article.article_id))throw new Error('Article ID remote verification failed');
+  if(String(remote?.content_hash||'')!==String(article.content_hash))throw new Error('Article content hash remote verification failed');
+  return {ok:true,articleId:article.article_id,contentHash:article.content_hash};
+}
+async function swArticleIdentityCommitAfterPublish(article){
+  if(!article?.article_id)return null;
+  const r=await signwellGasBridge('admin.articleIdentity.commit',{articleId:article.article_id,contentHash:article.content_hash},{adminKey:newsletterAdminKey(),timeoutMs:60000});
+  if(!r?.identity)throw new Error('Article Identity commit 未完成');
+  swArticleIdentityApply(article,r.identity);
+  const canonical=(data.articles||[]).find(x=>String(x.id||'')===String(article.id||''));
+  if(canonical&&canonical!==article)swArticleIdentityApply(canonical,r.identity);
+  persist(true);
+  return r.identity;
+}

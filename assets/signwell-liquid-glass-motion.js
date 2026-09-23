@@ -69,7 +69,7 @@
     lastPX:0,lastPY:0,lastPT:0,lastFrame:0,releasing:false
   };
 
-  const isLite=()=>document.hidden||reduceMotion.matches||document.body?.classList.contains('perf-lite')||document.body?.classList.contains('lite')||document.body?.classList.contains('visual-paused');
+  const isLite=()=>document.hidden||reduceMotion.matches||document.body?.classList.contains('dark')||document.body?.classList.contains('perf-lite')||document.body?.classList.contains('lite')||document.body?.classList.contains('visual-paused');
   const reflectOnly=el=>!!el?.matches?.(REFLECT_ONLY);
   function profile(el){
     if(reflectOnly(el))return{maxX:0,maxY:0,k:190,c:28,reflectOnly:true};
@@ -196,7 +196,7 @@
     document.addEventListener('pointerover',onPointerOver,{passive:true});document.addEventListener('pointermove',onPointerMove,{passive:true});document.addEventListener('pointerout',onPointerOut,{passive:true});
     document.addEventListener('pointerdown',onPointerDown,{passive:true});document.addEventListener('pointerup',onPointerUp,{passive:true});document.addEventListener('pointercancel',onPointerUp,{passive:true});
     document.addEventListener('pointermove',onButtonMove,{passive:true});document.addEventListener('pointerout',onButtonOut,{passive:true});
-    addEventListener('resize',()=>{activeRect=active?.getBoundingClientRect?.()||null},{passive:true});addEventListener('scroll',()=>{if(active)release()},{passive:true});document.addEventListener('visibilitychange',park,{passive:true});reduceMotion.addEventListener?.('change',park);
+    addEventListener('resize',()=>{activeRect=active?.getBoundingClientRect?.()||null},{passive:true});addEventListener('scroll',()=>{if(active)release()},{passive:true});document.addEventListener('visibilitychange',park,{passive:true});reduceMotion.addEventListener?.('change',park);if(document.body)new MutationObserver(park).observe(document.body,{attributes:true,attributeFilter:['class']});
     new MutationObserver(records=>{records.forEach(r=>r.addedNodes?.forEach(n=>{if(n?.nodeType===1)pendingRoots.add(n)}));if(!pendingRoots.size||mutationRAF)return;mutationRAF=requestAnimationFrame(()=>{mutationRAF=0;const roots=[...pendingRoots];pendingRoots.clear();roots.forEach(r=>{decorate(r);decorateButtons(r)})})}).observe(document.documentElement,{subtree:true,childList:true});
     addEventListener('message',e=>{const type=e?.data?.type;if(type==='signwell:ai-start')setAIState('thinking');if(type==='signwell:ai-stream')setAIState('streaming');if(type==='signwell:ai-done')setAIState('done');if(type==='signwell:ai-idle')setAIState('idle')});
   }

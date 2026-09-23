@@ -1,0 +1,57 @@
+/* SIGN WELL v24.12 — Unified Liquid Glass Controls
+   Rebuilt from the supplied liquid-glass-web reference. */
+:root{
+ --sw-lg-fill:rgba(255,255,255,.10);--sw-lg-edge:rgba(255,255,255,.55);--sw-lg-hi:rgba(255,255,255,.95);--sw-lg-hi2:rgba(255,255,255,.45);--sw-lg-inner:rgba(255,255,255,.18);--sw-lg-drop:rgba(20,30,60,.16);--sw-lg-drop2:rgba(20,30,60,.10);--sw-lg-rim-a:rgba(255,255,255,.90);--sw-lg-rim-b:rgba(255,255,255,.50);--sw-lg-track:rgba(120,120,128,.22);--sw-lg-knob:#fff;--sw-lg-accent:var(--accent,#0a84ff);--sw-lg-spring:cubic-bezier(.3,1.45,.5,1);--sw-lg-radius:999px;
+}
+:root[data-theme="dark"],html.dark,body.dark,[data-theme="dark"]{
+ --sw-lg-fill:rgba(30,32,40,.16);--sw-lg-edge:rgba(255,255,255,.22);--sw-lg-hi:rgba(255,255,255,.55);--sw-lg-hi2:rgba(255,255,255,.18);--sw-lg-inner:rgba(255,255,255,.06);--sw-lg-drop:rgba(0,0,0,.45);--sw-lg-drop2:rgba(0,0,0,.30);--sw-lg-rim-a:rgba(255,255,255,.50);--sw-lg-rim-b:rgba(255,255,255,.20);--sw-lg-track:rgba(120,120,128,.36);--sw-lg-knob:#f2f4f8;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--sw-lg-fill:rgba(30,32,40,.16);--sw-lg-edge:rgba(255,255,255,.22);--sw-lg-hi:rgba(255,255,255,.55);--sw-lg-hi2:rgba(255,255,255,.18);--sw-lg-inner:rgba(255,255,255,.06);--sw-lg-drop:rgba(0,0,0,.45);--sw-lg-drop2:rgba(0,0,0,.30);--sw-lg-rim-a:rgba(255,255,255,.50);--sw-lg-rim-b:rgba(255,255,255,.20);--sw-lg-track:rgba(120,120,128,.36);--sw-lg-knob:#f2f4f8}}
+
+/* One material contract for every interactive glass control. */
+:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.segmented,.seg,.toolbar .group,.tabs,.tab-pill,.search,.switch,.toggle,.settings-toggle,.scan-button).sw-lg-control,
+:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.segmented,.seg,.toolbar .group,.tabs,.tab-pill,.search,.switch,.toggle,.settings-toggle,.scan-button):not(.sw-no-liquid){
+ position:relative;isolation:isolate;background:var(--sw-lg-fill)!important;
+ -webkit-backdrop-filter:blur(14px) saturate(170%);backdrop-filter:blur(14px) saturate(170%);
+ border-color:transparent!important;
+ box-shadow:0 10px 30px var(--sw-lg-drop),0 1px 3px var(--sw-lg-drop2),inset 0 0 0 .5px var(--sw-lg-edge),inset 1.5px 1.5px 1px -1px var(--sw-lg-hi),inset -1px -1px 1px -.5px var(--sw-lg-hi2),inset 0 0 18px var(--sw-lg-inner)!important;
+ transition:transform .38s var(--sw-lg-spring),box-shadow .28s ease,background-color .22s ease,opacity .22s ease!important;
+ -webkit-tap-highlight-color:transparent;
+}
+:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.segmented,.seg,.toolbar .group,.tabs,.tab-pill,.search,.switch,.toggle,.settings-toggle,.scan-button):not(.sw-no-liquid)::after{
+ content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:3;
+ background:linear-gradient(140deg,var(--sw-lg-rim-a),transparent 32%,transparent 68%,var(--sw-lg-rim-b));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+}
+:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.search,.settings-toggle,.scan-button):not(.sw-no-liquid):active{transform:scale(.94)!important}
+:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.search,.settings-toggle,.scan-button):not(.sw-no-liquid):hover{box-shadow:0 14px 36px var(--sw-lg-drop),0 2px 5px var(--sw-lg-drop2),inset 0 0 0 .5px var(--sw-lg-edge),inset 1.5px 1.5px 1px -1px var(--sw-lg-hi),inset -1px -1px 1px -.5px var(--sw-lg-hi2),inset 0 0 22px var(--sw-lg-inner)!important}
+
+/* Preserve semantic color, but render it through the new glass material. */
+:where(.primary,.prominent,[data-variant="primary"],.btn-primary):not(.sw-no-liquid){--sw-lg-fill:color-mix(in srgb,var(--sw-lg-accent) 78%,transparent);color:#fff!important}
+:where(.danger,.destructive,[data-variant="danger"]):not(.sw-no-liquid){--sw-lg-fill:rgba(190,52,58,.72);color:#fff!important}
+button:disabled,[aria-disabled="true"]{opacity:.48!important;cursor:not-allowed!important;transform:none!important}
+
+/* Native range sliders — same enlarged liquid thumb language as supplied reference. */
+input[type="range"]{appearance:none;-webkit-appearance:none;background:transparent;min-height:36px;cursor:pointer;accent-color:var(--sw-lg-accent)}
+input[type="range"]::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:var(--sw-lg-track)}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:38px;height:24px;margin-top:-9px;border:0;border-radius:999px;background:var(--sw-lg-knob);box-shadow:0 8px 22px var(--sw-lg-drop),inset 0 0 0 .5px var(--sw-lg-edge),inset 1.5px 1.5px 1px -1px var(--sw-lg-hi);transition:transform .35s var(--sw-lg-spring),background-color .2s}
+input[type="range"]:active::-webkit-slider-thumb{transform:scale(1.55);background:rgba(255,255,255,.12)}
+input[type="range"]::-moz-range-track{height:6px;border-radius:999px;background:var(--sw-lg-track)}
+input[type="range"]::-moz-range-thumb{width:38px;height:24px;border:0;border-radius:999px;background:var(--sw-lg-knob);box-shadow:0 8px 22px var(--sw-lg-drop),inset 0 0 0 .5px var(--sw-lg-edge);transition:transform .35s var(--sw-lg-spring)}
+input[type="range"]:active::-moz-range-thumb{transform:scale(1.55)}
+
+/* Existing custom sliders/switches: replace their old visual skin without touching behavior. */
+:where(.slider,.range-slider,.sw-slider){--sw-lg-track-local:var(--sw-lg-track)}
+:where(.slider,.range-slider,.sw-slider) :where(.rail,.track){background:var(--sw-lg-track)!important;border-radius:999px!important}
+:where(.slider,.range-slider,.sw-slider) :where(.fill,.progress){background:var(--sw-lg-accent)!important;border-radius:999px!important}
+:where(.slider,.range-slider,.sw-slider) :where(.knob,.thumb){background:var(--sw-lg-knob)!important;border-radius:999px!important;box-shadow:0 8px 22px var(--sw-lg-drop),inset 0 0 0 .5px var(--sw-lg-edge),inset 1.5px 1.5px 1px -1px var(--sw-lg-hi)!important;transition:transform .35s var(--sw-lg-spring)!important}
+:where(.slider,.range-slider,.sw-slider).active-press :where(.knob,.thumb),:where(.slider,.range-slider,.sw-slider):active :where(.knob,.thumb){transform:scale(1.55)!important;background:rgba(255,255,255,.10)!important}
+:where(.switch,.toggle,[role="switch"]){border-radius:999px!important;background:var(--sw-lg-track)!important}
+:where(.switch,.toggle,[role="switch"])[aria-checked="true"],input[type="checkbox"]:checked + :where(.switch,.toggle){--sw-lg-fill:rgba(52,199,89,.62);background:rgba(52,199,89,.62)!important}
+
+/* Focus is crisp and accessible, not the old glowing ring. */
+:where(button,input,[role="button"],[role="switch"],[role="slider"]):focus-visible{outline:2px solid var(--sw-lg-accent)!important;outline-offset:3px!important}
+
+@media(prefers-reduced-transparency:reduce){:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.segmented,.seg,.toolbar .group,.tabs,.tab-pill,.search,.switch,.toggle,.settings-toggle,.scan-button):not(.sw-no-liquid){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--surface,#fff)!important}}
+@media(prefers-reduced-motion:reduce){:where(button,input,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.segmented,.seg,.toolbar .group,.tabs,.tab-pill,.search,.switch,.toggle,.settings-toggle,.scan-button){transition:none!important}}
+@media(max-width:680px){:root{--sw-lg-drop:rgba(20,30,60,.12)}:where(button,.btn,.button,.iconbtn,.icon-btn,.smallbtn,[role="button"],.tab,.pill,.chip,.segmented,.seg,.toolbar .group,.tabs,.tab-pill,.search,.switch,.toggle,.settings-toggle,.scan-button):not(.sw-no-liquid){-webkit-backdrop-filter:blur(11px) saturate(155%);backdrop-filter:blur(11px) saturate(155%)}}

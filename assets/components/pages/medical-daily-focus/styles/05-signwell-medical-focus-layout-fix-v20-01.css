@@ -1,0 +1,63 @@
+/* medical-daily-focus style component 05 · signwell-medical-focus-layout-fix-v20-01 */
+/* Medical Focus layout isolation · v20.0.1
+   Prevent CMS-global .topbar rules from constraining the Daily Focus header. */
+.focus-topbar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:end!important;
+  gap:18px!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  padding:36px 2px 18px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.focus-head-copy{min-width:0;max-width:100%}
+.focus-topbar .eyebrow,
+.focus-topbar .title,
+.focus-topbar .sub{max-width:100%}
+.focus-topbar .sub{overflow-wrap:break-word;text-wrap:pretty}
+.focus-topbar .icon-btn{
+  flex:0 0 44px!important;
+  align-self:end!important;
+  font-size:0!important;
+  overflow:hidden!important;
+}
+.focus-topbar .icon-btn svg{
+  display:block!important;
+  width:18px!important;
+  height:18px!important;
+  min-width:18px!important;
+  min-height:18px!important;
+  pointer-events:none!important;
+}
+.status-row{flex-wrap:wrap!important;align-items:center!important}
+.status-left{min-width:0!important;max-width:100%!important}
+#statusText{display:block!important;min-width:0!important;line-height:1.5!important;white-space:normal!important;text-wrap:pretty}
+.status-dot{flex:0 0 7px!important}
+.demo-badge{flex:0 0 auto}
+
+@media(max-width:720px){
+  .focus-topbar{
+    grid-template-columns:minmax(0,1fr) 44px!important;
+    align-items:start!important;
+    gap:12px!important;
+    padding:26px 0 16px!important;
+  }
+  .focus-topbar .icon-btn{align-self:start!important;margin-top:1px!important}
+  .focus-topbar .title{font-size:38px!important;line-height:1.04!important}
+  .focus-topbar .sub{margin-top:10px!important;font-size:13px!important;line-height:1.72!important}
+  .status-row{gap:8px!important;margin-bottom:14px!important;padding:0!important}
+  .status-left{width:100%!important;align-items:flex-start!important}
+}
+@media(max-width:430px){
+  .focus-topbar{gap:10px!important;padding-top:22px!important}
+  .focus-topbar .title{font-size:34px!important;letter-spacing:-.045em!important}
+  .focus-topbar .eyebrow{font-size:10px!important;letter-spacing:.14em!important;line-height:1.35!important}
+  .focus-topbar .sub{font-size:12.5px!important;line-height:1.68!important}
+  #statusText{font-size:11px!important;line-height:1.55!important}
+}
