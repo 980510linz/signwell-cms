@@ -1019,11 +1019,13 @@ function renderView(){
     aboutpage:'關於頁面',
     newsletter:'電子報',
     canva:'Social Studio',
+    aiopenai:'AI / OpenAI',
+    deepresearch:'深入研究',
     export:'設定'
   };
 
   $('#topTitle').textContent=names[viewName]||'總覽';
-  const kicker=document.getElementById('topKicker');if(kicker){const section={dashboard:'WORKSPACE',commandcenter:'OPERATIONS',medicalnews:'INTELLIGENCE',aiinstructions:'AI',articles:'CONTENT',topics:'CONTENT',site:'SITE',aboutpage:'SITE',newsletter:'DISTRIBUTION',canva:'DISTRIBUTION',export:'SYSTEM'}[viewName]||'WORKSPACE';kicker.textContent=`SIGN WELL · ${section}`;}
+  const kicker=document.getElementById('topKicker');if(kicker){const section={dashboard:'WORKSPACE',commandcenter:'OPERATIONS',medicalnews:'INTELLIGENCE',aiinstructions:'AI',articles:'CONTENT',topics:'CONTENT',site:'SITE',aboutpage:'SITE',newsletter:'DISTRIBUTION',canva:'DISTRIBUTION',aiopenai:'AI SYSTEM',deepresearch:'AI RESEARCH',export:'SYSTEM'}[viewName]||'WORKSPACE';kicker.textContent=`SIGN WELL · ${section}`;}
 
   if(viewName==='commandcenter')renderNotionCommandCenter();
   else if(viewName==='medicalnews')renderMedicalNewsSuggestions();
@@ -1037,6 +1039,8 @@ function renderView(){
     setTimeout(()=>refreshNewsletterData(),0);
   }
   else if(viewName==='canva')renderCanvaSocial();
+  else if(viewName==='aiopenai')renderOpenAISettings();
+  else if(viewName==='deepresearch')renderDeepResearchWorkspace();
   else if(viewName==='export'){renderExport();setTimeout(swInitPasskeySettings,0);setTimeout(initPublishAIProviderSettings,0);setTimeout(initPublishGptSettings,12);setTimeout(initPublishComplianceSettings,28);setTimeout(initMetaProviderSettings,64);setTimeout(initSecurityAuditPanel,124)}
   else renderDashboard();
 }
@@ -5466,7 +5470,7 @@ function confirmAIInstructionSend(message){
         <div class="aiw-confirm-title"><strong id="aiwConfirmTitle">確認送出 AI 指令</strong><span>Gemini 會理解你的文字，整理成長期寫作偏好，再存入 Editor Instructions。</span></div>
       </div>
       <div class="aiw-confirm-preview">${aiwEscape(message)}</div>
-      <div class="aiw-confirm-guard"><strong>這次送出不會改動底層限制</strong><div class="aiw-confirm-chips"><span>Evidence Lock 保留</span><span>自適應篇幅保留</span><span>文獻核驗保留</span><span>醫療安全規則保留</span></div></div>
+      <div class="aiw-confirm-guard"><strong>這次送出不會改動底層限制</strong><div class="aiw-confirm-chips"><span>Evidence Lock 保留</span><span>600–1200 字保留</span><span>文獻核驗保留</span><span>醫療安全規則保留</span></div></div>
       <div class="aiw-confirm-actions"><button class="aiw-confirm-cancel" id="aiwConfirmCancel" type="button">返回修改</button><button class="aiw-confirm-send" id="aiwConfirmSend" type="button">確認送出</button></div>
       <div class="aiw-confirm-hint"><kbd>Esc</kbd> 返回 · <kbd>⌘/Ctrl + Enter</kbd> 確認</div>
     </div>`;
@@ -6171,6 +6175,428 @@ async function initSecurityAuditPanel(){
   }catch(err){list.innerHTML=`<div class="empty">無法載入 Audit Log：${escapeHTML(err?.message||String(err))}</div>`}
 }
 
+/* =========================
+   SIGN WELL · OpenAI Settings UI · v24.19.0
+   Explicit CMS surface for real server-side OpenAI Responses API.
+   ========================= */
+
+window.signwellOpenAIStatus=async function(){
+  return signwellGasBridge('admin.openai.status',{}, {adminKey:newsletterAdminKey(),timeoutMs:30000});
+};
+window.signwellOpenAIConfigure=async function(config={}){
+  return signwellGasBridge('admin.openai.configure',{
+    endpoint:String(config.endpoint||'https://api.openai.com/v1/responses'),
+    model:String(config.model||''),
+    apiKey:String(config.apiKey||''),
+    secretAuthToken:String(config.secretAuthToken||''),
+    maxOutputTokens:Number(config.maxOutputTokens||6000),
+    makeWriterDefault:config.makeWriterDefault!==false,
+    test:Boolean(config.test)
+  },{adminKey:newsletterAdminKey(),timeoutMs:90000});
+};
+window.signwellOpenAITest=async function(){
+  return signwellGasBridge('admin.openai.test',{}, {adminKey:newsletterAdminKey(),timeoutMs:90000});
+};
+window.signwellOpenAIRouting=async function(config={}){
+  return signwellGasBridge('admin.openai.routing',{
+    writerPrimary:String(config.writerPrimary||'gpt'),
+    reviewerPrimary:String(config.reviewerPrimary||'gemini'),
+    writerFallbacks:Array.isArray(config.writerFallbacks)?config.writerFallbacks:['gemini','writer'],
+    reviewerFallbacks:Array.isArray(config.reviewerFallbacks)?config.reviewerFallbacks:['gpt','writer'],
+    failoverEnabled:config.failoverEnabled!==false,
+    mirrorNotion:config.mirrorNotion!==false
+  },{adminKey:newsletterAdminKey(),timeoutMs:70000});
+};
+
+function swOpenAIFormatTime_(value){
+  const raw=String(value||'').trim();
+  if(!raw)return '尚無';
+  try{return new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'short'}).format(new Date(raw));}catch(_){return raw;}
+}
+function swOpenAINum_(n){return Number(n||0).toLocaleString('zh-TW');}
+function swOpenAIProfileOption_(v,label,current){return `<option value="${escapeHTML(v)}" ${String(current||'')===v?'selected':''}>${escapeHTML(label)}</option>`;}
+
+function renderOpenAISettings(){
+  $('#view').innerHTML=`
+    <div class="page-head sw-openai-page-head">
+      <div>
+        <span class="eyebrow">REAL OPENAI RESPONSES API</span>
+        <h1>AI / OpenAI</h1>
+        <p>在這裡安全設定真正的 OpenAI API。API Key 只會傳到 Google Apps Script 後端並保存在 Script Properties，PUBLIC / CMS JavaScript 不會保存或回傳完整 Key。</p>
+      </div>
+      <div class="sw-openai-head-state" id="swOpenAIHeadState"><i></i><span>讀取中…</span></div>
+    </div>
+
+    <section class="sw-openai-hero sw-openai-glass">
+      <div class="sw-openai-hero-copy">
+        <span class="sw-openai-kicker">OPENAI GATEWAY</span>
+        <h2>文章生成、Canva 對話與 AI 指令，真正走後端 API。</h2>
+        <p>Writer 預設使用 GPT；Evidence / Citation Reviewer 可維持 Gemini。所有呼叫都從 Apps Script server-side 發出。</p>
+      </div>
+      <div class="sw-openai-kpis">
+        <article><span>GPT 狀態</span><strong id="swOpenAIKpiStatus">—</strong></article>
+        <article><span>Model</span><strong id="swOpenAIKpiModel">—</strong></article>
+        <article><span>累積 Request</span><strong id="swOpenAIKpiRequests">0</strong></article>
+        <article><span>最近 Token</span><strong id="swOpenAIKpiTokens">0</strong></article>
+      </div>
+    </section>
+
+    <div class="sw-openai-grid">
+      <section class="sw-openai-card sw-openai-glass">
+        <div class="sw-openai-card-head"><div><span class="sw-openai-kicker">SECRET VAULT</span><h3>OpenAI API Key</h3><p>儲存後不再顯示完整金鑰，只保留末四碼與更新時間。</p></div><span class="sw-openai-badge" id="swOpenAIKeyBadge">檢查中</span></div>
+        <div class="sw-openai-secret-row"><div><span>目前金鑰</span><strong id="swOpenAIKeyMasked">尚未設定</strong><small id="swOpenAIKeyUpdated">—</small></div><button class="top-action" id="swOpenAISetKey" type="button">設定 API Key</button></div>
+        <div class="sw-openai-form">
+          <label><span>Responses API Endpoint</span><input id="swOpenAIEndpoint" type="url" inputmode="url" autocomplete="off" value="https://api.openai.com/v1/responses"></label>
+          <label><span>Model ID</span><input id="swOpenAIModel" type="text" autocomplete="off" placeholder="輸入你 OpenAI Project 可使用的 model ID"></label>
+          <label><span>Max output tokens</span><input id="swOpenAIMaxOutput" type="number" min="256" max="16000" step="256" value="6000"></label>
+          <label class="sw-openai-switch"><input id="swOpenAIWriterDefault" type="checkbox" checked><span><b>Writer Core 全面使用 GPT</b><small>Canva 對話、AI 指令、醫學詞庫等舊 Writer Core 功能也沿用同一 GPT Key，不複製 Secret。</small></span></label>
+        </div>
+        <div class="sw-openai-actions"><button class="top-action primary" id="swOpenAISave" type="button">儲存並測試</button><button class="top-action" id="swOpenAITest" type="button">只測試連線</button></div>
+        <div class="publish-status" id="swOpenAIConfigStatus">正在讀取設定…</div>
+      </section>
+
+      <section class="sw-openai-card sw-openai-glass">
+        <div class="sw-openai-card-head"><div><span class="sw-openai-kicker">ROUTING</span><h3>AI 分工</h3><p>控制文章 Writer 與 Evidence Reviewer 的主要模型；Failover 只在 provider 無法完成任務時接手。</p></div><span class="sw-openai-badge" id="swOpenAIRouteBadge">讀取中</span></div>
+        <div class="sw-openai-form">
+          <label><span>Writer Primary</span><select id="swOpenAIWriterPrimary"></select></label>
+          <label><span>Reviewer Primary</span><select id="swOpenAIReviewerPrimary"></select></label>
+          <label class="sw-openai-switch"><input id="swOpenAIFailover" type="checkbox" checked><span><b>啟用安全 Failover</b><small>GPT 無法使用時才依序切換已設定的 fallback，不會繞過 Evidence Lock。</small></span></label>
+        </div>
+        <div class="sw-openai-actions"><button class="top-action primary" id="swOpenAIRouteSave" type="button">儲存 AI 分工</button></div>
+        <div class="sw-openai-route-flow" id="swOpenAIRouteFlow"></div>
+      </section>
+
+      <section class="sw-openai-card sw-openai-glass sw-openai-wide">
+        <div class="sw-openai-card-head"><div><span class="sw-openai-kicker">REAL API TELEMETRY</span><h3>最近一次 OpenAI 呼叫</h3><p>只記錄技術 metadata，不在這裡保存完整 prompt、文章內容或 API Key。</p></div><button class="top-action" id="swOpenAIRefresh" type="button">重新整理</button></div>
+        <div class="sw-openai-usage" id="swOpenAIUsage"></div>
+      </section>
+
+      <section class="sw-openai-card sw-openai-glass sw-openai-wide">
+        <div class="sw-openai-card-head"><div><span class="sw-openai-kicker">FEATURE MAP</span><h3>哪些功能真的會使用 GPT</h3><p>設定「Writer Core 全面使用 GPT」後，舊 Writer Core 功能會繼承同一 GPT Secret；文章 Writer 則依上方 Routing 執行。</p></div></div>
+        <div class="sw-openai-feature-grid">
+          <article><b>文章生成</b><span>GPT Writer Primary</span></article>
+          <article><b>Canva 對話修改</b><span>Writer Core → GPT</span></article>
+          <article><b>AI 指令整理</b><span>Writer Core → GPT</span></article>
+          <article><b>範文／編輯學習</b><span>Prompt Memory + Writer</span></article>
+          <article><b>醫學詞庫／圖像提示</b><span>Writer Core → GPT</span></article>
+          <article><b>Evidence Reviewer</b><span>預設 Gemini，可改 GPT</span></article>
+        </div>
+      </section>
+    </div>`;
+  setTimeout(swInitOpenAISettings,0);
+}
+
+async function swInitOpenAISettings(){
+  const $o=id=>document.getElementById(id);
+  const head=$o('swOpenAIHeadState'), endpoint=$o('swOpenAIEndpoint'), model=$o('swOpenAIModel'), maxOut=$o('swOpenAIMaxOutput');
+  const writerDefault=$o('swOpenAIWriterDefault'), writerPrimary=$o('swOpenAIWriterPrimary'), reviewerPrimary=$o('swOpenAIReviewerPrimary'), failover=$o('swOpenAIFailover');
+  let state=null;
+  function paint(s){
+    state=s||{};const profile=state.profile||{}, key=state.key||{}, usage=state.usage||{}, routing=state.routing||{};
+    head.classList.toggle('ready',Boolean(state.configured));head.querySelector('span').textContent=state.configured?'OpenAI 已連線':'OpenAI 尚未完成設定';
+    $o('swOpenAIKpiStatus').textContent=state.configured?'LIVE':'未設定';
+    $o('swOpenAIKpiModel').textContent=state.model||'—';
+    $o('swOpenAIKpiRequests').textContent=swOpenAINum_(usage.requestCount);
+    $o('swOpenAIKpiTokens').textContent=swOpenAINum_(usage.totalTokens);
+    $o('swOpenAIKeyBadge').textContent=key.configured?'已安全設定':'尚未設定';$o('swOpenAIKeyBadge').classList.toggle('ready',Boolean(key.configured));
+    $o('swOpenAIKeyMasked').textContent=key.masked||'尚未設定';$o('swOpenAIKeyUpdated').textContent=key.updatedAt?'更新 '+swOpenAIFormatTime_(key.updatedAt):'尚未寫入後端';
+    $o('swOpenAISetKey').textContent=key.configured?'更換 API Key':'設定 API Key';
+    if(document.activeElement!==endpoint)endpoint.value=state.endpoint||'https://api.openai.com/v1/responses';
+    if(document.activeElement!==model)model.value=state.model||'';
+    if(document.activeElement!==maxOut)maxOut.value=String(state.maxOutputTokens||6000);
+    writerDefault.checked=state.writerCoreUsesGpt!==false;
+    writerPrimary.innerHTML=swOpenAIProfileOption_('gpt','GPT / OpenAI',routing.writerPrimary||'gpt')+swOpenAIProfileOption_('gemini','Gemini',routing.writerPrimary||'gpt')+swOpenAIProfileOption_('writer','Writer Core',routing.writerPrimary||'gpt');
+    reviewerPrimary.innerHTML=swOpenAIProfileOption_('gemini','Gemini',routing.reviewerPrimary||'gemini')+swOpenAIProfileOption_('gpt','GPT / OpenAI',routing.reviewerPrimary||'gemini')+swOpenAIProfileOption_('writer','Writer Core',routing.reviewerPrimary||'gemini');
+    failover.checked=routing.failoverEnabled!==false;
+    $o('swOpenAIRouteBadge').textContent=`${String(routing.writerPrimary||'gpt').toUpperCase()} → ${String(routing.reviewerPrimary||'gemini').toUpperCase()}`;
+    $o('swOpenAIRouteFlow').innerHTML=`<span>Writer</span><strong>${escapeHTML(String(routing.writerPrimary||'gpt').toUpperCase())}</strong><i>→</i><span>Reviewer</span><strong>${escapeHTML(String(routing.reviewerPrimary||'gemini').toUpperCase())}</strong><small>${routing.failoverEnabled?'Failover ON':'Failover OFF'}</small>`;
+    const requestId=usage.requestId?escapeHTML(usage.requestId):'—';
+    $o('swOpenAIUsage').innerHTML=`<article><span>最後呼叫</span><strong>${escapeHTML(swOpenAIFormatTime_(usage.at))}</strong></article><article><span>Stage</span><strong>${escapeHTML(usage.stage||'—')}</strong></article><article><span>Input</span><strong>${swOpenAINum_(usage.inputTokens)}</strong></article><article><span>Cached input</span><strong>${swOpenAINum_(usage.cachedInputTokens)}</strong></article><article><span>Output</span><strong>${swOpenAINum_(usage.outputTokens)}</strong></article><article><span>Total</span><strong>${swOpenAINum_(usage.totalTokens)}</strong></article><article class="wide"><span>OpenAI Request ID</span><code>${requestId}</code></article>`;
+    $o('swOpenAIConfigStatus').textContent=state.configured?`✓ 真實 Responses API 已設定 · ${state.model||'model'} · store=false · Key 不會回傳前端`:'請先設定 API Key 與 Model ID，然後執行「儲存並測試」。';
+  }
+  async function reload(){try{paint(await window.signwellOpenAIStatus());}catch(err){head.querySelector('span').textContent='狀態讀取失敗';$o('swOpenAIConfigStatus').textContent=String(err?.message||err);}}
+  await reload();
+
+  $o('swOpenAISetKey').onclick=async()=>{
+    const m=model.value.trim();if(!m){showToast('請先填入 Model ID');model.focus();return;}
+    await openSecretVaultDialog({target:'ai',title:state?.key?.configured?'更換 OpenAI API Key':'設定 OpenAI API Key',secretLabel:'OpenAI API Key',placeholder:'貼上新的 OpenAI API Key',onCommit:async({secret,secretAuthToken})=>{
+      const r=await window.signwellOpenAIConfigure({endpoint:endpoint.value.trim(),model:m,apiKey:secret,secretAuthToken,maxOutputTokens:Number(maxOut.value||6000),makeWriterDefault:writerDefault.checked,test:true});
+      paint(r.status||{});showToast('OpenAI API Key 已安全寫入 Apps Script 並驗證成功');
+    }});
+  };
+  $o('swOpenAISave').onclick=async()=>{
+    const btn=$o('swOpenAISave'),old=btn.textContent;const m=model.value.trim();if(!m){showToast('請填入 Model ID');model.focus();return;}btn.disabled=true;btn.textContent='驗證中…';
+    try{const r=await window.signwellOpenAIConfigure({endpoint:endpoint.value.trim(),model:m,maxOutputTokens:Number(maxOut.value||6000),makeWriterDefault:writerDefault.checked,test:true});paint(r.status||{});showToast('OpenAI 設定已儲存並通過真實 API 測試');}
+    catch(err){$o('swOpenAIConfigStatus').textContent='設定失敗：'+String(err?.message||err);showToast('OpenAI 設定失敗');}
+    finally{btn.disabled=false;btn.textContent=old;}
+  };
+  $o('swOpenAITest').onclick=async()=>{const btn=$o('swOpenAITest'),old=btn.textContent;btn.disabled=true;btn.textContent='測試中…';try{const r=await window.signwellOpenAITest();if(!r?.ok)throw new Error(r?.error||'OpenAI 測試失敗');paint(r.status||await window.signwellOpenAIStatus());showToast('OpenAI Responses API 真實連線正常');}catch(err){showToast('OpenAI 測試失敗：'+String(err?.message||err));}finally{btn.disabled=false;btn.textContent=old;}};
+  $o('swOpenAIRouteSave').onclick=async()=>{const btn=$o('swOpenAIRouteSave'),old=btn.textContent;btn.disabled=true;btn.textContent='儲存中…';try{const r=await window.signwellOpenAIRouting({writerPrimary:writerPrimary.value,reviewerPrimary:reviewerPrimary.value,failoverEnabled:failover.checked});paint(r.status||await window.signwellOpenAIStatus());showToast('AI 分工已更新');}catch(err){showToast('AI 分工設定失敗：'+String(err?.message||err));}finally{btn.disabled=false;btn.textContent=old;}};
+  $o('swOpenAIRefresh').onclick=reload;
+}
+/* =========================
+   SIGN WELL · Deep Research Workspace · v24.20.0
+   ========================= */
+
+window.signwellDeepResearchStatus=async function(){
+  return signwellGasBridge('admin.openai.research.status',{}, {adminKey:newsletterAdminKey(),timeoutMs:30000});
+};
+window.signwellDeepResearchConfigure=async function(config={}){
+  return signwellGasBridge('admin.openai.research.configure',{
+    model:String(config.model||''),
+    toolMode:String(config.toolMode||'auto'),
+    maxOutputTokens:Number(config.maxOutputTokens||16000)
+  },{adminKey:newsletterAdminKey(),timeoutMs:45000});
+};
+window.signwellDeepResearchStart=async function(payload={}){
+  return signwellGasBridge('admin.openai.research.start',{
+    query:String(payload.query||''),
+    context:String(payload.context||''),
+    instructions:String(payload.instructions||''),
+    language:String(payload.language||'zh-TW')
+  },{adminKey:newsletterAdminKey(),timeoutMs:120000});
+};
+window.signwellDeepResearchGet=async function(id){
+  return signwellGasBridge('admin.openai.research.get',{id:String(id||'')}, {adminKey:newsletterAdminKey(),timeoutMs:70000});
+};
+window.signwellDeepResearchCancel=async function(id){
+  return signwellGasBridge('admin.openai.research.cancel',{id:String(id||'')}, {adminKey:newsletterAdminKey(),timeoutMs:70000});
+};
+
+let swDeepResearchPollTimer=null;
+let swDeepResearchState={config:null,jobs:[],activeId:'',activeResult:null,busy:false};
+
+function swDeepResearchStatusLabel_(status=''){
+  const s=String(status||'').toLowerCase();
+  if(s==='completed')return '完成';
+  if(s==='in_progress')return '研究中';
+  if(s==='queued')return '排隊中';
+  if(s==='failed')return '失敗';
+  if(s==='cancelled'||s==='canceled')return '已取消';
+  if(s==='incomplete')return '未完成';
+  return s||'未知';
+}
+function swDeepResearchRunning_(status=''){
+  const s=String(status||'').toLowerCase();
+  return s==='queued'||s==='in_progress';
+}
+function swDeepResearchEscapeLines_(text=''){
+  return escapeHTML(String(text||'')).replace(/\n/g,'<br>');
+}
+function swDeepResearchReportHtml_(text,citations=[]){
+  const body=(typeof markdown==='function')?markdown(String(text||'')):`<p>${swDeepResearchEscapeLines_(text)}</p>`;
+  const refs=(Array.isArray(citations)?citations:[]).filter(x=>/^https?:\/\//i.test(String(x?.url||'')));
+  if(!refs.length)return body;
+  return body+`<h2>研究來源</h2><ol>${refs.map(x=>`<li><a href="${escapeHTML(x.url)}" target="_blank" rel="noopener">${escapeHTML(x.title||x.url)}</a></li>`).join('')}</ol>`;
+}
+function swDeepResearchUniqueSlug_(title=''){
+  const base=slugify(String(title||'research'))||('research-'+Date.now());
+  const used=new Set((data.articles||[]).map(a=>String(a.slug||'')).filter(Boolean));
+  if(!used.has(base))return base;
+  let i=2;while(used.has(base+'-'+i))i++;
+  return base+'-'+i;
+}
+function swDeepResearchCreateDraft_(job,result){
+  if(!result?.text)throw new Error('研究報告尚未完成。');
+  const today=new Date().toISOString().slice(0,10);
+  const title=String(job?.title||'深入研究').trim();
+  const article={
+    id:'a-research-'+Date.now(),
+    title:title,
+    subtitle:'OpenAI Deep Research 研究草稿',
+    slug:swDeepResearchUniqueSlug_(title),
+    category:'研究整理',
+    type:'文章',
+    excerpt:String(result.text||'').replace(/[#*_>`\[\]]/g,' ').replace(/\s+/g,' ').trim().slice(0,240),
+    tags:['深入研究','Research'],
+    cover:'',imageSource:null,imageSources:[],
+    status:'Draft',featured:false,publisherId:'',publisherName:'SignWell·欣緯生醫',
+    publishedAt:today,updatedAt:today,
+    content:swDeepResearchReportHtml_(result.text,result.citations||[]),
+    contentFormat:'html',references:[],internalReferences:[],
+    audit:{deepResearch:{responseId:String(job?.id||''),model:String(job?.model||''),completedAt:String(job?.completedAt||''),citations:Array.isArray(result.citations)?result.citations.length:0}},
+    complianceReview:null,
+    sourceWorkspace:{type:'openai-deep-research',responseId:String(job?.id||''),generatedAt:new Date().toISOString(),sources:(result.citations||[]).map(x=>({title:x.title||'',url:x.url||''})),publishedOnline:false}
+  };
+  data.articles.unshift(article);
+  persist(true);
+  syncPublicSnapshot();
+  return article;
+}
+
+function swDeepResearchFindWrittenArticle_(job){
+  const responseId=String(job?.id||'');
+  if(!responseId)return null;
+  return (data.articles||[]).find(a=>String(a?.sourceWorkspace?.responseId||a?.audit?.deepResearch?.responseId||'')===responseId)||null;
+}
+function swDeepResearchWriteDirectly_(job,result,{openEditor=true,silent=false}={}){
+  if(!job||!result?.text)return null;
+  let article=swDeepResearchFindWrittenArticle_(job);
+  const html=swDeepResearchReportHtml_(result.text,result.citations||[]);
+  const today=new Date().toISOString().slice(0,10);
+  if(article){
+    const published=(typeof articleHasPublishedReceipt==='function')?articleHasPublishedReceipt(article):String(article.status||'').toLowerCase()==='published';
+    /* Never overwrite a published article. A completed research job may be polled more than once. */
+    if(!published){
+      article.title=String(job?.title||article.title||'深入研究').trim();
+      article.subtitle='OpenAI Deep Research 研究草稿';
+      article.excerpt=String(result.text||'').replace(/[#*_>`\[\]]/g,' ').replace(/\s+/g,' ').trim().slice(0,240);
+      article.content=html;
+      article.contentFormat='html';
+      article.updatedAt=today;
+      article.audit={...(article.audit||{}),deepResearch:{responseId:String(job?.id||''),model:String(job?.model||''),completedAt:String(job?.completedAt||''),citations:Array.isArray(result.citations)?result.citations.length:0,directWrite:true}};
+      article.sourceWorkspace={...(article.sourceWorkspace||{}),type:'openai-deep-research',responseId:String(job?.id||''),generatedAt:new Date().toISOString(),sources:(result.citations||[]).map(x=>({title:x.title||'',url:x.url||''})),publishedOnline:false,directWrite:true};
+      persist(true);syncPublicSnapshot();
+    }
+  }else{
+    article=swDeepResearchCreateDraft_(job,result);
+    article.audit={...(article.audit||{}),deepResearch:{...(article.audit?.deepResearch||{}),directWrite:true}};
+    article.sourceWorkspace={...(article.sourceWorkspace||{}),directWrite:true};
+    persist(true);syncPublicSnapshot();
+  }
+  if(openEditor&&article){
+    currentId=article.id;
+    viewName='articles';
+    $$('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view==='articles'));
+    renderView();
+    if(!silent)showToast('Deep Research 已直接寫入文章編輯器 · 尚未發布');
+  }
+  return article;
+}
+
+function swDeepResearchJobsHtml_(jobs=[]){
+  if(!jobs.length)return `<div class="sw-dr-empty"><b>還沒有研究任務</b><span>輸入問題後啟動第一個 Deep Research job。</span></div>`;
+  return jobs.map(j=>{
+    const active=String(j.id)===String(swDeepResearchState.activeId);
+    const running=swDeepResearchRunning_(j.status);
+    return `<button class="sw-dr-job ${active?'active':''}" type="button" data-dr-job="${escapeHTML(j.id)}">
+      <span class="sw-dr-job-dot ${escapeHTML(String(j.status||''))}"></span>
+      <span class="sw-dr-job-copy"><b>${escapeHTML(j.title||'深入研究')}</b><small>${escapeHTML(swDeepResearchStatusLabel_(j.status))} · ${escapeHTML(j.model||'model')}</small></span>
+      <span class="sw-dr-job-tail">${running?'•••':'›'}</span>
+    </button>`;
+  }).join('');
+}
+
+function swDeepResearchResultHtml_(job,result){
+  if(!job)return `<div class="sw-dr-result-empty"><span>DEEP RESEARCH</span><h3>選擇一個研究任務</h3><p>完成後，報告與來源會顯示在這裡。</p></div>`;
+  const status=String(job.status||'');
+  if(swDeepResearchRunning_(status))return `<div class="sw-dr-researching"><div class="sw-dr-orbit"><i></i><i></i><i></i></div><span>${escapeHTML(swDeepResearchStatusLabel_(status))}</span><h3>${escapeHTML(job.title||'深入研究')}</h3><p>這是背景研究任務。離開 CMS 或關閉頁面後，OpenAI 仍可繼續處理；回來再重新整理即可。</p><button class="top-action danger" type="button" id="swDeepResearchCancel">取消研究</button></div>`;
+  if(status==='failed')return `<div class="sw-dr-result-empty error"><span>RESEARCH FAILED</span><h3>研究未完成</h3><p>${escapeHTML(job.error||'OpenAI 回報研究失敗。')}</p></div>`;
+  if(status==='cancelled'||status==='canceled')return `<div class="sw-dr-result-empty"><span>CANCELLED</span><h3>研究已取消</h3><p>你可以重新修改問題後再啟動。</p></div>`;
+  if(!result?.text)return `<div class="sw-dr-result-empty"><span>${escapeHTML(swDeepResearchStatusLabel_(status))}</span><h3>${escapeHTML(job.title||'深入研究')}</h3><p>按「重新整理」取得最新結果。</p></div>`;
+  const cites=Array.isArray(result.citations)?result.citations:[];
+  return `<div class="sw-dr-result-head"><div><span>COMPLETED RESEARCH</span><h3>${escapeHTML(job.title||'深入研究')}</h3><p>${escapeHTML(job.model||'')}</p></div><div class="sw-dr-result-actions"><button class="top-action" type="button" id="swDeepResearchCopy">複製報告</button><button class="top-action" type="button" id="swDeepResearchToCanva">帶到 Social Studio</button><button class="top-action primary" type="button" id="swDeepResearchToArticle">開啟已寫入文章</button></div></div>
+    <article class="sw-dr-report">${swDeepResearchReportHtml_(result.text,cites)}</article>
+    <section class="sw-dr-citations"><div class="sw-dr-section-title"><span>SOURCES</span><strong>${cites.length} 個可辨識來源</strong></div>${cites.length?cites.map((c,i)=>`<a href="${escapeHTML(c.url)}" target="_blank" rel="noopener"><b>${i+1}</b><span>${escapeHTML(c.title||c.url)}</span><small>${escapeHTML(c.url)}</small></a>`).join(''):'<p>這次 API 回傳中沒有可解析的 URL citation annotation。</p>'}</section>`;
+}
+
+function renderDeepResearchWorkspace(){
+  if(swDeepResearchPollTimer){clearInterval(swDeepResearchPollTimer);swDeepResearchPollTimer=null;}
+  $('#view').innerHTML=`
+    <div class="page-head sw-dr-page-head">
+      <div><span class="eyebrow">OPENAI · BACKGROUND RESEARCH</span><h1>深入研究</h1><p>把一個問題交給真實的 OpenAI Responses API 背景研究任務。長任務不佔住 CMS；完成後會自動寫入文章編輯器，同時保留完整報告與來源。</p></div>
+      <div class="sw-dr-live" id="swDeepResearchLive"><i></i><span>讀取中…</span></div>
+    </div>
+    <section class="sw-dr-compose sw-dr-glass">
+      <div class="sw-dr-compose-main">
+        <span class="sw-dr-kicker">RESEARCH QUESTION</span>
+        <textarea id="swDeepResearchQuery" rows="4" placeholder="例如：比較 2025–2026 年 PRP、PRF、nanofat 在皮膚老化與疤痕改善上的臨床證據，優先原始研究與系統性回顧。"></textarea>
+        <details class="sw-dr-details"><summary>增加研究上下文與編輯要求</summary><div class="sw-dr-detail-grid"><label><span>補充上下文</span><textarea id="swDeepResearchContext" rows="3" placeholder="可貼上你自己的筆記、研究方向或限制條件"></textarea></label><label><span>額外編輯要求</span><textarea id="swDeepResearchInstructions" rows="3" placeholder="例如：台灣臨床情境、區分 evidence 與 interpretation、不要使用內容農場"></textarea></label></div></details>
+      </div>
+      <div class="sw-dr-compose-side">
+        <label><span>Deep Research Model ID</span><input id="swDeepResearchModel" type="text" autocomplete="off" placeholder="填入你 OpenAI Project 可使用的研究 model ID"></label>
+        <div class="sw-dr-inline"><label><span>Web tool</span><select id="swDeepResearchTool"><option value="auto">Auto</option><option value="web_search">web_search</option><option value="web_search_preview">web_search_preview</option></select></label><label><span>Max output</span><input id="swDeepResearchMax" type="number" min="2048" max="32000" step="1024" value="16000"></label></div>
+        <div class="sw-dr-config-note" id="swDeepResearchConfigNote">讀取設定…</div>
+        <div class="sw-dr-compose-actions"><button class="top-action" type="button" id="swDeepResearchSaveConfig">儲存研究設定</button><button class="top-action primary" type="button" id="swDeepResearchStart">開始深入研究</button></div>
+      </div>
+    </section>
+    <div class="sw-dr-workspace">
+      <aside class="sw-dr-history sw-dr-glass"><div class="sw-dr-section-title"><div><span>HISTORY</span><strong>研究任務</strong></div><button class="top-action" id="swDeepResearchRefresh" type="button">重新整理</button></div><div id="swDeepResearchJobs" class="sw-dr-job-list"></div></aside>
+      <main class="sw-dr-result sw-dr-glass" id="swDeepResearchResult"></main>
+    </div>
+    <div class="sw-dr-footnote">一般 Writer 呼叫維持 <code>store=false</code>；深入研究使用 <code>background=true</code> + <code>store=true</code>。任務完成後會直接寫入 CMS 文章編輯器，但不會自動發布。API Key 仍只存在 Apps Script Script Properties。</div>`;
+  setTimeout(swInitDeepResearchWorkspace,0);
+}
+
+async function swInitDeepResearchWorkspace(){
+  const $d=id=>document.getElementById(id);
+  const live=$d('swDeepResearchLive'),jobsEl=$d('swDeepResearchJobs'),resultEl=$d('swDeepResearchResult');
+  const model=$d('swDeepResearchModel'),tool=$d('swDeepResearchTool'),max=$d('swDeepResearchMax'),note=$d('swDeepResearchConfigNote');
+
+  function bindResultActions(){
+    $d('swDeepResearchCancel')?.addEventListener('click',async()=>{
+      const id=swDeepResearchState.activeId;if(!id)return;
+      const ok=await swConfirm('確定取消這個 Deep Research 任務？',{title:'取消深入研究',kicker:'OPENAI RESEARCH',confirmText:'取消任務'});if(!ok)return;
+      try{await window.signwellDeepResearchCancel(id);showToast('已送出取消請求');await refreshOne(id);}catch(err){showToast('取消失敗：'+String(err?.message||err));}
+    });
+    $d('swDeepResearchCopy')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(String(swDeepResearchState.activeResult?.text||''));showToast('研究報告已複製')}catch(_){showToast('無法存取剪貼簿')}});
+    $d('swDeepResearchToArticle')?.addEventListener('click',()=>{
+      try{const job=swDeepResearchState.jobs.find(x=>String(x.id)===String(swDeepResearchState.activeId));swDeepResearchWriteDirectly_(job,swDeepResearchState.activeResult,{openEditor:true});}catch(err){showToast(String(err?.message||err));}
+    });
+    $d('swDeepResearchToCanva')?.addEventListener('click',()=>{
+      try{const job=swDeepResearchState.jobs.find(x=>String(x.id)===String(swDeepResearchState.activeId));const article=swDeepResearchWriteDirectly_(job,swDeepResearchState.activeResult,{openEditor:false,silent:true});if(typeof swCanvaState!=='undefined'){swCanvaState.selectedArticleId=article.id;swCanvaState.brief=null;}try{sessionStorage.setItem('sw-canva-article',String(article.id))}catch(_){}nav('canva');showToast('已使用直接寫入文章帶到 Social Studio');}catch(err){showToast(String(err?.message||err));}
+    });
+  }
+  function paintJobs(){
+    jobsEl.innerHTML=swDeepResearchJobsHtml_(swDeepResearchState.jobs);
+    jobsEl.querySelectorAll('[data-dr-job]').forEach(btn=>btn.addEventListener('click',()=>{swDeepResearchState.activeId=btn.dataset.drJob||'';paintJobs();refreshOne(swDeepResearchState.activeId);}));
+  }
+  function paintResult(){
+    const job=swDeepResearchState.jobs.find(x=>String(x.id)===String(swDeepResearchState.activeId))||null;
+    resultEl.innerHTML=swDeepResearchResultHtml_(job,swDeepResearchState.activeResult);
+    bindResultActions();
+  }
+  function paintConfig(status){
+    swDeepResearchState.config=status||{};swDeepResearchState.jobs=Array.isArray(status?.jobs)?status.jobs:[];
+    if(!swDeepResearchState.activeId&&swDeepResearchState.jobs[0])swDeepResearchState.activeId=swDeepResearchState.jobs[0].id;
+    if(document.activeElement!==model)model.value=status?.model||'';
+    if(document.activeElement!==tool)tool.value=status?.toolMode||'auto';
+    if(document.activeElement!==max)max.value=String(status?.maxOutputTokens||16000);
+    live.classList.toggle('ready',Boolean(status?.configured));live.querySelector('span').textContent=status?.configured?'Deep Research READY':'尚未完成設定';
+    note.innerHTML=status?.configured?`<b>READY</b> · ${escapeHTML(status.model||'model')} · ${escapeHTML(status.keyMasked||'Key')} · background/store ON`:`請先在「AI / OpenAI」設定 API Key，再在這裡填入 Deep Research Model ID。${status?.writerModel?`目前 Writer Model：<b>${escapeHTML(status.writerModel)}</b>`:''}`;
+    paintJobs();paintResult();startPollingIfNeeded();
+  }
+  async function reload(){try{paintConfig(await window.signwellDeepResearchStatus());}catch(err){live.querySelector('span').textContent='狀態讀取失敗';note.textContent=String(err?.message||err);}}
+  async function refreshOne(id){
+    if(!id)return;
+    try{
+      const r=await window.signwellDeepResearchGet(id);
+      const idx=swDeepResearchState.jobs.findIndex(x=>String(x.id)===String(id));
+      if(idx>=0)swDeepResearchState.jobs[idx]=Object.assign({},swDeepResearchState.jobs[idx],r.job||{});else if(r.job)swDeepResearchState.jobs.unshift(r.job);
+      swDeepResearchState.activeResult=r.result||null;paintJobs();paintResult();startPollingIfNeeded();
+      const completed=String(r?.job?.status||'').toLowerCase()==='completed'&&Boolean(r?.result?.text);
+      if(completed){
+        const onceKey='sw-dr-direct-open:'+String(id);
+        let alreadyOpened=false;try{alreadyOpened=sessionStorage.getItem(onceKey)==='1'}catch(_){}
+        const article=swDeepResearchWriteDirectly_(r.job,r.result,{openEditor:false,silent:true});
+        if(article&&!alreadyOpened){
+          try{sessionStorage.setItem(onceKey,'1')}catch(_){}
+          swDeepResearchWriteDirectly_(r.job,r.result,{openEditor:true,silent:false});
+        }
+      }
+    }catch(err){showToast('研究狀態更新失敗：'+String(err?.message||err));}
+  }
+  function startPollingIfNeeded(){
+    if(swDeepResearchPollTimer){clearInterval(swDeepResearchPollTimer);swDeepResearchPollTimer=null;}
+    const active=swDeepResearchState.jobs.find(x=>String(x.id)===String(swDeepResearchState.activeId));
+    if(!active||!swDeepResearchRunning_(active.status))return;
+    swDeepResearchPollTimer=setInterval(()=>{if(viewName!=='deepresearch'){clearInterval(swDeepResearchPollTimer);swDeepResearchPollTimer=null;return;}refreshOne(active.id);},6000);
+  }
+
+  await reload();
+  if(swDeepResearchState.activeId)await refreshOne(swDeepResearchState.activeId);
+
+  $d('swDeepResearchSaveConfig').onclick=async()=>{const btn=$d('swDeepResearchSaveConfig'),old=btn.textContent;btn.disabled=true;btn.textContent='儲存中…';try{const s=await window.signwellDeepResearchConfigure({model:model.value.trim(),toolMode:tool.value,maxOutputTokens:Number(max.value||16000)});paintConfig(s);showToast('Deep Research 設定已儲存');}catch(err){showToast('設定失敗：'+String(err?.message||err));}finally{btn.disabled=false;btn.textContent=old;}};
+  $d('swDeepResearchStart').onclick=async()=>{
+    const query=$d('swDeepResearchQuery').value.trim();if(!query){showToast('請輸入研究問題');$d('swDeepResearchQuery').focus();return;}
+    if(!swDeepResearchState.config?.configured){showToast('請先儲存 Deep Research Model 設定');return;}
+    const btn=$d('swDeepResearchStart'),old=btn.textContent;btn.disabled=true;btn.textContent='建立研究任務…';
+    try{const r=await window.signwellDeepResearchStart({query,context:$d('swDeepResearchContext').value,instructions:$d('swDeepResearchInstructions').value,language:'zh-TW'});const job=r.job;if(job){swDeepResearchState.jobs=[job,...swDeepResearchState.jobs.filter(x=>String(x.id)!==String(job.id))];swDeepResearchState.activeId=job.id;swDeepResearchState.activeResult=null;paintJobs();paintResult();startPollingIfNeeded();showToast('Deep Research 已在背景啟動');}}
+    catch(err){showToast('Deep Research 啟動失敗：'+String(err?.message||err));}
+    finally{btn.disabled=false;btn.textContent=old;}
+  };
+  $d('swDeepResearchRefresh').onclick=async()=>{await reload();if(swDeepResearchState.activeId)await refreshOne(swDeepResearchState.activeId);};
+}
 /* SIGN WELL v23.9.77 · Notion Command Center */
 const swNotionState={status:null,busy:false};
 function swNotionRequest(action,payload={},timeout=60000){return signwellGasBridge(action,payload,{adminKey:newsletterAdminKey(),timeoutMs:timeout});}
@@ -6232,7 +6658,7 @@ function swNotionCommandHtml(){
           <label>Reviewer Fallback 1<select id="reviewReviewerFallback1"><option value="gpt">GPT</option><option value="gemini">Gemini</option><option value="writer">Writer Core</option></select></label>
           <label>Reviewer Fallback 2<select id="reviewReviewerFallback2"><option value="gpt">GPT</option><option value="gemini">Gemini</option><option value="writer">Writer Core</option></select></label>
           <label class="wide" style="display:flex;align-items:center;gap:10px"><input id="reviewFailoverEnabled" type="checkbox" checked style="width:auto">啟用 AI Role Failover<small style="display:block;color:#7e8b94">Primary 失敗、配額／連線錯誤、模型不可用或未設定時才依序接手；不因內容驗證 FAIL 而換模型。</small></label>
-          <label class="wide">CMS 審稿網址<input id="reviewCmsUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://980510linz.github.io/-/CMS/"><small style="display:block;margin-top:6px;color:#7e8b94">Gmail 與 Notion 的「前往 CMS」都從這個 canonical URL 產生；不要填 Public 網址。</small></label>
+          <label class="wide">CMS 審稿網址<input id="reviewCmsUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://980510linz.github.io/-/C-CMS/"><small style="display:block;margin-top:6px;color:#7e8b94">Gmail 與 Notion 的「前往 CMS」都從這個 canonical URL 產生；不要填 Public 網址。</small></label>
         </div>
         <div class="notion-actions"><button class="primary" id="reviewRoutingSaveBtn" type="button">儲存 AI Routing</button><button id="reviewRoutingSyncBtn" type="button">從 Notion 重新讀取</button><a id="reviewRoutingNotionLink" href="#" target="_blank" rel="noopener" style="display:none">打開 Notion AI Routing ↗</a><button id="reviewInstallBtn" type="button">啟用每小時流程</button><button id="reviewRunNowBtn" type="button">立即跑一次</button><button id="reviewOpenInboxBtn" type="button">打開待審稿</button><button id="reviewCleanupBtn" type="button">清理逾時項目</button><button id="reviewCmsUrlSaveBtn" type="button">儲存／修復 CMS 連結</button></div><div class="notion-note" id="reviewAutomationHelp">Notion Operations 會建立「AI Routing · Hourly Review」控制卡；每小時執行前會重新讀取。模型可替換，但資料、Prompt 與安全 Gate 不會替換。</div>
       </section>
@@ -6406,7 +6832,7 @@ async function swInitPasskeySettings(){
   if(add)add.onclick=swAddPasskeyFromSettings;if(refresh)refresh.onclick=swLoadPasskeys;
   if(!swPasskeyCanOffer()){
     if(add)add.disabled=true;
-    $('#passkeyDeviceList').innerHTML='<div class="passkey-empty">'+(cmsPasskeyConfigured?'Passkey 已在後端設定，但目前網域不符合 RP ID；請從 980510linz.github.io 的 CMS 頁面開啟。':'尚未設定 Passkey Worker。部署 CODE/PASSKEY-AUTH 後再於 Apps Script 設定 SW_PASSKEY_AUTH_URL 與 PASSKEY_BRIDGE_SECRET。')+'</div>';
+    $('#passkeyDeviceList').innerHTML='<div class="passkey-empty">'+(cmsPasskeyConfigured?'Passkey 已在後端設定，但目前網域不符合 RP ID；請從 980510linz.github.io 的 CMS 頁面開啟。':'尚未設定 Passkey Worker。部署 H-PASSKEY-AUTH 後再於 Apps Script 設定 SW_PASSKEY_AUTH_URL 與 PASSKEY_BRIDGE_SECRET。')+'</div>';
     return;
   }
   await swLoadPasskeys();

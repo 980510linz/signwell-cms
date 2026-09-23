@@ -354,7 +354,7 @@
       <div class="workspace-section"><h3>後台核驗文獻 · PubMed</h3><p class="backend-only-note">僅供 CMS 內部查證與 AI 證據審查，不會寫入公開文章，也不會作為 Public 引用。</p>${renderLiterature(t)}</div>
       <div class="writer-panel">
         <div class="writer-head">
-          <div><strong>SIGN WELL AI Writer</strong><span>小題 800–1200 / 大題 1200–2200 字 · 主張－證據鎖定 · 公開引用僅限新聞來源</span></div>
+          <div><strong>SIGN WELL AI Writer</strong><span>600–1200 字 · 主張－證據鎖定 · 公開引用僅限新聞來源</span></div>
           <div class="writer-head-actions"><span class="ai-state" id="aiState">檢查中</span><button class="ai-settings-btn" id="aiSettingsBtn" type="button">前往設定</button><button class="generate-btn" id="generateDraftBtn" type="button">AI 一鍵生成範文</button></div>
         </div>
         <div class="ai-provider-location-note">預設流程：GPT Writer 生稿 → Gemini Evidence/Citation Reviewer → GPT 只修 FAIL 段落 → Gemini 再驗 → 本機 Evidence / Legal Gate。若 Primary Provider 不可用，會沿用 Notion AI Routing 的 fallback 順序接手；Evidence Pack、Claim Map、Prompt、引用規則與安全 Gate 不變。Writer / Reviewer 主模型的切換仍只影響本次每日焦點。</div><div class="ai-profile-picker"><label>本次 Writer<select id="dailyAiProfileSelect"><option value="gpt">GPT（預設）</option><option value="gemini">Gemini</option><option value="writer">Writer Core</option></select></label><label>Evidence Reviewer<select id="dailyReviewerProfileSelect"><option value="gemini">Gemini（預設）</option><option value="gpt">GPT</option><option value="writer">Writer Core</option></select></label><small id="dailyAiProfileHelp">正在讀取可用模型…</small></div>
