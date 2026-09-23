@@ -239,7 +239,26 @@ function escapeHTML(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','
 function inlineMD(s){return escapeHTML(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`([^`]+)`/g,'<code>$1</code>')}
 function markdown(md=''){const lines=md.replace(/\r/g,'').split('\n');let out='',list=null;const close=()=>{if(list){out+=`</${list}>`;list=null}};for(let i=0;i<lines.length;i++){const line=lines[i].trim();if(!line){close();continue}const c=line.match(/^> \[!(PEARL|KEY|WARNING)\]/i);if(c){close();const kind=c[1].toLowerCase(),next=(lines[++i]||'').replace(/^>\s?/,'');out+=`<div class="callout"><b>${kind==='pearl'?'Clinical Pearl':kind==='key'?'Key Point':'Warning'}</b><p>${inlineMD(next)}</p></div>`;continue}if(/^###\s+/.test(line)){close();out+=`<h3>${inlineMD(line.replace(/^###\s+/,''))}</h3>`;continue}if(/^##\s+/.test(line)){close();out+=`<h2>${inlineMD(line.replace(/^##\s+/,''))}</h2>`;continue}const ol=line.match(/^\d+\.\s+(.+)/);if(ol){if(list!=='ol'){close();list='ol';out+='<ol>'}out+=`<li>${inlineMD(ol[1])}</li>`;continue}const ul=line.match(/^[-*]\s+(.+)/);if(ul){if(list!=='ul'){close();list='ul';out+='<ul>'}out+=`<li>${inlineMD(ul[1])}</li>`;continue}close();out+=`<p>${inlineMD(line)}</p>`}close();return out}
 function clearAuthError(){const box=$('#authError');box?.classList.remove('show');$('#pinInput')?.classList.remove('invalid');$('#answerInput')?.classList.remove('invalid');$('#lockScreen .lock-card')?.classList.remove('auth-fail')}
-function showAuthError(stage,message){authFailCount[stage]=(authFailCount[stage]||0)+1;const input=stage===1?$('#pinInput'):$('#answerInput'),box=$('#authError');$('#authErrorTitle').textContent=stage===1?'管理密碼不正確':'安全問題答案不正確';$('#authErrorText').textContent=message+(authFailCount[stage]>1?` · 本次已失敗 ${authFailCount[stage]} 次`:'');box?.classList.add('show');input?.classList.add('invalid');const card=$('#lockScreen .lock-card');card?.classList.remove('auth-fail');void card?.offsetWidth;card?.classList.add('auth-fail');try{navigator.vibrate?.(35)}catch(_){};setTimeout(()=>input?.classList.remove('invalid'),650);input?.select()}
+function showAuthError(stage,message){
+  const msg=String(message||'驗證失敗');
+  const infrastructure=/origin not allowed|sw-api-403-origin|backend|bridge|逾時|timeout|503|504|版本不相容|服務目前無法連線|network|failed to fetch/i.test(msg);
+  const input=stage===1?$('#pinInput'):$('#answerInput'),box=$('#authError');
+  if(infrastructure){
+    $('#authErrorTitle').textContent='CMS 驗證服務連線異常';
+    $('#authErrorText').textContent=/origin not allowed|sw-api-403-origin/i.test(msg)
+      ? 'CMS Origin 與 Apps Script 設定不一致。請部署 v24.25.3 Backend；目前瀏覽器 Origin：'+location.origin
+      : msg;
+    box?.classList.add('show');
+    return;
+  }
+  authFailCount[stage]=(authFailCount[stage]||0)+1;
+  $('#authErrorTitle').textContent=stage===1?'管理密碼不正確':'安全問題答案不正確';
+  $('#authErrorText').textContent=msg+(authFailCount[stage]>1?` · 本次已失敗 ${authFailCount[stage]} 次`:'');
+  box?.classList.add('show');input?.classList.add('invalid');
+  const card=$('#lockScreen .lock-card');card?.classList.remove('auth-fail');void card?.offsetWidth;card?.classList.add('auth-fail');
+  try{navigator.vibrate?.(35)}catch(_){}
+  setTimeout(()=>input?.classList.remove('invalid'),650);input?.select();
+}
 function cmsAuthClientIdValue(){
   if(cmsAuthClientId)return cmsAuthClientId;
   const key='signwell-cms-auth-client-v1';
@@ -355,9 +374,12 @@ async function initCmsServerAuth(){
     showCmsAuthSetup(false);
     setAuthStage(1);
     const detail=String(err?.message||err||'').trim();
+    const originDenied=/origin not allowed|sw-api-403-origin/i.test(detail);
     $('#lockHint').textContent=detail.includes('Backend 版本不相容')
       ? detail
-      : '伺服器驗證服務目前無法連線；請確認 Apps Script Web App 已部署最新版本。'+(detail?'（'+detail+'）':'')+' 目前 CMS Origin：'+location.origin;
+      : originDenied
+        ? 'CMS Origin 設定不一致；請重新部署 Apps Script v24.25.3。此版會自動把完整 CMS URL 正規化為 '+location.origin+'。'
+        : '伺服器驗證服務目前無法連線；請確認 Apps Script Web App 已部署最新版本。'+(detail?'（'+detail+'）':'')+' 目前 CMS Origin：'+location.origin;
   }
 }
 async function configureCmsServerAuth(){
