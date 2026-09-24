@@ -1,9 +1,0 @@
-/* medical-daily-focus style component 10 · sw-v23-9-43-focus-api-button-text */
-/* SIGN WELL Daily Focus v23.9.43 · AI/API key + instruction CTA text */
-#focusAiInstructionOpenBtn,
-#focusAiInstructionOpenBtn:hover,
-#focusAiInstructionOpenBtn:focus-visible{
-  color:#fff!important;
-  -webkit-text-fill-color:#fff!important;
-  text-shadow:none!important;
-}
