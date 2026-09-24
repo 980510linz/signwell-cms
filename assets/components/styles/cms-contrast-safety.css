@@ -1,0 +1,205 @@
+/* SIGN WELL CMS v24.35.1 · Contrast Safety Layer
+   Loaded LAST. Purpose: make text/background contrast deterministic even when
+   legacy CMS styles are present in the complete deployed asset tree.
+   Targets WCAG AA >= 4.5:1 for normal text; critical security surfaces aim >= 7:1. */
+:root{
+  --swc-text:#10212f;
+  --swc-text-2:#3f5262;
+  --swc-muted:#586a77;
+  --swc-faint:#647580;
+  --swc-on-dark:#ffffff;
+  --swc-surface:#ffffff;
+  --swc-surface-soft:#f4f6f4;
+  --swc-surface-security:#fbfcfb;
+  --swc-border:#b8c4c5;
+  --swc-green:#096451;
+  --swc-green-soft:#e2f0eb;
+  --swc-blue:#365f75;
+  --swc-blue-soft:#e7f0f5;
+  --swc-red:#7f2f21;
+  --swc-red-soft:#fae8e4;
+  --swc-warn:#72520e;
+  --swc-warn-soft:#f7efdb;
+  --swc-focus:#087b66;
+}
+
+/* Global readable defaults. These are deliberately late and restrained. */
+html,body{color:var(--swc-text)!important}
+body.sw-experience-v2430,
+body.sw-experience-v2430 #view,
+body.sw-experience-v2430 .workspace,
+body.sw-experience-v2430 .sidebar{color:var(--swc-text)!important}
+
+/* Common secondary copy: never use very pale gray on paper/white. */
+body.sw-experience-v2430 :is(
+  p,small,.muted,.hint,.help,.note,.caption,.sub,.meta,.description,
+  .sw-page-context,.publish-status,.security-note,.connection-row span,
+  .newsletter-stepup-note,.newsletter-confirm-warning,.notion-note,.canva-hint,
+  .sw-billing-help,.sw-token-loading,.sw-openai-card-head p
+){color:var(--swc-muted)!important}
+
+/* Forms: typed text, labels and placeholders must stay visibly distinct from the field. */
+body.sw-experience-v2430 :is(input,textarea,select){
+  color:var(--swc-text)!important;
+  caret-color:var(--swc-text)!important;
+}
+body.sw-experience-v2430 :is(input,textarea)::placeholder{
+  color:#667783!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#667783!important;
+}
+body.sw-experience-v2430 :is(label,.auth-label,.sw-token-subhead,.sw-billing-form-grid label>span){
+  color:var(--swc-text-2)!important;
+}
+body.sw-experience-v2430 :is(input,textarea,select):disabled,
+body.sw-experience-v2430 button:disabled{
+  opacity:.72!important;
+}
+body.sw-experience-v2430 :is(input,textarea,select):disabled{
+  color:#50616e!important;
+  -webkit-text-fill-color:#50616e!important;
+  background:#eef1ef!important;
+}
+
+/* SECURITY / AUTH — intentionally stronger than the rest of the CMS. */
+#lockScreen{color:var(--swc-text)!important}
+#lockScreen .lock-card,
+.sw-secret-vault-card,
+.newsletter-stepup-card,
+.newsletter-confirm-card{
+  background:var(--swc-surface-security)!important;
+  color:var(--swc-text)!important;
+}
+#lockScreen :is(h1,h2,h3,strong,b),
+.sw-secret-vault-card :is(h1,h2,h3,strong,b),
+.newsletter-stepup-card :is(h1,h2,h3,strong,b){color:#0b1b27!important}
+#lockDesc,
+#lockHint,
+.passkey-caption,
+.passkey-divider,
+.auth-setup-note,
+.auth-zh-note,
+.auth-setup-backup,
+.sw-secret-vault-head p,
+.sw-secret-vault-note,
+.newsletter-stepup-note{
+  color:#435664!important;
+  opacity:1!important;
+}
+.auth-label{color:#304653!important;font-weight:800!important}
+.security-question{
+  color:#172f3d!important;
+  background:#eef4f2!important;
+  border:1px solid #c4d1ce!important;
+}
+.auth-server-badge{
+  color:#174a3e!important;
+  background:#e3f1ec!important;
+  border-color:#b8d6cc!important;
+  opacity:1!important;
+}
+.auth-error-box{
+  color:#6f271c!important;
+  background:#fdebe7!important;
+  border-color:#e7b7ad!important;
+}
+.auth-error-box :is(b,span,.auth-error-icon){color:#6f271c!important;opacity:1!important}
+#lockScreen :is(input,.pin,.setup-secret,.auth-question-input,.auth-answer-input){
+  background:#fff!important;
+  color:#0c1e2a!important;
+  -webkit-text-fill-color:#0c1e2a!important;
+  border-color:#aebdc0!important;
+}
+#lockScreen :is(input,.pin,.setup-secret,.auth-question-input,.auth-answer-input)::placeholder{
+  color:#435664!important;
+  -webkit-text-fill-color:#435664!important;
+  opacity:1!important;
+}
+#lockScreen :is(input,.pin,.setup-secret,.auth-question-input,.auth-answer-input):focus{
+  border-color:#087b66!important;
+  box-shadow:0 0 0 3px rgba(8,123,102,.17)!important;
+}
+#lockScreen :is(button,.passkey-primary,.passkey-fallback,.auth-back){
+  color:#10212f!important;
+}
+#lockScreen :is(#unlockBtn,#verifyBtn,#authSetupBtn,.passkey-primary){
+  background:#10212f!important;
+  border-color:#10212f!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+#lockScreen .auth-back,.passkey-fallback{
+  background:#fff!important;
+  border-color:#aebdc0!important;
+  color:#253b49!important;
+}
+
+/* Secret Vault: credentials must never appear as pale text on translucent glass. */
+.sw-secret-vault-overlay{background:rgba(10,25,35,.48)!important}
+.sw-secret-vault-head h3{color:#0b1b27!important}
+.sw-secret-vault-head p,.sw-secret-vault-note{color:#435664!important}
+.sw-secret-vault-form label,.sw-secret-vault-form span{color:#304653!important}
+.sw-secret-vault-form input{
+  background:#fff!important;
+  color:#0c1e2a!important;
+  -webkit-text-fill-color:#0c1e2a!important;
+  border-color:#aebdc0!important;
+}
+.sw-secret-vault-form input::placeholder{color:#435664!important;-webkit-text-fill-color:#435664!important;opacity:1!important}
+.sw-secret-close{color:#263b48!important;background:#f1f4f2!important}
+.sw-secret-vault-actions .primary{background:#10212f!important;color:#fff!important;border-color:#10212f!important}
+
+/* Security/status blocks used throughout Settings / AI / GitHub / Notion / Canva. */
+.security-note,.publish-status,.notion-note,.canva-hint{
+  background:#f3f6f4!important;
+  border-color:#c8d1cf!important;
+  color:#415461!important;
+}
+.security-note b,.publish-status b,.notion-note b,.canva-hint b{color:#152b38!important}
+.security-note code,.connection-row code{
+  color:#2d5870!important;
+  background:#e4edf2!important;
+  border:1px solid #c7d7df!important;
+}
+.connection-row strong,.ai-suite-health-item strong{color:#172d39!important}
+.connection-row.ready strong,.ready strong{color:#075e4c!important}
+
+/* Warnings / destructive operations — red/brown is dark enough on its tint. */
+button.danger,.danger{
+  color:#742a1f!important;
+  -webkit-text-fill-color:#742a1f!important;
+  background:#f9e7e3!important;
+  border-color:#d9a79d!important;
+}
+.newsletter-confirm-warning,.newsletter-warning,.sw-prelegal-alert{
+  color:#6f2c20!important;
+  background:#fbeae6!important;
+  border-color:#e8bcb3!important;
+}
+
+/* Known light-surface status rows. Avoid global .ready/.warning overrides because
+   legacy components may use those classes on colored pills; the runtime guard handles them. */
+.connection-row.ready strong,.ai-suite-health-item.ready strong{color:#075e4c!important}
+
+/* Dark/selected surfaces must always carry light text, including descendants. */
+:is(
+  .top-action.primary,#view button.primary,#view .primary,
+  .article-publish-actions .publish,.social-studio-step.active,
+  .sw-mobile-sections button.active,.sw-context-tabs button.active,
+  .sw-nav-optimized .nav-group>button.active::before
+){color:#fff!important;-webkit-text-fill-color:#fff!important}
+:is(.top-action.primary,#view button.primary,#view .primary,.article-publish-actions .publish,.social-studio-step.active) :is(span,strong,b,small,i){color:#fff!important;-webkit-text-fill-color:#fff!important}
+
+/* Modal/dialog copy inherits safe colors, not legacy glass colors. */
+:is(.modal-card,.article-publish-confirm-card,.review-inbox-card,.cms-command-card,.sw-glossary-card){color:var(--swc-text)!important}
+:is(.modal-card,.article-publish-confirm-card,.review-inbox-card,.cms-command-card,.sw-glossary-card) :is(p,small,.muted,.hint){color:var(--swc-muted)!important;opacity:1!important}
+
+/* Runtime contrast guard uses this only when computed contrast is actually insufficient. */
+.sw-contrast-auto-fix{color:var(--sw-contrast-safe-color)!important;-webkit-text-fill-color:var(--sw-contrast-safe-color)!important;text-shadow:none!important}
+html[data-sw-contrast-health="warn"] body::after{pointer-events:none}
+
+/* Focus visibility is a security/accessibility affordance, not decoration. */
+body.sw-experience-v2430 :is(button,a,input,textarea,select,[tabindex]):focus-visible{
+  outline:3px solid rgba(8,123,102,.36)!important;
+  outline-offset:2px!important;
+}
