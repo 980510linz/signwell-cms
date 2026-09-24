@@ -1,4 +1,4 @@
-/* SIGN WELL CMS core visual layer · stable filename · product release v24.36.2 */
+/* SIGN WELL CMS core visual layer · stable filename · product release v24.36.3 */
 
 /* recovered style block: legacy-core */
 /* Release 23.7.0: historical vXX labels in legacy comments below are patch provenance only; runtime version is window.SIGNWELL_RELEASE.version. */
@@ -3372,7 +3372,7 @@ svg text{font-family:var(--sw-font-main)!important}
 @media(max-width:720px){.trusted-media-panel{padding:12px}.trusted-media-head{display:grid}.trusted-media-row{grid-template-columns:auto minmax(0,1fr);align-items:start}.trusted-media-row select{grid-column:2}.trusted-media-remove{grid-column:2;justify-self:start}.trusted-media-add{grid-template-columns:1fr}.trusted-media-add>*{width:100%}.trusted-media-actions{display:grid;grid-template-columns:1fr 1fr}.trusted-media-actions button{width:100%}}
 
 
-/* v24.36.2 stable full-package fallback */
+/* v24.36.3 stable full-package fallback */
 :root{color-scheme:light;--sw-full-ink:#26313f;--sw-full-muted:#7f8b9a;--sw-full-line:rgba(73,95,116,.12);--sw-full-glass:rgba(255,255,255,.52)}
 html,body{min-height:100%;background:#eef4f8;color:var(--sw-full-ink)}
 [hidden],.hidden{display:none!important}

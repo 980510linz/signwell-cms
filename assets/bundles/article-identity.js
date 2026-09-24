@@ -1,4 +1,4 @@
-/* SIGN WELL Article Identity runtime · stable filename · v24.36.2 */
+/* SIGN WELL Article Identity runtime · stable filename · v24.36.3 */
 (()=>{'use strict';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function makeStaticShareSvg(identity={},article={}){const id=esc(identity.article_id||article.article_id||'SIGN-WELL'),title=esc(article.title||identity.title||'SIGN WELL Article'),hash=esc(identity.content_hash||'');return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" rx="42" fill="#f4f7fa"/><text x="72" y="92" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#27334f">SIGN WELL · 欣緯生醫</text><text x="72" y="230" font-family="Arial,sans-serif" font-size="54" font-weight="700" fill="#172239">${title.slice(0,48)}</text><text x="72" y="486" font-family="monospace" font-size="25" fill="#52677a">${id}</text><text x="72" y="532" font-family="monospace" font-size="17" fill="#8293a2">${hash.slice(0,42)}</text></svg>`}

@@ -1,4 +1,4 @@
-/* SIGN WELL CMS compatibility runtime · stable filename · v24.36.2 */
+/* SIGN WELL CMS compatibility runtime · stable filename · v24.36.3 */
 (()=>{'use strict';
 const noop=()=>{};
 const esc=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

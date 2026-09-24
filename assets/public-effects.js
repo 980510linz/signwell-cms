@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const VERSION='24.36.2-effects-r1';
+const VERSION='24.36.3-effects-r1';
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const coarse=matchMedia('(pointer:coarse)').matches||!matchMedia('(hover:hover)').matches;
 const CARD_SEL='.article-card,.topic-card,.person-card,.hero-card,.share-card,.newsletter-card,.panel,.summary10s';

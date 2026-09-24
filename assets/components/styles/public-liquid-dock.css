@@ -62,16 +62,7 @@
 .nav-item svg{transition:transform .24s var(--sw-dock-ease)!important}
 .nav-item.active svg{transform:translate3d(0,-1px,0) scale(1.075)!important}
 
-/* During a drag, pause decorative loops that compete for the main thread/GPU.
-   The content stays visually intact; only nonessential ambient motion pauses. */
-body.pager-dragging .ambient,
-body.pager-dragging .orb,
-body.pager-dragging .grain,
-body.pager-dragging .cursor-glow,
-body.pager-dragging .background-motion,
-body.pager-dragging [data-ambient-motion]{
-  animation-play-state:paused!important;
-}
+/* Clean Public build: no ambient/grain/cursor animation layers exist. */
 body.pager-dragging .pager{
   -webkit-backdrop-filter:blur(3px) saturate(132%) brightness(1.012)!important;
   backdrop-filter:blur(3px) saturate(132%) brightness(1.012)!important;
@@ -110,20 +101,6 @@ html.sw-route-fallback-in #app{animation:sw-route-fallback-in .24s var(--sw-rout
   }
 }
 
-body.dark{
-  --sw-dock-glass-a:rgba(137,177,208,.105);
-  --sw-dock-glass-b:rgba(62,94,120,.035);
-  --sw-dock-glass-c:rgba(120,163,197,.075);
-  --sw-dock-rim:rgba(200,228,249,.34);
-  --sw-dock-inner:rgba(195,225,248,.10);
-  --sw-dock-shadow:0 16px 40px rgba(0,0,0,.30),0 3px 10px rgba(0,0,0,.16);
-  --sw-dock-thumb-a:rgba(157,199,230,.22);
-  --sw-dock-thumb-b:rgba(83,128,164,.085);
-  --sw-dock-thumb-c:rgba(143,185,217,.15);
-}
-body.dark .pager{border-color:rgba(205,230,248,.14)!important}
-body.dark .pager-thumb{box-shadow:inset 0 1px 0 rgba(230,244,255,.28),0 7px 18px rgba(0,0,0,.26)!important}
-
 /* v24.34 retired the old stand-alone QR share. Soft routing must not bring
    that legacy QR panel back into the in-memory Share view. */
 html.sw-share-no-legacy-qr .share-card .share-grid{grid-template-columns:minmax(0,1fr)!important}
@@ -160,8 +137,4 @@ html.sw-share-no-legacy-qr #refreshQr{display:none!important}
   -webkit-appearance:none;
   appearance:none;
   -webkit-tap-highlight-color:transparent;
-}
-body.dark .search-input:focus-within{
-  border-color:rgba(255,255,255,.10)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 26px rgba(0,0,0,.16)!important;
 }

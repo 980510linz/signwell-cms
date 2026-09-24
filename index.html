@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- v24.36.2 · bridge 23.9.92 -->
+<!-- v24.36.3 · bridge 23.9.92 -->
 <html class="sw-v2421" lang="zh-Hant">
 <head>
 <meta charset="utf-8"><link rel="canonical" href="https://980510linz.github.io/signwell/C-CMS/"><meta name="signwell-cms-canonical" content="https://980510linz.github.io/signwell/C-CMS/">
@@ -9,26 +9,28 @@
 <meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0">
 <meta name="theme-color" content="#f4f8fb">
 <meta name="color-scheme" content="light">
-<meta name="signwell-release" content="24.36.2">
+<meta name="signwell-release" content="24.36.3">
 <meta name="referrer" content="no-referrer">
 <script>
 /* GitHub-only CMS: refuse to run when embedded by Public or third-party pages. */
 if(window.top!==window.self){window.stop();document.documentElement.innerHTML='';throw new Error('CMS_FRAME_BLOCKED');}
 </script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com https://*.workers.dev; frame-src 'self' https://script.google.com https://script.googleusercontent.com; form-action https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
-<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
 <link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <title>SIGN WELL CMS · 欣緯生醫</title>
 
-<script>window.SIGNWELL_RELEASE=Object.freeze({version:"24.36.2",releaseVersion:"24.36.2",bridgeProtocol:"23.9.92",buildDate:"2026-09-24",buildId:"20260924.362"});</script>
-<link rel="stylesheet" href="assets/cms-core.css?build=24.36.2">
-<link rel="stylesheet" href="assets/components/styles/cms-experience.css?build=24.36.2">
-<link rel="stylesheet" href="assets/components/styles/ai-token-observatory.css?build=24.36.2">
-<link rel="stylesheet" href="assets/components/styles/provider-billing-observatory.css?build=24.36.2">
-<link rel="stylesheet" href="assets/components/styles/prelegal-editorial-gates.css?build=24.36.2">
-<link rel="stylesheet" href="assets/components/styles/geo-observatory.css?build=24.36.2">
-<link rel="stylesheet" href="assets/components/styles/cms-contrast-safety.css?build=24.36.2">
-<link rel="preload" href="assets/bundles/cms-app.js?build=24.36.2" as="script" fetchpriority="high">
+<script>window.SIGNWELL_RELEASE=Object.freeze({version:"24.36.3",releaseVersion:"24.36.3",bridgeProtocol:"23.9.92",buildDate:"2026-09-24",buildId:"20260924.363"});</script>
+<link rel="stylesheet" href="assets/cms-core.css?build=24.36.3">
+<link rel="stylesheet" href="assets/components/styles/cms-experience.css?build=24.36.3">
+<link rel="stylesheet" href="assets/components/styles/ai-token-observatory.css?build=24.36.3">
+<link rel="stylesheet" href="assets/components/styles/provider-billing-observatory.css?build=24.36.3">
+<link rel="stylesheet" href="assets/components/styles/prelegal-editorial-gates.css?build=24.36.3">
+<link rel="stylesheet" href="assets/components/styles/geo-observatory.css?build=24.36.3">
+<link rel="stylesheet" href="assets/components/styles/cms-contrast-safety.css?build=24.36.3">
+<link rel="stylesheet" href="assets/uiux-system.css?build=canonical-uiux">
+<link rel="preload" href="assets/bundles/cms-app.js?build=24.36.3" as="script" fetchpriority="high">
 
 
 
@@ -88,11 +90,11 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
 @media(prefers-reduced-motion:reduce){.sw-nav-optimized .nav-group{animation:none}.sw-nav-sections button{transition:none}}
 </style>
 
-<script src="assets/cms-compat.js?build=24.36.2"></script>
+<script src="assets/cms-compat.js?build=24.36.3"></script>
 
 </head>
 <body class="light">
-<div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct">6%</strong></div></div></div>
+<div class="sw-page-loader" id="swPageLoader" role="status" aria-live="polite" aria-label="頁面載入進度"><div class="sw-page-loader-card"><div class="sw-page-loader-brand">SIGN WELL</div><div class="sw-page-loader-sub">欣緯生醫</div><div class="sw-page-loader-track" aria-hidden="true"><i class="sw-page-loader-bar"></i></div><div class="sw-page-loader-meta"><span class="sw-page-loader-stage">準備頁面</span><strong class="sw-page-loader-pct" aria-hidden="true"></strong></div></div></div>
 <script>
 /* SIGN WELL CMS loader hard failsafe v23.9.63
    Loader is decorative only and must never block the CMS. */
@@ -117,12 +119,12 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
       const stage=el.querySelector('.sw-page-loader-stage');
       const pct=el.querySelector('.sw-page-loader-pct');
       if(stage)stage.textContent='正在開啟 CMS';
-      if(pct)pct.textContent='100%';
+      if(pct)pct.textContent='';
     }
   },520);
   // Absolute guardrail: CMS is never allowed to remain covered by the loader.
-  setTimeout(release,2200);
-  window.addEventListener('pageshow',()=>setTimeout(release,2200),{once:true});
+  setTimeout(release,900);
+  window.addEventListener('pageshow',()=>setTimeout(release,900),{once:true});
 })();
 </script>
 
@@ -207,7 +209,7 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
 <div class="auth-zh-note">安全問題與答案都可使用中文或英文。首次設定時維持一般文字欄位、不遮罩，方便確認內容；送出後答案只在後端保存加鹽雜湊，不保存明文。建議不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · 已加密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
 <section class="cms hidden" id="cms">
 <aside class="sidebar glass">
-  <div class="brand"><div class="brand-mark">SW</div><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v24.36.2</span></div></div>
+  <div class="brand"><div class="brand-mark">SW</div><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v24.36.3</span></div></div>
   <button class="sidebar-command" id="sideCommandCenter" type="button"><span><b>Command Center</b><small>Notion · Gmail · Operations</small></span><em>⌘K</em></button>
   <div class="sw-nav-sections" id="swNavSections" role="tablist" aria-label="CMS 工作區">
     <button class="active" type="button" role="tab" aria-selected="true" data-nav-section="workspace"><b>⌂</b><span>工作台</span></button>
@@ -436,11 +438,12 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
 
 
 
-<script src="analytics-config.js?build=24.36.2"></script>
-<script src="assets/bundles/article-identity.js?build=24.36.2"></script>
-<script src="assets/bundles/error-experience.js?build=24.36.2"></script>
-<script src="assets/bundles/cms-app.js?build=24.36.2" data-sw-critical></script>
-<script src="assets/bundles/cms-contrast-guard.js?build=24.36.2" defer></script>
+<script src="analytics-config.js?build=24.36.3"></script>
+<script src="assets/bundles/article-identity.js?build=24.36.3"></script>
+<script src="assets/bundles/error-experience.js?build=24.36.3"></script>
+<script src="assets/bundles/cms-app.js?build=24.36.3" data-sw-critical></script>
+<script src="assets/bundles/cms-contrast-guard.js?build=24.36.3" defer></script>
+<script src="assets/uiux-system.js?build=canonical-uiux" defer></script>
 
 </body>
 </html>
