@@ -980,12 +980,7 @@ body.lite #lockScreen .lock-card{
   0%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(0deg) scale(.55)}
   10%{opacity:1}
   58%{opacity:1}
-  100%{background:
-    radial-gradient(330px 250px at 4% 3%,rgba(255,255,255,.96),transparent 64%),
-    radial-gradient(320px 240px at 92% 14%,rgba(158,216,255,.26),transparent 67%),
-    linear-gradient(155deg,#f7fbfe,#edf6fc 50%,#e7f1f7);
-  border:1px solid rgba(255,255,255,.93);
-  box-shadow:0 18px 44px rgba(47,86,115,.09),inset 0 1px 0 rgba(255,255,255,.98);
+  100%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(var(--rot,180deg)) scale(1.2)}
 }
 .about-preview-bar{
   height:35px;
@@ -3384,3 +3379,16 @@ html,body{min-height:100%;background:#eef4f8;color:var(--sw-full-ink)}
 button,input,textarea,select{font:inherit}
 #cms:not(.hidden){min-height:100dvh}
 @media(max-width:780px){body{overflow:auto!important}.cms{min-height:100dvh;height:auto!important}}
+
+/* Restore the newsletter dialogs omitted during core stylesheet consolidation. */
+.newsletter-confirm-overlay,.newsletter-stepup-overlay{position:fixed;inset:0;z-index:3301;display:grid;place-items:center;padding:20px;background:rgba(24,41,55,.38);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease}
+.newsletter-confirm-overlay.show,.newsletter-stepup-overlay.show{opacity:1;visibility:visible;pointer-events:auto}
+.newsletter-confirm-card,.newsletter-stepup-card{width:min(540px,100%);max-height:calc(100dvh - 40px);overflow:auto;padding:30px;border-radius:26px;background:#fff;color:#26313f;box-shadow:0 28px 80px rgba(20,37,52,.22)}
+.newsletter-confirm-card h2,.newsletter-stepup-card h2{font-size:23px;margin:14px 0}.newsletter-confirm-card p,.newsletter-stepup-card p{line-height:1.6}
+.newsletter-confirm-summary,.newsletter-stepup-summary{margin:20px 0;padding:15px;border-radius:14px;background:#f3f7fa}
+.newsletter-confirm-row{display:flex;justify-content:space-between;gap:16px;padding:7px 0}.newsletter-confirm-row strong{overflow-wrap:anywhere}
+.newsletter-confirm-warning,.newsletter-stepup-note{font-size:13px;line-height:1.5;color:#805442}
+.newsletter-confirm-actions,.newsletter-stepup-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.newsletter-confirm-actions button,.newsletter-stepup-actions button{border:1px solid #d9e1e5;border-radius:10px;background:#fff;padding:10px 17px;cursor:pointer}
+.newsletter-confirm-actions .send,.newsletter-stepup-actions .secure-send{background:#172a36;color:white;border-color:#172a36}
+.newsletter-stepup-field{display:grid;gap:8px;margin-top:18px}.newsletter-stepup-field input{width:100%;padding:11px;border:1px solid #cbd7de;border-radius:10px}
