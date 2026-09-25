@@ -3394,8 +3394,8 @@ button,input,textarea,select{font:inherit}
 .newsletter-stepup-field{display:grid;gap:8px;margin-top:18px}.newsletter-stepup-field input{width:100%;padding:11px;border:1px solid #cbd7de;border-radius:10px}
 
 /* ============================================================
-   SIGN WELL R9.2 · Homepage Hero Studio
-   CMS-side controls drive the exact Public R9.1/R9.2 WebGL renderer.
+   SIGN WELL R9.3 · Homepage Hero Studio
+   CMS-side controls drive the exact Public R9.3 adaptive WebGL renderer.
    ============================================================ */
 .sw-hero-studio{
   position:relative;

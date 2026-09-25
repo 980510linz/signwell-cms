@@ -5182,7 +5182,7 @@ function renderSiteText(){
 
         <div class="sw-hero-studio" id="swHeroStudio">
           <div class="sw-hero-studio-head">
-            <div><span>R9.2 · LIVE WEBGL</span><strong>果凍玻璃 Hero 控制器</strong><p>控制桿直接驅動右側同一套 Hero renderer；發布後 Public 會讀取完全相同的參數。</p></div>
+            <div><span>R9.3 · ADAPTIVE WEBGL</span><strong>果凍玻璃 Hero 控制器</strong><p>控制桿直接驅動右側同一套 Hero renderer；發布後 Public 會讀取完全相同的參數。</p></div>
             <div class="sw-hero-studio-badge"><i></i>即時預覽</div>
           </div>
           <div class="sw-hero-control-grid">${heroGroups}</div>
@@ -8311,7 +8311,7 @@ function swPublicIosGlassShellPatch_(html){
   return html;
 }
 const SW_PUBLIC_LIQUID_HERO=Object.freeze({
-  VERSION:'24.36.3-r9-2-1-verified-complete',
+  VERSION:'24.36.3-r9-6-mobile-brand-clean',
   JS_PATH:'assets/signwell-liquid-hero.js',
   CSS_PATH:'assets/signwell-liquid-hero.css',
   MARKER_START:'<!-- SW_LIQUID_HERO_R6_START -->',
@@ -8365,7 +8365,7 @@ const SW_PUBLIC_LIQUID_NAV=Object.freeze({
   CSS_PATH:'assets/components/styles/public-liquid-dock.css',
   INDEX_MARKER_START:'<!-- SW_PUBLIC_LIQUID_NAV_START -->',
   INDEX_MARKER_END:'<!-- SW_PUBLIC_LIQUID_NAV_END -->',
-  SHELL_FILES:Object.freeze(['index.html','topics.html','about.html','newsletter.html']),
+  SHELL_FILES:Object.freeze(['index.html','topics.html','about.html','share.html','newsletter.html']),
   ROUTE_FILES:Object.freeze(['index.html','topics.html','about.html','share.html','newsletter.html'])
 });
 function swPublicLiquidNavInlineOptimizationPatch_(html){
@@ -8511,7 +8511,6 @@ async function swArticleIdCardPublicShellEntries_(token){
     {path:SW_PUBLIC_LIQUID_HERO.CSS_PATH,mode:'100644',type:'blob',content:liquidHeroCss},
     {path:SW_ARTICLE_IDENTITY_ASSET,mode:'100644',type:'blob',content:identityJs},
     {path:SW_PUBLIC_BACKEND_BRIDGE.CONFIG_PATH,mode:'100644',type:'blob',content:swPublicBackendConfigText_(backendCfg)},
-    {path:'share.html',mode:'100644',type:'blob',content:swArticleIdCardLegacyShareRedirectHTML_()},
     ...retiredEntries
   ];
   for(const shellPath of SW_PUBLIC_LIQUID_NAV.SHELL_FILES){
