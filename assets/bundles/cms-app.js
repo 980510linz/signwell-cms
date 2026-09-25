@@ -92,9 +92,9 @@ async function playOpeningWelcome(){
 async function playLoginGreeting(){
   const wrap=$('#loginGreeting'),word=$('#loginGreetingWord');
   if(!wrap||!word)return;
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){wrap.hidden=true;return;}
   const words=['你好，主人','Hello, Master'];
-  wrap.classList.add('show');
+  wrap.hidden=false;wrap.classList.add('show');
 
   word.classList.remove('show');
   await sleep(90);
@@ -110,7 +110,7 @@ async function playLoginGreeting(){
 
   word.classList.remove('show');
   await sleep(170);
-  wrap.classList.remove('show');
+  wrap.classList.remove('show');wrap.hidden=true;
 }
 
 function showConfetti(sourceEl=null){
@@ -157,6 +157,7 @@ function showConfetti(sourceEl=null){
 function showLoginSyncOverlay(){
   const el=$('#loginSyncOverlay');
   if(!el)return;
+  el.hidden=false;
   el.classList.remove('show');
   void el.offsetWidth;
   el.classList.add('show');
@@ -168,6 +169,7 @@ function hideLoginSyncOverlay(){
   if(!el)return;
   el.classList.remove('show');
   el.setAttribute('aria-hidden','true');
+  el.hidden=true;
 }
 
 async function playLoginSuccessSequence(){
@@ -356,7 +358,7 @@ async function swPasskeyLogin(){
 async function initCmsServerAuth(){
   cmsAuthClientIdValue();
   try{
-    const s=await signwellGasBridge('cms.auth.status',{clientId:cmsAuthClientId},{timeoutMs:18000});
+    let s;try{s=await signwellGasBridge('cms.auth.status',{clientId:cmsAuthClientId},{timeoutMs:22000,cacheTtlMs:0})}catch(firstErr){if(!newsletterEnabled())throw firstErr;await sleep(650);s=await signwellGasBridge('cms.auth.status',{clientId:cmsAuthClientId},{timeoutMs:26000,cacheTtlMs:0,singleFlight:false})}
     cmsAuthConfigured=Boolean(s&&s.configured);
     cmsAuthNeedsPolicyUpgrade=Boolean(s&&(s.requiresInputPolicyUpgrade||s.requiresQuestionUpgrade));
     cmsPasskeyConfigured=Boolean(s?.passkey?.configured);
@@ -469,8 +471,8 @@ async function completeCmsLogin(method='legacy'){
   $('#answerInput').value='';
   $('#lockHint').textContent=method==='passkey'?'Passkey 驗證完成，正在同步內容…':'驗證完成，正在同步內容…';
   try{await dataReady}catch(_){}
-  $('#lockScreen').classList.add('hidden');
-  $('#cms').classList.remove('hidden');
+  $('#lockScreen').classList.add('hidden');$('#lockScreen').hidden=true;
+  $('#cms').classList.remove('hidden');$('#cms').hidden=false;
   verifyButton?.classList.remove('auth-entering');if(verifyButton){verifyButton.disabled=false;verifyButton.textContent='驗證並進入'}
   localStorage.setItem(ACTKEY,String(Date.now()));
   pendingPin='';
@@ -497,7 +499,7 @@ async function completeCmsLogin(method='legacy'){
   cloudTask.then(ok=>{if(ok&&!cloudFinished)cmsCloudSetStatus('雲端已同步 ✓')}).finally(()=>{startCmsCloudPolling()});
 }
 
-function lock(){const oldSession=cmsSessionToken;stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);resetMedicalNewsPersistentSession();githubToken='';authSecret='';pendingPin='';cmsSessionToken='';authChallenge='';clearAuthError();try{localStorage.removeItem(TOKEN_STORE_KEY)}catch(_){};if(oldSession){signwellGasBridge('cms.auth.logout',{sessionToken:oldSession},{timeoutMs:8000}).catch(()=>{})}try{window.SignWellAuth?.logout?.()}catch(_){}$('#cms').classList.add('hidden');$('#lockScreen').classList.remove('hidden');$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1);swRefreshPasskeyLoginMode()}
+function lock(){const oldSession=cmsSessionToken;stopCmsCloudPolling();stopAnalyticsLivePolling();persist(true);resetMedicalNewsPersistentSession();githubToken='';authSecret='';pendingPin='';cmsSessionToken='';authChallenge='';clearAuthError();try{localStorage.removeItem(TOKEN_STORE_KEY)}catch(_){};if(oldSession){signwellGasBridge('cms.auth.logout',{sessionToken:oldSession},{timeoutMs:8000}).catch(()=>{})}try{window.SignWellAuth?.logout?.()}catch(_){}$('#cms').classList.add('hidden');$('#cms').hidden=true;$('#lockScreen').classList.remove('hidden');$('#lockScreen').hidden=false;$('#pinInput').value='';$('#answerInput').value='';setAuthStage(1);swRefreshPasskeyLoginMode()}
 function checkAutoLock(){const last=Number(localStorage.getItem(ACTKEY)||0);if(last&&Date.now()-last>15*60*1000&&!$('#cms').classList.contains('hidden'))lock()}
 const SW_CMS_EXPERIENCE_VERSION='24.36.3';
 const SW_CMS_SCROLL_KEY='sw-cms-scroll-v2430';
@@ -1873,14 +1875,13 @@ function assertBackendReleaseCompatible(actualVersion){
   );
 }
 function newsletterBase(){
-  const n=NEWSLETTER_CFG(),a=ANALYTICS_CFG();
-  return String(n.endpoint||a.endpoint||'').replace(/\/+$/,'');
+  const n=NEWSLETTER_CFG(),a=ANALYTICS_CFG(),b=window.SIGNWELL_BACKEND||{};
+  const fallback=String(window.SIGNWELL_CANONICAL_BACKEND_ENDPOINT||'https://script.google.com/macros/s/AKfycbzmZXZSepxCD1jbfpjMxsnvn0nRl-xEpeXdJoTO-TZL6Z5Zk7T-OsVGpTkIxWaCh-Y/exec').trim();
+  const endpoint=String(b.endpoint||n.endpoint||a.endpoint||fallback).trim().replace(/\/+$/,'');
+  return /^https:\/\/script\.google\.com\/macros\/s\/[^\s?#]+\/exec(?:[?#].*)?$/i.test(endpoint)?endpoint:(/^https:\/\/script\.google\.com\/macros\/s\/[^\s?#]+\/exec$/i.test(fallback)?fallback:'');
 }
 function newsletterEnabled(){
-  const n=NEWSLETTER_CFG(),a=ANALYTICS_CFG();
-  const endpoint=newsletterBase();
-  const enabled=n.enabled===true || (n.enabled!==false && a.enabled===true);
-  return enabled && /^https:\/\//i.test(endpoint);
+  return /^https:\/\/script\.google\.com\/macros\/s\/[^\s?#]+\/exec(?:[?#].*)?$/i.test(newsletterBase());
 }
 function newsletterAdminKey(){
   return String(cmsSessionToken||'');
@@ -2060,6 +2061,7 @@ window.SignWellGasBridgeDiagnostics=Object.freeze({
   snapshot:()=>Object.freeze({...swGasBridgeStats,pending:swGasBridgeInflight.size,readCacheEntries:swGasBridgeReadCache.size}),
   clearReadCache:()=>swGasBridgeReadCache.clear()
 });
+window.SignWellBackendDiagnostics=Object.freeze({endpoint:()=>newsletterBase(),enabled:()=>newsletterEnabled(),origin:()=>location.origin,cmsUrl:()=>location.href.split(/[?#]/)[0]});
 
 async function newsletterRequest(path,opt={}){
   const map={
@@ -2482,6 +2484,7 @@ function closeNewsletterSendConfirm(result=false){
   if(!wrap)return;
   wrap.classList.remove('show');
   wrap.setAttribute('aria-hidden','true');
+  wrap.hidden=true;
   wrap.inert=true;
 
   const resolver=newsletterConfirmResolver;
@@ -2502,6 +2505,8 @@ function confirmNewsletterSendUI({count=0,subject='',hero=''}={}){
   $('#newsletterConfirmSubject').textContent=subject||'未設定主旨';
   $('#newsletterConfirmHero').textContent=hero||'純內容電子報';
 
+  wrap.hidden=false;
+  wrap.hidden=false;
   wrap.inert=false;
   wrap.classList.add('show');
   wrap.setAttribute('aria-hidden','false');
@@ -2540,7 +2545,7 @@ let newsletterStepupResolver=null;
 function closeNewsletterStepup(value=null){
   const wrap=$('#newsletterStepupOverlay');
   const input=$('#newsletterStepupPassword');
-  if(wrap){wrap.classList.remove('show');wrap.setAttribute('aria-hidden','true');wrap.inert=true}
+  if(wrap){wrap.classList.remove('show');wrap.setAttribute('aria-hidden','true');wrap.hidden=true;wrap.inert=true}
   if(input)input.value='';
   const resolve=newsletterStepupResolver;newsletterStepupResolver=null;
   if(resolve)resolve(value);
@@ -2553,7 +2558,7 @@ function requestNewsletterStepupPassword({count=0,subject='',intent='manual'}={}
     ?`文章通知 · ${Number(count||0).toLocaleString()} 位收件者`
     :`電子報群發 · ${Number(count||0).toLocaleString()} 位收件者`;
   $('#newsletterStepupSubject').textContent=String(subject||'未命名寄送');
-  wrap.inert=false;wrap.classList.add('show');wrap.setAttribute('aria-hidden','false');
+  wrap.hidden=false;wrap.inert=false;wrap.classList.add('show');wrap.setAttribute('aria-hidden','false');
   setTimeout(()=>$('#newsletterStepupPassword')?.focus(),60);
   return new Promise(resolve=>{newsletterStepupResolver=resolve});
 }
@@ -2621,7 +2626,7 @@ function showNewsletterSendOverlay(mode='auto',count=0,subject=''){
 
 function completeNewsletterSendOverlay(message='電子報已發送完成',meta=''){
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
-  wrap.classList.remove('failed');
+  wrap.hidden=false;wrap.classList.remove('failed');
   wrap.classList.add('done','show');
 
   const title=$('#newsletterSendTitle');
@@ -2639,7 +2644,7 @@ function completeNewsletterSendOverlay(message='電子報已發送完成',meta='
 
 function failNewsletterSendOverlay(message='電子報未能送出'){
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
-  wrap.classList.remove('done');
+  wrap.hidden=false;wrap.classList.remove('done');
   wrap.classList.add('failed','show');
 
   const title=$('#newsletterSendTitle');
@@ -2655,6 +2660,7 @@ function hideNewsletterSendOverlay(){
   const wrap=$('#newsletterSendOverlay');if(!wrap)return;
   wrap.classList.remove('show','done','failed');
   wrap.setAttribute('aria-hidden','true');
+  wrap.hidden=true;
   wrap.inert=true;
 }
 
@@ -2670,21 +2676,21 @@ function resetNewsletterInteractionState(){
   if(send){
     send.classList.remove('show','done','failed');
     send.setAttribute('aria-hidden','true');
-    send.inert=true;
+    send.hidden=true;send.inert=true;
   }
 
   const confirm=$('#newsletterConfirmOverlay');
   if(confirm){
     confirm.classList.remove('show');
     confirm.setAttribute('aria-hidden','true');
-    confirm.inert=true;
+    confirm.hidden=true;confirm.inert=true;
   }
 
   const stepup=$('#newsletterStepupOverlay');
   if(stepup){
     stepup.classList.remove('show');
     stepup.setAttribute('aria-hidden','true');
-    stepup.inert=true;
+    stepup.hidden=true;stepup.inert=true;
   }
   if(newsletterStepupResolver){try{newsletterStepupResolver(null)}catch(_){};newsletterStepupResolver=null}
 
@@ -4143,7 +4149,7 @@ function articlePublicPathLabel(article){
 }
 function closeArticlePublishConfirm(ok=false){
   const wrap=$('#articlePublishConfirm');if(!wrap)return;
-  wrap.classList.remove('show');wrap.setAttribute('aria-hidden','true');
+  wrap.classList.remove('show');wrap.setAttribute('aria-hidden','true');wrap.hidden=true;
   if(!ok&&typeof swPublishComposerReset==='function')swPublishComposerReset();
   const resolver=articlePublishConfirmResolver;articlePublishConfirmResolver=null;
   setTimeout(()=>resolver?.(Boolean(ok)),100);
@@ -4154,7 +4160,7 @@ function confirmArticlePublishUI(article){
   $('#articlePublishTitle').textContent=article?.title||'未命名文章';
   $('#articlePublishPath').textContent=articlePublicPathLabel(article);
   $('#articlePublishNewsletter').textContent=newsletterAutoEnabled()?'網站上線後自動寄送':'不自動寄送';
-  wrap.classList.add('show');wrap.setAttribute('aria-hidden','false');
+  wrap.hidden=false;wrap.classList.add('show');wrap.setAttribute('aria-hidden','false');
   if(typeof swPublishComposerOpen==='function')swPublishComposerOpen(article);
   requestAnimationFrame(()=>$('#articlePublishConfirmBtn')?.focus());
   return new Promise(resolve=>{articlePublishConfirmResolver=resolve});
@@ -7012,7 +7018,7 @@ function swNotionCommandHtml(){
           <label>Reviewer Fallback 1<select id="reviewReviewerFallback1"><option value="gpt">GPT</option><option value="gemini">Gemini</option><option value="writer">Writer Core</option></select></label>
           <label>Reviewer Fallback 2<select id="reviewReviewerFallback2"><option value="gpt">GPT</option><option value="gemini">Gemini</option><option value="writer">Writer Core</option></select></label>
           <label class="wide" style="display:flex;align-items:center;gap:10px"><input id="reviewFailoverEnabled" type="checkbox" checked style="width:auto">啟用 AI Role Failover<small style="display:block;color:#7e8b94">Primary 失敗、配額／連線錯誤、模型不可用或未設定時才依序接手；不因內容驗證 FAIL 而換模型。</small></label>
-          <label class="wide">CMS 審稿網址<input id="reviewCmsUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://980510linz.github.io/signwell/C-CMS/"><small style="display:block;margin-top:6px;color:#7e8b94">Gmail 與 Notion 的「前往 CMS」都從這個 canonical URL 產生；不要填 Public 網址。</small></label>
+          <label class="wide">CMS 審稿網址<input id="reviewCmsUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://980510linz.github.io/signwell-cms/"><small style="display:block;margin-top:6px;color:#7e8b94">Gmail 與 Notion 的「前往 CMS」都從這個 canonical URL 產生；不要填 Public 網址。</small></label>
         </div>
         <div class="notion-actions"><button class="primary" id="reviewRoutingSaveBtn" type="button">儲存 AI Routing</button><button id="reviewRoutingSyncBtn" type="button">從 Notion 重新讀取</button><a id="reviewRoutingNotionLink" href="#" target="_blank" rel="noopener" style="display:none">打開 Notion AI Routing ↗</a><button id="reviewInstallBtn" type="button">啟用每小時流程</button><button id="reviewRunNowBtn" type="button">立即跑一次</button><button id="reviewOpenInboxBtn" type="button">打開待審稿</button><button id="reviewCleanupBtn" type="button">清理逾時項目</button><button id="reviewCmsUrlSaveBtn" type="button">儲存／修復 CMS 連結</button></div><div class="notion-note" id="reviewAutomationHelp">Notion Operations 會建立「AI Routing · Hourly Review」控制卡；每小時執行前會重新讀取。模型可替換，但資料、Prompt 與安全 Gate 不會替換。</div>
       </section>
@@ -7205,7 +7211,7 @@ const swReviewInboxState={items:[],current:null,busy:false};
 function swReviewRequest(action,payload={},timeout=60000){return signwellGasBridge(action,payload,{adminKey:newsletterAdminKey(),timeoutMs:timeout});}
 function swReviewRemaining(expiresAt){const ms=new Date(expiresAt).getTime()-Date.now();if(!Number.isFinite(ms)||ms<=0)return '即將到期';const h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000);return `${h}h ${m}m 後清除`;}
 function swReviewSetBusy(on){swReviewInboxState.busy=Boolean(on);['reviewInboxApprove','reviewInboxReject','reviewInboxLater','reviewInboxClose'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=Boolean(on)});}
-function swReviewHide(){const o=document.getElementById('reviewInboxOverlay');if(o){o.classList.remove('show');o.setAttribute('aria-hidden','true')}}
+function swReviewHide(){const o=document.getElementById('reviewInboxOverlay');if(o){o.classList.remove('show');o.setAttribute('aria-hidden','true');o.hidden=true}}
 function swReviewListRender(){const host=document.getElementById('reviewInboxList');if(!host)return;host.innerHTML=swReviewInboxState.items.map(x=>`<button type="button" class="review-inbox-item ${swReviewInboxState.current?.id===x.id?'active':''}" data-review-id="${escapeHTML(x.id)}"><b>${escapeHTML(x.title||'未命名文章')}</b><span>${escapeHTML(x.category||'健康時事')} · ${Number(x.sourceCount||0)} 家 · ${escapeHTML(swReviewRemaining(x.expiresAt))}</span></button>`).join('')||'<div class="review-inbox-empty">目前沒有待審稿文章。</div>';host.querySelectorAll('[data-review-id]').forEach(b=>b.onclick=()=>swReviewOpen(b.dataset.reviewId));}
 function swReviewSecurityHtml(audit){
   audit=audit&&typeof audit==='object'?audit:{};
@@ -7218,7 +7224,7 @@ function swReviewTaiwanLanguageHtml(r){r=r&&typeof r==='object'?r:null;if(!r)ret
 function swReviewDoctorVoiceHtml(r){r=r&&typeof r==='object'?r:null;if(!r)return '';const rows=[['核心論點',r.centralThesis],['醫師整合',r.clinicalSynthesis],['讀者收穫',r.readerGain],['專業深度',r.professionalDepth],['比較脈絡',r.comparison],['預防／後果',r.preventionOrConsequences],['專業但白話',r.plainProfessional],['中立公正',r.neutrality]].filter(([,x])=>x&&!(x.required===false&&x.verdict==='NA'));const bad=r.ok===false||rows.some(([,x])=>x?.verdict==='FAIL');return `<section class="sw-prelegal-review sw-doctor-review ${bad?'block':'pass'}"><div class="sw-prelegal-head"><div><span>SIGN WELL · 醫師話</span><strong>${bad?'內容價值未通過':'Clinician Value PASS'}</strong></div><em>法規審核前</em></div><p>${escapeHTML(r?.summary?.reason||'檢查文章是否有核心問題、公正的醫學論點、足夠專業深度與明確讀者收穫。')}</p><div class="sw-doctor-grid">${rows.map(([name,x])=>`<div class="${String(x?.verdict||'').toLowerCase()}"><b>${escapeHTML(name)}</b><strong>${escapeHTML(x?.verdict||'—')}</strong><span>${escapeHTML(x?.reason||'')}</span></div>`).join('')}</div></section>`}
 function swReviewComplianceHtml(c){c=c&&typeof c==='object'?c:null;if(!c||!c.displayAlert)return '';const risk=String(c.riskLevel||'CAUTION'),tone=risk==='HIGH_RISK'?'high':risk==='BLOCK'?'block':'caution',findings=Array.isArray(c.findings)?c.findings:[],sources=Array.isArray(c.sources)?c.sources:[];return `<section class="sw-compliance-review ${tone}"><div class="sw-compliance-head"><div><span>SIGN WELL · LOCAL COMPLIANCE GUARD</span><strong>可能法規風險 ${escapeHTML(risk)}</strong></div><em>本機複核</em></div><p>${escapeHTML(c.summary||'本機審查偵測到可能風險，請人工確認。')}</p>${findings.length?`<div class="sw-compliance-findings">${findings.slice(0,6).map(f=>`<div><b>${escapeHTML(f.issue||'需確認')}</b>${f.quote?`<q>${escapeHTML(f.quote)}</q>`:''}<span>${escapeHTML(f.rationale||'')}</span>${f.sourceRefs?.length?`<small>依據 ${f.sourceRefs.map(escapeHTML).join(' · ')}</small>`:''}${f.suggestedRewrite?`<i>建議：${escapeHTML(f.suggestedRewrite)}</i>`:''}</div>`).join('')}</div>`:''}${sources.length?`<details><summary>查看法規來源</summary>${sources.map(x=>`<span>${escapeHTML(x.id||'')} · ${escapeHTML(x.law||x.name||'法規')}${x.article?' · '+escapeHTML(x.article):''}</span>`).join('')}</details>`:''}</section>`}
 function swReviewBodyRender(item){const title=document.getElementById('reviewInboxTitle'),body=document.getElementById('reviewInboxBody');if(title)title.textContent=item?.title||'待審稿';if(!body)return;const a=item?.article||{},sources=Array.isArray(item?.sources)?item.sources:[];const audit=a.audit||{},compliance=a.complianceReview||null,tw=a.taiwanLanguageReview||null,dv=a.doctorVoiceReview||null,complianceChip=compliance?.displayAlert?`<span class="review-inbox-chip">Compliance ${escapeHTML(compliance?.riskLevel||'CAUTION')}</span>`:'',twChip=tw?`<span class="review-inbox-chip">支語警察 ${tw?.ok===false?'!':'✓'}</span>`:'',dvChip=dv?`<span class="review-inbox-chip">醫師話 ${dv?.ok===false?'!':'✓'}</span>`:'',securityChip=audit.promptInjectionDetected?`<span class="review-inbox-chip" style="border-color:rgba(152,49,49,.35);color:#8a2e2e">Injection quarantined ${Number(audit.promptInjectionQuarantinedCount||0)}</span>`:'';body.innerHTML=`<div class="review-inbox-meta"><span class="review-inbox-chip">${escapeHTML(item?.category||'健康時事')}</span><span class="review-inbox-chip">${Number(item?.sourceCount||0)} 家媒體</span><span class="review-inbox-chip">${escapeHTML(swReviewRemaining(item?.expiresAt))}</span><span class="review-inbox-chip">Evidence Lock ${audit.evidenceLocked?'✓':'—'}</span><span class="review-inbox-chip">Topic fit ${Number(audit.topicFitScore||0)||'—'}</span>${securityChip}${twChip}${dvChip}${complianceChip}</div>${swReviewSecurityHtml(audit)}${swReviewTaiwanLanguageHtml(tw)}${swReviewDoctorVoiceHtml(dv)}${swReviewComplianceHtml(compliance)}<article class="review-inbox-preview">${a.preview||(`<h1>${escapeHTML(a.title||item?.title||'')}</h1>${a.content||''}`)}<div class="review-inbox-sourcebox"><strong style="font-size:9px;color:#6b8190">新聞來源</strong>${sources.map(s=>`<a href="${escapeHTML(s.url||'#')}" target="_blank" rel="noopener noreferrer">${escapeHTML(s.name||'來源')}｜${escapeHTML(s.title||'')}</a>`).join('')}</div></article>`;requestAnimationFrame(()=>{body.scrollTop=0;body.scrollLeft=0;});}
-async function swReviewOpen(id){if(!id)return;try{swReviewSetBusy(true);const r=await swReviewRequest('admin.reviewQueue.get',{id},60000);if(!r?.ok||!r.item){showToast(r?.expired?'這份審稿已超過 24 小時並自動清除':'找不到審稿項目');await swReviewInboxRefresh();return}swReviewInboxState.current=r.item;swReviewListRender();swReviewBodyRender(r.item);const o=document.getElementById('reviewInboxOverlay');o?.classList.add('show');o?.setAttribute('aria-hidden','false');}catch(err){showToast('讀取審稿文章失敗：'+String(err?.message||err))}finally{swReviewSetBusy(false)}}
+async function swReviewOpen(id){if(!id)return;try{swReviewSetBusy(true);const r=await swReviewRequest('admin.reviewQueue.get',{id},60000);if(!r?.ok||!r.item){showToast(r?.expired?'這份審稿已超過 24 小時並自動清除':'找不到審稿項目');await swReviewInboxRefresh();return}swReviewInboxState.current=r.item;swReviewListRender();swReviewBodyRender(r.item);const o=document.getElementById('reviewInboxOverlay');if(o){o.hidden=false;o.classList.add('show');o.setAttribute('aria-hidden','false');}}catch(err){showToast('讀取審稿文章失敗：'+String(err?.message||err))}finally{swReviewSetBusy(false)}}
 async function swReviewInboxRefresh(preferredId=''){const r=await swReviewRequest('admin.reviewQueue.list',{},45000);swReviewInboxState.items=Array.isArray(r?.items)?r.items:[];swReviewListRender();if(!swReviewInboxState.items.length){swReviewInboxState.current=null;swReviewHide();return false}const id=preferredId&&swReviewInboxState.items.some(x=>x.id===preferredId)?preferredId:swReviewInboxState.items[0].id;await swReviewOpen(id);return true;}
 async function swReviewInboxMaybeOpen(force=false){if($('#cms')?.classList.contains('hidden')&&!force)return false;let target='';try{target=new URL(location.href).searchParams.get('review')||''}catch(_){};if(!force&&!target){const r=await swReviewRequest('admin.reviewQueue.list',{},30000);if(!Array.isArray(r?.items)||!r.items.length)return false;swReviewInboxState.items=r.items;await swReviewOpen(r.items[0].id);return true}const opened=await swReviewInboxRefresh(target);if(target){try{const u=new URL(location.href);u.searchParams.delete('review');history.replaceState(null,'',u.pathname+(u.search?'?'+u.searchParams.toString():'')+u.hash)}catch(_){}}return opened;}
 async function swReviewResolve(decision){const item=swReviewInboxState.current;if(!item||swReviewInboxState.busy)return;try{swReviewSetBusy(true);await swReviewRequest('admin.reviewQueue.resolve',{id:item.id,decision},45000);showToast(decision==='approved'?'已核准審稿':'已標記不採用');await swReviewInboxRefresh();}catch(err){showToast('審稿更新失敗：'+String(err?.message||err))}finally{swReviewSetBusy(false)}}
@@ -7322,7 +7328,7 @@ function importFile(file){const reader=new FileReader();reader.onload=()=>{try{l
 
 function swCommandPalette(open){
   const shell=document.getElementById('cmsCommandPalette'),input=document.getElementById('cmsCommandSearch');if(!shell)return;
-  const show=open!==undefined?Boolean(open):!shell.classList.contains('show');shell.classList.toggle('show',show);shell.setAttribute('aria-hidden',show?'false':'true');
+  const show=open!==undefined?Boolean(open):!shell.classList.contains('show');shell.hidden=!show;shell.classList.toggle('show',show);shell.setAttribute('aria-hidden',show?'false':'true');
   if(show){if(input){input.value='';swCommandFilter('');setTimeout(()=>input.focus({preventScroll:true}),30)}}else input?.blur();
 }
 function swCommandFilter(q){const term=String(q||'').trim().toLowerCase();document.querySelectorAll('#cmsCommandBody button').forEach(btn=>{btn.hidden=Boolean(term)&&!btn.textContent.toLowerCase().includes(term)});const first=[...document.querySelectorAll('#cmsCommandBody button:not([hidden])')][0];document.querySelectorAll('#cmsCommandBody button').forEach(b=>b.classList.toggle('is-selected',b===first));}
@@ -9446,12 +9452,13 @@ document.getElementById('swPublishRegenerateCaption')?.addEventListener('click',
 document.getElementById('swPublishPrepareCanva')?.addEventListener('click',swPublishPrepareCanvaPreview);
 document.getElementById('swPublishSocialSettings')?.addEventListener('click',()=>{closeArticlePublishConfirm(false);nav('export')});
 
-function swRegisterCmsServiceWorker_(){
-  if(!('serviceWorker' in navigator))return;
-  if(location.protocol!=='https:'&&location.hostname!=='localhost')return;
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).catch(()=>{}),{once:true});
+function swRetireCmsServiceWorker_(){
+  window.addEventListener('load',()=>{
+    try{if('caches' in window)caches.keys().then(keys=>Promise.all(keys.filter(k=>String(k).startsWith('signwell-cms-')).map(k=>caches.delete(k)))).catch(()=>{})}catch(_){}
+    try{if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.filter(r=>{try{return new URL(r.scope).pathname.startsWith(new URL('./',location.href).pathname)}catch(_){return false}}).map(r=>r.unregister()))).catch(()=>{})}catch(_){}
+  },{once:true});
 }
-swRegisterCmsServiceWorker_();
+swRetireCmsServiceWorker_();
 load();syncPublicSnapshot();optimize();initCmsPremium();swCmsInitOptimizedNav();bindCmsCloudRealtime();setAuthStage(1);initCmsServerAuth();playOpeningWelcome();
 try{
   const bc=new BroadcastChannel(ANALYTICS_CHANNEL);
