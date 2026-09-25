@@ -13,25 +13,12 @@
 <meta name="referrer" content="no-referrer">
 <script id="swCanonicalBackendBootstrap">
 (()=>{
-  const endpoint='https://script.google.com/macros/s/AKfycbzmZXZSepxCD1jbfpjMxsnvn0nRl-xEpeXdJoTO-TZL6Z5Zk7T-OsVGpTkIxWaCh-Y/exec';
+  const endpoint="https://script.google.com/macros/s/AKfycbzmZXZSepxCD1jbfpjMxsnvn0nRl-xEpeXdJoTO-TZL6Z5Zk7T-OsVGpTkIxWaCh-Y/exec";
   window.SIGNWELL_CANONICAL_BACKEND_ENDPOINT=endpoint;
   const cfg={enabled:true,endpoint,version:'24.36.3',bridgeProtocol:'23.9.92'};
   window.SIGNWELL_BACKEND=Object.assign({},window.SIGNWELL_BACKEND||{},cfg);
   window.SIGNWELL_ANALYTICS=Object.assign({},window.SIGNWELL_ANALYTICS||{},cfg);
   window.SIGNWELL_NEWSLETTER=Object.assign({},window.SIGNWELL_NEWSLETTER||{},cfg);
-})();
-</script>
-<script id="swCmsLegacyCacheRecovery">
-(()=>{
-  const MARK='canonical-r3';
-  const KEY='sw-cms-cache-recovery';
-  try{
-    if(sessionStorage.getItem(KEY)===MARK)return;
-    const jobs=[];
-    if('caches' in window)jobs.push(caches.keys().then(keys=>Promise.all(keys.filter(k=>String(k).startsWith('signwell-cms-')).map(k=>caches.delete(k)))));
-    if('serviceWorker' in navigator)jobs.push(navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.filter(r=>{try{return new URL(r.scope).pathname.startsWith(new URL('./',location.href).pathname)}catch(_){return false}}).map(r=>r.unregister()))));
-    Promise.allSettled(jobs).finally(()=>{try{sessionStorage.setItem(KEY,MARK)}catch(_){}});
-  }catch(_){}
 })();
 </script>
 <style id="swCmsStructuralGuard">
@@ -60,15 +47,15 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
 <title>SIGN WELL CMS · 欣緯生醫</title>
 
 <script>window.SIGNWELL_RELEASE=Object.freeze({version:"24.36.3",releaseVersion:"24.36.3",bridgeProtocol:"23.9.92",buildDate:"2026-09-24",buildId:"20260924.363"});</script>
-<link rel="stylesheet" href="assets/cms-core.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/components/styles/cms-experience.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/components/styles/ai-token-observatory.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/components/styles/provider-billing-observatory.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/components/styles/prelegal-editorial-gates.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/components/styles/geo-observatory.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/components/styles/cms-contrast-safety.css?build=canonical-r3">
-<link rel="stylesheet" href="assets/uiux-system.css?build=canonical-r3">
-<link rel="preload" href="assets/bundles/cms-app.js?build=canonical-r3" as="script" fetchpriority="high">
+<link rel="stylesheet" href="assets/cms-core.css?build=canonical">
+<link rel="stylesheet" href="assets/components/styles/cms-experience.css?build=canonical">
+<link rel="stylesheet" href="assets/components/styles/ai-token-observatory.css?build=canonical">
+<link rel="stylesheet" href="assets/components/styles/provider-billing-observatory.css?build=canonical">
+<link rel="stylesheet" href="assets/components/styles/prelegal-editorial-gates.css?build=canonical">
+<link rel="stylesheet" href="assets/components/styles/geo-observatory.css?build=canonical">
+<link rel="stylesheet" href="assets/components/styles/cms-contrast-safety.css?build=canonical">
+<link rel="stylesheet" href="assets/uiux-system.css?build=canonical">
+<link rel="preload" href="assets/bundles/cms-runtime.js?build=canonical" as="script" fetchpriority="high">
 
 
 
@@ -128,8 +115,8 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
 @media(prefers-reduced-motion:reduce){.sw-nav-optimized .nav-group{animation:none}.sw-nav-sections button{transition:none}}
 </style>
 
-<script src="analytics-config.js?build=canonical-r3"></script>
-<script src="assets/cms-compat.js?build=canonical-r3"></script>
+<script src="analytics-config.js?build=canonical"></script>
+<script src="assets/cms-compat.js?build=canonical"></script>
 
 </head>
 <body class="light">
@@ -245,7 +232,7 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
 <section class="lock-screen" id="lockScreen"><div class="lock-card"><h1 id="lockTitle">SIGN WELL CMS</h1><p id="lockDesc">欣緯生醫 · 私人文章工作台</p><div class="passkey-login-panel" id="passkeyLoginPanel" hidden><button class="passkey-primary" id="passkeyLoginBtn" type="button"><span class="passkey-glyph">⌁</span>使用 Face ID / Touch ID / Passkey</button><div class="passkey-caption"><b>生物資料留在你的裝置。</b> SIGN WELL 只接收 WebAuthn 公鑰驗證結果，不會取得臉部、指紋或系統解鎖資料。</div><div class="passkey-divider">或</div><button class="passkey-fallback" id="passkeyUseLegacyBtn" type="button">改用管理密碼＋安全問題</button></div><div id="legacyLoginPanel"><div class="auth-progress" id="authProgress" aria-label="兩階段登入進度"><span class="active" id="authDot1">1</span><i></i><span id="authDot2">2</span></div><div class="auth-error-box" id="authError" role="alert" aria-live="assertive"><div class="auth-error-icon">!</div><div><b id="authErrorTitle">驗證失敗</b><span id="authErrorText"></span></div></div><div class="auth-step" id="authStep1"><div class="auth-label">第一階段 · 伺服器端管理密碼</div><input class="pin sw-manual-password" id="pinInput" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" data-1p-ignore="true" data-lpignore="true" data-form-type="other" maxlength="64" placeholder="輸入管理密碼" aria-label="CMS 管理密碼"><button id="unlockBtn">繼續</button></div><div class="auth-step hidden" id="authStep2"><div class="auth-label">第二階段 · 安全問題</div><div class="security-question" id="securityQuestionText">安全問題會在第一階段通過後由伺服器載入</div><input class="pin answer-input" id="answerInput" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="請輸入答案（可使用中文）"><button id="verifyBtn">驗證並進入</button><button class="auth-back" id="authBackBtn" type="button">返回第一階段</button></div><div class="auth-step hidden" id="authSetup"><div class="auth-label">首次安全升級 · 建立伺服器端登入</div><div class="auth-setup-note"><b>設定 1 題安全問題。</b><br>管理密碼通過後，每次登入只會要求這一題。題目與答案都可使用中文或英文；題目存在後端，答案只保存加鹽、迭代雜湊，不保存明文。</div><div class="auth-setup-scroll"><div class="auth-setup-grid"><label class="auth-setup-field"><span>後端初始化金鑰</span><input class="setup-secret" id="authBootstrapKey" type="password" autocomplete="off" placeholder="輸入 SW_ADMIN_KEY"></label><label class="auth-setup-field"><span>新的 CMS 管理密碼</span><input class="setup-secret sw-manual-password" id="authSetupPassword" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" data-1p-ignore="true" data-lpignore="true" data-form-type="other" minlength="6" maxlength="64" placeholder="至少 6 位數字" aria-label="新的 CMS 管理密碼"></label>
 <div class="auth-question-pool-title"><strong>單一安全問題</strong><small>請設定 1 個只有你容易回答的問題；中文／英文皆可</small></div>
 <label class="auth-setup-field"><span>安全問題</span><input class="auth-question-input" id="authSetupQuestion1" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="例如：我第一所就讀的小學是？"></label><label class="auth-setup-field"><span>答案</span><input class="auth-answer-input" id="authSetupAnswer1" type="text" lang="zh-Hant" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" placeholder="可輸入中文或英文"></label>
-<div class="auth-zh-note">安全問題與答案都可使用中文或英文。首次設定時維持一般文字欄位、不遮罩，方便確認內容；送出後答案只在後端保存加鹽雜湊，不保存明文。建議不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · 已加密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。</small></div></section>
+<div class="auth-zh-note">安全問題與答案都可使用中文或英文。首次設定時維持一般文字欄位、不遮罩，方便確認內容；送出後答案只在後端保存加鹽雜湊，不保存明文。建議不要使用公開社群上容易查到的資料。</div></div></div><button id="authSetupBtn" type="button">建立安全問題</button><div class="auth-setup-backup">後端初始化金鑰只用於建立或升級登入設定，不會儲存在瀏覽器。</div></div></div><div class="auth-server-badge" id="authServerBadge">SERVER AUTH · 已加密</div><small id="lockHint">登入驗證由 Google Apps Script 執行；真正密碼不會下載到這個 HTML。 · <a href="repair.html" style="color:inherit">修復快取</a></small></div></section>
 <section class="cms hidden" id="cms" hidden>
 <aside class="sidebar glass">
   <div class="brand"><div class="brand-mark">SW</div><div><strong>SIGN WELL CMS</strong><span>欣緯生醫 · v24.36.3</span></div></div>
@@ -466,11 +453,11 @@ if(window.top!==window.self){window.stop();document.documentElement.innerHTML=''
   },{passive:true});
 })();
 </script>
-<script src="assets/bundles/article-identity.js?build=canonical-r3"></script>
-<script src="assets/bundles/error-experience.js?build=canonical-r3"></script>
-<script src="assets/bundles/cms-app.js?build=canonical-r3" data-sw-critical></script>
-<script src="assets/bundles/cms-contrast-guard.js?build=canonical-r3" defer></script>
-<script src="assets/uiux-system.js?build=canonical-r3" defer></script>
+<script src="assets/bundles/article-identity.js?build=canonical"></script>
+<script src="assets/bundles/error-experience.js?build=canonical"></script>
+<script src="assets/bundles/cms-runtime.js?build=canonical" data-sw-critical></script>
+<script src="assets/bundles/cms-contrast-guard.js?build=canonical" defer></script>
+<script src="assets/uiux-system.js?build=canonical" defer></script>
 
 </body>
 </html>
